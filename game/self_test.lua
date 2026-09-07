@@ -14,6 +14,7 @@ function M.run()
     player.update(actor, 10, { left = true, up = true })
     assert(actor.x == 5 and actor.y == 5)
     require("game.tests.hwatu").run()
+    require("game.tests.run").run()
     print("GOSTRO_UNIT_OK")
 end
 

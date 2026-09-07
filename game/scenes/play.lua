@@ -1,5 +1,6 @@
 local playerModule = require("game.player")
 require("game.hwatu")
+require("game.run")
 local M = {}
 M.__index = M
 
