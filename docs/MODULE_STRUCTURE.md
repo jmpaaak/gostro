@@ -3,7 +3,7 @@
 기능 개발 때 기존 거대 파일에 동작을 계속 붙여 넣지 않는다.
 새 기능은 담당 모듈 파일로 분리하고, 씬/엔트리는 `require`만 한다.
 
-이 문서는 스켈레톤에서 파생된 모든 LÖVE 프로젝트(`spaceship`, `man-of-korea`, 이후 게임)와
+이 문서는 스켈레톤에서 파생된 모든 LÖVE 프로젝트(`spaceship`, `man-of-korea`, `gostro`, 이후 게임)와
 자율 루프 `loop/PROMPT.md`의 원본이다. PROMPT에는 한 단락만 두고 여기로 보낸다.
 
 ## 한도

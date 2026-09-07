@@ -13,7 +13,7 @@ function M.run()
     assert(actor.x == 232 and actor.y == 90)
     player.update(actor, 10, { left = true, up = true })
     assert(actor.x == 5 and actor.y == 5)
-    print("LOVE2D_GAME_SKELETON_UNIT_OK")
+    print("GOSTRO_UNIT_OK")
 end
 
 return M

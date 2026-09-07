@@ -24,8 +24,8 @@ function M:draw()
     love.graphics.setColor(0.35, 0.85, 1)
     love.graphics.rectangle("fill", math.floor(self.player.x - 4), math.floor(self.player.y - 4), 8, 8)
     love.graphics.setColor(1, 1, 1)
-    love.graphics.print("LÖVE2D GAME SKELETON", 8, 8)
-    love.graphics.print("Move: WASD / arrows", 8, 24)
+    love.graphics.print("GOSTRO", 8, 8)
+    love.graphics.print("gwang = joker  |  dan / godori / pi", 8, 24)
 end
 
 return M

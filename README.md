@@ -1,45 +1,43 @@
-# LÖVE2D Game Skeleton
+# Gostro
 
-A small, tested foundation for landscape pixel games built with LÖVE 11.5.
+발라트로 계보의 **화투 덱빌딩**. 광이 조커고, 패는 단·고도리·피만 쓴다.
 
-## Included
+## 한 문장
 
-- 320×180 virtual canvas with nearest-neighbor scaling
-- reusable viewport/input coordinate transform
-- scene stack and keyboard-controlled player
-- bounded headless smoke mode
-- deterministic `.love` packaging with private/build-file exclusions
-- Lua unit tests and GitHub Actions CI
+핸드에서 단·고도리·피를 모아 칩×배수를 뽑고, 광(조커) 시너지로 점수를 폭발시키며 앤티를 따라잡는 로그라이크.
 
-## Run
+## 패 (월 숫자 없음)
+
+| 패 | 보이는 것 | 역할 |
+|---|---|---|
+| **광** | 큰 ★ | 조커. 슬롯에 꽂히는 패시브. 기본 1점 |
+| **홍단** | 빨간 깃발 | 띠 |
+| **청단** | 파란 깃발 | 띠 |
+| **초단** | 난초 | 띠 |
+| **고도리** | 동물 (꾀꼬리·두견·기러기) | 2·4·8월 새 |
+| **피** | 점 | 나머지 전부 |
+
+1~12월 표기는 쓰지 않는다.
+
+## 족보 (이것만)
+
+- **광 하나 = 1점** (기본)
+- **홍단 / 청단 / 초단** — 같은 깃발·난초 3장
+- **고도리** — 동물 3장
+- **피** — 피 많이 모으면 점수
+
+매·뻑·오띠·광열 콤보 같은 가짜 포커 족보는 없다. 점수 천장은 광(조커) 시너지가 연다.
+
+## 실행
 
 ```bash
 love .
+make verify LOVE=/path/to/love
 ```
 
-Move with WASD or arrow keys. Press Escape to quit.
+## 저장소
 
-## Verify
-
-```bash
-make verify LOVE=/path/to/love LUA=/path/to/lua
-```
-
-## Create a game
-
-Use the repository as a GitHub template, then change the identity/title in `conf.lua` and replace `game/scenes/play.lua` with the first playable vertical slice. Do **not** grow that scene into a god-file — new systems go in their own `game/*.lua` modules (`docs/MODULE_STRUCTURE.md`). INBOX items that don't share files should be worktree-parallelized to the maximum.
-
-## Autonomous dev loop token optimization (built in)
-
-If you wire an autonomous cron/launchd dev loop onto a game generated from
-this skeleton, `scripts/compact_status.py` and `loop/pending_feedback.py`
-are already here — see `docs/TOKEN_OPTIMIZATION.md` for the three rules
-and how to hook them in before `docs/STATUS.md` / `loop/PROMPT.md` grow
-large enough to inflate every cycle's input tokens.
-
-## Provenance
-
-This skeleton was distilled from reusable engine patterns in `man-of-korea`; it contains no story content, purchased assets, generated art, credentials, logs, or user data from that project.
+[`jmpaaak/love2d-game-skeleton`](https://github.com/jmpaaak/love2d-game-skeleton) 템플릿에서 생성. 기획은 [`docs/GAME_DESIGN.md`](docs/GAME_DESIGN.md).
 
 ## License
 
