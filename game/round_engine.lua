@@ -84,7 +84,7 @@ local function initial_hand_size(run_state, options)
     end
     local base = run_state.base_hand_size or run_state.hand_size or BASE_HAND_SIZE
     local size = integer(base, "base hand size", 0)
-        + modifier(run_state.vouchers, "hand_size")
+        + modifier(run_state.seals or run_state.vouchers, "hand_size")
         + modifier(run_state.plaques or run_state.tags, "hand_size_bonus")
     local boss = run_state.boss
     if type(boss) == "table" then
@@ -102,12 +102,12 @@ local function initial_hand_size(run_state, options)
     return size
 end
 
-local function initial_count(options_value, run_state, base, voucher_field, name)
+local function initial_count(options_value, run_state, base, seal_field, name)
     if options_value ~= nil then
         return integer(options_value, name, 0)
     end
     return integer(run_state["base_" .. name] or base, "base " .. name, 0)
-        + modifier(run_state.vouchers, voucher_field)
+        + modifier(run_state.seals or run_state.vouchers, seal_field)
 end
 
 local function default_target(run_state)

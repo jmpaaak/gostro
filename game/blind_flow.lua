@@ -3,7 +3,7 @@ local plaques = require("game.plaques")
 local blind_targets = require("game.blind_targets")
 local boss_blinds = require("game.boss_blinds")
 local economy = require("game.economy")
-local vouchers = require("game.vouchers")
+local seals = require("game.seals")
 local run_history = require("game.run_history")
 
 local M = {}
@@ -165,7 +165,7 @@ function M.clear(state, hands_left)
     else
         state.phase = "shop"
         local shop_rng = state.rng and state.rng.shop
-        vouchers.stock_shop(state, shop_rng)
+        seals.stock_shop(state, shop_rng)
     end
     return state.phase
 end
@@ -204,9 +204,10 @@ function M.leave_shop(state)
     end
     state.phase = "play"
     state.round_score = 0
-    local extra_hands = state.vouchers and state.vouchers.hands or 0
+    local upgrades = state.seals or state.vouchers
+    local extra_hands = upgrades and upgrades.hands or 0
     state.hands_left = 4 + extra_hands
-    vouchers.clear_shop(state)
+    seals.clear_shop(state)
     return {
         ante = state.ante,
         kind = state.blind,

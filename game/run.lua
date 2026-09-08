@@ -1,6 +1,6 @@
 local M = {}
 
-local vouchers = require("game.vouchers")
+local seals = require("game.seals")
 local blind_targets = require("game.blind_targets")
 local gwang_inventory = require("game.gwang_inventory")
 local run_state = require("game.run_state")
@@ -55,9 +55,14 @@ function M.buy_gwang(state, card)
     return gwang_inventory.buy(state, card)
 end
 
---- Compatibility delegate; voucher purchase rules are owned by game.vouchers.
+--- 인장 purchase rules are owned by game.seals.
+function M.buy_seal(state, id)
+    return seals.buy(state, id)
+end
+
+--- Compatibility delegate for legacy callers.
 function M.buy_voucher(state, id)
-    return vouchers.buy(state, id)
+    return seals.buy(state, id)
 end
 
 --- Compatibility delegate; shop progression is owned by game.blind_flow.

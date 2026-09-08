@@ -142,11 +142,12 @@ function M.discard_limit(state, base_discards)
     base_discards = base_discards or 3
     assert(type(base_discards) == "number" and base_discards >= 0, "base discards must be non-negative")
     local rules = rules_for(state)
-    local voucher_bonus = 0
-    if type(state) == "table" and type(state.vouchers) == "table" then
-        voucher_bonus = state.vouchers.discards or 0
+    local seal_bonus = 0
+    local upgrades = type(state) == "table" and (state.seals or state.vouchers)
+    if type(upgrades) == "table" then
+        seal_bonus = upgrades.discards or 0
     end
-    return math.max(0, base_discards + voucher_bonus + (rules and rules.discard_delta or 0))
+    return math.max(0, base_discards + seal_bonus + (rules and rules.discard_delta or 0))
 end
 
 --- Apply a validated selection to a freshly-created run state.

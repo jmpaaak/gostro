@@ -7,9 +7,8 @@ local function mock_run()
     state.phase = "shop"
     state.money = 20
     state.rng.shop = function(min, max) return min end -- predictable
-    -- setup voucher in shop
-    if not state.vouchers then state.vouchers = {} end
-    state.vouchers.shop_id = "grabber"
+    -- Set up an 인장 in the shop.
+    state.seals.shop_id = "artisan_hand"
     return state
 end
 
@@ -19,35 +18,34 @@ local function run_tests()
     local state = mock_run()
     local shop = shop_engine.new(state)
     
-    -- Test buying a voucher
-    -- Find the voucher slot
-    local voucher_idx = nil
+    -- Test buying an 인장.
+    local seal_idx = nil
     for i, slot in ipairs(shop.slots) do
-        if slot.kind == "voucher" then
-            voucher_idx = i
+        if slot.kind == "seal" then
+            seal_idx = i
             break
         end
     end
-    assert(voucher_idx, "shop has a voucher slot")
+    assert(seal_idx, "shop has an 인장 slot")
     
-    local ok = shop_purchases.buy(shop, voucher_idx)
-    assert(ok, "voucher purchase succeeds")
-    assert(state.vouchers.bought_this_shop == true, "voucher state updated")
+    local ok = shop_purchases.buy(shop, seal_idx)
+    assert(ok, "인장 purchase succeeds")
+    assert(state.seals.bought_this_shop == true, "인장 state updated")
     assert(state.money == 10, "money deducted (20 - 10)")
-    assert(shop.slots[voucher_idx].sold == true, "slot marked sold")
+    assert(shop.slots[seal_idx].sold == true, "slot marked sold")
     
     -- Test buying already sold slot
-    local ok2 = shop_purchases.buy(shop, voucher_idx)
+    local ok2 = shop_purchases.buy(shop, seal_idx)
     assert(not ok2, "cannot buy sold slot")
     
-    -- Test rollback on double voucher apply (simulate failure)
+    -- Test rollback on a duplicate 인장 application (simulate failure).
     -- manually reset sold to try to buy again, which should fail application
-    shop.slots[voucher_idx].sold = false
+    shop.slots[seal_idx].sold = false
     local start_money = state.money
-    local ok3 = shop_purchases.buy(shop, voucher_idx)
+    local ok3 = shop_purchases.buy(shop, seal_idx)
     assert(not ok3, "application failure returns false")
     assert(state.money == start_money, "money rolled back")
-    assert(shop.slots[voucher_idx].sold == false, "slot sold rolled back")
+    assert(shop.slots[seal_idx].sold == false, "slot sold rolled back")
 
     -- Buying a bundle opens deterministic choices without auto-granting a talisman.
     local pack_idx = nil

@@ -4,7 +4,7 @@
 local consumables_ui = require("game.ui.consumables")
 local run = require("game.run")
 local talismans = require("game.talismans")
-local vouchers = require("game.vouchers")
+local seals = require("game.seals")
 
 local M = {}
 
@@ -34,10 +34,10 @@ function M.run()
         "pressing the selected consumable toggles it off")
     assert(consumables_ui.view(state, 1).slots[1].selected == true)
 
-    vouchers.apply(state, "crystal_ball")
+    seals.apply(state, "charm_pouch")
     view = consumables_ui.view(state, 99)
     assert(view.capacity == 3 and #view.slots == 3,
-        "Crystal Ball capacity is reflected by the inventory")
+        "부적 주머니 capacity is reflected by the inventory")
     assert(view.selected_slot == nil, "invalid selection is discarded")
     assert(consumables_ui.hit_test(state, 0, 0) == nil)
 

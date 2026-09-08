@@ -4,7 +4,7 @@
 local talismans = require("game.talismans")
 local hwatu = require("game.hwatu")
 local run = require("game.run")
-local vouchers = require("game.vouchers")
+local seals = require("game.seals")
 
 local M = {}
 
@@ -22,7 +22,7 @@ function M.run()
     M.test_pool()
     M.test_by_id()
     M.test_max_slots_default()
-    M.test_crystal_ball_expands_slots()
+    M.test_charm_pouch_expands_slots()
     M.test_gain_from_shop()
     M.test_gain_from_boss_reward()
     M.test_slots_full()
@@ -78,9 +78,9 @@ function M.test_max_slots_default()
     assert(#state.talismans == 0)
 end
 
-function M.test_crystal_ball_expands_slots()
+function M.test_charm_pouch_expands_slots()
     local state = run.new()
-    vouchers.apply(state, "crystal_ball")
+    seals.apply(state, "charm_pouch")
     assert(talismans.max_slots(state) == 3)
 end
 

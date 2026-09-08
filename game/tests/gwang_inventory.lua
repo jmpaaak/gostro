@@ -7,7 +7,7 @@ function M.run()
     local state = {
         phase = "shop",
         gwang = {},
-        vouchers = { gwang_slots = 1 },
+        seals = { gwang_slots = 1 },
     }
 
     assert(gwang_inventory.MAX_SLOTS == 5)
@@ -37,7 +37,7 @@ function M.run()
     end
     local over_cap = pcall(gwang_inventory.buy, state, { identity = "too-many" })
     assert(not over_cap and #state.gwang == 6,
-        "voucher-adjusted capacity is enforced without partial insertion")
+        "인장-adjusted capacity is enforced without partial insertion")
 
     local original_max = gwang_inventory.max_slots
     local original_buy = gwang_inventory.buy

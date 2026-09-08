@@ -192,7 +192,7 @@ function M.leave_shop(scene)
     scene.state = "blind_select"
 end
 
---- Reroll the live engine shop, including plaque/voucher modifiers.
+--- Reroll the live engine shop, including 패찰/인장 modifiers.
 function M.reroll_shop(scene)
     if scene.state ~= "shop" then return false end
     local ok, paid = shop_engine.reroll(scene.shop)

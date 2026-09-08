@@ -108,9 +108,9 @@ function M.run()
         "red stake constrains payouts and starting economy with integer rounding")
     assert(run_rules.discard_limit(red, 3) == 2 and red.discard_limit == 2,
         "red stake constrains available discards")
-    require("game.vouchers").apply(red, "wasteful")
+    require("game.seals").apply(red, "emptying_jar")
     assert(run_rules.discard_limit(red) == 3,
-        "voucher discard bonuses compose with the stake constraint")
+        "인장 discard bonuses compose with the stake constraint")
 
     local untouched = run.new()
     local rejected = run_rules.apply(untouched, {

@@ -12,6 +12,21 @@ function M.new(seed_str)
         extra_shop_slots = 0,
         hand_size_bonus = 0,
     }
+    local seals = {
+        owned = {},
+        hand_size = 0,
+        discards = 0,
+        hands = 0,
+        shop_slots = 0,
+        reroll_discount = 0,
+        shop_discount = 0,
+        interest_cap = 5,
+        gwang_slots = 0,
+        consumable_slots = 0,
+        edition_rate = 1,
+        boss_rerolls = 0,
+        interest_rate = 0,
+    }
     return {
         seed = plan.seed,
         rng = {
@@ -26,21 +41,8 @@ function M.new(seed_str)
         gwang = {},
         plaques = plaques,
         tags = plaques, -- legacy save/API alias
-        vouchers = {
-            owned = {},
-            hand_size = 0,
-            discards = 0,
-            hands = 0,
-            shop_slots = 0,
-            reroll_discount = 0,
-            shop_discount = 0,
-            interest_cap = 5,
-            gwang_slots = 0,
-            consumable_slots = 0,
-            edition_rate = 1,
-            boss_rerolls = 0,
-            interest_rate = 0,
-        },
+        seals = seals,
+        vouchers = seals, -- legacy save/runtime alias
         boss_id = nil,
         boss = nil,
         money = 4,

@@ -85,7 +85,7 @@ function M.run()
     btn = shop.hit_test(s8, 0, 0)
     assert(btn == nil, "miss returns nil")
 
-    -- Engine-owned shops expose every random, pack, and voucher slot.
+    -- Engine-owned shops expose every random, pack, and 인장 slot.
     local engine_shop = {
         run_state = { money = 17 },
         random_offers = {
@@ -97,14 +97,14 @@ function M.run()
         pack_slots = {
             { slot_type = "pack", kind = "pack", identity = "talisman_bundle", name = "부적 꾸러미", price = 4 },
         },
-        voucher_slots = {
-            { slot_type = "voucher", kind = "voucher", identity = "paint_brush", price = 10 },
+        seal_slots = {
+            { slot_type = "seal", kind = "seal", identity = "wide_mat", price = 10 },
         },
     }
     engine_shop.slots = {
         engine_shop.random_offers[1], engine_shop.random_offers[2],
         engine_shop.random_offers[3], engine_shop.random_offers[4],
-        engine_shop.pack_slots[1], engine_shop.voucher_slots[1],
+        engine_shop.pack_slots[1], engine_shop.seal_slots[1],
     }
     local engine_positions = shop.card_positions(engine_shop)
     assert(#engine_positions == 6, "all engine slots have positions")
@@ -117,14 +117,20 @@ function M.run()
     assert(#views == 6, "all engine slots have view data")
     assert(views[5].slot_type == "pack" and views[5].label == "부적 꾸러미",
         "pack slot is represented")
-    assert(views[6].slot_type == "voucher" and views[6].label ~= "?",
-        "voucher slot is represented")
+    assert(views[6].slot_type == "seal" and views[6].label == "너른 멍석",
+        "인장 slot uses its Korean-themed name")
     assert(views[2].label == "기원패", "wish-card fallback uses the Korean category name")
 
-    local legacy_view = shop.slot_views({ cards = {
+    local legacy_wish_view = shop.slot_views({ cards = {
         { kind = "planet", identity = "planet_hongdan", price = 3 },
     } })
-    assert(legacy_view[1].label == "기원패", "legacy offers never expose the old category name")
+    assert(legacy_wish_view[1].label == "기원패",
+        "legacy wish-card offers never expose the old category name")
+    local legacy_seal_view = shop.slot_views({ cards = {
+        { kind = "voucher", identity = "antimatter", name = "반물질", price = 10 },
+    } })
+    assert(legacy_seal_view[1].label == "금빛 보자기",
+        "legacy seal shop data never leaks its old player-facing name")
 
     -- money_text accepts both legacy UI state and engine-owned run money.
     local txt = shop.money_text(s8)

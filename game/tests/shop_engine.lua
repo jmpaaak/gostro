@@ -3,7 +3,6 @@
 
 local rng = require("game.rng")
 local shop_engine = require("game.shop_engine")
-local vouchers = require("game.vouchers")
 
 local M = {}
 
@@ -13,9 +12,9 @@ local function run_state(seed, money)
         money = money or 100,
         rng = { shop = plan.shop },
         tags = { free_rerolls = 0, extra_shop_slots = 0 },
-        vouchers = {
+        seals = {
             owned = {},
-            shop_id = "paint_brush",
+            shop_id = "wide_mat",
             shop_slots = 0,
             reroll_discount = 0,
             shop_discount = 0,
@@ -54,13 +53,25 @@ end
 
 function M.test_shop_slot_modifiers_and_fixed_slots()
     local state = run_state("SLOTS", 100)
-    state.vouchers.shop_slots = 1
+    state.seals.shop_slots = 1
     state.tags.extra_shop_slots = 2
     local shop = shop_engine.new(state)
     assert(#shop.random_offers == shop_engine.BASE_RANDOM_SLOTS + 3)
     assert(#shop.pack_slots == 1 and shop.pack_slots[1].slot_type == "pack")
-    assert(#shop.voucher_slots == 1 and shop.voucher_slots[1].identity == "paint_brush")
+    assert(#shop.seal_slots == 1 and shop.seal_slots[1].identity == "wide_mat")
     assert(#shop.slots == #shop.random_offers + 2)
+end
+
+function M.test_open_migrates_legacy_stock()
+    local state = run_state("LEGACY", 100)
+    state.vouchers = state.seals
+    state.seals = nil
+    state.vouchers.shop_id = "antimatter"
+    local shop = shop_engine.new(state)
+    assert(state.seals == state.vouchers,
+        "opening a shop migrates the legacy upgrade field")
+    assert(shop.seal_slots[1].identity == "golden_wrapping_cloth",
+        "opening a shop migrates a legacy stocked id")
 end
 
 function M.test_reroll_replaces_random_only_and_tracks_cost()
@@ -68,7 +79,7 @@ function M.test_reroll_replaces_random_only_and_tracks_cost()
     local shop = shop_engine.new(state)
     local old_random = shop.random_offers
     local old_pack = shop.pack_slots[1]
-    local old_voucher = shop.voucher_slots[1]
+    local old_seal = shop.seal_slots[1]
 
     assert(shop_engine.reroll_cost(shop) == 5)
     local ok, paid = shop_engine.reroll(shop)
@@ -77,7 +88,7 @@ function M.test_reroll_replaces_random_only_and_tracks_cost()
     assert(shop.reroll_count == 1 and shop_engine.reroll_cost(shop) == 6)
     assert(shop.random_offers ~= old_random, "random offers must be replaced")
     assert(shop.pack_slots[1] == old_pack, "pack slot must survive reroll")
-    assert(shop.voucher_slots[1] == old_voucher, "voucher slot must survive reroll")
+    assert(shop.seal_slots[1] == old_seal, "인장 slot must survive reroll")
 
     ok, paid = shop_engine.reroll(shop)
     assert(ok and paid == 6)
@@ -87,7 +98,7 @@ end
 function M.test_free_and_discounted_rerolls_are_consumed()
     local state = run_state("MODIFIERS", 20)
     state.tags.free_rerolls = 1
-    state.vouchers.reroll_discount = 2
+    state.seals.reroll_discount = 2
     local shop = shop_engine.new(state)
 
     assert(shop_engine.reroll_cost(shop) == 0)
@@ -112,7 +123,7 @@ end
 
 function M.test_discounted_purchase_preserves_paid_price_for_rollback()
     local state = run_state("BUY", 100)
-    state.vouchers.shop_discount = 2
+    state.seals.shop_discount = 2
     local shop = shop_engine.new(state)
     local slot = shop.random_offers[1]
     assert(slot.price == math.max(1, slot.base_price - 2))
@@ -140,6 +151,7 @@ end
 function M.run()
     M.test_seeded_generation_uses_only_shop_stream()
     M.test_shop_slot_modifiers_and_fixed_slots()
+    M.test_open_migrates_legacy_stock()
     M.test_reroll_replaces_random_only_and_tracks_cost()
     M.test_free_and_discounted_rerolls_are_consumed()
     M.test_failed_reroll_is_atomic()

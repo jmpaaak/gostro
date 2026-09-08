@@ -213,16 +213,16 @@ function M.test_shop_exit_owns_every_progression_and_round_reset()
     state.phase = "shop"
     state.round_score = 321
     state.hands_left = 1
-    state.vouchers.hands = 2
-    state.vouchers.shop_id = "overstock"
-    state.vouchers.bought_this_shop = true
+    state.seals.hands = 2
+    state.seals.shop_id = "market_bundle"
+    state.seals.bought_this_shop = true
 
     local big = blind_flow.leave_shop(state)
     assert(big.ante == 1 and big.kind == "big" and big.phase == "play")
     assert(state.round_score == 0 and state.hands_left == 6,
-        "shop exit resets score and applies the permanent extra-hand voucher")
-    assert(state.vouchers.shop_id == nil and state.vouchers.bought_this_shop == false,
-        "shop exit clears temporary voucher stock")
+        "shop exit resets score and applies the permanent extra-hand 인장")
+    assert(state.seals.shop_id == nil and state.seals.bought_this_shop == false,
+        "shop exit clears temporary 인장 stock")
 
     state.phase = "shop"
     local boss = blind_flow.leave_shop(state)
@@ -245,7 +245,7 @@ function M.test_clear_owns_cash_out_shop_stock_and_final_win()
 
     assert(blind_flow.clear(state) == "shop")
     assert(state.money == 9, "clear cashes out blind reward and remaining hands")
-    assert(state.vouchers.shop_id ~= nil, "clear stocks the next shop voucher")
+    assert(state.seals.shop_id ~= nil, "clear stocks the next shop 인장")
 
     run_history.reset()
     local final = run_state.new("blind-flow-final-win")

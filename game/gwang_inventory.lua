@@ -12,8 +12,9 @@ local PLAY_CARDS = {
 
 function M.max_slots(state)
     local extra = 0
-    if state.vouchers then
-        extra = state.vouchers.gwang_slots or 0
+    local upgrades = state.seals or state.vouchers
+    if upgrades then
+        extra = upgrades.gwang_slots or 0
     end
     return M.MAX_SLOTS + extra
 end

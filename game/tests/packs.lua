@@ -7,7 +7,7 @@ local function state(seed)
     return {
         rng = { shop = rng.plan(seed or "PACKS").shop },
         talismans = {},
-        vouchers = {},
+        seals = {},
     }
 end
 

@@ -5,13 +5,15 @@
 local gwang_catalog = require("game.gwang_catalog")
 local wish_cards = require("game.wish_cards")
 local talismans = require("game.talismans")
+local seals_catalog = require("game.seals")
 
 local M = {}
 
 M.BASE_RANDOM_SLOTS = 3
 M.BASE_REROLL_COST = 5
 M.PACK_PRICE = 4
-M.VOUCHER_PRICE = 10
+M.SEAL_PRICE = 10
+M.VOUCHER_PRICE = M.SEAL_PRICE -- legacy constant
 
 local GWANG_PRICE = {
     common = 4,
@@ -30,13 +32,13 @@ end
 
 local function modifiers(run_state)
     local plaques = run_state.plaques or run_state.tags or {}
-    local voucher = run_state.vouchers or {}
-    return plaques, voucher
+    local seals = run_state.seals or run_state.vouchers or {}
+    return plaques, seals
 end
 
 local function discounted_price(run_state, base_price)
-    local _, voucher = modifiers(run_state)
-    return math.max(1, base_price - non_negative_integer(voucher.shop_discount))
+    local _, seals = modifiers(run_state)
+    return math.max(1, base_price - non_negative_integer(seals.shop_discount))
 end
 
 local function require_shop_rng(run_state)
@@ -111,10 +113,10 @@ local function random_offer(run_state, random)
 end
 
 local function random_slot_count(run_state)
-    local plaques, voucher = modifiers(run_state)
+    local plaques, seals = modifiers(run_state)
     return M.BASE_RANDOM_SLOTS
         + non_negative_integer(plaques.extra_shop_slots)
-        + non_negative_integer(voucher.shop_slots)
+        + non_negative_integer(seals.shop_slots)
 end
 
 local function generate_random_offers(run_state)
@@ -139,19 +141,20 @@ local function make_pack_slot(run_state)
     }
 end
 
-local function make_voucher_slots(run_state)
-    local id = run_state.vouchers and run_state.vouchers.shop_id
+local function make_seal_slots(run_state)
+    local upgrades = run_state.seals or run_state.vouchers
+    local id = upgrades and upgrades.shop_id
     if not id then
         return {}
     end
     return {
         {
-            slot_type = "voucher",
-            kind = "voucher",
+            slot_type = "seal",
+            kind = "seal",
             identity = id,
             id = id,
-            base_price = M.VOUCHER_PRICE,
-            price = discounted_price(run_state, M.VOUCHER_PRICE),
+            base_price = M.SEAL_PRICE,
+            price = discounted_price(run_state, M.SEAL_PRICE),
             sold = false,
         },
     }
@@ -165,8 +168,8 @@ local function rebuild_slots(shop)
     for i = 1, #shop.pack_slots do
         slots[#slots + 1] = shop.pack_slots[i]
     end
-    for i = 1, #shop.voucher_slots do
-        slots[#slots + 1] = shop.voucher_slots[i]
+    for i = 1, #shop.seal_slots do
+        slots[#slots + 1] = shop.seal_slots[i]
     end
     shop.slots = slots
     shop.offers = slots
@@ -181,13 +184,16 @@ function M.new(run_state)
     if type(run_state.money) ~= "number" then
         error("shop requires numeric run_state.money")
     end
+    seals_catalog.ensure(run_state)
 
+    local seal_slots = make_seal_slots(run_state)
     local shop = {
         run_state = run_state,
         reroll_count = 0,
         random_offers = generate_random_offers(run_state),
         pack_slots = { make_pack_slot(run_state) },
-        voucher_slots = make_voucher_slots(run_state),
+        seal_slots = seal_slots,
+        voucher_slots = seal_slots, -- legacy shop-state alias
     }
     rebuild_slots(shop)
     return shop
@@ -197,12 +203,12 @@ M.open = M.new
 
 --- Current reroll price. Free-reroll plaques take precedence over discounts.
 function M.reroll_cost(shop)
-    local plaques, voucher = modifiers(shop.run_state)
+    local plaques, seals = modifiers(shop.run_state)
     if non_negative_integer(plaques.free_rerolls) > 0 then
         return 0
     end
     return math.max(0, M.BASE_REROLL_COST + shop.reroll_count
-        - non_negative_integer(voucher.reroll_discount))
+        - non_negative_integer(seals.reroll_discount))
 end
 
 function M.can_reroll(shop)

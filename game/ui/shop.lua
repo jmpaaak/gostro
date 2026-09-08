@@ -2,6 +2,7 @@
 -- Shop UI: 3 gwang joker cards on display, reroll ($5), next round, money.
 
 local M = {}
+local seals = require("game.seals")
 
 local VIEWPORT_W = 320
 local VIEWPORT_H = 180
@@ -19,13 +20,6 @@ local GWANG_NAMES = {
     yaku_mult = "족보 ×1.5",
 }
 
-local VOUCHER_NAMES = {
-    paint_brush = "붓", wasteful = "낭비", grabber = "그래버",
-    overstock = "오버스톡", reroll_surplus = "리롤잉여",
-    clearance_sale = "세일", seed_money = "시드머니",
-    antimatter = "반물질", crystal_ball = "수정구", hone = "연마",
-    directors_cut = "디렉터컷", money_tree = "머니트리",
-}
 
 M.REROLL_COST = 5
 
@@ -156,9 +150,9 @@ function M.money_text(s)
 end
 
 local function item_label(item)
-    if item.name then return item.name end
-    if item.kind == "voucher" then
-        return VOUCHER_NAMES[item.identity] or "바우처"
+    if item.kind == "seal" or item.kind == "voucher" then
+        local ok, def = pcall(seals.by_id, item.identity)
+        return ok and def.name or "인장"
     end
     if item.kind == "pack" then return "부적 꾸러미" end
     if item.kind == "talisman" or item.kind == "tarot" then return "부적" end
@@ -259,9 +253,9 @@ function M.draw(s)
                 love.graphics.print(view.label,
                     p.x + math.floor((p.w - nw * scale) / 2),
                     p.y + 6 + fh + 2, 0, scale, scale)
-            elseif card.kind == "pack" or card.kind == "voucher" then
-                local is_voucher = card.kind == "voucher"
-                if is_voucher then
+            elseif card.kind == "pack" or card.kind == "seal" or card.kind == "voucher" then
+                local is_seal = card.kind == "seal" or card.kind == "voucher"
+                if is_seal then
                     love.graphics.setColor(0.55, 0.2, 0.65, 1)
                 else
                     love.graphics.setColor(0.5, 0.2, 0.25, 1)

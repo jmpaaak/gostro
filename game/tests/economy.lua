@@ -1,9 +1,9 @@
 -- Tests for Balatro-style round economy: interest on money.
--- Engine-hosted. No money cap. Interest cap raised by seed_money voucher.
+-- Engine-hosted. No money cap. Interest cap raised by the 곳간 열쇠 인장.
 
 local economy = require("game.economy")
 local run = require("game.run")
-local vouchers = require("game.vouchers")
+local seals = require("game.seals")
 
 local M = {}
 
@@ -12,7 +12,7 @@ function M.run()
     M.test_interest_cap_default()
     M.test_interest_floor()
     M.test_no_money_cap()
-    M.test_seed_money_raises_cap()
+    M.test_granary_key_raises_cap()
     M.test_blind_reward()
     M.test_hand_bonus()
     M.test_cash_out_components()
@@ -51,10 +51,10 @@ function M.test_no_money_cap()
     assert(economy.interest(state.money) == 5)
 end
 
-function M.test_seed_money_raises_cap()
+function M.test_granary_key_raises_cap()
     local state = run.new()
-    vouchers.apply(state, "seed_money")
-    -- $50 would be $10 uncapped; default cap 5, seed_money +5 -> cap 10
+    seals.apply(state, "granary_key")
+    -- $50 would be $10 uncapped; default cap 5, 곳간 열쇠 +5 -> cap 10.
     assert(economy.interest(50, state) == 10)
     -- $100 would be $20; still capped at 10
     assert(economy.interest(100, state) == 10)

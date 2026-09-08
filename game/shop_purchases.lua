@@ -22,8 +22,8 @@ function M.buy(shop, slot_or_index)
             talismans.gain(shop.run_state, card_data.identity, "shop")
         elseif card_data.kind == "gwang" then
             run.buy_gwang(shop.run_state, card_data)
-        elseif card_data.kind == "voucher" then
-            run.buy_voucher(shop.run_state, card_data.identity)
+        elseif card_data.kind == "seal" or card_data.kind == "voucher" then
+            run.buy_seal(shop.run_state, card_data.identity)
         elseif card_data.kind == "pack" then
             packs.open(shop.run_state, card_data.identity)
         else

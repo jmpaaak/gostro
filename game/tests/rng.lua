@@ -144,14 +144,14 @@ local function shop_cards_boss_from_run(seed)
     -- small → shop
     run.add_score(state, run.blind_target(state))
     run.clear_blind(state)
-    shop_ids[#shop_ids + 1] = state.vouchers.shop_id
+    shop_ids[#shop_ids + 1] = state.seals.shop_id
     append_deal(card_kinds, run.deal_kinds(state, 8))
     run.leave_shop(state)
 
     -- big → shop
     run.add_score(state, run.blind_target(state))
     run.clear_blind(state)
-    shop_ids[#shop_ids + 1] = state.vouchers.shop_id
+    shop_ids[#shop_ids + 1] = state.seals.shop_id
     append_deal(card_kinds, run.deal_kinds(state, 8))
     run.leave_shop(state)
     assert(state.blind == "boss")
@@ -160,7 +160,7 @@ local function shop_cards_boss_from_run(seed)
     -- boss → shop → ante 2 small
     run.add_score(state, run.blind_target(state))
     run.clear_blind(state)
-    shop_ids[#shop_ids + 1] = state.vouchers.shop_id
+    shop_ids[#shop_ids + 1] = state.seals.shop_id
     append_deal(card_kinds, run.deal_kinds(state, 8))
     run.leave_shop(state)
 
