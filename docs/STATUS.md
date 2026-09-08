@@ -58,3 +58,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (4) → 처리 완료.
 - Next slice: INBOX (5) 핸드 디스플레이 모듈 (`game/ui/hand.lua`).
+
+## 2026-09-08 — 핸드 디스플레이 모듈 (game/ui/hand.lua)
+
+- Created `game/ui/hand.lua`: hand display module — deal 8 cards in centred overlapping row (16px gap < 24px card width = Balatro-style fan), max 5 selection with order tracking, toggle/deselect, selection_index, get_selected, hit_test (reverse z-order), draw with selection order number overlay.
+- Cards anchor at bottom of 320×180 viewport (y=138, 6px bottom pad).
+- Depends on `game/ui/card.lua` for individual card widgets.
+- Tests in `game/tests/hand_ui.lua`: deal layout, overlap check, select/deselect/toggle, max 5 limit, selection order, get_selected.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (5) → 처리 완료.
+- Next slice: INBOX (6) 광 조커 슬롯 UI 모듈 (`game/ui/gwang_slots.lua`).

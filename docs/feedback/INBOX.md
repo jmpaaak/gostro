@@ -6,14 +6,6 @@
 
 ### Phase B — 핵심 UI 모듈 개발
 
-(5) **핸드 디스플레이 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/hand.lua` (새 모듈)
-  - 핸드 카드 8장을 하단에 가로 배치 (발라트로 스타일 겹침 배열)
-  - 선택된 카드 강조 (위로 올림 + 테두리 색)
-  - 최대 5장 선택 제한, 선택 순서 표시
-  - `game/ui/card.lua` 의존
-  - 테스트: `game/tests/hand_ui.lua`
-
 (6) **광 조커 슬롯 UI 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/gwang_slots.lua` (새 모듈)
   - 상단 가로줄 최대 5칸, 빈 칸은 점선 테두리
@@ -66,6 +58,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (5) **핸드 디스플레이 모듈** (msg `1546674255045992608`)
+    - `game/ui/hand.lua`: 8장 겹침 배열 (16px gap, 320×180 중앙), 최대 5장 선택 + 순서 추적, 리프트+테두리 강조, hit_test, draw.
+    - `game/tests/hand_ui.lua` GREEN. `make verify` GREEN.
 
   (4) **카드 렌더링 모듈** (msg `1546674255045992608`)
     - `game/ui/card.lua`: 24×36px 카드 위젯 (5종 심볼, 선택 리프트, hit_test).
