@@ -56,7 +56,8 @@ Gwang are jokers (slot passives, 1 point base). Play cards have **no month numbe
 
 ## Asset generation
 
-- ComfyUI unused. PIL `tools/` ≤50 lines, or LÖVE `love.graphics` → PNG.
+- **사진 기반 에셋 구속 규칙:** `docs/ASSET_PIPELINE.md`의 **‘사진 기반 Asset Studio 고품질 픽셀 변환’**이 최신 공통 baseline이며 새로 사진에서 파생하는 raster 에셋을 지배한다. 구매·라이선스 팩이 1순위다. 과거 AetherAI/SpriteCook 등 provider-only 문구는 사진에 적합한 에셋의 Asset Studio 경로를 금지하지 않지만, identity lock과 genuinely incompatible한 도메인 규칙은 유지한다. 이 이름은 PixelPerfect 엔진을 뜻하지 않는다.
+- 새 photo-derived raster는 위 Asset Studio 표준을 적용한다. 그 밖의 절차 생성 에셋에는 ComfyUI를 쓰지 않고 PIL `tools/` ≤50 lines 또는 LÖVE `love.graphics` → PNG를 사용한다.
 - Log applied assets in `docs/GENERATED_ASSET_LOG.md` (`YYYY-MM-DDTHH:MM:SS+0900 | <path> | <desc>`). Create the log file if missing.
 
 ## Safety and scope

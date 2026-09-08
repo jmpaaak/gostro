@@ -1,63 +1,24 @@
-# Autonomous final-asset generation & reporting (built in)
+# 사진 기반 Asset Studio 고품질 픽셀 변환
 
-Any game generated from this skeleton that produces final visual
-assets via an external service (SpriteCook, AetherAI, ComfyUI, etc.)
-inside its autonomous dev loop should follow this pattern, established
-2026-09-03 across `man-of-korea` and `spaceship`:
+이 문서는 에셋 생성의 최신 공통 baseline이며, 그중 **새로 사진에서 파생하는 raster 에셋**에 적용할 구속력 있는 변환 표준이다. **구매·라이선스된 픽셀 아트 팩이 항상 1순위**이며, 적합한 팩 에셋이 없고 프로젝트 규칙이 사진 사용을 허용할 때 이 워크플로를 사용한다. 과거 문서의 AetherAI-only, SpriteCook-only 같은 provider-only 문구는 사진에 적합한 신규 raster 에셋에 대해 승인된 Asset Studio 경로를 금지하지 않는다. 다만 사람/캐릭터 identity lock, 장면 승인 게이트, 사진 사용과 genuinely incompatible한 도메인 규칙은 그대로 유지한다.
 
-## 1. No permanent human-gate on asset generation
+## 표준 단계
 
-Do not have the loop stall indefinitely waiting for a human to
-manually log in, generate, and download an asset. Instead:
+아래 단계를 순서대로 수행하고 provenance와 QA 근거를 함께 보존한다.
 
-- Prefer any source with a scriptable API the loop can drive directly
-  (a ComfyUI instance's `/prompt` + `/history` + `/view` HTTP API is
-  the reference implementation — see `tools/comfyui_asset_pipeline.py`
-  in `spaceship` for a stdlib-only, zero-extra-dependency example).
-  ComfyUI may run on `localhost` or on a remote GPU host; either way,
-  hardcode the current `COMFY_HOST`/`COMFY_URL` in the tool script and
-  keep old + new host prefixes in the asset-manifest verifier's
-  `OFFICIAL_SOURCE_PREFIXES` if the host ever moves, so already-applied
-  assets don't fail re-verification.
-- The loop's own agent + an automated QA check (readability at actual
-  runtime scale, silhouette/identity match, no artifacts) is what
-  decides whether a generated asset becomes final — not a human
-  approval step. Keep full provenance (workflow/prompt/seed/model,
-  timestamp, output hash) in a manifest as a *quality record*, not an
-  *approval gate*.
-- A manual-login-only source (no API) may still be used opportunistically
-  when credentials happen to be available, but the loop must not block
-  other work on its absence — see `docs/feedback/INBOX.md`'s
-  "human-gate 제거" pending items in `man-of-korea`/`spaceship` for the
-  exact wording to copy into a new project's policy doc.
+1. 직접 소유·라이선스했거나 provenance를 기록한 실제 사진을 준비한다.
+2. Asset Studio의 high-quality image-to-image로 사진을 픽셀 아트로 재해석한다.
+3. 배경을 제거한다.
+4. 대상 런타임 셀 크기로 resize한다.
+5. 프로젝트의 제한 팔레트로 quantization한다.
+6. 투명 alpha, 셀 alignment, nearest-neighbor 표시를 실제 런타임 크기에서 QA한다.
 
-## 2. Report every applied asset back to the user
+공식 워크플로 이름의 “Asset Studio 고품질 픽셀 변환”은 처리 절차를 뜻한다. **PixelPerfect 엔진 또는 그와 같은 이름의 런타임 엔진을 사용한다는 뜻이 아니다.**
 
-Append-only `docs/GENERATED_ASSET_LOG.md` (create this file when the
-project's asset pipeline goes live) with one line per **final**
-(non-candidate) asset the loop applies to the running game:
+## 출처와 우선순위
 
-```
-YYYY-MM-DDTHH:MM:SS+0900 | <repo-relative/path/to.png> | <one-line description>
-```
-
-`loop/PROMPT.md` must instruct the loop to append this line in the
-same commit that applies the asset as final/runtime art — not for
-candidates, superseded, or QA-only outputs.
-
-Wire the project's periodic progress-report cron script
-(`~/.hermes/scripts/<project>_progress_report.py`) to diff this file
-against what it saw last run and print `MEDIA:<absolute path>` for
-each new line. Hermes' delivery pipeline turns any `MEDIA:<path>` line
-in cron/message output into a native image attachment, so the actual
-generated PNG lands in the user's chat automatically the next time the
-progress cron fires — no need for the user to go dig through
-`docs/assets/MANIFEST.json` or `STATUS.md` to see what was produced.
-
-See `man-of-korea` and `spaceship`'s `~/.hermes/scripts/*_progress_report.py`
-(`new_asset_log_entries()` function) for the reference implementation,
-and their `docs/GENERATED_ASSET_LOG.md` for the log format.
-
-See the Hermes skill `autonomous-loop-token-optimization` for the
-sibling pattern of keeping `docs/feedback/INBOX.md` and progress
-reports token-lean.
+- 구매·라이선스 팩에서 목적에 맞는 에셋을 먼저 찾고 재사용한다.
+- 웹 사진은 재사용이 명시적으로 허용된 것만 사용할 수 있다. 원본 URL, author, license, 다운로드한 원본의 hash를 기록한다. 출처나 재사용 허가가 불명확하면 사용하지 않는다.
+- 각 변환본에는 원본 사진 기록, Asset Studio 설정/출력 식별자, 파생 단계, 최종 파일 hash를 연결한다.
+- 프로젝트별 source/identity 규칙이 더 엄격하면 그 규칙이 이 공통 표준보다 우선한다. 특히 사람 스프라이트와 월 숫자·월 이름·월 삽화 금지 등 Gostro의 카드 정체성 규칙은 그대로 유지한다.
+- 최종 적용 에셋은 같은 커밋에서 프로젝트 manifest/provenance와 `docs/GENERATED_ASSET_LOG.md`에 기록한다.
