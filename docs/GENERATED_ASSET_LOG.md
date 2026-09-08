@@ -167,3 +167,7 @@
 | 2026-09-09T08:10:32+0900 | `assets/masters/gwang/thin-deck-x3-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T08:10:32+0900 | `assets/runtime/gwang/thin-deck-x3-v1.png` | 56×32 runtime 얇은 덱 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T08:10:32+0900 | `assets/runtime/ui/gwang-thin-deck-x3-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 얇은 덱 gwang in all five slots; SHA-256 `7aa301ba62e735b62a7a9ede4e8e96d49f06252c2e5e71e88d1387fb2ee02867` |
+| 2026-09-09T08:19:07+0900 | `assets/masters/gwang/tiny-deck-chips-v1.svg` | Project-authored high-resolution 아주 얇은 덱 gwang vector source with an ultra-thin hwatu deck and five jade-and-brass chip towers on green lacquer |
+| 2026-09-09T08:19:07+0900 | `assets/masters/gwang/tiny-deck-chips-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T08:19:07+0900 | `assets/runtime/gwang/tiny-deck-chips-v1.png` | 56×32 runtime 아주 얇은 덱 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T08:19:07+0900 | `assets/runtime/ui/gwang-tiny-deck-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 아주 얇은 덱 gwang in all five slots; SHA-256 `0203ed821f13dcf59b56c71e853d947be30c0e23f6c31f76d6bc79a4178e5c83` |

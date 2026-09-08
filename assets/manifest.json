@@ -1167,10 +1167,51 @@
     {
       "id": "gwang.tiny_deck_chips",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "아주 얇은 덱",
         "en": "Tiny Deck"
+      },
+      "master": {
+        "source": "assets/masters/gwang/tiny-deck-chips-v1.svg",
+        "sourceSha256": "1f8aa9455230f987de15324cb5eed8985dd54d34f6b429093eea1262e1b53af4",
+        "path": "assets/masters/gwang/tiny-deck-chips-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "a5db72dac2cc0bbc58c1509a3e2c6121f639ce945cadfecc55f7776f5ecd5b37",
+        "provenance": "Project-authored high-resolution vector master showing an ultra-thin hwatu deck feeding five jade and brass chip towers on green lacquer; no month or text labels."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/tiny-deck-chips-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "03d6e9e871ec51c6cb014d94ceff98d43045723a5e1094740075cae5c66f706d",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/tiny-deck-chips-v1.report.json",
+        "reportSha256": "2860c39ad8464e66dc1f84086557d0fc6c85aa1c3698be775755af81294462a6"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

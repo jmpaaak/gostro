@@ -162,6 +162,7 @@ gwang-slot-qa:
 		assets/runtime/gwang/godori-chips-v1.png assets/runtime/gwang/hongdan-chips-v1.png \
 		assets/runtime/gwang/cheongdan-chips-v1.png assets/runtime/gwang/chodan-chips-v1.png \
 		assets/runtime/gwang/pi-yaku-mult-v1.png assets/runtime/gwang/thin-deck-x3-v1.png \
+		assets/runtime/gwang/tiny-deck-chips-v1.png \
 		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
 	GWANG_QA_IDENTITY="chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
@@ -196,6 +197,8 @@ gwang-slot-qa:
 	GWANG_QA_IDENTITY="pi_yaku_mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-pi-yaku-mult-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 	GWANG_QA_IDENTITY="thin_deck_x3" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-thin-deck-x3-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+	GWANG_QA_IDENTITY="tiny_deck_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-tiny-deck-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 
 smoke:
