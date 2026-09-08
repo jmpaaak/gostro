@@ -33,6 +33,8 @@ function M.run()
     assert(state.seeded == false, "seeded run is initially disabled")
     assert(state.seed == "GOSTRO01", "seed input uses game.ui.seed normalization")
     assert(run_setup.can_play(state) == true, "the default setup can be played")
+    assert(state.progression_label == "1고 · 첫판부터",
+        "run setup names the opening progression in 판/고 terms")
 
     local rects = run_setup.layout()
     local expected_hits = {
@@ -88,7 +90,7 @@ function M.run()
 
     -- Rendering is dependency-injected and can be exercised without a window or hover state.
     local font = { getHeight = function() return 11 end }
-    local calls = { rectangles = 0, prints = 0 }
+    local calls = { rectangles = 0, prints = 0, text = {} }
     local graphics = {
         clear = function() end,
         setColor = function() end,
@@ -97,8 +99,14 @@ function M.run()
         polygon = function() end,
         arc = function() end,
         setLineWidth = function() end,
-        print = function() calls.prints = calls.prints + 1 end,
-        printf = function() calls.prints = calls.prints + 1 end,
+        print = function(text)
+            calls.prints = calls.prints + 1
+            calls.text[#calls.text + 1] = tostring(text)
+        end,
+        printf = function(text)
+            calls.prints = calls.prints + 1
+            calls.text[#calls.text + 1] = tostring(text)
+        end,
         getFont = function() return font end,
         setFont = function() end,
     }
@@ -110,6 +118,8 @@ function M.run()
     package.loaded["game.fonts"] = old_fonts
     assert(calls.rectangles > 0 and calls.prints > 0,
         "unlocked and locked setup states render through injected graphics")
+    assert(table.concat(calls.text, "|"):find("1고 · 첫판부터", 1, true),
+        "run setup renders its 판/고 progression label")
 
     print("  run_setup_ui: OK")
 end

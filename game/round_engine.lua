@@ -2,7 +2,7 @@
 -- This module contains no UI or LÖVE dependencies. Callers apply the returned
 -- "clear_blind" / "lose" transition through game.blind_flow.
 
-local boss_blinds = require("game.boss_blinds")
+local boss_rounds = require("game.boss_rounds")
 
 local M = {}
 
@@ -115,7 +115,7 @@ local function default_target(run_state)
         return run_state.target
     end
     -- Loaded lazily to keep round state independent from run transition code.
-    return require("game.blind_flow").target(run_state)
+    return require("game.round_flow").target(run_state)
 end
 
 local function recycle(round)
@@ -298,7 +298,7 @@ function M.can_play(round, selected)
         return false, err
     end
     if type(round.boss) == "table" and round.boss.effect == "full_hand" then
-        return boss_blinds.psychic_allows(#selection.cards)
+        return boss_rounds.psychic_allows(#selection.cards)
     end
     return true
 end

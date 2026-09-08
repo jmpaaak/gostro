@@ -18,7 +18,7 @@ function M.new()
     }
 end
 
---- Set blind target score.
+--- Set round target score.
 function M.set_target(sb, target)
     sb.target = target
 end

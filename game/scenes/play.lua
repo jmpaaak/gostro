@@ -1,7 +1,7 @@
 -- game/scenes/play.lua
 
 local run_rules     = require("game.run_rules")
-local blind_flow    = require("game.blind_flow")
+local round_flow    = require("game.round_flow")
 local round_engine  = require("game.round_engine")
 local scoring       = require("game.scoring_pipeline")
 local shop_engine   = require("game.shop_engine")
@@ -12,7 +12,7 @@ local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
 local shop_ui       = require("game.ui.shop")
 local pack_ui       = require("game.ui.pack")
-local blind_sel_ui  = require("game.ui.blind_select")
+local round_select_ui = require("game.ui.round_select")
 local gwang_sl_ui   = require("game.ui.gwang_slots")
 local wish_cards_ui = require("game.ui.wish_cards_ui")
 local seed_ui       = require("game.ui.seed")
@@ -45,8 +45,8 @@ local function configured_run(config)
     return assert(state, reason)
 end
 
-local function blind_selection_for(state)
-    return blind_sel_ui.new(blind_flow.view(state))
+local function round_selection_for(state)
+    return round_select_ui.new(round_flow.view(state))
 end
 
 local function sync_round_ui(scene)
@@ -70,7 +70,8 @@ function M.new(seed_or_config)
     self.state       = "blind_select"
     self.money       = self.run_state.money
 
-    self.blind_select = blind_selection_for(self.run_state)
+    self.round_select = round_selection_for(self.run_state)
+    self.blind_select = self.round_select -- legacy scene alias
     self.gwang_slots  = gwang_sl_ui.new()
     self.seed         = seed_ui.new(self.run_state.seed)
     self.hand         = nil
@@ -90,7 +91,8 @@ function M.apply_seed(scene, seed_str)
     scene.run_state   = configured_run(scene.run_config)
     scene.state       = "blind_select"
     scene.money       = scene.run_state.money
-    scene.blind_select = blind_selection_for(scene.run_state)
+    scene.round_select = round_selection_for(scene.run_state)
+    scene.blind_select = scene.round_select -- legacy scene alias
     scene.gwang_slots  = gwang_sl_ui.new()
     seed_ui.set_seed(scene.seed, scene.run_state.seed)
     scene.hand        = nil
@@ -103,16 +105,16 @@ function M.apply_seed(scene, seed_str)
     return scene.run_state.seed
 end
 
---- Select a blind and transition to playing.
-function M.select_blind(scene, idx)
+--- Select a round and transition to playing.
+function M.select_round(scene, idx)
     if scene.state ~= "blind_select" then return end
-    blind_sel_ui.select_blind(scene.blind_select, idx)
-    local kind = scene.blind_select.selected
-    local blind = blind_flow.begin(scene.run_state, kind)
-    local target = blind.target
+    round_select_ui.select_round(scene.round_select, idx)
+    local kind = scene.round_select.selected
+    local round_rules = round_flow.begin(scene.run_state, kind)
+    local target = round_rules.target
     scene.round = round_engine.new(scene.run_state, scene.run_state.deck, {
         target = target,
-        discards = blind.discards,
+        discards = round_rules.discards,
     })
 
     -- Create playing UI
@@ -127,6 +129,8 @@ function M.select_blind(scene, idx)
 
     scene.state = "playing"
 end
+
+M.select_blind = M.select_round
 
 --- Play the selected hand cards through the engine.
 function M.play_hand(scene)
@@ -144,12 +148,12 @@ function M.play_hand(scene)
     if not result then return false end
     local transition = round_engine.play(scene.round, indices, result)
 
-    blind_flow.score(scene.run_state, result.score, scene.round.hands_left)
+    round_flow.score(scene.run_state, result.score, scene.round.hands_left)
     scoreboard_ui.set_hand_result(scene.scoreboard, result.chips, result.mult)
     sync_round_ui(scene)
 
     if transition == "lose" then
-        blind_flow.lose(scene.run_state, scene.round.hands_left)
+        round_flow.lose(scene.run_state, scene.round.hands_left)
         scene.state = "lost"
     end
     return true, transition, result
@@ -166,11 +170,11 @@ function M.discard_hand(scene)
     return true
 end
 
---- Check if blind is cleared; if so, transition to shop.
+--- Check if the round is cleared; if so, transition to shop.
 function M.check_clear(scene)
     if scene.state ~= "playing" then return end
     local hands_left = scene.round and scene.round.hands_left or nil
-    local phase = blind_flow.clear(scene.run_state, hands_left)
+    local phase = round_flow.clear(scene.run_state, hands_left)
     if not phase then return end
     if phase == "won" then
         scene.state = "won"
@@ -182,12 +186,13 @@ function M.check_clear(scene)
     scene.state = "shop"
 end
 
---- Leave the shop and go to next blind select.
+--- Leave the shop and go to the next round selection.
 function M.leave_shop(scene)
     if scene.state ~= "shop" then return end
     scene.money = scene.run_state.money
-    blind_flow.leave_shop(scene.run_state)
-    scene.blind_select = blind_selection_for(scene.run_state)
+    round_flow.leave_shop(scene.run_state)
+    scene.round_select = round_selection_for(scene.run_state)
+    scene.blind_select = scene.round_select -- legacy scene alias
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     scene.state = "blind_select"
 end
@@ -231,7 +236,7 @@ function M:draw()
     consumables_ui.draw(self.run_state, self.selected_consumable)
 
     if self.state == "blind_select" then
-        blind_sel_ui.draw(self.blind_select)
+        round_select_ui.draw(self.round_select)
 
     elseif self.state == "playing" then
         hand_ui.draw(self.hand)
@@ -285,9 +290,9 @@ function M:mousepressed(px, py)
     end
 
     if self.state == "blind_select" then
-        local idx = blind_sel_ui.hit_test(self.blind_select, px, py)
+        local idx = round_select_ui.hit_test(self.round_select, px, py)
         if idx then
-            M.select_blind(self, idx)
+            M.select_round(self, idx)
         end
 
     elseif self.state == "playing" then

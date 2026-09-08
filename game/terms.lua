@@ -34,6 +34,19 @@ M.aliases = {
     ante = "go",
 }
 
+local ROUND_NAMES = {
+    ko = {
+        small = M.labels.opening,
+        big = M.labels.main,
+        boss = M.labels.final,
+    },
+    en = {
+        small = "Opening Round",
+        big = "Main Round",
+        boss = "Final Round",
+    },
+}
+
 function M.canonical_key(key)
     local canonical = M.aliases[key] or key
     if M.labels[canonical] == nil then
@@ -44,6 +57,18 @@ end
 
 function M.display(key)
     return M.labels[M.canonical_key(key)]
+end
+
+function M.round_name(kind, locale)
+    local names = ROUND_NAMES[locale or "ko"] or ROUND_NAMES.ko
+    return names[kind] or kind
+end
+
+function M.go_label(go, locale)
+    if locale == "en" then
+        return "Go " .. tostring(go)
+    end
+    return tostring(go) .. M.labels.go
 end
 
 return M

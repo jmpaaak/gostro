@@ -11,7 +11,7 @@
 
 local hwatu = require("game.hwatu")
 local wish_cards = require("game.wish_cards")
-local boss_blinds = require("game.boss_blinds")
+local boss_rounds = require("game.boss_rounds")
 
 local M = {}
 
@@ -29,7 +29,7 @@ local function active_boss(state)
         return state.boss
     end
     if state.boss_id then
-        return boss_blinds.by_id(state.boss_id)
+        return boss_rounds.by_id(state.boss_id)
     end
     return nil
 end
@@ -111,7 +111,7 @@ function M.score(hand, run_state, opts)
     -- Validate before evaluate: an invalid Psychic play must not grant money
     -- or consume an equipped once-trigger gwang.
     if boss and boss.effect == "full_hand" then
-        local outcome = boss_blinds.apply(boss, { n = type(hand) == "table" and #hand or 0 })
+        local outcome = boss_rounds.apply(boss, { n = type(hand) == "table" and #hand or 0 })
         if not outcome.allowed then
             return nil, outcome.err
         end
@@ -125,7 +125,7 @@ function M.score(hand, run_state, opts)
     -- Hand-management and target bosses are applied by their respective play
     -- paths. Only score-mutating bosses belong in this pipeline.
     if boss and SCORE_BOSS_EFFECTS[boss.effect] then
-        local outcome = boss_blinds.apply(boss, {
+        local outcome = boss_rounds.apply(boss, {
             hand = hand,
             result = result,
             rng = opts.rng,

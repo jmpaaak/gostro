@@ -3,6 +3,7 @@
 -- Headless-safe. No month numbers/names.
 
 local rng = require("game.rng")
+local terms = require("game.terms")
 
 local M = {}
 
@@ -38,6 +39,10 @@ function M.record(state, outcome)
     local entry = {
         seed = seed,
         outcome = outcome,
+        go = state.ante,
+        round = state.blind,
+        go_label = terms.go_label(state.ante),
+        round_label = terms.round_name(state.blind),
         ante = state.ante,
         blind = state.blind,
         money = state.money or 0,

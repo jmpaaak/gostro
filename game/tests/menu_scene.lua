@@ -61,6 +61,8 @@ function M.run()
     assert(stack.current.run_state.seed == "ROUTE123", "selected seeded-run seed reaches PlayScene")
     assert(stack.current.run_state.starting_deck_id == "hwatu", "selected deck id reaches run state")
     assert(stack.current.run_state.stake_id == "white", "selected stake id reaches run state")
+    assert(stack.current.round_select == stack.current.blind_select,
+        "play scene exposes round selection while preserving its legacy alias")
 
     local thin_menu = MenuScene.new()
     local thin_stack = scene_stack.new(thin_menu)

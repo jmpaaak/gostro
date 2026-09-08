@@ -106,9 +106,33 @@ function M.run()
     assert(miss == nil, "miss returns nil")
 
     -- display_name
-    assert(blind_select.display_name("small") == "스몰 블라인드")
-    assert(blind_select.display_name("big") == "빅 블라인드")
-    assert(blind_select.display_name("boss") == "보스 블라인드")
+    assert(blind_select.display_name("small") == "첫판")
+    assert(blind_select.display_name("big") == "큰판")
+    assert(blind_select.display_name("boss") == "대장판")
+    assert(s.go == 1 and s.ante == s.go, "go is exposed with the legacy ante alias")
+    assert(s.rounds == s.blinds, "round cards retain the legacy blinds alias")
+
+    local old_love = love
+    local rendered = {}
+    local font = {
+        getHeight = function() return 11 end,
+        getWidth = function(_, text) return #text * 6 end,
+    }
+    love = { graphics = {
+        getFont = function() return font end,
+        setColor = function() end,
+        setLineWidth = function() end,
+        rectangle = function() end,
+        print = function(text) rendered[#rendered + 1] = tostring(text) end,
+    } }
+    blind_select.draw(s)
+    love = old_love
+    local copy = table.concat(rendered, "|")
+    assert(copy:find("1고 — 판 선택", 1, true), "round selection title uses 판/고")
+    assert(copy:find("첫판", 1, true) and copy:find("큰판", 1, true)
+        and copy:find("대장판", 1, true), "all three round labels render")
+    assert(not copy:find("블라인드", 1, true) and not copy:find("앤티", 1, true),
+        "legacy terms are not player-facing")
 
     print("  blind_select_ui: OK")
 end

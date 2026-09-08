@@ -1,6 +1,7 @@
 -- Standalone 320x180 New Run setup state, hit testing, and rendering.
 
 local seed_ui = require("game.ui.seed")
+local terms = require("game.terms")
 
 local M = {}
 
@@ -88,6 +89,7 @@ function M.new(seed_string)
         seed = seed_state.seed,
         seed_state = seed_state,
         notice = nil,
+        progression_label = terms.go_label(1) .. " · " .. terms.round_name("small") .. "부터",
     }
 end
 
@@ -248,7 +250,8 @@ local function draw_stake(graphics, state)
     local rect = LAYOUT.stake
     draw_shadowed_box(graphics, rect, { 0.78, 0.80, 0.77, 1 }, 3)
     graphics.setColor(0.13, 0.15, 0.16, 1)
-    graphics.printf(stake.label .. " · " .. stake.name, rect.x, rect.y + 3, rect.w, "center")
+    graphics.printf(state.progression_label .. " · " .. stake.label .. " · " .. stake.name,
+        rect.x, rect.y + 3, rect.w, "center")
     draw_arrow(graphics, LAYOUT.stake_left, false, true)
     draw_arrow(graphics, LAYOUT.stake_right, true, true)
 end

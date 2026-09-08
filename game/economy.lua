@@ -1,5 +1,5 @@
 -- game/economy.lua
--- Balatro-style round economy: interest, blind reward, leftover-hand bonus.
+-- Round economy: interest, round reward, leftover-hand bonus.
 -- Interest $1 per $5 held, capped (default $5). No money cap.
 -- The 곳간 열쇠 인장 raises the interest cap. Headless-safe.
 
@@ -9,11 +9,12 @@ M.INTEREST_PER = 5
 M.DEFAULT_CAP = 5
 M.HAND_BONUS = 1
 
-M.BLIND_REWARD = {
+M.ROUND_REWARD = {
     small = 3,
     big = 5,
     boss = 8,
 }
+M.BLIND_REWARD = M.ROUND_REWARD -- legacy API alias
 
 local function money_of(n)
     n = tonumber(n) or 0
@@ -39,10 +40,12 @@ function M.interest(money, state)
     return raw
 end
 
---- Blind cash reward. small $3 / big $5 / boss $8.
-function M.blind_reward(blind)
-    return M.BLIND_REWARD[blind] or 0
+--- Round cash reward. opening $3 / main $5 / final $8.
+function M.round_reward(round_kind)
+    return M.ROUND_REWARD[round_kind] or 0
 end
+
+M.blind_reward = M.round_reward
 
 --- $1 per leftover hand. Nil / negative yield $0.
 function M.hand_bonus(hands_left)
@@ -53,7 +56,7 @@ function M.hand_bonus(hands_left)
     return math.floor(n) * M.HAND_BONUS
 end
 
---- Round cash-out: interest on held money + blind reward + leftover hands.
+--- Round cash-out: interest on held money + round reward + leftover hands.
 -- Mutates state.money. No money cap. Returns the payout breakdown.
 function M.cash_out(state)
     if type(state) ~= "table" then
@@ -61,7 +64,7 @@ function M.cash_out(state)
     end
     local held = money_of(state.money)
     local interest = M.interest(held, state)
-    local reward = M.blind_reward(state.blind)
+    local reward = M.round_reward(state.blind)
     local hands = M.hand_bonus(state.hands_left)
     local total = interest + reward + hands
     state.money = held + total
