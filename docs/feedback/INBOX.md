@@ -11,7 +11,8 @@
 (26) **Balatro New Run 실기기 관찰 기반 기능·UI 역설계 및 Gostro 순차 구현** (msg `1546786558852726826`)
   - 담당: `main.lua`, `game/scenes/menu.lua`, `game/ui/main_menu.lua`, `game/ui/run_setup.lua`, `game/tests/main_menu_ui.lua`·`game/tests/menu_scene.lua`·`game/tests/run_setup_ui.lua`, `game/self_test.lua`, `docs/BALATRO_NEW_RUN_ANALYSIS.md`; 이후 신규 `game/ui/*`·`game/*.lua` 모듈; `game/scenes/play.lua`는 require/위임만 허용.
   - Appium/WDA로 Balatro의 `New Run`부터 실제 터치 진행하며 화면 전환, 정보 계층, 버튼·카드·팝업, 선택 피드백, 라운드/상점 흐름을 체크포인트별 캡처와 함께 목록화한다.
-  - 관찰 결과를 Gostro 기존 구현과 대조해 미구현/품질차 항목을 우선순위화하고, 비중첩 모듈은 병렬 작업 단위로 나눠 하나씩 구현한다.
+  - **실기기 화면이 없거나 연결이 끊겨도 작업을 중단하지 않는다.** 공식 위키·신뢰 가능한 공략/영상/문서 검색으로 Balatro의 핵심 기능과 게임 루프를 조사하고, 출처와 확실성 수준을 기록한 뒤 Gostro에 맞게 구현한다. 화면 배치처럼 직접 관찰이 필요한 세부는 추측하지 않고 기능·상태·규칙 구현을 우선한다. (사용자 보정 msg `1546786558852726826`)
+  - 관찰·검색 결과를 Gostro 기존 구현과 대조해 미구현/품질차 항목을 우선순위화하고, 비중첩 모듈은 병렬 작업 단위로 나눠 하나씩 구현한다.
   - 각 단위는 순수/라우팅 UI 테스트와 `make verify LOVE=/Users/jm/.local/bin/love` GREEN, 필요 시 런타임 캡처로 검증한 뒤에만 완료 처리한다.
 
 ## 처리 완료
