@@ -8,12 +8,6 @@
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
-(22) **시드 기반 랜덤 + 런 히스토리** (msg `1546681659951153252`)
-  - 담당: `game/rng.lua` (새 모듈)
-  - 발라트로처럼 시드 문자열로 재현 가능한 런. 시드 표시 + 입력.
-  - 런 시작 시 시드→상점/카드/보스 시퀀스 결정
-  - 테스트: `game/tests/rng.lua`
-
 ### Phase E — 광 카드 에디터 (웹 도구) (msg `1546681659951153252`)
 
 (23) **광 카드 에디터 — 웹 도구** (msg `1546681659951153252`)
@@ -32,6 +26,12 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+(22) **시드 기반 랜덤 + 런 히스토리** (msg `1546681659951153252`)
+  - `game/rng.lua`: seed-string RNG, independent shop/cards/boss streams. `run.new` plans sequences. Same seed reproduces shop/deal/boss.
+  - `game/ui/seed.lua`: seed display + typed A-Z0-9 input on play scene.
+  - `game/run_history.lua`: won/lost log (seed, ante, blind, money), newest-first, cap 8. `run.clear_blind` win + `run.lose` record.
+  - `game/tests/rng.lua` + `game/tests/seed_ui.lua` + `game/tests/run_history.lua` GREEN. `make verify` GREEN.
+
 (21) **광 조커 트리거 조건 다양화** (msg `1546681659951153252`)
   - `game/gwang_catalog.lua` + `game/data/gwang_jokers.json`: 30 unique gwang jokers.
   - Triggers: always / contains_kind / yaku / deck_size / money / blind / once / compound (chips+mult+money).

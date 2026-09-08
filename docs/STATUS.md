@@ -1,11 +1,11 @@
 # STATUS
-## 2026-09-08 — 시드 표시 + 입력 (`game/ui/seed.lua`)
+## 2026-09-08 — 런 히스토리 (`game/run_history.lua`)
 
-- `game/ui/seed.lua`: Balatro-style seed display + typed input. `new(seed)` shows A-Z0-9 uppercase. Focus field → type A-Z0-9 (max 8) → Return applies (empty generates 8-char). Hit-test on field rect; unfocused keys ignored.
-- `play.new(seed)` shows `run_state.seed`. `play.apply_seed` restarts the run from the typed seed (blind_select). Draw + mouse/key route in play scene only.
-- Tests in `game/tests/seed_ui.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (22) seed display/input UI slice only. Run history is not in this slice.
-- Next slice: INBOX (22) remaining — run history.
+- `game/run_history.lua`: Balatro-style finished-run log. `record(state, won|lost)` stores seed (A-Z0-9), outcome, ante, blind, money. Newest-first, cap 8. `reset()` / `list()`.
+- `run.clear_blind` records won on ante 8 boss. `run.lose` sets phase lost and records. No month numbers/names.
+- Tests in `game/tests/run_history.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (22) fully done (rng + shop/cards/boss wiring + seed UI + run history).
+- Next slice: INBOX (23) 광 카드 에디터 — 웹 도구 (`tools/gwang-editor/`).
 
 ## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
 

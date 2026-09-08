@@ -309,3 +309,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/rng.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (22) RNG module slice only. Run history + seed display/input UI + shop/card/boss consumers are not in this slice.
 - Next slice: INBOX (22) remaining — wire `rng.plan` into run start so shop/cards/boss consume the seeded streams.
+
+## Archived from STATUS.md (2026-09-08 12:27)
+
+## 2026-09-08 — 시드 표시 + 입력 (`game/ui/seed.lua`)
+
+- `game/ui/seed.lua`: Balatro-style seed display + typed input. `new(seed)` shows A-Z0-9 uppercase. Focus field → type A-Z0-9 (max 8) → Return applies (empty generates 8-char). Hit-test on field rect; unfocused keys ignored.
+- `play.new(seed)` shows `run_state.seed`. `play.apply_seed` restarts the run from the typed seed (blind_select). Draw + mouse/key route in play scene only.
+- Tests in `game/tests/seed_ui.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (22) seed display/input UI slice only. Run history is not in this slice.
+- Next slice: INBOX (22) remaining — run history.

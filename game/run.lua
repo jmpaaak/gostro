@@ -36,6 +36,7 @@ local boss_blinds = require("game.boss_blinds")
 local vouchers = require("game.vouchers")
 local economy = require("game.economy")
 local rng = require("game.rng")
+local run_history = require("game.run_history")
 
 function M.new(seed_str)
     local plan = rng.plan(seed_str)
@@ -131,6 +132,12 @@ function M.select_boss(state, boss_id)
     return def
 end
 
+--- End the run as a loss and record seed history.
+function M.lose(state)
+    state.phase = "lost"
+    run_history.record(state, "lost")
+end
+
 function M.add_score(state, amount)
     if state.phase ~= "play" then
         error("score only during play")
@@ -148,6 +155,7 @@ function M.clear_blind(state)
     economy.cash_out(state)
     if state.ante >= M.FINAL_ANTE and state.blind == "boss" then
         state.phase = "won"
+        run_history.record(state, "won")
         return
     end
     state.phase = "shop"
