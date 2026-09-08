@@ -116,3 +116,7 @@
 | 2026-09-09T06:18:34+0900 | `assets/masters/gwang/always-chips-small-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
 | 2026-09-09T06:18:34+0900 | `assets/runtime/gwang/always-chips-small-v1.png` | 56x32 runtime 잔칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T06:18:34+0900 | `assets/runtime/ui/gwang-always-chips-small-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 잔칩 gwang in all five slots |
+| 2026-09-09T06:25:22+0900 | `assets/masters/gwang/always-chips-mid-v1.svg` | Project-authored high-resolution 중칩 gwang vector source with indigo Korean lacquer, dancheong lattice, celadon yeopjeon, a broad coin stack, and triple brass coin motifs |
+| 2026-09-09T06:25:22+0900 | `assets/masters/gwang/always-chips-mid-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
+| 2026-09-09T06:25:22+0900 | `assets/runtime/gwang/always-chips-mid-v1.png` | 56x32 runtime 중칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T06:25:22+0900 | `assets/runtime/ui/gwang-always-chips-mid-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 중칩 gwang in all five slots; SHA-256 `61d922848efa4b150f95d834804ada56d9738102ff149326c4b6a65dac94d256` |
