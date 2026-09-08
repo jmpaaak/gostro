@@ -1,5 +1,5 @@
 // gwang-editor: static, dependency-free editor for game/data/gwang_jokers.json
-// (docs/feedback/INBOX.md item 23a — File API load + FSA direct save).
+// (docs/feedback/INBOX.md item 23b — hwatu-shaped card grid).
 //
 // Validation mirrors the catalog fields used by game/gwang_catalog.lua.
 
@@ -206,7 +206,8 @@ function renderGrid() {
   }
   els.grid.innerHTML = pool.jokers.map((joker) => {
     const name = (joker.name && joker.name.en) || joker.id || "?";
-    return `<article class="card"><div class="name">${escapeHtml(name)}</div></article>`;
+    const id = joker.id || "";
+    return `<article class="hwatu-card" data-id="${escapeHtml(id)}"><div class="star">★</div><div class="name">${escapeHtml(name)}</div></article>`;
   }).join("");
 }
 

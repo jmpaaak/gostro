@@ -160,5 +160,42 @@ class GwangEditorSchemaTests(unittest.TestCase):
         self.assertIn("--bg", self.css)
 
 
+class GwangEditorGridTests(unittest.TestCase):
+    """INBOX (23b): each gwang joker as a vertical rounded hwatu card."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(HTML_PATH, encoding="utf-8") as f:
+            cls.html = f.read()
+        with open(CSS_PATH, encoding="utf-8") as f:
+            cls.css = f.read()
+
+    def test_html_has_card_grid(self):
+        self.assertIn('id="grid"', self.html)
+        self.assertIn('class="card-grid"', self.html)
+
+    def test_css_hwatu_card_is_vertical_rounded_rect(self):
+        self.assertIn(".hwatu-card", self.css)
+        self.assertRegex(
+            self.css,
+            r"\.hwatu-card\s*\{[^}]*aspect-ratio\s*:\s*2\s*/\s*3",
+            "hwatu cards must be a vertical 2:3 rectangle",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.hwatu-card\s*\{[^}]*border-radius\s*:",
+            "hwatu cards must have rounded corners",
+        )
+
+    def test_render_grid_emits_one_hwatu_card_per_joker(self):
+        render = _fn_body(self.js, "renderGrid")
+        self.assertTrue(render, "renderGrid must exist")
+        self.assertIn("hwatu-card", render)
+        self.assertIn("pool.jokers.map", render)
+        self.assertIn("data-id", render)
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 카드 에디터 그리드 뷰 (`tools/gwang-editor/`)
+
+- `tools/gwang-editor/`: each loaded joker renders as a hwatu card (`article.hwatu-card`).
+  - Vertical 2:3 rectangle, rounded corners (`aspect-ratio: 2 / 3`, `border-radius: 10px`).
+  - ★ mark + English name; `data-id` on each card. `renderGrid` maps `pool.jokers`.
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (13 tests: schema + File API/FSA + grid).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (b) only. Image upload, overlays, edit form, New/Delete, locale, runtime image decode are not in this slice.
+- Next slice: INBOX (23) remaining — (c) 이미지 업로드 (카드 프레임 안 중앙 크롭 + 리사이즈) on `tools/gwang-editor/`.
+
 ## 2026-09-08 — 광 카드 에디터 로드/저장 (`tools/gwang-editor/`)
 
 - Created `tools/gwang-editor/index.html` + `editor.css` + `editor.js` (gear-editor pattern).
