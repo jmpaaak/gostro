@@ -72,6 +72,17 @@ function M.run()
     assert(assets.runtime_path("gwang.hongdan_x2") ==
         "assets/runtime/gwang/hongdan-x2-v1.png")
 
+    local cheongdan = assets.entry("gwang.cheongdan_x2")
+    assert(cheongdan and cheongdan.status == "runtime",
+        "cheongdan flag gwang must have tracked runtime artwork")
+    assert(cheongdan.master.width == 448 and cheongdan.master.height == 256,
+        "cheongdan flag gwang must preserve its high-resolution slot master")
+    assert(cheongdan.runtime.width == 56 and cheongdan.runtime.height == 32,
+        "cheongdan flag runtime must scale exactly into a 28x16 slot")
+    assert(cheongdan.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.cheongdan_x2") ==
+        "assets/runtime/gwang/cheongdan-x2-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

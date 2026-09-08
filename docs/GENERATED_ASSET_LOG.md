@@ -128,3 +128,7 @@
 | 2026-09-09T06:43:37+0900 | `assets/masters/gwang/hongdan-x2-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
 | 2026-09-09T06:43:37+0900 | `assets/runtime/gwang/hongdan-x2-v1.png` | 56x32 runtime 홍단 깃발 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T06:43:37+0900 | `assets/runtime/ui/gwang-hongdan-x2-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 홍단 깃발 gwang in all five slots; SHA-256 `b384883eadfcba8a683df4a9f865a17b6e0ec3edf03741d6af4589ed92660634` |
+| 2026-09-09T06:53:00+0900 | `assets/masters/gwang/cheongdan-x2-v1.svg` | Project-authored high-resolution 청단 깃발 gwang vector source with deep blue Korean lacquer, jade dancheong framing, paired azure ribbons, and a lotus knot |
+| 2026-09-09T06:53:00+0900 | `assets/masters/gwang/cheongdan-x2-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
+| 2026-09-09T06:53:00+0900 | `assets/runtime/gwang/cheongdan-x2-v1.png` | 56x32 runtime 청단 깃발 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T06:53:00+0900 | `assets/runtime/ui/gwang-cheongdan-x2-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 청단 깃발 gwang in all five slots; SHA-256 `f075b5a05a726337f2bd053004f7083f06c97a6c3b67e7fb7ee9db21fca73489` |

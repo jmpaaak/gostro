@@ -682,10 +682,51 @@
     {
       "id": "gwang.cheongdan_x2",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "청단 깃발",
         "en": "Cheongdan Flag"
+      },
+      "master": {
+        "source": "assets/masters/gwang/cheongdan-x2-v1.svg",
+        "sourceSha256": "3259d8d5dd2d941e3dc95a286f5cf7c72b6a04e39ce582af0c3f7c17fc9cdf52",
+        "path": "assets/masters/gwang/cheongdan-x2-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "625d43d3ffb638cd7a84f7215de9c923612b9010f906ceed4b7ae30d245ab0bf",
+        "provenance": "Project-authored high-resolution vector master using deep blue Korean lacquer, jade dancheong framing, paired flowing azure ribbons, and a lotus knot to identify the Cheongdan doubling effect; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/cheongdan-x2-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "9b247a24925a39b9c8f6268e2037e2926b218a508cc8e2dd0be2ebae357dd0d3",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/cheongdan-x2-v1.report.json",
+        "reportSha256": "a7dbb8061c1776f7c07ce22e54564eb583f1f54229d0a757ca33c0eb7930c418"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
