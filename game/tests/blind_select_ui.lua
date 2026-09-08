@@ -8,7 +8,7 @@ local M = {}
 
 function M.run()
     -- new() returns state with 3 blind entries for the given ante
-    local s = blind_select.new(1)
+    local s = blind_select.new(1, "small")
     assert(s.ante == 1, "ante stored")
     assert(#s.blinds == 3, "3 blinds (small/big/boss)")
     assert(s.blinds[1].kind == "small", "first is small")
@@ -39,18 +39,31 @@ function M.run()
     assert(s2.blinds[1].target > s.blinds[1].target,
         "ante 2 small > ante 1 small")
 
-    -- select_blind sets selected
-    blind_select.select_blind(s, 2)
-    assert(s.selected == "big", "selected big blind")
+    assert(s.current == "small", "current blind is stored")
+    assert(s.blinds[1].available == true, "current small blind is available")
+    assert(s.blinds[2].available == false and s.blinds[3].available == false,
+        "future blinds are previews, not shortcuts")
 
+    -- Only the current sequential blind can be selected.
+    local ok = pcall(blind_select.select_blind, s, 2)
+    assert(not ok and s.selected == nil, "cannot jump from small to big")
     blind_select.select_blind(s, 1)
     assert(s.selected == "small", "selected small blind")
 
-    blind_select.select_blind(s, 3)
-    assert(s.selected == "boss", "selected boss blind")
+    local big = blind_select.new(1, "big")
+    assert(big.blinds[2].available == true and big.blinds[1].available == false,
+        "big is the only available blind after small")
+    blind_select.select_blind(big, 2)
+    assert(big.selected == "big", "current big blind can be selected")
+
+    local boss = blind_select.new(1, "boss")
+    assert(boss.blinds[3].available == true and boss.blinds[2].available == false,
+        "boss is the only available blind after big")
+    blind_select.select_blind(boss, 3)
+    assert(boss.selected == "boss", "current boss blind can be selected")
 
     -- select_blind rejects out-of-range
-    local ok = pcall(blind_select.select_blind, s, 0)
+    ok = pcall(blind_select.select_blind, s, 0)
     assert(not ok, "reject index 0")
     ok = pcall(blind_select.select_blind, s, 4)
     assert(not ok, "reject index 4")
@@ -58,10 +71,13 @@ function M.run()
     -- hit_test: card positions
     local positions = blind_select.card_positions()
     assert(#positions == 3, "3 card positions")
-    for i = 1, 3 do
+    local current = positions[1]
+    assert(blind_select.hit_test(s, current.x + 2, current.y + 2) == 1,
+        "current blind card can be hit")
+    for i = 2, 3 do
         local p = positions[i]
-        local hit = blind_select.hit_test(s, p.x + 2, p.y + 2)
-        assert(hit == i, "hit card " .. i .. ", got " .. tostring(hit))
+        assert(blind_select.hit_test(s, p.x + 2, p.y + 2) == nil,
+            "future blind card " .. i .. " is not actionable")
     end
 
     -- hit_test: miss

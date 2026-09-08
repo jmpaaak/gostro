@@ -51,6 +51,11 @@ function M.run()
     play.leave_shop(scene)
     assert(scene.state == "blind_select", "after shop -> blind_select")
     assert(scene.run_state.blind == "big", "next blind is big")
+    assert(scene.blind_select.current == "big", "blind UI follows the engine's next blind")
+    assert(scene.blind_select.blinds[2].available == true
+        and scene.blind_select.blinds[1].available == false
+        and scene.blind_select.blinds[3].available == false,
+        "blind UI cannot replay small or jump ahead to boss")
     assert(scene.run_state.phase == "play", "run phase is play")
 
     -- (6) discard_hand works

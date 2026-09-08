@@ -54,8 +54,12 @@ function M.card_positions()
 end
 
 --- Create a new blind-select state for the given ante.
-function M.new(ante)
+function M.new(ante, current)
     ante = ante or 1
+    current = current or "small"
+    if not BLIND_NAMES[current] then
+        error("unknown current blind: " .. tostring(current))
+    end
     local blinds = {}
     local kinds = { "small", "big", "boss" }
     for i, kind in ipairs(kinds) do
@@ -67,10 +71,12 @@ function M.new(ante)
             kind   = kind,
             target = run.blind_target(rs),
             reward = BLIND_REWARDS[kind],
+            available = kind == current,
         }
     end
     return {
         ante     = ante,
+        current  = current,
         blinds   = blinds,
         selected = nil,
     }
@@ -81,6 +87,9 @@ function M.select_blind(s, idx)
     if idx < 1 or idx > 3 then
         error("blind index out of range: " .. tostring(idx))
     end
+    if not s.blinds[idx].available then
+        error("only the current blind can be selected")
+    end
     s.selected = s.blinds[idx].kind
 end
 
@@ -89,7 +98,8 @@ function M.hit_test(s, px, py)
     local positions = M.card_positions()
     for i = 1, 3 do
         local p = positions[i]
-        if px >= p.x and px < p.x + p.w
+        if s.blinds[i].available
+           and px >= p.x and px < p.x + p.w
            and py >= p.y and py < p.y + p.h then
             return i
         end
@@ -118,7 +128,8 @@ function M.draw(s)
         local is_sel = (s.selected == b.kind)
 
         -- Card background
-        love.graphics.setColor(col[1], col[2], col[3], is_sel and 1 or 0.7)
+        local available = b.available
+        love.graphics.setColor(col[1], col[2], col[3], is_sel and 1 or (available and 0.7 or 0.28))
         love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 4, 4)
 
         -- Selection border highlight
@@ -126,7 +137,7 @@ function M.draw(s)
             love.graphics.setColor(1, 1, 0.4, 1)
             love.graphics.setLineWidth(2)
         else
-            love.graphics.setColor(1, 1, 1, 0.5)
+            love.graphics.setColor(1, 1, 1, available and 0.5 or 0.2)
             love.graphics.setLineWidth(1)
         end
         love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 4, 4)
@@ -138,6 +149,11 @@ function M.draw(s)
         local nw = font:getWidth(name)
         love.graphics.print(name,
             p.x + math.floor((p.w - nw) / 2), p.y + 6)
+
+        local status = available and "현재" or "순서 대기"
+        love.graphics.setColor(1, 1, 1, available and 0.9 or 0.45)
+        local sw = font:getWidth(status)
+        love.graphics.print(status, p.x + math.floor((p.w - sw) / 2), p.y + 20)
 
         -- Target score
         local target_txt = tostring(b.target)

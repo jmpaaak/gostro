@@ -36,7 +36,7 @@ function M.new(seed_str)
     self.money       = 4  -- starting money
 
     -- UI modules (created on demand per state)
-    self.blind_select = blind_sel_ui.new(self.run_state.ante)
+    self.blind_select = blind_sel_ui.new(self.run_state.ante, self.run_state.blind)
     self.gwang_slots  = gwang_sl_ui.new()
     self.seed         = seed_ui.new(self.run_state.seed)
     self.hand         = nil
@@ -52,7 +52,7 @@ function M.apply_seed(scene, seed_str)
     scene.run_state   = run.new(seed_str)
     scene.state       = "blind_select"
     scene.money       = scene.run_state.money
-    scene.blind_select = blind_sel_ui.new(scene.run_state.ante)
+    scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
     scene.gwang_slots  = gwang_sl_ui.new()
     seed_ui.set_seed(scene.seed, scene.run_state.seed)
     scene.hand        = nil
@@ -191,7 +191,7 @@ function M.leave_shop(scene)
     scene.money = scene.shop.money
     scene.run_state.money = scene.money
     run.leave_shop(scene.run_state)
-    scene.blind_select = blind_sel_ui.new(scene.run_state.ante)
+    scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     scene.state = "blind_select"
 end
