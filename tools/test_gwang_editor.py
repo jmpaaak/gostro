@@ -262,5 +262,52 @@ class GwangEditorImageUploadTests(unittest.TestCase):
         )
 
 
+class GwangEditorImagePersistTests(unittest.TestCase):
+    """INBOX (23d): persist card art as a base64 data URL in JSON image."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+
+    def test_crop_emits_base64_data_url(self):
+        crop = _fn_body(self.js, "centerCropToCard")
+        self.assertTrue(crop, "centerCropToCard must exist")
+        self.assertIn("toDataURL", crop)
+        self.assertRegex(
+            crop,
+            r"image/png|data:image",
+            "crop must emit a PNG data URL",
+        )
+
+    def test_validate_pool_requires_image_data_url(self):
+        self.assertIn("function isImageDataUrl", self.js)
+        is_url = _fn_body(self.js, "isImageDataUrl")
+        self.assertTrue(is_url, "isImageDataUrl must exist")
+        self.assertIn("data:image/", is_url)
+        self.assertIn("base64", is_url)
+        validate = _fn_body(self.js, "validatePool")
+        self.assertTrue(validate, "validatePool must exist")
+        self.assertIn("isImageDataUrl", validate)
+        self.assertIn("image", validate)
+
+    def test_serialize_pool_writes_image_field(self):
+        serialize = _fn_body(self.js, "serializePool")
+        self.assertTrue(serialize, "serializePool must exist")
+        self.assertIn("JSON.stringify", serialize)
+        self.assertIn("image", serialize)
+        self.assertIn("jokers", serialize)
+
+    def test_save_and_download_persist_image(self):
+        save_fsa = _fn_body(self.js, "wireSaveFsa")
+        download = _fn_body(self.js, "wireDownload")
+        self.assertTrue(save_fsa, "wireSaveFsa must exist")
+        self.assertTrue(download, "wireDownload must exist")
+        self.assertIn("serializePool", save_fsa)
+        self.assertIn("serializePool", download)
+        self.assertIn("validatePool", save_fsa)
+        self.assertIn("validatePool", download)
+
+
 if __name__ == "__main__":
     unittest.main()

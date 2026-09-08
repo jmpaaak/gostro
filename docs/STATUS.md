@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 카드 에디터 이미지 JSON 저장 (`tools/gwang-editor/`)
+
+- `tools/gwang-editor/editor.js`: uploaded, center-cropped PNG art persists on each joker's JSON `image` field as a base64 `data:image/...;base64,...` URL.
+  - `isImageDataUrl` rejects non-image and non-base64 image values before Save/Download.
+  - `serializePool` explicitly preserves each valid `joker.image` in both FSA direct save and downloaded JSON.
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (21 tests: schema + File API/FSA + grid + upload + image persistence).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (d) only. Overlays, edit form, New/Delete, locale, runtime image decode remain.
+- Next slice: INBOX (23e) 카드 프레임 이름 + 희귀도 띠 + 효과 텍스트 오버레이 on `tools/gwang-editor/`.
+
 ## 2026-09-08 — 광 카드 에디터 이미지 업로드 (`tools/gwang-editor/`)
 
 - `tools/gwang-editor/`: per-card image upload into the hwatu frame.

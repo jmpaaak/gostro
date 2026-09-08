@@ -1,5 +1,5 @@
 // gwang-editor: static, dependency-free editor for game/data/gwang_jokers.json
-// (docs/feedback/INBOX.md item 23c — per-card image upload, center-crop).
+// (docs/feedback/INBOX.md item 23d — persist image as a base64 data URL).
 //
 // Validation mirrors the catalog fields used by game/gwang_catalog.lua.
 
@@ -36,6 +36,10 @@ function isNonEmptyString(v) {
 
 function isLocalized(v) {
   return v && typeof v === "object" && isNonEmptyString(v.ko) && isNonEmptyString(v.en);
+}
+
+function isImageDataUrl(v) {
+  return typeof v === "string" && v.indexOf("data:image/") === 0 && v.indexOf(";base64,") > 0;
 }
 
 function validatePool(doc) {
@@ -89,8 +93,8 @@ function validatePool(doc) {
     if (joker.trigger === "blind" && !KNOWN_BLINDS.includes(joker.blind_need)) {
       errors.push(`${prefix}: missing blind_need`);
     }
-    if (joker.image != null && typeof joker.image !== "string") {
-      errors.push(`${prefix}: image must be a string data URL`);
+    if (joker.image != null && !isImageDataUrl(joker.image)) {
+      errors.push(`${prefix}: image must be a base64 data URL`);
     }
     if (isNonEmptyString(joker.id)) {
       if (seenIds.has(joker.id)) errors.push(`duplicate joker id '${joker.id}'`);
@@ -152,7 +156,14 @@ function wireOpenFsa() {
 }
 
 function serializePool() {
-  return JSON.stringify(pool, null, 2) + "\n";
+  const documentToSave = {
+    ...pool,
+    jokers: pool.jokers.map((joker) => ({
+      ...joker,
+      ...(joker.image ? { image: joker.image } : {}),
+    })),
+  };
+  return JSON.stringify(documentToSave, null, 2) + "\n";
 }
 
 function wireSaveFsa() {
@@ -239,7 +250,7 @@ function wireImageUploads() {
         joker.image = centerCropToCard(img);
         URL.revokeObjectURL(url);
         renderGrid();
-        setStatus("Image placed in card frame (center crop, 2:3).", "ok");
+        setStatus("Image saved as base64 data URL on JSON image field.", "ok");
       };
       img.onerror = () => {
         URL.revokeObjectURL(url);
