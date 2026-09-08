@@ -6,12 +6,6 @@
 
 ### Phase B — 핵심 UI 모듈 개발
 
-(6) **광 조커 슬롯 UI 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/gwang_slots.lua` (새 모듈)
-  - 상단 가로줄 최대 5칸, 빈 칸은 점선 테두리
-  - 장착된 광은 ★ 심볼 + 이름 + 효과 한 줄
-  - 테스트: `game/tests/gwang_slots_ui.lua`
-
 (7) **점수판 UI 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/scoreboard.lua` (새 모듈)
   - 칩 × 배수 = 총점 실시간 표시
@@ -58,6 +52,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (6) **광 조커 슬롯 UI 모듈** (msg `1546674255045992608`)
+    - `game/ui/gwang_slots.lua`: 상단 5칸 가로줄 (28×16px, 점선 빈 칸, ★+이름+효과 장착 칸), equip/sync_from_run/display_text.
+    - `game/tests/gwang_slots_ui.lua` GREEN. `make verify` GREEN.
 
   (5) **핸드 디스플레이 모듈** (msg `1546674255045992608`)
     - `game/ui/hand.lua`: 8장 겹침 배열 (16px gap, 320×180 중앙), 최대 5장 선택 + 순서 추적, 리프트+테두리 강조, hit_test, draw.

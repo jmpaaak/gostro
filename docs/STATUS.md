@@ -67,4 +67,17 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/hand_ui.lua`: deal layout, overlap check, select/deselect/toggle, max 5 limit, selection order, get_selected.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (5) → 처리 완료.
-- Next slice: INBOX (6) 광 조커 슬롯 UI 모듈 (`game/ui/gwang_slots.lua`).
+- Next slice: INBOX (7) 점수판 UI 모듈 (`game/ui/scoreboard.lua`).
+
+## 2026-09-08 — 광 조커 슬롯 UI 모듈 (game/ui/gwang_slots.lua)
+
+- Created `game/ui/gwang_slots.lua`: gwang joker slot bar at top of 320×180 viewport.
+  - 5 slots in centred horizontal row (28×16px each, 4px gap, 4px top pad).
+  - Empty slots: dashed border. Equipped slots: dark bg + gold border + ★ symbol.
+  - `new()`, `equip()`, `is_empty()`, `sync_from_run()`, `display_text()`, `draw()`.
+  - `display_text()` returns "★ name effect" (e.g. "★ 칩 +30 칩", "★ 배수 +4 배수").
+  - `slot_positions()` returns layout rects for external hit-testing.
+- Tests in `game/tests/gwang_slots_ui.lua`: 5-slot init, equip fill order, max 5 rejection, display text ★/name, is_empty, sync_from_run.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (6) → 처리 완료.
+- Next slice: INBOX (7) 점수판 UI 모듈 (`game/ui/scoreboard.lua`).
