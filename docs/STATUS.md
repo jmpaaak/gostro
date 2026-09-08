@@ -1,17 +1,4 @@
 # STATUS
-
-Each autonomous dev cycle appends one dated `##` section here describing
-only what it verified this cycle (facts, test results, exact next slice).
-Do not rewrite older sections.
-
-> Older cycle history lives in `docs/STATUS_HISTORY.md`. Only search it
-> when tracking a specific past bug; do not read it by default.
-
-Keep this file small: wire `scripts/compact_status.py` into a frequently
-running read-only job (e.g. a progress-report cron) so it archives old
-sections into `docs/STATUS_HISTORY.md` automatically once this file grows
-past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
-
 ## 2026-09-07 — repo from skeleton
 
 - Generated `jmpaaak/gostro` from `jmpaaak/love2d-game-skeleton` (`fe75ea6667e33147bfa83a403a2fe02b155b2c1e`) via GitHub template API (same-account fork is not allowed). First created as `gostop`, renamed to `gostro`.
@@ -165,3 +152,5 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (11) → 처리 완료 (state machine + engine integration slice).
 - Next slice: INBOX (12) 점수 연출 모듈 (`game/ui/score_anim.lua`).
+
+> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
