@@ -680,3 +680,19 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/tarots.lua` GREEN (pool includes copy, clone, preserve hologram, reject gwang).
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - Next slice: INBOX (19) 이자 시스템 + 경제 (`game/economy.lua`).
+
+## Archived from STATUS.md (2026-09-08 19:02)
+
+
+## 2026-09-08 — 이자 계산 (`game/economy.lua`)
+
+## Archived from STATUS.md (2026-09-08 19:09)
+
+- Created `game/economy.lua`: Balatro-style interest $1 per $5 held.
+  - Default cap $5. No money cap.
+  - `seed_money` voucher raises `vouchers.interest_cap` (default 5 → 10).
+  - Negative / nil money yields $0 interest.
+- Tests in `game/tests/economy.lua` GREEN (per-$5, default cap, floor, uncapped money, seed_money cap).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- Round cash-out (blind reward + leftover-hand bonus) and `run.clear_blind` integration are not in this slice.
+- Next slice: INBOX (19) remaining — round payout into `game/run.lua` via `economy`.
