@@ -1,6 +1,6 @@
 -- Pure round state: finite draw/discard piles and action counters.
 -- This module contains no UI or LÖVE dependencies. Callers apply the returned
--- "clear_blind" / "lose" transition through game.run.
+-- "clear_blind" / "lose" transition through game.blind_flow.
 
 local boss_blinds = require("game.boss_blinds")
 

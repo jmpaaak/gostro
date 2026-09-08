@@ -733,3 +733,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `game/tests/main_menu_ui.lua`, `game/tests/menu_scene.lua`를 self-test에 등록했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
 - INBOX (26)은 후속 실기기 관찰이 남아 있어 처리 대기로 유지한다.
+
+## Archived from STATUS.md (2026-09-08 19:35)
+
+## 2026-09-08 — Balatro 실기기 연결 복구와 앱 식별
+
+- 사용자 CoreDeviceService를 재시작한 뒤 설치 앱 조회가 정상화됐다.
+- 실기기 설치 목록에서 Balatro 1.0.19(50)의 bundle identifier가 `com.playstack.balatropremium`임을 확인했다.
+- `devicectl`로 해당 bundle identifier를 실행해 성공 응답을 받았다. 화면 내용은 아직 관찰 사실로 기록하지 않았다.
+- WDA 세션은 연결 복구 후 빌드 단계까지 진행했지만 development team 미설정으로 code 65가 발생했다. PNG/page source는 아직 확보하지 못했다.
+- Next slice: WDA 서명을 구성하고 앱 시작 화면의 PNG와 page source를 같은 체크포인트 증거 묶음으로 저장한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).

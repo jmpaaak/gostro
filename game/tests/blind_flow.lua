@@ -175,6 +175,26 @@ function M.test_clear_and_shop_exit_own_sequential_progression()
         "shop exit prepares the next blind selection")
 end
 
+function M.test_lose_owns_exhausted_hand_transition()
+    local state = run.new("blind-flow-loss")
+    state.round_score = run.blind_target(state) - 1
+
+    fails(function() blind_flow.lose(state, 1) end,
+        "loss requires the round to exhaust its hands")
+    assert(state.phase == "play", "invalid loss does not mutate the run")
+
+    assert(blind_flow.lose(state, 0) == "lost",
+        "loss returns the resulting run phase")
+    assert(state.phase == "lost" and state.hands_left == 0,
+        "loss carries the exhausted hand count into run state")
+
+    local cleared = run.new("blind-flow-not-loss")
+    run.add_score(cleared, run.blind_target(cleared))
+    fails(function() blind_flow.lose(cleared, 0) end,
+        "a completed blind cannot be recorded as a loss")
+    assert(cleared.phase == "play", "completed blind remains available to clear")
+end
+
 function M.run()
     M.test_view_exposes_sequential_blinds_and_run_targets()
     M.test_skip_eligibility_requires_current_small_or_big_and_tag()
@@ -184,6 +204,7 @@ function M.run()
     M.test_completed_progression_is_derived_from_run_state()
     M.test_begin_owns_stake_adjusted_round_transition()
     M.test_clear_and_shop_exit_own_sequential_progression()
+    M.test_lose_owns_exhausted_hand_transition()
     print("  blind_flow: OK")
 end
 

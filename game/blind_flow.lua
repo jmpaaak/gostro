@@ -107,6 +107,22 @@ function M.clear(state, hands_left)
     return state.phase
 end
 
+--- End the current blind after the round engine exhausts every hand.
+function M.lose(state, hands_left)
+    if state.phase ~= "play" then
+        error("cannot lose outside play")
+    end
+    if hands_left ~= 0 then
+        error("cannot lose with hands remaining")
+    end
+    if state.round_score >= target_for(state, state.blind) then
+        error("cannot lose a cleared blind")
+    end
+    state.hands_left = hands_left
+    run.lose(state)
+    return state.phase
+end
+
 --- Advance from the shop and describe the next selectable blind.
 function M.leave_shop(state)
     run.leave_shop(state)

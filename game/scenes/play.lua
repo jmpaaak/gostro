@@ -150,7 +150,7 @@ function M.play_hand(scene)
     sync_round_ui(scene)
 
     if transition == "lose" then
-        run.lose(scene.run_state)
+        blind_flow.lose(scene.run_state, scene.round.hands_left)
         scene.state = "lost"
     end
     return true, transition, result

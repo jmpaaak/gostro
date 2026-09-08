@@ -1,13 +1,4 @@
 # STATUS
-
-## 2026-09-08 — Balatro 실기기 연결 복구와 앱 식별
-
-- 사용자 CoreDeviceService를 재시작한 뒤 설치 앱 조회가 정상화됐다.
-- 실기기 설치 목록에서 Balatro 1.0.19(50)의 bundle identifier가 `com.playstack.balatropremium`임을 확인했다.
-- `devicectl`로 해당 bundle identifier를 실행해 성공 응답을 받았다. 화면 내용은 아직 관찰 사실로 기록하지 않았다.
-- WDA 세션은 연결 복구 후 빌드 단계까지 진행했지만 development team 미설정으로 code 65가 발생했다. PNG/page source는 아직 확보하지 못했다.
-- Next slice: WDA 서명을 구성하고 앱 시작 화면의 PNG와 page source를 같은 체크포인트 증거 묶음으로 저장한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).
-
 ## 2026-09-08 — WDA 서명 빌드 검증
 
 - Appium 3.7.0 + XCUITest driver 12.11.0을 저장소의 무시된 `build/` 경로에 격리 설치했다.
@@ -131,5 +122,14 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: hand 소진 패배 전환을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.lose` 호출을 제거한다.
+
+## 2026-09-08 — hand 소진 패배 전환 모듈화
+
+- `game/blind_flow.lua`의 `lose`가 play phase, hand 완전 소진, 목표 미달을 검증하고 최종 hand 수 이관과 패배 기록 전환을 소유한다.
+- `game/scenes/play.lua`의 직접 `run.lose` 호출을 제거하고 round engine의 `lose` 결과를 `blind_flow.lose`에 위임했다.
+- TDD RED: `blind_flow.lose` 미구현 실패를 확인했다. 구현 후 남은 hand가 있거나 이미 목표를 달성한 런의 잘못된 패배를 거부하고, 기존 실게임 패배 경로도 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `play_integration: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: 한 hand 득점과 남은 hand 이관을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.add_score` 호출과 `run_state.hands_left` 대입을 제거한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
