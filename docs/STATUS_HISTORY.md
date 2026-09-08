@@ -289,3 +289,23 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (21) fully done: trigger patterns (a)–(h) + 30-joker catalog + hwatu apply loop.
 - Next slice: INBOX (22) 시드 기반 랜덤 + 런 히스토리 on `game/rng.lua`.
+
+## Archived from STATUS.md (2026-09-08 12:16)
+
+## 2026-09-08 — 런 시작 시드→상점/카드/보스 (`game/run.lua`)
+
+- `run.new(seed)` calls `rng.plan`: stores `state.seed` (A-Z0-9 display) and independent `state.rng.shop` / `cards` / `boss` streams.
+- Empty/nil seed generates 8-char seed. Same seed string (case-insensitive) → same shop voucher, deal kinds, boss sequence; different seed diverges.
+- `clear_blind` stocks shop via shop stream. `deal_kinds` deals hongdan/cheongdan/chodan/godori/pi from cards stream (no months). `select_boss` uses boss stream when id omitted.
+- Tests in `game/tests/rng.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (22) run-start wiring only. Seed display/input UI and run history are not in this slice.
+- Next slice: INBOX (22) remaining — seed display + input UI.
+
+## 2026-09-08 — 시드 문자열 RNG (`game/rng.lua`)
+
+- `game/rng.lua`: Balatro-style seed-string RNG. Display + input via `new(seed)` (normalize A-Z0-9 uppercase). Empty/nil generates 8-char seed.
+- `random()` matches `math.random` (`()`, `(n)`, `(a,b)`). Named streams `shop` / `cards` / `boss` are independent; `plan(seed)` decides those sequences at run start.
+- Same seed → same sequences; different seed diverges. No month numbers/names. Shop/play wiring and seed UI not in this slice.
+- Tests in `game/tests/rng.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (22) RNG module slice only. Run history + seed display/input UI + shop/card/boss consumers are not in this slice.
+- Next slice: INBOX (22) remaining — wire `rng.plan` into run start so shop/cards/boss consume the seeded streams.

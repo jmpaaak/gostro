@@ -34,6 +34,7 @@ function M.run()
     require("game.tests.deck").run()
     require("game.tests.gwang_catalog").run()
     require("game.tests.rng").run()
+    require("game.tests.seed_ui").run()
     print("GOSTRO_UNIT_OK")
 end
 

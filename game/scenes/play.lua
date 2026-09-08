@@ -12,6 +12,7 @@ local shop_ui       = require("game.ui.shop")
 local blind_sel_ui  = require("game.ui.blind_select")
 local gwang_sl_ui   = require("game.ui.gwang_slots")
 local planets_ui    = require("game.ui.planets_ui")
+local seed_ui       = require("game.ui.seed")
 
 local M = {}
 M.__index = M
@@ -27,22 +28,38 @@ local function random_hand_kinds(n)
     return kinds
 end
 
---- Create a new play scene.
-function M.new()
+--- Create a new play scene. Optional seed string (display + input).
+function M.new(seed_str)
     local self = setmetatable({}, M)
-    self.run_state   = run.new()
+    self.run_state   = run.new(seed_str)
     self.state       = "blind_select"
     self.money       = 4  -- starting money
 
     -- UI modules (created on demand per state)
     self.blind_select = blind_sel_ui.new(self.run_state.ante)
     self.gwang_slots  = gwang_sl_ui.new()
+    self.seed         = seed_ui.new(self.run_state.seed)
     self.hand         = nil
     self.scoreboard   = nil
     self.buttons      = nil
     self.shop         = nil
 
     return self
+end
+
+--- Apply a typed seed: restart the run from that seed string.
+function M.apply_seed(scene, seed_str)
+    scene.run_state   = run.new(seed_str)
+    scene.state       = "blind_select"
+    scene.money       = scene.run_state.money
+    scene.blind_select = blind_sel_ui.new(scene.run_state.ante)
+    scene.gwang_slots  = gwang_sl_ui.new()
+    seed_ui.set_seed(scene.seed, scene.run_state.seed)
+    scene.hand        = nil
+    scene.scoreboard  = nil
+    scene.buttons     = nil
+    scene.shop        = nil
+    return scene.run_state.seed
 end
 
 --- Select a blind and transition to playing.
@@ -218,9 +235,10 @@ function M:draw()
     if not love or not love.graphics then return end
     love.graphics.clear(0.025, 0.035, 0.08)
 
-    -- Gwang slots always visible at top
+    -- Gwang slots always visible at top; seed display at top-left
     gwang_sl_ui.draw(self.gwang_slots)
     planets_ui.draw(self.run_state)
+    seed_ui.draw(self.seed)
 
     if self.state == "blind_select" then
         blind_sel_ui.draw(self.blind_select)
@@ -242,6 +260,13 @@ end
 
 --- Handle mouse/touch press.
 function M:mousepressed(px, py)
+    if seed_ui.hit_test(self.seed, px, py) == "field" then
+        seed_ui.focus(self.seed)
+        return
+    elseif self.seed.focused then
+        seed_ui.unfocus(self.seed)
+    end
+
     if self.state == "blind_select" then
         local idx = blind_sel_ui.hit_test(self.blind_select, px, py)
         if idx then
@@ -280,6 +305,13 @@ end
 
 --- Handle key press.
 function M:keypressed(key)
+    if self.seed.focused then
+        local applied = seed_ui.keypressed(self.seed, key)
+        if applied then
+            M.apply_seed(self, applied)
+        end
+        return
+    end
     if self.state == "playing" then
         local action = buttons_ui.keypressed(self.buttons, key)
         if action == "play" then
