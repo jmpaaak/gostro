@@ -61,6 +61,17 @@ function M.run()
     assert(assets.runtime_path("gwang.always_mult_mid") ==
         "assets/runtime/gwang/always-mult-mid-v1.png")
 
+    local hongdan = assets.entry("gwang.hongdan_x2")
+    assert(hongdan and hongdan.status == "runtime",
+        "hongdan flag gwang must have tracked runtime artwork")
+    assert(hongdan.master.width == 448 and hongdan.master.height == 256,
+        "hongdan flag gwang must preserve its high-resolution slot master")
+    assert(hongdan.runtime.width == 56 and hongdan.runtime.height == 32,
+        "hongdan flag runtime must scale exactly into a 28x16 slot")
+    assert(hongdan.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.hongdan_x2") ==
+        "assets/runtime/gwang/hongdan-x2-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

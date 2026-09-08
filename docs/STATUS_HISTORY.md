@@ -1460,3 +1460,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 384개 파일이다.
 - INBOX (27)은 모든 그래픽 요소의 런타임 에셋 전환을 진행 중이며 처리 대기로 유지한다.
 - Next slice: `gwang.always_mult_mid` 중배수(Mid Mult) 광 슬롯 아이템의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.
+
+## Archived from STATUS.md (2026-09-09 06:44)
+
+## 2026-09-09 — 중배수(Mid Mult) 광 고해상도 픽셀 에셋 적용
+
+- `gwang.always_mult_mid` 광 슬롯 아이템에 남색 옻칠·단청 격자, 주사 구슬 네 개, 황동 육각 메달과 넓은 더하기 문양의 448×256 SVG/PNG master 및 56×32 runtime 에셋을 추가했다.
+- 실제 Asset Studio `POST /api/pixel-perfect` 결과 dimensions/palette/transparent alpha/alignment/nearest 5개 검사가 통과했으며 manifest에 source/master/runtime/report hash와 alpha bounds를 기록했다.
+- manifest-backed 로더 회귀 테스트와 중배수 광 5칸의 실제 LÖVE 320×180 캡처 QA를 추가했다.
+- TDD RED: `gwang.always_mult_mid` runtime manifest 항목 부재 실패를 확인했고 구현 후 전체 엔진 테스트와 `gwang-slot-qa`가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 389개 파일이다.
+- INBOX (27)은 모든 그래픽 요소의 런타임 에셋 전환을 진행 중이며 처리 대기로 유지한다.
+- Next slice: `gwang.hongdan_x2` 홍단 깃발 광 슬롯 아이템의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.

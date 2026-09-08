@@ -632,10 +632,51 @@
     {
       "id": "gwang.hongdan_x2",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "홍단 깃발",
         "en": "Hongdan Flag"
+      },
+      "master": {
+        "source": "assets/masters/gwang/hongdan-x2-v1.svg",
+        "sourceSha256": "df2ca9008946c1a59509078bc98b52b8990d4bc52444b0b86c2244f43f01c490",
+        "path": "assets/masters/gwang/hongdan-x2-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "6ec36ca3190b18ef5768c5fa1dbfa50d44b6555357aefd6dbd2994c9467db6c8",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer and dancheong framing, paired flowing crimson ribbons, and a plum-blossom knot to identify the Hongdan doubling effect; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/hongdan-x2-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "eadf86e3b7516d8a2f30c72284fb2c44957e664f689f33e53c49f0fe940a5258",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/hongdan-x2-v1.report.json",
+        "reportSha256": "d9440ad0da9b8ec4dcf6cdc1b5106598413347d4960feee423f93f701ec39f2f"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
