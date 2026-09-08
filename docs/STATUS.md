@@ -1,13 +1,13 @@
 # STATUS
-## 2026-09-08 — 광 카드 에디터 새 카드 (`tools/gwang-editor/`)
+## 2026-09-08 — 광 카드 에디터 카드 삭제 (`tools/gwang-editor/`)
 
-- Added `+ New Card`; it enables after loading a catalog and appends a schema-valid common gwang with a collision-free `gwang_new` ID.
-- The new card is selected immediately and opens in the existing edit form; grid, validation, direct-save, and download flows use the updated in-memory catalog.
-- TDD: `GwangEditorNewCardTests` observed RED (4 failures), then GREEN.
-- `python3 -m unittest tools.test_gwang_editor -v` GREEN (34 tests); `node --check tools/gwang-editor/editor.js` GREEN.
+- Added a disabled-until-selection `Delete` action for the loaded gwang catalog.
+- Deletion requires confirmation, removes only the selected card, clears the editor selection, and rerenders the grid; direct-save and download persist the updated catalog.
+- TDD: `GwangEditorDeleteCardTests` observed RED (4 failures), then GREEN.
+- `python3 -m unittest tools.test_gwang_editor -v` GREEN (38 tests); `node --check tools/gwang-editor/editor.js` GREEN.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (23g) New Card slice only. Delete remains; Download JSON was already completed in (23a).
-- Next slice: INBOX (23g) Delete on `tools/gwang-editor/`.
+- INBOX (23g) is complete: Download JSON, New Card, and Delete are implemented.
+- Next slice: INBOX (23h) KO|EN locale toggle on `tools/gwang-editor/`.
 
 ## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
 

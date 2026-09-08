@@ -443,5 +443,43 @@ class GwangEditorNewCardTests(unittest.TestCase):
         load = _fn_body(self.js, "loadDocument")
         self.assertIn("newCardBtn.disabled", load)
 
+
+class GwangEditorDeleteCardTests(unittest.TestCase):
+    """INBOX (23g) slice: delete the selected gwang card."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(HTML_PATH, encoding="utf-8") as f:
+            cls.html = f.read()
+
+    def test_html_has_disabled_delete_action(self):
+        self.assertRegex(self.html, r'<button id="deleteCardBtn"[^>]*disabled[^>]*>Delete</button>')
+
+    def test_delete_removes_only_selected_card_and_clears_editor(self):
+        delete = _fn_body(self.js, "deleteSelectedJoker")
+        self.assertTrue(delete, "deleteSelectedJoker must exist")
+        self.assertIn("selectedJokerId", delete)
+        self.assertIn("findIndex", delete)
+        self.assertIn("splice", delete)
+        self.assertIn("renderGrid", delete)
+        self.assertIn("renderEditor", delete)
+
+    def test_delete_requires_confirmation(self):
+        delete = _fn_body(self.js, "deleteSelectedJoker")
+        self.assertIn("window.confirm", delete)
+
+    def test_delete_action_tracks_selection_and_is_wired(self):
+        load = _fn_body(self.js, "loadDocument")
+        select = _fn_body(self.js, "selectJoker")
+        wire = _fn_body(self.js, "wireDeleteCard")
+        init = _fn_body(self.js, "init")
+        self.assertIn("deleteCardBtn.disabled", load)
+        self.assertIn("deleteCardBtn.disabled", select)
+        self.assertIn("deleteSelectedJoker", wire)
+        self.assertIn("wireDeleteCard", init)
+
+
 if __name__ == "__main__":
     unittest.main()

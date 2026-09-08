@@ -23,7 +23,7 @@ let selectedJokerId = null;
 const els = {};
 function cacheEls() {
   [
-    "openJsonInput", "openFsaBtn", "newCardBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
+    "openJsonInput", "openFsaBtn", "newCardBtn", "deleteCardBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
     "editorEmpty", "editorForm", "cardId", "nameKo", "nameEn", "rarity", "trigger",
     "kindNeed", "yakuNeed", "deckMax", "moneyMin", "blindNeed",
     "effectChips", "effectMult", "effectMultMul", "descKo", "descEn",
@@ -115,6 +115,7 @@ function loadDocument(doc, name) {
   pool = doc;
   selectedJokerId = null;
   els.newCardBtn.disabled = false;
+  els.deleteCardBtn.disabled = true;
   els.downloadBtn.disabled = false;
   if (errors.length > 0) {
     setStatus(`Loaded '${name}' but it failed validation:\n` + errors.join("\n"), "error");
@@ -316,6 +317,7 @@ function renderEditor() {
 
 function selectJoker(id) {
   selectedJokerId = id;
+  els.deleteCardBtn.disabled = false;
   renderGrid();
   renderEditor();
 }
@@ -403,6 +405,7 @@ function createNewJoker() {
     return;
   }
   selectedJokerId = id;
+  els.deleteCardBtn.disabled = false;
   renderGrid();
   renderEditor();
   setStatus(`Created '${id}'. Edit it, then save or download JSON.`, "ok");
@@ -410,6 +413,24 @@ function createNewJoker() {
 
 function wireNewCard() {
   els.newCardBtn.addEventListener("click", createNewJoker);
+}
+
+function deleteSelectedJoker() {
+  if (!pool || !selectedJokerId) return;
+  const index = pool.jokers.findIndex((joker) => joker.id === selectedJokerId);
+  if (index < 0) return;
+  const id = selectedJokerId;
+  if (!window.confirm(`Delete '${id}'? This cannot be undone.`)) return;
+  pool.jokers.splice(index, 1);
+  selectedJokerId = null;
+  els.deleteCardBtn.disabled = true;
+  renderGrid();
+  renderEditor();
+  setStatus(`Deleted '${id}'. Save or download JSON to persist the change.`, "ok");
+}
+
+function wireDeleteCard() {
+  els.deleteCardBtn.addEventListener("click", deleteSelectedJoker);
 }
 
 function renderGrid() {
@@ -454,6 +475,7 @@ function init() {
   wireDownload();
   wireEditor();
   wireNewCard();
+  wireDeleteCard();
   autoLoadDefaults();
 }
 
