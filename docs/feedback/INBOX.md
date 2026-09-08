@@ -8,21 +8,6 @@
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
-(21) **광 조커 트리거 조건 다양화** (msg `1546681659951153252`)
-  - 담당: `game/gwang_catalog.lua` (새 모듈, JSON은 `game/data/gwang_jokers.json`)
-  - 발라트로 조커 트리거 패턴 이식:
-    (a) 매 핸드 무조건 트리거 (+칩, +배수)
-    (b) 특정 종류 포함 시 트리거 (홍단 있으면 ×2)
-    (c) 특정 족보 달성 시 트리거 (고도리 치면 +100칩)
-    (d) 보유 조건 트리거 (덱 카드 수 ≤30이면 ×3)
-    (e) 경제 트리거 (소지금 $20 이상이면 +배수)
-    (f) 라운드/앤티 조건 (보스 블라인드에서 ×2)
-    (g) 셀프 파괴형 (1회 ×20 후 소멸)
-    (h) 복합 (칩+배수+돈 동시)
-  - 최소 30종 광 조커 JSON 카탈로그
-  - `game/hwatu.lua` 점수 평가에서 광 트리거 루프 통합
-  - 테스트: `game/tests/gwang_catalog.lua`
-
 (22) **시드 기반 랜덤 + 런 히스토리** (msg `1546681659951153252`)
   - 담당: `game/rng.lua` (새 모듈)
   - 발라트로처럼 시드 문자열로 재현 가능한 런. 시드 표시 + 입력.
@@ -47,6 +32,12 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+(21) **광 조커 트리거 조건 다양화** (msg `1546681659951153252`)
+  - `game/gwang_catalog.lua` + `game/data/gwang_jokers.json`: 30 unique gwang jokers.
+  - Triggers: always / contains_kind / yaku / deck_size / money / blind / once / compound (chips+mult+money).
+  - `game/hwatu.lua` evaluate applies the catalog loop. No month numbers/names, no mae/ppeok/otti.
+  - `game/tests/gwang_catalog.lua` GREEN. `make verify` GREEN.
+
 (20) **덱 편집 + 카드 강화** (msg `1546681659951153252`)
   - `game/deck.lua`: starter viewer (kinds/counts/editions), enhance (foil/hologram/polychrome), destroy (thin deck), sort by kind / effect.
   - Gwang rejected (joker slot). No month numbers/names. Tarot chariot/hanged_man stay visible in `deck.view`.

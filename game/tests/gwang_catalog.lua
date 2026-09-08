@@ -1,6 +1,5 @@
 -- Tests for always + contains-kind + yaku + deck-size + money + blind + once
--- + compound (chips+mult+money) gwang jokers (INBOX 21a–21h).
--- Catalog JSON + apply loop in hwatu.evaluate.
+-- + compound (chips+mult+money) gwang jokers (INBOX 21a–21h) and ≥30 catalog.
 
 local catalog = require("game.gwang_catalog")
 local hwatu = require("game.hwatu")
@@ -53,6 +52,7 @@ function M.run()
     M.test_catalog_loads_compound()
     M.test_apply_compound_chips_mult_money()
     M.test_hwatu_evaluate_compound()
+    M.test_catalog_has_at_least_30_jokers()
     print("  gwang_catalog: OK")
 end
 
@@ -586,6 +586,48 @@ function M.test_hwatu_evaluate_compound()
     assert(state.money == 5, "evaluate grants +$1, got " .. tostring(state.money))
     assert(with.gwang_triggers and #with.gwang_triggers == 1)
     assert(with.gwang_triggers[1].id == "compound")
+end
+
+function M.test_catalog_has_at_least_30_jokers()
+    local all = catalog.all()
+    assert(#all >= 30, "catalog must list ≥30 gwang jokers, got " .. tostring(#all))
+    local seen = {}
+    local triggers = {}
+    local compound = false
+    local forbidden = "mae|ppeok|otti|gwangyeol|month|[0-9]+월"
+    for i = 1, #all do
+        local j = all[i]
+        assert(type(j.id) == "string" and j.id ~= "", "each joker has an id")
+        assert(not seen[j.id], "unique id " .. tostring(j.id))
+        seen[j.id] = true
+        assert(type(j.name) == "table" and j.name.ko and j.name.en, "name ko/en")
+        assert(type(j.rarity) == "string" and j.rarity ~= "", "rarity")
+        assert(type(j.trigger) == "string" and j.trigger ~= "", "trigger")
+        assert(type(j.effect) == "table", "effect")
+        assert(type(j.desc) == "table" and j.desc.ko and j.desc.en, "desc ko/en")
+        assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
+        triggers[j.trigger] = true
+        local e = j.effect
+        if (e.chips or 0) > 0 and (e.mult or 0) > 0 and (e.money or 0) > 0 then
+            compound = true
+        end
+        local blob = table.concat({
+            j.id,
+            j.name.ko,
+            j.name.en,
+            j.desc.ko,
+            j.desc.en,
+        }, " ")
+        assert(not blob:find(forbidden), "no month / fake poker hands in " .. j.id)
+    end
+    assert(triggers.always, "always trigger in catalog")
+    assert(triggers.contains_kind, "contains_kind trigger in catalog")
+    assert(triggers.yaku, "yaku trigger in catalog")
+    assert(triggers.deck_size, "deck_size trigger in catalog")
+    assert(triggers.money, "money trigger in catalog")
+    assert(triggers.blind, "blind trigger in catalog")
+    assert(triggers.once, "once trigger in catalog")
+    assert(compound, "at least one chips+mult+money compound joker")
 end
 
 return M

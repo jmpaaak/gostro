@@ -33,6 +33,22 @@
       "desc": { "ko": "매 핸드 +2 배수", "en": "+2 mult every hand" }
     },
     {
+      "id": "always_chips_mid",
+      "name": { "ko": "중칩", "en": "Mid Chips" },
+      "rarity": "uncommon",
+      "trigger": "always",
+      "effect": { "chips": 50 },
+      "desc": { "ko": "매 핸드 +50 칩", "en": "+50 chips every hand" }
+    },
+    {
+      "id": "always_mult_mid",
+      "name": { "ko": "중배수", "en": "Mid Mult" },
+      "rarity": "uncommon",
+      "trigger": "always",
+      "effect": { "mult": 6 },
+      "desc": { "ko": "매 핸드 +6 배수", "en": "+6 mult every hand" }
+    },
+    {
       "id": "hongdan_x2",
       "name": { "ko": "홍단 깃발", "en": "Hongdan Flag" },
       "rarity": "uncommon",
@@ -49,6 +65,33 @@
       "kind_need": "cheongdan",
       "effect": { "mult_mul": 2 },
       "desc": { "ko": "청단 있으면 ×2 배수", "en": "×2 mult if hand has cheongdan" }
+    },
+    {
+      "id": "chodan_x2",
+      "name": { "ko": "초단 깃발", "en": "Chodan Flag" },
+      "rarity": "uncommon",
+      "trigger": "contains_kind",
+      "kind_need": "chodan",
+      "effect": { "mult_mul": 2 },
+      "desc": { "ko": "초단 있으면 ×2 배수", "en": "×2 mult if hand has chodan" }
+    },
+    {
+      "id": "godori_x2",
+      "name": { "ko": "고도리 깃발", "en": "Godori Flag" },
+      "rarity": "uncommon",
+      "trigger": "contains_kind",
+      "kind_need": "godori",
+      "effect": { "mult_mul": 2 },
+      "desc": { "ko": "고도리 있으면 ×2 배수", "en": "×2 mult if hand has godori" }
+    },
+    {
+      "id": "pi_chips_kind",
+      "name": { "ko": "피 잔칩", "en": "Pi Chips" },
+      "rarity": "common",
+      "trigger": "contains_kind",
+      "kind_need": "pi",
+      "effect": { "chips": 20 },
+      "desc": { "ko": "피 있으면 +20 칩", "en": "+20 chips if hand has pi" }
     },
     {
       "id": "godori_chips",
@@ -69,6 +112,33 @@
       "desc": { "ko": "홍단 치면 +50 칩", "en": "+50 chips when scoring hongdan" }
     },
     {
+      "id": "cheongdan_chips",
+      "name": { "ko": "청단 칩", "en": "Cheongdan Chips" },
+      "rarity": "uncommon",
+      "trigger": "yaku",
+      "yaku_need": "cheongdan",
+      "effect": { "chips": 50 },
+      "desc": { "ko": "청단 치면 +50 칩", "en": "+50 chips when scoring cheongdan" }
+    },
+    {
+      "id": "chodan_chips",
+      "name": { "ko": "초단 칩", "en": "Chodan Chips" },
+      "rarity": "uncommon",
+      "trigger": "yaku",
+      "yaku_need": "chodan",
+      "effect": { "chips": 50 },
+      "desc": { "ko": "초단 치면 +50 칩", "en": "+50 chips when scoring chodan" }
+    },
+    {
+      "id": "pi_yaku_mult",
+      "name": { "ko": "피 족보", "en": "Pi Yaku" },
+      "rarity": "uncommon",
+      "trigger": "yaku",
+      "yaku_need": "pi",
+      "effect": { "mult": 3 },
+      "desc": { "ko": "피 치면 +3 배수", "en": "+3 mult when scoring pi" }
+    },
+    {
       "id": "thin_deck_x3",
       "name": { "ko": "얇은 덱", "en": "Thin Deck" },
       "rarity": "rare",
@@ -85,6 +155,15 @@
       "deck_max": 20,
       "effect": { "chips": 50 },
       "desc": { "ko": "덱 카드 수 ≤20이면 +50 칩", "en": "+50 chips if deck has ≤20 cards" }
+    },
+    {
+      "id": "lean_deck_mult",
+      "name": { "ko": "날씬한 덱", "en": "Lean Deck" },
+      "rarity": "uncommon",
+      "trigger": "deck_size",
+      "deck_max": 25,
+      "effect": { "mult": 3 },
+      "desc": { "ko": "덱 카드 수 ≤25이면 +3 배수", "en": "+3 mult if deck has ≤25 cards" }
     },
     {
       "id": "rich_mult",
@@ -105,6 +184,15 @@
       "desc": { "ko": "소지금 $50 이상이면 +80 칩", "en": "+80 chips if money ≥ $50" }
     },
     {
+      "id": "wealthy_x2",
+      "name": { "ko": "갑부", "en": "Wealthy" },
+      "rarity": "rare",
+      "trigger": "money",
+      "money_min": 40,
+      "effect": { "mult_mul": 2 },
+      "desc": { "ko": "소지금 $40 이상이면 ×2 배수", "en": "×2 mult if money ≥ $40" }
+    },
+    {
       "id": "boss_x2",
       "name": { "ko": "보스 배수", "en": "Boss Mult" },
       "rarity": "rare",
@@ -123,6 +211,24 @@
       "desc": { "ko": "보스 블라인드에서 +40 칩", "en": "+40 chips on boss blinds" }
     },
     {
+      "id": "small_chips",
+      "name": { "ko": "스몰 칩", "en": "Small Blind Chips" },
+      "rarity": "common",
+      "trigger": "blind",
+      "blind_need": "small",
+      "effect": { "chips": 25 },
+      "desc": { "ko": "스몰 블라인드에서 +25 칩", "en": "+25 chips on small blinds" }
+    },
+    {
+      "id": "big_mult",
+      "name": { "ko": "빅 배수", "en": "Big Blind Mult" },
+      "rarity": "uncommon",
+      "trigger": "blind",
+      "blind_need": "big",
+      "effect": { "mult": 3 },
+      "desc": { "ko": "빅 블라인드에서 +3 배수", "en": "+3 mult on big blinds" }
+    },
+    {
       "id": "once_x20",
       "name": { "ko": "일회성", "en": "Once" },
       "rarity": "legendary",
@@ -131,12 +237,28 @@
       "desc": { "ko": "1회 ×20 배수 후 소멸", "en": "×20 mult once, then destroy" }
     },
     {
+      "id": "once_chips",
+      "name": { "ko": "일회성 칩", "en": "Once Chips" },
+      "rarity": "rare",
+      "trigger": "once",
+      "effect": { "chips": 200 },
+      "desc": { "ko": "1회 +200 칩 후 소멸", "en": "+200 chips once, then destroy" }
+    },
+    {
       "id": "compound",
       "name": { "ko": "복합", "en": "Compound" },
       "rarity": "rare",
       "trigger": "always",
       "effect": { "chips": 20, "mult": 2, "money": 1 },
       "desc": { "ko": "매 핸드 +20 칩, +2 배수, +$1", "en": "+20 chips, +2 mult, +$1 every hand" }
+    },
+    {
+      "id": "compound_burst",
+      "name": { "ko": "복합 폭주", "en": "Compound Burst" },
+      "rarity": "legendary",
+      "trigger": "always",
+      "effect": { "chips": 40, "mult": 3, "money": 2 },
+      "desc": { "ko": "매 핸드 +40 칩, +3 배수, +$2", "en": "+40 chips, +3 mult, +$2 every hand" }
     }
   ]
 }
