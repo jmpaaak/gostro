@@ -6,6 +6,12 @@
 
 ### Phase C — 씬 통합
 
+(25) **마우스·터치 입력 배선 복구** (msg `1546761629079838810`)
+  - 담당: `main.lua`, `game/scene_stack.lua`, `game/tests/input_routing.lua`
+  - `love.mousepressed`와 `love.touchpressed`를 scene stack을 거쳐 현재 씬의 `mousepressed`로 전달한다.
+  - 실제 창 좌표는 `viewport.toGame()`으로 320×180 게임 좌표로 변환하고, 레터박스 바깥 입력은 무시한다.
+  - 검증: 마우스/터치 좌표 변환·전달 회귀 테스트와 `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
+
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
 ## 처리 완료
