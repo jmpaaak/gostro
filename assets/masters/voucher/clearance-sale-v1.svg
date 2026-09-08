@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0bf"/><stop offset="1" stop-color="#d8aa61"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b96732"/><stop offset="1" stop-color="#5a2925"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <!-- Background matches other vouchers -->
+  <rect x="27" y="25" width="346" height="510" rx="34" fill="#321f38" opacity=".36" filter="url(#shadow)"/>
+  <rect x="20" y="18" width="360" height="510" rx="32" fill="#35213f" stroke="#140d1b" stroke-width="12"/>
+  <rect x="34" y="32" width="332" height="482" rx="23" fill="url(#paper)" stroke="#bd3f37" stroke-width="9"/>
+  <!-- Dancheong frame -->
+  <path d="M49 64H351M49 482H351" stroke="#174f5f" stroke-width="17"/>
+  <path d="M49 64l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17M49 482l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17" fill="none" stroke="#e8b43e" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="62" cy="104" r="10" fill="#bd3f37"/><circle cx="338" cy="104" r="10" fill="#bd3f37"/>
+  <circle cx="62" cy="441" r="10" fill="#174f5f"/><circle cx="338" cy="441" r="10" fill="#174f5f"/>
+  
+  <!-- Clearance Sale: A large open cloth bundle (bojagi) spilling items at steep discount -->
+  <!-- Back flap of cloth -->
+  <path d="M80 320 Q 200 160 320 320 Z" fill="#2d5240" stroke="#173125" stroke-width="8"/>
+  
+  <!-- Spilling goods -->
+  <!-- Box 1 -->
+  <rect x="120" y="240" width="80" height="60" rx="4" fill="#6a3b38" stroke="#3d211e" stroke-width="6" transform="rotate(-15 160 270)"/>
+  <path d="M120 270h80m-40-30v60" stroke="#e8b43e" stroke-width="5" transform="rotate(-15 160 270)"/>
+  
+  <!-- Box 2 -->
+  <rect x="220" y="260" width="60" height="90" rx="4" fill="#a45634" stroke="#68341d" stroke-width="6" transform="rotate(20 250 305)"/>
+  <path d="M220 305h60m-30-45v90" stroke="#e8b43e" stroke-width="5" transform="rotate(20 250 305)"/>
+  
+  <!-- Jug / Bottle -->
+  <ellipse cx="190" cy="310" rx="35" ry="45" fill="#f0d78c" stroke="#bd6d35" stroke-width="7"/>
+  <rect x="175" y="245" width="30" height="30" fill="#f0d78c" stroke="#bd6d35" stroke-width="7"/>
+  
+  <!-- Front flaps of cloth -->
+  <path d="M60 320 Q 200 480 340 320 Q 200 400 60 320" fill="#3a6850" stroke="#1c3e2f" stroke-width="9"/>
+  <!-- Knots -->
+  <path d="M150 400 Q 110 460 70 410 Q 150 410 150 400" fill="#4d866a" stroke="#1c3e2f" stroke-width="6"/>
+  <path d="M250 400 Q 290 460 330 410 Q 250 410 250 400" fill="#4d866a" stroke="#1c3e2f" stroke-width="6"/>
+  <circle cx="200" cy="400" r="15" fill="#2d5240" stroke="#1c3e2f" stroke-width="6"/>
+  
+  <!-- Slash indicating discount / dropping price -->
+  <path d="M300 160 L240 220 M240 220 L270 230 M240 220 L230 190" fill="none" stroke="#bd3f37" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Yeopjeon coin rolling away -->
+  <circle cx="300" cy="350" r="25" fill="#e8b43e" stroke="#6c3a24" stroke-width="7"/>
+  <rect x="290" y="340" width="20" height="20" rx="3" fill="#7b3c2d"/>
+
+  <!-- Vermilion seal matching others -->
+  <rect x="276" y="91" width="64" height="64" rx="6" fill="#c9362d" stroke="#751d21" stroke-width="8"/>
+  <path d="M290 107h36v32h-36zm9 0v32m17-32v32m-26-16h36" fill="none" stroke="#f6d78d" stroke-width="6"/>
+  <path d="M151 18h98l-13 28h-72z" fill="#e8b43e" stroke="#6c3a24" stroke-width="7"/>
+  <circle cx="200" cy="31" r="8" fill="#8e2f2c"/>
+</svg>

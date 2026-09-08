@@ -24,6 +24,7 @@ function love.load()
         grabber = "갈퀴 인장",
         overstock = "만물상 인장",
         reroll_surplus = "에누리 인장",
+        clearance_sale = "떨이 인장",
     }
     local item = kind == "voucher"
         and { kind = "voucher", identity = voucher_identity,

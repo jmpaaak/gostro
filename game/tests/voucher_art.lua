@@ -64,6 +64,17 @@ function M.run()
     assert(reroll.runtime.filter == "nearest")
     assert(assets.runtime_path(reroll_id) == "assets/runtime/voucher/reroll-surplus-v1.png")
 
+    local clearance_id = voucher_art.asset_id({ kind = "voucher", identity = "clearance_sale" })
+    assert(clearance_id == "voucher.clearance_sale", "clearance sale seal must resolve tracked artwork")
+    local clearance = assets.entry(clearance_id)
+    assert(clearance and clearance.status == "runtime", "clearance sale seal artwork must be promoted")
+    assert(clearance.master.width == 400 and clearance.master.height == 560,
+        "clearance sale seal must preserve a 400x560 master")
+    assert(clearance.runtime.width == 36 and clearance.runtime.height == 52,
+        "clearance sale seal runtime must fit its shop slot")
+    assert(clearance.runtime.filter == "nearest")
+    assert(assets.runtime_path(clearance_id) == "assets/runtime/voucher/clearance-sale-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

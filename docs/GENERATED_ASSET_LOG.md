@@ -73,3 +73,6 @@
 | 2026-09-09T03:49:00+0900 | `assets/masters/voucher/reroll-surplus-v1.svg` | Project-authored high-resolution Korean counting frame, bargain bead, yeopjeon, dancheong, and vermilion-seal vector source |
 | 2026-09-09T03:49:00+0900 | `assets/masters/voucher/reroll-surplus-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T03:49:00+0900 | `assets/runtime/voucher/reroll-surplus-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T03:52:00+0900 | `assets/masters/voucher/clearance-sale-v1.svg` | Project-authored high-resolution untied traditional cloth bundle spilling heavily discounted goods |
+| 2026-09-09T03:52:00+0900 | `assets/masters/voucher/clearance-sale-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T03:52:00+0900 | `assets/runtime/voucher/clearance-sale-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |

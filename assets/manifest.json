@@ -891,8 +891,47 @@
     {
       "id": "voucher.clearance_sale",
       "category": "voucher",
-      "status": "pending",
-      "name": "\uc138\uc77c"
+      "status": "runtime",
+      "name": "\uc138\uc77c",
+      "master": {
+        "path": "assets/masters/voucher/clearance-sale-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "2fa6e6e76e81832d04aeaf116e553a143a461d24048e0facb83ec2a1a6cf4cf5",
+        "provenance": "Project-authored high-resolution vector master depicting an untied traditional cloth bundle spilling heavily discounted goods; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/clearance-sale-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          51
+        ],
+        "sha256": "7c7f332acc3938bf37832a1119764c62798f2db3f16c668e92408989f1ad250a",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/clearance-sale-v1.report.json",
+        "reportSha256": "9edcfb9403b2550a5ac9656aa2a59ceb509e97807bbf70f48e03f76e535c4500"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.seed_money",
