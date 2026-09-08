@@ -9,6 +9,7 @@
   - 화투 플레이 패 전종, 광 카드 전종, 행성·타로·바우처·태그, Blind/Boss, 덱·Stake, 팩·상점·메뉴·HUD·버튼·아이콘·패널·배경·선택/득점/잠금/승패 효과 등 현재 런타임과 데이터 카탈로그의 **모든 그래픽 인스턴스**를 기계적으로 inventory하고 각 항목을 개별 manifest/checklist로 추적한다.
   - 특수 광, foil/hologram/polychrome, 보스·득점·팩 개봉 등 애니메이션 가치가 있는 항목은 실제 `sprite-gen` provider-backed 생성으로 state/frame row를 만든 뒤 Pixel Perfect 후처리·atlas/manifest를 거친다. 정적 이미지 반복이나 코드 도형을 sprite-gen 결과라고 부르지 않는다.
   - 각 에셋은 master/runtime 크기, alpha bounds, 출력 hash, 변환 설정, frame 수/FPS/loop/origin을 기록하고, 투명도·셀 경계·팔레트/색 보존·nearest filtering을 자동 검사한다. 실제 320×180 LÖVE 캡처에서 카드 식별성, 겹친 카드 상단 표식, UI 비중첩을 확인한 뒤에만 적용 완료 처리한다.
+  - **2026-09-08 `play-card.pi` 첫 pilot은 아트 QA 거부:** 192×288 master가 지도 핀으로 오인되고 24×36 runtime의 `PI` 글자가 읽히지 않아 피 카드로 식별되지 않는다. 이를 승인 스타일로 복제하지 말고, 지도 핀/영문 약어가 아닌 한국 화투 계열의 상단 식별 문양과 카드 본체 그림을 가진 고해상도 master로 재생성한다. 플레이 패 5종이 하나의 시각 문법으로 실제 겹침 QA를 통과하기 전에는 어떤 단일 카드도 runtime 완료로 세지 않는다.
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
