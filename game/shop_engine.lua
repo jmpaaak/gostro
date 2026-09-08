@@ -82,6 +82,8 @@ local function offer(run_state, kind, definition, base_price)
         id = definition.id,
         name = definition.name,
         rarity = definition.rarity,
+        yaku = definition.yaku,
+        effect = definition.effect,
         base_price = base_price,
         price = discounted_price(run_state, base_price),
         sold = false,

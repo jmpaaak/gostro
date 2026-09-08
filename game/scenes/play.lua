@@ -7,6 +7,9 @@ local run           = require("game.run")
 local run_rules     = require("game.run_rules")
 local round_engine  = require("game.round_engine")
 local scoring       = require("game.scoring_pipeline")
+local shop_engine   = require("game.shop_engine")
+local planets       = require("game.planets")
+local tarots        = require("game.tarots")
 local hand_ui       = require("game.ui.hand")
 local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
@@ -49,6 +52,12 @@ local function sync_round_ui(scene)
     scene.buttons.hands_left = scene.round.hands_left
     scene.buttons.discards_left = scene.round.discards_left
     buttons_ui.set_selection(scene.buttons, 0)
+end
+
+local function sync_shop_ui(scene)
+    scene.shop.cards = scene.shop.random_offers
+    scene.shop.money = scene.run_state.money
+    scene.money = scene.run_state.money
 end
 
 --- Create a new play scene. Optional seed string (display + input).
@@ -172,8 +181,8 @@ function M.check_clear(scene)
             scene.state = "won"
             return
         end
-        scene.money = scene.run_state.money
-        scene.shop = shop_ui.new(scene.money)
+        scene.shop = shop_engine.new(scene.run_state)
+        sync_shop_ui(scene)
         scene.round = nil
         scene.state = "shop"
     end
@@ -182,36 +191,48 @@ end
 --- Leave the shop and go to next blind select.
 function M.leave_shop(scene)
     if scene.state ~= "shop" then return end
-    scene.money = scene.shop.money
-    scene.run_state.money = scene.money
+    scene.money = scene.run_state.money
     run.leave_shop(scene.run_state)
     scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     scene.state = "blind_select"
 end
 
+--- Reroll the live engine shop, including tag/voucher modifiers.
+function M.reroll_shop(scene)
+    if scene.state ~= "shop" then return false end
+    local ok, paid = shop_engine.reroll(scene.shop)
+    if ok then sync_shop_ui(scene) end
+    return ok, paid
+end
+
 --- Buy a card from the shop.
 function M.buy_shop_card(scene, idx)
     if scene.state ~= "shop" then return false end
-    local ok, card_data = shop_ui.buy_card(scene.shop, idx)
+    local ok, transaction = shop_engine.purchase(scene.shop, idx)
     if not ok then return false end
-    
-    if card_data.kind == "planet" then
-        local planets = require("game.planets")
-        planets.buy(scene.run_state, card_data.yaku)
-        return true
-    end
 
-    -- Add to run state (gwang)
-    local success = pcall(run.buy_gwang, scene.run_state, card_data)
+    local card_data = transaction.item
+    local success = pcall(function()
+        if card_data.kind == "planet" then
+            planets.buy(scene.run_state, card_data.yaku)
+        elseif card_data.kind == "tarot" then
+            tarots.gain(scene.run_state, card_data.identity, "shop")
+        elseif card_data.kind == "gwang" then
+            run.buy_gwang(scene.run_state, card_data)
+        else
+            error("unsupported random shop offer")
+        end
+    end)
     if success then
         gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     else
-        -- revert
-        scene.shop.money = scene.shop.money + (card_data.price or 0)
-        scene.shop.cards[idx].sold = false
+        scene.run_state.money = scene.run_state.money + transaction.price
+        transaction.slot.sold = false
+        sync_shop_ui(scene)
         return false
     end
+    sync_shop_ui(scene)
     return true
 end
 
@@ -296,7 +317,7 @@ function M:mousepressed(px, py)
         if hit == "next" then
             M.leave_shop(self)
         elseif hit == "reroll" then
-            shop_ui.reroll(self.shop)
+            M.reroll_shop(self)
         elseif type(hit) == "number" then
             M.buy_shop_card(self, hit)
         end

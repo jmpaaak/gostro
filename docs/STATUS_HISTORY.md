@@ -582,3 +582,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `docs/BALATRO_NEW_RUN_ANALYSIS.md`의 Challenges 대응 상태를 구현·테스트 GREEN으로 갱신했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
 - INBOX (26)은 계속 처리 중이다. 다음 최소 조각은 관찰된 New Run 해금 덱의 PLAY 활성 상태와 입력 전환 피드백을 독립 UI 계약으로 검증하는 것이다.
+
+## Archived from STATUS.md (2026-09-08 18:11)
+
+## 2026-09-08 — 태그 시스템 (스몰/빅 블라인드 스킵 보상)
+
+- Created `game/tags.lua`: Balatro-style skip tags. Pool of 12 (coupon, investment, handy, economy, mega, foil, hologram, polychrome, charm, uncommon, juggle, d6).
+  - coupon/d6 = free shop reroll; investment/handy/economy = pending money; mega = duplicate next gwang; foil/hologram/polychrome = next gwang edition; charm = extra shop slot; uncommon = uncommon shop; juggle = hand size +1.
+- `game/run.lua`: `skip_blind(state, tag_id)` skips small→big or big→boss, applies tag, stays in play. Boss / non-play phase rejected.
+- Tests in `game/tests/tags.lua` (pool ≥10, by_id, random, apply effects, skip small/big, cannot skip boss, cannot skip outside play).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (14) → 처리 완료.
+- Next slice: INBOX (15) 보스 블라인드 디버프 (`game/boss_blinds.lua`).
