@@ -3,6 +3,7 @@
 
 local terms = require("game.terms")
 local pack_art = require("game.ui.pack_art")
+local voucher_art = require("game.ui.voucher_art")
 
 local M = {}
 
@@ -253,10 +254,11 @@ function M.draw(s)
                     p.y + 6 + fh + 2, 0, scale, scale)
             elseif card.kind == "pack" or card.kind == "voucher" then
                 local is_voucher = card.kind == "voucher"
-                local has_art = not is_voucher
-                    and pack_art.draw(card, p.x, p.y, p.w, p.h)
+                local has_art = is_voucher
+                    and voucher_art.draw(card, p.x, p.y, p.w, p.h)
+                    or (not is_voucher and pack_art.draw(card, p.x, p.y, p.w, p.h))
                 if has_art then
-                    -- The manifest-backed bundle art fills the complete offer.
+                    -- Manifest-backed shop art fills the complete offer.
                 elseif is_voucher then
                     love.graphics.setColor(0.55, 0.2, 0.65, 1)
                 else

@@ -79,15 +79,21 @@ shop-pack-qa:
 	@rm -rf "$(BUILD_DIR)/shop-pack-qa"
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/game/ui" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack" \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/fonts"
 	@cp tools/shop_pack_qa_main.lua "$(BUILD_DIR)/shop-pack-qa/main.lua"
-	@cp game/ui/shop.lua game/ui/pack_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
+	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/shop-pack-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
 	@cp assets/runtime/pack/talisman-bundle-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack/"
+	@cp assets/runtime/voucher/paint-brush-v1.png \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
 	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	SHOP_QA_KIND=voucher \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 
 smoke:

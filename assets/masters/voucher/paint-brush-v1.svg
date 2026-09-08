@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff4cf"/>
+      <stop offset="1" stop-color="#e8c985"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6f2d25"/>
+      <stop offset="0.45" stop-color="#bd6840"/>
+      <stop offset="0.7" stop-color="#e2a15c"/>
+      <stop offset="1" stop-color="#713024"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <!-- Transparent master with a strong silhouette for a 36x52 runtime card. -->
+  <rect x="27" y="25" width="346" height="510" rx="34" fill="#351b32" opacity=".34" filter="url(#shadow)"/>
+  <rect x="20" y="18" width="360" height="510" rx="32" fill="#132e36" stroke="#07191e" stroke-width="12"/>
+  <rect x="34" y="32" width="332" height="482" rx="23" fill="url(#paper)" stroke="#d14a35" stroke-width="9"/>
+  <!-- Dancheong-inspired frame rhythm. -->
+  <path d="M49 64H351M49 482H351" stroke="#174f5f" stroke-width="17"/>
+  <path d="M49 64l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17M49 482l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17" fill="none" stroke="#e8b43e" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="62" cy="104" r="10" fill="#d14a35"/><circle cx="338" cy="104" r="10" fill="#d14a35"/>
+  <circle cx="62" cy="441" r="10" fill="#174f5f"/><circle cx="338" cy="441" r="10" fill="#174f5f"/>
+  <!-- Ink stone and energetic black calligraphy strokes. -->
+  <ellipse cx="185" cy="414" rx="105" ry="34" fill="#342d37" stroke="#11151a" stroke-width="11"/>
+  <ellipse cx="185" cy="406" rx="75" ry="18" fill="#111820"/>
+  <path d="M116 346c25-38 64-69 118-91M127 371c46-24 82-28 125-19M145 319c13 36 32 59 66 81M209 282c-5 46 9 77 48 105" fill="none" stroke="#172126" stroke-width="18" stroke-linecap="round"/>
+  <path d="M126 353c28-34 61-57 107-79M144 365c37-18 69-20 101-12" fill="none" stroke="#39464a" stroke-width="5" stroke-linecap="round"/>
+  <!-- Large diagonal writing brush: readable even after pixel conversion. -->
+  <g transform="rotate(34 207 225)">
+    <path d="M187 71h40v244h-40z" fill="url(#wood)" stroke="#4a211e" stroke-width="8"/>
+    <path d="M183 68q24-34 48 0l-6 26h-36z" fill="#e9b845" stroke="#6b3b22" stroke-width="8"/>
+    <path d="M177 300h60v42h-60z" fill="#d9a53f" stroke="#663725" stroke-width="9"/>
+    <path d="M183 341q24 112 48 0z" fill="#201e26" stroke="#090d12" stroke-width="8"/>
+    <path d="M200 346q7 58 14 0" fill="none" stroke="#566268" stroke-width="5"/>
+  </g>
+  <!-- Vermilion seal is the voucher identity anchor. -->
+  <rect x="272" y="365" width="68" height="68" rx="6" fill="#c9362d" stroke="#751d21" stroke-width="8"/>
+  <path d="M287 382h38v34h-38zm9 0v34m18-34v34m-27-17h38" fill="none" stroke="#f6d78d" stroke-width="6"/>
+  <!-- Metallic notch differentiates seals/vouchers from play cards. -->
+  <path d="M151 18h98l-13 28h-72z" fill="#e8b43e" stroke="#6c3a24" stroke-width="7"/>
+  <circle cx="200" cy="31" r="8" fill="#8e2f2c"/>
+</svg>

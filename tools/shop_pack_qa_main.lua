@@ -16,18 +16,20 @@ function love.load()
     canvas:setFilter("nearest", "nearest")
     love.graphics.setCanvas(canvas)
     love.graphics.clear(0.025, 0.035, 0.08, 1)
+    local kind = os.getenv("SHOP_QA_KIND") or "pack"
+    local item = kind == "voucher"
+        and { kind = "voucher", identity = "paint_brush", name = "명필의 인장", price = 10 }
+        or { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 }
     shop.draw({
         money = 12,
         cards = {
-            { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 },
-            { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 },
-            { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 },
+            item, item, item,
         },
     })
     love.graphics.setCanvas()
 
     local output = assert(os.getenv("SHOP_PACK_QA_OUTPUT"), "SHOP_PACK_QA_OUTPUT is required")
     write_capture(canvas, output)
-    print("SHOP_PACK_LOVE_QA_OK 320x180 " .. output)
+    print("SHOP_ART_LOVE_QA_OK " .. kind .. " 320x180 " .. output)
     love.event.quit(0)
 end

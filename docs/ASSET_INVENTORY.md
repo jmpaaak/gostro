@@ -126,7 +126,7 @@
 
 ## voucher
 
-- [ ] `voucher.paint_brush` - 붓
+- [x] `voucher.paint_brush` - 명필의 인장 (`assets/runtime/voucher/paint-brush-v1.png`)
 - [ ] `voucher.wasteful` - 낭비
 - [ ] `voucher.grabber` - 그래버
 - [ ] `voucher.overstock` - 오버스톡

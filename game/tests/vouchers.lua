@@ -22,6 +22,7 @@ local function enter_shop(state)
 end
 
 function M.run()
+    require("game.tests.voucher_art").run()
     M.test_pool_size()
     M.test_by_id()
     M.test_random()
