@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 from pathlib import Path
+import re
 import time
 
 KEEP_CHARS = 16_000
@@ -41,6 +42,17 @@ def _paragraph_break(text: str, limit: int, from_start: bool) -> int:
     return cut + 2 if cut != -1 else start
 
 
+def _newest_first_cut(text: str, limit: int) -> int:
+    """Cut before a dated section so its heading never loses its body."""
+    section_starts = [match.start() + 1 for match in re.finditer(r"\n## \d{4}-\d{2}-\d{2}", text)]
+    before_limit = [start for start in section_starts if 80 <= start <= limit]
+    if before_limit:
+        return before_limit[-1]
+    if len(section_starts) >= 2:
+        return section_starts[1]
+    return _paragraph_break(text, limit, from_start=True)
+
+
 def compact_status(status_path: Path, keep_chars: int = KEEP_CHARS) -> dict[str, object]:
     if not status_path.is_file():
         return {"action": "missing", "path": str(status_path)}
@@ -54,9 +66,11 @@ def compact_status(status_path: Path, keep_chars: int = KEEP_CHARS) -> dict[str,
     if original <= keep_chars:
         return {"action": "noop", "bytes": original}
 
-    newest_first = "- 2026-" in text[:4000] or "- 2025-" in text[:4000]
+    heading_dates = re.findall(r"^## (\d{4}-\d{2}-\d{2})", text, flags=re.MULTILINE)
+    heading_order = len(heading_dates) >= 2 and heading_dates[0] >= heading_dates[-1]
+    newest_first = heading_order or "- 2026-" in text[:4000] or "- 2025-" in text[:4000]
     if newest_first:
-        keep_at = _paragraph_break(text, keep_chars, from_start=True)
+        keep_at = _newest_first_cut(text, keep_chars)
         kept = text[:keep_at].rstrip() + "\n"
         archived = text[keep_at:].lstrip()
     else:

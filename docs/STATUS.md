@@ -1,13 +1,12 @@
 # STATUS
-## 2026-09-09 — 플레이 패 아트 승인 및 런타임 승격
+## 2026-09-09 — STATUS 최신 섹션 보존 회귀 수정
 
-- 사람이 `play-card-overlap-love-v1.png` 캡처를 확인하여 피·홍단·청단·초단·고도리 5종 상단 표식의 식별성과 화투 아트가 기준을 통과함을 승인했다.
-- 파이썬 스크립트를 사용해 `play-card-contact-sheet-v1.png`에서 개별 PNG 카드를 추출하고, `assets/manifest.json`에서 5종 카드의 `status`를 `runtime`으로 승격하여 `runtime` 블록을 기록했다.
-- `game/tests/asset_loader.lua`와 `game/tests/card_candidate_manifest.lua`, `game/tests/card_art.lua`가 승인된 카드가 `runtime`에 성공적으로 배선되었는지 검사하도록 테스트를 수정했다. (headless 호환성 유지)
-- TDD RED: 승격 전 manifest/test 불일치로 실패함을 확인했다. 구현 후 `asset_loader: OK`, `card_art: OK` 등 전체 검증이 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN (223 files).
-- INBOX (27)은 다른 런타임/데이터 인스턴스들의 추적이 남아 있으나, 용어 교체와 충돌 가능성을 피해 처리 대기로 유지한다.
-- Next slice: (28) 나머지 player-facing Balatro 용어(Planet, Tarot, Tag, Voucher 등)를 `terms.lua`를 사용하여 기원패, 부적, 패찰, 인장으로 교체한다.
+- 자동 compactor가 `## YYYY-MM-DD` 형식의 최신순 로그를 오래된순으로 오판하여 최신 제목과 본문을 따로 archive하던 문제를 수정했다.
+- 날짜 섹션 경계에서만 자르도록 하여 제목과 본문이 분리되지 않게 했고, 실제 최신순 문서 회귀 테스트를 `make verify`에 연결했다.
+- TDD RED에서 최신 섹션 유실을 재현했고 focused test GREEN을 확인했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: compactor 회귀, 전체 unit/font/card-overlap/smoke, 222-file bundle 검증이 통과했다.
+- INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: 에셋 inventory에서 플레이 패 다음 미완료 정적 카테고리 하나를 골라 master/runtime manifest 계약과 실제 LÖVE 배선을 완성한다.
 
 ## 2026-09-09 — 플레이 패 contact sheet 셀 추적 계약
 - `assets/manifest.json`의 플레이 패 5종 각각에 공유 960×288 master와 120×36 runtime 후보 sheet 안의 정확한 셀 순서·영역, 24×36 alpha bounds를 기록했다.

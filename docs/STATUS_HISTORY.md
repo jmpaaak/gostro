@@ -1112,3 +1112,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - 5종은 여전히 `candidate`이며 사람의 식별성·화투 아트 승인 전에는 runtime loader가 거부한다.
 - INBOX (27)은 전체 그래픽 전환과 플레이 패 사람 승인이 남아 있어 처리 대기로 유지한다.
 - Next slice: 사람이 `assets/runtime/cards/play-card-overlap-love-v1.png`에서 5종 상단 표식과 화투 아트를 승인/거부한 결과를 manifest에 기록하고, 승인 시에만 5종을 함께 runtime으로 승격한다.
+
+## Archived from STATUS.md (2026-09-09 00:45)
+
+## 2026-09-09 — 플레이 패 아트 승인 및 런타임 승격
+
+- 사람이 `play-card-overlap-love-v1.png` 캡처를 확인하여 피·홍단·청단·초단·고도리 5종 상단 표식의 식별성과 화투 아트가 기준을 통과함을 승인했다.
+- 파이썬 스크립트를 사용해 `play-card-contact-sheet-v1.png`에서 개별 PNG 카드를 추출하고, `assets/manifest.json`에서 5종 카드의 `status`를 `runtime`으로 승격하여 `runtime` 블록을 기록했다.
+- `game/tests/asset_loader.lua`와 `game/tests/card_candidate_manifest.lua`, `game/tests/card_art.lua`가 승인된 카드가 `runtime`에 성공적으로 배선되었는지 검사하도록 테스트를 수정했다. (headless 호환성 유지)
+- TDD RED: 승격 전 manifest/test 불일치로 실패함을 확인했다. 구현 후 `asset_loader: OK`, `card_art: OK` 등 전체 검증이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN (223 files).
+- INBOX (27)은 다른 런타임/데이터 인스턴스들의 추적이 남아 있으나, 용어 교체와 충돌 가능성을 피해 처리 대기로 유지한다.
+- Next slice: (28) 나머지 player-facing Balatro 용어(Planet, Tarot, Tag, Voucher 등)를 `terms.lua`를 사용하여 기원패, 부적, 패찰, 인장으로 교체한다.

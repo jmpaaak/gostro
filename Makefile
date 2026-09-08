@@ -3,10 +3,13 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test font-test card-overlap-qa smoke love verify clean
+.PHONY: test status-test font-test card-overlap-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
+
+status-test:
+	python3 -m unittest -v scripts.test_compact_status
 
 font-test:
 	@rm -rf "$(BUILD_DIR)/font-test"
@@ -41,7 +44,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: test font-test card-overlap-qa smoke love
+verify: status-test test font-test card-overlap-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 
