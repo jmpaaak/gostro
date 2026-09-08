@@ -6,13 +6,6 @@
 
 ### Phase B — 핵심 UI 모듈 개발
 
-(8) **플레이/버리기 버튼 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/action_buttons.lua` (새 모듈)
-  - 발라트로 스타일 하단 중앙 2버튼: "놓기" (파란) / "버리기" (빨간)
-  - 남은 핸드/버리기 횟수 표시
-  - 터치 탭 + 키보드 단축키 (space/d)
-  - 테스트: `game/tests/action_buttons_ui.lua`
-
 (9) **상점 UI 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/shop.lua` (새 모듈)
   - 광 조커 3장 진열 (카드 형태, 가격 태그)
@@ -45,6 +38,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (8) **플레이/버리기 버튼 모듈** (msg `1546674255045992608`)
+    - `game/ui/action_buttons.lua`: Balatro-style 하단 중앙 2버튼 "놓기"(파란)/"버리기"(빨간), 남은 횟수 표시, 터치 hit_test, space/d 키보드 단축키.
+    - `game/tests/action_buttons_ui.lua` GREEN. `make verify` GREEN.
 
   (7) **점수판 UI 모듈** (msg `1546674255045992608`)
     - `game/ui/scoreboard.lua`: chips×mult=총점 실시간 표시, 블라인드 목표 대비 진행 바(0..1 클램프), 점수 달성 시 Balatro-style 팝업(부유+페이드), format_score_text.

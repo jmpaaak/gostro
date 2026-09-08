@@ -97,3 +97,21 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (7) → 처리 완료.
 - Next slice: INBOX (8) 플레이/버리기 버튼 모듈 (`game/ui/action_buttons.lua`).
+
+## 2026-09-08 — 플레이/버리기 버튼 모듈 (game/ui/action_buttons.lua)
+
+- Created `game/ui/action_buttons.lua`: Balatro-style bottom-center 2-button UI.
+  - `new(hands, discards)`: initial state (default 4 hands, 3 discards), play/discard disabled.
+  - `set_selection(ab, count)`: enables/disables buttons based on card selection count and remaining uses.
+  - `use_hand(ab)`: decrements hands_left, returns true/false. Fails if disabled or no selection.
+  - `use_discard(ab)`: decrements discards_left, returns true/false. Fails if disabled or no selection.
+  - `reset(ab, hands, discards)`: restore counts for new round.
+  - `hit_test(ab, px, py)`: returns "play"/"discard"/nil for touch tap support.
+  - `display_text(ab, which)`: "놓기 (N)" / "버리기 (N)" with remaining count.
+  - `keypressed(ab, key)`: space → play, d → discard keyboard shortcuts.
+  - `draw(ab)`: blue play button (left) + red discard button (right), dimmed when disabled, centred text with count.
+- Layout: 52×18px buttons, 8px gap, centred at bottom of 320×180 viewport.
+- Tests in `game/tests/action_buttons_ui.lua`: new defaults, custom counts, set_selection enable/disable, use_hand/use_discard success/fail/no-selection, reset, hit_test play/discard/miss, display_text content.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (8) → 처리 완료.
+- Next slice: INBOX (9) 상점 UI 모듈 (`game/ui/shop.lua`).

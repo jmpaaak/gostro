@@ -19,6 +19,7 @@ function M.run()
     require("game.tests.hand_ui").run()
     require("game.tests.gwang_slots_ui").run()
     require("game.tests.scoreboard_ui").run()
+    require("game.tests.action_buttons_ui").run()
     print("GOSTRO_UNIT_OK")
 end
 
