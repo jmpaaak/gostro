@@ -1191,3 +1191,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
 - INBOX (27)은 나머지 대장판과 정적/애니메이션 에셋 카테고리가 남아 있어 처리 대기로 유지한다.
 - Next slice: `boss-blind.psychic` 하나의 master/runtime manifest 계약과 실제 LÖVE 배선을 같은 방식으로 완성한다.
+
+## Archived from STATUS.md (2026-09-09 02:22)
+
+## 2026-09-09 — 영매 대장판 고해상도 master/runtime 전환
+
+- `boss-blind.psychic`에 400×560 벡터/PNG master와 통합 Asset Studio의 실제 `POST /api/pixel-perfect`에서 생성한 50×70 runtime PNG를 추가했다.
+- manifest에 master/runtime hash, alpha bounds, 원본 팔레트 변환 보고서, nearest 필터 계약을 기록하고 `game/ui/blind_card_art.lua`에 영매 전용 배선을 추가했다.
+- LÖVE 11.5의 실제 320×180 선택 화면 캡처를 생성했으며, 신규 회귀 단언이 master/runtime 크기와 런타임 경로를 검증한다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/card-overlap/blind-card/smoke 및 270-file bundle 검증 통과.
+- INBOX (27)은 나머지 대장판과 정적/애니메이션 에셋 카테고리가 남아 있어 처리 대기로 유지한다.
+- Next slice: `boss-blind.goad` 하나의 master/runtime manifest 계약과 실제 LÖVE 배선을 같은 방식으로 완성한다.

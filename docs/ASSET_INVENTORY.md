@@ -8,7 +8,7 @@
 - [ ] `boss-blind.mark` - 낙인
 - [x] `boss-blind.fish` - 물고기 (400×560 master → 50×70 runtime)
 - [x] `boss-blind.psychic` - 영매 (400×560 master → 50×70 runtime)
-- [ ] `boss-blind.goad` - 몰이
+- [x] `boss-blind.goad` - 몰이 (400×560 master → 50×70 runtime)
 - [ ] `boss-blind.plant` - 초목
 
 ## effect

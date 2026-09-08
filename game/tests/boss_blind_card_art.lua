@@ -72,6 +72,17 @@ function M.run()
     assert(psychic.runtime.filter == "nearest")
     assert(assets.runtime_path(psychic_id) == "assets/runtime/boss-blind/psychic-v1.png")
 
+    local goad_id = blind_card_art.asset_id("boss", { id = "goad" })
+    assert(goad_id == "boss-blind.goad", "goad boss must resolve its own card artwork")
+    local goad = assets.entry(goad_id)
+    assert(goad and goad.status == "runtime", "goad boss artwork must be promoted")
+    assert(goad.master.width == 400 and goad.master.height == 560,
+        "goad boss must preserve a 400x560 master")
+    assert(goad.runtime.width == 50 and goad.runtime.height == 70,
+        "goad boss runtime must fit its selection card")
+    assert(goad.runtime.filter == "nearest")
+    assert(assets.runtime_path(goad_id) == "assets/runtime/boss-blind/goad-v1.png")
+
     assets.clear_cache()
     print("  boss_blind_card_art: OK")
 end
