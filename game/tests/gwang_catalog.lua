@@ -1,4 +1,4 @@
--- Tests for always-trigger gwang jokers (INBOX 21a).
+-- Tests for always + contains-kind gwang jokers (INBOX 21a/21b).
 -- Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
@@ -24,6 +24,10 @@ function M.run()
     M.test_hwatu_evaluate_applies_always()
     M.test_hwatu_without_gwang_unchanged()
     M.test_unknown_identity_is_noop()
+    M.test_catalog_loads_contains_kind()
+    M.test_apply_hongdan_x2_when_hand_has_hongdan()
+    M.test_apply_hongdan_x2_skips_without_hongdan()
+    M.test_hwatu_evaluate_hongdan_x2()
     print("  gwang_catalog: OK")
 end
 
@@ -34,12 +38,14 @@ function M.test_catalog_loads_always_jokers()
     for i = 1, #all do
         local j = all[i]
         assert(j.id and j.id ~= "", "each joker has an id")
-        assert(j.trigger == "always", "this slice is always-trigger only")
+        assert(j.trigger == "always" or j.trigger == "contains_kind", "known trigger")
         assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
         seen[j.id] = j
     end
     assert(seen.chips, "chips joker in catalog")
     assert(seen.mult, "mult joker in catalog")
+    assert(seen.chips.trigger == "always")
+    assert(seen.mult.trigger == "always")
     assert((seen.chips.effect.chips or 0) == 30)
     assert((seen.mult.effect.mult or 0) == 4)
 end
@@ -130,6 +136,62 @@ function M.test_unknown_identity_is_noop()
     assert(chips == 10)
     assert(mult == 1)
     assert(#triggered == 0)
+end
+
+function M.test_catalog_loads_contains_kind()
+    local j = catalog.get("hongdan_x2")
+    assert(j, "hongdan_x2 joker in catalog")
+    assert(j.trigger == "contains_kind")
+    assert(j.kind_need == "hongdan")
+    assert((j.effect.mult_mul or 0) == 2)
+end
+
+function M.test_apply_hongdan_x2_when_hand_has_hongdan()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        hand = cards("hongdan", "pi", "pi"),
+        state = { gwang = { { kind = "gwang", identity = "hongdan_x2" } } },
+    })
+    assert(chips == 32, "contains_kind does not add chips")
+    assert(mult == 4, "hongdan in hand ×2, got " .. tostring(mult))
+    assert(#triggered == 1)
+    assert(triggered[1].id == "hongdan_x2")
+end
+
+function M.test_apply_hongdan_x2_skips_without_hongdan()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        hand = cards("cheongdan", "cheongdan", "pi"),
+        state = { gwang = { { identity = "hongdan_x2" } } },
+    })
+    assert(chips == 32)
+    assert(mult == 2, "no hongdan → no ×2, got " .. tostring(mult))
+    assert(#triggered == 0)
+end
+
+function M.test_hwatu_evaluate_hongdan_x2()
+    local with_hd = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local no_hd = cards("cheongdan", "cheongdan", "cheongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "hongdan_x2" } }
+
+    local base_hd = hwatu.evaluate(with_hd)
+    local with = hwatu.evaluate(with_hd, state)
+    assert(base_hd.chips == 32)
+    assert(base_hd.mult == 2)
+    assert(with.chips == 32)
+    assert(with.mult == 4, "hongdan yaku 2 ×2 = 4, got " .. tostring(with.mult))
+    assert(with.score == 32 * 4)
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "hongdan_x2")
+
+    local base_no = hwatu.evaluate(no_hd)
+    local skipped = hwatu.evaluate(no_hd, state)
+    assert(skipped.chips == base_no.chips)
+    assert(skipped.mult == base_no.mult)
+    assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
 end
 
 return M

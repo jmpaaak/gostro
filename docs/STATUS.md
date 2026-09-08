@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 조커 contains_kind 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `hongdan_x2` / `cheongdan_x2` (`trigger=contains_kind`, `kind_need`, `effect.mult_mul=2`).
+- `game/gwang_catalog.lua` `apply(ctx)`: `always` unchanged; `contains_kind` fires when `ctx.hand` includes `kind_need` (홍단 1장만 있어도 ×2). Missing kind = no-op.
+- `game/hwatu.lua` already passes `hand` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with/without hongdan, hwatu evaluate ×2 / skip).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) contains-kind slice only. Yaku/economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (c) 특정 족보 달성 시 트리거 (고도리 치면 +100칩) on `game/gwang_catalog.lua`.
+
 ## 2026-09-08 — 광 조커 always 트리거 (`game/gwang_catalog.lua`)
 
 - Created `game/data/gwang_jokers.json` + `game/gwang_catalog.lua`.

@@ -1,5 +1,5 @@
 -- Gwang joker catalog: JSON identities + trigger apply loop.
--- This slice: always-trigger (+chips, +mult) only.
+-- Triggers this slice: always (+chips, +mult) and contains_kind (×mult if kind in hand).
 
 local M = {}
 
@@ -172,9 +172,47 @@ function M.get(id)
     return by_id[id]
 end
 
+local function hand_has_kind(hand, kind)
+    if type(hand) ~= "table" or not kind then
+        return false
+    end
+    for i = 1, #hand do
+        local c = hand[i]
+        if c and c.kind == kind then
+            return true
+        end
+    end
+    return false
+end
+
+local function should_trigger(def, ctx)
+    if def.trigger == "always" then
+        return true
+    end
+    if def.trigger == "contains_kind" then
+        return hand_has_kind(ctx.hand, def.kind_need)
+    end
+    return false
+end
+
+local function apply_effect(chips, mult, effect)
+    local e = effect or {}
+    if e.chips then
+        chips = chips + e.chips
+    end
+    if e.mult then
+        mult = mult + e.mult
+    end
+    if e.mult_mul then
+        mult = mult * e.mult_mul
+    end
+    return chips, mult
+end
+
 --- Apply equipped gwang to a scored hand.
 -- ctx = { chips, mult, yaku, state, hand }
--- Always-trigger this slice: +chips and +mult every hand.
+-- always: +chips / +mult every hand.
+-- contains_kind: fire when ctx.hand includes def.kind_need (e.g. hongdan → ×2).
 function M.apply(ctx)
     local chips = ctx.chips or 0
     local mult = ctx.mult or 1
@@ -188,14 +226,8 @@ function M.apply(ctx)
         local g = state.gwang[i]
         local id = g and g.identity
         local def = id and by_id[id]
-        if def and def.trigger == "always" then
-            local e = def.effect or {}
-            if e.chips then
-                chips = chips + e.chips
-            end
-            if e.mult then
-                mult = mult + e.mult
-            end
+        if def and should_trigger(def, ctx) then
+            chips, mult = apply_effect(chips, mult, def.effect)
             triggered[#triggered + 1] = { id = def.id, slot = i }
         end
     end

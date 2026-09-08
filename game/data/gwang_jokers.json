@@ -31,6 +31,24 @@
       "trigger": "always",
       "effect": { "mult": 2 },
       "desc": { "ko": "매 핸드 +2 배수", "en": "+2 mult every hand" }
+    },
+    {
+      "id": "hongdan_x2",
+      "name": { "ko": "홍단 깃발", "en": "Hongdan Flag" },
+      "rarity": "uncommon",
+      "trigger": "contains_kind",
+      "kind_need": "hongdan",
+      "effect": { "mult_mul": 2 },
+      "desc": { "ko": "홍단 있으면 ×2 배수", "en": "×2 mult if hand has hongdan" }
+    },
+    {
+      "id": "cheongdan_x2",
+      "name": { "ko": "청단 깃발", "en": "Cheongdan Flag" },
+      "rarity": "uncommon",
+      "trigger": "contains_kind",
+      "kind_need": "cheongdan",
+      "effect": { "mult_mul": 2 },
+      "desc": { "ko": "청단 있으면 ×2 배수", "en": "×2 mult if hand has cheongdan" }
     }
   ]
 }
