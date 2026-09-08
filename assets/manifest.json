@@ -1267,10 +1267,51 @@
     {
       "id": "gwang.rich_mult",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "부자",
         "en": "Rich"
+      },
+      "master": {
+        "source": "assets/masters/gwang/rich-mult-v1.svg",
+        "sourceSha256": "6ee2900c4424487b18c48f4bb202aa031c0f5da232fe5eb39d425a5fbdab7073",
+        "path": "assets/masters/gwang/rich-mult-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "acdf119ef967743886e5f4b9a60c1a12d17031d5fcf97f66ac2dd654d2b9f165",
+        "provenance": "Project-authored high-resolution vector master showing an overflowing Korean-style brass coin chest feeding four wealth flames into one jade multiplier seal on plum lacquer; no month or text labels."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/rich-mult-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "ca9aaf471347cdcdd5a29342cd7f632657351e4d051bd291e76f53d98df07411",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/rich-mult-v1.report.json",
+        "reportSha256": "0fc91ec52fab3ce050317e16048cce6fe60a136787de95cf805dcb3e5f42d222"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

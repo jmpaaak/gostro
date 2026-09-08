@@ -175,3 +175,7 @@
 | 2026-09-09T08:25:43+0900 | `assets/masters/gwang/lean-deck-mult-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T08:25:43+0900 | `assets/runtime/gwang/lean-deck-mult-v1.png` | 56×32 runtime 날씬한 덱 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T08:25:43+0900 | `assets/runtime/ui/gwang-lean-deck-mult-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 날씬한 덱 gwang in all five slots; SHA-256 `b70c8e1d362e47f0cd2ba9730c8c11f08c0bbd3529c2b1bc1623bea8a215a267` |
+| 2026-09-09T08:35:47+0900 | `assets/masters/gwang/rich-mult-v1.svg` | Project-authored high-resolution 부자 gwang vector source with an overflowing brass coin chest and four wealth flames feeding one jade multiplier seal on plum lacquer |
+| 2026-09-09T08:35:47+0900 | `assets/masters/gwang/rich-mult-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T08:35:47+0900 | `assets/runtime/gwang/rich-mult-v1.png` | 56×32 runtime 부자 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T08:35:47+0900 | `assets/runtime/ui/gwang-rich-mult-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 부자 gwang in all five slots; SHA-256 `0fd116150be129ce5d9bfd8c5326734a9a1bfb432ce98304d68d559c322fd8b1` |
