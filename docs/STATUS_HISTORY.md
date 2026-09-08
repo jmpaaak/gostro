@@ -1124,3 +1124,16 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN (223 files).
 - INBOX (27)은 다른 런타임/데이터 인스턴스들의 추적이 남아 있으나, 용어 교체와 충돌 가능성을 피해 처리 대기로 유지한다.
 - Next slice: (28) 나머지 player-facing Balatro 용어(Planet, Tarot, Tag, Voucher 등)를 `terms.lua`를 사용하여 기원패, 부적, 패찰, 인장으로 교체한다.
+
+## Archived from STATUS.md (2026-09-09 00:53)
+
+## 2026-09-09 — STATUS 최신 섹션 보존 회귀 수정
+
+## Archived from STATUS.md (2026-09-09 01:02)
+
+- 자동 compactor가 `## YYYY-MM-DD` 형식의 최신순 로그를 오래된순으로 오판하여 최신 제목과 본문을 따로 archive하던 문제를 수정했다.
+- 날짜 섹션 경계에서만 자르도록 하여 제목과 본문이 분리되지 않게 했고, 실제 최신순 문서 회귀 테스트를 `make verify`에 연결했다.
+- TDD RED에서 최신 섹션 유실을 재현했고 focused test GREEN을 확인했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: compactor 회귀, 전체 unit/font/card-overlap/smoke, 222-file bundle 검증이 통과했다.
+- INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: 에셋 inventory에서 플레이 패 다음 미완료 정적 카테고리 하나를 골라 master/runtime manifest 계약과 실제 LÖVE 배선을 완성한다.

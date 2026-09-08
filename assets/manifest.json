@@ -1016,14 +1016,70 @@
     {
       "id": "ui.blind_small",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.blind_small"
+      "status": "runtime",
+      "name": "first-round card",
+      "master": {
+        "source": "assets/masters/ui/blind-small-v1.svg",
+        "sourceSha256": "7ec9631ff385d4dd85f8bf470124c963eeaea269fcebb3400db12b9b2e69633b",
+        "path": "assets/masters/ui/blind-small-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "e65cadf49271b3312be13d3d90a17320d98098a39a8564fbcf28679cf1b54565",
+        "provenance": "Project-authored high-resolution vector master using Korean textile, brass, cloud, and taegeuk motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/blind-small-v1.png",
+        "width": 50,
+        "height": 70,
+        "alphaBounds": [0, 0, 49, 69],
+        "sha256": "ee78300305e9fe5e836686bbc831d91bd3c59c4bbfc6204f5ed06fb0baedfc10",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 50,
+        "targetHeight": 70,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/blind-small-v1.report.json",
+        "reportSha256": "d3ae025978a9378175a8773bf8a0fa5b6e0209445bd9b2d396e7d9ee3ee0c4ca"
+      },
+      "animation": { "frames": 1, "fps": 0, "loop": false, "origin": [0, 0] }
     },
     {
       "id": "ui.blind_big",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.blind_big"
+      "status": "runtime",
+      "name": "big-round card",
+      "master": {
+        "source": "assets/masters/ui/blind-big-v1.svg",
+        "sourceSha256": "bab5614205902fa964ab221aa5d8f00f24625513681350a4f151c2204bcec78e",
+        "path": "assets/masters/ui/blind-big-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "a86a99bda35a1dd031b22a5a5c002368416768d0f8b324faaed5b4e21064ba5b",
+        "provenance": "Project-authored high-resolution vector master using Korean gate, dancheong, cloud, and lotus motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/blind-big-v1.png",
+        "width": 50,
+        "height": 70,
+        "alphaBounds": [0, 0, 49, 69],
+        "sha256": "060622257c97904b686bafa59be5f420fd6ded79c88b9a932745891da0e9c1f3",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 50,
+        "targetHeight": 70,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/blind-big-v1.report.json",
+        "reportSha256": "8f6a5476014c08f14463c1bfc0485b8f88181599e0a35937b7d50a884cc90836"
+      },
+      "animation": { "frames": 1, "fps": 0, "loop": false, "origin": [0, 0] }
     },
     {
       "id": "effect.foil",

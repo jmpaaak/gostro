@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test font-test card-overlap-qa smoke love verify clean
+.PHONY: test status-test font-test card-overlap-qa blind-card-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -33,6 +33,21 @@ card-overlap-qa:
 	CARD_OVERLAP_QA_OUTPUT="$(CURDIR)/assets/runtime/cards/play-card-overlap-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/card-overlap-qa"
 
+blind-card-qa:
+	@rm -rf "$(BUILD_DIR)/blind-card-qa"
+	@mkdir -p "$(BUILD_DIR)/blind-card-qa/game/ui" \
+		"$(BUILD_DIR)/blind-card-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/blind-card-qa/assets/fonts"
+	@cp tools/blind_card_qa_main.lua "$(BUILD_DIR)/blind-card-qa/main.lua"
+	@cp game/ui/blind_select.lua game/ui/blind_card_art.lua "$(BUILD_DIR)/blind-card-qa/game/ui/"
+	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/blind-card-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/blind-card-qa/assets/"
+	@cp assets/runtime/ui/blind-small-v1.png assets/runtime/ui/blind-big-v1.png \
+		"$(BUILD_DIR)/blind-card-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/blind-card-qa/assets/fonts/"
+	BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-round-cards-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -44,7 +59,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test test font-test card-overlap-qa smoke love
+verify: status-test test font-test card-overlap-qa blind-card-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

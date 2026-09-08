@@ -1,13 +1,14 @@
+## 2026-09-09 — 첫판/큰판 블라인드 카드 배경 에셋 적용
+
+- `assets/manifest.json`에서 `ui.blind_small`과 `ui.blind_big`을 `runtime` 상태로 승격하고, 400×560 master 벡터 기반 이미지에서 `pixel-perfect` 파이프라인을 거친 50×70 runtime PNG 배선을 정의했다.
+- 신규 `game/ui/blind_card_art.lua`가 런타임 에셋을 로드하고 `blind_select.lua`에서 선택/비선택 카드 배경으로 투명도를 조절해 그려지도록 적용했다. (기존 보스 카드는 별도 보스 카테고리로 유지)
+- `game/tests/blind_card_art.lua`를 추가하여 master/runtime 해상도 유지와 `nearest` 필터 설정을 강제 검증했다.
+- `tools/blind_card_qa_main.lua`를 통해 실제 320×180 해상도 기반의 LÖVE 캡처 출력(`blind-round-cards-love-v1.png`)을 자동화하여 UI 겹침과 시각적 완결성을 QA할 수 있도록 구성했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/card-overlap/smoke, `blind-card-qa`, 238-file bundle 검증 통과.
+- INBOX (27)은 다른 런타임/데이터 인스턴스들의 정적 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: 에셋 inventory에서 다음 미완료 정적 카테고리 하나를 골라 master/runtime manifest 계약과 실제 LÖVE 배선을 완성한다.
+
 # STATUS
-## 2026-09-09 — STATUS 최신 섹션 보존 회귀 수정
-
-- 자동 compactor가 `## YYYY-MM-DD` 형식의 최신순 로그를 오래된순으로 오판하여 최신 제목과 본문을 따로 archive하던 문제를 수정했다.
-- 날짜 섹션 경계에서만 자르도록 하여 제목과 본문이 분리되지 않게 했고, 실제 최신순 문서 회귀 테스트를 `make verify`에 연결했다.
-- TDD RED에서 최신 섹션 유실을 재현했고 focused test GREEN을 확인했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: compactor 회귀, 전체 unit/font/card-overlap/smoke, 222-file bundle 검증이 통과했다.
-- INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
-- Next slice: 에셋 inventory에서 플레이 패 다음 미완료 정적 카테고리 하나를 골라 master/runtime manifest 계약과 실제 LÖVE 배선을 완성한다.
-
 ## 2026-09-09 — 플레이 패 contact sheet 셀 추적 계약
 - `assets/manifest.json`의 플레이 패 5종 각각에 공유 960×288 master와 120×36 runtime 후보 sheet 안의 정확한 셀 순서·영역, 24×36 alpha bounds를 기록했다.
 - 신규 engine-hosted `game/tests/card_candidate_manifest.lua`가 피·홍단·청단·초단·고도리의 192×288 master 셀과 24×36 runtime 셀이 겹치거나 순서가 바뀌지 않는 계약을 검사한다.

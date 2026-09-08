@@ -25,6 +25,8 @@ local function model(ante, current)
 end
 
 function M.run()
+    require("game.tests.blind_card_art").run()
+
     -- new() returns state with 3 blind entries for the given ante
     local s = blind_select.new(model(1, "small"))
     assert(s.ante == 1, "ante stored")

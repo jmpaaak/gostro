@@ -121,8 +121,8 @@
 - [ ] `ui.stake_white` - ui.stake_white
 - [ ] `ui.stake_red` - ui.stake_red
 - [ ] `ui.stake_green` - ui.stake_green
-- [ ] `ui.blind_small` - ui.blind_small
-- [ ] `ui.blind_big` - ui.blind_big
+- [x] `ui.blind_small` - 첫판 선택 카드 (400×560 master → 50×70 runtime)
+- [x] `ui.blind_big` - 큰판 선택 카드 (400×560 master → 50×70 runtime)
 
 ## voucher
 
