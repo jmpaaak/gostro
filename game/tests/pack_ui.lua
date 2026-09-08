@@ -15,6 +15,7 @@ end
 
 function M.run()
     print("  pack_ui:")
+    require("game.tests.pack_art").run()
 
     local pending = {
         name = "아르카나 팩",

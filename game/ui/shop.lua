@@ -2,6 +2,7 @@
 -- Shop UI: 3 gwang joker cards on display, reroll ($5), next round, money.
 
 local terms = require("game.terms")
+local pack_art = require("game.ui.pack_art")
 
 local M = {}
 
@@ -252,20 +253,26 @@ function M.draw(s)
                     p.y + 6 + fh + 2, 0, scale, scale)
             elseif card.kind == "pack" or card.kind == "voucher" then
                 local is_voucher = card.kind == "voucher"
-                if is_voucher then
+                local has_art = not is_voucher
+                    and pack_art.draw(card, p.x, p.y, p.w, p.h)
+                if has_art then
+                    -- The manifest-backed bundle art fills the complete offer.
+                elseif is_voucher then
                     love.graphics.setColor(0.55, 0.2, 0.65, 1)
                 else
                     love.graphics.setColor(0.5, 0.2, 0.25, 1)
                 end
-                love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
-                love.graphics.setColor(0.9, 0.55, 1, 1)
-                love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
-                local nw = font:getWidth(view.label)
-                local scale = math.min(1, (p.w - 4) / math.max(1, nw))
-                love.graphics.setColor(1, 1, 1, 1)
-                love.graphics.print(view.label,
-                    p.x + math.floor((p.w - nw * scale) / 2),
-                    p.y + 12, 0, scale, scale)
+                if not has_art then
+                    love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
+                    love.graphics.setColor(0.9, 0.55, 1, 1)
+                    love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
+                    local nw = font:getWidth(view.label)
+                    local scale = math.min(1, (p.w - 4) / math.max(1, nw))
+                    love.graphics.setColor(1, 1, 1, 1)
+                    love.graphics.print(view.label,
+                        p.x + math.floor((p.w - nw * scale) / 2),
+                        p.y + 12, 0, scale, scale)
+                end
             else
                 -- Card background (gwang gold)
                 love.graphics.setColor(0.85, 0.7, 0.15, 1)

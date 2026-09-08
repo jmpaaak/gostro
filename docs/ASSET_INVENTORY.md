@@ -52,7 +52,7 @@
 
 ## pack
 
-- [ ] `pack.arcana_pack` - arcana_pack
+- [x] `pack.arcana_pack` - 부적 꾸러미 (`assets/runtime/pack/talisman-bundle-v1.png`)
 
 ## planet
 

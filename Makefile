@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test font-test card-overlap-qa blind-card-qa smoke love verify clean
+.PHONY: test status-test font-test card-overlap-qa blind-card-qa shop-pack-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -75,6 +75,21 @@ blind-card-qa:
 		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-plant-card-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
 
+shop-pack-qa:
+	@rm -rf "$(BUILD_DIR)/shop-pack-qa"
+	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/game/ui" \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack" \
+		"$(BUILD_DIR)/shop-pack-qa/assets/fonts"
+	@cp tools/shop_pack_qa_main.lua "$(BUILD_DIR)/shop-pack-qa/main.lua"
+	@cp game/ui/shop.lua game/ui/pack_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
+	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/shop-pack-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
+	@cp assets/runtime/pack/talisman-bundle-v1.png \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
+	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -86,7 +101,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test test font-test card-overlap-qa blind-card-qa smoke love
+verify: status-test test font-test card-overlap-qa blind-card-qa shop-pack-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

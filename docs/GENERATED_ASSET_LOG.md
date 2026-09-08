@@ -51,3 +51,6 @@
 | 2026-09-09T02:29:29+0900 | `assets/masters/boss-blind/plant-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T02:29:29+0900 | `assets/runtime/boss-blind/plant-v1.png` | 50×70 runtime boss card from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T02:31:01+0900 | `assets/runtime/ui/blind-plant-card-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture including the plant boss artwork with nearest filtering |
+| 2026-09-09T02:39:44+0900 | `assets/masters/pack/talisman-bundle-v1.svg` | Project-authored high-resolution Korean bojagi, talisman paper, dancheong border, and knotted-seal vector source |
+| 2026-09-09T02:39:44+0900 | `assets/masters/pack/talisman-bundle-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T02:39:44+0900 | `assets/runtime/pack/talisman-bundle-v1.png` | 36×52 runtime pack offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |

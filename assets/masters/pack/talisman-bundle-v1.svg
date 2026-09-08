@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <rect width="400" height="560" fill="#101425"/>
+  <rect x="24" y="12" width="352" height="536" rx="22" fill="#40203d" stroke="#e5bb58" stroke-width="14"/>
+  <rect x="43" y="31" width="314" height="498" rx="13" fill="#792d45" stroke="#f0d785" stroke-width="6"/>
+  <path d="M52 112H348M52 448H348" stroke="#2b1834" stroke-width="18"/>
+  <path d="M60 112L92 80L124 112L156 80L188 112L220 80L252 112L284 80L316 112L348 80" fill="none" stroke="#71a6a0" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M60 448L92 480L124 448L156 480L188 448L220 480L252 448L284 480L316 448L348 480" fill="none" stroke="#71a6a0" stroke-width="9" stroke-linejoin="round"/>
+  <path d="M76 169L200 113L324 169L300 414L200 472L100 414Z" fill="#c9674e" stroke="#f1d17d" stroke-width="10"/>
+  <path d="M77 170L200 266L323 170L299 414L200 472L101 414Z" fill="#315b69" stroke="#f1d17d" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M101 414L200 266L299 414L200 472Z" fill="#8f3a48"/>
+  <path d="M77 170L200 266L323 170M200 266V472" fill="none" stroke="#f4da8b" stroke-width="8"/>
+  <path d="M143 125L257 125L280 207L200 268L120 207Z" fill="#d9c28a" stroke="#4e2a34" stroke-width="8"/>
+  <path d="M160 139L240 139L254 193L200 235L146 193Z" fill="#eee0ad" stroke="#a9463f" stroke-width="5"/>
+  <path d="M200 148V218M174 162C185 173 215 173 226 162M169 191C185 181 215 181 231 191" fill="none" stroke="#a33836" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="200" cy="266" r="32" fill="#d4a744" stroke="#3b2836" stroke-width="9"/>
+  <path d="M183 266L196 279L220 250" fill="none" stroke="#fff0b5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M112 308C140 285 169 289 200 320C231 289 260 285 288 308C268 345 236 365 200 361C164 365 132 345 112 308Z" fill="#dba84e" stroke="#42243a" stroke-width="8"/>
+  <path d="M200 320C181 341 177 371 200 400C223 371 219 341 200 320Z" fill="#74a479" stroke="#42243a" stroke-width="7"/>
+  <circle cx="75" cy="65" r="11" fill="#f0d785"/>
+  <circle cx="325" cy="65" r="11" fill="#f0d785"/>
+  <circle cx="75" cy="495" r="11" fill="#f0d785"/>
+  <circle cx="325" cy="495" r="11" fill="#f0d785"/>
+</svg>

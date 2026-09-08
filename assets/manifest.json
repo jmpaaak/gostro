@@ -1256,8 +1256,49 @@
     {
       "id": "pack.arcana_pack",
       "category": "pack",
-      "status": "pending",
-      "name": "arcana_pack"
+      "status": "runtime",
+      "name": "\ubd80\uc801 \uafb8\ub7ec\ubbf8",
+      "master": {
+        "source": "assets/masters/pack/talisman-bundle-v1.svg",
+        "sourceSha256": "3a5eb51a6e85095d8af0b26d1f31df91f56c06325f0a41a386a624eb70314d26",
+        "path": "assets/masters/pack/talisman-bundle-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "cba3bc5de48aaf9f0f5c733aef7a567a55dfa6bf91d5a9f17d42c418329835db",
+        "provenance": "Project-authored high-resolution vector master using Korean bojagi wrapping, talisman paper, dancheong borders, and a knotted seal; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/pack/talisman-bundle-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          34,
+          51
+        ],
+        "sha256": "d3d7a3ff23d748489c007b83fa3f756a5f497e81c0928fc0be3b0614e3690506",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/pack/talisman-bundle-v1.report.json",
+        "reportSha256": "c672c805673a067aec6c7e4d07a57200dec6bd3c0b4cfcd9718a2e7684fd12d0"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.menu_bg",
