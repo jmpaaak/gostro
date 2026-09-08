@@ -1,9 +1,10 @@
--- Tests for always + contains-kind + yaku gwang jokers (INBOX 21a/21b/21c).
--- Catalog JSON + apply loop in hwatu.evaluate.
+-- Tests for always + contains-kind + yaku + deck-size gwang jokers
+-- (INBOX 21a/21b/21c/21d). Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
 local hwatu = require("game.hwatu")
 local run = require("game.run")
+local deck = require("game.deck")
 
 local M = {}
 
@@ -32,6 +33,10 @@ function M.run()
     M.test_apply_godori_chips_when_yaku_is_godori()
     M.test_apply_godori_chips_skips_without_godori_yaku()
     M.test_hwatu_evaluate_godori_chips()
+    M.test_catalog_loads_deck_size()
+    M.test_apply_thin_deck_x3_when_deck_le_30()
+    M.test_apply_thin_deck_x3_skips_when_deck_over_30()
+    M.test_hwatu_evaluate_thin_deck_x3()
     print("  gwang_catalog: OK")
 end
 
@@ -42,7 +47,13 @@ function M.test_catalog_loads_always_jokers()
     for i = 1, #all do
         local j = all[i]
         assert(j.id and j.id ~= "", "each joker has an id")
-        assert(j.trigger == "always" or j.trigger == "contains_kind" or j.trigger == "yaku", "known trigger")
+        assert(
+            j.trigger == "always"
+                or j.trigger == "contains_kind"
+                or j.trigger == "yaku"
+                or j.trigger == "deck_size",
+            "known trigger"
+        )
         assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
         seen[j.id] = j
     end
@@ -257,6 +268,69 @@ function M.test_hwatu_evaluate_godori_chips()
     assert(skipped.chips == base_h.chips)
     assert(skipped.mult == base_h.mult)
     assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
+end
+
+function M.test_catalog_loads_deck_size()
+    local j = catalog.get("thin_deck_x3")
+    assert(j, "thin_deck_x3 joker in catalog")
+    assert(j.trigger == "deck_size")
+    assert((j.deck_max or 0) == 30)
+    assert((j.effect.mult_mul or 0) == 3)
+end
+
+function M.test_apply_thin_deck_x3_when_deck_le_30()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        deck_size = 30,
+        state = { gwang = { { kind = "gwang", identity = "thin_deck_x3" } } },
+    })
+    assert(chips == 32, "deck_size does not add chips")
+    assert(mult == 6, "deck ≤30 ×3, got " .. tostring(mult))
+    assert(#triggered == 1)
+    assert(triggered[1].id == "thin_deck_x3")
+end
+
+function M.test_apply_thin_deck_x3_skips_when_deck_over_30()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        deck_size = 31,
+        state = { gwang = { { identity = "thin_deck_x3" } } },
+    })
+    assert(chips == 32)
+    assert(mult == 2, "deck 31 → no ×3, got " .. tostring(mult))
+    assert(#triggered == 0)
+end
+
+function M.test_hwatu_evaluate_thin_deck_x3()
+    local hand = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "thin_deck_x3" } }
+
+    local fat = deck.new()
+    assert(deck.total(fat) == 40)
+    state.deck = fat
+    local base = hwatu.evaluate(hand)
+    assert(base.chips == 32)
+    assert(base.mult == 2)
+    local skipped = hwatu.evaluate(hand, state)
+    assert(skipped.chips == 32)
+    assert(skipped.mult == 2, "starter 40-card deck does not ×3, got " .. tostring(skipped.mult))
+    assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
+
+    local thin = deck.new()
+    for _ = 1, 10 do
+        deck.destroy(thin, 1)
+    end
+    assert(deck.total(thin) == 30)
+    state.deck = thin
+    local with = hwatu.evaluate(hand, state)
+    assert(with.chips == 32)
+    assert(with.mult == 6, "deck ≤30 ×3, got " .. tostring(with.mult))
+    assert(with.score == 32 * 6)
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "thin_deck_x3")
 end
 
 return M

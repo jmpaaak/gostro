@@ -190,3 +190,37 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (20) enhance+destroy slice only. Deck sort (kind / effect) is not in this slice.
 - Next slice: INBOX (20) remaining — deck sort by kind / effect on `game/deck.lua`.
+
+## Archived from STATUS.md (2026-09-08 11:34)
+
+## 2026-09-08 — 광 조커 yaku 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `godori_chips` / `hongdan_chips` (`trigger=yaku`, `yaku_need`, `effect.chips` +100/+50).
+- `game/gwang_catalog.lua` `apply(ctx)`: `always` / `contains_kind` unchanged; `yaku` fires when `ctx.yaku` includes `yaku_need` (고도리 치면 +100칩). One godori in hand without the yaku is a no-op.
+- `game/hwatu.lua` already passes `yaku` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with/without godori yaku, hwatu evaluate +100 / skip).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) yaku-trigger slice only. Economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (d) 보유 조건 트리거 (덱 카드 수 ≤30이면 ×3) on `game/gwang_catalog.lua`.
+
+## 2026-09-08 — 광 조커 contains_kind 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `hongdan_x2` / `cheongdan_x2` (`trigger=contains_kind`, `kind_need`, `effect.mult_mul=2`).
+- `game/gwang_catalog.lua` `apply(ctx)`: `always` unchanged; `contains_kind` fires when `ctx.hand` includes `kind_need` (홍단 1장만 있어도 ×2). Missing kind = no-op.
+- `game/hwatu.lua` already passes `hand` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with/without hongdan, hwatu evaluate ×2 / skip).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) contains-kind slice only. Yaku/economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (c) 특정 족보 달성 시 트리거 (고도리 치면 +100칩) on `game/gwang_catalog.lua`.
+
+## 2026-09-08 — 광 조커 always 트리거 (`game/gwang_catalog.lua`)
+
+- Created `game/data/gwang_jokers.json` + `game/gwang_catalog.lua`.
+  - Catalog load: `all()` / `get(id)`. This slice trigger = `always` only.
+  - `chips` +30 chips, `mult` +4 mult every scored hand. Extra always entries: `always_chips_small` (+10), `always_mult_small` (+2).
+  - `apply(ctx)` loops equipped `state.gwang` identities; unknown ids are no-ops.
+- `game/hwatu.lua` `evaluate(hand, state)` runs the catalog apply loop after edition bonuses. Result includes `gwang_triggers`.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (load, get, apply chips/mult, evaluate, no-gwang unchanged, unknown noop).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) always-trigger slice only. Kind/yaku/economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (b) 특정 종류 포함 시 트리거 (홍단 있으면 ×2) on `game/gwang_catalog.lua`.

@@ -1,6 +1,7 @@
 -- Gwang joker catalog: JSON identities + trigger apply loop.
 -- Triggers: always (+chips, +mult), contains_kind (×mult if kind in hand),
--- yaku (+chips when scored yaku matches yaku_need).
+-- yaku (+chips when scored yaku matches yaku_need),
+-- deck_size (×mult when play-card deck count ≤ deck_max).
 
 local M = {}
 
@@ -198,6 +199,21 @@ local function yaku_has(yaku, need)
     return false
 end
 
+local function deck_count(ctx)
+    if type(ctx.deck_size) == "number" then
+        return ctx.deck_size
+    end
+    local state = ctx.state
+    if type(state) ~= "table" or type(state.deck) ~= "table" then
+        return nil
+    end
+    local cards = state.deck.cards
+    if type(cards) == "table" then
+        return #cards
+    end
+    return nil
+end
+
 local function should_trigger(def, ctx)
     if def.trigger == "always" then
         return true
@@ -207,6 +223,11 @@ local function should_trigger(def, ctx)
     end
     if def.trigger == "yaku" then
         return yaku_has(ctx.yaku, def.yaku_need)
+    end
+    if def.trigger == "deck_size" then
+        local n = deck_count(ctx)
+        local max = def.deck_max
+        return type(n) == "number" and type(max) == "number" and n <= max
     end
     return false
 end
@@ -226,10 +247,11 @@ local function apply_effect(chips, mult, effect)
 end
 
 --- Apply equipped gwang to a scored hand.
--- ctx = { chips, mult, yaku, state, hand }
+-- ctx = { chips, mult, yaku, state, hand, deck_size }
 -- always: +chips / +mult every hand.
 -- contains_kind: fire when ctx.hand includes def.kind_need (e.g. hongdan → ×2).
 -- yaku: fire when ctx.yaku includes def.yaku_need (e.g. godori → +100 chips).
+-- deck_size: fire when play-card count (ctx.deck_size or state.deck) ≤ deck_max.
 function M.apply(ctx)
     local chips = ctx.chips or 0
     local mult = ctx.mult or 1

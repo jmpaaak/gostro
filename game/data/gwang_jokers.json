@@ -67,6 +67,24 @@
       "yaku_need": "hongdan",
       "effect": { "chips": 50 },
       "desc": { "ko": "홍단 치면 +50 칩", "en": "+50 chips when scoring hongdan" }
+    },
+    {
+      "id": "thin_deck_x3",
+      "name": { "ko": "얇은 덱", "en": "Thin Deck" },
+      "rarity": "rare",
+      "trigger": "deck_size",
+      "deck_max": 30,
+      "effect": { "mult_mul": 3 },
+      "desc": { "ko": "덱 카드 수 ≤30이면 ×3 배수", "en": "×3 mult if deck has ≤30 cards" }
+    },
+    {
+      "id": "tiny_deck_chips",
+      "name": { "ko": "아주 얇은 덱", "en": "Tiny Deck" },
+      "rarity": "uncommon",
+      "trigger": "deck_size",
+      "deck_max": 20,
+      "effect": { "chips": 50 },
+      "desc": { "ko": "덱 카드 수 ≤20이면 +50 칩", "en": "+50 chips if deck has ≤20 cards" }
     }
   ]
 }
