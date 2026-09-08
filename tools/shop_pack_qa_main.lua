@@ -26,6 +26,7 @@ function love.load()
         reroll_surplus = "에누리 인장",
         clearance_sale = "떨이 인장",
         seed_money = "밑천 인장",
+        antimatter = "허공 인장",
     }
     local item = kind == "voucher"
         and { kind = "voucher", identity = voucher_identity,

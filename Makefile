@@ -90,7 +90,7 @@ shop-pack-qa:
 	@cp assets/runtime/voucher/paint-brush-v1.png assets/runtime/voucher/wasteful-v1.png \
 		assets/runtime/voucher/grabber-v1.png assets/runtime/voucher/overstock-v1.png \
 		assets/runtime/voucher/reroll-surplus-v1.png assets/runtime/voucher/clearance-sale-v1.png \
-		assets/runtime/voucher/seed-money-v1.png \
+		assets/runtime/voucher/seed-money-v1.png assets/runtime/voucher/antimatter-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
 	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
