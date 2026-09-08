@@ -12,13 +12,14 @@ function M.run()
         "run state normalizes the seed")
     assert(first.ante == 1 and first.blind == "small" and first.phase == "play")
     assert(first.money == 4 and first.hands_left == 4 and first.round_score == 0)
-    assert(#first.gwang == 0 and #first.tags.owned == 0 and #first.vouchers.owned == 0)
+    assert(#first.gwang == 0 and #first.plaques.owned == 0 and #first.vouchers.owned == 0)
+    assert(first.plaques == first.tags, "legacy tag state aliases canonical plaques")
     assert(first.rng.cards(1, 100000) == second.rng.cards(1, 100000),
         "run state installs deterministic independent gameplay streams")
 
-    first.tags.owned[1] = "coupon"
+    first.plaques.owned[1] = "saebaram"
     first.vouchers.owned[1] = "overstock"
-    assert(#second.tags.owned == 0 and #second.vouchers.owned == 0,
+    assert(#second.plaques.owned == 0 and #second.vouchers.owned == 0,
         "each run owns independent nested state")
 
     local original_new = run_state.new

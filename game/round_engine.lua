@@ -85,7 +85,7 @@ local function initial_hand_size(run_state, options)
     local base = run_state.base_hand_size or run_state.hand_size or BASE_HAND_SIZE
     local size = integer(base, "base hand size", 0)
         + modifier(run_state.vouchers, "hand_size")
-        + modifier(run_state.tags, "hand_size_bonus")
+        + modifier(run_state.plaques or run_state.tags, "hand_size_bonus")
     local boss = run_state.boss
     if type(boss) == "table" then
         local delta = boss.hand_size_delta or boss.hand_size_modifier

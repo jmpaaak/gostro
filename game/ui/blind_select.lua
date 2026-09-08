@@ -61,6 +61,7 @@ function M.new(model)
     end
     local blinds = {}
     for i, projected in ipairs(model.blinds) do
+        local skip_plaque = projected.skip_plaque or projected.skip_tag
         blinds[i] = {
             kind = projected.kind,
             target = projected.target,
@@ -68,6 +69,9 @@ function M.new(model)
             available = projected.playable == true,
             status = projected.status,
             boss = projected.boss,
+            skippable = projected.skippable == true,
+            skip_plaque = skip_plaque,
+            skip_tag = skip_plaque, -- legacy UI-model alias
         }
     end
     if #blinds ~= 3 then error("blind-select requires three blind projections") end
@@ -170,6 +174,12 @@ function M.draw(s)
     -- Instruction
     love.graphics.setColor(0.7, 0.7, 0.7, 0.8)
     local hint = "카드를 탭하여 블라인드 선택"
+    for _, blind in ipairs(s.blinds) do
+        if blind.skippable and blind.skip_plaque then
+            hint = "건너뛰기 보상 · " .. blind.skip_plaque.name
+            break
+        end
+    end
     love.graphics.print(hint,
         math.floor(VIEWPORT_W / 2 - font:getWidth(hint) / 2),
         CARD_Y + CARD_H + 12)

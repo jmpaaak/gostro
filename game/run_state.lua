@@ -5,6 +5,13 @@ local M = {}
 --- Assemble the mutable base state shared by every run configuration.
 function M.new(seed_str)
     local plan = rng.plan(seed_str)
+    local plaques = {
+        owned = {},
+        free_rerolls = 0,
+        pending_money = 0,
+        extra_shop_slots = 0,
+        hand_size_bonus = 0,
+    }
     return {
         seed = plan.seed,
         rng = {
@@ -17,13 +24,8 @@ function M.new(seed_str)
         phase = "play",
         round_score = 0,
         gwang = {},
-        tags = {
-            owned = {},
-            free_rerolls = 0,
-            pending_money = 0,
-            extra_shop_slots = 0,
-            hand_size_bonus = 0,
-        },
+        plaques = plaques,
+        tags = plaques, -- legacy save/API alias
         vouchers = {
             owned = {},
             hand_size = 0,

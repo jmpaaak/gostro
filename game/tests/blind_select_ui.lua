@@ -5,7 +5,7 @@ local blind_select = require("game.ui.blind_select")
 
 local M = {}
 
-local function model(ante, current)
+local function model(ante, current, plaque)
     ante = ante or 1
     current = current or "small"
     local kinds = { "small", "big", "boss" }
@@ -19,6 +19,8 @@ local function model(ante, current)
             playable = i == current_index,
             status = i < current_index and "completed"
                 or (i == current_index and "current" or "upcoming"),
+            skippable = i == current_index and plaque ~= nil and kind ~= "boss",
+            skip_plaque = i == current_index and plaque or nil,
         }
     end
     return { ante = ante, current = current, phase = "play", blinds = blinds }
@@ -55,6 +57,13 @@ function M.run()
     assert(s.blinds[1].available == true, "current small blind is available")
     assert(s.blinds[2].available == false and s.blinds[3].available == false,
         "future blinds are previews, not shortcuts")
+
+    local plaque = { id = "saebaram", name = "새바람 패찰" }
+    local with_plaque = blind_select.new(model(1, "small", plaque))
+    assert(with_plaque.blinds[1].skippable == true)
+    assert(with_plaque.blinds[1].skip_plaque == plaque
+        and with_plaque.blinds[1].skip_tag == plaque,
+        "UI exposes the 패찰 reward with a legacy projection alias")
 
     -- Only the current sequential blind can be selected.
     local ok = pcall(blind_select.select_blind, s, 2)

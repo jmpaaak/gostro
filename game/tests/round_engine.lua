@@ -69,7 +69,7 @@ function M.test_initializes_from_finite_deck_and_modifiers()
     state.vouchers.hand_size = 1
     state.vouchers.hands = 2
     state.vouchers.discards = 1
-    state.tags.hand_size_bonus = 1
+    state.plaques.hand_size_bonus = 1
     local source = deck.new()
     local round = round_engine.new(state, source, { target = 999 })
 

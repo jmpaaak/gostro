@@ -17,7 +17,7 @@ end
 
 function M.test_view_exposes_sequential_blinds_and_run_targets()
     local state = run_state.new("blind-flow-sequence")
-    local view = blind_flow.view(state, "coupon")
+    local view = blind_flow.view(state, "saebaram")
 
     assert(view.ante == 1 and view.current == "small" and view.phase == "play")
     assert(#view.blinds == 3)
@@ -34,38 +34,40 @@ function M.test_view_exposes_sequential_blinds_and_run_targets()
     assert(view.blinds[2].status == "upcoming")
     assert(view.blinds[3].status == "upcoming")
 
-    blind_flow.skip_current(state, "coupon")
-    view = blind_flow.view(state, "investment")
+    blind_flow.skip_current(state, "saebaram")
+    view = blind_flow.view(state, "mokdon")
     assert(view.current == "big")
     assert(view.blinds[1].status == "completed")
     assert(view.blinds[2].status == "current" and view.blinds[2].playable)
     assert(view.blinds[3].status == "upcoming" and not view.blinds[3].playable)
 end
 
-function M.test_skip_eligibility_requires_current_small_or_big_and_tag()
+function M.test_skip_eligibility_requires_current_small_or_big_and_plaque()
     local state = run_state.new("blind-flow-skip-view")
-    local no_tag = blind_flow.view(state)
-    assert(not no_tag.blinds[1].skippable, "skip requires an offered tag")
+    local no_plaque = blind_flow.view(state)
+    assert(not no_plaque.blinds[1].skippable, "skip requires an offered plaque")
 
-    local view = blind_flow.view(state, "coupon")
+    local view = blind_flow.view(state, "saebaram")
     assert(view.blinds[1].skippable == true)
-    assert(view.blinds[1].skip_tag.id == "coupon")
-    assert(view.blinds[1].skip_tag.name ~= nil)
+    assert(view.blinds[1].skip_plaque.id == "saebaram")
+    assert(view.blinds[1].skip_tag == view.blinds[1].skip_plaque)
+    assert(view.blinds[1].skip_plaque.name == "새바람 패찰")
     assert(not view.blinds[2].skippable and not view.blinds[3].skippable)
 
-    blind_flow.skip_current(state, "coupon")
-    view = blind_flow.view(state, "mega")
-    assert(view.blinds[2].skippable == true and view.blinds[2].skip_tag.id == "mega")
+    blind_flow.skip_current(state, "saebaram")
+    view = blind_flow.view(state, "ssangdungi")
+    assert(view.blinds[2].skippable == true
+        and view.blinds[2].skip_plaque.id == "ssangdungi")
 
-    blind_flow.skip_current(state, "mega")
-    view = blind_flow.view(state, "coupon")
+    blind_flow.skip_current(state, "ssangdungi")
+    view = blind_flow.view(state, "saebaram")
     assert(state.blind == "boss" and state.boss_id ~= nil)
     assert(not view.blinds[3].skippable, "boss cannot be skipped")
 
     state.phase = "shop"
-    view = blind_flow.view(state, "coupon")
+    view = blind_flow.view(state, "saebaram")
     assert(not view.blinds[3].playable and not view.blinds[3].skippable)
-    fails(function() blind_flow.view(state, "not-a-tag") end, "invalid tag is rejected")
+    fails(function() blind_flow.view(state, "not-a-plaque") end, "invalid plaque is rejected")
 end
 
 function M.test_selection_only_accepts_current_blind()
@@ -83,30 +85,31 @@ function M.test_selection_only_accepts_current_blind()
     fails(function() blind_flow.select(state, "small") end, "cannot select outside play")
 end
 
-function M.test_skip_owns_progression_and_tag_application()
+function M.test_skip_owns_progression_and_plaque_application()
     local state = run_state.new("blind-flow-skip")
-    blind_flow.skip(state, "small", "investment")
+    local transition = blind_flow.skip(state, "small", "mokdon")
     assert(state.blind == "big" and state.phase == "play")
-    assert(state.tags.pending_money == 15)
+    assert(state.plaques.pending_money == 15)
+    assert(transition.plaque_id == "mokdon")
 
-    blind_flow.skip(state, "big", "mega")
+    blind_flow.skip(state, "big", "ssangdungi")
     assert(state.blind == "boss" and state.phase == "play")
-    assert(state.tags.duplicate_next_gwang == true)
+    assert(state.plaques.duplicate_next_gwang == true)
     assert(state.boss_id ~= nil, "run transition selected the boss")
 
-    fails(function() blind_flow.skip(state, "boss", "coupon") end, "boss cannot skip")
-    fails(function() blind_flow.skip(run_state.new(), "small", nil) end, "skip requires a tag")
+    fails(function() blind_flow.skip(state, "boss", "saebaram") end, "boss cannot skip")
+    fails(function() blind_flow.skip(run_state.new(), "small", nil) end, "skip requires a plaque")
 
     local future = run_state.new()
-    fails(function() blind_flow.skip(future, "big", "coupon") end, "cannot skip a future blind")
-    assert(future.blind == "small" and #future.tags.owned == 0)
+    fails(function() blind_flow.skip(future, "big", "saebaram") end, "cannot skip a future blind")
+    assert(future.blind == "small" and #future.plaques.owned == 0)
 
     local outside_play = run_state.new()
     outside_play.phase = "shop"
-    fails(function() blind_flow.skip(outside_play, "small", "coupon") end,
+    fails(function() blind_flow.skip(outside_play, "small", "saebaram") end,
         "cannot skip outside play")
-    assert(outside_play.blind == "small" and #outside_play.tags.owned == 0,
-        "rejected skip does not grant a tag or advance")
+    assert(outside_play.blind == "small" and #outside_play.plaques.owned == 0,
+        "rejected skip does not grant a plaque or advance")
 
 end
 
@@ -127,7 +130,7 @@ function M.test_boss_selection_and_target_are_owned_by_blind_flow()
     assert(selected.target == blind_flow.target(state))
     assert(selected.target == 1200, "wall target is resolved by blind_flow.target")
 
-    local view = blind_flow.view(state, "coupon")
+    local view = blind_flow.view(state, "saebaram")
     assert(view.blinds[3].boss.id == "wall")
     assert(view.blinds[3].target == 1200)
     assert(not view.blinds[3].skippable)
@@ -152,12 +155,12 @@ end
 function M.test_completed_progression_is_derived_from_run_state()
     local state = run_state.new("blind-flow-clears")
     beat_and_leave_shop(state)
-    assert(blind_flow.view(state, "coupon").current == "big")
+    assert(blind_flow.view(state, "saebaram").current == "big")
     beat_and_leave_shop(state)
     assert(state.blind == "boss" and state.boss_id ~= nil)
-    assert(blind_flow.view(state, "coupon").current == "boss")
+    assert(blind_flow.view(state, "saebaram").current == "boss")
     beat_and_leave_shop(state)
-    local view = blind_flow.view(state, "coupon")
+    local view = blind_flow.view(state, "saebaram")
     assert(view.ante == 2 and view.current == "small")
 end
 
@@ -169,7 +172,7 @@ function M.test_begin_owns_stake_adjusted_round_transition()
     }, { unlocked_stakes = { red = true } }))
     state.round_score = 99
 
-    local view = blind_flow.view(state, "coupon")
+    local view = blind_flow.view(state, "saebaram")
     assert(view.blinds[1].target == 375,
         "blind flow exposes the stake-adjusted target before selection")
 
@@ -299,9 +302,9 @@ end
 
 function M.run()
     M.test_view_exposes_sequential_blinds_and_run_targets()
-    M.test_skip_eligibility_requires_current_small_or_big_and_tag()
+    M.test_skip_eligibility_requires_current_small_or_big_and_plaque()
     M.test_selection_only_accepts_current_blind()
-    M.test_skip_owns_progression_and_tag_application()
+    M.test_skip_owns_progression_and_plaque_application()
     M.test_boss_selection_and_target_are_owned_by_blind_flow()
     M.test_enter_owns_boss_setup_and_cleanup()
     M.test_completed_progression_is_derived_from_run_state()

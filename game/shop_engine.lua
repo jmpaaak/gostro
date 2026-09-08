@@ -29,9 +29,9 @@ local function non_negative_integer(value)
 end
 
 local function modifiers(run_state)
-    local tags = run_state.tags or {}
+    local plaques = run_state.plaques or run_state.tags or {}
     local voucher = run_state.vouchers or {}
-    return tags, voucher
+    return plaques, voucher
 end
 
 local function discounted_price(run_state, base_price)
@@ -58,8 +58,8 @@ end
 
 local function eligible_gwang(run_state)
     local all = gwang_catalog.all()
-    local tags = run_state.tags or {}
-    if not tags.uncommon_shop then
+    local plaques = run_state.plaques or run_state.tags or {}
+    if not (plaques.rare_shop or plaques.uncommon_shop) then
         return all
     end
 
@@ -111,9 +111,9 @@ local function random_offer(run_state, random)
 end
 
 local function random_slot_count(run_state)
-    local tags, voucher = modifiers(run_state)
+    local plaques, voucher = modifiers(run_state)
     return M.BASE_RANDOM_SLOTS
-        + non_negative_integer(tags.extra_shop_slots)
+        + non_negative_integer(plaques.extra_shop_slots)
         + non_negative_integer(voucher.shop_slots)
 end
 
@@ -195,10 +195,10 @@ end
 
 M.open = M.new
 
---- Current reroll price. Free-reroll tags take precedence over discounts.
+--- Current reroll price. Free-reroll plaques take precedence over discounts.
 function M.reroll_cost(shop)
-    local tags, voucher = modifiers(shop.run_state)
-    if non_negative_integer(tags.free_rerolls) > 0 then
+    local plaques, voucher = modifiers(shop.run_state)
+    if non_negative_integer(plaques.free_rerolls) > 0 then
         return 0
     end
     return math.max(0, M.BASE_REROLL_COST + shop.reroll_count
@@ -213,7 +213,7 @@ end
 -- Returns success and the amount actually paid.
 function M.reroll(shop)
     local run_state = shop.run_state
-    local tags = run_state.tags or {}
+    local plaques = run_state.plaques or run_state.tags or {}
     local cost = M.reroll_cost(shop)
     if run_state.money < cost then
         return false, cost
@@ -222,8 +222,8 @@ function M.reroll(shop)
     -- Pay and consume the one-shot modifier before generating. No operation
     -- after this point can fail because the pools and RNG were validated at open.
     run_state.money = run_state.money - cost
-    if non_negative_integer(tags.free_rerolls) > 0 then
-        tags.free_rerolls = tags.free_rerolls - 1
+    if non_negative_integer(plaques.free_rerolls) > 0 then
+        plaques.free_rerolls = plaques.free_rerolls - 1
     end
     shop.reroll_count = shop.reroll_count + 1
     shop.random_offers = generate_random_offers(run_state)

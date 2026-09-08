@@ -1,5 +1,5 @@
 local run_rules = require("game.run_rules")
-local tags = require("game.tags")
+local plaques = require("game.plaques")
 local blind_targets = require("game.blind_targets")
 local boss_blinds = require("game.boss_blinds")
 local economy = require("game.economy")
@@ -66,8 +66,8 @@ function M.target(state, kind)
     return run_rules.adjust_target(state, blind_targets.target(projected))
 end
 
-function M.view(state, tag_id)
-    if tag_id then tags.by_id(tag_id) end -- validate tag
+function M.view(state, plaque_id)
+    if plaque_id then plaques.by_id(plaque_id) end
     local model = {
         ante = state.ante,
         current = state.blind,
@@ -86,7 +86,7 @@ function M.view(state, tag_id)
         end
         
         local skippable = false
-        if status == "current" and kind ~= "boss" and tag_id and state.phase == "play" then
+        if status == "current" and kind ~= "boss" and plaque_id and state.phase == "play" then
             skippable = true
         end
 
@@ -98,7 +98,8 @@ function M.view(state, tag_id)
             skippable = skippable,
         }
         if skippable then
-            b.skip_tag = tags.by_id(tag_id)
+            b.skip_plaque = plaques.by_id(plaque_id)
+            b.skip_tag = b.skip_plaque -- legacy projection alias
         end
         if kind == "boss" and state.boss_id then
             b.boss = { id = state.boss_id }
@@ -213,15 +214,15 @@ function M.leave_shop(state)
     }
 end
 
-function M.skip(state, kind, tag_id)
+function M.skip(state, kind, plaque_id)
     if state.phase ~= "play" then error("skip only during play") end
-    if not tag_id then error("skip requires a tag") end
+    if not plaque_id then error("skip requires a plaque") end
     if kind == "boss" then error("boss cannot skip") end
     if kind ~= "small" and kind ~= "big" then error("unknown blind") end
     if kind ~= state.blind then error("cannot skip a future blind") end
-    tags.by_id(tag_id) -- validate before mutating the run
+    local definition = plaques.by_id(plaque_id) -- validate before mutating the run
 
-    tags.apply(state, tag_id)
+    plaques.apply(state, plaque_id)
     local next_kind = kind == "small" and "big" or "boss"
     M.enter(state, next_kind)
     state.round_score = 0
@@ -229,15 +230,16 @@ function M.skip(state, kind, tag_id)
         ante = state.ante,
         kind = state.blind,
         phase = state.phase,
-        tag_id = tag_id,
+        plaque_id = definition.id,
+        tag_id = plaque_id, -- legacy result alias
         boss = state.boss_id and { id = state.boss_id } or nil,
     }
 end
 
---- Compatibility entry point for callers that historically omitted a tag id.
-function M.skip_current(state, tag_id)
-    local selected_tag = tag_id or tags.random().id
-    return M.skip(state, state.blind, selected_tag)
+--- Compatibility entry point for callers that historically omitted a reward id.
+function M.skip_current(state, plaque_id)
+    local selected_plaque = plaque_id or plaques.random().id
+    return M.skip(state, state.blind, selected_plaque)
 end
 
 return M

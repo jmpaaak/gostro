@@ -47,8 +47,8 @@ function M.deal_kinds(state, n)
 end
 
 --- Compatibility delegate; skip rules and progression are owned by game.blind_flow.
-function M.skip_blind(state, tag_id)
-    return require("game.blind_flow").skip_current(state, tag_id)
+function M.skip_blind(state, plaque_id)
+    return require("game.blind_flow").skip_current(state, plaque_id)
 end
 
 function M.buy_gwang(state, card)
