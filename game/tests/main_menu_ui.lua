@@ -2,14 +2,19 @@ local main_menu = require("game.ui.main_menu")
 
 local M = {}
 
+local function center(rect)
+    return rect.x + rect.w / 2, rect.y + rect.h / 2
+end
+
 function M.run()
     local menu = main_menu.new()
     assert(menu.mode == "landing", "menu starts on the landing mode")
+    assert(menu.selected_tab == "new_game", "new run is the initially selected tab")
 
     local landing = main_menu.buttons(menu)
     assert(#landing == 1 and landing[1].id == "play", "landing exposes one primary play action")
     assert(landing[1].label == "게임 시작", "landing action uses the Gostro Korean label")
-    assert(landing[1].w >= 120 and landing[1].h >= 36, "primary action is a large touch target")
+    assert(landing[1].w >= 120 and landing[1].h >= 44, "primary action is a large touch target")
 
     local play = landing[1]
     assert(main_menu.hit_test(menu, play.x, play.y) == "play", "button includes its top-left edge")
@@ -19,32 +24,55 @@ function M.run()
         "button excludes coordinates beyond its bounds")
     assert(main_menu.hit_test(menu, 0, 0) == nil, "background is not interactive")
 
-    assert(main_menu.activate(menu, play.x + 1, play.y + 1) == "open_play_menu",
-        "primary action explicitly opens the play submenu")
-    assert(menu.mode == "play_menu", "play action changes UI state immediately")
+    local x, y = center(play)
+    assert(main_menu.activate(menu, x, y) == "open_play_menu", "play opens the tab panel")
+    assert(menu.mode == "play_menu", "play changes UI state immediately")
 
-    local submenu = main_menu.buttons(menu)
-    assert(#submenu == 3, "play submenu exposes exactly three observed actions")
-    assert(submenu[1].id == "new_game" and submenu[1].label == "새 게임", "new game is first")
-    assert(submenu[2].id == "continue" and submenu[2].label == "계속하기", "continue is second")
-    assert(submenu[3].id == "challenges" and submenu[3].label == "도전", "challenges is third")
-    for i, button in ipairs(submenu) do
-        assert(button.w >= 120 and button.h >= 28, "submenu action " .. i .. " is touch-sized")
+    local tabs = main_menu.tabs(menu)
+    assert(#tabs == 3, "play panel exposes exactly three observed tabs")
+    assert(tabs[1].id == "new_game" and tabs[1].label == "새 게임", "new run tab is first")
+    assert(tabs[2].id == "continue" and tabs[2].label == "계속하기", "continue tab is second")
+    assert(tabs[3].id == "challenges" and tabs[3].label == "도전", "challenges tab is third")
+    for i, tab in ipairs(tabs) do
+        assert(tab.w >= 80 and tab.h >= 44, "tab " .. i .. " is a large touch target")
         if i > 1 then
-            assert(submenu[i - 1].y + submenu[i - 1].h <= button.y, "submenu actions do not overlap")
+            assert(tabs[i - 1].x + tabs[i - 1].w <= tab.x, "tabs are horizontally ordered and non-overlapping")
+            assert(tabs[i - 1].y == tab.y, "tabs share one horizontal row")
         end
-        assert(main_menu.hit_test(menu, button.x + button.w / 2, button.y + button.h / 2) == button.id,
-            "submenu action " .. button.id .. " is hit-testable")
+        x, y = center(tab)
+        assert(main_menu.hit_test(menu, x, y) == tab.id, "tab " .. tab.id .. " is hit-testable")
+        assert(tab.selected == (tab.id == menu.selected_tab), "only selected tab exposes selected state")
     end
 
-    assert(main_menu.activate(menu, submenu[2].x + 1, submenu[2].y + 1) == "continue_unavailable",
-        "continue returns an explicit non-transition action")
-    assert(menu.mode == "play_menu" and menu.notice ~= nil, "continue remains in the submenu with feedback")
-    assert(main_menu.activate(menu, submenu[3].x + 1, submenu[3].y + 1) == "challenges_unavailable",
-        "challenges returns an explicit non-transition action")
-    assert(menu.mode == "play_menu" and menu.notice ~= nil, "challenges remains in the submenu with feedback")
-    assert(main_menu.activate(menu, submenu[1].x + 1, submenu[1].y + 1) == "new_game",
-        "new game returns its routing action")
+    local indicator = main_menu.selected_indicator(menu)
+    assert(indicator.tab_id == "new_game", "selection indicator identifies the selected tab")
+    assert(indicator.y + indicator.h <= tabs[1].y, "selection indicator is above the active tab")
+    assert(indicator.x >= tabs[1].x and indicator.x + indicator.w <= tabs[1].x + tabs[1].w,
+        "selection indicator is contained by the active tab width")
+
+    x, y = center(tabs[2])
+    assert(main_menu.activate(menu, x, y) == "select_continue", "continue tap returns a semantic tab action")
+    assert(menu.mode == "play_menu" and menu.selected_tab == "continue", "continue tap switches tabs in place")
+    indicator = main_menu.selected_indicator(menu)
+    assert(indicator.tab_id == "continue", "indicator follows a tab switch")
+
+    x, y = center(tabs[3])
+    assert(main_menu.activate(menu, x, y) == "select_challenges", "challenge tap returns a semantic tab action")
+    assert(menu.selected_tab == "challenges", "challenge tap switches tabs")
+
+    x, y = center(tabs[1])
+    assert(main_menu.activate(menu, x, y) == "select_new_game", "new run tab does not route to gameplay")
+    assert(menu.selected_tab == "new_game", "new run tap only selects its panel")
+
+    local back = main_menu.back_button(menu)
+    assert(back.id == "back" and back.label == "뒤로", "panel exposes the observed Korean back action")
+    assert(back.w >= 200 and back.h >= 36, "back is a wide bottom touch target")
+    assert(back.y > tabs[1].y + tabs[1].h, "back sits below tab content")
+    x, y = center(back)
+    assert(main_menu.hit_test(menu, x, y) == "back", "back button is hit-testable")
+    assert(main_menu.activate(menu, x, y) == "back_to_landing", "back returns a semantic action")
+    assert(menu.mode == "landing", "back returns to landing")
+    assert(#main_menu.buttons(menu) == 1, "landing is restored after back")
 
     print("  main_menu_ui: OK")
 end
