@@ -2,6 +2,8 @@
 -- Single hwatu card widget: data + optional rendering.
 -- Play cards only (no gwang — gwang is a joker slot).
 
+local effects = require("game.ui.card_effects")
+
 local M = {}
 
 M.WIDTH  = 24
@@ -104,6 +106,11 @@ function M.draw(c)
     local tw = font:getWidth(sym)
     local th = font:getHeight()
     love.graphics.print(sym, c.x + (M.WIDTH - tw) / 2, dy + (M.HEIGHT - th) / 2)
+
+    -- hologram / foil / polychrome overlay
+    if c.effect then
+        effects.draw_overlay(c.effect, c.x, dy, M.WIDTH, M.HEIGHT, c.effect_t or 0)
+    end
 end
 
 return M

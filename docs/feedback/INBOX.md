@@ -8,13 +8,6 @@
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
-(13) **카드 홀로그램/포일/폴리크롬 이펙트 시스템** (msg `1546681659951153252`)
-  - 담당: `game/ui/card_effects.lua` (새 모듈)
-  - 발라트로처럼 카드에 특수 시각 이펙트 부여: 홀로그램(무지개빛 반투명), 포일(반짝임 오버레이), 폴리크롬(색상 시프트)
-  - 각 이펙트가 칩/배수에 보너스 (홀로 +10 mult, 포일 +50 chips, 폴리 ×1.5 mult)
-  - `game/hwatu.lua` 평가에 이펙트 보너스 반영
-  - 테스트: `game/tests/card_effects.lua`
-
 (14) **태그 시스템 (블라인드 스킵 보상)** (msg `1546681659951153252`)
   - 담당: `game/tags.lua` (새 모듈)
   - 발라트로 태그: 스몰/빅 블라인드 스킵 시 태그 보상 (무료 리롤, 추가 돈, 메가 태그=다음 조커 복제 등)
@@ -102,6 +95,11 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+
+  (13) **카드 홀로그램/포일/폴리크롬 이펙트 시스템** (msg `1546681659951153252`)
+    - `game/ui/card_effects.lua`: 홀로그램(무지개빛 반투명, +10 mult), 포일(반짝임, +50 chips), 폴리크롬(색상 시프트, ×1.5 mult). `apply_bonuses`가 핸드 합산.
+    - `game/hwatu.lua` evaluate에 이펙트 보너스 반영. `game/ui/card.lua` overlay 드로우.
+    - `game/tests/card_effects.lua` GREEN. `make verify` GREEN.
 
   (12) **점수 연출 모듈** (msg `1546674255045992608`)
     - `game/ui/score_anim.lua`: 발라트로 스타일 점수 연출. 페이즈 기반 (cards→mult→total→done). 카드별 칩 팝업, 배수 적용, 최종 합산 카운트업 (ease-out), 광 조커 트리거 시 슬롯 글로우 이펙트 (종류별 색상: chips=파랑, mult=빨강, yaku_mult=금색).

@@ -1,3 +1,5 @@
+local effects = require("game.ui.card_effects")
+
 local M = {}
 
 M.GWANG_BASE = 1
@@ -24,6 +26,7 @@ function M.card(kind, extra)
     if kind == "gwang" then
         error("gwang is a joker slot, not a play card")
     end
+    local effect = nil
     if extra ~= nil then
         if type(extra) ~= "table" then
             error("card extra must be a table")
@@ -31,11 +34,17 @@ function M.card(kind, extra)
         if extra.month ~= nil or extra.month_name ~= nil then
             error("play cards have no month numbers or names")
         end
+        if extra.effect ~= nil then
+            if not effects.is_known(extra.effect) then
+                error("unknown card effect: " .. tostring(extra.effect))
+            end
+            effect = extra.effect
+        end
     end
     if not PLAY_KINDS[kind] then
         error("unknown play card kind: " .. tostring(kind))
     end
-    return { kind = kind }
+    return { kind = kind, effect = effect }
 end
 
 local function chips_for(hand)
@@ -81,11 +90,16 @@ function M.evaluate(hand)
     if counts.pi >= 5 then
         yaku[#yaku + 1] = "pi"
     end
+    local extras
+    chips, mult, extras = effects.apply_bonuses(hand, chips, mult)
     return {
         yaku = yaku,
         chips = chips,
         mult = mult,
         score = chips * mult,
+        effect_chips = extras.effect_chips,
+        effect_mult_add = extras.effect_mult_add,
+        effect_mult_mul = extras.effect_mult_mul,
     }
 end
 
