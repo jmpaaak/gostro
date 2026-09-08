@@ -1,23 +1,13 @@
 # STATUS
-## 2026-09-08 — 광 조커 money 트리거 (`game/gwang_catalog.lua`)
+## 2026-09-08 — 광 조커 blind 트리거 (`game/gwang_catalog.lua`)
 
-- `game/data/gwang_jokers.json`: `rich_mult` (`trigger=money`, `money_min=20`, `effect.mult=4`) / `loaded_chips` (`money_min=50`, `effect.chips=80`).
-- `game/gwang_catalog.lua` `apply(ctx)`: previous triggers unchanged; `money` fires when held cash (`ctx.money` or `state.money`) ≥ `money_min` (소지금 $20 이상이면 +배수). Missing/under-min money is a no-op.
+- `game/data/gwang_jokers.json`: `boss_x2` (`trigger=blind`, `blind_need=boss`, `effect.mult_mul=2`) / `boss_chips` (`blind_need=boss`, `effect.chips=40`).
+- `game/gwang_catalog.lua` `apply(ctx)`: previous triggers unchanged; `blind` fires when current blind (`ctx.blind` or `state.blind`) == `blind_need` (보스 블라인드에서 ×2). Small/big/missing blind is a no-op.
 - `game/hwatu.lua` already passes `state` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
-- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with $20 / skip $19, hwatu evaluate +4 on $20 / skip $19).
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply on boss / skip small, hwatu evaluate ×2 on boss / skip small+big).
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (21) money slice only. Ante/self-destruct/compound and 30-joker catalog are not in this slice.
-- Next slice: INBOX (21) remaining — (f) 라운드/앤티 조건 (보스 블라인드에서 ×2) on `game/gwang_catalog.lua`.
-
-## 2026-09-08 — 광 조커 deck_size 트리거 (`game/gwang_catalog.lua`)
-
-- `game/data/gwang_jokers.json`: `thin_deck_x3` (`trigger=deck_size`, `deck_max=30`, `effect.mult_mul=3`) / `tiny_deck_chips` (`deck_max=20`, `effect.chips=50`).
-- `game/gwang_catalog.lua` `apply(ctx)`: `always` / `contains_kind` / `yaku` unchanged; `deck_size` fires when play-card count (`ctx.deck_size` or `#state.deck.cards`) ≤ `deck_max` (덱 카드 수 ≤30이면 ×3). Missing/over-max deck is a no-op.
-- `game/hwatu.lua` already passes `state` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
-- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with deck=30 / skip deck=31, hwatu evaluate ×3 on 30-card deck / skip starter 40).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (21) deck-size slice only. Economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
-- Next slice: INBOX (21) remaining — (e) 경제 트리거 (소지금 $20 이상이면 +배수) on `game/gwang_catalog.lua`.
+- INBOX (21) blind slice only. Self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (g) 셀프 파괴형 (1회 ×20 후 소멸) on `game/gwang_catalog.lua`.
 
 ## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
 

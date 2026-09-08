@@ -103,6 +103,24 @@
       "money_min": 50,
       "effect": { "chips": 80 },
       "desc": { "ko": "소지금 $50 이상이면 +80 칩", "en": "+80 chips if money ≥ $50" }
+    },
+    {
+      "id": "boss_x2",
+      "name": { "ko": "보스 배수", "en": "Boss Mult" },
+      "rarity": "rare",
+      "trigger": "blind",
+      "blind_need": "boss",
+      "effect": { "mult_mul": 2 },
+      "desc": { "ko": "보스 블라인드에서 ×2 배수", "en": "×2 mult on boss blinds" }
+    },
+    {
+      "id": "boss_chips",
+      "name": { "ko": "보스 칩", "en": "Boss Chips" },
+      "rarity": "uncommon",
+      "trigger": "blind",
+      "blind_need": "boss",
+      "effect": { "chips": 40 },
+      "desc": { "ko": "보스 블라인드에서 +40 칩", "en": "+40 chips on boss blinds" }
     }
   ]
 }

@@ -1,5 +1,5 @@
--- Tests for always + contains-kind + yaku + deck-size + money gwang jokers
--- (INBOX 21a/21b/21c/21d/21e). Catalog JSON + apply loop in hwatu.evaluate.
+-- Tests for always + contains-kind + yaku + deck-size + money + blind gwang jokers
+-- (INBOX 21a/21b/21c/21d/21e/21f). Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
 local hwatu = require("game.hwatu")
@@ -41,6 +41,10 @@ function M.run()
     M.test_apply_rich_mult_when_money_ge_20()
     M.test_apply_rich_mult_skips_when_money_under_20()
     M.test_hwatu_evaluate_rich_mult()
+    M.test_catalog_loads_blind()
+    M.test_apply_boss_x2_when_blind_is_boss()
+    M.test_apply_boss_x2_skips_when_blind_not_boss()
+    M.test_hwatu_evaluate_boss_x2()
     print("  gwang_catalog: OK")
 end
 
@@ -56,7 +60,8 @@ function M.test_catalog_loads_always_jokers()
                 or j.trigger == "contains_kind"
                 or j.trigger == "yaku"
                 or j.trigger == "deck_size"
-                or j.trigger == "money",
+                or j.trigger == "money"
+                or j.trigger == "blind",
             "known trigger"
         )
         assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
@@ -392,6 +397,68 @@ function M.test_hwatu_evaluate_rich_mult()
     assert(with.score == 32 * 6)
     assert(with.gwang_triggers and #with.gwang_triggers == 1)
     assert(with.gwang_triggers[1].id == "rich_mult")
+end
+
+function M.test_catalog_loads_blind()
+    local j = catalog.get("boss_x2")
+    assert(j, "boss_x2 joker in catalog")
+    assert(j.trigger == "blind")
+    assert(j.blind_need == "boss")
+    assert((j.effect.mult_mul or 0) == 2)
+end
+
+function M.test_apply_boss_x2_when_blind_is_boss()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        blind = "boss",
+        state = { gwang = { { kind = "gwang", identity = "boss_x2" } } },
+    })
+    assert(chips == 32, "blind trigger does not add chips")
+    assert(mult == 4, "boss blind ×2, got " .. tostring(mult))
+    assert(#triggered == 1)
+    assert(triggered[1].id == "boss_x2")
+end
+
+function M.test_apply_boss_x2_skips_when_blind_not_boss()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        blind = "small",
+        state = { gwang = { { identity = "boss_x2" } } },
+    })
+    assert(chips == 32)
+    assert(mult == 2, "small blind → no ×2, got " .. tostring(mult))
+    assert(#triggered == 0)
+end
+
+function M.test_hwatu_evaluate_boss_x2()
+    local hand = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "boss_x2" } }
+
+    state.blind = "small"
+    local base = hwatu.evaluate(hand)
+    assert(base.chips == 32)
+    assert(base.mult == 2)
+    local skipped = hwatu.evaluate(hand, state)
+    assert(skipped.chips == 32)
+    assert(skipped.mult == 2, "small blind does not ×2, got " .. tostring(skipped.mult))
+    assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
+
+    state.blind = "big"
+    local skipped_big = hwatu.evaluate(hand, state)
+    assert(skipped_big.chips == 32)
+    assert(skipped_big.mult == 2, "big blind does not ×2, got " .. tostring(skipped_big.mult))
+    assert(not skipped_big.gwang_triggers or #skipped_big.gwang_triggers == 0)
+
+    state.blind = "boss"
+    local with = hwatu.evaluate(hand, state)
+    assert(with.chips == 32)
+    assert(with.mult == 4, "boss blind ×2, got " .. tostring(with.mult))
+    assert(with.score == 32 * 4)
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "boss_x2")
 end
 
 return M

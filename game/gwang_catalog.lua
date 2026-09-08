@@ -2,7 +2,8 @@
 -- Triggers: always (+chips, +mult), contains_kind (×mult if kind in hand),
 -- yaku (+chips when scored yaku matches yaku_need),
 -- deck_size (×mult when play-card deck count ≤ deck_max),
--- money (+mult when held money ≥ money_min).
+-- money (+mult when held money ≥ money_min),
+-- blind (×mult when current blind matches blind_need, e.g. boss).
 
 local M = {}
 
@@ -226,6 +227,17 @@ local function money_held(ctx)
     return nil
 end
 
+local function current_blind(ctx)
+    if type(ctx.blind) == "string" then
+        return ctx.blind
+    end
+    local state = ctx.state
+    if type(state) == "table" and type(state.blind) == "string" then
+        return state.blind
+    end
+    return nil
+end
+
 local function should_trigger(def, ctx)
     if def.trigger == "always" then
         return true
@@ -246,6 +258,11 @@ local function should_trigger(def, ctx)
         local min = def.money_min
         return type(n) == "number" and type(min) == "number" and n >= min
     end
+    if def.trigger == "blind" then
+        local b = current_blind(ctx)
+        local need = def.blind_need
+        return type(b) == "string" and type(need) == "string" and b == need
+    end
     return false
 end
 
@@ -264,12 +281,13 @@ local function apply_effect(chips, mult, effect)
 end
 
 --- Apply equipped gwang to a scored hand.
--- ctx = { chips, mult, yaku, state, hand, deck_size, money }
+-- ctx = { chips, mult, yaku, state, hand, deck_size, money, blind }
 -- always: +chips / +mult every hand.
 -- contains_kind: fire when ctx.hand includes def.kind_need (e.g. hongdan → ×2).
 -- yaku: fire when ctx.yaku includes def.yaku_need (e.g. godori → +100 chips).
 -- deck_size: fire when play-card count (ctx.deck_size or state.deck) ≤ deck_max.
 -- money: fire when held money (ctx.money or state.money) ≥ money_min.
+-- blind: fire when current blind (ctx.blind or state.blind) == blind_need (e.g. boss → ×2).
 function M.apply(ctx)
     local chips = ctx.chips or 0
     local mult = ctx.mult or 1

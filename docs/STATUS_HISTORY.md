@@ -224,3 +224,25 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (21) always-trigger slice only. Kind/yaku/economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
 - Next slice: INBOX (21) remaining — (b) 특정 종류 포함 시 트리거 (홍단 있으면 ×2) on `game/gwang_catalog.lua`.
+
+## Archived from STATUS.md (2026-09-08 11:44)
+
+## 2026-09-08 — 광 조커 money 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `rich_mult` (`trigger=money`, `money_min=20`, `effect.mult=4`) / `loaded_chips` (`money_min=50`, `effect.chips=80`).
+- `game/gwang_catalog.lua` `apply(ctx)`: previous triggers unchanged; `money` fires when held cash (`ctx.money` or `state.money`) ≥ `money_min` (소지금 $20 이상이면 +배수). Missing/under-min money is a no-op.
+- `game/hwatu.lua` already passes `state` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with $20 / skip $19, hwatu evaluate +4 on $20 / skip $19).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) money slice only. Ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (f) 라운드/앤티 조건 (보스 블라인드에서 ×2) on `game/gwang_catalog.lua`.
+
+## 2026-09-08 — 광 조커 deck_size 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `thin_deck_x3` (`trigger=deck_size`, `deck_max=30`, `effect.mult_mul=3`) / `tiny_deck_chips` (`deck_max=20`, `effect.chips=50`).
+- `game/gwang_catalog.lua` `apply(ctx)`: `always` / `contains_kind` / `yaku` unchanged; `deck_size` fires when play-card count (`ctx.deck_size` or `#state.deck.cards`) ≤ `deck_max` (덱 카드 수 ≤30이면 ×3). Missing/over-max deck is a no-op.
+- `game/hwatu.lua` already passes `state` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with deck=30 / skip deck=31, hwatu evaluate ×3 on 30-card deck / skip starter 40).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) deck-size slice only. Economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (e) 경제 트리거 (소지금 $20 이상이면 +배수) on `game/gwang_catalog.lua`.
