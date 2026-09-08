@@ -308,6 +308,10 @@ function M.test_score_owns_hand_result_transfer()
     local state = run.new("blind-flow-score")
     state.round_score = 25
     state.hands_left = 4
+    local legacy_add_score = run.add_score
+    run.add_score = function()
+        error("blind_flow.score must not delegate to run.add_score")
+    end
 
     assert(blind_flow.score(state, 120, 3) == 145,
         "score returns the accumulated round score")
@@ -319,6 +323,7 @@ function M.test_score_owns_hand_result_transfer()
         "score rejects results outside active play")
     assert(state.round_score == 145 and state.hands_left == 3,
         "a rejected score result does not mutate run state")
+    run.add_score = legacy_add_score
 end
 
 function M.run()

@@ -140,7 +140,10 @@ end
 
 --- Apply one scored hand and mirror the round engine's remaining hands.
 function M.score(state, amount, hands_left)
-    run.add_score(state, amount)
+    if state.phase ~= "play" then
+        error("score only during play")
+    end
+    state.round_score = state.round_score + amount
     state.hands_left = hands_left
     return state.round_score
 end

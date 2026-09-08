@@ -83,11 +83,9 @@ function M.lose(state)
     return require("game.blind_flow").lose(state, 0)
 end
 
+--- Compatibility delegate; scored-hand state is owned by game.blind_flow.
 function M.add_score(state, amount)
-    if state.phase ~= "play" then
-        error("score only during play")
-    end
-    state.round_score = state.round_score + amount
+    return require("game.blind_flow").score(state, amount, state.hands_left)
 end
 
 function M.clear_blind(state)

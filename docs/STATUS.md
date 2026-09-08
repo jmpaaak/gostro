@@ -1,13 +1,4 @@
 # STATUS
-## 2026-09-08 — 타로 소모품 인벤토리 씬 배선
-
-- `game/scenes/play.lua`가 `game/ui/consumables.lua`에 그리기와 입력을 위임해 보유 타로 슬롯을 모든 런 화면에 표시하고, 점유 슬롯 터치로 선택/선택 해제를 수행한다.
-- 열린 아르카나 팩은 계속 최우선 모달 입력을 가지며, 시드 재적용 시 오래된 소모품 선택도 초기화한다.
-- `game/ui/consumables.lua`의 `route_press`가 공유 hit bounds와 선택 규칙을 캡슐화해 play 씬은 require/위임만 유지한다. `play.lua`는 339줄로 줄었다.
-- 엔진 호스트 테스트에서 씬 배선 부재 RED를 관찰한 뒤 `game/tests/consumables_ui.lua`의 실제 play-scene 점유 슬롯 선택/토글 회귀 테스트를 GREEN으로 전환했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `consumables_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (162 files).
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: 선택된 타로의 변환/파괴/효과 부여/복제별 옵션과 대상 패를 고르는 독립 `game/ui/tarot_target.lua` 순수 상태/hit-test 흐름을 추가하되 아직 `play.lua`에서 실행하지 않는다.
 
 ## 2026-09-08 — 타로 옵션/대상 선택 UI
 
@@ -130,5 +121,13 @@
 - TDD RED: monkey-patched legacy `run.lose` 호출 실패를 확인했다. 구현 후 독립 패배 전환·히스토리 기록, 남은 손/클리어 점수 비변이 거부와 기존 `run.lose` 경로가 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 라운드 엔진 결과의 점수·남은 손 반영을 `blind_flow.score`가 직접 소유하게 하고 `game.run.add_score`를 호환 delegate로 축소한다.
+
+## 2026-09-08 — hand 득점 상태 전환 소유권 분리
+
+- `game/blind_flow.score`가 play phase 검증, 점수 누적, round engine의 남은 hand 이관을 직접 소유하고 `game.run.add_score`는 기존 호출자를 위한 호환 delegate로 축소됐다.
+- TDD RED: monkey-patched legacy `run.add_score` 호출 실패를 확인했다. 구현 후 독립 점수 전환, 비-play phase 비변이 거부와 기존 `run.add_score` 호환 경로가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
+- INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: play-card 종류와 cards RNG 기반 배분을 독립 `game/card_deal.lua`로 옮기고 `game.run.deal_kinds`는 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
