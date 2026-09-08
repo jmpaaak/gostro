@@ -1,6 +1,6 @@
 -- game/talismans.lua
 -- Korean-themed talisman consumables: convert / destroy / enhance / copy play cards.
--- Slots max 2, expanded by crystal_ball voucher. Headless-safe.
+-- Slots max 2, expanded by the 부적 주머니 인장. Headless-safe.
 
 local hwatu = require("game.hwatu")
 local effects = require("game.ui.card_effects")
@@ -72,8 +72,9 @@ end
 
 function M.max_slots(state)
     local extra = 0
-    if state.vouchers then
-        extra = state.vouchers.consumable_slots or 0
+    local upgrades = state.seals or state.vouchers
+    if upgrades then
+        extra = upgrades.consumable_slots or 0
     end
     return M.BASE_SLOTS + extra
 end

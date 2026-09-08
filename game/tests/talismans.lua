@@ -82,6 +82,9 @@ function M.test_charm_pouch_expands_slots()
     local state = run.new()
     seals.apply(state, "charm_pouch")
     assert(talismans.max_slots(state) == 3)
+    state.vouchers = nil
+    assert(talismans.max_slots(state) == 3,
+        "canonical seal state expands slots without the legacy alias")
 end
 
 function M.test_gain_from_shop()
