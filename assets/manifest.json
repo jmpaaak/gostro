@@ -1199,8 +1199,59 @@
     {
       "id": "boss-blind.plant",
       "category": "boss-blind",
-      "status": "pending",
-      "name": "\ucd08\ubaa9"
+      "status": "runtime",
+      "name": "\ucd08\ubaa9",
+      "master": {
+        "source": "assets/masters/boss-blind/plant-v1.svg",
+        "sourceSha256": "a653eeb792e425d64efe841d1351bde652a43dbbc8659cd5ffabcc779c47ad7b",
+        "path": "assets/masters/boss-blind/plant-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "3150245b5fd35dbebe648a1a003c7481dcf2aa415cdf8075017384f83be43815",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer, dancheong vine borders, layered leaves, blossom, and branching root motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/boss-blind/plant-v1.png",
+        "width": 50,
+        "height": 70,
+        "alphaBounds": [
+          2,
+          0,
+          46,
+          69
+        ],
+        "sha256": "26b926fe7e6ea0272f3ba2c631d4203435c26cc259b6c61e88757b02fa718689",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 50,
+        "targetHeight": 70,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/boss-blind/plant-v1.report.json",
+        "reportSha256": "681d586ab13f18eafb7d04ac641fbcb41c9bf4d3c50215316623911da614058c"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      },
+      "loveQa": {
+        "renderer": "LOVE 11.5",
+        "canvas": [
+          320,
+          180
+        ],
+        "capture": "assets/runtime/ui/blind-plant-card-love-v1.png",
+        "captureSha256": "a9b6f7a8b573f928a639fb6dcd5193f7fabd5aa0ca9638abdcbc2225d14c54a0",
+        "filter": "nearest"
+      }
     },
     {
       "id": "pack.arcana_pack",
