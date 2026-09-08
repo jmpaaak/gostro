@@ -483,3 +483,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Bundle verification now requires both the font and license.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (24) complete. Next slice: IDLE (no pending feedback items).
+
+## Archived from STATUS.md (2026-09-08 15:04)
+
+## 2026-09-08 — 마우스·터치 입력 배선 복구 (`game/scene_stack.lua`)
+
+- `love.mousepressed` and `love.touchpressed` now route through the scene stack to the current scene's `mousepressed` handler.
+- Window-space presses are converted through `viewport.toGame`; presses in letterbox bars are rejected before scene delivery.
+- Added `game/tests/input_routing.lua` covering coordinate conversion, mouse/touch metadata delivery, letterbox rejection, and scenes without a handler.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (25) complete. Next slice: IDLE (no pending feedback items).
