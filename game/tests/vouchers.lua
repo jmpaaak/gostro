@@ -31,6 +31,8 @@ function M.run()
     M.test_apply_once()
     M.test_shop_stocks_one()
     M.test_buy_in_shop()
+    M.test_buy_contract_owned_by_vouchers()
+    M.test_run_buy_is_compatibility_delegate()
     M.test_cannot_buy_outside_shop()
     M.test_one_per_shop()
     M.test_leave_shop_clears_slot()
@@ -137,6 +139,44 @@ function M.test_buy_in_shop()
     run.buy_voucher(state, id)
     assert(state.vouchers.owned[1] == id)
     assert(state.vouchers.bought_this_shop == true)
+end
+
+function M.test_buy_contract_owned_by_vouchers()
+    local state = enter_shop(run.new())
+    local id = state.vouchers.shop_id
+    local bought = vouchers.buy(state, id)
+    assert(bought == state.vouchers)
+    assert(bought.owned[1] == id)
+    assert(bought.bought_this_shop == true)
+
+    local wrong_phase = run.new()
+    wrong_phase.vouchers.shop_id = "paint_brush"
+    local phase_ok = pcall(vouchers.buy, wrong_phase, "paint_brush")
+    assert(not phase_ok, "voucher purchase requires shop phase")
+
+    local wrong_offer = enter_shop(run.new())
+    local offered = wrong_offer.vouchers.shop_id
+    local other = offered == "paint_brush" and "overstock" or "paint_brush"
+    local offer_ok = pcall(vouchers.buy, wrong_offer, other)
+    assert(not offer_ok, "voucher purchase must match the stocked offer")
+    assert(#wrong_offer.vouchers.owned == 0, "rejected purchase must not apply a voucher")
+
+    local second_ok = pcall(vouchers.buy, state, id)
+    assert(not second_ok, "one voucher purchase is allowed per shop visit")
+end
+
+function M.test_run_buy_is_compatibility_delegate()
+    local original = vouchers.buy
+    local called_state, called_id
+    vouchers.buy = function(state, id)
+        called_state, called_id = state, id
+        return "delegated"
+    end
+    local state = {}
+    local result = run.buy_voucher(state, "paint_brush")
+    vouchers.buy = original
+    assert(result == "delegated")
+    assert(called_state == state and called_id == "paint_brush")
 end
 
 function M.test_cannot_buy_outside_shop()

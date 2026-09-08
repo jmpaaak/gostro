@@ -137,4 +137,24 @@ function M.apply(state, id)
     return v
 end
 
+--- Buy the voucher currently stocked for this shop visit.
+function M.buy(state, id)
+    if state.phase ~= "shop" then
+        error("buy voucher only in the shop")
+    end
+    local v = M.ensure(state)
+    if v.bought_this_shop then
+        error("one voucher per shop")
+    end
+    if not v.shop_id then
+        error("no voucher in shop")
+    end
+    if id ~= v.shop_id then
+        error("buy the offered voucher")
+    end
+    M.apply(state, id)
+    v.bought_this_shop = true
+    return v
+end
+
 return M

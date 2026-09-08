@@ -94,24 +94,9 @@ function M.buy_gwang(state, card)
     return gwang_inventory.buy(state, card)
 end
 
---- Buy the shop's voucher. One purchase per shop visit.
+--- Compatibility delegate; voucher purchase rules are owned by game.vouchers.
 function M.buy_voucher(state, id)
-    if state.phase ~= "shop" then
-        error("buy voucher only in the shop")
-    end
-    local v = vouchers.ensure(state)
-    if v.bought_this_shop then
-        error("one voucher per shop")
-    end
-    if not v.shop_id then
-        error("no voucher in shop")
-    end
-    if id ~= v.shop_id then
-        error("buy the offered voucher")
-    end
-    vouchers.apply(state, id)
-    v.bought_this_shop = true
-    return v
+    return vouchers.buy(state, id)
 end
 
 --- Compatibility delegate; shop progression is owned by game.blind_flow.

@@ -871,3 +871,12 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 ## Archived from STATUS.md (2026-09-08 21:04)
 
 ## 2026-09-08 — 타로 대상 선택·사용 실게임 연결
+
+## Archived from STATUS.md (2026-09-08 21:10)
+
+- `game/tarot_use.lua` 컨트롤러가 보유 타로 선택부터 옵션/대상 모달, `tarots.use` 실행, 성공/취소 정리까지 소유한다. 변환·파괴·강화·복제 규칙은 계속 `game/tarots.lua`에만 있다.
+- 플레이 중 점유 소모품 슬롯을 누르면 대상 모달이 열리고, 열린 동안 포인터 및 플레이/버리기 단축키가 하위 UI로 전달되지 않는다.
+- 완료된 요청은 엔진의 `round.hand`에 적용되고 hand UI를 다시 deal해 변형/삭제/복제 결과와 선택 초기화를 즉시 반영한다. 성공 시 타로가 소비되며 취소 시 보존된다.
+- `game/tests/tarot_use_flow.lua`에서 실제 씬의 옵션 게이팅, 모달 입력 차단, 변환 실행, 인벤토리 소비, hand UI 동기화, 취소 보존을 검증한다. 배선 전 RED를 관찰했고 구현 후 전체 테스트를 GREEN으로 전환했다.
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: 현재 `game/run.lua`가 계속 소유한 블라인드 전환을 `blind_flow`/`run_rules`로 치환해 play scene의 거대 run 의존성을 한 단계 줄인다.

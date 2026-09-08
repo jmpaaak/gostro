@@ -1,11 +1,4 @@
 # STATUS
-- `game/tarot_use.lua` 컨트롤러가 보유 타로 선택부터 옵션/대상 모달, `tarots.use` 실행, 성공/취소 정리까지 소유한다. 변환·파괴·강화·복제 규칙은 계속 `game/tarots.lua`에만 있다.
-- 플레이 중 점유 소모품 슬롯을 누르면 대상 모달이 열리고, 열린 동안 포인터 및 플레이/버리기 단축키가 하위 UI로 전달되지 않는다.
-- 완료된 요청은 엔진의 `round.hand`에 적용되고 hand UI를 다시 deal해 변형/삭제/복제 결과와 선택 초기화를 즉시 반영한다. 성공 시 타로가 소비되며 취소 시 보존된다.
-- `game/tests/tarot_use_flow.lua`에서 실제 씬의 옵션 게이팅, 모달 입력 차단, 변환 실행, 인벤토리 소비, hand UI 동기화, 취소 보존을 검증한다. 배선 전 RED를 관찰했고 구현 후 전체 테스트를 GREEN으로 전환했다.
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: 현재 `game/run.lua`가 계속 소유한 블라인드 전환을 `blind_flow`/`run_rules`로 치환해 play scene의 거대 run 의존성을 한 단계 줄인다.
-
 ## 2026-09-08 — 블라인드 시작 전환 모듈화
 
 - `game/blind_flow.lua`의 `begin`이 현재 블라인드 검증, 라운드 점수 초기화, stake 보정 목표와 버리기 횟수 산출을 하나의 전환 계약으로 소유한다. `view`도 동일한 stake 보정 목표를 노출한다.
@@ -134,5 +127,13 @@
 - TDD RED: 전체 `make test`에서 `game.gwang_inventory` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `gwang_inventory: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (172 files)로 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 상점 바우처 구매의 phase·진열 일치·방문당 1회 검증과 적용을 `game.vouchers` 계약으로 옮기고 `game.run.buy_voucher`를 호환 delegate로 축소한다.
+
+## 2026-09-08 — 상점 바우처 구매 규칙 분리
+
+- `game.vouchers.buy`가 shop phase, 현재 진열 id 일치, 방문당 1회 구매를 검증한 뒤 바우처 적용과 구매 완료 표시를 하나의 계약으로 소유한다. 거부된 잘못된 진열 구매는 보유 목록을 변경하지 않는다.
+- `game.run.buy_voucher`는 기존 호출자를 보존하는 호환 delegate로 축소됐다.
+- TDD RED: 전체 `make test`에서 `game.vouchers.buy` 부재 실패를 확인했다. 구현 후 독립 구매 계약과 monkey-patched delegate 경계 회귀 테스트가 GREEN이다.
+- INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: seed RNG와 기본 run state 조립을 독립 `game/run_state.lua`로 옮기고 `game.run.new`를 호환 delegate로 축소해 `game.run_rules.create`의 거대 run 역의존을 제거한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
