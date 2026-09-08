@@ -101,14 +101,19 @@ function M.test_skip_delegates_progression_and_tag_application_to_run()
     assert(future.blind == "small" and #future.tags.owned == 0)
 end
 
-function M.test_boss_selection_and_target_use_run_api()
+function M.test_boss_selection_and_target_are_owned_by_blind_flow()
     local state = run.new("blind-flow-boss")
     state.blind = "boss"
     state.boss = nil
     state.boss_id = nil
 
-    local selected = blind_flow.select(state, "boss", "wall")
+    local definition = blind_flow.select_boss(state, "wall")
+    assert(definition.id == "wall")
     assert(state.boss_id == "wall")
+    assert(state.boss ~= definition, "run state owns a copy of the catalog definition")
+    assert(state.boss.id == definition.id and state.boss.name == definition.name)
+
+    local selected = blind_flow.select(state, "boss")
     assert(selected.boss.id == "wall")
     assert(selected.target == run.blind_target(state))
     assert(selected.target == 1200, "wall target is resolved by run.blind_target")
@@ -117,6 +122,22 @@ function M.test_boss_selection_and_target_use_run_api()
     assert(view.blinds[3].boss.id == "wall")
     assert(view.blinds[3].target == 1200)
     assert(not view.blinds[3].skippable)
+end
+
+function M.test_enter_owns_boss_setup_and_cleanup()
+    local state = run.new("blind-flow-enter")
+
+    local entered = blind_flow.enter(state, "boss", "hook")
+    assert(state.blind == "boss" and state.boss_id == "hook")
+    assert(state.boss.id == "hook" and entered.kind == "boss")
+
+    blind_flow.enter(state, "small")
+    assert(state.blind == "small" and state.boss_id == nil and state.boss == nil,
+        "entering a non-boss blind clears the previous boss")
+
+    fails(function() blind_flow.enter(state, "unknown") end,
+        "blind entry rejects unknown kinds")
+    assert(state.blind == "small", "rejected entry does not mutate state")
 end
 
 function M.test_completed_progression_is_derived_from_run_state()
@@ -217,7 +238,8 @@ function M.run()
     M.test_skip_eligibility_requires_current_small_or_big_and_tag()
     M.test_selection_only_accepts_current_blind()
     M.test_skip_delegates_progression_and_tag_application_to_run()
-    M.test_boss_selection_and_target_use_run_api()
+    M.test_boss_selection_and_target_are_owned_by_blind_flow()
+    M.test_enter_owns_boss_setup_and_cleanup()
     M.test_completed_progression_is_derived_from_run_state()
     M.test_begin_owns_stake_adjusted_round_transition()
     M.test_clear_and_shop_exit_own_sequential_progression()

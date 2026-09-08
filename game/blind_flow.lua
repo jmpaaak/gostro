@@ -2,10 +2,48 @@ local run = require("game.run")
 local run_rules = require("game.run_rules")
 local tags = require("game.tags")
 local blind_targets = require("game.blind_targets")
+local boss_blinds = require("game.boss_blinds")
 
 local M = {}
 
 local KINDS = { "small", "big", "boss" }
+local VALID_KIND = { small = true, big = true, boss = true }
+
+--- Choose and copy the current ante's boss definition into mutable run state.
+function M.select_boss(state, boss_id)
+    if state.blind ~= "boss" then
+        error("select_boss only on boss blinds")
+    end
+    local stream = state.rng and state.rng.boss
+    local definition = boss_id and boss_blinds.by_id(boss_id) or boss_blinds.random(stream)
+    state.boss_id = definition.id
+    state.boss = {
+        id = definition.id,
+        name = definition.name,
+        effect = definition.effect,
+        kind = definition.kind,
+        amount = definition.amount,
+    }
+    return definition
+end
+
+--- Enter a blind, selecting a boss when needed and clearing stale boss state otherwise.
+function M.enter(state, kind, boss_id)
+    if not VALID_KIND[kind] then error("unknown blind") end
+    state.blind = kind
+    if kind == "boss" then
+        if boss_id or not state.boss then
+            M.select_boss(state, boss_id)
+        end
+    else
+        state.boss_id = nil
+        state.boss = nil
+    end
+    return {
+        kind = kind,
+        boss = state.boss_id and { id = state.boss_id } or nil,
+    }
+end
 
 --- Project the gameplay target for a blind without mutating run progression.
 -- This is the shared target contract for selection UI, transitions, and rounds.
@@ -76,7 +114,7 @@ function M.select(state, kind, boss_id)
         error("cannot jump to " .. kind)
     end
     if kind == "boss" and boss_id then
-        run.select_boss(state, boss_id)
+        M.select_boss(state, boss_id)
     end
     local target = M.target(state, kind)
     return {

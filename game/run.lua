@@ -14,7 +14,6 @@ local PLAY_CARDS = {
 local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
 
 local tags = require("game.tags")
-local boss_blinds = require("game.boss_blinds")
 local vouchers = require("game.vouchers")
 local economy = require("game.economy")
 local rng = require("game.rng")
@@ -77,33 +76,12 @@ function M.blind_target(state)
 end
 
 local function enter_blind(state, blind)
-    state.blind = blind
-    if blind == "boss" then
-        if not state.boss then
-            M.select_boss(state)
-        end
-    else
-        state.boss_id = nil
-        state.boss = nil
-    end
+    return require("game.blind_flow").enter(state, blind)
 end
 
---- Choose the boss blind for this ante. Only valid while on a boss blind.
+--- Compatibility delegate; boss selection is owned by game.blind_flow.
 function M.select_boss(state, boss_id)
-    if state.blind ~= "boss" then
-        error("select_boss only on boss blinds")
-    end
-    local stream = state.rng and state.rng.boss
-    local def = boss_id and boss_blinds.by_id(boss_id) or boss_blinds.random(stream)
-    state.boss_id = def.id
-    state.boss = {
-        id = def.id,
-        name = def.name,
-        effect = def.effect,
-        kind = def.kind,
-        amount = def.amount,
-    }
-    return def
+    return require("game.blind_flow").select_boss(state, boss_id)
 end
 
 --- End the run as a loss and record seed history.

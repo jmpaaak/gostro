@@ -1,14 +1,5 @@
 # STATUS
 
-## 2026-09-08 — 상점 구매 위임 및 바우처 적용 (`game/shop_purchases.lua`)
-
-- Created `game/shop_purchases.lua` to manage shop transaction application and rollback, supporting planets, tarots, gwang, and newly vouchers.
-- `game/scenes/play.lua` delegates `buy_shop_card` entirely to `shop_purchases.buy(scene.shop, idx)`, removing inline purchase logic.
-- Pack purchase is mocked to throw an error for now ("pack purchase not implemented in this slice"), rolling back successfully.
-- Tests in `game/tests/shop_purchases.lua` verify successful voucher purchase and rollback on failure.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
-- Next slice: `play.lua` 및 기존 UI가 여전히 거대 모듈 `run.lua`에 의존하고 있으므로, 이를 새로 작성된 개별 모듈(`blind_flow` 등)로 교체하고 `run.lua`를 해체하는 남은 작업(또는 팩 개봉 기능 추가)을 진행한다.
-
 ## 2026-09-08 — 아르카나 팩 개봉 상태 (`game/packs.lua`)
 
 - Created pure `game/packs.lua`: buying an Arcana Pack reveals three tarot choices from the seeded shop RNG and allows one choice or skip; opening does not silently grant a consumable.
@@ -123,5 +114,14 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_targets: OK`, `blind_flow: OK`, `round_engine: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 보스 선택/복사와 블라인드 진입 상태 전환을 `blind_flow` 계약으로 옮기고 `game.run.select_boss`는 호환 delegate로 축소한다.
+
+## 2026-09-08 — 보스 선택·블라인드 진입 상태 전환 분리
+
+- `game/blind_flow.lua`가 보스 카탈로그 선택, 가변 run state로의 정의 복사, boss 진입 시 선택, non-boss 진입 시 오래된 보스 정리를 직접 소유한다.
+- `game.run.select_boss`와 내부 블라인드 진입 함수는 기존 호출자를 보존하는 호환 delegate로 축소되어 `game.run`은 더 이상 `game.boss_blinds`를 직접 의존하지 않는다.
+- TDD RED: `blind_flow.select_boss` 부재 실패를 확인했다. 구현 후 명시적 보스 선택·복사, 진입/정리, 잘못된 blind 비변이 거부와 기존 `run` 호환 경로가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `boss_blinds: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: small/big 블라인드 건너뛰기의 검증·태그 적용·다음 블라인드 진입을 `blind_flow`로 옮기고 `game.run.skip_blind`를 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
