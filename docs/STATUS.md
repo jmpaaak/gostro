@@ -1,13 +1,4 @@
 # STATUS
-
-## 2026-09-08 — 엔진 모듈 분리 및 테스트 통합 완료
-
-- 이전 사이클에서 작성된 `round_engine.lua`, `run_rules.lua`, `scoring_pipeline.lua`의 독립 실행 테스트를 완료했다.
-- 미완성이었던 `game/blind_flow.lua`의 `view`, `select`, `skip` 구현을 보완하여 스몰/빅/보스 순차 제한 및 태그 연동 스킵 로직을 확립했다.
-- 새롭게 분리된 모든 엔진 모듈들의 테스트(`blind_flow`, `round_engine`, `run_rules`, `scoring_pipeline`, `shop_engine`)를 `game/self_test.lua`에 통합하고 GREEN을 확인했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
-- Next slice: `play.lua` 및 기존 UI가 여전히 거대 모듈 `run.lua`에 의존하고 있으므로, 이를 새로 작성된 개별 모듈(`blind_flow` 등)로 안전하게 교체하고 `run.lua`를 해체한다.
-
 ## 2026-09-08 — 유한 덱 라운드·득점 파이프라인 실게임 연결
 
 - `game/scenes/play.lua`가 New Run 선택을 `run_rules`로 적용하고, 블라인드 진입 시 40장/32장 시작 패의 유한 덱을 `round_engine`으로 생성한다.

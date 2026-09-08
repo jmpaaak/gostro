@@ -753,3 +753,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - WDA 실행은 실기기에서 Developer App 인증서가 신뢰되지 않아 CoreDevice 10002로 차단됐다. PNG/page source와 추가 UI 관찰은 아직 없다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
 - Next slice: 실기기 설정에서 개발자 인증서를 신뢰한 뒤 WDA 세션을 열고 앱 시작 화면 PNG와 page source를 같은 `00-launch` 증거 묶음으로 저장한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).
+
+## Archived from STATUS.md (2026-09-08 19:49)
+
+## 2026-09-08 — 엔진 모듈 분리 및 테스트 통합 완료
+
+- 이전 사이클에서 작성된 `round_engine.lua`, `run_rules.lua`, `scoring_pipeline.lua`의 독립 실행 테스트를 완료했다.
+- 미완성이었던 `game/blind_flow.lua`의 `view`, `select`, `skip` 구현을 보완하여 스몰/빅/보스 순차 제한 및 태그 연동 스킵 로직을 확립했다.
+- 새롭게 분리된 모든 엔진 모듈들의 테스트(`blind_flow`, `round_engine`, `run_rules`, `scoring_pipeline`, `shop_engine`)를 `game/self_test.lua`에 통합하고 GREEN을 확인했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
+- Next slice: `play.lua` 및 기존 UI가 여전히 거대 모듈 `run.lua`에 의존하고 있으므로, 이를 새로 작성된 개별 모듈(`blind_flow` 등)로 안전하게 교체하고 `run.lua`를 해체한다.
