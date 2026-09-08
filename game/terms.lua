@@ -34,6 +34,19 @@ M.aliases = {
     ante = "go",
 }
 
+-- Compatibility projection for callers introduced during the migration.
+M.domain = {
+    planet = M.labels.wish_card,
+    tarot = M.labels.talisman,
+    tag = M.labels.plaque,
+    voucher = M.labels.seal,
+    arcana_pack = M.labels.talisman_bundle,
+    blind = M.labels.round,
+    small_blind = M.labels.opening,
+    big_blind = M.labels.main,
+    boss_blind = M.labels.final,
+}
+
 local ROUND_NAMES = {
     ko = {
         small = M.labels.opening,
@@ -69,6 +82,14 @@ function M.go_label(go, locale)
         return "Go " .. tostring(go)
     end
     return tostring(go) .. M.labels.go
+end
+
+-- Legacy migration API retained for main-branch callers.
+M.ante = M.go_label
+
+function M.blind_name(kind)
+    local name = M.round_name(kind)
+    return name == kind and M.labels.round or name
 end
 
 return M

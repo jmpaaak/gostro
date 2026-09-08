@@ -19,6 +19,10 @@
 
 2026-09-08에 통합 에셋 스튜디오 `http://127.0.0.1:4176/index.html`이 사용하는 실제 요청을 확인했다. `POST /api/pixel-perfect`의 JSON body는 `image: {width, height, data}` RGBA byte 배열과 `targetWidth`, `targetHeight`, `pixelBlock`, `backgroundTolerance`, `paletteLimit`을 받는다. 성공 응답의 `image` RGBA와 `report.valid`, `report.checks`를 모두 확인한 뒤에만 runtime PNG를 기록한다. `tools/asset_pipeline/pixel_perfect.py`가 이 계약을 호출하며 임의 resize 대체 경로는 제공하지 않는다.
 
+## 플레이 패 묶음 승인 게이트
+
+플레이 패는 한 장씩 승인하지 않는다. 5종을 같은 192×288 셀의 고해상도 contact sheet로 설계하고, 실제 `/api/pixel-perfect` 응답으로 만든 24×36 셀 5개를 10px 간격으로 겹친 QA 캡처에서 상단 문양이 모두 구별되어야 한다. `tools/asset_pipeline/card_overlap_qa.py`는 contact sheet 출력만 입력으로 받고 상단 문양 fingerprint 5개가 고유할 때 캡처와 hash 보고서를 만든다. `make card-overlap-qa LOVE=/Users/jm/.local/bin/love`는 별도 QA 앱에서 동일 후보를 nearest로 실제 320×180 Canvas에 렌더링하고 `play-card-overlap-love-v1.png`를 기록한다. 이 자동 검사와 LÖVE 캡처는 사람의 식별성·화투 아트 승인을 대신하지 않으며, 승인이 끝날 때까지 각 manifest 항목은 `candidate`이고 런타임 로더는 이를 거부한다.
+
 ## 출처와 우선순위
 
 - 구매·라이선스 팩에서 목적에 맞는 에셋을 먼저 찾고 재사용한다.

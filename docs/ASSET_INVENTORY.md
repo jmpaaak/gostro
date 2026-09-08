@@ -64,7 +64,7 @@
 
 ## play-card
 
-- [x] `play-card.pi` - play-card.pi
+- [ ] `play-card.pi` - play-card.pi
 - [ ] `play-card.hongdan` - hongdan
 - [ ] `play-card.cheongdan` - cheongdan
 - [ ] `play-card.chodan` - chodan

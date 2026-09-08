@@ -1,0 +1,15 @@
+{
+  "valid": true,
+  "renderer": "LOVE 11.5",
+  "canvas": [320, 180],
+  "source": "assets/runtime/cards/play-card-contact-sheet-v1.png",
+  "capture": "assets/runtime/cards/play-card-overlap-love-v1.png",
+  "captureSha256": "25e0b8939c7748bcf1150be223e737273f803925a857b3da7b3bab59e6358876",
+  "filter": "nearest",
+  "cardOrder": ["pi", "hongdan", "cheongdan", "chodan", "godori"],
+  "cardSize": [24, 36],
+  "firstCardPosition": [128, 72],
+  "topVisiblePixels": 10,
+  "repeatCaptureDeterministic": true,
+  "artApproval": "human-pending"
+}
