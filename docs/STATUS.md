@@ -1,4 +1,13 @@
 # STATUS
+## 2026-09-08 — 런 시작 시드→상점/카드/보스 (`game/run.lua`)
+
+- `run.new(seed)` calls `rng.plan`: stores `state.seed` (A-Z0-9 display) and independent `state.rng.shop` / `cards` / `boss` streams.
+- Empty/nil seed generates 8-char seed. Same seed string (case-insensitive) → same shop voucher, deal kinds, boss sequence; different seed diverges.
+- `clear_blind` stocks shop via shop stream. `deal_kinds` deals hongdan/cheongdan/chodan/godori/pi from cards stream (no months). `select_boss` uses boss stream when id omitted.
+- Tests in `game/tests/rng.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (22) run-start wiring only. Seed display/input UI and run history are not in this slice.
+- Next slice: INBOX (22) remaining — seed display + input UI.
+
 ## 2026-09-08 — 시드 문자열 RNG (`game/rng.lua`)
 
 - `game/rng.lua`: Balatro-style seed-string RNG. Display + input via `new(seed)` (normalize A-Z0-9 uppercase). Empty/nil generates 8-char seed.

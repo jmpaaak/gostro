@@ -29,13 +29,23 @@ local PLAY_CARDS = {
     pi = true,
 }
 
+local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
+
 local tags = require("game.tags")
 local boss_blinds = require("game.boss_blinds")
 local vouchers = require("game.vouchers")
 local economy = require("game.economy")
+local rng = require("game.rng")
 
-function M.new()
+function M.new(seed_str)
+    local plan = rng.plan(seed_str)
     return {
+        seed = plan.seed,
+        rng = {
+            shop = plan.shop,
+            cards = plan.cards,
+            boss = plan.boss,
+        },
         ante = 1,
         blind = "small",
         phase = "play",
@@ -108,7 +118,8 @@ function M.select_boss(state, boss_id)
     if state.blind ~= "boss" then
         error("select_boss only on boss blinds")
     end
-    local def = boss_id and boss_blinds.by_id(boss_id) or boss_blinds.random()
+    local stream = state.rng and state.rng.boss
+    local def = boss_id and boss_blinds.by_id(boss_id) or boss_blinds.random(stream)
     state.boss_id = def.id
     state.boss = {
         id = def.id,
@@ -140,7 +151,19 @@ function M.clear_blind(state)
         return
     end
     state.phase = "shop"
-    vouchers.stock_shop(state)
+    local shop_rng = state.rng and state.rng.shop
+    vouchers.stock_shop(state, shop_rng)
+end
+
+--- Deal n play-card kinds from the run's cards stream. No months.
+function M.deal_kinds(state, n)
+    n = n or 8
+    local cards = (state.rng and state.rng.cards) or math.random
+    local kinds = {}
+    for i = 1, n do
+        kinds[i] = PLAY_KINDS[cards(1, #PLAY_KINDS)]
+    end
+    return kinds
 end
 
 --- Skip the current small/big blind and claim a tag reward.
