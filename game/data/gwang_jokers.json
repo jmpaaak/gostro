@@ -85,6 +85,24 @@
       "deck_max": 20,
       "effect": { "chips": 50 },
       "desc": { "ko": "덱 카드 수 ≤20이면 +50 칩", "en": "+50 chips if deck has ≤20 cards" }
+    },
+    {
+      "id": "rich_mult",
+      "name": { "ko": "부자", "en": "Rich" },
+      "rarity": "uncommon",
+      "trigger": "money",
+      "money_min": 20,
+      "effect": { "mult": 4 },
+      "desc": { "ko": "소지금 $20 이상이면 +4 배수", "en": "+4 mult if money ≥ $20" }
+    },
+    {
+      "id": "loaded_chips",
+      "name": { "ko": "두둑한 지갑", "en": "Loaded" },
+      "rarity": "rare",
+      "trigger": "money",
+      "money_min": 50,
+      "effect": { "chips": 80 },
+      "desc": { "ko": "소지금 $50 이상이면 +80 칩", "en": "+80 chips if money ≥ $50" }
     }
   ]
 }

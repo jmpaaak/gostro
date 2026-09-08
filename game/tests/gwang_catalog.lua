@@ -1,5 +1,5 @@
--- Tests for always + contains-kind + yaku + deck-size gwang jokers
--- (INBOX 21a/21b/21c/21d). Catalog JSON + apply loop in hwatu.evaluate.
+-- Tests for always + contains-kind + yaku + deck-size + money gwang jokers
+-- (INBOX 21a/21b/21c/21d/21e). Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
 local hwatu = require("game.hwatu")
@@ -37,6 +37,10 @@ function M.run()
     M.test_apply_thin_deck_x3_when_deck_le_30()
     M.test_apply_thin_deck_x3_skips_when_deck_over_30()
     M.test_hwatu_evaluate_thin_deck_x3()
+    M.test_catalog_loads_money()
+    M.test_apply_rich_mult_when_money_ge_20()
+    M.test_apply_rich_mult_skips_when_money_under_20()
+    M.test_hwatu_evaluate_rich_mult()
     print("  gwang_catalog: OK")
 end
 
@@ -51,7 +55,8 @@ function M.test_catalog_loads_always_jokers()
             j.trigger == "always"
                 or j.trigger == "contains_kind"
                 or j.trigger == "yaku"
-                or j.trigger == "deck_size",
+                or j.trigger == "deck_size"
+                or j.trigger == "money",
             "known trigger"
         )
         assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
@@ -331,6 +336,62 @@ function M.test_hwatu_evaluate_thin_deck_x3()
     assert(with.score == 32 * 6)
     assert(with.gwang_triggers and #with.gwang_triggers == 1)
     assert(with.gwang_triggers[1].id == "thin_deck_x3")
+end
+
+function M.test_catalog_loads_money()
+    local j = catalog.get("rich_mult")
+    assert(j, "rich_mult joker in catalog")
+    assert(j.trigger == "money")
+    assert((j.money_min or 0) == 20)
+    assert((j.effect.mult or 0) == 4)
+end
+
+function M.test_apply_rich_mult_when_money_ge_20()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        money = 20,
+        state = { gwang = { { kind = "gwang", identity = "rich_mult" } } },
+    })
+    assert(chips == 32, "money trigger does not add chips")
+    assert(mult == 6, "money ≥$20 +4 mult, got " .. tostring(mult))
+    assert(#triggered == 1)
+    assert(triggered[1].id == "rich_mult")
+end
+
+function M.test_apply_rich_mult_skips_when_money_under_20()
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        money = 19,
+        state = { gwang = { { identity = "rich_mult" } } },
+    })
+    assert(chips == 32)
+    assert(mult == 2, "money $19 → no +4, got " .. tostring(mult))
+    assert(#triggered == 0)
+end
+
+function M.test_hwatu_evaluate_rich_mult()
+    local hand = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "rich_mult" } }
+
+    state.money = 19
+    local base = hwatu.evaluate(hand)
+    assert(base.chips == 32)
+    assert(base.mult == 2)
+    local skipped = hwatu.evaluate(hand, state)
+    assert(skipped.chips == 32)
+    assert(skipped.mult == 2, "money $19 does not +4, got " .. tostring(skipped.mult))
+    assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
+
+    state.money = 20
+    local with = hwatu.evaluate(hand, state)
+    assert(with.chips == 32)
+    assert(with.mult == 6, "money ≥$20 +4 mult, got " .. tostring(with.mult))
+    assert(with.score == 32 * 6)
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "rich_mult")
 end
 
 return M
