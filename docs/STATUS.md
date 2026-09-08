@@ -1,18 +1,4 @@
 # STATUS
-## 2026-09-08 — 카드 홀로그램/포일/폴리크롬 이펙트 (`game/ui/card_effects.lua`)
-
-- Created `game/ui/card_effects.lua`: Balatro-style editions.
-  - hologram: rainbow translucent overlay, +10 mult
-  - foil: sparkle overlay, +50 chips
-  - polychrome: color-shift overlay, ×1.5 mult
-  - `bonus` / `visual` / `overlay_color` / `apply` / `apply_bonuses` / `draw_overlay` (love.graphics optional).
-- `game/hwatu.lua` `card()` accepts `{ effect = ... }`; `evaluate()` applies edition bonuses (chips += foil; mult = (mult + hologram) × polychrome product) and reports `effect_chips` / `effect_mult_add` / `effect_mult_mul`.
-- `game/ui/card.lua` draws the overlay when `c.effect` is set.
-- Tests in `game/tests/card_effects.lua` (known effects, bonuses, visual/overlay, apply, hwatu hologram/foil/polychrome/mixed/reject).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (13) → 처리 완료.
-- Next slice: INBOX (14) 태그 시스템 (`game/tags.lua`).
-
 ## 2026-09-08 — 태그 시스템 (스몰/빅 블라인드 스킵 보상)
 
 - Created `game/tags.lua`: Balatro-style skip tags. Pool of 12 (coupon, investment, handy, economy, mega, foil, hologram, polychrome, charm, uncommon, juggle, d6).
