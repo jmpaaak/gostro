@@ -128,7 +128,7 @@
 
 - [x] `voucher.paint_brush` - 명필의 인장 (`assets/runtime/voucher/paint-brush-v1.png`)
 - [x] `voucher.wasteful` - 호탕한 인장 (`assets/runtime/voucher/wasteful-v1.png`)
-- [ ] `voucher.grabber` - 그래버
+- [x] `voucher.grabber` - 갈퀴 인장 (`assets/runtime/voucher/grabber-v1.png`)
 - [ ] `voucher.overstock` - 오버스톡
 - [ ] `voucher.reroll_surplus` - 리롤잉여
 - [ ] `voucher.clearance_sale` - 세일

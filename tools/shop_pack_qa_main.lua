@@ -21,6 +21,7 @@ function love.load()
     local voucher_names = {
         paint_brush = "명필의 인장",
         wasteful = "호탕한 인장",
+        grabber = "갈퀴 인장",
     }
     local item = kind == "voucher"
         and { kind = "voucher", identity = voucher_identity,

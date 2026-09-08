@@ -750,8 +750,49 @@
     {
       "id": "voucher.grabber",
       "category": "voucher",
-      "status": "pending",
-      "name": "\uadf8\ub798\ubc84"
+      "status": "runtime",
+      "name": "\uac08\ud034 \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/grabber-v1.svg",
+        "sourceSha256": "ee51216dd30caf24a698672d085812db7174d42e601fef7b8c590b57bebd9ab4",
+        "path": "assets/masters/voucher/grabber-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "e72e3109b238e989fc2ffcddca4dea2076700cde2d346824596aa83341bc199d",
+        "provenance": "Project-authored high-resolution vector master depicting a broad Korean farm rake gathering grain across terraced furrows, with a dancheong frame and vermilion seal; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/grabber-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          51
+        ],
+        "sha256": "6bc1815ec6d0afa2ae46c9aee812cfc7561c911c9cea51b55ec53994047bf4b9",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/grabber-v1.report.json",
+        "reportSha256": "6d2fffcfed56e4ef6d45e773219ac0b71a6b0576c7367bf951dc124fb620a523"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.overstock",

@@ -31,6 +31,17 @@ function M.run()
     assert(wasteful.runtime.filter == "nearest")
     assert(assets.runtime_path(wasteful_id) == "assets/runtime/voucher/wasteful-v1.png")
 
+    local grabber_id = voucher_art.asset_id({ kind = "voucher", identity = "grabber" })
+    assert(grabber_id == "voucher.grabber", "rake seal must resolve tracked artwork")
+    local grabber = assets.entry(grabber_id)
+    assert(grabber and grabber.status == "runtime", "rake seal artwork must be promoted")
+    assert(grabber.master.width == 400 and grabber.master.height == 560,
+        "rake seal must preserve a 400x560 master")
+    assert(grabber.runtime.width == 36 and grabber.runtime.height == 52,
+        "rake seal runtime must fit its shop slot")
+    assert(grabber.runtime.filter == "nearest")
+    assert(assets.runtime_path(grabber_id) == "assets/runtime/voucher/grabber-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

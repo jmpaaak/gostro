@@ -62,3 +62,7 @@
 | 2026-09-09T03:20:34+0900 | `assets/masters/voucher/wasteful-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T03:20:34+0900 | `assets/runtime/voucher/wasteful-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T03:20:34+0900 | `assets/runtime/ui/shop-voucher-wasteful-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed generous seal in all three offer slots |
+| 2026-09-09T03:28:13+0900 | `assets/masters/voucher/grabber-v1.svg` | Project-authored high-resolution Korean farm rake, terraced furrows, dancheong, and vermilion-seal vector source |
+| 2026-09-09T03:28:13+0900 | `assets/masters/voucher/grabber-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T03:28:13+0900 | `assets/runtime/voucher/grabber-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T03:28:13+0900 | `assets/runtime/ui/shop-voucher-grabber-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed rake seal in all three offer slots |

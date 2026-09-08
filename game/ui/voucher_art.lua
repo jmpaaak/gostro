@@ -6,6 +6,7 @@ local M = {}
 local IDS = {
     paint_brush = "voucher.paint_brush",
     wasteful = "voucher.wasteful",
+    grabber = "voucher.grabber",
 }
 
 function M.asset_id(item)
