@@ -1,8 +1,8 @@
 -- game/ui/consumables.lua
--- Headless-safe tarot inventory layout and selection. Tarot effects remain in
--- game/tarots.lua; this module owns only presentation and pointer hit-testing.
+-- Headless-safe talisman inventory layout and selection. Effect rules remain in
+-- game/talismans.lua; this module owns only presentation and pointer hit-testing.
 
-local tarots = require("game.tarots")
+local talismans = require("game.talismans")
 
 local M = {}
 
@@ -25,18 +25,16 @@ local function contains(bounds, x, y)
         and y >= bounds.y and y < bounds.y + bounds.h
 end
 
-local function held_tarots(state)
-    if type(state) ~= "table" or type(state.tarots) ~= "table" then
-        return {}
-    end
-    return state.tarots
+local function held_talismans(state)
+    if type(state) ~= "table" then return {} end
+    return talismans.ensure(state)
 end
 
 --- Build the inventory render model from run state.
 function M.view(state, selected_slot)
     assert(type(state) == "table", "consumables UI requires run state")
-    local capacity = tarots.max_slots(state)
-    local cards = held_tarots(state)
+    local capacity = talismans.max_slots(state)
+    local cards = held_talismans(state)
     if not cards[selected_slot] then selected_slot = nil end
 
     local total_w = capacity * SLOT_W + math.max(0, capacity - 1) * SLOT_GAP
@@ -60,7 +58,7 @@ function M.view(state, selected_slot)
     end
 
     return {
-        label = "소모품",
+        label = "부적",
         capacity = capacity,
         selected_slot = selected_slot,
         slots = slots,

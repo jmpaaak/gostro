@@ -17,16 +17,16 @@ function M.run()
     print("  pack_ui:")
 
     local pending = {
-        name = "아르카나 팩",
+        name = "부적 꾸러미",
         choose = 1,
         choices = {
-            { id = "the_magician", name = "마법사", effect = "변환" },
-            { id = "the_hanged_man", name = "매달린 사람", effect = "파괴" },
-            { id = "the_chariot", name = "전차", effect = "효과 부여" },
+            { id = "dungap_bu", name = "둔갑부", effect = "변환" },
+            { id = "somyeol_bu", name = "소멸부", effect = "파괴" },
+            { id = "gwangchae_bu", name = "광채부", effect = "효과 부여" },
         },
     }
     local view = pack_ui.view(pending)
-    assert(view.title == "아르카나 팩" and view.instruction == "1장 선택")
+    assert(view.title == "부적 꾸러미" and view.instruction == "1장 선택")
     assert(#view.choices == 3, "all revealed choices are represented")
     for i = 1, 3 do
         local x, y = center(view.choices[i].bounds)
@@ -43,16 +43,16 @@ function M.run()
     local scene = play.new("PACK-UI")
     scene.state = "shop"
     scene.shop = shop_engine.new(scene.run_state)
-    local opened = packs.open(scene.run_state, "arcana_pack")
+    local opened = packs.open(scene.run_state, "talisman_bundle")
     local opened_view = pack_ui.view(opened)
     local choice_x, choice_y = center(opened_view.choices[1].bounds)
     scene:mousepressed(choice_x, choice_y)
     assert(scene.run_state.pending_pack == nil, "choice closes the overlay")
-    assert(#scene.run_state.tarots == 1
-        and scene.run_state.tarots[1].id == opened.choices[1].id,
-        "scene choice grants the selected tarot")
+    assert(#scene.run_state.talismans == 1
+        and scene.run_state.talismans[1].id == opened.choices[1].id,
+        "scene choice grants the selected talisman")
 
-    opened = packs.open(scene.run_state, "arcana_pack")
+    opened = packs.open(scene.run_state, "talisman_bundle")
     local money = scene.run_state.money
     scene:mousepressed(shop_ui.REROLL_X + 2, shop_ui.REROLL_Y + 2)
     assert(scene.run_state.pending_pack == opened and scene.run_state.money == money,

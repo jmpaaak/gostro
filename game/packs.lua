@@ -2,18 +2,20 @@
 -- Pure booster-pack state. Opening reveals deterministic choices; choosing is
 -- a separate action so a purchase never silently grants a consumable.
 
-local tarots = require("game.tarots")
+local talismans = require("game.talismans")
 
 local M = {}
 
 M.DEFINITIONS = {
-    arcana_pack = {
-        id = "arcana_pack",
-        name = "아르카나 팩",
+    talisman_bundle = {
+        id = "talisman_bundle",
+        name = "부적 꾸러미",
         choice_count = 3,
         choose = 1,
     },
 }
+-- Legacy id accepted for old saves and integrations; new state is canonical.
+M.DEFINITIONS.arcana_pack = M.DEFINITIONS.talisman_bundle
 
 local function definition(id)
     local found = M.DEFINITIONS[id]
@@ -31,7 +33,7 @@ local function shop_rng(state)
     return random
 end
 
-local function tarot_choice(def)
+local function talisman_choice(def)
     return {
         id = def.id,
         name = def.name,
@@ -56,7 +58,8 @@ function M.open(state, id)
         choices = {},
     }
     for i = 1, def.choice_count do
-        pending.choices[i] = tarot_choice(tarots.POOL[random(1, #tarots.POOL)])
+        pending.choices[i] = talisman_choice(
+            talismans.POOL[random(1, #talismans.POOL)])
     end
     state.pending_pack = pending
     return pending
@@ -72,7 +75,7 @@ function M.choose(state, index)
         error("pack choice out of range")
     end
 
-    local gained = tarots.gain(state, choice.id, "shop")
+    local gained = talismans.gain(state, choice.id, "shop")
     state.pending_pack = nil
     return gained
 end

@@ -1,9 +1,9 @@
 -- game/tests/consumables_ui.lua
--- Pure inventory layout and selection contract for held tarot consumables.
+-- Pure inventory layout and selection contract for held talismans.
 
 local consumables_ui = require("game.ui.consumables")
 local run = require("game.run")
-local tarots = require("game.tarots")
+local talismans = require("game.talismans")
 local vouchers = require("game.vouchers")
 
 local M = {}
@@ -16,12 +16,12 @@ function M.run()
     print("  consumables_ui:")
 
     local state = run.new("CONSUMABLES-UI")
-    tarots.gain(state, "the_magician", "shop")
+    talismans.gain(state, "dungap_bu", "shop")
     local view = consumables_ui.view(state)
-    assert(view.label == "소모품" and view.capacity == 2)
+    assert(view.label == "부적" and view.capacity == 2)
     assert(#view.slots == 2, "default capacity renders two slots")
-    assert(view.slots[1].card.id == "the_magician")
-    assert(view.slots[1].name == "마법사")
+    assert(view.slots[1].card.id == "dungap_bu")
+    assert(view.slots[1].name == "둔갑부")
     assert(view.slots[2].card == nil and view.slots[2].name == "비어 있음")
 
     local first_x, first_y = center(view.slots[1].bounds)
@@ -44,7 +44,7 @@ function M.run()
     -- The play scene delegates occupied-slot presses to the inventory UI.
     local play = require("game.scenes.play")
     local scene = play.new("CONSUMABLES-ROUTING")
-    assert(tarots.gain(scene.run_state, "the_hanged_man", "shop"))
+    assert(talismans.gain(scene.run_state, "somyeol_bu", "shop"))
     local routed = consumables_ui.view(scene.run_state)
     local routed_x, routed_y = center(routed.slots[1].bounds)
     scene:mousepressed(routed_x, routed_y)

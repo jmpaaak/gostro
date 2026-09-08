@@ -17,7 +17,7 @@ local gwang_sl_ui   = require("game.ui.gwang_slots")
 local wish_cards_ui = require("game.ui.wish_cards_ui")
 local seed_ui       = require("game.ui.seed")
 local consumables_ui = require("game.ui.consumables")
-local tarot_use      = require("game.tarot_use")
+local talisman_use   = require("game.talisman_use")
 
 local M = {}
 M.__index = M
@@ -79,7 +79,7 @@ function M.new(seed_or_config)
     self.shop         = nil
     self.round        = nil
     self.selected_consumable = nil
-    self.tarot_target = nil
+    self.talisman_target = nil
     return self
 end
 
@@ -99,7 +99,7 @@ function M.apply_seed(scene, seed_str)
     scene.shop        = nil
     scene.round       = nil
     scene.selected_consumable = nil
-    scene.tarot_target = nil
+    scene.talisman_target = nil
     return scene.run_state.seed
 end
 
@@ -254,7 +254,7 @@ function M:draw()
         love.graphics.setColor(1, 1, 1, 1)
     end
 
-    tarot_use.draw(self)
+    talisman_use.draw(self)
 end
 
 --- Handle mouse/touch press.
@@ -268,12 +268,12 @@ function M:mousepressed(px, py)
         end
         return
     end
-    local modal, used_tarot = tarot_use.route_press(self, px, py)
-    if used_tarot then sync_round_ui(self) end
+    local modal, used_talisman = talisman_use.route_press(self, px, py)
+    if used_talisman then sync_round_ui(self) end
     if modal then return end
     if consumables_ui.route_press(self, px, py) then
         if self.selected_consumable then
-            tarot_use.open(self, self.selected_consumable)
+            talisman_use.open(self, self.selected_consumable)
         end
         return
     end
@@ -320,7 +320,7 @@ end
 
 --- Handle key press.
 function M:keypressed(key)
-    if self.tarot_target then return end
+    if self.talisman_target then return end
     if self.seed.focused then
         local applied = seed_ui.keypressed(self.seed, key)
         if applied then

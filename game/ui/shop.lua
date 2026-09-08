@@ -160,8 +160,8 @@ local function item_label(item)
     if item.kind == "voucher" then
         return VOUCHER_NAMES[item.identity] or "바우처"
     end
-    if item.kind == "pack" then return "카드 팩" end
-    if item.kind == "tarot" then return "타로" end
+    if item.kind == "pack" then return "부적 꾸러미" end
+    if item.kind == "talisman" or item.kind == "tarot" then return "부적" end
     if item.kind == "wish_card" or item.kind == "planet" then return "기원패" end
     return GWANG_NAMES[item.identity] or "광"
 end
@@ -232,7 +232,8 @@ function M.draw(s)
         local card = view.item
 
         if card and not card.sold then
-            if card.kind == "wish_card" or card.kind == "planet" or card.kind == "tarot" then
+            if card.kind == "wish_card" or card.kind == "planet"
+                    or card.kind == "talisman" or card.kind == "tarot" then
                 local is_wish_card = card.kind == "wish_card" or card.kind == "planet"
                 if is_wish_card then
                     love.graphics.setColor(0.52, 0.16, 0.22, 1)

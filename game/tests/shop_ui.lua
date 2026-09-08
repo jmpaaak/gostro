@@ -91,11 +91,11 @@ function M.run()
         random_offers = {
             { slot_type = "random", kind = "gwang", identity = "one", price = 4 },
             { slot_type = "random", kind = "wish_card", identity = "two", price = 3 },
-            { slot_type = "random", kind = "tarot", identity = "three", price = 3 },
+            { slot_type = "random", kind = "talisman", identity = "three", price = 3 },
             { slot_type = "random", kind = "gwang", identity = "extra", price = 4 },
         },
         pack_slots = {
-            { slot_type = "pack", kind = "pack", identity = "arcana_pack", name = "아르카나 팩", price = 4 },
+            { slot_type = "pack", kind = "pack", identity = "talisman_bundle", name = "부적 꾸러미", price = 4 },
         },
         voucher_slots = {
             { slot_type = "voucher", kind = "voucher", identity = "paint_brush", price = 10 },
@@ -115,7 +115,7 @@ function M.run()
     end
     local views = shop.slot_views(engine_shop)
     assert(#views == 6, "all engine slots have view data")
-    assert(views[5].slot_type == "pack" and views[5].label == "아르카나 팩",
+    assert(views[5].slot_type == "pack" and views[5].label == "부적 꾸러미",
         "pack slot is represented")
     assert(views[6].slot_type == "voucher" and views[6].label ~= "?",
         "voucher slot is represented")

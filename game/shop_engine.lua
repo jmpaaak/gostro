@@ -4,7 +4,7 @@
 
 local gwang_catalog = require("game.gwang_catalog")
 local wish_cards = require("game.wish_cards")
-local tarots = require("game.tarots")
+local talismans = require("game.talismans")
 
 local M = {}
 
@@ -104,9 +104,9 @@ local function random_offer(run_state, random)
         local item = pool[random(1, #pool)]
         return offer(run_state, "wish_card", item, 3)
     else
-        local pool = tarots.POOL
+        local pool = talismans.POOL
         local item = pool[random(1, #pool)]
-        return offer(run_state, "tarot", item, 3)
+        return offer(run_state, "talisman", item, 3)
     end
 end
 
@@ -130,9 +130,9 @@ local function make_pack_slot(run_state)
     return {
         slot_type = "pack",
         kind = "pack",
-        identity = "arcana_pack",
-        id = "arcana_pack",
-        name = "아르카나 팩",
+        identity = "talisman_bundle",
+        id = "talisman_bundle",
+        name = "부적 꾸러미",
         base_price = M.PACK_PRICE,
         price = discounted_price(run_state, M.PACK_PRICE),
         sold = false,

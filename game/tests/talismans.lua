@@ -1,7 +1,7 @@
 -- Tests for Balatro-style tarot consumables (convert / destroy / enhance / copy).
 -- Engine-hosted: slots + use on play cards. No month numbers.
 
-local tarots = require("game.tarots")
+local talismans = require("game.talismans")
 local hwatu = require("game.hwatu")
 local run = require("game.run")
 local vouchers = require("game.vouchers")
@@ -36,15 +36,15 @@ function M.run()
     M.test_copy_card()
     M.test_copy_preserves_effect()
     M.test_copy_rejects_gwang()
-    print("  tarots: OK")
+    print("  talismans: OK")
 end
 
 function M.test_pool()
-    assert(type(tarots.POOL) == "table")
-    assert(#tarots.POOL >= 2, "need convert + destroy tarots")
+    assert(type(talismans.POOL) == "table")
+    assert(#talismans.POOL >= 2, "need convert + destroy talismans")
     local seen = {}
     local effects = {}
-    for _, t in ipairs(tarots.POOL) do
+    for _, t in ipairs(talismans.POOL) do
         assert(type(t.id) == "string" and t.id ~= "")
         assert(type(t.name) == "string" and t.name ~= "")
         assert(type(t.effect) == "string" and t.effect ~= "")
@@ -59,29 +59,29 @@ function M.test_pool()
 end
 
 function M.test_by_id()
-    local t = tarots.by_id("the_magician")
-    assert(t.id == "the_magician")
+    local t = talismans.by_id("dungap_bu")
+    assert(t.id == "dungap_bu")
     assert(t.effect == "convert")
-    local d = tarots.by_id("the_hanged_man")
+    local d = talismans.by_id("somyeol_bu")
     assert(d.effect == "destroy")
-    local c = tarots.by_id("the_lovers")
+    local c = talismans.by_id("bunsin_bu")
     assert(c.effect == "copy")
-    local ok = pcall(tarots.by_id, "not_a_tarot")
+    local ok = pcall(talismans.by_id, "not_a_tarot")
     assert(not ok, "unknown tarot must error")
 end
 
 function M.test_max_slots_default()
     local state = run.new()
-    assert(tarots.max_slots(state) == 2)
-    tarots.ensure(state)
-    assert(type(state.tarots) == "table")
-    assert(#state.tarots == 0)
+    assert(talismans.max_slots(state) == 2)
+    talismans.ensure(state)
+    assert(type(state.talismans) == "table")
+    assert(#state.talismans == 0)
 end
 
 function M.test_crystal_ball_expands_slots()
     local state = run.new()
     vouchers.apply(state, "crystal_ball")
-    assert(tarots.max_slots(state) == 3)
+    assert(talismans.max_slots(state) == 3)
 end
 
 function M.test_gain_from_shop()
@@ -89,38 +89,38 @@ function M.test_gain_from_shop()
     run.add_score(state, run.blind_target(state))
     run.clear_blind(state)
     assert(state.phase == "shop")
-    local gained = tarots.gain(state, "the_magician", "shop")
-    assert(gained.id == "the_magician")
-    assert(#state.tarots == 1)
-    assert(state.tarots[1].id == "the_magician")
-    assert(state.tarots[1].source == "shop")
+    local gained = talismans.gain(state, "dungap_bu", "shop")
+    assert(gained.id == "dungap_bu")
+    assert(#state.talismans == 1)
+    assert(state.talismans[1].id == "dungap_bu")
+    assert(state.talismans[1].source == "shop")
 end
 
 function M.test_gain_from_boss_reward()
     local state = run.new()
-    local gained = tarots.gain(state, "the_hanged_man", "boss")
-    assert(gained.id == "the_hanged_man")
-    assert(#state.tarots == 1)
-    assert(state.tarots[1].source == "boss")
+    local gained = talismans.gain(state, "somyeol_bu", "boss")
+    assert(gained.id == "somyeol_bu")
+    assert(#state.talismans == 1)
+    assert(state.talismans[1].source == "boss")
 end
 
 function M.test_slots_full()
     local state = run.new()
-    tarots.gain(state, "the_magician", "shop")
-    tarots.gain(state, "the_hanged_man", "shop")
-    local ok = pcall(tarots.gain, state, "the_magician", "shop")
+    talismans.gain(state, "dungap_bu", "shop")
+    talismans.gain(state, "somyeol_bu", "shop")
+    local ok = pcall(talismans.gain, state, "dungap_bu", "shop")
     assert(not ok, "max 2 consumable slots")
 end
 
 function M.test_convert_kind()
     local state = run.new()
-    tarots.gain(state, "the_magician", "shop")
+    talismans.gain(state, "dungap_bu", "shop")
     local cards = {
         hwatu.card("pi"),
         hwatu.card("godori"),
         hwatu.card("pi"),
     }
-    local used = tarots.use(state, 1, cards, 1, { kind = "hongdan" })
+    local used = talismans.use(state, 1, cards, 1, { kind = "hongdan" })
     assert(used.effect == "convert")
     assert(cards[1].kind == "hongdan")
     assert(cards[2].kind == "godori")
@@ -131,13 +131,13 @@ end
 
 function M.test_destroy_card()
     local state = run.new()
-    tarots.gain(state, "the_hanged_man", "boss")
+    talismans.gain(state, "somyeol_bu", "boss")
     local cards = {
         hwatu.card("hongdan"),
         hwatu.card("cheongdan"),
         hwatu.card("pi"),
     }
-    tarots.use(state, 1, cards, 2)
+    talismans.use(state, 1, cards, 2)
     local kinds = kinds_of(cards)
     assert(#cards == 2)
     assert(kinds[1] == "hongdan")
@@ -146,33 +146,33 @@ end
 
 function M.test_use_consumes_slot()
     local state = run.new()
-    tarots.gain(state, "the_magician", "shop")
-    tarots.gain(state, "the_hanged_man", "shop")
+    talismans.gain(state, "dungap_bu", "shop")
+    talismans.gain(state, "somyeol_bu", "shop")
     local cards = { hwatu.card("pi") }
-    tarots.use(state, 1, cards, 1, { kind = "godori" })
-    assert(#state.tarots == 1)
-    assert(state.tarots[1].id == "the_hanged_man")
-    tarots.use(state, 1, cards, 1)
-    assert(#state.tarots == 0)
+    talismans.use(state, 1, cards, 1, { kind = "godori" })
+    assert(#state.talismans == 1)
+    assert(state.talismans[1].id == "somyeol_bu")
+    talismans.use(state, 1, cards, 1)
+    assert(#state.talismans == 0)
 end
 
 function M.test_unknown_rejects()
     local state = run.new()
-    local ok = pcall(tarots.gain, state, "death", "shop")
+    local ok = pcall(talismans.gain, state, "death", "shop")
     assert(not ok)
-    tarots.gain(state, "the_magician", "shop")
+    talismans.gain(state, "dungap_bu", "shop")
     local cards = { hwatu.card("pi") }
-    ok = pcall(tarots.use, state, 1, cards, 1, { kind = "gwang" })
+    ok = pcall(talismans.use, state, 1, cards, 1, { kind = "gwang" })
     assert(not ok, "cannot convert to gwang")
-    ok = pcall(tarots.use, state, 1, cards, 1, { kind = "mae" })
+    ok = pcall(talismans.use, state, 1, cards, 1, { kind = "mae" })
     assert(not ok, "no fake poker hands")
 end
 
 function M.test_no_month_on_cards()
     local state = run.new()
-    tarots.gain(state, "the_magician", "shop")
+    talismans.gain(state, "dungap_bu", "shop")
     local cards = { hwatu.card("pi") }
-    tarots.use(state, 1, cards, 1, { kind = "chodan" })
+    talismans.use(state, 1, cards, 1, { kind = "chodan" })
     assert(cards[1].month == nil)
     assert(cards[1].month_name == nil)
     for _, kind in ipairs(PLAY_KINDS) do
@@ -182,40 +182,40 @@ end
 
 function M.test_enhance_grants_effect()
     local state = run.new()
-    tarots.gain(state, "the_chariot", "shop")
+    talismans.gain(state, "gwangchae_bu", "shop")
     local cards = {
         hwatu.card("pi"),
         hwatu.card("godori"),
     }
-    local used = tarots.use(state, 1, cards, 1, { effect = "foil" })
+    local used = talismans.use(state, 1, cards, 1, { effect = "foil" })
     assert(used.effect == "enhance")
     assert(cards[1].kind == "pi")
     assert(cards[1].effect == "foil")
     assert(cards[2].effect == nil)
     assert(cards[1].month == nil)
-    assert(#state.tarots == 0)
+    assert(#state.talismans == 0)
 end
 
 function M.test_enhance_rejects_unknown()
     local state = run.new()
-    tarots.gain(state, "the_chariot", "shop")
+    talismans.gain(state, "gwangchae_bu", "shop")
     local cards = { hwatu.card("hongdan") }
-    local ok = pcall(tarots.use, state, 1, cards, 1, { effect = "gold" })
+    local ok = pcall(talismans.use, state, 1, cards, 1, { effect = "gold" })
     assert(not ok, "unknown edition must error")
-    ok = pcall(tarots.use, state, 1, cards, 1, { effect = "gwang" })
+    ok = pcall(talismans.use, state, 1, cards, 1, { effect = "gwang" })
     assert(not ok, "gwang is not an edition")
     assert(cards[1].effect == nil)
-    assert(#state.tarots == 1, "failed use must not consume the slot")
+    assert(#state.talismans == 1, "failed use must not consume the slot")
 end
 
 function M.test_copy_card()
     local state = run.new()
-    tarots.gain(state, "the_lovers", "shop")
+    talismans.gain(state, "bunsin_bu", "shop")
     local cards = {
         hwatu.card("godori"),
         hwatu.card("pi"),
     }
-    local used = tarots.use(state, 1, cards, 1)
+    local used = talismans.use(state, 1, cards, 1)
     assert(used.effect == "copy")
     assert(#cards == 3)
     assert(cards[1].kind == "godori")
@@ -224,17 +224,17 @@ function M.test_copy_card()
     assert(cards[3] ~= cards[1], "copy must be a new table")
     assert(cards[3].month == nil)
     assert(cards[3].month_name == nil)
-    assert(#state.tarots == 0)
+    assert(#state.talismans == 0)
 end
 
 function M.test_copy_preserves_effect()
     local state = run.new()
-    tarots.gain(state, "the_lovers", "boss")
+    talismans.gain(state, "bunsin_bu", "boss")
     local cards = {
         hwatu.card("hongdan", { effect = "hologram" }),
         hwatu.card("cheongdan"),
     }
-    tarots.use(state, 1, cards, 1)
+    talismans.use(state, 1, cards, 1)
     assert(#cards == 3)
     assert(cards[3].kind == "hongdan")
     assert(cards[3].effect == "hologram")
@@ -244,12 +244,12 @@ end
 
 function M.test_copy_rejects_gwang()
     local state = run.new()
-    tarots.gain(state, "the_lovers", "shop")
+    talismans.gain(state, "bunsin_bu", "shop")
     local cards = { { kind = "gwang" } }
-    local ok = pcall(tarots.use, state, 1, cards, 1)
+    local ok = pcall(talismans.use, state, 1, cards, 1)
     assert(not ok, "cannot copy gwang joker as a play card")
     assert(#cards == 1)
-    assert(#state.tarots == 1, "failed copy must not consume the slot")
+    assert(#state.talismans == 1, "failed copy must not consume the slot")
 end
 
 return M

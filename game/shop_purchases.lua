@@ -1,7 +1,7 @@
 -- game/shop_purchases.lua
 local shop_engine = require("game.shop_engine")
 local wish_cards = require("game.wish_cards")
-local tarots = require("game.tarots")
+local talismans = require("game.talismans")
 local packs = require("game.packs")
 local run = require("game.run")
 
@@ -18,8 +18,8 @@ function M.buy(shop, slot_or_index)
     local success = pcall(function()
         if card_data.kind == "wish_card" or card_data.kind == "planet" then
             wish_cards.buy(shop.run_state, card_data.yaku or card_data.identity)
-        elseif card_data.kind == "tarot" then
-            tarots.gain(shop.run_state, card_data.identity, "shop")
+        elseif card_data.kind == "talisman" or card_data.kind == "tarot" then
+            talismans.gain(shop.run_state, card_data.identity, "shop")
         elseif card_data.kind == "gwang" then
             run.buy_gwang(shop.run_state, card_data)
         elseif card_data.kind == "voucher" then

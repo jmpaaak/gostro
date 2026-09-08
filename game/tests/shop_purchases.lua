@@ -49,7 +49,7 @@ local function run_tests()
     assert(state.money == start_money, "money rolled back")
     assert(shop.slots[voucher_idx].sold == false, "slot sold rolled back")
 
-    -- Buying a pack opens a deterministic choice without auto-granting a tarot.
+    -- Buying a bundle opens deterministic choices without auto-granting a talisman.
     local pack_idx = nil
     for i, slot in ipairs(shop.slots) do
         if slot.kind == "pack" then
@@ -62,9 +62,12 @@ local function run_tests()
     assert(ok4, "pack purchase succeeds")
     assert(state.money == start_money - shop_engine.PACK_PRICE, "pack price deducted")
     assert(shop.slots[pack_idx].sold == true, "pack slot marked sold")
-    assert(state.pending_pack and state.pending_pack.id == "arcana_pack", "pack opens")
-    assert(#state.pending_pack.choices == 3, "arcana pack offers three choices")
-    assert(#(state.tarots or {}) == 0, "opening does not auto-grant a tarot")
+    assert(state.pending_pack and state.pending_pack.id == "talisman_bundle",
+        "bundle opens")
+    assert(#state.pending_pack.choices == 3,
+        "talisman bundle offers three choices")
+    assert(#(state.talismans or {}) == 0,
+        "opening does not auto-grant a talisman")
 
     -- An already-open pack makes a later pack transaction roll back atomically.
     local second_shop = shop_engine.new(state)

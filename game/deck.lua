@@ -1,5 +1,5 @@
 -- game/deck.lua
--- Play-card deck: starter composition + viewer + tarot enhance/destroy + sort.
+-- Play-card deck: starter composition + viewer + talisman enhance/destroy + sort.
 -- Gwang is a joker slot, not a deck card. No month numbers.
 
 local hwatu = require("game.hwatu")
@@ -9,7 +9,7 @@ local M = {}
 
 local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
 
--- 5 of each named kind + 20 pi. Thin-deck later via tarot destroy.
+-- 5 of each named kind + 20 pi. Thin-deck later via talisman destroy.
 local STARTER = {
     hongdan = 5,
     cheongdan = 5,

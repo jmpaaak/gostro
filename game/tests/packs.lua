@@ -6,7 +6,7 @@ local M = {}
 local function state(seed)
     return {
         rng = { shop = rng.plan(seed or "PACKS").shop },
-        tarots = {},
+        talismans = {},
         vouchers = {},
     }
 end
@@ -15,7 +15,8 @@ function M.run()
     print("  packs:")
 
     local a = state("SAMEPACK")
-    local opened = packs.open(a, "arcana_pack")
+    local opened = packs.open(a, "talisman_bundle")
+    assert(opened.id == "talisman_bundle" and opened.name == "부적 꾸러미")
     assert(opened == a.pending_pack and opened.choose == 1)
     assert(#opened.choices == 3)
     for i = 1, #opened.choices do
@@ -24,20 +25,20 @@ function M.run()
     end
 
     local b = state("SAMEPACK")
-    local repeated = packs.open(b, "arcana_pack")
+    local repeated = packs.open(b, "talisman_bundle")
     for i = 1, 3 do
         assert(opened.choices[i].id == repeated.choices[i].id, "same seed reproduces choices")
     end
 
-    local ok = pcall(packs.open, a, "arcana_pack")
+    local ok = pcall(packs.open, a, "talisman_bundle")
     assert(not ok, "only one pack may be pending")
 
     local chosen = packs.choose(a, 2)
     assert(chosen.id == opened.choices[2].id)
-    assert(#a.tarots == 1 and a.tarots[1].source == "shop")
+    assert(#a.talismans == 1 and a.talismans[1].source == "shop")
     assert(a.pending_pack == nil, "choosing closes the pack")
 
-    local skipped = packs.open(a, "arcana_pack")
+    local skipped = packs.open(a, "talisman_bundle")
     assert(packs.skip(a) == skipped)
     assert(a.pending_pack == nil, "skip closes the pack")
 
