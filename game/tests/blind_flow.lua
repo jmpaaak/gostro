@@ -131,6 +131,26 @@ function M.test_completed_progression_is_derived_from_run_state()
     assert(view.ante == 2 and view.current == "small")
 end
 
+function M.test_begin_owns_stake_adjusted_round_transition()
+    local run_rules = require("game.run_rules")
+    local state = assert(run_rules.apply(run.new("blind-flow-begin"), {
+        starting_deck_id = "hwatu",
+        stake_id = "red",
+    }, { unlocked_stakes = { red = true } }))
+    state.round_score = 99
+
+    local view = blind_flow.view(state, "coupon")
+    assert(view.blinds[1].target == 375,
+        "blind flow exposes the stake-adjusted target before selection")
+
+    local selected = blind_flow.begin(state, "small")
+    assert(selected.kind == "small" and selected.target == 375,
+        "begin returns the canonical adjusted target")
+    assert(selected.discards == 2, "begin returns the stake-adjusted discard limit")
+    assert(state.phase == "play" and state.round_score == 0,
+        "blind flow owns round transition reset state")
+end
+
 function M.run()
     M.test_view_exposes_sequential_blinds_and_run_targets()
     M.test_skip_eligibility_requires_current_small_or_big_and_tag()
@@ -138,6 +158,7 @@ function M.run()
     M.test_skip_delegates_progression_and_tag_application_to_run()
     M.test_boss_selection_and_target_use_run_api()
     M.test_completed_progression_is_derived_from_run_state()
+    M.test_begin_owns_stake_adjusted_round_transition()
     print("  blind_flow: OK")
 end
 

@@ -1,4 +1,5 @@
 local run = require("game.run")
+local run_rules = require("game.run_rules")
 local tags = require("game.tags")
 
 local M = {}
@@ -18,7 +19,7 @@ local function target_for(state, kind)
         projected.boss_id = nil
         projected.boss = nil
     end
-    return run.blind_target(projected)
+    return run_rules.adjust_target(state, run.blind_target(projected))
 end
 
 function M.view(state, tag_id)
@@ -80,6 +81,16 @@ function M.select(state, kind, boss_id)
         playable = true,
         boss = state.boss_id and { id = state.boss_id } or nil,
     }
+end
+
+--- Enter the current blind and return the round rules needed by the scene.
+-- Blind progression remains validated here; the scene only constructs its UI.
+function M.begin(state, kind, boss_id)
+    local selected = M.select(state, kind, boss_id)
+    state.phase = "play"
+    state.round_score = 0
+    selected.discards = run_rules.discard_limit(state, 3)
+    return selected
 end
 
 function M.skip(state, kind, tag_id)

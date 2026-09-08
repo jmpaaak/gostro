@@ -2,6 +2,7 @@
 
 local run           = require("game.run")
 local run_rules     = require("game.run_rules")
+local blind_flow    = require("game.blind_flow")
 local round_engine  = require("game.round_engine")
 local scoring       = require("game.scoring_pipeline")
 local shop_engine   = require("game.shop_engine")
@@ -107,18 +108,11 @@ function M.select_blind(scene, idx)
     if scene.state ~= "blind_select" then return end
     blind_sel_ui.select_blind(scene.blind_select, idx)
     local kind = scene.blind_select.selected
-    -- Sync run_state blind (it may already be correct from leave_shop)
-    scene.run_state.blind = kind
-    if kind == "boss" and not scene.run_state.boss then
-        run.select_boss(scene.run_state)
-    end
-    scene.run_state.phase = "play"
-    scene.run_state.round_score = 0
-
-    local target = run_rules.adjust_target(scene.run_state, run.blind_target(scene.run_state))
+    local blind = blind_flow.begin(scene.run_state, kind)
+    local target = blind.target
     scene.round = round_engine.new(scene.run_state, scene.run_state.deck, {
         target = target,
-        discards = run_rules.discard_limit(scene.run_state, 3),
+        discards = blind.discards,
     })
 
     -- Create playing UI
