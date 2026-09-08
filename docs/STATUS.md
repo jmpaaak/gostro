@@ -1,24 +1,4 @@
 # STATUS
-
-## 2026-09-08 — play 씬 상태 머신 + 엔진 연동 (game/scenes/play.lua)
-
-- Rebuilt `game/scenes/play.lua`: state machine `blind_select → playing → shop → (next blind_select)` with full engine integration.
-  - `new()`: creates run_state (ante 1), blind_select UI, gwang_slots UI. Initial state = `blind_select`.
-  - `select_blind(scene, idx)`: picks blind → deals 8 random cards → creates scoreboard + action buttons → state = `playing`.
-  - `play_hand(scene)`: evaluates selected cards via `hwatu.evaluate`, applies gwang joker bonuses (chips+30/mult+4/yaku×1.5), adds score via `run.add_score`.
-  - `discard_hand(scene)`: removes selected cards, redeals to 8.
-  - `check_clear(scene)`: if score ≥ target → `run.clear_blind` → shop (or `won` at ante 8 boss).
-  - `leave_shop(scene)`: syncs money, `run.leave_shop` → next blind_select.
-  - `buy_shop_card(scene, idx)`: shop purchase → `run.buy_gwang` → gwang_slots sync.
-  - `update(dt)`: ticks scoreboard animation, syncs button enabled state.
-  - `draw()`: delegates to state-appropriate UI modules only. Gwang slots always visible.
-  - `mousepressed(px,py)` + `keypressed(key)`: input routing per state.
-- All UI modules (`hand`, `scoreboard`, `action_buttons`, `shop`, `blind_select`, `gwang_slots`) are required and delegated; play.lua is pure glue (< 250 lines).
-- Tests in `game/tests/play_integration.lua`: state transitions (blind_select→playing→shop→blind_select), play/discard with engine scoring, full ante cycle (small→big→boss→ante 2), gwang_slots existence.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (11) → 처리 완료 (state machine + engine integration slice).
-- Next slice: INBOX (12) 점수 연출 모듈 (`game/ui/score_anim.lua`).
-
 ## 2026-09-08 — 점수 연출 모듈 (game/ui/score_anim.lua)
 
 - Created `game/ui/score_anim.lua`: Balatro-style score animation with phase-based state machine (idle→cards→mult→total→done).
