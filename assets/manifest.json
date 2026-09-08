@@ -967,10 +967,51 @@
     {
       "id": "gwang.cheongdan_chips",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "청단 칩",
         "en": "Cheongdan Chips"
+      },
+      "master": {
+        "source": "assets/masters/gwang/cheongdan-chips-v1.svg",
+        "sourceSha256": "0790cba67d9819d7088ce7da91437ac5d72f6deb4d8a48f034f999d0a3f8c2d4",
+        "path": "assets/masters/gwang/cheongdan-chips-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "0be891b43de19e8727c401581e614ac351f1fd35108dd1aabe223e40eaa838b4",
+        "provenance": "Project-authored high-resolution vector master using deep blue Korean lacquer, abstract blue ribbons, and a three-tier sapphire chip stack to identify chips awarded for cheongdan; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/cheongdan-chips-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "43410dad3a0e4b89539ab033af0af606851e3604edfd8e677ccd943d9cc59b7e",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/cheongdan-chips-v1.report.json",
+        "reportSha256": "1af6596d6404e7fa5ef678c5c4a1f330d613ad62d1a9f8f6cb461b2c2111599a"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

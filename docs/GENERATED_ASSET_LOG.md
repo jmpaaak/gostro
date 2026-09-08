@@ -150,3 +150,8 @@
 | 2026-09-09T07:29:43+0900 | `assets/runtime/ui/gwang-godori-chips-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 고도리 칩 gwang in all five slots; SHA-256 `811f5d993ad9313720db3bac3a17fe96c30f556c50914ba593f9506ca6f9f686` |
 2026-09-09T07:34:41+0900 | assets/masters/gwang/hongdan-chips-v1.png | Project-authored high-resolution vector master using crimson Korean lacquer, abstract red flags, and a three-tier ruby chip stack (PIL script, no photo).
 2026-09-09T07:34:48+0900 | assets/runtime/gwang/hongdan-chips-v1.png | Pixel Perfect POST /api/pixel-perfect output from master.
+| 2026-09-09T07:42:57+0900 | `assets/runtime/ui/gwang-hongdan-chips-slots-love-v1.png` | Regenerated actual LÖVE 11.5 320×180 slot QA capture after packaging the manifest-backed 홍단 칩 runtime asset; SHA-256 `cba012cc76895502680640d1e73f760928c175dd326ed1223a62a9b06e0220db` |
+| 2026-09-09T07:42:57+0900 | `assets/masters/gwang/cheongdan-chips-v1.svg` | Project-authored high-resolution 청단 칩 gwang vector source with deep blue Korean lacquer, abstract blue ribbons, and a three-tier sapphire chip stack |
+| 2026-09-09T07:42:57+0900 | `assets/masters/gwang/cheongdan-chips-v1.png` | Preserved 448×256 RGBA raster master rendered from the vector source |
+| 2026-09-09T07:42:57+0900 | `assets/runtime/gwang/cheongdan-chips-v1.png` | 56×32 runtime 청단 칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T07:42:57+0900 | `assets/runtime/ui/gwang-cheongdan-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 청단 칩 gwang in all five slots; SHA-256 `2e72cbe85467c579588cb3b80f0b502334098650f8f7d45936f3ef416a13fb9d` |
