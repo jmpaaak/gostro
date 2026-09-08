@@ -33,7 +33,7 @@
 - [x] `gwang.godori_chips` - 고도리 칩 / Godori Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.hongdan_chips` - 홍단 칩 / Hongdan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.cheongdan_chips` - 청단 칩 / Cheongdan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.chodan_chips` - {'ko': '초단 칩', 'en': 'Chodan Chips'}
+- [x] `gwang.chodan_chips` - 초단 칩 / Chodan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.pi_yaku_mult` - {'ko': '피 족보', 'en': 'Pi Yaku'}
 - [ ] `gwang.thin_deck_x3` - {'ko': '얇은 덱', 'en': 'Thin Deck'}
 - [ ] `gwang.tiny_deck_chips` - {'ko': '아주 얇은 덱', 'en': 'Tiny Deck'}

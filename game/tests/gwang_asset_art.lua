@@ -149,6 +149,17 @@ function M.run()
     assert(assets.runtime_path("gwang.cheongdan_chips") ==
         "assets/runtime/gwang/cheongdan-chips-v1.png")
 
+    local chodan_chips = assets.entry("gwang.chodan_chips")
+    assert(chodan_chips and chodan_chips.status == "runtime",
+        "chodan chips gwang must have tracked runtime artwork")
+    assert(chodan_chips.master.width == 448 and chodan_chips.master.height == 256,
+        "chodan chips gwang must preserve its high-resolution slot master")
+    assert(chodan_chips.runtime.width == 56 and chodan_chips.runtime.height == 32,
+        "chodan chips gwang runtime must scale exactly into a 28x16 slot")
+    assert(chodan_chips.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.chodan_chips") ==
+        "assets/runtime/gwang/chodan-chips-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

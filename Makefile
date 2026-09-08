@@ -190,6 +190,8 @@ gwang-slot-qa:
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 	GWANG_QA_IDENTITY="cheongdan_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-cheongdan-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+	GWANG_QA_IDENTITY="chodan_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chodan-chips-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
