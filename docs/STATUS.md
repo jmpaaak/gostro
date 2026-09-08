@@ -1,14 +1,5 @@
 # STATUS
 
-## 2026-09-08 — 타로 카드 복제 (`game/tarots.lua`)
-
-- `the_lovers` (연인) copy tarot appends an independent play-card clone (kind + edition).
-- Clone is a new table via `hwatu.card`; no month numbers/names. Failed copy of gwang does not consume the slot.
-- Convert / destroy / enhance / slots unchanged. INBOX (18) convert/destroy/enhance/copy complete.
-- Tests in `game/tests/tarots.lua` GREEN (pool includes copy, clone, preserve hologram, reject gwang).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- Next slice: INBOX (19) 이자 시스템 + 경제 (`game/economy.lua`).
-
 ## 2026-09-08 — 이자 계산 (`game/economy.lua`)
 
 - Created `game/economy.lua`: Balatro-style interest $1 per $5 held.
