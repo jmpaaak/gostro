@@ -158,6 +158,7 @@ gwang-slot-qa:
 		assets/runtime/gwang/always-chips-small-v1.png assets/runtime/gwang/always-chips-mid-v1.png \
 		assets/runtime/gwang/always-mult-mid-v1.png assets/runtime/gwang/hongdan-x2-v1.png \
 		assets/runtime/gwang/cheongdan-x2-v1.png assets/runtime/gwang/chodan-x2-v1.png \
+		assets/runtime/gwang/godori-x2-v1.png \
 		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
 	GWANG_QA_IDENTITY="chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
@@ -176,6 +177,8 @@ gwang-slot-qa:
 	GWANG_QA_IDENTITY="cheongdan_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-cheongdan-x2-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 	GWANG_QA_IDENTITY="chodan_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chodan-x2-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+	GWANG_QA_IDENTITY="godori_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-godori-x2-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 
 smoke:

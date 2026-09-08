@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071d26"/>
+      <stop offset="0.5" stop-color="#164b50"/>
+      <stop offset="1" stop-color="#07151d"/>
+    </linearGradient>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0ad"/>
+      <stop offset="0.45" stop-color="#d59d43"/>
+      <stop offset="1" stop-color="#704124"/>
+    </linearGradient>
+    <linearGradient id="wing" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e5f5de"/>
+      <stop offset="0.5" stop-color="#78b9a2"/>
+      <stop offset="1" stop-color="#2d6864"/>
+    </linearGradient>
+    <pattern id="cloud" width="56" height="40" patternUnits="userSpaceOnUse">
+      <path d="M-8 25C2 10 20 10 28 25C36 10 54 10 64 25" fill="none" stroke="#7fc4ad" stroke-width="4" opacity=".24"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="432" height="240" rx="38" fill="#041117" stroke="#0d3740" stroke-width="16"/>
+  <rect x="22" y="22" width="404" height="212" rx="28" fill="url(#lacquer)" stroke="#d6ad5d" stroke-width="8"/>
+  <rect x="35" y="35" width="378" height="186" rx="18" fill="url(#cloud)" stroke="#6aa893" stroke-width="4"/>
+  <path d="M52 58h344M52 198h344" stroke="#ffe8a0" stroke-width="5" opacity=".48"/>
+  <g fill="url(#bronze)" stroke="#634023" stroke-width="4">
+    <path d="M62 44l19 18-19 18-19-18z"/><path d="M386 44l19 18-19 18-19-18z"/>
+    <path d="M62 176l19 18-19 18-19-18z"/><path d="M386 176l19 18-19 18-19-18z"/>
+  </g>
+  <g transform="translate(224 128)">
+    <circle r="84" fill="#061a20" stroke="url(#bronze)" stroke-width="7"/>
+    <circle r="70" fill="none" stroke="#82bda4" stroke-width="3" stroke-dasharray="8 7" opacity=".65"/>
+    <g fill="url(#wing)" stroke="#173f43" stroke-width="5" stroke-linejoin="round">
+      <path d="M-70-17C-52-44-25-51 0-28C25-51 52-44 70-17C45-26 23-19 0 2C-23-19-45-26-70-17Z"/>
+      <path d="M-92 18C-73-5-49-9-28 10C-8-10 15-5 30 15C9 8-8 15-26 35C-46 16-67 12-92 18Z"/>
+      <path d="M-28 15C-10-8 14-11 34 8C53-12 77-8 92 14C69 7 51 14 33 34C14 15-4 10-28 15Z"/>
+    </g>
+    <g fill="#f4cd69" stroke="#6d4825" stroke-width="3">
+      <circle cx="0" cy="-23" r="8"/><circle cx="-28" cy="8" r="7"/><circle cx="34" cy="6" r="7"/>
+    </g>
+    <path d="M-23 57H23M0 42v30" stroke="#ffe5a0" stroke-width="7" stroke-linecap="round"/>
+    <path d="M-17 47L17 67M17 47L-17 67" stroke="#c6853f" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

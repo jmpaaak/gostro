@@ -94,6 +94,17 @@ function M.run()
     assert(assets.runtime_path("gwang.chodan_x2") ==
         "assets/runtime/gwang/chodan-x2-v1.png")
 
+    local godori = assets.entry("gwang.godori_x2")
+    assert(godori and godori.status == "runtime",
+        "godori flag gwang must have tracked runtime artwork")
+    assert(godori.master.width == 448 and godori.master.height == 256,
+        "godori flag gwang must preserve its high-resolution slot master")
+    assert(godori.runtime.width == 56 and godori.runtime.height == 32,
+        "godori flag runtime must scale exactly into a 28x16 slot")
+    assert(godori.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.godori_x2") ==
+        "assets/runtime/gwang/godori-x2-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
