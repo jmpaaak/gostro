@@ -1,0 +1,168 @@
+-- game/ui/blind_select.lua
+-- Blind selection screen: 3 cards (small/big/boss), target score, reward/penalty.
+
+local run = require("game.run")
+
+local M = {}
+
+local VIEWPORT_W = 320
+local VIEWPORT_H = 180
+
+-- Card layout: 3 cards centred
+local CARD_W = 50
+local CARD_H = 70
+local CARD_GAP = 14
+local CARD_Y = 36
+
+local BLIND_NAMES = {
+    small = "스몰 블라인드",
+    big   = "빅 블라인드",
+    boss  = "보스 블라인드",
+}
+
+local BLIND_REWARDS = {
+    small = "+$3",
+    big   = "+$5",
+    boss  = "+$8",
+}
+
+local BLIND_COLOURS = {
+    small = { 0.2, 0.5, 0.8 },
+    big   = { 0.8, 0.6, 0.1 },
+    boss  = { 0.8, 0.15, 0.15 },
+}
+
+--- Display name for a blind kind.
+function M.display_name(kind)
+    return BLIND_NAMES[kind] or kind
+end
+
+--- Return 3 card display positions (centred).
+function M.card_positions()
+    local total_w = 3 * CARD_W + 2 * CARD_GAP
+    local start_x = math.floor((VIEWPORT_W - total_w) / 2)
+    local positions = {}
+    for i = 1, 3 do
+        positions[i] = {
+            x = start_x + (i - 1) * (CARD_W + CARD_GAP),
+            y = CARD_Y,
+            w = CARD_W,
+            h = CARD_H,
+        }
+    end
+    return positions
+end
+
+--- Create a new blind-select state for the given ante.
+function M.new(ante)
+    ante = ante or 1
+    local blinds = {}
+    local kinds = { "small", "big", "boss" }
+    for i, kind in ipairs(kinds) do
+        -- Compute target using run engine
+        local rs = run.new()
+        rs.ante = ante
+        rs.blind = kind
+        blinds[i] = {
+            kind   = kind,
+            target = run.blind_target(rs),
+            reward = BLIND_REWARDS[kind],
+        }
+    end
+    return {
+        ante     = ante,
+        blinds   = blinds,
+        selected = nil,
+    }
+end
+
+--- Select a blind by index (1-3). Sets state.selected to the blind kind.
+function M.select_blind(s, idx)
+    if idx < 1 or idx > 3 then
+        error("blind index out of range: " .. tostring(idx))
+    end
+    s.selected = s.blinds[idx].kind
+end
+
+--- Hit-test: returns card index (1-3) or nil.
+function M.hit_test(s, px, py)
+    local positions = M.card_positions()
+    for i = 1, 3 do
+        local p = positions[i]
+        if px >= p.x and px < p.x + p.w
+           and py >= p.y and py < p.y + p.h then
+            return i
+        end
+    end
+    return nil
+end
+
+--- Draw the blind selection screen (requires love.graphics).
+function M.draw(s)
+    if not love or not love.graphics then return end
+    local font = love.graphics.getFont()
+    local fh = font:getHeight()
+    local positions = M.card_positions()
+
+    -- Title
+    love.graphics.setColor(1, 0.9, 0.3, 1)
+    local title = "앤티 " .. tostring(s.ante) .. " — 블라인드 선택"
+    love.graphics.print(title,
+        math.floor(VIEWPORT_W / 2 - font:getWidth(title) / 2), 8)
+
+    -- Cards
+    for i = 1, 3 do
+        local p = positions[i]
+        local b = s.blinds[i]
+        local col = BLIND_COLOURS[b.kind] or { 0.4, 0.4, 0.4 }
+        local is_sel = (s.selected == b.kind)
+
+        -- Card background
+        love.graphics.setColor(col[1], col[2], col[3], is_sel and 1 or 0.7)
+        love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 4, 4)
+
+        -- Selection border highlight
+        if is_sel then
+            love.graphics.setColor(1, 1, 0.4, 1)
+            love.graphics.setLineWidth(2)
+        else
+            love.graphics.setColor(1, 1, 1, 0.5)
+            love.graphics.setLineWidth(1)
+        end
+        love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 4, 4)
+        love.graphics.setLineWidth(1)
+
+        -- Blind name
+        love.graphics.setColor(1, 1, 1, 1)
+        local name = BLIND_NAMES[b.kind] or b.kind
+        local nw = font:getWidth(name)
+        love.graphics.print(name,
+            p.x + math.floor((p.w - nw) / 2), p.y + 6)
+
+        -- Target score
+        local target_txt = tostring(b.target)
+        local tw = font:getWidth(target_txt)
+        love.graphics.setColor(1, 0.95, 0.6, 1)
+        love.graphics.print(target_txt,
+            p.x + math.floor((p.w - tw) / 2),
+            p.y + math.floor(p.h / 2) - math.floor(fh / 2))
+
+        -- Reward/penalty at bottom
+        love.graphics.setColor(0.3, 1, 0.4, 1)
+        local rw = font:getWidth(b.reward)
+        love.graphics.print(b.reward,
+            p.x + math.floor((p.w - rw) / 2), p.y + p.h - fh - 4)
+    end
+
+    -- Instruction
+    love.graphics.setColor(0.7, 0.7, 0.7, 0.8)
+    local hint = "카드를 탭하여 블라인드 선택"
+    love.graphics.print(hint,
+        math.floor(VIEWPORT_W / 2 - font:getWidth(hint) / 2),
+        CARD_Y + CARD_H + 12)
+
+    -- Reset colour
+    love.graphics.setColor(1, 1, 1, 1)
+end
+
+return M

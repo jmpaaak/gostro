@@ -21,6 +21,7 @@ function M.run()
     require("game.tests.scoreboard_ui").run()
     require("game.tests.action_buttons_ui").run()
     require("game.tests.shop_ui").run()
+    require("game.tests.blind_select_ui").run()
     print("GOSTRO_UNIT_OK")
 end
 

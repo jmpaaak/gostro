@@ -4,15 +4,6 @@
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
-### Phase B — 핵심 UI 모듈 개발
-
-(10) **블라인드 선택 화면 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/blind_select.lua` (새 모듈)
-  - 스몰/빅/보스 블라인드 3장 카드 레이아웃
-  - 각 카드에 목표 점수 + 보상/패널티 표시
-  - 선택 탭 → 해당 블라인드로 진입
-  - 테스트: `game/tests/blind_select_ui.lua`
-
 ### Phase C — 씬 통합
 
 (11) **play 씬 리빌드: UI 모듈 통합** (msg `1546674255045992608`)
@@ -30,6 +21,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (10) **블라인드 선택 화면 모듈** (msg `1546674255045992608`)
+    - `game/ui/blind_select.lua`: 스몰/빅/보스 3장 카드 레이아웃 (50×70px, 색상 구분), 목표 점수 + 보상 표시, 선택 탭 → 해당 블라인드 진입, hit_test.
+    - `game/tests/blind_select_ui.lua` GREEN. `make verify` GREEN.
 
   (9) **상점 UI 모듈** (msg `1546674255045992608`)
     - `game/ui/shop.lua`: 광 조커 3장 진열 (카드 형태, ★ + 이름 + 가격 태그), 리롤 버튼 ($5), "다음 라운드" 버튼, 소지금 표시, hit_test, buy/reroll 로직.
