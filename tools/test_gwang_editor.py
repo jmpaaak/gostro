@@ -481,5 +481,43 @@ class GwangEditorDeleteCardTests(unittest.TestCase):
         self.assertIn("wireDeleteCard", init)
 
 
+class GwangEditorLocaleToggleTests(unittest.TestCase):
+    """INBOX (23h): switch card previews between Korean and English."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(HTML_PATH, encoding="utf-8") as f:
+            cls.html = f.read()
+
+    def test_html_has_korean_and_english_locale_actions(self):
+        self.assertIn('id="localeKoBtn"', self.html)
+        self.assertIn('id="localeEnBtn"', self.html)
+        self.assertRegex(self.html, r">\s*KO\s*<")
+        self.assertRegex(self.html, r">\s*EN\s*<")
+
+    def test_locale_switch_updates_and_rerenders_card_previews(self):
+        switch = _fn_body(self.js, "setLocale")
+        self.assertTrue(switch, "setLocale must exist")
+        self.assertIn("activeLocale", switch)
+        self.assertIn("renderGrid", switch)
+        render = _fn_body(self.js, "renderGrid")
+        self.assertIn("activeLocale", render)
+        self.assertIn("joker.name", render)
+
+    def test_locale_choice_is_persisted(self):
+        switch = _fn_body(self.js, "setLocale")
+        self.assertIn("localStorage.setItem", switch)
+        self.assertIn("localStorage.getItem", self.js)
+
+    def test_locale_actions_are_wired_on_init(self):
+        wire = _fn_body(self.js, "wireLocaleToggle")
+        self.assertIn("localeKoBtn", wire)
+        self.assertIn("localeEnBtn", wire)
+        init = _fn_body(self.js, "init")
+        self.assertIn("wireLocaleToggle", init)
+
+
 if __name__ == "__main__":
     unittest.main()

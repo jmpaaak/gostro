@@ -408,3 +408,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (23g) New Card slice only. Delete remains; Download JSON was already completed in (23a).
 - Next slice: INBOX (23g) Delete on `tools/gwang-editor/`.
+
+## Archived from STATUS.md (2026-09-08 13:14)
+
+## 2026-09-08 — 광 카드 에디터 카드 삭제 (`tools/gwang-editor/`)
+
+- Added a disabled-until-selection `Delete` action for the loaded gwang catalog.
+- Deletion requires confirmation, removes only the selected card, clears the editor selection, and rerenders the grid; direct-save and download persist the updated catalog.
+- TDD: `GwangEditorDeleteCardTests` observed RED (4 failures), then GREEN.
+- `python3 -m unittest tools.test_gwang_editor -v` GREEN (38 tests); `node --check tools/gwang-editor/editor.js` GREEN.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23g) is complete: Download JSON, New Card, and Delete are implemented.
+- Next slice: INBOX (23h) KO|EN locale toggle on `tools/gwang-editor/`.

@@ -14,16 +14,22 @@ const KNOWN_YAKU = ["hongdan", "cheongdan", "chodan", "godori", "pi"];
 const CARD_ASPECT = 2 / 3;
 const CARD_ART_W = 240;
 const CARD_ART_H = 360;
+const LOCALE_STORAGE_KEY = "gostro-gwang-editor-locale";
+const RARITY_LABELS = {
+  ko: { common: "일반", uncommon: "고급", rare: "희귀", legendary: "전설" },
+  en: { common: "Common", uncommon: "Uncommon", rare: "Rare", legendary: "Legendary" },
+};
 
 /** @type {{jokers: Array<object>}|null} */
 let pool = null;
 let fileHandle = null;
 let selectedJokerId = null;
+let activeLocale = "en";
 
 const els = {};
 function cacheEls() {
   [
-    "openJsonInput", "openFsaBtn", "newCardBtn", "deleteCardBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
+    "openJsonInput", "openFsaBtn", "localeKoBtn", "localeEnBtn", "newCardBtn", "deleteCardBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
     "editorEmpty", "editorForm", "cardId", "nameKo", "nameEn", "rarity", "trigger",
     "kindNeed", "yakuNeed", "deckMax", "moneyMin", "blindNeed",
     "effectChips", "effectMult", "effectMultMul", "descKo", "descEn",
@@ -271,14 +277,46 @@ function wireImageUploads() {
   });
 }
 
-function formatEffectText(effect) {
+function formatEffectText(effect, locale) {
   if (!effect || typeof effect !== "object") return "";
+  const labels = locale === "ko"
+    ? { chips: "칩", mult: "배수" }
+    : { chips: "chips", mult: "mult" };
   const parts = [];
-  if (Number.isFinite(effect.chips)) parts.push(`${effect.chips >= 0 ? "+" : ""}${effect.chips} chips`);
-  if (Number.isFinite(effect.mult)) parts.push(`${effect.mult >= 0 ? "+" : ""}${effect.mult} mult`);
-  if (Number.isFinite(effect.mult_mul)) parts.push(`×${effect.mult_mul} mult`);
+  if (Number.isFinite(effect.chips)) parts.push(`${effect.chips >= 0 ? "+" : ""}${effect.chips} ${labels.chips}`);
+  if (Number.isFinite(effect.mult)) parts.push(`${effect.mult >= 0 ? "+" : ""}${effect.mult} ${labels.mult}`);
+  if (Number.isFinite(effect.mult_mul)) parts.push(`×${effect.mult_mul} ${labels.mult}`);
   if (Number.isFinite(effect.money)) parts.push(`${effect.money >= 0 ? "+" : "-"}$${Math.abs(effect.money)}`);
   return parts.join(" · ");
+}
+
+function savedLocale() {
+  try {
+    const locale = localStorage.getItem(LOCALE_STORAGE_KEY);
+    return locale === "ko" || locale === "en" ? locale : "en";
+  } catch (_) {
+    return "en";
+  }
+}
+
+function setLocale(locale) {
+  if (locale !== "ko" && locale !== "en") return;
+  activeLocale = locale;
+  els.localeKoBtn.classList.toggle("active", locale === "ko");
+  els.localeEnBtn.classList.toggle("active", locale === "en");
+  els.localeKoBtn.setAttribute("aria-pressed", String(locale === "ko"));
+  els.localeEnBtn.setAttribute("aria-pressed", String(locale === "en"));
+  document.documentElement.lang = locale;
+  try {
+    localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+  } catch (_) { /* storage can be unavailable for local files */ }
+  renderGrid();
+}
+
+function wireLocaleToggle() {
+  els.localeKoBtn.addEventListener("click", () => setLocale("ko"));
+  els.localeEnBtn.addEventListener("click", () => setLocale("en"));
+  setLocale(savedLocale());
 }
 
 function optionalNumber(input) {
@@ -440,15 +478,16 @@ function renderGrid() {
     return;
   }
   els.grid.innerHTML = pool.jokers.map((joker) => {
-    const name = (joker.name && joker.name.en) || joker.id || "?";
+    const name = (joker.name && (joker.name[activeLocale] || joker.name.en || joker.name.ko)) || joker.id || "?";
     const id = joker.id || "";
     const rarity = KNOWN_RARITIES.includes(joker.rarity) ? joker.rarity : "common";
-    const effectText = formatEffectText(joker.effect);
+    const effectText = formatEffectText(joker.effect, activeLocale);
+    const rarityLabel = RARITY_LABELS[activeLocale][rarity];
     const art = joker.image
       ? `<img class="hwatu-art" alt="" src="${escapeHtml(joker.image)}">`
       : "";
     const selected = id === selectedJokerId ? " selected" : "";
-    return `<article class="hwatu-card${selected}" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="rarity-ribbon ${rarity}">${escapeHtml(rarity)}</div><div class="card-overlay"><div class="name">${escapeHtml(name)}</div><div class="effect-text">${escapeHtml(effectText)}</div><div class="card-actions"><button class="edit-card-btn" type="button" data-id="${escapeHtml(id)}">Edit</button><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></div></div></article>`;
+    return `<article class="hwatu-card${selected}" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="rarity-ribbon ${rarity}">${escapeHtml(rarityLabel)}</div><div class="card-overlay"><div class="name">${escapeHtml(name)}</div><div class="effect-text">${escapeHtml(effectText)}</div><div class="card-actions"><button class="edit-card-btn" type="button" data-id="${escapeHtml(id)}">Edit</button><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></div></div></article>`;
   }).join("");
   wireImageUploads();
   wireCardSelection();
@@ -473,6 +512,7 @@ function init() {
   wireOpenFsa();
   wireSaveFsa();
   wireDownload();
+  wireLocaleToggle();
   wireEditor();
   wireNewCard();
   wireDeleteCard();

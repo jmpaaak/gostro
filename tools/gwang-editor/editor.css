@@ -50,6 +50,17 @@ button, .file-btn {
 }
 button:hover, .file-btn:hover { border-color: var(--accent); }
 button:disabled { opacity: 0.4; cursor: not-allowed; }
+.locale-toggle { display: flex; }
+.locale-toggle button { border-radius: 0; min-width: 40px; }
+.locale-toggle button:first-child { border-radius: 6px 0 0 6px; }
+.locale-toggle button:last-child { border-radius: 0 6px 6px 0; margin-left: -1px; }
+.locale-toggle button.active {
+  position: relative;
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #071019;
+  font-weight: 700;
+}
 
 .status {
   padding: 8px 24px;
