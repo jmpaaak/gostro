@@ -43,8 +43,7 @@ function M.run()
     require("game.tests.blind_flow").run()
     require("game.tests.round_engine").run()
     require("game.tests.run_rules").run()
-    require("game.tests.scoring_pipeline").run()
-    require("game.tests.shop_engine").run()
+    require("game.tests.consumables_ui").run()
     print("GOSTRO_UNIT_OK")
 end
 

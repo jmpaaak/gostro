@@ -625,3 +625,20 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (16) → 처리 완료.
 - Next slice: INBOX (17) 행성 카드 (`game/planets.lua`).
+
+## Archived from STATUS.md (2026-09-08 18:48)
+
+> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
+
+## 2026-09-08 — 행성 카드 (game/planets.lua)
+
+- Created `game/planets.lua`: Balatro-style planet cards for leveling up yaku (hongdan, cheongdan, chodan, godori, pi).
+- Leveling up permanently adds base chips and mult to hands playing that yaku.
+- `game/hwatu.lua` `evaluate` updated to accept `state` and call `planets.apply_level_bonus(state, yaku, chips, mult)` to accumulate the level-up bonuses (e.g. +15 chips, +1 mult per level).
+- `game/ui/shop.lua` generates planets in the shop (30% chance for random_item) alongside gwang.
+- `game/ui/planets_ui.lua`: left-side HUD to display the current levels of all yakus during play.
+- `game/scenes/play.lua`: integrated `planets_ui.draw`, handles planet purchases from shop without rejecting non-gwang items.
+- Tests in `game/tests/planets.lua` verify levels, buying, and chip/mult calculations. `shop_ui` tests updated to permit planets in the shop.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (17) → 처리 완료.
+- Next slice: INBOX (18) 타로 카드 (카드 변환/파괴) (`game/tarots.lua`).

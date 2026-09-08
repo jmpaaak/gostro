@@ -1,19 +1,6 @@
 # STATUS
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
 
-## 2026-09-08 — 행성 카드 (game/planets.lua)
-
-- Created `game/planets.lua`: Balatro-style planet cards for leveling up yaku (hongdan, cheongdan, chodan, godori, pi).
-- Leveling up permanently adds base chips and mult to hands playing that yaku.
-- `game/hwatu.lua` `evaluate` updated to accept `state` and call `planets.apply_level_bonus(state, yaku, chips, mult)` to accumulate the level-up bonuses (e.g. +15 chips, +1 mult per level).
-- `game/ui/shop.lua` generates planets in the shop (30% chance for random_item) alongside gwang.
-- `game/ui/planets_ui.lua`: left-side HUD to display the current levels of all yakus during play.
-- `game/scenes/play.lua`: integrated `planets_ui.draw`, handles planet purchases from shop without rejecting non-gwang items.
-- Tests in `game/tests/planets.lua` verify levels, buying, and chip/mult calculations. `shop_ui` tests updated to permit planets in the shop.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (17) → 처리 완료.
-- Next slice: INBOX (18) 타로 카드 (카드 변환/파괴) (`game/tarots.lua`).
-
 ## 2026-09-08 — 타로 카드 변환/파괴 (`game/tarots.lua`)
 
 - Created `game/tarots.lua`: Balatro-style tarot consumables.
@@ -160,3 +147,12 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (160 files).
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: consumable slots are already engine-owned but not playable; add an independent `game/ui/consumables.lua` inventory/selection contract before routing tarot targets in the play scene.
+
+## 2026-09-08 — 타로 소모품 인벤토리 선택 계약 (`game/ui/consumables.lua`)
+
+- Added a headless-safe render model for occupied and empty tarot slots, including Crystal Ball capacity, localized effect labels, and shared 320×180 bounds.
+- Occupied slots can be selected and toggled off through pure hit-test/selection APIs; empty slots and out-of-bounds presses are inert. Tarot execution remains owned by `game/tarots.lua`.
+- TDD RED was observed for the missing module. `make verify LOVE=/Users/jm/.local/bin/love` is GREEN with `consumables_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, and `LOVE_BUNDLE_OK` (162 files).
+- Removed two duplicate suite invocations from `game/self_test.lua` while registering the focused `game/tests/consumables_ui.lua`, so the entrypoint did not grow.
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: add require/delegation-only play-scene wiring to draw the consumable inventory and select a held tarot, then introduce a separate target/options flow before calling `game/tarots.lua`.
