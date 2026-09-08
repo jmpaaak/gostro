@@ -1,6 +1,8 @@
 -- game/ui/blind_select.lua
 -- Blind selection screen: 3 cards (small/big/boss), target score, reward/penalty.
 
+local terms = require("game.terms")
+
 local M = {}
 
 local VIEWPORT_W = 320
@@ -11,12 +13,6 @@ local CARD_W = 50
 local CARD_H = 70
 local CARD_GAP = 14
 local CARD_Y = 36
-
-local BLIND_NAMES = {
-    small = "스몰 블라인드",
-    big   = "빅 블라인드",
-    boss  = "보스 블라인드",
-}
 
 local BLIND_REWARDS = {
     small = "+$3",
@@ -32,7 +28,7 @@ local BLIND_COLOURS = {
 
 --- Display name for a blind kind.
 function M.display_name(kind)
-    return BLIND_NAMES[kind] or kind
+    return terms.blind_name(kind)
 end
 
 --- Return 3 card display positions (centred).
@@ -56,7 +52,7 @@ function M.new(model)
     if type(model) ~= "table" or type(model.blinds) ~= "table" then
         error("blind-select requires a blind flow model")
     end
-    if not BLIND_NAMES[model.current] then
+    if not BLIND_REWARDS[model.current] then
         error("unknown current blind: " .. tostring(model.current))
     end
     local blinds = {}
@@ -113,7 +109,7 @@ function M.draw(s)
 
     -- Title
     love.graphics.setColor(1, 0.9, 0.3, 1)
-    local title = "앤티 " .. tostring(s.ante) .. " — 블라인드 선택"
+    local title = terms.ante(s.ante) .. " — " .. terms.domain.blind .. " 선택"
     love.graphics.print(title,
         math.floor(VIEWPORT_W / 2 - font:getWidth(title) / 2), 8)
 
@@ -142,7 +138,7 @@ function M.draw(s)
 
         -- Blind name
         love.graphics.setColor(1, 1, 1, 1)
-        local name = BLIND_NAMES[b.kind] or b.kind
+        local name = terms.blind_name(b.kind)
         local nw = font:getWidth(name)
         love.graphics.print(name,
             p.x + math.floor((p.w - nw) / 2), p.y + 6)
@@ -169,7 +165,7 @@ function M.draw(s)
 
     -- Instruction
     love.graphics.setColor(0.7, 0.7, 0.7, 0.8)
-    local hint = "카드를 탭하여 블라인드 선택"
+    local hint = "카드를 탭하여 " .. terms.domain.blind .. " 선택"
     love.graphics.print(hint,
         math.floor(VIEWPORT_W / 2 - font:getWidth(hint) / 2),
         CARD_Y + CARD_H + 12)

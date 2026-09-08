@@ -1072,3 +1072,7 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (200 files).
 - INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
 - Next slice: 플레이 패 5종을 하나의 시각 문법으로 함께 재설계한 master contact sheet를 만들고 겹친 카드 상단 식별 표식 QA를 자동 캡처한다. 승인 전에는 어느 패도 `runtime`으로 승격하지 않는다.
+
+## Archived from STATUS.md (2026-09-09 00:09)
+
+## 2026-09-08 — 플레이 패 5종 통합 master·겹침 QA 후보

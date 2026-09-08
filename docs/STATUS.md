@@ -1,6 +1,4 @@
 # STATUS
-## 2026-09-08 — 플레이 패 5종 통합 master·겹침 QA 후보
-
 - 피·홍단·청단·초단·고도리를 같은 카드 틀과 한지 질감으로 묶은 960×288 SVG/PNG master contact sheet를 만들었다. 피는 지도 핀/영문 약어 대신 매화와 가지, 나머지는 색 띠·난초·제비 날개 상단 문양을 사용한다.
 - 실제 Asset Studio `POST /api/pixel-perfect`로 120×36(카드당 24×36) 후보 sheet를 생성했고 dimensions/palette/alpha/nearest 검사 5/5가 통과했다.
 - 신규 `card_overlap_qa.py`가 후보 셀을 10px 간격으로 겹친 64×40 캡처와 hash 보고서를 생성한다. 5개 상단 문양 fingerprint가 모두 고유함을 검증했다.
@@ -9,6 +7,15 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (207 files).
 - INBOX (27)은 전체 그래픽 전환과 플레이 패 실런타임 승인이 남아 있어 처리 대기로 유지한다.
 - Next slice: 후보 sheet를 QA 전용 320×180 LÖVE 화면에 nearest로 그려 실제 겹침 캡처를 만들고, 사람의 식별성·화투 아트 승인 결과를 manifest에 기록한다.
+
+## 2026-09-09 — 한국 테마 용어 계약 신설 및 일부 적용 (판/고)
+
+- `game/terms.lua`를 신설하여 player-facing 용어(기원패, 부적, 판, 고 등) 단일 계약을 마련했다.
+- UI 모듈(`blind_select.lua`, `shop.lua`)과 데이터(`gwang_jokers.json`)에서 '스몰/빅/보스 블라인드' 및 '앤티' 하드코딩 문자열을 `terms` 모듈과 한국어('첫판/큰판/대장판', 'n고')로 교체했다.
+- TDD RED: `terms` 모듈 부재를 확인했다. 구현 후 `game/tests/terms.lua` 단위 테스트와 UI 텍스트 출력 검증이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN (209 files).
+- INBOX (28)은 전체 도메인 적용이 남아 있어 처리 대기로 유지한다.
+- Next slice: 나머지 player-facing Balatro 용어(Planet, Tarot, Tag, Voucher 등)를 `terms.lua`를 사용하여 기원패, 부적, 패찰, 인장으로 교체한다.
 
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 

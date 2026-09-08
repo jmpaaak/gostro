@@ -1,6 +1,8 @@
 -- game/ui/shop.lua
 -- Shop UI: 3 gwang joker cards on display, reroll ($5), next round, money.
 
+local terms = require("game.terms")
+
 local M = {}
 
 local VIEWPORT_W = 320
@@ -157,11 +159,11 @@ end
 local function item_label(item)
     if item.name then return item.name end
     if item.kind == "voucher" then
-        return VOUCHER_NAMES[item.identity] or "바우처"
+        return VOUCHER_NAMES[item.identity] or terms.domain.voucher
     end
     if item.kind == "pack" then return "카드 팩" end
-    if item.kind == "tarot" then return "타로" end
-    if item.kind == "planet" then return "행성" end
+    if item.kind == "tarot" then return terms.domain.tarot end
+    if item.kind == "planet" then return terms.domain.planet end
     return GWANG_NAMES[item.identity] or "광"
 end
 

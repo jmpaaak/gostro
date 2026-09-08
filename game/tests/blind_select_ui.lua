@@ -97,9 +97,9 @@ function M.run()
     assert(miss == nil, "miss returns nil")
 
     -- display_name
-    assert(blind_select.display_name("small") == "스몰 블라인드")
-    assert(blind_select.display_name("big") == "빅 블라인드")
-    assert(blind_select.display_name("boss") == "보스 블라인드")
+    assert(blind_select.display_name("small") == "첫판")
+    assert(blind_select.display_name("big") == "큰판")
+    assert(blind_select.display_name("boss") == "대장판")
 
     print("  blind_select_ui: OK")
 end
