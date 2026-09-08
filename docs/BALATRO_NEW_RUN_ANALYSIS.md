@@ -27,6 +27,14 @@
 - 실기기 설치 목록에서 Balatro 1.0.19(50)의 bundle identifier `com.playstack.balatropremium`을 확인했다.
 - `devicectl` 앱 실행은 성공했지만 WDA는 development team 미설정(code 65)으로 아직 세션을 열지 못했다. 따라서 PNG/page source 증거 묶음은 후속 과제로 남는다.
 
+## 2026-09-08 WDA 서명 빌드 검증
+
+- 저장소의 무시된 `build/` 아래에 Appium 3.7.0과 XCUITest driver 12.11.0을 격리해 실행했다.
+- WDA에 development team `2JQN8PNHSY`, signing identity `Apple Development`, updated bundle id `com.jmpaxk.WebDriverAgentRunner`를 지정했다.
+- Xcode가 `com.jmpaxk.WebDriverAgentRunner.xctrunner` 프로비저닝 프로필과 Apple Development 인증서를 선택했고 `TEST BUILD SUCCEEDED`까지 완료했다. WDA runner 1.0이 실기기에 설치된 것도 `devicectl device info apps`로 확인했다.
+- 실행은 실기기에서 Developer App 인증서를 아직 신뢰하지 않아 차단됐다(CoreDevice 10002). 기기의 `설정 → 일반 → VPN 및 기기 관리`에서 개발자 인증서를 직접 신뢰해야 한다.
+- 따라서 이번 점검에서도 WDA 세션, PNG, page source는 생성되지 않았다. 화면 내용은 새 관찰 사실로 추가하지 않는다.
+
 ## 직접 관찰된 첫 두 체크포인트
 
 ### 1. 랜딩
