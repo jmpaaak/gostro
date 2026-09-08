@@ -4,7 +4,8 @@
 -- deck_size (×mult when play-card deck count ≤ deck_max),
 -- money (+mult when held money ≥ money_min),
 -- blind (×mult when current blind matches blind_need, e.g. boss),
--- once (×mult once, then destroy the equipped slot).
+-- once (×mult once, then destroy the equipped slot),
+-- compound effects (chips + mult + money on the same fire).
 
 local M = {}
 
@@ -270,7 +271,7 @@ local function should_trigger(def, ctx)
     return false
 end
 
-local function apply_effect(chips, mult, effect)
+local function apply_effect(chips, mult, effect, state)
     local e = effect or {}
     if e.chips then
         chips = chips + e.chips
@@ -280,6 +281,9 @@ local function apply_effect(chips, mult, effect)
     end
     if e.mult_mul then
         mult = mult * e.mult_mul
+    end
+    if e.money and type(state) == "table" then
+        state.money = (state.money or 0) + e.money
     end
     return chips, mult
 end
@@ -293,6 +297,7 @@ end
 -- money: fire when held money (ctx.money or state.money) ≥ money_min.
 -- blind: fire when current blind (ctx.blind or state.blind) == blind_need (e.g. boss → ×2).
 -- once: fire once (e.g. ×20), then remove that equipped slot.
+-- compound: one fire can add chips, add mult, and grant money together.
 function M.apply(ctx)
     local chips = ctx.chips or 0
     local mult = ctx.mult or 1
@@ -308,7 +313,7 @@ function M.apply(ctx)
         local id = g and g.identity
         local def = id and by_id[id]
         if def and should_trigger(def, ctx) then
-            chips, mult = apply_effect(chips, mult, def.effect)
+            chips, mult = apply_effect(chips, mult, def.effect, state)
             triggered[#triggered + 1] = { id = def.id, slot = i }
             if def.trigger == "once" then
                 table.remove(state.gwang, i)

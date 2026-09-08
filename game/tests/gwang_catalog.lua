@@ -1,5 +1,6 @@
 -- Tests for always + contains-kind + yaku + deck-size + money + blind + once
--- gwang jokers (INBOX 21a–21g). Catalog JSON + apply loop in hwatu.evaluate.
+-- + compound (chips+mult+money) gwang jokers (INBOX 21a–21h).
+-- Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
 local hwatu = require("game.hwatu")
@@ -49,6 +50,9 @@ function M.run()
     M.test_apply_once_x20_then_destroys()
     M.test_apply_once_x20_second_hand_is_noop()
     M.test_hwatu_evaluate_once_x20()
+    M.test_catalog_loads_compound()
+    M.test_apply_compound_chips_mult_money()
+    M.test_hwatu_evaluate_compound()
     print("  gwang_catalog: OK")
 end
 
@@ -538,6 +542,50 @@ function M.test_hwatu_evaluate_once_x20()
     assert(after.chips == 32)
     assert(after.mult == 2, "second hand no ×20, got " .. tostring(after.mult))
     assert(not after.gwang_triggers or #after.gwang_triggers == 0)
+end
+
+function M.test_catalog_loads_compound()
+    local j = catalog.get("compound")
+    assert(j, "compound joker in catalog")
+    assert(j.trigger == "always")
+    assert((j.effect.chips or 0) == 20)
+    assert((j.effect.mult or 0) == 2)
+    assert((j.effect.money or 0) == 1)
+end
+
+function M.test_apply_compound_chips_mult_money()
+    local state = {
+        money = 4,
+        gwang = { { kind = "gwang", identity = "compound" } },
+    }
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        state = state,
+    })
+    assert(chips == 52, "compound +20 chips, got " .. tostring(chips))
+    assert(mult == 4, "compound +2 mult, got " .. tostring(mult))
+    assert(state.money == 5, "compound +$1, got " .. tostring(state.money))
+    assert(#triggered == 1)
+    assert(triggered[1].id == "compound")
+end
+
+function M.test_hwatu_evaluate_compound()
+    local hand = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "compound" } }
+    state.money = 4
+
+    local base = hwatu.evaluate(hand)
+    assert(base.chips == 32)
+    assert(base.mult == 2)
+    local with = hwatu.evaluate(hand, state)
+    assert(with.chips == 52, "compound +20 chips, got " .. tostring(with.chips))
+    assert(with.mult == 4, "compound +2 mult, got " .. tostring(with.mult))
+    assert(with.score == 52 * 4)
+    assert(state.money == 5, "evaluate grants +$1, got " .. tostring(state.money))
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "compound")
 end
 
 return M

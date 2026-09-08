@@ -129,6 +129,14 @@
       "trigger": "once",
       "effect": { "mult_mul": 20 },
       "desc": { "ko": "1회 ×20 배수 후 소멸", "en": "×20 mult once, then destroy" }
+    },
+    {
+      "id": "compound",
+      "name": { "ko": "복합", "en": "Compound" },
+      "rarity": "rare",
+      "trigger": "always",
+      "effect": { "chips": 20, "mult": 2, "money": 1 },
+      "desc": { "ko": "매 핸드 +20 칩, +2 배수, +$1", "en": "+20 chips, +2 mult, +$1 every hand" }
     }
   ]
 }

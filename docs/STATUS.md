@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 조커 복합 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `compound` (`trigger=always`, `effect.chips=20` + `mult=2` + `money=1`).
+- `game/gwang_catalog.lua` `apply_effect`: one fire can add chips, add mult, and grant money on `state.money` together. Previous triggers unchanged.
+- `game/hwatu.lua` already passes `state` into catalog apply; evaluate reports `gwang_triggers` and mutates held money.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply +20 chips/+2 mult/+$1, hwatu evaluate same).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) compound (h) slice only. 30-joker catalog is not in this slice.
+- Next slice: INBOX (21) remaining — 최소 30종 광 조커 JSON 카탈로그 on `game/data/gwang_jokers.json`.
+
 ## 2026-09-08 — 광 조커 once 트리거 (`game/gwang_catalog.lua`)
 
 - `game/data/gwang_jokers.json`: `once_x20` (`trigger=once`, `effect.mult_mul=20`).
