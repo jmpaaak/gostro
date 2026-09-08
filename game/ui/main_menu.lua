@@ -199,14 +199,14 @@ function M.draw(menu, graphics)
     local title_font = fonts.get(22, graphics)
 
     draw_background(graphics)
-    graphics.setFont(title_font)
-    graphics.setColor(0.97, 0.82, 0.34, 1)
-    graphics.printf("고스트로", 0, 15, M.VIEWPORT_W, "center")
-
     graphics.setFont(body_font)
     if menu.mode == "play_menu" then
         draw_play_panel(menu, graphics, body_font)
     else
+        graphics.setFont(title_font)
+        graphics.setColor(0.97, 0.82, 0.34, 1)
+        graphics.printf("고스트로", 0, 15, M.VIEWPORT_W, "center")
+        graphics.setFont(body_font)
         graphics.setColor(0.78, 0.88, 0.82, 1)
         graphics.printf("화투 로그라이크", 0, 39, M.VIEWPORT_W, "center")
         draw_button(graphics, body_font, LANDING_BUTTON)
