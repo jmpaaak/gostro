@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="288" viewBox="0 0 192 288">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff6df"/>
+      <stop offset="0.55" stop-color="#eadcb9"/>
+      <stop offset="1" stop-color="#cdbb91"/>
+    </linearGradient>
+    <linearGradient id="silk" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#ff5b4d"/>
+      <stop offset="0.48" stop-color="#c91f2c"/>
+      <stop offset="1" stop-color="#761421"/>
+    </linearGradient>
+    <pattern id="fiber" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M1 4h5M10 12h4M5 15h2" stroke="#816f52" stroke-width="2" opacity=".22"/>
+    </pattern>
+  </defs>
+  <path d="M20 4h152c11 0 16 7 16 18v244c0 12-6 18-18 18H20c-11 0-16-7-16-18V22C4 10 10 4 20 4z" fill="url(#paper)" stroke="#21171a" stroke-width="8"/>
+  <path d="M17 25c28-8 48-6 64 1 20 9 39 7 57-2 14-7 26-7 37-1v244c-18 7-36 6-53-2-18-8-38-7-58 2-17 7-33 6-47-1z" fill="url(#fiber)"/>
+  <path d="M31 67c38-17 84-18 130-3l-19 45 18 42c-44-15-87-13-128 5l15-45z" fill="url(#silk)" stroke="#57141d" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M49 83c29-11 60-13 93-6M48 137c30-11 61-13 94-7" fill="none" stroke="#ff8b73" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+  <g fill="#ffe9b7" stroke="#55141d" stroke-width="4" stroke-linejoin="round">
+    <path d="M62 96l17-9 17 9-4 20-13 9-14-9z"/>
+    <path d="M100 94l15-8 16 8-3 19-13 10-13-10z"/>
+  </g>
+  <path d="M56 190c27 12 54 12 81 0M64 207c21 9 43 9 65 0" fill="none" stroke="#846c43" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="47" cy="43" r="7" fill="#c82931"/><circle cx="145" cy="43" r="7" fill="#c82931"/>
+  <path d="M38 239h116" stroke="#3f3030" stroke-width="8" stroke-linecap="round"/>
+  <path d="M58 253h76" stroke="#a79166" stroke-width="5" stroke-linecap="round"/>
+</svg>

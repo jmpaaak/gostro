@@ -4,7 +4,7 @@
     {
       "id": "play-card.pi",
       "category": "play-card",
-      "status": "runtime",
+      "status": "candidate",
       "master": {
         "source": "assets/masters/cards/pi.svg",
         "sourceSha256": "aebb8e897d550e97f75df63980c858b43c4649e320fd0a61f84405c0d2a2552c",
@@ -49,8 +49,40 @@
     {
       "id": "play-card.hongdan",
       "category": "play-card",
-      "status": "pending",
-      "name": "hongdan"
+      "status": "candidate",
+      "name": "hongdan",
+      "master": {
+        "source": "assets/masters/cards/hongdan.svg",
+        "sourceSha256": "f60629f9007197d00b04e2101800e3a4740cabf1086c266a4bfbc4ae09c7304a",
+        "path": "assets/masters/cards/hongdan.png",
+        "width": 192,
+        "height": 288,
+        "sha256": "1c2ed545eddad76ffca9d135649f80dada5041d7872f31d612207195c3208449",
+        "provenance": "Project-authored vector shape master; no photo, person, month number, month name, or month illustration."
+      },
+      "runtime": {
+        "path": "assets/runtime/cards/hongdan.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [0, 0, 23, 35],
+        "sha256": "328b8ec22927b64958c43363d857177a831ae048b197fe2655d679d61e90e6b4",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 24,
+        "targetHeight": 36,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/cards/hongdan.report.json"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [0, 0]
+      }
     },
     {
       "id": "play-card.cheongdan",

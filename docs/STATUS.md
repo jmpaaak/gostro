@@ -1,63 +1,13 @@
 # STATUS
-## 2026-09-08 — 자산 파이프라인 인벤토리 및 card_art 모듈화
+## 2026-09-08 — 플레이 패 후보 에셋 승인 격리·manifest 로더
 
-- `assets/manifest.json` 및 `docs/ASSET_INVENTORY.md`를 생성해 전체 게임 내 모든 그래픽 인스턴스(총 108개)를 기계적으로 인벤토리화하고 추적 체크리스트를 구축했다.
-- `game/ui/card.lua`의 직접적인 fallback 렌더링에 앞서 새로운 자산 로더/드로어인 `game/ui/card_art.lua`를 신규 분리해 적용했다.
-- TDD RED: `card_art.lua` 부재. 구현 후 `make verify` 전체 GREEN 확인.
-- INBOX (27) 에셋 파이프라인 전환 작업의 첫 단계(인벤토리 구축 및 기본 card_art 분리)를 완료했으며, 후속 작업(gwang_art 분리 등)을 위해 대기 상태를 유지한다.
-- Next slice: 기존 `game/ui/gwang_art.lua`를 수정하여 `assets/manifest.json` 기반의 독립 asset loader 모듈을 연동한다.
-
-## 2026-09-08 — run facade·blind flow 순환 의존 제거
-
-- `game/blind_flow.lua`의 사용되지 않는 `game.run` import를 제거해 진행 규칙이 호환 facade를 역참조하지 않는다.
-- `game/tests/blind_flow.lua` fixture를 `game.run_state`로 직접 조립하고 목표·점수·스킵·클리어·상점 이탈을 모두 `blind_flow` 공개 계약으로 검증한다.
-- stake 보정 목표 회귀는 300점에서 clear 거부, 375점에서 허용되는 경계를 보존한다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (174 files).
-- INBOX (26)의 직접 관찰 범위, 문헌 조사 기반 순차 블라인드 규칙, New Run 설정→런 생성 경계와 후속 모듈화 큐가 모두 구현되어 완료 처리했다.
-
-## 2026-09-08 — 블라인드 클리어·상점 퇴장 전환 모듈화
-
-- `game/blind_flow.lua`의 `clear`가 stake 보정 목표 충족 여부, 남은 hand 이관, 클리어 후 shop/won phase를 소유하고, `leave_shop`이 다음 ante/blind 선택 상태를 반환한다.
-- `game/scenes/play.lua`의 직접 `run.clear_blind`/`run.leave_shop` 호출을 제거하고 두 전환을 `blind_flow`에 위임했다.
-- TDD RED: `blind_flow.clear` 미구현 실패를 확인했다. 구현 후 stake 보정 목표 미달 유지, shop 진입, 남은 hand 이관, 다음 big blind 진행 계약이 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: hand 소진 패배 전환을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.lose` 호출을 제거한다.
-
-## 2026-09-08 — hand 소진 패배 전환 모듈화
-
-- `game/blind_flow.lua`의 `lose`가 play phase, hand 완전 소진, 목표 미달을 검증하고 최종 hand 수 이관과 패배 기록 전환을 소유한다.
-- `game/scenes/play.lua`의 직접 `run.lose` 호출을 제거하고 round engine의 `lose` 결과를 `blind_flow.lose`에 위임했다.
-- TDD RED: `blind_flow.lose` 미구현 실패를 확인했다. 구현 후 남은 hand가 있거나 이미 목표를 달성한 런의 잘못된 패배를 거부하고, 기존 실게임 패배 경로도 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `play_integration: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: 한 hand 득점과 남은 hand 이관을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.add_score` 호출과 `run_state.hands_left` 대입을 제거한다.
-
-## 2026-09-08 — hand 득점·잔여 hand 이관 모듈화
-
-- `game/blind_flow.lua`의 `score`가 한 hand의 점수 누적과 round engine 잔여 hand 이관을 하나의 전환 계약으로 소유한다.
-- `game/scenes/play.lua`의 직접 `run.add_score` 호출과 `run_state.hands_left` 대입을 제거하고 `blind_flow.score`에 위임했다.
-- TDD RED: `blind_flow.score` 미구현 실패를 확인했다. 구현 후 `game/tests/blind_flow.lua`와 전체 엔진 테스트가 GREEN이다.
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: 설정된 run 생성을 독립 계약으로 감싸 `game/scenes/play.lua`의 마지막 직접 `game.run` 의존성(`run.new`)을 제거한다.
-
-## 2026-09-08 — 설정 런 생성·블라인드 목표 투영 경계
-
-- `game/run_rules.lua`의 `create`가 New Run 선택을 먼저 검증한 뒤 seed RNG, 시작 덱·자금, stake 규칙과 진행 가능 여부가 모두 적용된 런만 반환한다. 잘못된 선택은 부분 런을 노출하지 않는다.
-- `game/scenes/play.lua`는 마지막 직접 `game.run` 의존성을 제거하고 모든 신규/시드 재시작 런 생성을 `run_rules.create`에 위임한다.
-- `game/ui/blind_select.lua`는 더 이상 임시 기본 런을 생성해 목표를 재계산하지 않고 `blind_flow.view`의 gameplay projection만 렌더링한다. 따라서 red stake 선택 화면도 실제 라운드와 같은 보정 목표 375를 표시한다.
-- TDD RED: `run_rules.create` 부재와 red stake UI 목표 300 불일치를 각각 확인했다. 구현 후 생성 결정성·실패 계약, 순수 UI 투영, 실제 scene 목표 일치 회귀 테스트가 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `run_rules: OK`, `blind_select_ui: OK`, `play_integration: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
-- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
-- Next slice: `game/round_engine.lua`가 fallback 목표 계산을 위해 직접 호출하는 `game.run.blind_target`을 gameplay projection 계약으로 옮겨 라운드 생성 경계를 더 작게 만든다.
-
-## 2026-09-08 — 라운드 기본 목표 gameplay projection 통합
-
-- `game/blind_flow.lua`가 비변이 `target(state, kind)` gameplay projection을 공개하고 블라인드 선택 UI, 시작, 클리어, 패배 검증이 같은 stake·보스 보정 목표를 공유한다.
-- `game/round_engine.lua`의 명시적 target 없는 생성 경로가 `game.run.blind_target`을 직접 호출하지 않고 이 projection에 위임한다. 따라서 red stake 라운드 기본 목표도 선택 화면과 같은 375이며, scene의 명시적 target 전달 여부에 따라 규칙이 달라지지 않는다.
-- TDD RED: red stake round fallback이 300을 반환하는 실패를 확인했다. 구현 후 `game/tests/round_engine.lua` 회귀 테스트와 전체 `make test`가 GREEN이다.
-- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
-- Next slice: base ante/blind 및 보스 목표 계산의 소유권을 독립 모듈로 옮기고 `game.run.blind_target`은 호환 delegate로 축소해 gameplay projection이 거대 run 모듈을 경유하지 않게 한다.
+- 사람·월 숫자·월 이름·월 삽화 없이 홍단의 붉은 깃발 형태를 표현한 192×288 SVG/PNG master와 실제 Asset Studio `POST /api/pixel-perfect`의 24×36 출력·검사 보고서를 후보 자산으로 보존했다.
+- 피의 명시적 QA 거부와 “5종 겹침 QA 전 단일 runtime 완료 금지” 조건을 적용해 피·홍단을 `candidate`로 격리하고 인벤토리 완료 표시를 제거했다. 두 후보는 게임에서 fallback을 유지한다.
+- 신규 `game/asset_loader.lua`가 manifest의 `status=runtime`, PNG 경로·크기·nearest 계약을 모두 만족한 자산만 로드하고 texture cache를 소유한다. `card_art`는 5개 플레이 패 ID를 이 로더에 위임한다.
+- TDD RED: QA 거부된 피가 runtime 경로를 반환해 실패함을 확인했다. 구현 후 후보 격리, 승인 fixture의 nearest filter·cache, 플레이 패 fallback 계약이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (200 files).
+- INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: 플레이 패 5종을 하나의 시각 문법으로 함께 재설계한 master contact sheet를 만들고 겹친 카드 상단 식별 표식 QA를 자동 캡처한다. 승인 전에는 어느 패도 `runtime`으로 승격하지 않는다.
 
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 

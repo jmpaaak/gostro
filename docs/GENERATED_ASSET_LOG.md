@@ -9,3 +9,6 @@
 | 2026-09-08T23:22:35+0900 | `assets/masters/cards/pi.svg` | Project-authored 192×288 vector source for the shape-only pi card face |
 | 2026-09-08T23:22:35+0900 | `assets/masters/cards/pi.png` | Preserved 192×288 RGBA raster master generated from the vector source |
 | 2026-09-08T23:22:35+0900 | `assets/runtime/cards/pi.png` | 24×36 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-08T23:35:54+0900 | `assets/masters/cards/hongdan.svg` | Project-authored 192×288 vector source for the red-flag hongdan card face |
+| 2026-09-08T23:35:54+0900 | `assets/masters/cards/hongdan.png` | Preserved 192×288 RGBA raster master generated from the vector source |
+| 2026-09-08T23:35:54+0900 | `assets/runtime/cards/hongdan.png` | 24×36 candidate PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5; runtime approval withheld pending five-card overlap QA |

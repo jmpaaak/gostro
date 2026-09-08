@@ -1,24 +1,24 @@
+local assets = require("game.asset_loader")
+
 local M = {}
 
-local PATHS = {
-    pi = "assets/runtime/cards/pi.png",
+local IDS = {
+    pi = "play-card.pi",
+    hongdan = "play-card.hongdan",
+    cheongdan = "play-card.cheongdan",
+    chodan = "play-card.chodan",
+    godori = "play-card.godori",
 }
 
-local cache = {}
-
 function M.path(kind)
-    return PATHS[kind]
+    local id = IDS[kind]
+    return id and assets.runtime_path(id) or nil
 end
 
 function M.load(kind)
-    local path = PATHS[kind]
-    if not path or not love or not love.graphics then return nil end
-    if not cache[path] then
-        local image = love.graphics.newImage(path)
-        image:setFilter("nearest", "nearest")
-        cache[path] = image
-    end
-    return cache[path]
+    local id = IDS[kind]
+    if not id or not love or not love.graphics then return nil end
+    return assets.texture(id)
 end
 
 function M.draw(kind, x, y)

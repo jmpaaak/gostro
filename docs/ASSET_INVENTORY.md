@@ -64,8 +64,8 @@
 
 ## play-card
 
-- [x] `play-card.pi` - play-card.pi
-- [ ] `play-card.hongdan` - hongdan
+- [ ] `play-card.pi` - play-card.pi (QA rejected; candidate quarantined)
+- [ ] `play-card.hongdan` - hongdan (candidate; awaiting five-card overlap QA)
 - [ ] `play-card.cheongdan` - cheongdan
 - [ ] `play-card.chodan` - chodan
 - [ ] `play-card.godori` - godori
