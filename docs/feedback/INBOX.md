@@ -8,12 +8,6 @@
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
-(14) **태그 시스템 (블라인드 스킵 보상)** (msg `1546681659951153252`)
-  - 담당: `game/tags.lua` (새 모듈)
-  - 발라트로 태그: 스몰/빅 블라인드 스킵 시 태그 보상 (무료 리롤, 추가 돈, 메가 태그=다음 조커 복제 등)
-  - 태그 풀 10종 이상. `game/run.lua`에 스킵 경로 추가.
-  - 테스트: `game/tests/tags.lua`
-
 (15) **보스 블라인드 디버프** (msg `1546681659951153252`)
   - 담당: `game/boss_blinds.lua` (새 모듈)
   - 발라트로 보스 효과 8종+: The Hook (핸드에서 2장 랜덤 제거), The Wall (목표 2배), The Flint (칩·배수 반감), The Mark (특정 종류 뒤집기), The Fish (핸드 비공개), The Psychic (5장 풀핸드 강제), The Goad (특정 종류만 점수), The Plant (특정 종류 디버프)
@@ -95,6 +89,11 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+
+  (14) **태그 시스템 (블라인드 스킵 보상)** (msg `1546681659951153252`)
+    - `game/tags.lua`: 12종 태그 풀 (쿠폰 무료 리롤, 투자/Handy/이코노미 돈, 메가=다음 광 복제, 포일/홀로그램/폴리크롬 에디션, 참 상점 슬롯, 언커먼 상점, 저글 핸드 크기, D6 리롤×2).
+    - `game/run.lua` `skip_blind`: 스몰→빅 / 빅→보스, 태그 적용, play 유지. 보스 스킵 금지.
+    - `game/tests/tags.lua` GREEN. `make verify` GREEN.
 
   (13) **카드 홀로그램/포일/폴리크롬 이펙트 시스템** (msg `1546681659951153252`)
     - `game/ui/card_effects.lua`: 홀로그램(무지개빛 반투명, +10 mult), 포일(반짝임, +50 chips), 폴리크롬(색상 시프트, ×1.5 mult). `apply_bonuses`가 핸드 합산.

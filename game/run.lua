@@ -29,6 +29,8 @@ local PLAY_CARDS = {
     pi = true,
 }
 
+local tags = require("game.tags")
+
 function M.new()
     return {
         ante = 1,
@@ -36,6 +38,13 @@ function M.new()
         phase = "play",
         round_score = 0,
         gwang = {},
+        tags = {
+            owned = {},
+            free_rerolls = 0,
+            pending_money = 0,
+            extra_shop_slots = 0,
+            hand_size_bonus = 0,
+        },
     }
 end
 
@@ -67,6 +76,27 @@ function M.clear_blind(state)
         return
     end
     state.phase = "shop"
+end
+
+--- Skip the current small/big blind and claim a tag reward.
+-- Boss blinds cannot be skipped. Stays in play on the next blind.
+function M.skip_blind(state, tag_id)
+    if state.phase ~= "play" then
+        error("skip only during play")
+    end
+    if state.blind == "boss" then
+        error("cannot skip boss blind")
+    end
+    if state.blind ~= "small" and state.blind ~= "big" then
+        error("unknown blind")
+    end
+    tags.apply(state, tag_id or tags.random().id)
+    if state.blind == "small" then
+        state.blind = "big"
+    else
+        state.blind = "boss"
+    end
+    state.round_score = 0
 end
 
 function M.buy_gwang(state, card)
