@@ -108,3 +108,7 @@
 | 2026-09-09T06:03:00+0900 | `assets/masters/gwang/mult-v1.png` | Preserved 448x256 RGBA raster master for mult gwang generated from vector source |
 | 2026-09-09T06:03:00+0900 | `assets/runtime/gwang/mult-v1.png` | 56x32 runtime mult gwang from actual Asset Studio POST /api/pixel-perfect |
 | 2026-09-09T06:03:00+0900 | `assets/runtime/ui/gwang-mult-slots-love-v1.png` | 320x180 LÖVE-rendered shop QA capture proving mult gwang slots |
+| 2026-09-09T06:11:04+0900 | `assets/masters/gwang/always-mult-small-v1.svg` | Project-authored high-resolution 잔배수 gwang vector source with Korean lacquer, dancheong geometry, twin vermillion beads, and a central additive mark |
+| 2026-09-09T06:11:04+0900 | `assets/masters/gwang/always-mult-small-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
+| 2026-09-09T06:11:04+0900 | `assets/runtime/gwang/always-mult-small-v1.png` | 56x32 runtime 잔배수 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T06:11:04+0900 | `assets/runtime/ui/gwang-always-mult-small-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 잔배수 gwang in all five slots |

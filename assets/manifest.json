@@ -441,10 +441,51 @@
     {
       "id": "gwang.always_mult_small",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "잔배수",
         "en": "Small Mult"
+      },
+      "master": {
+        "source": "assets/masters/gwang/always-mult-small-v1.svg",
+        "sourceSha256": "f9b6c030ebcd3a9516f3be4676454f09eb03718ecf39a9b24748ea29bd7e093e",
+        "path": "assets/masters/gwang/always-mult-small-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "39e13022cb8a181294b8307e8b06442eb69d31b4a82941a40592d81b1263939c",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer, dancheong geometry, twin vermillion beads, and a central additive mark; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/always-mult-small-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "6bfd3f81843e0723a9f08e082e2945adf8ba20e6582dcf5321b4ebebfedcd8dd",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/always-mult-small-v1.report.json",
+        "reportSha256": "2a153b3b74f317f0a9c9dd8a7efa28a5dc6f8f76e59992298b899867fa9575b6"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

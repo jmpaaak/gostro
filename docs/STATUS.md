@@ -1,12 +1,12 @@
 # STATUS
-## 2026-09-09 — 배수(Mult) 광 고해상도 픽셀 에셋 적용
+## 2026-09-09 — 잔배수(Small Mult) 광 고해상도 픽셀 에셋 적용
 
-- `gwang.mult` 광 슬롯 아이템에 한국 옻칠 바탕, 단청 기하학, 붉은색 강렬한 X자 모티프를 적용한 448×256 SVG/PNG master 및 56×32 runtime 에셋을 추가했다.
+- 이전 상태의 `gwang.mult_add` 지칭을 실제 카탈로그 ID `gwang.always_mult_small`로 확정하고, 한국 옻칠·단청·쌍 구슬·덧셈 문양의 448×256 SVG/PNG master 및 56×32 runtime 에셋을 추가했다.
 - 실제 Asset Studio `POST /api/pixel-perfect` 결과 dimensions/palette/transparent alpha/alignment/nearest 5개 검사가 통과했으며 manifest에 source/master/runtime/report hash와 alpha bounds를 기록했다.
-- `Makefile`의 `gwang-slot-qa`에 `GWANG_QA_IDENTITY` 환경 변수를 지원하도록 수정하고 mult 광 아이템의 실제 LÖVE 320×180 캡처 생성 및 검증을 추가했다.
+- manifest-backed 로더 회귀 테스트와 잔배수 광 5칸의 실제 LÖVE 320×180 캡처 QA를 추가했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 유닛 테스트 및 LÖVE 캡처 QA 성공.
 - INBOX (27)은 모든 그래픽 요소의 런타임 에셋 전환을 진행 중이며 처리 대기로 유지한다.
-- Next slice: `gwang.mult_add` 덧셈 배수(Mult Add) 광 슬롯 아이템의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.
+- Next slice: `gwang.always_chips_small` 잔칩(Small Chips) 광 슬롯 아이템의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 
 - 신규 `game/blind_targets.lua`가 8개 ante 기본값, small/big/boss 배수, Wall 보스의 목표 2배 적용을 독립적으로 소유한다.

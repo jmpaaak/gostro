@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151327"/>
+      <stop offset="0.5" stop-color="#302044"/>
+      <stop offset="1" stop-color="#100c20"/>
+    </linearGradient>
+    <linearGradient id="vermillion" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7b72"/>
+      <stop offset="0.45" stop-color="#e33c47"/>
+      <stop offset="1" stop-color="#8f172d"/>
+    </linearGradient>
+    <pattern id="dancheong" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M0 16L16 0l16 16-16 16z" fill="none" stroke="#2f8e83" stroke-width="3" opacity=".45"/>
+      <circle cx="16" cy="16" r="3" fill="#f4c95d" opacity=".6"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="432" height="240" rx="38" fill="#0d0918" stroke="#251637" stroke-width="16"/>
+  <rect x="22" y="22" width="404" height="212" rx="28" fill="url(#lacquer)" stroke="#2f8e83" stroke-width="8"/>
+  <rect x="34" y="34" width="380" height="188" rx="20" fill="url(#dancheong)" stroke="#f4c95d" stroke-width="3"/>
+  <path d="M48 68h352M48 188h352" stroke="#66c4ad" stroke-width="5" opacity=".5"/>
+  <path d="M62 48l18 14-18 14-18-14zm324 0l18 14-18 14-18-14zM62 180l18 14-18 14-18-14zm324 0l18 14-18 14-18-14z" fill="#f4c95d" stroke="#755516" stroke-width="4"/>
+  <g transform="translate(224 128)">
+    <circle r="80" fill="#171127" stroke="#2f8e83" stroke-width="10"/>
+    <circle r="66" fill="none" stroke="#f4c95d" stroke-width="5" opacity=".65"/>
+    <circle cx="-43" cy="0" r="17" fill="url(#vermillion)" stroke="#ffaaa1" stroke-width="4"/>
+    <circle cx="43" cy="0" r="17" fill="url(#vermillion)" stroke="#ffaaa1" stroke-width="4"/>
+    <path d="M-18-48h36v30h30v36H18v30h-36V18h-30v-36h30z" fill="url(#vermillion)" stroke="#5b0b20" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M-9-38H9v29h29V9H9v29H-9V9h-29V-9h29z" fill="#ffaaa1" opacity=".55"/>
+  </g>
+</svg>
