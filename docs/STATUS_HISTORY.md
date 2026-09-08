@@ -696,3 +696,17 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - Round cash-out (blind reward + leftover-hand bonus) and `run.clear_blind` integration are not in this slice.
 - Next slice: INBOX (19) remaining — round payout into `game/run.lua` via `economy`.
+
+## Archived from STATUS.md (2026-09-08 19:12)
+
+## 2026-09-08 — 라운드 정산 (`game/economy.lua` + `game/run.lua`)
+
+## Archived from STATUS.md (2026-09-08 19:19)
+
+- `economy.cash_out(state)` pays interest on held money, then blind reward + leftover-hand $1 each. No money cap.
+  - Blind: small $3 / big $5 / boss $8. Interest still $1 per $5, cap via `seed_money`.
+- `run.clear_blind` calls `cash_out` before shop/won. `run.new` starts with money $4, hands_left 4. `leave_shop` resets hands (grabber extra).
+- Play scene reads engine money after clear (no duplicate blind reward). Shop spend syncs back to `run_state.money`.
+- Tests in `game/tests/economy.lua` GREEN (reward, hand bonus, cash-out components, interest-before-payout, clear_blind shop + win).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (19) complete. Next slice: INBOX (20) 덱 편집 + 카드 강화 (`game/deck.lua`).

@@ -45,6 +45,7 @@ function M.run()
     require("game.tests.run_rules").run()
     require("game.tests.consumables_ui").run()
     require("game.tests.tarot_target_ui").run()
+    require("game.tests.tarot_use_flow").run()
     print("GOSTRO_UNIT_OK")
 end
 
