@@ -30,8 +30,8 @@ local TAB_CONTENT = {
     },
     challenges = {
         status = "unavailable",
-        title = "도전 과제를 확인합니다",
-        detail = "",
+        title = "도전 준비 중",
+        detail = "도전 모드는 아직 사용할 수 없습니다",
         can_play = false,
     },
 }

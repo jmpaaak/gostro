@@ -64,6 +64,12 @@ function M.run()
     x, y = center(tabs[3])
     assert(main_menu.activate(menu, x, y) == "select_challenges", "challenge tap returns a semantic tab action")
     assert(menu.selected_tab == "challenges", "challenge tap switches tabs")
+    local challenge_content = main_menu.tab_content(menu)
+    assert(challenge_content.status == "unavailable", "challenge exposes an explicit unavailable state")
+    assert(challenge_content.title == "도전 준비 중", "challenge is not presented as a playable new run")
+    assert(challenge_content.detail == "도전 모드는 아직 사용할 수 없습니다",
+        "challenge explains why PLAY is unavailable")
+    assert(challenge_content.can_play == false, "unavailable challenge state cannot start gameplay")
 
     x, y = center(tabs[1])
     assert(main_menu.activate(menu, x, y) == "select_new_game", "new run tab does not route to gameplay")

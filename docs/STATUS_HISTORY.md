@@ -560,3 +560,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `game/tests/menu_scene.lua`에서 설정 draw 라우팅, 덱 이동, 잠금 차단, 시드 토글, PLAY 전환을 엔진 호스트로 검증했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
 - INBOX (26)은 계속 처리 중이다. 다음 최소 조각은 `계속하기` 탭에 활성 런이 없다는 명시적 준비 중 상태를 구현하는 것이다.
+
+## Archived from STATUS.md (2026-09-08 17:41)
+
+## 2026-09-08 — Continue 탭 빈 런 상태
+
+- `game/ui/main_menu.lua`가 Continue 탭에 `empty`/`can_play=false` 상태와 `계속하기 준비 중`, `저장된 판이 없습니다` 안내를 명시적으로 노출하고 렌더링한다.
+- `game/tests/main_menu_ui.lua`에 활성 런이 없는 Continue 상태의 문구와 시작 차단 계약을 추가했으며, 구현 전 `tab_content` 부재로 RED를 확인했다.
+- `docs/BALATRO_NEW_RUN_ANALYSIS.md`의 Continue 대응 상태를 구현·테스트 GREEN으로 갱신했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
+- INBOX (26)은 계속 처리 중이다. 다음 최소 조각은 `도전` 탭을 새 런으로 위장하지 않는 명시적 준비 중 상태로 구현하는 것이다.
