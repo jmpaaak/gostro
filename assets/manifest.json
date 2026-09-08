@@ -1028,8 +1028,49 @@
     {
       "id": "voucher.crystal_ball",
       "category": "voucher",
-      "status": "pending",
-      "name": "\uc218\uc815\uad6c"
+      "status": "runtime",
+      "name": "\ucc9c\ub9ac\uc548 \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/crystal-ball-v1.svg",
+        "sourceSha256": "53a15e36f084b5545a9f349eadd15b1dc52c683ad77a5bb31f2c9894c7e70250",
+        "path": "assets/masters/voucher/crystal-ball-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "85d3d2e92eb0abbbddca4443554b322b96be07eef77e5476610035e2b96fdb72",
+        "provenance": "Project-authored high-resolution vector master depicting a Korean-framed crystal seeing orb, an eye, and three stars for the expanded consumable tray; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/crystal-ball-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          51
+        ],
+        "sha256": "4b50a8f72c348560b55d80ca8278eaa568d0200779e2f27e6a632182b8f64912",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/crystal-ball-v1.report.json",
+        "reportSha256": "a754d3862a4ba9624d66dd98c1085755a5d5d12f5388c401e107e1a7b3c67882"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.hone",

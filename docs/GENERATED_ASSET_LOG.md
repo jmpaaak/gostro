@@ -85,3 +85,7 @@
 | 2026-09-09T04:29:00+0900 | `assets/masters/voucher/antimatter-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T04:29:00+0900 | `assets/runtime/voucher/antimatter-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T04:29:00+0900 | `assets/runtime/ui/shop-voucher-antimatter-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed antimatter seal in all three offer slots |
+| 2026-09-09T05:07:25+0900 | `assets/masters/voucher/crystal-ball-v1.svg` | Project-authored high-resolution Korean-framed seeing orb, eye, three consumable-slot stars, bronze stand, and vermilion-seal vector source |
+| 2026-09-09T05:07:25+0900 | `assets/masters/voucher/crystal-ball-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T05:07:25+0900 | `assets/runtime/voucher/crystal-ball-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T05:07:25+0900 | `assets/runtime/ui/shop-voucher-crystal-ball-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed clairvoyance seal in all three offer slots |

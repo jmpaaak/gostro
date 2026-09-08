@@ -97,6 +97,17 @@ function M.run()
     assert(antimatter.runtime.filter == "nearest")
     assert(assets.runtime_path(antimatter_id) == "assets/runtime/voucher/antimatter-v1.png")
 
+    local crystal_ball_id = voucher_art.asset_id({ kind = "voucher", identity = "crystal_ball" })
+    assert(crystal_ball_id == "voucher.crystal_ball", "clairvoyance seal must resolve tracked artwork")
+    local crystal_ball = assets.entry(crystal_ball_id)
+    assert(crystal_ball and crystal_ball.status == "runtime", "clairvoyance seal artwork must be promoted")
+    assert(crystal_ball.master.width == 400 and crystal_ball.master.height == 560,
+        "clairvoyance seal must preserve a 400x560 master")
+    assert(crystal_ball.runtime.width == 36 and crystal_ball.runtime.height == 52,
+        "clairvoyance seal runtime must fit its shop slot")
+    assert(crystal_ball.runtime.filter == "nearest")
+    assert(assets.runtime_path(crystal_ball_id) == "assets/runtime/voucher/crystal-ball-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

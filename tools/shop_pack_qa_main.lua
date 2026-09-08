@@ -27,6 +27,7 @@ function love.load()
         clearance_sale = "떨이 인장",
         seed_money = "밑천 인장",
         antimatter = "허공 인장",
+        crystal_ball = "천리안 인장",
     }
     local item = kind == "voucher"
         and { kind = "voucher", identity = voucher_identity,
