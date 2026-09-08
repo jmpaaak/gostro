@@ -93,6 +93,30 @@ function M.begin(state, kind, boss_id)
     return selected
 end
 
+--- Clear the current blind once its adjusted target is met.
+-- Returns the resulting run phase, or nil while the target is unmet.
+function M.clear(state, hands_left)
+    if state.phase ~= "play" then
+        error("cannot clear outside play")
+    end
+    if state.round_score < target_for(state, state.blind) then
+        return nil
+    end
+    if hands_left ~= nil then state.hands_left = hands_left end
+    run.clear_blind(state)
+    return state.phase
+end
+
+--- Advance from the shop and describe the next selectable blind.
+function M.leave_shop(state)
+    run.leave_shop(state)
+    return {
+        ante = state.ante,
+        kind = state.blind,
+        phase = state.phase,
+    }
+end
+
 function M.skip(state, kind, tag_id)
     if not tag_id then error("skip requires a tag") end
     if kind == "boss" then error("boss cannot skip") end

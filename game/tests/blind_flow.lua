@@ -151,6 +151,30 @@ function M.test_begin_owns_stake_adjusted_round_transition()
         "blind flow owns round transition reset state")
 end
 
+function M.test_clear_and_shop_exit_own_sequential_progression()
+    local run_rules = require("game.run_rules")
+    local state = assert(run_rules.apply(run.new("blind-flow-progression"), {
+        starting_deck_id = "hwatu",
+        stake_id = "red",
+    }, { unlocked_stakes = { red = true } }))
+    run.add_score(state, run.blind_target(state))
+
+    assert(blind_flow.clear(state, 2) == nil,
+        "clear waits for the stake-adjusted target")
+    assert(state.phase == "play", "an uncleared blind stays in play")
+
+    run.add_score(state, 75)
+    assert(blind_flow.clear(state, 2) == "shop",
+        "clear returns the resulting shop phase")
+    assert(state.phase == "shop" and state.hands_left == 2,
+        "clear carries the round hand count into cash out")
+
+    local next_blind = blind_flow.leave_shop(state)
+    assert(next_blind.ante == 1 and next_blind.kind == "big")
+    assert(state.phase == "play" and state.round_score == 0,
+        "shop exit prepares the next blind selection")
+end
+
 function M.run()
     M.test_view_exposes_sequential_blinds_and_run_targets()
     M.test_skip_eligibility_requires_current_small_or_big_and_tag()
@@ -159,6 +183,7 @@ function M.run()
     M.test_boss_selection_and_target_use_run_api()
     M.test_completed_progression_is_derived_from_run_state()
     M.test_begin_owns_stake_adjusted_round_transition()
+    M.test_clear_and_shop_exit_own_sequential_progression()
     print("  blind_flow: OK")
 end
 

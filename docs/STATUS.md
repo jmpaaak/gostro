@@ -1,15 +1,5 @@
 # STATUS
 
-## 2026-09-08 — Gostro 첫 메뉴/UI 슬라이스
-
-- 직접 관찰된 Balatro 랜딩의 큰 `PLAY`와 PLAY 서브메뉴의 `New Run`(파랑) / `Continue`(빨강) / `Challenges`(주황) 세로 계층만 구현 근거로 사용했다. New Run 이후 덱 화면은 미관찰로 유지했다.
-- Gostro는 이제 320×180 네이티브 픽셀 랜딩의 큰 `게임 시작` 버튼으로 시작하고, 탭 즉시 `새 게임` / `계속하기` / `도전` 메뉴로 전환한다.
-- `새 게임`은 scene stack을 통해 새 `PlayScene`의 `blind_select`로 전환한다. `계속하기`와 `도전`은 메뉴에 남아 `준비 중` 피드백을 반환하므로 새 런으로 위장하지 않는다.
-- `game/ui/main_menu.lua`에 순수 상태/hit-test와 화투 꽃 인장·한글 픽셀 UI를, `game/scenes/menu.lua`에 라우팅만 분리했다. `game/scenes/play.lua`는 변경하지 않았다.
-- `game/tests/main_menu_ui.lua`, `game/tests/menu_scene.lua`를 self-test에 등록했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
-- INBOX (26)은 후속 실기기 관찰이 남아 있어 처리 대기로 유지한다.
-
 ## 2026-09-08 — Balatro 실기기 연결 복구와 앱 식별
 
 - 사용자 CoreDeviceService를 재시작한 뒤 설치 앱 조회가 정상화됐다.
@@ -132,5 +122,14 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: 블라인드 클리어와 상점 퇴장 후 다음 블라인드 진행을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.clear_blind`/`run.leave_shop` 호출을 제거한다.
+
+## 2026-09-08 — 블라인드 클리어·상점 퇴장 전환 모듈화
+
+- `game/blind_flow.lua`의 `clear`가 stake 보정 목표 충족 여부, 남은 hand 이관, 클리어 후 shop/won phase를 소유하고, `leave_shop`이 다음 ante/blind 선택 상태를 반환한다.
+- `game/scenes/play.lua`의 직접 `run.clear_blind`/`run.leave_shop` 호출을 제거하고 두 전환을 `blind_flow`에 위임했다.
+- TDD RED: `blind_flow.clear` 미구현 실패를 확인했다. 구현 후 stake 보정 목표 미달 유지, shop 진입, 남은 hand 이관, 다음 big blind 진행 계약이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: hand 소진 패배 전환을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.lose` 호출을 제거한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

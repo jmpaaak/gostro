@@ -170,26 +170,24 @@ end
 --- Check if blind is cleared; if so, transition to shop.
 function M.check_clear(scene)
     if scene.state ~= "playing" then return end
-    local target = scene.round and scene.round.target or run.blind_target(scene.run_state)
-    if scene.run_state.round_score >= target then
-        if scene.round then scene.run_state.hands_left = scene.round.hands_left end
-        run.clear_blind(scene.run_state)
-        if scene.run_state.phase == "won" then
-            scene.state = "won"
-            return
-        end
-        scene.shop = shop_engine.new(scene.run_state)
-        sync_shop_ui(scene)
-        scene.round = nil
-        scene.state = "shop"
+    local hands_left = scene.round and scene.round.hands_left or nil
+    local phase = blind_flow.clear(scene.run_state, hands_left)
+    if not phase then return end
+    if phase == "won" then
+        scene.state = "won"
+        return
     end
+    scene.shop = shop_engine.new(scene.run_state)
+    sync_shop_ui(scene)
+    scene.round = nil
+    scene.state = "shop"
 end
 
 --- Leave the shop and go to next blind select.
 function M.leave_shop(scene)
     if scene.state ~= "shop" then return end
     scene.money = scene.run_state.money
-    run.leave_shop(scene.run_state)
+    blind_flow.leave_shop(scene.run_state)
     scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     scene.state = "blind_select"
