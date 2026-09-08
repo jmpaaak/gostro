@@ -444,3 +444,16 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (114 files).
 - INBOX (23) is fully complete and moved to 처리 완료.
 - Next slice: no feature item remains in 처리 대기; IDLE until new feedback (R1 remains the standing module-boundary rule).
+
+## Archived from STATUS.md (2026-09-08 13:36)
+
+## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
+
+- Created `game/deck.lua`: starter play-card deck + viewer (kinds / counts / editions).
+  - `new()`: 5 hongdan / 5 cheongdan / 5 chodan / 5 godori / 20 pi. No gwang, no months.
+  - `counts(d)` / `total(d)`: kind tallies. `view(d)`: `{total, by_kind, by_effect}` (none/foil/hologram/polychrome).
+  - Viewer rejects gwang (joker slot) and month numbers/names.
+- Tests in `game/tests/deck.lua` GREEN (starter kinds, counts, view, editions, rejects).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (20) deck viewer slice only. Enhance/destroy (thin deck) and sort are not in this slice.
+- Next slice: INBOX (20) remaining — tarot enhance + destroy on `game/deck.lua`.
