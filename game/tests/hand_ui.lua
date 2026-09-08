@@ -88,6 +88,19 @@ function M.run()
     assert(sel[2] == h.cards[1])
     assert(sel[3] == h.cards[5])
 
+    -- Card objects preserve persistent gameplay metadata when dealt.
+    local source = {
+        { kind = "hongdan", effect = "foil", uid = "card-1" },
+        { kind = "pi", effect = "polychrome", uid = "card-2" },
+    }
+    local rich = hand.new()
+    hand.deal(rich, source)
+    assert(rich.cards[1].effect == "foil", "deal preserves card edition")
+    assert(rich.cards[1].uid == "card-1", "deal preserves card identity")
+    assert(rich.cards[2].effect == "polychrome", "each card keeps its own metadata")
+    assert(rich.cards[1] ~= source[1], "UI deal does not mutate the deck card")
+    assert(source[1].x == nil and source[1].selected == nil, "source card remains domain-only")
+
     -- MAX_SELECT is 5
     assert(hand.MAX_SELECT == 5)
 

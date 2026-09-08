@@ -23,19 +23,27 @@ function M.new()
     }
 end
 
---- Deal cards into the hand from a list of kind strings.
--- Positions them in a centred overlapping row.
-function M.deal(h, kinds)
-    local n = #kinds
+--- Deal cards into the hand from kind strings or domain card objects.
+-- Gameplay metadata (effect/uid/etc.) is shallow-copied; UI position and
+-- selection state are always owned by the hand widget.
+function M.deal(h, cards)
+    local n = #cards
     -- Total width of the fan
     local fan_width = (n - 1) * OVERLAP + card.WIDTH
     local start_x = math.floor((VIEWPORT_W - fan_width) / 2)
 
     h.cards = {}
     h.selected_order = {}
-    for i, kind in ipairs(kinds) do
+    for i, source in ipairs(cards) do
+        local domain = type(source) == "table" and source or { kind = source }
         local x = start_x + (i - 1) * OVERLAP
-        h.cards[i] = card.new(kind, x, HAND_Y)
+        local widget = card.new(domain.kind, x, HAND_Y)
+        for key, value in pairs(domain) do
+            if key ~= "x" and key ~= "y" and key ~= "selected" then
+                widget[key] = value
+            end
+        end
+        h.cards[i] = widget
     end
 end
 
