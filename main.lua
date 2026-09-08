@@ -16,6 +16,7 @@ function love.load()
         return
     end
     love.graphics.setDefaultFilter("nearest", "nearest")
+    require("game.fonts").install()
     canvas = love.graphics.newCanvas(viewport.width, viewport.height)
     canvas:setFilter("nearest", "nearest")
     scenes = sceneStack.new(PlayScene.new())

@@ -8,6 +8,8 @@ with zipfile.ZipFile(path) as archive:
 
 assert "main.lua" in names
 assert "conf.lua" in names
+assert "assets/fonts/Galmuri11.ttf" in names
+assert "assets/fonts/Galmuri-OFL.txt" in names
 for name in names:
     assert name != ".git"
     assert not name.startswith((".git/", ".github/", "build/", "tmp/", "logs/", ".venv/"))

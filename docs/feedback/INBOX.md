@@ -4,19 +4,17 @@
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
-(24) **게임 전체 한글 깨짐 복구 — Galmuri11 폰트 초기화** (msg `1546749365228535828`)
-  - 담당: `game/fonts.lua` 신규 캡슐화 + `main.lua` `love.load` 한 줄 설치 위임 + `assets/fonts/Galmuri11.ttf`/OFL.
-  - 원인: 저장소에 TTF/OTF 0개, `love.graphics.newFont/setFont` 0회라 기본 LÖVE 폰트가 한글 글리프를 지원하지 않음.
-  - MoK에서 검증된 `Galmuri11.ttf`와 `Galmuri-OFL.txt`를 복사. `game/fonts.lua`가 11px 배수 크기(11/22/33)를 캐시하고 기본 11px 폰트를 전역 설치.
-  - 모든 UI의 기존 `love.graphics.getFont()`가 한글 가능 폰트를 받게 한다. 큰 제목은 `fonts.get(22)` 등으로 명시하고 그리기 후 이전 폰트 복원.
-  - UTF-8 원문은 변경하거나 영문으로 대체하지 않는다. 패키지 `.love`에 폰트와 라이선스 포함.
-  - 테스트: `game/tests/fonts.lua` — 폰트 파일/OFL 존재, main 초기화 위임, 한글 문자열 `상점/다음 라운드/광` width>0 및 glyph 지원. `make verify` GREEN.
-
 ### Phase C — 씬 통합
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
 ## 처리 완료
+
+(24) **게임 전체 한글 깨짐 복구 — Galmuri11 폰트 초기화** (msg `1546749365228535828`)
+  - `game/fonts.lua` caches Galmuri11 at positive 11px multiples and `main.lua` installs 11px globally before scene creation.
+  - Bundled `assets/fonts/Galmuri11.ttf` and `assets/fonts/Galmuri-OFL.txt`; bundle verification requires both files.
+  - `game/tests/fonts.lua` checks installation/caching and real LÖVE glyph support for `상점/다음 라운드/광`.
+  - `make verify LOVE=/Users/jm/.local/bin/love` GREEN (`GOSTRO_FONT_OK`, `LOVE_BUNDLE_OK`).
 
 (R1) **상시 모듈화 — 거대 파일에 기능 붙이지 말 것** (msg `1546726613721415681`)
   - 담당: 현재 파일은 한도 안이지만, 새 기능은 `game/ui/*` / `game/*.lua` 모듈만. `play.lua`/`self_test.lua` 금지.

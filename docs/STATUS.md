@@ -1,13 +1,11 @@
 # STATUS
-## 2026-09-08 — 모듈 구조 정책 자동화 (loop/module_policy.py)
+## 2026-09-08 — Galmuri11 한글 폰트 초기화 (`game/fonts.lua`)
 
-- Implemented `loop/module_policy.py` to enforce the rule: "INBOX 기능보다 모듈 경로가 없는 항목은 먼저 모듈을 만든다" and `(R1) 상시 모듈화`.
-- `parse_pending_items` extracts pending tasks without grabbing indented details.
-- `pending_module_issues` validates that every pending task has an explicit `- 담당: <module_path>` assigned.
-- Updated `loop/preflight.py` to use `module_policy`. It now outputs `MODULE_SETUP_REQUIRED` instead of a PASS if an item lacks a module assignment.
-- Tests in `loop/test_module_policy.py` GREEN.
-- INBOX (R1) → 처리 완료 (policy check automated in loop script).
-- Next slice: IDLE (No pending tasks).
+- Added Galmuri11 TTF + OFL under `assets/fonts/`; `fonts.install()` sets the global 11px font before scene creation and `fonts.get` caches positive 11px multiples.
+- Added `game/tests/fonts.lua`: mocked cache/install contract plus a real LÖVE graphics check proving width and glyph support for `상점`, `다음 라운드`, and `광`.
+- Bundle verification now requires both the font and license.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (24) complete. Next slice: IDLE (no pending feedback items).
 
 ## 2026-09-08 — play 씬 상태 머신 + 엔진 연동 (game/scenes/play.lua)
 
