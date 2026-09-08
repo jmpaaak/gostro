@@ -10,6 +10,7 @@ local scoring       = require("game.scoring_pipeline")
 local shop_engine   = require("game.shop_engine")
 local planets       = require("game.planets")
 local tarots        = require("game.tarots")
+local shop_purchases = require("game.shop_purchases")
 local hand_ui       = require("game.ui.hand")
 local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
@@ -209,31 +210,12 @@ end
 --- Buy a card from the shop.
 function M.buy_shop_card(scene, idx)
     if scene.state ~= "shop" then return false end
-    local ok, transaction = shop_engine.purchase(scene.shop, idx)
-    if not ok then return false end
-
-    local card_data = transaction.item
-    local success = pcall(function()
-        if card_data.kind == "planet" then
-            planets.buy(scene.run_state, card_data.yaku)
-        elseif card_data.kind == "tarot" then
-            tarots.gain(scene.run_state, card_data.identity, "shop")
-        elseif card_data.kind == "gwang" then
-            run.buy_gwang(scene.run_state, card_data)
-        else
-            error("unsupported random shop offer")
-        end
-    end)
-    if success then
+    local ok = shop_purchases.buy(scene.shop, idx)
+    if ok then
         gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
-    else
-        scene.run_state.money = scene.run_state.money + transaction.price
-        transaction.slot.sold = false
-        sync_shop_ui(scene)
-        return false
     end
     sync_shop_ui(scene)
-    return true
+    return ok
 end
 
 --- Update (tick animations).
