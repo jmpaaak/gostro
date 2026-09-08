@@ -17,8 +17,14 @@ function love.load()
     love.graphics.setCanvas(canvas)
     love.graphics.clear(0.025, 0.035, 0.08, 1)
     local kind = os.getenv("SHOP_QA_KIND") or "pack"
+    local voucher_identity = os.getenv("SHOP_QA_VOUCHER") or "paint_brush"
+    local voucher_names = {
+        paint_brush = "명필의 인장",
+        wasteful = "호탕한 인장",
+    }
     local item = kind == "voucher"
-        and { kind = "voucher", identity = "paint_brush", name = "명필의 인장", price = 10 }
+        and { kind = "voucher", identity = voucher_identity,
+            name = assert(voucher_names[voucher_identity]), price = 10 }
         or { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 }
     shop.draw({
         money = 12,

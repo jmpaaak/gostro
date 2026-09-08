@@ -19,8 +19,17 @@ function M.run()
     assert(assets.runtime_path(id) == "assets/runtime/voucher/paint-brush-v1.png")
     assert(voucher_art.asset_id({ kind = "pack", identity = "paint_brush" }) == nil,
         "non-voucher shop items must not resolve seal artwork")
-    assert(voucher_art.asset_id({ kind = "voucher", identity = "wasteful" }) == nil,
-        "pending seals must keep the existing fallback")
+
+    local wasteful_id = voucher_art.asset_id({ kind = "voucher", identity = "wasteful" })
+    assert(wasteful_id == "voucher.wasteful", "generous seal must resolve tracked artwork")
+    local wasteful = assets.entry(wasteful_id)
+    assert(wasteful and wasteful.status == "runtime", "generous seal artwork must be promoted")
+    assert(wasteful.master.width == 400 and wasteful.master.height == 560,
+        "generous seal must preserve a 400x560 master")
+    assert(wasteful.runtime.width == 36 and wasteful.runtime.height == 52,
+        "generous seal runtime must fit its shop slot")
+    assert(wasteful.runtime.filter == "nearest")
+    assert(assets.runtime_path(wasteful_id) == "assets/runtime/voucher/wasteful-v1.png")
 
     assets.clear_cache()
     print("  voucher_art: OK")

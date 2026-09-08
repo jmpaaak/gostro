@@ -5,6 +5,7 @@ local assets = require("game.asset_loader")
 local M = {}
 local IDS = {
     paint_brush = "voucher.paint_brush",
+    wasteful = "voucher.wasteful",
 }
 
 function M.asset_id(item)

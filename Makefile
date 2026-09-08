@@ -87,13 +87,16 @@ shop-pack-qa:
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
 	@cp assets/runtime/pack/talisman-bundle-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack/"
-	@cp assets/runtime/voucher/paint-brush-v1.png \
+	@cp assets/runtime/voucher/paint-brush-v1.png assets/runtime/voucher/wasteful-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
 	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	SHOP_QA_KIND=voucher \
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=wasteful \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-wasteful-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 
 smoke:

@@ -58,3 +58,7 @@
 | 2026-09-09T03:10:29+0900 | `assets/masters/voucher/paint-brush-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T03:10:29+0900 | `assets/runtime/voucher/paint-brush-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T03:13:02+0900 | `assets/runtime/ui/shop-voucher-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed calligraphy seal in all three offer slots |
+| 2026-09-09T03:20:34+0900 | `assets/masters/voucher/wasteful-v1.svg` | Project-authored high-resolution Korean brass grain bowl, cloth pouch, dancheong, and vermilion-seal vector source |
+| 2026-09-09T03:20:34+0900 | `assets/masters/voucher/wasteful-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T03:20:34+0900 | `assets/runtime/voucher/wasteful-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T03:20:34+0900 | `assets/runtime/ui/shop-voucher-wasteful-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed generous seal in all three offer slots |

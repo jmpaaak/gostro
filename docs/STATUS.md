@@ -1,10 +1,14 @@
 # STATUS
-- `game/terms.lua`를 신설하여 player-facing 용어(기원패, 부적, 판, 고 등) 단일 계약을 마련했다.
-- UI 모듈(`blind_select.lua`, `shop.lua`)과 데이터(`gwang_jokers.json`)에서 '스몰/빅/보스 블라인드' 및 '앤티' 하드코딩 문자열을 `terms` 모듈과 한국어('첫판/큰판/대장판', 'n고')로 교체했다.
-- TDD RED: `terms` 모듈 부재를 확인했다. 구현 후 `game/tests/terms.lua` 단위 테스트와 UI 텍스트 출력 검증이 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN (209 files).
-- INBOX (28)은 전체 도메인 적용이 남아 있어 처리 대기로 유지한다.
-- Next slice: 나머지 player-facing Balatro 용어(Planet, Tarot, Tag, Voucher 등)를 `terms.lua`를 사용하여 기원패, 부적, 패찰, 인장으로 교체한다.
+
+## 2026-09-09 — 호탕한 인장 고해상도 픽셀 에셋 적용
+
+- `voucher.wasteful`에 쌀이 넘치는 놋그릇·곡식 주머니·단청 프레임을 그린 400×560 SVG/PNG master와 36×52 runtime 에셋을 추가했다.
+- 실제 Asset Studio `POST /api/pixel-perfect` 호출 결과 dimensions/palette/transparent alpha/alignment/nearest 5개 검사를 모두 통과했고 manifest에 원본·출력·report hash와 alpha bounds를 기록했다.
+- `game.ui.voucher_art`가 호탕한 인장을 manifest-backed nearest texture로 상점에 표시하며, 실제 LÖVE 320×180 캡처 `shop-voucher-wasteful-love-v1.png`를 생성했다.
+- TDD RED: `voucher.wasteful` 매핑 부재를 확인했다. 구현 후 전체 엔진 테스트와 `shop-pack-qa`가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, 실제 320×180 캡처 QA, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (304 files).
+- INBOX (27)은 나머지 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: `voucher.grabber` 갈퀴 인장의 400×560 master/runtime 에셋을 만들고 독립 manifest·LÖVE 상점 캡처 검증을 추가한다.
 
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 

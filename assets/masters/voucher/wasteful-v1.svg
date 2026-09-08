@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0bf"/>
+      <stop offset="1" stop-color="#d9ad63"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff09a"/>
+      <stop offset=".45" stop-color="#d8982f"/>
+      <stop offset="1" stop-color="#7b3d22"/>
+    </linearGradient>
+    <linearGradient id="cloth" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#248798"/>
+      <stop offset="1" stop-color="#123c59"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <!-- A generous feast seal: an overflowing brass bowl and open pouch form a bold silhouette. -->
+  <rect x="27" y="25" width="346" height="510" rx="34" fill="#321f38" opacity=".36" filter="url(#shadow)"/>
+  <rect x="20" y="18" width="360" height="510" rx="32" fill="#35213f" stroke="#140d1b" stroke-width="12"/>
+  <rect x="34" y="32" width="332" height="482" rx="23" fill="url(#paper)" stroke="#bd3f37" stroke-width="9"/>
+  <!-- Shared dancheong frame language identifies the permanent-seal family. -->
+  <path d="M49 64H351M49 482H351" stroke="#174f5f" stroke-width="17"/>
+  <path d="M49 64l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17M49 482l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17" fill="none" stroke="#e8b43e" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="62" cy="104" r="10" fill="#bd3f37"/><circle cx="338" cy="104" r="10" fill="#bd3f37"/>
+  <circle cx="62" cy="441" r="10" fill="#174f5f"/><circle cx="338" cy="441" r="10" fill="#174f5f"/>
+  <!-- Open indigo grain pouch behind the bowl. -->
+  <path d="M108 164q39-47 83 0l17 151q-47 42-116 0z" fill="url(#cloth)" stroke="#09283b" stroke-width="11"/>
+  <path d="M105 169q44 25 91 0M104 190q45 27 96 0" fill="none" stroke="#61c0b6" stroke-width="10"/>
+  <path d="M120 218l23 19-20 24 25 18-21 24M178 214l-22 25 23 21-20 25 24 20" fill="none" stroke="#e5b448" stroke-width="8" stroke-linecap="round"/>
+  <!-- Broad brass bowl overflowing with grain: the +discard abundance symbol. -->
+  <ellipse cx="220" cy="303" rx="113" ry="59" fill="#f1d17b" stroke="#6e3824" stroke-width="12"/>
+  <g fill="#fff1ae" stroke="#a8662c" stroke-width="4">
+    <ellipse cx="148" cy="290" rx="15" ry="10" transform="rotate(25 148 290)"/>
+    <ellipse cx="178" cy="270" rx="15" ry="10" transform="rotate(-22 178 270)"/>
+    <ellipse cx="208" cy="286" rx="16" ry="10" transform="rotate(18 208 286)"/>
+    <ellipse cx="239" cy="268" rx="15" ry="10" transform="rotate(-18 239 268)"/>
+    <ellipse cx="269" cy="286" rx="16" ry="10" transform="rotate(24 269 286)"/>
+    <ellipse cx="298" cy="302" rx="14" ry="9" transform="rotate(-15 298 302)"/>
+    <ellipse cx="165" cy="314" rx="15" ry="10" transform="rotate(-14 165 314)"/>
+    <ellipse cx="198" cy="315" rx="15" ry="10" transform="rotate(20 198 315)"/>
+    <ellipse cx="233" cy="309" rx="15" ry="10" transform="rotate(-20 233 309)"/>
+    <ellipse cx="267" cy="317" rx="15" ry="10" transform="rotate(15 267 317)"/>
+  </g>
+  <path d="M105 311q115 54 229 0l-29 98q-85 47-171 0z" fill="url(#brass)" stroke="#6e3824" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M134 342q86 35 171 0M145 378q75 28 148 0" fill="none" stroke="#ffe27d" stroke-width="9"/>
+  <path d="M171 404h98l13 25H157z" fill="#74382b" stroke="#412020" stroke-width="8"/>
+  <!-- Scattered grains communicate that another discard may be spent freely. -->
+  <g fill="#f7dfa0" stroke="#95552c" stroke-width="5">
+    <ellipse cx="78" cy="334" rx="13" ry="8" transform="rotate(38 78 334)"/>
+    <ellipse cx="92" cy="376" rx="13" ry="8" transform="rotate(-28 92 376)"/>
+    <ellipse cx="319" cy="264" rx="13" ry="8" transform="rotate(30 319 264)"/>
+    <ellipse cx="331" cy="363" rx="13" ry="8" transform="rotate(-35 331 363)"/>
+  </g>
+  <!-- Vermilion seal and brass notch anchor this as an in-game seal, not a play card. -->
+  <rect x="276" y="112" width="64" height="64" rx="6" fill="#c9362d" stroke="#751d21" stroke-width="8"/>
+  <path d="M290 128h36v32h-36zm9 0v32m17-32v32m-26-16h36" fill="none" stroke="#f6d78d" stroke-width="6"/>
+  <path d="M151 18h98l-13 28h-72z" fill="#e8b43e" stroke="#6c3a24" stroke-width="7"/>
+  <circle cx="200" cy="31" r="8" fill="#8e2f2c"/>
+</svg>
