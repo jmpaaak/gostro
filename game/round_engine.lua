@@ -114,8 +114,8 @@ local function default_target(run_state)
     if run_state.target ~= nil then
         return run_state.target
     end
-    -- Loaded lazily so game.run may later use this module without a require cycle.
-    return require("game.run").blind_target(run_state)
+    -- Loaded lazily to keep round state independent from run transition code.
+    return require("game.blind_flow").target(run_state)
 end
 
 local function recycle(round)

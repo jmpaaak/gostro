@@ -116,4 +116,12 @@
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: `game/round_engine.lua`가 fallback 목표 계산을 위해 직접 호출하는 `game.run.blind_target`을 gameplay projection 계약으로 옮겨 라운드 생성 경계를 더 작게 만든다.
 
+## 2026-09-08 — 라운드 기본 목표 gameplay projection 통합
+
+- `game/blind_flow.lua`가 비변이 `target(state, kind)` gameplay projection을 공개하고 블라인드 선택 UI, 시작, 클리어, 패배 검증이 같은 stake·보스 보정 목표를 공유한다.
+- `game/round_engine.lua`의 명시적 target 없는 생성 경로가 `game.run.blind_target`을 직접 호출하지 않고 이 projection에 위임한다. 따라서 red stake 라운드 기본 목표도 선택 화면과 같은 375이며, scene의 명시적 target 전달 여부에 따라 규칙이 달라지지 않는다.
+- TDD RED: red stake round fallback이 300을 반환하는 실패를 확인했다. 구현 후 `game/tests/round_engine.lua` 회귀 테스트와 전체 `make test`가 GREEN이다.
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: base ante/blind 및 보스 목표 계산의 소유권을 독립 모듈로 옮기고 `game.run.blind_target`은 호환 delegate로 축소해 gameplay projection이 거대 run 모듈을 경유하지 않게 한다.
+
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

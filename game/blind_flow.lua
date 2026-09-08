@@ -6,7 +6,10 @@ local M = {}
 
 local KINDS = { "small", "big", "boss" }
 
-local function target_for(state, kind)
+--- Project the gameplay target for a blind without mutating run progression.
+-- This is the shared target contract for selection UI, transitions, and rounds.
+function M.target(state, kind)
+    kind = kind or state.blind
     local projected = {}
     for key, value in pairs(state) do
         projected[key] = value
@@ -48,7 +51,7 @@ function M.view(state, tag_id)
 
         local b = {
             kind = kind,
-            target = target_for(state, kind),
+            target = M.target(state, kind),
             playable = state.phase == "play" and status == "current",
             status = status,
             skippable = skippable,
@@ -74,7 +77,7 @@ function M.select(state, kind, boss_id)
     if kind == "boss" and boss_id then
         run.select_boss(state, boss_id)
     end
-    local target = target_for(state, kind)
+    local target = M.target(state, kind)
     return {
         kind = kind,
         target = target,
@@ -106,7 +109,7 @@ function M.clear(state, hands_left)
     if state.phase ~= "play" then
         error("cannot clear outside play")
     end
-    if state.round_score < target_for(state, state.blind) then
+    if state.round_score < M.target(state, state.blind) then
         return nil
     end
     if hands_left ~= nil then state.hands_left = hands_left end
@@ -122,7 +125,7 @@ function M.lose(state, hands_left)
     if hands_left ~= 0 then
         error("cannot lose with hands remaining")
     end
-    if state.round_score >= target_for(state, state.blind) then
+    if state.round_score >= M.target(state, state.blind) then
         error("cannot lose a cleared blind")
     end
     state.hands_left = hands_left

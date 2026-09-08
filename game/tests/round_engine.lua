@@ -2,6 +2,7 @@
 
 local deck = require("game.deck")
 local run = require("game.run")
+local run_rules = require("game.run_rules")
 local round_engine = require("game.round_engine")
 
 local M = {}
@@ -30,6 +31,7 @@ end
 
 function M.run()
     M.test_default_starter_deck_and_options_overload()
+    M.test_default_target_uses_gameplay_projection()
     M.test_initializes_from_finite_deck_and_modifiers()
     M.test_seeded_shuffle_is_reproducible()
     M.test_discard_consumes_and_replaces_selected_cards()
@@ -39,6 +41,17 @@ function M.run()
     M.test_invalid_actions_do_not_mutate_round()
     M.test_psychic_requires_five_cards()
     print("  round_engine: OK")
+end
+
+function M.test_default_target_uses_gameplay_projection()
+    local state = assert(run_rules.create({
+        starting_deck_id = "hwatu",
+        stake_id = "red",
+    }, { unlocked_stakes = { red = true } }))
+
+    local round = round_engine.new(state, tiny_deck(10), { hand_size = 5 })
+    assert(round.target == 375,
+        "fallback target uses the same stake-adjusted gameplay projection as blind selection")
 end
 
 function M.test_default_starter_deck_and_options_overload()
