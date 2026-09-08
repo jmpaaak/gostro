@@ -1,5 +1,6 @@
 local blind_flow = require("game.blind_flow")
 local run = require("game.run")
+local run_history = require("game.run_history")
 
 local M = {}
 
@@ -274,8 +275,13 @@ function M.test_clear_owns_cash_out_shop_stock_and_final_win()
 end
 
 function M.test_lose_owns_exhausted_hand_transition()
+    run_history.reset()
     local state = run.new("blind-flow-loss")
     state.round_score = run.blind_target(state) - 1
+    local legacy_lose = run.lose
+    run.lose = function()
+        error("blind_flow.lose must not delegate to run.lose")
+    end
 
     fails(function() blind_flow.lose(state, 1) end,
         "loss requires the round to exhaust its hands")
@@ -285,12 +291,17 @@ function M.test_lose_owns_exhausted_hand_transition()
         "loss returns the resulting run phase")
     assert(state.phase == "lost" and state.hands_left == 0,
         "loss carries the exhausted hand count into run state")
+    local history = run_history.list()
+    assert(#history == 1 and history[1].outcome == "lost"
+            and history[1].seed == "BLINDFLOWLOSS",
+        "loss records the run directly through run history")
 
     local cleared = run.new("blind-flow-not-loss")
     run.add_score(cleared, run.blind_target(cleared))
     fails(function() blind_flow.lose(cleared, 0) end,
         "a completed blind cannot be recorded as a loss")
     assert(cleared.phase == "play", "completed blind remains available to clear")
+    run.lose = legacy_lose
 end
 
 function M.test_score_owns_hand_result_transfer()

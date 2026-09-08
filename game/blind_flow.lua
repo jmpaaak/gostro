@@ -179,7 +179,8 @@ function M.lose(state, hands_left)
         error("cannot lose a cleared blind")
     end
     state.hands_left = hands_left
-    run.lose(state)
+    state.phase = "lost"
+    run_history.record(state, "lost")
     return state.phase
 end
 

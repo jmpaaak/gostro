@@ -14,7 +14,6 @@ local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
 
 local vouchers = require("game.vouchers")
 local rng = require("game.rng")
-local run_history = require("game.run_history")
 local blind_targets = require("game.blind_targets")
 
 M.FINAL_ANTE = blind_targets.FINAL_ANTE
@@ -79,10 +78,9 @@ function M.select_boss(state, boss_id)
     return require("game.blind_flow").select_boss(state, boss_id)
 end
 
---- End the run as a loss and record seed history.
+--- Compatibility delegate; loss validation and history are owned by game.blind_flow.
 function M.lose(state)
-    state.phase = "lost"
-    run_history.record(state, "lost")
+    return require("game.blind_flow").lose(state, 0)
 end
 
 function M.add_score(state, amount)

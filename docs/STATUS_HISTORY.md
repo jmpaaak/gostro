@@ -838,3 +838,10 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 ## Archived from STATUS.md (2026-09-08 20:40)
 
 ## 2026-09-08 — 타로 소모품 인벤토리 선택 계약 (`game/ui/consumables.lua`)
+
+- Added a headless-safe render model for occupied and empty tarot slots, including Crystal Ball capacity, localized effect labels, and shared 320×180 bounds.
+- Occupied slots can be selected and toggled off through pure hit-test/selection APIs; empty slots and out-of-bounds presses are inert. Tarot execution remains owned by `game/tarots.lua`.
+- TDD RED was observed for the missing module. `make verify LOVE=/Users/jm/.local/bin/love` is GREEN with `consumables_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, and `LOVE_BUNDLE_OK` (162 files).
+- Removed two duplicate suite invocations from `game/self_test.lua` while registering the focused `game/tests/consumables_ui.lua`, so the entrypoint did not grow.
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: add require/delegation-only play-scene wiring to draw the consumable inventory and select a held tarot, then introduce a separate target/options flow before calling `game/tarots.lua`.

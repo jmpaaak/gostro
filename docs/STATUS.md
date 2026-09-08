@@ -1,14 +1,4 @@
 # STATUS
-
-## 2026-09-08 — 타로 소모품 인벤토리 선택 계약 (`game/ui/consumables.lua`)
-
-- Added a headless-safe render model for occupied and empty tarot slots, including Crystal Ball capacity, localized effect labels, and shared 320×180 bounds.
-- Occupied slots can be selected and toggled off through pure hit-test/selection APIs; empty slots and out-of-bounds presses are inert. Tarot execution remains owned by `game/tarots.lua`.
-- TDD RED was observed for the missing module. `make verify LOVE=/Users/jm/.local/bin/love` is GREEN with `consumables_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, and `LOVE_BUNDLE_OK` (162 files).
-- Removed two duplicate suite invocations from `game/self_test.lua` while registering the focused `game/tests/consumables_ui.lua`, so the entrypoint did not grow.
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: add require/delegation-only play-scene wiring to draw the consumable inventory and select a held tarot, then introduce a separate target/options flow before calling `game/tarots.lua`.
-
 ## 2026-09-08 — 타로 소모품 인벤토리 씬 배선
 
 - `game/scenes/play.lua`가 `game/ui/consumables.lua`에 그리기와 입력을 위임해 보유 타로 슬롯을 모든 런 화면에 표시하고, 점유 슬롯 터치로 선택/선택 해제를 수행한다.
@@ -132,5 +122,13 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 손 소진 패배 검증 이후 phase 변경과 패배 기록을 `blind_flow.lose`가 직접 소유하게 하고 `game.run.lose`를 호환 delegate로 축소한다.
+
+## 2026-09-08 — 손 소진 패배 전환 분리
+
+- `game/blind_flow.lose`가 play phase·손 소진·미달 점수를 검증한 뒤 exhausted hand state와 lost phase를 설정하고 패배 런 히스토리를 직접 기록한다.
+- `game.run.lose`는 기존 호출자를 보존하는 호환 delegate로 축소되어 `game.run`의 직접 `game.run_history` 의존성이 제거됐다.
+- TDD RED: monkey-patched legacy `run.lose` 호출 실패를 확인했다. 구현 후 독립 패배 전환·히스토리 기록, 남은 손/클리어 점수 비변이 거부와 기존 `run.lose` 경로가 GREEN이다.
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 라운드 엔진 결과의 점수·남은 손 반영을 `blind_flow.score`가 직접 소유하게 하고 `game.run.add_score`를 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
