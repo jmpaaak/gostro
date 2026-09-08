@@ -49,13 +49,13 @@
 
 ## 체크포인트 관찰표
 
-| 단계 | 직접 확인한 내용 | 상태 |
+| 단계 | 직접 확인한 내용 | 상태/증거 |
 |---|---|---|
-| 앱 랜딩 | 큰 `PLAY`, 작은 Collection/Options/Quit, 가장자리 프로필·언어 | 관찰 |
-| PLAY 패널 | 가로 New Run/Continue/Challenges 탭, 선택 삼각형, 탭별 콘텐츠 | 관찰 |
-| Continue | Blue Deck, White Stake, 진행 정보, PLAY, Back | 관찰 |
-| New Run | 덱 캐러셀, 잠금 조건, 페이지 점, 난이도 행, Seeded Run, PLAY/Back | 관찰 |
-| 덱 변경 | 화살표 입력에 따라 페이지 점·잠금 조건 즉시 변경 | 관찰 |
+| 앱 랜딩 | 큰 `PLAY`, 작은 Collection/Options/Quit, 가장자리 프로필·언어 | 관찰 — `docs/evidence/balatro-new-run/00-launch.png` |
+| PLAY 패널 | 가로 New Run/Continue/Challenges 탭, 선택 삼각형, 탭별 콘텐츠 | 관찰 — `01-play-panel-continue.png` |
+| Continue | Blue Deck, White Stake, 진행 정보, PLAY, Back | 관찰 — `01-play-panel-continue.png` |
+| New Run | 덱 캐러셀, 잠금 조건, 페이지 점, 난이도 행, Seeded Run, PLAY/Back | 관찰 — `02-new-run-locked.png` |
+| 덱 변경 | 화살표 입력에 따라 페이지 점·잠금 조건 즉시 변경 | 관찰 — `03-deck-change.png` |
 | 런 확정 | 잠긴 덱에서 PLAY 비활성 | 부분 관찰 |
 | 해금 덱 PLAY | 활성 PLAY와 전환 피드백 | 미관찰 |
 | 블라인드 선택 이후 | 스몰/빅/보스 정보와 진입 | 미관찰 |
