@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gwang Editor — Gostro</title>
+<link rel="stylesheet" href="editor.css">
+</head>
+<body>
+<header>
+  <h1>Gwang Editor</h1>
+  <p class="subtitle">Gwang joker catalog editor — game/data/gwang_jokers.json (docs/feedback/INBOX.md item 23a)</p>
+</header>
+
+<section class="toolbar">
+  <div class="toolbar-group">
+    <label class="file-btn">
+      Open gwang_jokers.json
+      <input type="file" id="openJsonInput" accept=".json" hidden>
+    </label>
+    <button id="openFsaBtn" title="Chrome/Edge only: pick a file and enable direct save-to-disk">Open + enable direct save</button>
+  </div>
+  <div class="toolbar-group">
+    <button id="saveFsaBtn" disabled>Save to disk</button>
+    <button id="downloadBtn" disabled>Download JSON</button>
+  </div>
+</section>
+
+<section id="statusBar" class="status"></section>
+
+<main>
+  <section id="grid" class="card-grid"></section>
+</main>
+
+<script src="editor.js"></script>
+</body>
+</html>

@@ -1,4 +1,15 @@
 # STATUS
+## 2026-09-08 — 광 카드 에디터 로드/저장 (`tools/gwang-editor/`)
+
+- Created `tools/gwang-editor/index.html` + `editor.css` + `editor.js` (gear-editor pattern).
+  - File API: Open `gwang_jokers.json` via `<input type=file>` → `readFileAsJson` / `loadDocument`.
+  - FSA: Open + enable direct save (`showOpenFilePicker`) and Save to disk (`createWritable`).
+  - Download JSON exports `gwang_jokers.json`. `validatePool` checks jokers schema (id, name KO/EN, rarity, trigger, effect chips/mult/mult_mul/money, desc).
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (10 tests: catalog schema + File API/FSA/serialize).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (a) only. Grid view, image upload, overlays, edit form, New/Delete, locale, runtime image decode are not in this slice.
+- Next slice: INBOX (23) remaining — (b) 카드 그리드 뷰 (화투 카드 모양) on `tools/gwang-editor/`.
+
 ## 2026-09-08 — 런 히스토리 (`game/run_history.lua`)
 
 - `game/run_history.lua`: Balatro-style finished-run log. `record(state, won|lost)` stores seed (A-Z0-9), outcome, ante, blind, money. Newest-first, cap 8. `reset()` / `list()`.
