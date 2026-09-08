@@ -85,6 +85,7 @@ function M.run()
     assert(gs3.slots[4].gwang == nil)
     assert(gs3.slots[5].gwang == nil)
 
+    require("game.tests.gwang_art").run()
     print("  gwang_slots_ui OK")
 end
 

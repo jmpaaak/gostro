@@ -2,6 +2,8 @@
 -- Gwang (joker) slot bar: top row, max 5 slots.
 -- Empty slots show dashed border; equipped show ★ + name + effect.
 
+local gwang_art = require("game.ui.gwang_art")
+
 local M = {}
 
 M.MAX_SLOTS = 5
@@ -99,18 +101,20 @@ function M.draw(gs)
         local slot = gs.slots[i]
 
         if slot.gwang then
-            -- Filled slot: dark background + star + info
+            -- Filled slot: optional catalog art, with the star as fallback.
             love.graphics.setColor(0.15, 0.12, 0.25, 1)
             love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 2, 2)
+            local has_art = gwang_art.draw(slot.gwang, p)
             love.graphics.setColor(1, 0.85, 0.2, 1)
             love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 2, 2)
 
-            -- ★ symbol centred
-            local sym = "★"
-            local tw = font:getWidth(sym)
-            local th = font:getHeight()
-            love.graphics.setColor(1, 0.85, 0.2, 1)
-            love.graphics.print(sym, p.x + (p.w - tw) / 2, p.y + (p.h - th) / 2)
+            if not has_art then
+                local sym = "★"
+                local tw = font:getWidth(sym)
+                local th = font:getHeight()
+                love.graphics.setColor(1, 0.85, 0.2, 1)
+                love.graphics.print(sym, p.x + (p.w - tw) / 2, p.y + (p.h - th) / 2)
+            end
         else
             -- Empty slot: dashed border
             love.graphics.setColor(0.4, 0.4, 0.4, 0.6)

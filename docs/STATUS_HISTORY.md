@@ -420,3 +420,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (23g) is complete: Download JSON, New Card, and Delete are implemented.
 - Next slice: INBOX (23h) KO|EN locale toggle on `tools/gwang-editor/`.
+
+## Archived from STATUS.md (2026-09-08 13:20)
+
+## 2026-09-08 — 광 카드 에디터 KO/EN 미리보기 (`tools/gwang-editor/`)
+
+- Added a KO | EN locale control that rerenders card names, rarity ribbons, and effect labels in the selected catalog locale.
+- The active control exposes `aria-pressed`, updates the document language, and persists across reloads via localStorage (with a safe local-file fallback).
+- TDD: `GwangEditorLocaleToggleTests` observed RED (4 failures), then GREEN.
+- `python3 -m unittest tools.test_gwang_editor -v` GREEN (42 tests); `node --check tools/gwang-editor/editor.js` GREEN.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23h) locale-toggle slice complete. Runtime JSON image loading remains.
+- Next slice: INBOX (23i) load an optional catalog `image` data URL for runtime gwang rendering in a dedicated `game/ui/gwang_art.lua` module.

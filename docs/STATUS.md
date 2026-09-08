@@ -1,13 +1,13 @@
 # STATUS
-## 2026-09-08 — 광 카드 에디터 KO/EN 미리보기 (`tools/gwang-editor/`)
+## 2026-09-08 — 광 카드 에디터 런타임 이미지 (`game/ui/gwang_art.lua`)
 
-- Added a KO | EN locale control that rerenders card names, rarity ribbons, and effect labels in the selected catalog locale.
-- The active control exposes `aria-pressed`, updates the document language, and persists across reloads via localStorage (with a safe local-file fallback).
-- TDD: `GwangEditorLocaleToggleTests` observed RED (4 failures), then GREEN.
-- `python3 -m unittest tools.test_gwang_editor -v` GREEN (42 tests); `node --check tools/gwang-editor/editor.js` GREEN.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (23h) locale-toggle slice complete. Runtime JSON image loading remains.
-- Next slice: INBOX (23i) load an optional catalog `image` data URL for runtime gwang rendering in a dedicated `game/ui/gwang_art.lua` module.
+- Added optional catalog `image` data URL decoding through LÖVE, texture caching, and centered cover-crop rendering in equipped gwang slots.
+- Cards without valid embedded art retain the existing star fallback; malformed or unsupported image data fails safely.
+- TDD: the dedicated engine-hosted `game/tests/gwang_art.lua` first failed because the module was absent, then passed with mocked draw assertions and LÖVE's real base64/FileData/ImageData pipeline.
+- `python3 -m unittest tools.test_gwang_editor -v` GREEN (42 tests).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (114 files).
+- INBOX (23) is fully complete and moved to 처리 완료.
+- Next slice: no feature item remains in 처리 대기; IDLE until new feedback (R1 remains the standing module-boundary rule).
 
 ## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
 

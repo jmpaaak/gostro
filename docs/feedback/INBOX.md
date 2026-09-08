@@ -12,24 +12,15 @@
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
+## 처리 완료
 ### Phase E — 광 카드 에디터 (웹 도구) (msg `1546681659951153252`)
 
 (23) **광 카드 에디터 — 웹 도구** (msg `1546681659951153252`)
-  - 담당: `tools/gwang-editor/index.html` + `editor.css` + `editor.js` (새 디렉터리)
-  - spaceship gear-editor 패턴 참고 (`tools/gear-editor/`)
-  - 기능:
-    (a) `game/data/gwang_jokers.json` 로드/저장 (File API + FSA direct save)
-    (b) 카드 그리드 뷰: 각 광 조커를 화투 카드 모양(세로 직사각형, 둥근 모서리)으로 표시
-    (c) **이미지 업로드**: 사용자가 카드별 이미지를 업로드하면 카드 프레임 안에 자동 배치 (중앙 크롭 + 리사이즈, 카드 비율 유지)
-    (d) 이미지는 base64 data URL로 JSON `image` 필드에 저장 (별도 서버 불필요)
-    (e) 카드 프레임 위에 이름 + 희귀도 띠(커먼 회색/언커먼 초록/레어 파랑/전설 보라) + 효과 텍스트 오버레이
-    (f) 카드 편집 폼: ID, 이름(KO/EN), 희귀도, 트리거 조건, 효과(칩+/배수+/배수×), 설명 텍스트
-    (g) + New Card / Delete / Download JSON
-    (h) KO|EN 로케일 토글 (gear-editor 패턴)
-  - 게임 런타임: `game/gwang_catalog.lua`가 JSON에서 `image` 필드를 읽어 LÖVE 텍스처로 디코드 → 광 슬롯 UI에 표시
-  - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
+  - `tools/gwang-editor/`: JSON File API/FSA load-save, card grid and overlays, edit/new/delete/download, image center-crop persisted as a data URL, and KO|EN toggle.
+  - `game/ui/gwang_art.lua`: optional catalog `image` data URL decode, texture cache, centered cover crop, and gwang-slot star fallback.
+  - `game/tests/gwang_art.lua` exercises mocked rendering plus LÖVE's real base64/FileData/ImageData decode pipeline.
+  - `python3 -m unittest tools.test_gwang_editor -v` GREEN (42 tests); `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
 
-## 처리 완료
 (22) **시드 기반 랜덤 + 런 히스토리** (msg `1546681659951153252`)
   - `game/rng.lua`: seed-string RNG, independent shop/cards/boss streams. `run.new` plans sequences. Same seed reproduces shop/deal/boss.
   - `game/ui/seed.lua`: seed display + typed A-Z0-9 input on play scene.
