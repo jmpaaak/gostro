@@ -41,6 +41,19 @@ function M.run()
     assert(view.selected_slot == nil, "invalid selection is discarded")
     assert(consumables_ui.hit_test(state, 0, 0) == nil)
 
+    -- The play scene delegates occupied-slot presses to the inventory UI.
+    local play = require("game.scenes.play")
+    local scene = play.new("CONSUMABLES-ROUTING")
+    assert(tarots.gain(scene.run_state, "the_hanged_man", "shop"))
+    local routed = consumables_ui.view(scene.run_state)
+    local routed_x, routed_y = center(routed.slots[1].bounds)
+    scene:mousepressed(routed_x, routed_y)
+    assert(scene.selected_consumable == 1,
+        "play scene selects a held consumable through shared hit bounds")
+    scene:mousepressed(routed_x, routed_y)
+    assert(scene.selected_consumable == nil,
+        "pressing the selected consumable in the play scene toggles it off")
+
     print("  consumables_ui: OK")
 end
 

@@ -1,7 +1,4 @@
 -- game/scenes/play.lua
--- Play scene: state machine delegating to UI modules + engine.
--- States: blind_select → playing → scoring → shop → (next blind_select)
--- Keeps under 800 lines — pure delegation.
 
 local run           = require("game.run")
 local run_rules     = require("game.run_rules")
@@ -21,6 +18,7 @@ local blind_sel_ui  = require("game.ui.blind_select")
 local gwang_sl_ui   = require("game.ui.gwang_slots")
 local planets_ui    = require("game.ui.planets_ui")
 local seed_ui       = require("game.ui.seed")
+local consumables_ui = require("game.ui.consumables")
 
 local M = {}
 M.__index = M
@@ -71,7 +69,6 @@ function M.new(seed_or_config)
     self.state       = "blind_select"
     self.money       = self.run_state.money
 
-    -- UI modules (created on demand per state)
     self.blind_select = blind_sel_ui.new(self.run_state.ante, self.run_state.blind)
     self.gwang_slots  = gwang_sl_ui.new()
     self.seed         = seed_ui.new(self.run_state.seed)
@@ -80,7 +77,7 @@ function M.new(seed_or_config)
     self.buttons      = nil
     self.shop         = nil
     self.round        = nil
-
+    self.selected_consumable = nil
     return self
 end
 
@@ -99,6 +96,7 @@ function M.apply_seed(scene, seed_str)
     scene.buttons     = nil
     scene.shop        = nil
     scene.round       = nil
+    scene.selected_consumable = nil
     return scene.run_state.seed
 end
 
@@ -234,10 +232,10 @@ function M:draw()
     if not love or not love.graphics then return end
     love.graphics.clear(0.025, 0.035, 0.08)
 
-    -- Gwang slots always visible at top; seed display at top-left
     gwang_sl_ui.draw(self.gwang_slots)
     planets_ui.draw(self.run_state)
     seed_ui.draw(self.seed)
+    consumables_ui.draw(self.run_state, self.selected_consumable)
 
     if self.state == "blind_select" then
         blind_sel_ui.draw(self.blind_select)
@@ -275,7 +273,7 @@ function M:mousepressed(px, py)
         end
         return
     end
-
+    if consumables_ui.route_press(self, px, py) then return end
     if seed_ui.hit_test(self.seed, px, py) == "field" then
         seed_ui.focus(self.seed)
         return
@@ -290,7 +288,6 @@ function M:mousepressed(px, py)
         end
 
     elseif self.state == "playing" then
-        -- Check action buttons first
         local btn = buttons_ui.hit_test(self.buttons, px, py)
         if btn == "play" then
             if M.play_hand(self) then
@@ -299,7 +296,6 @@ function M:mousepressed(px, py)
         elseif btn == "discard" then
             M.discard_hand(self)
         else
-            -- Check hand cards
             local idx = hand_ui.hit_test(self.hand, px, py)
             if idx then
                 hand_ui.toggle(self.hand, idx)

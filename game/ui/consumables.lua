@@ -85,6 +85,14 @@ function M.select(state, selected_slot, x, y)
     return hit or selected_slot
 end
 
+--- Route an occupied-slot press while keeping scene glue free of UI rules.
+function M.route_press(scene, x, y)
+    if not M.hit_test(scene.run_state, x, y) then return false end
+    scene.selected_consumable = M.select(
+        scene.run_state, scene.selected_consumable, x, y)
+    return true
+end
+
 local function fit_scale(font, text, width, maximum)
     return math.min(maximum or 1, width / math.max(1, font:getWidth(text)))
 end

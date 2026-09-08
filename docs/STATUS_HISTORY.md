@@ -642,3 +642,30 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (17) → 처리 완료.
 - Next slice: INBOX (18) 타로 카드 (카드 변환/파괴) (`game/tarots.lua`).
+
+## Archived from STATUS.md (2026-09-08 18:55)
+
+> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
+
+## 2026-09-08 — 타로 카드 변환/파괴 (`game/tarots.lua`)
+
+- Created `game/tarots.lua`: Balatro-style tarot consumables.
+  - Pool: `the_magician` (convert play-card kind) + `the_hanged_man` (destroy a card).
+  - Consumable slots max 2; `crystal_ball` voucher raises max to 3.
+  - `gain(state, id, source)` from shop or boss reward; `use` converts or destroys then consumes the slot.
+  - Convert keeps play-card contract: no month numbers/names, no gwang, no mae/ppeok/otti.
+- Tests in `game/tests/tarots.lua` GREEN (pool, slots, shop/boss gain, convert, destroy, consume).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- Enhance (edition grant) and copy are not in this slice.
+- Next slice: INBOX (18) remaining — tarot enhance + copy (`game/tarots.lua`).
+
+## Archived from STATUS.md (2026-09-08 18:59)
+
+## 2026-09-08 — 타로 이펙트 부여 (`game/tarots.lua`)
+
+- `the_chariot` (전차) enhance tarot grants foil/hologram/polychrome via `card_effects.apply`.
+- Failed enhance (unknown edition / gwang) errors and does not consume the slot.
+- Convert / destroy / slots unchanged. Copy not in this slice.
+- Tests in `game/tests/tarots.lua` GREEN (pool includes enhance, grant foil, reject unknown).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- Next slice: INBOX (18) remaining — tarot copy (`game/tarots.lua`).

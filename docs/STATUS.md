@@ -1,26 +1,4 @@
 # STATUS
-> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
-
-## 2026-09-08 — 타로 카드 변환/파괴 (`game/tarots.lua`)
-
-- Created `game/tarots.lua`: Balatro-style tarot consumables.
-  - Pool: `the_magician` (convert play-card kind) + `the_hanged_man` (destroy a card).
-  - Consumable slots max 2; `crystal_ball` voucher raises max to 3.
-  - `gain(state, id, source)` from shop or boss reward; `use` converts or destroys then consumes the slot.
-  - Convert keeps play-card contract: no month numbers/names, no gwang, no mae/ppeok/otti.
-- Tests in `game/tests/tarots.lua` GREEN (pool, slots, shop/boss gain, convert, destroy, consume).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- Enhance (edition grant) and copy are not in this slice.
-- Next slice: INBOX (18) remaining — tarot enhance + copy (`game/tarots.lua`).
-
-## 2026-09-08 — 타로 이펙트 부여 (`game/tarots.lua`)
-
-- `the_chariot` (전차) enhance tarot grants foil/hologram/polychrome via `card_effects.apply`.
-- Failed enhance (unknown edition / gwang) errors and does not consume the slot.
-- Convert / destroy / slots unchanged. Copy not in this slice.
-- Tests in `game/tests/tarots.lua` GREEN (pool includes enhance, grant foil, reject unknown).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- Next slice: INBOX (18) remaining — tarot copy (`game/tarots.lua`).
 
 ## 2026-09-08 — 타로 카드 복제 (`game/tarots.lua`)
 
@@ -156,3 +134,15 @@
 - Removed two duplicate suite invocations from `game/self_test.lua` while registering the focused `game/tests/consumables_ui.lua`, so the entrypoint did not grow.
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: add require/delegation-only play-scene wiring to draw the consumable inventory and select a held tarot, then introduce a separate target/options flow before calling `game/tarots.lua`.
+
+## 2026-09-08 — 타로 소모품 인벤토리 씬 배선
+
+- `game/scenes/play.lua`가 `game/ui/consumables.lua`에 그리기와 입력을 위임해 보유 타로 슬롯을 모든 런 화면에 표시하고, 점유 슬롯 터치로 선택/선택 해제를 수행한다.
+- 열린 아르카나 팩은 계속 최우선 모달 입력을 가지며, 시드 재적용 시 오래된 소모품 선택도 초기화한다.
+- `game/ui/consumables.lua`의 `route_press`가 공유 hit bounds와 선택 규칙을 캡슐화해 play 씬은 require/위임만 유지한다. `play.lua`는 339줄로 줄었다.
+- 엔진 호스트 테스트에서 씬 배선 부재 RED를 관찰한 뒤 `game/tests/consumables_ui.lua`의 실제 play-scene 점유 슬롯 선택/토글 회귀 테스트를 GREEN으로 전환했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `consumables_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (162 files).
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: 선택된 타로의 변환/파괴/효과 부여/복제별 옵션과 대상 패를 고르는 독립 `game/ui/tarot_target.lua` 순수 상태/hit-test 흐름을 추가하되 아직 `play.lua`에서 실행하지 않는다.
+
+> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
