@@ -2,7 +2,13 @@
 
 ## 처리 대기
 
-(직접 실기기 관찰 중 — 자동 루프 투입 항목 없음)
+(27) **Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환** (msg `1546885987525988473`)
+  - 담당: `docs/ASSET_PIPELINE.md`, `docs/GENERATED_ASSET_LOG.md`, `assets/manifest.json`, 신규 `assets/masters/**`·`assets/runtime/**`, 신규 `tools/asset_pipeline/**`; 런타임 배선은 기존 `game/ui/card.lua`, `game/ui/gwang_art.lua` 등을 직접 비대화하지 말고 asset loader/draw 모듈을 신규 분리한다.
+  - MOK의 승인된 에셋 생성 규칙을 기준으로 삼는다: 고해상도 원본/master를 보존하고 원본 색상을 기본 유지하며, hard alpha·nearest-neighbor·정수 배율·실제 런타임 캡처를 검증한다. 단순 색 사각형·Lua primitive·저해상도 확대·PIL 대체물을 최종 에셋으로 인정하지 않는다.
+  - `http://127.0.0.1:4176/index.html` 통합 에셋 스튜디오의 실제 `POST /api/pixel-perfect` 계약을 probe해 고해상도 master에서 runtime 도트 PNG를 생성한다. 가짜 resize나 endpoint 이름만 흉내 낸 파이프라인은 금지한다.
+  - 화투 플레이 패 전종, 광 카드 전종, 행성·타로·바우처·태그, Blind/Boss, 덱·Stake, 팩·상점·메뉴·HUD·버튼·아이콘·패널·배경·선택/득점/잠금/승패 효과 등 현재 런타임과 데이터 카탈로그의 **모든 그래픽 인스턴스**를 기계적으로 inventory하고 각 항목을 개별 manifest/checklist로 추적한다.
+  - 특수 광, foil/hologram/polychrome, 보스·득점·팩 개봉 등 애니메이션 가치가 있는 항목은 실제 `sprite-gen` provider-backed 생성으로 state/frame row를 만든 뒤 Pixel Perfect 후처리·atlas/manifest를 거친다. 정적 이미지 반복이나 코드 도형을 sprite-gen 결과라고 부르지 않는다.
+  - 각 에셋은 master/runtime 크기, alpha bounds, 출력 hash, 변환 설정, frame 수/FPS/loop/origin을 기록하고, 투명도·셀 경계·팔레트/색 보존·nearest filtering을 자동 검사한다. 실제 320×180 LÖVE 캡처에서 카드 식별성, 겹친 카드 상단 표식, UI 비중첩을 확인한 뒤에만 적용 완료 처리한다.
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
