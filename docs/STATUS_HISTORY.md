@@ -549,3 +549,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (13) → 처리 완료.
 - Next slice: INBOX (14) 태그 시스템 (`game/tags.lua`).
+
+## Archived from STATUS.md (2026-09-08 17:38)
+
+## 2026-09-08 — New Run 설정 씬 라우팅
+
+- `game/scenes/menu.lua`가 독립 `run_setup` 상태를 소유하고 `새 게임` 탭 선택 뒤 설정 화면의 draw/input을 라우팅하도록 연결했다.
+- 잠긴 덱의 PLAY는 메뉴에 머물며, 해금 덱의 PLAY만 `PlayScene`으로 전환한다.
+- Seeded Run의 정규화된 시드와 선택한 시작 덱/스테이크 ID가 새 런 상태에 전달된다.
+- `game/tests/menu_scene.lua`에서 설정 draw 라우팅, 덱 이동, 잠금 차단, 시드 토글, PLAY 전환을 엔진 호스트로 검증했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
+- INBOX (26)은 계속 처리 중이다. 다음 최소 조각은 `계속하기` 탭에 활성 런이 없다는 명시적 준비 중 상태를 구현하는 것이다.

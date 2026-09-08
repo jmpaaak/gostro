@@ -22,9 +22,18 @@ local BACK_BUTTON = {
 }
 
 local TAB_CONTENT = {
-    new_game = "새로운 판을 준비합니다",
-    continue = "이어할 판을 선택합니다",
-    challenges = "도전 과제를 확인합니다",
+    continue = {
+        status = "empty",
+        title = "계속하기 준비 중",
+        detail = "저장된 판이 없습니다",
+        can_play = false,
+    },
+    challenges = {
+        status = "unavailable",
+        title = "도전 과제를 확인합니다",
+        detail = "",
+        can_play = false,
+    },
 }
 
 local TAB_ACTIONS = {
@@ -69,6 +78,17 @@ function M.selected_indicator(menu)
         end
     end
     return nil
+end
+
+function M.tab_content(menu)
+    local content = TAB_CONTENT[menu.selected_tab]
+    if not content then return nil end
+    return {
+        status = content.status,
+        title = content.title,
+        detail = content.detail,
+        can_play = content.can_play,
+    }
 end
 
 function M.buttons(menu)
@@ -159,9 +179,12 @@ local function draw_play_panel(menu, graphics, font)
     graphics.setColor(0.98, 0.72, 0.20, 1)
     graphics.rectangle("fill", indicator.x, indicator.y, indicator.w, indicator.h)
 
-    if menu.selected_tab ~= "new_game" then
+    local content = M.tab_content(menu)
+    if content then
         graphics.setColor(0.72, 0.82, 0.78, 1)
-        graphics.printf(TAB_CONTENT[menu.selected_tab], 20, 92, 280, "center")
+        graphics.printf(content.title, 20, 82, 280, "center")
+        graphics.setColor(0.52, 0.64, 0.61, 1)
+        graphics.printf(content.detail, 20, 103, 280, "center")
     end
     draw_button(graphics, font, BACK_BUTTON)
 end
