@@ -34,3 +34,48 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/hwatu.lua` (self_test requires the topic file). `play.lua` requires the module only.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - Next slice: INBOX (1) `game/run.lua` ante 1 small/big/boss blinds + shop gwang joker slots (max 5). Do not grow `play.lua`.
+
+## Archived from STATUS.md (2026-09-08 10:14)
+
+## 2026-09-07 — run state: blinds, shop, gwang slots
+
+- Added pure `game/run.lua`: ante 1→8 small/big/boss (Balatro-style targets), play score ≥ blind → shop, buy gwang jokers (one identity each, max 5), leave shop to next blind, ante 8 boss clear = won. Gwang is never a play card.
+- Tests in `game/tests/run.lua`. `play.lua` requires the module only.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (1) first-play slice complete (hwatu eval + run blinds/shop). Next: empty 처리 대기 = IDLE unless new feedback.
+
+## 2026-09-08 — 발라트로 UI 벤치마크 문서
+
+- Created `docs/UI_BENCHMARK.md`: 발라트로 UI 레이아웃 5개 화면(메인 플레이, 상점, 블라인드 선택, 게임오버/승리, 시각 스타일) 텍스트 정리.
+- 고스트로 적용 변환 메모: 포커→화투 대응표, 320×180 기준 좌표 스케치(광 슬롯, 점수판, 버튼, 핸드 카드 위치), 색상 팔레트 12색.
+- 코드 변경 없음. `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (2) → 처리 완료.
+- Next slice: INBOX (3) 고스트로 UI 와이어프레임 생성 (`tools/gen_wireframe.py` → `docs/wireframes/*.png`).
+
+## 2026-09-08 — UI 와이어프레임 4장 생성
+
+- Created `tools/gen_wireframe.py` (PIL, 46 lines): 320×180 wireframe 4장 생성.
+- Output: `docs/wireframes/{play,shop,blind_select,result}.png` — 회색 박스+레이블.
+- Created `docs/WIREFRAME.md`: 각 화면 요소별 실제 구현 좌표(x,y,w,h) 테이블.
+- Created `docs/GENERATED_ASSET_LOG.md`: 4개 에셋 타임스탬프 기록.
+- `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (3) → 처리 완료.
+- Next slice: INBOX (4) 카드 렌더링 모듈 (`game/ui/card.lua`).
+
+## 2026-09-08 — 카드 렌더링 모듈 (game/ui/card.lua)
+
+- Created `game/ui/card.lua`: single hwatu card widget — new/toggle_select/draw_y/symbol/bg_color/hit_test/draw. 24×36px, 8px lift on select, 5 play kinds only (gwang rejected). Background rect + kind symbol + selection border highlight.
+- Tests in `game/tests/card_ui.lua`: constants, new, toggle, draw_y, symbol, hit_test (including lifted hitbox), bg_color for all kinds.
+- `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (4) → 처리 완료.
+- Next slice: INBOX (5) 핸드 디스플레이 모듈 (`game/ui/hand.lua`).
+
+## 2026-09-08 — 핸드 디스플레이 모듈 (game/ui/hand.lua)
+
+- Created `game/ui/hand.lua`: hand display module — deal 8 cards in centred overlapping row (16px gap < 24px card width = Balatro-style fan), max 5 selection with order tracking, toggle/deselect, selection_index, get_selected, hit_test (reverse z-order), draw with selection order number overlay.
+- Cards anchor at bottom of 320×180 viewport (y=138, 6px bottom pad).
+- Depends on `game/ui/card.lua` for individual card widgets.
+- Tests in `game/tests/hand_ui.lua`: deal layout, overlap check, select/deselect/toggle, max 5 limit, selection order, get_selected.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (5) → 처리 완료.
+- Next slice: INBOX (7) 점수판 UI 모듈 (`game/ui/scoreboard.lua`).

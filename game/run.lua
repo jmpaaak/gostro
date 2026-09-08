@@ -31,6 +31,7 @@ local PLAY_CARDS = {
 
 local tags = require("game.tags")
 local boss_blinds = require("game.boss_blinds")
+local vouchers = require("game.vouchers")
 
 function M.new()
     return {
@@ -46,9 +47,32 @@ function M.new()
             extra_shop_slots = 0,
             hand_size_bonus = 0,
         },
+        vouchers = {
+            owned = {},
+            hand_size = 0,
+            discards = 0,
+            hands = 0,
+            shop_slots = 0,
+            reroll_discount = 0,
+            shop_discount = 0,
+            interest_cap = 5,
+            gwang_slots = 0,
+            consumable_slots = 0,
+            edition_rate = 1,
+            boss_rerolls = 0,
+            interest_rate = 0,
+        },
         boss_id = nil,
         boss = nil,
     }
+end
+
+function M.max_gwang(state)
+    local extra = 0
+    if state.vouchers then
+        extra = state.vouchers.gwang_slots or 0
+    end
+    return M.MAX_GWANG + extra
 end
 
 function M.blind_target(state)
@@ -112,6 +136,7 @@ function M.clear_blind(state)
         return
     end
     state.phase = "shop"
+    vouchers.stock_shop(state)
 end
 
 --- Skip the current small/big blind and claim a tag reward.
@@ -151,13 +176,33 @@ function M.buy_gwang(state, card)
     if card.identity == nil or card.identity == "" then
         error("each gwang has one identity")
     end
-    if #state.gwang >= M.MAX_GWANG then
+    if #state.gwang >= M.max_gwang(state) then
         error("max 5 gwang joker slots")
     end
     state.gwang[#state.gwang + 1] = {
         kind = "gwang",
         identity = card.identity,
     }
+end
+
+--- Buy the shop's voucher. One purchase per shop visit.
+function M.buy_voucher(state, id)
+    if state.phase ~= "shop" then
+        error("buy voucher only in the shop")
+    end
+    local v = vouchers.ensure(state)
+    if v.bought_this_shop then
+        error("one voucher per shop")
+    end
+    if not v.shop_id then
+        error("no voucher in shop")
+    end
+    if id ~= v.shop_id then
+        error("buy the offered voucher")
+    end
+    vouchers.apply(state, id)
+    v.bought_this_shop = true
+    return v
 end
 
 function M.leave_shop(state)
@@ -174,6 +219,7 @@ function M.leave_shop(state)
     end
     state.phase = "play"
     state.round_score = 0
+    vouchers.clear_shop(state)
 end
 
 return M
