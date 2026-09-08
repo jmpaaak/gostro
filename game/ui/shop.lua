@@ -51,8 +51,21 @@ function M.card_positions()
     return positions
 end
 
---- Pick a random gwang from the pool.
-local function random_gwang()
+--- Pick a random item from the pool.
+local function random_item()
+    if math.random() < 0.3 then
+        local planets = require("game.planets").all()
+        local p = planets[math.random(1, #planets)]
+        return {
+            kind = "planet",
+            yaku = p.yaku,
+            identity = p.id,
+            name = "행성: " .. (p.name or "Unknown"),
+            price = 3,
+            sold = false,
+        }
+    end
+    
     local entry = GWANG_POOL[math.random(1, #GWANG_POOL)]
     return {
         kind     = "gwang",
@@ -66,7 +79,7 @@ end
 local function generate_cards()
     local cards = {}
     for i = 1, 3 do
-        cards[i] = random_gwang()
+        cards[i] = random_item()
     end
     return cards
 end
@@ -88,7 +101,7 @@ function M.buy_card(s, idx)
     if s.money < card.price then return false, nil end
     s.money = s.money - card.price
     card.sold = true
-    return true, { kind = card.kind, identity = card.identity }
+    return true, { kind = card.kind, identity = card.identity, yaku = card.yaku }
 end
 
 --- Reroll: replace unsold cards, cost $5. Returns true on success.
@@ -97,7 +110,7 @@ function M.reroll(s)
     s.money = s.money - M.REROLL_COST
     for i = 1, 3 do
         if not s.cards[i].sold then
-            s.cards[i] = random_gwang()
+            s.cards[i] = random_item()
         end
     end
     return true
@@ -161,25 +174,43 @@ function M.draw(s)
         local card = s.cards[i]
 
         if card and not card.sold then
-            -- Card background (gwang gold)
-            love.graphics.setColor(0.85, 0.7, 0.15, 1)
-            love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
-            love.graphics.setColor(1, 0.85, 0.2, 1)
-            love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
+            if card.kind == "planet" then
+                love.graphics.setColor(0.3, 0.4, 0.7, 1)
+                love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
+                love.graphics.setColor(0.5, 0.6, 1.0, 1)
+                love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
 
-            -- Star symbol
-            love.graphics.setColor(1, 1, 1, 1)
-            local sym = "★"
-            local sw = font:getWidth(sym)
-            love.graphics.print(sym,
-                p.x + math.floor((p.w - sw) / 2), p.y + 6)
+                love.graphics.setColor(1, 1, 1, 1)
+                local sym = "●"
+                local sw = font:getWidth(sym)
+                love.graphics.print(sym, p.x + math.floor((p.w - sw) / 2), p.y + 6)
+                
+                local nw = font:getWidth(card.name)
+                love.graphics.setColor(0.9, 0.9, 1, 1)
+                -- shrink text if it's too wide
+                local scale = math.min(1, (p.w - 4) / nw)
+                love.graphics.print(card.name, p.x + math.floor((p.w - nw * scale) / 2), p.y + 6 + fh + 2, 0, scale, scale)
+            else
+                -- Card background (gwang gold)
+                love.graphics.setColor(0.85, 0.7, 0.15, 1)
+                love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
+                love.graphics.setColor(1, 0.85, 0.2, 1)
+                love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
 
-            -- Name/effect
-            local name = GWANG_NAMES[card.identity] or "?"
-            local nw = font:getWidth(name)
-            love.graphics.setColor(0.1, 0.05, 0, 1)
-            love.graphics.print(name,
-                p.x + math.floor((p.w - nw) / 2), p.y + 6 + fh + 2)
+                -- Star symbol
+                love.graphics.setColor(1, 1, 1, 1)
+                local sym = "★"
+                local sw = font:getWidth(sym)
+                love.graphics.print(sym,
+                    p.x + math.floor((p.w - sw) / 2), p.y + 6)
+
+                -- Name/effect
+                local name = GWANG_NAMES[card.identity] or "?"
+                local nw = font:getWidth(name)
+                love.graphics.setColor(0.1, 0.05, 0, 1)
+                love.graphics.print(name,
+                    p.x + math.floor((p.w - nw) / 2), p.y + 6 + fh + 2)
+            end
 
             -- Price tag at bottom
             local ptxt = "$" .. tostring(card.price)

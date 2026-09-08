@@ -66,7 +66,7 @@ local function chips_for(hand)
     return chips
 end
 
-function M.evaluate(hand)
+function M.evaluate(hand, state)
     if type(hand) ~= "table" then
         error("hand must be a table")
     end
@@ -90,6 +90,12 @@ function M.evaluate(hand)
     if counts.pi >= 5 then
         yaku[#yaku + 1] = "pi"
     end
+    
+    if state then
+        local planets = require("game.planets")
+        chips, mult = planets.apply_level_bonus(state, yaku, chips, mult)
+    end
+    
     local extras
     chips, mult, extras = effects.apply_bonuses(hand, chips, mult)
     return {

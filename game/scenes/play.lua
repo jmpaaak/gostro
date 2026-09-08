@@ -11,6 +11,7 @@ local buttons_ui    = require("game.ui.action_buttons")
 local shop_ui       = require("game.ui.shop")
 local blind_sel_ui  = require("game.ui.blind_select")
 local gwang_sl_ui   = require("game.ui.gwang_slots")
+local planets_ui    = require("game.ui.planets_ui")
 
 local M = {}
 M.__index = M
@@ -176,17 +177,29 @@ function M.leave_shop(scene)
     scene.state = "blind_select"
 end
 
---- Buy a gwang card from the shop.
+--- Buy a card from the shop.
 function M.buy_shop_card(scene, idx)
     if scene.state ~= "shop" then return false end
     local ok, card_data = shop_ui.buy_card(scene.shop, idx)
     if not ok then return false end
-    -- Add to run state
+    
+    if card_data.kind == "planet" then
+        local planets = require("game.planets")
+        planets.buy(scene.run_state, card_data.yaku)
+        return true
+    end
+
+    -- Add to run state (gwang)
     local success = pcall(run.buy_gwang, scene.run_state, card_data)
     if success then
         gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
+    else
+        -- revert
+        scene.shop.money = scene.shop.money + (card_data.price or 0)
+        scene.shop.cards[idx].sold = false
+        return false
     end
-    return ok
+    return true
 end
 
 --- Update (tick animations).
@@ -205,6 +218,7 @@ function M:draw()
 
     -- Gwang slots always visible at top
     gwang_sl_ui.draw(self.gwang_slots)
+    planets_ui.draw(self.run_state)
 
     if self.state == "blind_select" then
         blind_sel_ui.draw(self.blind_select)

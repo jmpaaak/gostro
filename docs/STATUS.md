@@ -1,33 +1,4 @@
 # STATUS
-## 2026-09-08 — 광 조커 슬롯 UI 모듈 (game/ui/gwang_slots.lua)
-
-- Created `game/ui/gwang_slots.lua`: gwang joker slot bar at top of 320×180 viewport.
-  - 5 slots in centred horizontal row (28×16px each, 4px gap, 4px top pad).
-  - Empty slots: dashed border. Equipped slots: dark bg + gold border + ★ symbol.
-  - `new()`, `equip()`, `is_empty()`, `sync_from_run()`, `display_text()`, `draw()`.
-  - `display_text()` returns "★ name effect" (e.g. "★ 칩 +30 칩", "★ 배수 +4 배수").
-  - `slot_positions()` returns layout rects for external hit-testing.
-- Tests in `game/tests/gwang_slots_ui.lua`: 5-slot init, equip fill order, max 5 rejection, display text ★/name, is_empty, sync_from_run.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (6) → 처리 완료.
-- Next slice: INBOX (7) 점수판 UI 모듈 (`game/ui/scoreboard.lua`).
-
-## 2026-09-08 — 점수판 UI 모듈 (game/ui/scoreboard.lua)
-
-- Created `game/ui/scoreboard.lua`: scoreboard UI module for chips × mult = total score.
-  - `new()`: initial state (chips=0, mult=1, displayed_score=0, target=0, popup=nil).
-  - `set_target(sb, target)`: bind blind target for progress bar.
-  - `set_hand_result(sb, chips, mult)`: accumulates chips×mult to displayed_score, creates Balatro-style popup with floating text + fade.
-  - `progress_ratio(sb)`: 0..1 clamped ratio of score vs blind target.
-  - `reset(sb)`: clear between rounds.
-  - `update(sb, dt)`: tick popup timer, auto-clear expired popup.
-  - `format_score_text(chips, mult)`: returns "42 × 3 = 126" string.
-  - `draw(sb)`: right-side panel with chips×mult line, total/target, progress bar (blue→green on clear), floating popup with shadow+fade.
-- Tests in `game/tests/scoreboard_ui.lua`: new defaults, set_target, set_hand_result accumulation, progress_ratio clamping, reset, popup timer tick+expiry, format_score_text.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (7) → 처리 완료.
-- Next slice: INBOX (8) 플레이/버리기 버튼 모듈 (`game/ui/action_buttons.lua`).
-
 ## 2026-09-08 — 플레이/버리기 버튼 모듈 (game/ui/action_buttons.lua)
 
 - Created `game/ui/action_buttons.lua`: Balatro-style bottom-center 2-button UI.
@@ -161,3 +132,16 @@
 - Next slice: INBOX (17) 행성 카드 (`game/planets.lua`).
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
+
+## 2026-09-08 — 행성 카드 (game/planets.lua)
+
+- Created `game/planets.lua`: Balatro-style planet cards for leveling up yaku (hongdan, cheongdan, chodan, godori, pi).
+- Leveling up permanently adds base chips and mult to hands playing that yaku.
+- `game/hwatu.lua` `evaluate` updated to accept `state` and call `planets.apply_level_bonus(state, yaku, chips, mult)` to accumulate the level-up bonuses (e.g. +15 chips, +1 mult per level).
+- `game/ui/shop.lua` generates planets in the shop (30% chance for random_item) alongside gwang.
+- `game/ui/planets_ui.lua`: left-side HUD to display the current levels of all yakus during play.
+- `game/scenes/play.lua`: integrated `planets_ui.draw`, handles planet purchases from shop without rejecting non-gwang items.
+- Tests in `game/tests/planets.lua` verify levels, buying, and chip/mult calculations. `shop_ui` tests updated to permit planets in the shop.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (17) → 처리 완료.
+- Next slice: INBOX (18) 타로 카드 (카드 변환/파괴) (`game/tarots.lua`).

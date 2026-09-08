@@ -11,7 +11,7 @@ function M.run()
     assert(s.money == 100, "initial money 100, got " .. tostring(s.money))
     assert(#s.cards == 3, "3 cards on display, got " .. #s.cards)
     for i, c in ipairs(s.cards) do
-        assert(c.kind == "gwang", "card " .. i .. " is gwang")
+        assert(c.kind == "gwang" or c.kind == "planet", "card " .. i .. " is gwang or planet")
         assert(c.identity ~= nil, "card " .. i .. " has identity")
         assert(c.price > 0, "card " .. i .. " has price > 0")
     end
@@ -22,7 +22,7 @@ function M.run()
     local price = card.price
     local ok, bought = shop.buy_card(s2, 1)
     assert(ok == true, "buy succeeds")
-    assert(bought.kind == "gwang", "bought gwang")
+    assert(bought.kind == "gwang" or bought.kind == "planet", "bought valid kind")
     assert(s2.money == 50 - price, "money decreased by price")
     assert(s2.cards[1] == nil or s2.cards[1].sold == true, "slot emptied or marked sold")
 
