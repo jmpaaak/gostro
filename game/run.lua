@@ -1,20 +1,12 @@
 local M = {}
 
-M.MAX_GWANG = 5
-
-local PLAY_CARDS = {
-    hongdan = true,
-    cheongdan = true,
-    chodan = true,
-    godori = true,
-    pi = true,
-}
-
 local vouchers = require("game.vouchers")
 local rng = require("game.rng")
 local blind_targets = require("game.blind_targets")
+local gwang_inventory = require("game.gwang_inventory")
 
 M.FINAL_ANTE = blind_targets.FINAL_ANTE
+M.MAX_GWANG = gwang_inventory.MAX_SLOTS
 
 function M.new(seed_str)
     local plan = rng.plan(seed_str)
@@ -60,11 +52,7 @@ function M.new(seed_str)
 end
 
 function M.max_gwang(state)
-    local extra = 0
-    if state.vouchers then
-        extra = state.vouchers.gwang_slots or 0
-    end
-    return M.MAX_GWANG + extra
+    return gwang_inventory.max_slots(state)
 end
 
 function M.blind_target(state)
@@ -103,28 +91,7 @@ function M.skip_blind(state, tag_id)
 end
 
 function M.buy_gwang(state, card)
-    if state.phase ~= "shop" then
-        error("buy gwang only in the shop")
-    end
-    if type(card) ~= "table" then
-        error("gwang must be a table")
-    end
-    if card.kind ~= nil and card.kind ~= "gwang" then
-        error("gwang slots reject play cards")
-    end
-    if PLAY_CARDS[card.kind] then
-        error("gwang slots reject play cards")
-    end
-    if card.identity == nil or card.identity == "" then
-        error("each gwang has one identity")
-    end
-    if #state.gwang >= M.max_gwang(state) then
-        error("max 5 gwang joker slots")
-    end
-    state.gwang[#state.gwang + 1] = {
-        kind = "gwang",
-        identity = card.identity,
-    }
+    return gwang_inventory.buy(state, card)
 end
 
 --- Buy the shop's voucher. One purchase per shop visit.

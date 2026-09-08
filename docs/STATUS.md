@@ -1,6 +1,4 @@
 # STATUS
-## 2026-09-08 — 타로 대상 선택·사용 실게임 연결
-
 - `game/tarot_use.lua` 컨트롤러가 보유 타로 선택부터 옵션/대상 모달, `tarots.use` 실행, 성공/취소 정리까지 소유한다. 변환·파괴·강화·복제 규칙은 계속 `game/tarots.lua`에만 있다.
 - 플레이 중 점유 소모품 슬롯을 누르면 대상 모달이 열리고, 열린 동안 포인터 및 플레이/버리기 단축키가 하위 UI로 전달되지 않는다.
 - 완료된 요청은 엔진의 `round.hand`에 적용되고 hand UI를 다시 deal해 변형/삭제/복제 결과와 선택 초기화를 즉시 반영한다. 성공 시 타로가 소비되며 취소 시 보존된다.
@@ -128,5 +126,13 @@
 - TDD RED: 전체 `make test`에서 `game.card_deal` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `card_deal: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (170 files)로 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 광 슬롯 한도와 구매 검증·삽입을 독립 `game/gwang_inventory.lua`로 옮기고 `game.run.max_gwang`/`buy_gwang`은 호환 delegate로 축소한다.
+
+## 2026-09-08 — 광 슬롯 인벤토리 규칙 모듈화
+
+- 신규 `game/gwang_inventory.lua`가 기본 광 슬롯 5개와 바우처 추가 슬롯 계산, 상점 phase·광 identity·play-card 배제·수용량 검증 및 정규화된 슬롯 삽입을 독립적으로 소유한다.
+- `game.run.MAX_GWANG`은 호환 상수로 유지하고 `max_gwang`/`buy_gwang`은 새 모듈로 위임한다. 잘못된 구매와 수용량 초과는 인벤토리를 변경하지 않는다.
+- TDD RED: 전체 `make test`에서 `game.gwang_inventory` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `gwang_inventory: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (172 files)로 GREEN이다.
+- INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 상점 바우처 구매의 phase·진열 일치·방문당 1회 검증과 적용을 `game.vouchers` 계약으로 옮기고 `game.run.buy_voucher`를 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

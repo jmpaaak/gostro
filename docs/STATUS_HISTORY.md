@@ -867,3 +867,7 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - TDD RED: 전체 `make test`에서 `game.ui.tarot_target` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `tarot_target_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (164 files)로 GREEN이다.
 - INBOX (26)은 실제 사용 배선이 남아 있어 처리 중으로 유지한다.
 - Next slice: 타로 대상 선택기를 play scene에 모달로 배선하고 완료된 요청을 `tarots.use`로 실행한 뒤 변경된 패를 hand UI에 재동기화하고 소모품/대상 선택을 해제한다. 효과 규칙은 scene glue에 추가하지 않는다.
+
+## Archived from STATUS.md (2026-09-08 21:04)
+
+## 2026-09-08 — 타로 대상 선택·사용 실게임 연결

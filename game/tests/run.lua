@@ -9,6 +9,7 @@ end
 
 function M.run()
     require("game.tests.card_deal").run()
+    require("game.tests.gwang_inventory").run()
 
     local state = run.new()
     assert(state.ante == 1)
