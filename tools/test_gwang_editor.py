@@ -309,5 +309,48 @@ class GwangEditorImagePersistTests(unittest.TestCase):
         self.assertIn("validatePool", download)
 
 
+class GwangEditorCardOverlayTests(unittest.TestCase):
+    """INBOX (23e): card name, rarity ribbon, and effect text overlays."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(CSS_PATH, encoding="utf-8") as f:
+            cls.css = f.read()
+
+    def test_render_grid_emits_card_overlays(self):
+        render = _fn_body(self.js, "renderGrid")
+        self.assertIn("rarity-ribbon", render)
+        self.assertIn("effect-text", render)
+        self.assertIn("formatEffectText", render)
+        self.assertIn("joker.rarity", render)
+
+    def test_effect_formatter_supports_catalog_effects(self):
+        formatter = _fn_body(self.js, "formatEffectText")
+        self.assertTrue(formatter, "formatEffectText must exist")
+        for effect_key in ("chips", "mult", "mult_mul", "money"):
+            self.assertIn(effect_key, formatter)
+        self.assertIn("×", formatter)
+
+    def test_rarity_ribbons_have_required_colors(self):
+        expected = {
+            "common": "--common",
+            "uncommon": "--uncommon",
+            "rare": "--rare",
+            "legendary": "--legendary",
+        }
+        for rarity, color in expected.items():
+            self.assertRegex(
+                self.css,
+                rf"\.rarity-ribbon\.{rarity}\s*\{{[^}}]*var\({color}\)",
+                f"{rarity} ribbon must use {color}",
+            )
+
+    def test_text_overlays_sit_above_uploaded_art(self):
+        self.assertRegex(self.css, r"\.card-overlay\s*\{[^}]*z-index\s*:")
+        self.assertRegex(self.css, r"\.effect-text\s*\{[^}]*text-shadow\s*:")
+
+
 if __name__ == "__main__":
     unittest.main()

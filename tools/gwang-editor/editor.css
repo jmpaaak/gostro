@@ -101,12 +101,48 @@ main {
 }
 
 .hwatu-card .name {
-  position: relative;
-  z-index: 1;
   font-size: 12px;
   font-weight: 600;
   line-height: 1.3;
   word-break: break-word;
+}
+
+.rarity-ribbon {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  right: 0;
+  padding: 3px 7px;
+  border-radius: 4px 0 0 4px;
+  color: #090b10;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.rarity-ribbon.common { background: var(--common); }
+.rarity-ribbon.uncommon { background: var(--uncommon); }
+.rarity-ribbon.rare { background: var(--rare); }
+.rarity-ribbon.legendary { background: var(--legendary); }
+
+.card-overlay {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 26px 8px 9px;
+  background: linear-gradient(transparent, rgba(7, 9, 14, 0.94) 38%);
+}
+
+.effect-text {
+  margin-top: 3px;
+  color: #f4d35e;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-shadow: 0 1px 2px #000;
 }
 
 .hwatu-art {
@@ -123,8 +159,7 @@ main {
 }
 
 .card-image-btn {
-  position: relative;
-  z-index: 1;
+  display: block;
   margin-top: 6px;
   font-size: 11px;
   padding: 4px 6px;

@@ -1,5 +1,5 @@
 // gwang-editor: static, dependency-free editor for game/data/gwang_jokers.json
-// (docs/feedback/INBOX.md item 23d — persist image as a base64 data URL).
+// (docs/feedback/INBOX.md item 23e — card metadata overlays).
 //
 // Validation mirrors the catalog fields used by game/gwang_catalog.lua.
 
@@ -261,6 +261,16 @@ function wireImageUploads() {
   });
 }
 
+function formatEffectText(effect) {
+  if (!effect || typeof effect !== "object") return "";
+  const parts = [];
+  if (Number.isFinite(effect.chips)) parts.push(`${effect.chips >= 0 ? "+" : ""}${effect.chips} chips`);
+  if (Number.isFinite(effect.mult)) parts.push(`${effect.mult >= 0 ? "+" : ""}${effect.mult} mult`);
+  if (Number.isFinite(effect.mult_mul)) parts.push(`×${effect.mult_mul} mult`);
+  if (Number.isFinite(effect.money)) parts.push(`${effect.money >= 0 ? "+" : "-"}$${Math.abs(effect.money)}`);
+  return parts.join(" · ");
+}
+
 function renderGrid() {
   if (!els.grid) return;
   if (!pool || !Array.isArray(pool.jokers)) {
@@ -270,10 +280,12 @@ function renderGrid() {
   els.grid.innerHTML = pool.jokers.map((joker) => {
     const name = (joker.name && joker.name.en) || joker.id || "?";
     const id = joker.id || "";
+    const rarity = KNOWN_RARITIES.includes(joker.rarity) ? joker.rarity : "common";
+    const effectText = formatEffectText(joker.effect);
     const art = joker.image
       ? `<img class="hwatu-art" alt="" src="${escapeHtml(joker.image)}">`
       : "";
-    return `<article class="hwatu-card" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="name">${escapeHtml(name)}</div><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></article>`;
+    return `<article class="hwatu-card" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="rarity-ribbon ${rarity}">${escapeHtml(rarity)}</div><div class="card-overlay"><div class="name">${escapeHtml(name)}</div><div class="effect-text">${escapeHtml(effectText)}</div><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></div></article>`;
   }).join("");
   wireImageUploads();
 }

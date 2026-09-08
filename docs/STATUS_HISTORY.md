@@ -319,3 +319,54 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/seed_ui.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (22) seed display/input UI slice only. Run history is not in this slice.
 - Next slice: INBOX (22) remaining — run history.
+
+## Archived from STATUS.md (2026-09-08 12:48)
+
+## 2026-09-08 — 광 카드 에디터 이미지 JSON 저장 (`tools/gwang-editor/`)
+
+- `tools/gwang-editor/editor.js`: uploaded, center-cropped PNG art persists on each joker's JSON `image` field as a base64 `data:image/...;base64,...` URL.
+  - `isImageDataUrl` rejects non-image and non-base64 image values before Save/Download.
+  - `serializePool` explicitly preserves each valid `joker.image` in both FSA direct save and downloaded JSON.
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (21 tests: schema + File API/FSA + grid + upload + image persistence).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (d) only. Overlays, edit form, New/Delete, locale, runtime image decode remain.
+- Next slice: INBOX (23e) 카드 프레임 이름 + 희귀도 띠 + 효과 텍스트 오버레이 on `tools/gwang-editor/`.
+
+## 2026-09-08 — 광 카드 에디터 이미지 업로드 (`tools/gwang-editor/`)
+
+- `tools/gwang-editor/`: per-card image upload into the hwatu frame.
+  - Hidden `input.card-image-input` (accept image/*) on each card; `wireImageUploads` handles change.
+  - `centerCropToCard` canvas-crops to 2:3 (240×360), centered (`sx`/`sy`), then `toDataURL`.
+  - Cropped art renders as `.hwatu-art` (`position: absolute`, `object-fit: cover`) inside the rounded card.
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (17 tests: schema + File API/FSA + grid + image upload).
+- INBOX (23) slice (c) only. JSON `image` persist on save, overlays, edit form, New/Delete, locale, runtime image decode are not in this slice.
+- Next slice: INBOX (23) remaining — (d) 이미지는 base64 data URL로 JSON `image` 필드에 저장 on `tools/gwang-editor/`.
+
+## 2026-09-08 — 광 카드 에디터 그리드 뷰 (`tools/gwang-editor/`)
+
+- `tools/gwang-editor/`: each loaded joker renders as a hwatu card (`article.hwatu-card`).
+  - Vertical 2:3 rectangle, rounded corners (`aspect-ratio: 2 / 3`, `border-radius: 10px`).
+  - ★ mark + English name; `data-id` on each card. `renderGrid` maps `pool.jokers`.
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (13 tests: schema + File API/FSA + grid).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (b) only. Image upload, overlays, edit form, New/Delete, locale, runtime image decode are not in this slice.
+- Next slice: INBOX (23) remaining — (c) 이미지 업로드 (카드 프레임 안 중앙 크롭 + 리사이즈) on `tools/gwang-editor/`.
+
+## 2026-09-08 — 광 카드 에디터 로드/저장 (`tools/gwang-editor/`)
+
+- Created `tools/gwang-editor/index.html` + `editor.css` + `editor.js` (gear-editor pattern).
+  - File API: Open `gwang_jokers.json` via `<input type=file>` → `readFileAsJson` / `loadDocument`.
+  - FSA: Open + enable direct save (`showOpenFilePicker`) and Save to disk (`createWritable`).
+  - Download JSON exports `gwang_jokers.json`. `validatePool` checks jokers schema (id, name KO/EN, rarity, trigger, effect chips/mult/mult_mul/money, desc).
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (10 tests: catalog schema + File API/FSA/serialize).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (a) only. Grid view, image upload, overlays, edit form, New/Delete, locale, runtime image decode are not in this slice.
+- Next slice: INBOX (23) remaining — (b) 카드 그리드 뷰 (화투 카드 모양) on `tools/gwang-editor/`.
+
+## 2026-09-08 — 런 히스토리 (`game/run_history.lua`)
+
+- `game/run_history.lua`: Balatro-style finished-run log. `record(state, won|lost)` stores seed (A-Z0-9), outcome, ante, blind, money. Newest-first, cap 8. `reset()` / `list()`.
+- `run.clear_blind` records won on ante 8 boss. `run.lose` sets phase lost and records. No month numbers/names.
+- Tests in `game/tests/run_history.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (22) fully done (rng + shop/cards/boss wiring + seed UI + run history).
+- Next slice: INBOX (23) 광 카드 에디터 — 웹 도구 (`tools/gwang-editor/`).
