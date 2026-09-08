@@ -1,4 +1,13 @@
 # STATUS
+## 2026-09-08 — Gostro Play 패널 탭과 New Run 설정 UI
+
+- Balatro의 New Run 관찰에 따라 `game/ui/main_menu.lua`를 `새 게임`/`계속하기`/`도전` 가로 탭 구조로 개편했다.
+- `game/ui/run_setup.lua`를 신규 생성하여 덱 선택 캐러셀, 잠금 조건 표출, 기본 난이도, 시드 입력 토글의 순수 상태와 UI 배치를 구현했다.
+- `game/tests/menu_scene.lua`와 `game/tests/run_setup_ui.lua` 등 테스트를 갱신 및 추가하여 GREEN 상태를 확보했다.
+- 두 UI(`main_menu`와 `run_setup`)의 씬 연결 및 실제 렌더링 통합은 미완성 상태이나, 모든 단위 테스트가 통과하는 안전한 조각으로 커밋했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
+- INBOX (26)은 씬 통합 및 후속 뷰 관찰이 필요하여 처리 대기로 유지한다.
+
 ## 2026-09-08 — 태그 시스템 (스몰/빅 블라인드 스킵 보상)
 
 - Created `game/tags.lua`: Balatro-style skip tags. Pool of 12 (coupon, investment, handy, economy, mega, foil, hologram, polychrome, charm, uncommon, juggle, d6).
