@@ -22,7 +22,7 @@ function love.load()
         blinds = {
             { kind = "small", target = 300, playable = true, status = "current" },
             { kind = "big", target = 450, playable = false, status = "upcoming" },
-            { kind = "boss", target = 600, playable = false, status = "upcoming" },
+            { kind = "boss", target = 600, playable = false, status = "upcoming", boss = { id = "hook" } },
         },
     }))
     love.graphics.setCanvas()

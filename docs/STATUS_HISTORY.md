@@ -1137,3 +1137,25 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: compactor 회귀, 전체 unit/font/card-overlap/smoke, 222-file bundle 검증이 통과했다.
 - INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
 - Next slice: 에셋 inventory에서 플레이 패 다음 미완료 정적 카테고리 하나를 골라 master/runtime manifest 계약과 실제 LÖVE 배선을 완성한다.
+
+## Archived from STATUS.md (2026-09-09 01:06)
+
+
+- `assets/manifest.json`에서 `ui.blind_small`과 `ui.blind_big`을 `runtime` 상태로 승격하고, 400×560 master 벡터 기반 이미지에서 `pixel-perfect` 파이프라인을 거친 50×70 runtime PNG 배선을 정의했다.
+- 신규 `game/ui/blind_card_art.lua`가 런타임 에셋을 로드하고 `blind_select.lua`에서 선택/비선택 카드 배경으로 투명도를 조절해 그려지도록 적용했다. (기존 보스 카드는 별도 보스 카테고리로 유지)
+- `game/tests/blind_card_art.lua`를 추가하여 master/runtime 해상도 유지와 `nearest` 필터 설정을 강제 검증했다.
+- `tools/blind_card_qa_main.lua`를 통해 실제 320×180 해상도 기반의 LÖVE 캡처 출력(`blind-round-cards-love-v1.png`)을 자동화하여 UI 겹침과 시각적 완결성을 QA할 수 있도록 구성했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/card-overlap/smoke, `blind-card-qa`, 238-file bundle 검증 통과.
+- INBOX (27)은 다른 런타임/데이터 인스턴스들의 정적 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: 에셋 inventory에서 다음 미완료 정적 카테고리 하나를 골라 master/runtime manifest 계약과 실제 LÖVE 배선을 완성한다.
+
+## Archived from STATUS.md (2026-09-09 01:12)
+
+# STATUS
+## 2026-09-09 — 플레이 패 contact sheet 셀 추적 계약
+- `assets/manifest.json`의 플레이 패 5종 각각에 공유 960×288 master와 120×36 runtime 후보 sheet 안의 정확한 셀 순서·영역, 24×36 alpha bounds를 기록했다.
+- 신규 engine-hosted `game/tests/card_candidate_manifest.lua`가 피·홍단·청단·초단·고도리의 192×288 master 셀과 24×36 runtime 셀이 겹치거나 순서가 바뀌지 않는 계약을 검사한다.
+- TDD RED: 기존 manifest에는 `candidateCell`이 없어 실패함을 확인했다. 구현 후 `card_candidate_manifest: OK`와 전체 unit/smoke 테스트가 GREEN이다.
+- 5종은 여전히 `candidate`이며 사람의 식별성·화투 아트 승인 전에는 runtime loader가 거부한다.
+- INBOX (27)은 전체 그래픽 전환과 플레이 패 사람 승인이 남아 있어 처리 대기로 유지한다.
+- Next slice: 사람이 `assets/runtime/cards/play-card-overlap-love-v1.png`에서 5종 상단 표식과 화투 아트를 승인/거부한 결과를 manifest에 기록하고, 승인 시에만 5종을 함께 runtime으로 승격한다.

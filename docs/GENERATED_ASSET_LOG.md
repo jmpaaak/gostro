@@ -22,3 +22,7 @@
 2026-09-09T00:37:54+0900 | assets/runtime/cards/cheongdan.png | extracted 24x36 cheongdan card from play-card-contact-sheet-v1.png
 2026-09-09T00:37:54+0900 | assets/runtime/cards/chodan.png | extracted 24x36 chodan card from play-card-contact-sheet-v1.png
 2026-09-09T00:37:54+0900 | assets/runtime/cards/godori.png | extracted 24x36 godori card from play-card-contact-sheet-v1.png
+| 2026-09-09T01:13:22+0900 | `assets/masters/boss-blind/hook-v1.svg` | Project-authored high-resolution Korean lacquer, dancheong, brass hook, knot, and ember vector source |
+| 2026-09-09T01:13:22+0900 | `assets/masters/boss-blind/hook-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T01:13:22+0900 | `assets/runtime/boss-blind/hook-v1.png` | 50×70 runtime boss card from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T01:13:22+0900 | `assets/runtime/ui/blind-round-cards-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture including the hook boss artwork with nearest filtering |

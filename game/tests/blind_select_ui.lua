@@ -26,6 +26,7 @@ end
 
 function M.run()
     require("game.tests.blind_card_art").run()
+    require("game.tests.boss_blind_card_art").run()
 
     -- new() returns state with 3 blind entries for the given ante
     local s = blind_select.new(model(1, "small"))

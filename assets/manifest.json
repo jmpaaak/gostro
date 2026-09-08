@@ -800,8 +800,43 @@
     {
       "id": "boss-blind.hook",
       "category": "boss-blind",
-      "status": "pending",
-      "name": "\uac08\uace0\ub9ac"
+      "status": "runtime",
+      "name": "\uac08\uace0\ub9ac",
+      "master": {
+        "source": "assets/masters/boss-blind/hook-v1.svg",
+        "sourceSha256": "4f93f3a1f0ee7cc8a6d192a12683caab1a0b8ec7dc35a7b1efe7018241890bd4",
+        "path": "assets/masters/boss-blind/hook-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "78051eadf51d71eeb28ca79a9980586933240ed7e416c8b9d09b2f8fe46e7a4f",
+        "provenance": "Project-authored high-resolution vector master using a Korean lacquer, dancheong, brass hook, knot, and ember motif; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/boss-blind/hook-v1.png",
+        "width": 50,
+        "height": 70,
+        "alphaBounds": [0, 0, 49, 69],
+        "sha256": "d2153f61f8361fcb8cf609099f6207a378948c399681f6a927d2f4b6723a6d8b",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 50,
+        "targetHeight": 70,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/boss-blind/hook-v1.report.json",
+        "reportSha256": "d874ce7f95f1d105ab6e17b20cfb8b705abd5b09ad2dcf2e7c821f803a433351"
+      },
+      "animation": { "frames": 1, "fps": 0, "loop": false, "origin": [0, 0] },
+      "loveQa": {
+        "renderer": "LOVE 11.5",
+        "canvas": [320, 180],
+        "capture": "assets/runtime/ui/blind-round-cards-love-v1.png",
+        "captureSha256": "3e71edbc29f15b3a41740c64dfad995cd220d248b4421939dc766f5e3b63215d",
+        "filter": "nearest"
+      }
     },
     {
       "id": "boss-blind.wall",

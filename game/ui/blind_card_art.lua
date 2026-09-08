@@ -5,13 +5,17 @@ local assets = require("game.asset_loader")
 
 local M = {}
 local IDS = { small = "ui.blind_small", big = "ui.blind_big" }
+local BOSS_IDS = { hook = "boss-blind.hook" }
 
-function M.asset_id(kind)
+function M.asset_id(kind, boss)
+    if kind == "boss" then
+        return boss and BOSS_IDS[boss.id] or nil
+    end
     return IDS[kind]
 end
 
-function M.draw(kind, x, y, width, height, alpha)
-    local id = M.asset_id(kind)
+function M.draw(kind, boss, x, y, width, height, alpha)
+    local id = M.asset_id(kind, boss)
     if not id then return false end
     local image = assets.texture(id)
     if not image then return false end

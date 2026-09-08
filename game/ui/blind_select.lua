@@ -124,7 +124,7 @@ function M.draw(s)
         -- Card background
         local available = b.available
         local card_alpha = is_sel and 1 or (available and 0.82 or 0.38)
-        local has_art = blind_card_art.draw(b.kind, p.x, p.y, p.w, p.h, card_alpha)
+        local has_art = blind_card_art.draw(b.kind, b.boss, p.x, p.y, p.w, p.h, card_alpha)
         if not has_art then
             love.graphics.setColor(col[1], col[2], col[3], card_alpha)
             love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 4, 4)

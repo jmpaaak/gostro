@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#711f24"/><stop offset=".48" stop-color="#43141c"/><stop offset="1" stop-color="#1e0c15"/>
+    </linearGradient>
+    <linearGradient id="iron" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#f7df9c"/><stop offset=".3" stop-color="#bd8437"/><stop offset=".62" stop-color="#70431f"/><stop offset="1" stop-color="#e2b85e"/>
+    </linearGradient>
+    <radialGradient id="ember"><stop stop-color="#ffdc79"/><stop offset=".55" stop-color="#d34c2e"/><stop offset="1" stop-color="#52151b"/></radialGradient>
+    <pattern id="dancheong" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 20h40M20 0v40" stroke="#e6b95d" stroke-width="5" opacity=".13"/>
+      <circle cx="20" cy="20" r="7" fill="none" stroke="#429397" stroke-width="3" opacity=".2"/>
+    </pattern>
+  </defs>
+  <path d="M38 8h324q30 0 30 34v476q0 34-30 34H38Q8 552 8 518V42Q8 8 38 8z" fill="#160910" stroke="#d1a44f" stroke-width="16"/>
+  <path d="M43 30h314q17 0 17 20v460q0 20-17 20H43q-17 0-17-20V50q0-20 17-20z" fill="url(#lacquer)" stroke="#6f3f22" stroke-width="8"/>
+  <path d="M43 30h314q17 0 17 20v460q0 20-17 20H43q-17 0-17-20V50q0-20 17-20z" fill="url(#dancheong)"/>
+  <path d="M50 96q36-42 72 0 38-52 78 0 40-52 78 0 36-42 72 0M50 464q36 42 72 0 38 52 78 0 40 52 78 0 36 42 72 0" fill="none" stroke="#d4a952" stroke-width="11" stroke-linecap="round"/>
+  <g transform="translate(200 278)">
+    <circle r="122" fill="#180c15" stroke="#d6aa50" stroke-width="12"/>
+    <circle r="101" fill="url(#ember)" opacity=".3"/>
+    <path d="M-72-101q72-37 144 0M-92 86q92 48 184 0" fill="none" stroke="#3f9992" stroke-width="9" stroke-linecap="round"/>
+    <path d="M-32-106C-12-78 16-70 24-43c9 29-13 50-37 47-19-3-29-21-25-38 4-15 17-23 31-20" fill="none" stroke="url(#iron)" stroke-width="21" stroke-linecap="round"/>
+    <path d="M7-56c29 22 53 54 45 90-8 37-42 67-77 59-29-7-45-38-33-65 9-21 32-32 53-24" fill="none" stroke="url(#iron)" stroke-width="25" stroke-linecap="round"/>
+    <path d="M-64 65l-28 15 12-31M47 53l30 12-17-28" fill="url(#iron)" stroke="#472619" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M-6-92q22 14 40 3M-21-74q21 15 42 7" fill="none" stroke="#f5d984" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="-11" cy="29" r="10" fill="#36131a" stroke="#f4d67b" stroke-width="5"/>
+  </g>
+  <g fill="#d7aa52"><circle cx="53" cy="54" r="9"/><circle cx="347" cy="54" r="9"/><circle cx="53" cy="506" r="9"/><circle cx="347" cy="506" r="9"/></g>
+  <path d="M55 126h290M55 434h290" stroke="#4faaa0" stroke-width="4" opacity=".48"/>
+</svg>

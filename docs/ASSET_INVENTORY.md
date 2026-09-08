@@ -2,7 +2,7 @@
 
 ## boss-blind
 
-- [ ] `boss-blind.hook` - 갈고리
+- [x] `boss-blind.hook` - 갈고리 (400×560 master → 50×70 runtime)
 - [ ] `boss-blind.wall` - 성벽
 - [ ] `boss-blind.flint` - 부싯돌
 - [ ] `boss-blind.mark` - 낙인

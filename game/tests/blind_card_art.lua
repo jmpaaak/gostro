@@ -7,7 +7,7 @@ function M.run()
     assets.clear_cache()
     assert(blind_card_art.asset_id("small") == "ui.blind_small")
     assert(blind_card_art.asset_id("big") == "ui.blind_big")
-    assert(blind_card_art.asset_id("boss") == nil,
+    assert(blind_card_art.asset_id("boss", nil) == nil,
         "boss artwork belongs to the separate boss-blind category")
 
     for _, kind in ipairs({ "small", "big" }) do
