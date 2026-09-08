@@ -1,3 +1,5 @@
+local viewport = require("game.viewport")
+
 local M = {}
 
 function M.new(initial)
@@ -22,6 +24,18 @@ end
 
 function M.keypressed(stack, key)
     if stack.current.keypressed then stack.current:keypressed(key) end
+end
+
+function M.mousepressed(stack, x, y, button, istouch, presses)
+    if not stack.current.mousepressed then return false end
+    stack.current:mousepressed(x, y, button, istouch, presses)
+    return true
+end
+
+function M.screenpressed(stack, screenX, screenY, windowWidth, windowHeight, button, istouch, presses)
+    local gameX, gameY, inside = viewport.toGame(screenX, screenY, windowWidth, windowHeight, false)
+    if not inside then return false end
+    return M.mousepressed(stack, gameX, gameY, button, istouch, presses)
 end
 
 return M

@@ -471,3 +471,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `loop/test_module_policy.py` GREEN.
 - INBOX (R1) → 처리 완료 (policy check automated in loop script).
 - Next slice: IDLE (No pending tasks).
+
+## Archived from STATUS.md (2026-09-08 14:20)
+
+## 2026-09-08 — Galmuri11 한글 폰트 초기화 (`game/fonts.lua`)
+
+## Archived from STATUS.md (2026-09-08 14:21)
+
+- Added Galmuri11 TTF + OFL under `assets/fonts/`; `fonts.install()` sets the global 11px font before scene creation and `fonts.get` caches positive 11px multiples.
+- Added `game/tests/fonts.lua`: mocked cache/install contract plus a real LÖVE graphics check proving width and glyph support for `상점`, `다음 라운드`, and `광`.
+- Bundle verification now requires both the font and license.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (24) complete. Next slice: IDLE (no pending feedback items).

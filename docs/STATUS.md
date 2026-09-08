@@ -1,11 +1,11 @@
 # STATUS
-## 2026-09-08 — Galmuri11 한글 폰트 초기화 (`game/fonts.lua`)
+## 2026-09-08 — 마우스·터치 입력 배선 복구 (`game/scene_stack.lua`)
 
-- Added Galmuri11 TTF + OFL under `assets/fonts/`; `fonts.install()` sets the global 11px font before scene creation and `fonts.get` caches positive 11px multiples.
-- Added `game/tests/fonts.lua`: mocked cache/install contract plus a real LÖVE graphics check proving width and glyph support for `상점`, `다음 라운드`, and `광`.
-- Bundle verification now requires both the font and license.
+- `love.mousepressed` and `love.touchpressed` now route through the scene stack to the current scene's `mousepressed` handler.
+- Window-space presses are converted through `viewport.toGame`; presses in letterbox bars are rejected before scene delivery.
+- Added `game/tests/input_routing.lua` covering coordinate conversion, mouse/touch metadata delivery, letterbox rejection, and scenes without a handler.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (24) complete. Next slice: IDLE (no pending feedback items).
+- INBOX (25) complete. Next slice: IDLE (no pending feedback items).
 
 ## 2026-09-08 — play 씬 상태 머신 + 엔진 연동 (game/scenes/play.lua)
 

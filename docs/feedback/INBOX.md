@@ -4,17 +4,15 @@
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
+## 처리 완료
+
 ### Phase C — 씬 통합
 
 (25) **마우스·터치 입력 배선 복구** (msg `1546761629079838810`)
   - 담당: `main.lua`, `game/scene_stack.lua`, `game/tests/input_routing.lua`
-  - `love.mousepressed`와 `love.touchpressed`를 scene stack을 거쳐 현재 씬의 `mousepressed`로 전달한다.
-  - 실제 창 좌표는 `viewport.toGame()`으로 320×180 게임 좌표로 변환하고, 레터박스 바깥 입력은 무시한다.
-  - 검증: 마우스/터치 좌표 변환·전달 회귀 테스트와 `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
-
-### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
-
-## 처리 완료
+  - `love.mousepressed`와 `love.touchpressed`가 scene stack을 거쳐 현재 씬의 `mousepressed`로 전달된다.
+  - `viewport.toGame()`으로 320×180 게임 좌표를 변환하며 레터박스 바깥 입력은 무시한다.
+  - `game/tests/input_routing.lua` 회귀 테스트 및 `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
 
 (24) **게임 전체 한글 깨짐 복구 — Galmuri11 폰트 초기화** (msg `1546749365228535828`)
   - `game/fonts.lua` caches Galmuri11 at positive 11px multiples and `main.lua` installs 11px globally before scene creation.

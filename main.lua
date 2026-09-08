@@ -41,3 +41,15 @@ function love.keypressed(key)
     if key == "escape" then love.event.quit() end
     if scenes then sceneStack.keypressed(scenes, key) end
 end
+
+function love.mousepressed(x, y, button, istouch, presses)
+    if not scenes then return end
+    local width, height = love.graphics.getDimensions()
+    sceneStack.screenpressed(scenes, x, y, width, height, button, istouch, presses)
+end
+
+function love.touchpressed(_, x, y)
+    if not scenes then return end
+    local width, height = love.graphics.getDimensions()
+    sceneStack.screenpressed(scenes, x, y, width, height, 1, true, 1)
+end

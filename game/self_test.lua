@@ -1,12 +1,8 @@
-local viewport = require("game.viewport")
 local player = require("game.player")
 local M = {}
 
 function M.run()
-    local scale, x, y = viewport.fit(1280, 720, false)
-    assert(scale == 4 and x == 0 and y == 0)
-    local gx, gy, inside = viewport.toGame(640, 360, 1280, 720, false)
-    assert(gx == 160 and gy == 90 and inside)
+    require("game.tests.input_routing").run()
 
     local actor = player.new()
     player.update(actor, 1, { right = true })
