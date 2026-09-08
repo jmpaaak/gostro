@@ -153,4 +153,18 @@
 - INBOX (11) → 처리 완료 (state machine + engine integration slice).
 - Next slice: INBOX (12) 점수 연출 모듈 (`game/ui/score_anim.lua`).
 
+## 2026-09-08 — 점수 연출 모듈 (game/ui/score_anim.lua)
+
+- Created `game/ui/score_anim.lua`: Balatro-style score animation with phase-based state machine (idle→cards→mult→total→done).
+  - Cards phase: per-card chip popup with CARD_DELAY (0.3s), fade-in, accumulated chips display.
+  - Mult phase: shows final_chips × final_mult (0.5s).
+  - Total phase: ease-out countup to final score (0.8s).
+  - Gwang joker glow: triggered slots glow with identity-based colors (chips=blue, mult=red, yaku_mult=gold), pulsing, 2s duration with fade-out.
+  - `draw()` and `draw_gwang_glow()` for love.graphics rendering. `dismiss()` to return to idle.
+  - Cascading update: large dt correctly advances through all phases.
+- Tests in `game/tests/score_anim_ui.lua`: 7 tests (new, start, card_popups, mult, total, gwang_glow, idle_after_finish).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (12) → 처리 완료.
+- Next slice: INBOX (13) 카드 홀로그램/포일/폴리크롬 이펙트 시스템 (`game/ui/card_effects.lua`).
+
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

@@ -23,6 +23,7 @@ function M.run()
     require("game.tests.shop_ui").run()
     require("game.tests.blind_select_ui").run()
     require("game.tests.play_integration").run()
+    require("game.tests.score_anim_ui").run()
     print("GOSTRO_UNIT_OK")
 end
 

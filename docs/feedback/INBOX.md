@@ -6,12 +6,6 @@
 
 ### Phase C — 씬 통합
 
-(12) **점수 연출 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/score_anim.lua` (새 모듈)
-  - 발라트로 스타일: 각 카드에서 칩 팝업 → 배수 적용 → 최종 합산 카운트업
-  - 광 조커 트리거 시 슬롯에서 빛나는 이펙트
-  - 테스트: `game/tests/score_anim_ui.lua`
-
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
 (13) **카드 홀로그램/포일/폴리크롬 이펙트 시스템** (msg `1546681659951153252`)
@@ -108,6 +102,10 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+
+  (12) **점수 연출 모듈** (msg `1546674255045992608`)
+    - `game/ui/score_anim.lua`: 발라트로 스타일 점수 연출. 페이즈 기반 (cards→mult→total→done). 카드별 칩 팝업, 배수 적용, 최종 합산 카운트업 (ease-out), 광 조커 트리거 시 슬롯 글로우 이펙트 (종류별 색상: chips=파랑, mult=빨강, yaku_mult=금색).
+    - `game/tests/score_anim_ui.lua` GREEN (7 tests). `make verify` GREEN.
 
   (11) **play 씬 리빌드: UI 모듈 통합** (msg `1546674255045992608`)
     - `game/scenes/play.lua`: 상태 머신 `blind_select → playing → shop → next blind_select`. 모든 UI 모듈 require + 위임. `game/run.lua` + `game/hwatu.lua` 엔진 연동. 광 조커 보너스 적용. < 250줄 순수 글루.
