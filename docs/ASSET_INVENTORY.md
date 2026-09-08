@@ -31,7 +31,7 @@
 - [x] `gwang.godori_x2` - 고도리 깃발 / Godori Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.pi_chips_kind` - 피 잔칩 / Pi Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.godori_chips` - 고도리 칩 / Godori Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.hongdan_chips` - {'ko': '홍단 칩', 'en': 'Hongdan Chips'}
+- [x] `gwang.hongdan_chips` - 홍단 칩 / Hongdan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.cheongdan_chips` - {'ko': '청단 칩', 'en': 'Cheongdan Chips'}
 - [ ] `gwang.chodan_chips` - {'ko': '초단 칩', 'en': 'Chodan Chips'}
 - [ ] `gwang.pi_yaku_mult` - {'ko': '피 족보', 'en': 'Pi Yaku'}

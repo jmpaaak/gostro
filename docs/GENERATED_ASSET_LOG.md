@@ -148,3 +148,5 @@
 | 2026-09-09T07:29:43+0900 | `assets/masters/gwang/godori-chips-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
 | 2026-09-09T07:29:43+0900 | `assets/runtime/gwang/godori-chips-v1.png` | 56x32 runtime 고도리 칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T07:29:43+0900 | `assets/runtime/ui/gwang-godori-chips-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 고도리 칩 gwang in all five slots; SHA-256 `811f5d993ad9313720db3bac3a17fe96c30f556c50914ba593f9506ca6f9f686` |
+2026-09-09T07:34:41+0900 | assets/masters/gwang/hongdan-chips-v1.png | Project-authored high-resolution vector master using crimson Korean lacquer, abstract red flags, and a three-tier ruby chip stack (PIL script, no photo).
+2026-09-09T07:34:48+0900 | assets/runtime/gwang/hongdan-chips-v1.png | Pixel Perfect POST /api/pixel-perfect output from master.

@@ -932,10 +932,36 @@
     {
       "id": "gwang.hongdan_chips",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "홍단 칩",
         "en": "Hongdan Chips"
+      },
+      "master": {
+        "source": "assets/masters/gwang/hongdan-chips-v1.svg",
+        "sourceSha256": "1f7f8ab216a5fc03561e135104d60b1e82481a994875abb10d1a60ce76e64098",
+        "path": "assets/masters/gwang/hongdan-chips-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "4b870d139e8ab0db41a1222789da864069f63ca75c35822e5fc5b9db3c7733eb",
+        "provenance": "Project-authored high-resolution vector master using crimson Korean lacquer, abstract red flags, and a three-tier ruby chip stack to identify chips awarded for hongdan; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/hongdan-chips-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          30
+        ],
+        "sha256": "ac91a2db0c21e4b07efa07d3683b9825abb3b0c0ef6b39b9c14a2c20393e3c3e",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "reportSha256": "0f4b12bb9de42d8cb31f5d9b17f8bff4eac7dce94596efc7d59d759006331fb5"
       }
     },
     {
