@@ -28,6 +28,17 @@ function M.run()
     assert(assets.runtime_path("gwang.always_mult_small") ==
         "assets/runtime/gwang/always-mult-small-v1.png")
 
+    local chips_add = assets.entry("gwang.always_chips_small")
+    assert(chips_add and chips_add.status == "runtime",
+        "small additive chips gwang must have tracked runtime artwork")
+    assert(chips_add.master.width == 448 and chips_add.master.height == 256,
+        "small additive chips gwang must preserve its high-resolution slot master")
+    assert(chips_add.runtime.width == 56 and chips_add.runtime.height == 32,
+        "small additive chips runtime must scale exactly into a 28x16 slot")
+    assert(chips_add.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.always_chips_small") ==
+        "assets/runtime/gwang/always-chips-small-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

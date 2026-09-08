@@ -432,10 +432,51 @@
     {
       "id": "gwang.always_chips_small",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "잔칩",
         "en": "Small Chips"
+      },
+      "master": {
+        "source": "assets/masters/gwang/always-chips-small-v1.svg",
+        "sourceSha256": "d362c907a362ea17380fb8b31f8a6acaa002972ff648b03dabf093f6693d3c69",
+        "path": "assets/masters/gwang/always-chips-small-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "06e7db8cb840a9549ae74c2cc835bd1284de942614155bc6ea4ef338149fd19f",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer, dancheong geometry, jade yeopjeon, a small coin stack, and bead motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/always-chips-small-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "dac8f534f259290b95bcc38b6100b4c18cc9e17135096ec29dc22acd24069e76",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/always-chips-small-v1.report.json",
+        "reportSha256": "ca0ef416014f361d3f24fffc640f5daaa8020848b758cddca5aafd380a037560"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
