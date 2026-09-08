@@ -19,6 +19,9 @@ function M.run()
     M.test_enhance_rejects_unknown_and_gwang()
     M.test_destroy_thins_deck()
     M.test_tarot_enhance_and_destroy()
+    M.test_sort_by_kind()
+    M.test_sort_by_effect()
+    M.test_sort_rejects_unknown_and_gwang()
     print("  deck: OK")
 end
 
@@ -158,6 +161,83 @@ function M.test_tarot_enhance_and_destroy()
     assert(deck.total(d) == before - 1)
     assert(deck.view(d).by_effect.hologram == 0)
     assert(deck.view(d).total == before - 1)
+end
+
+local function reverse_cards(d)
+    local scrambled = {}
+    for i = #d.cards, 1, -1 do
+        scrambled[#scrambled + 1] = d.cards[i]
+    end
+    d.cards = scrambled
+end
+
+function M.test_sort_by_kind()
+    local d = deck.new()
+    local before = deck.total(d)
+    reverse_cards(d)
+    -- After reverse, pi leads and hongdan is last.
+    assert(d.cards[1].kind == "pi")
+    deck.sort(d, "kind")
+    local order = { hongdan = 1, cheongdan = 2, chodan = 3, godori = 4, pi = 5 }
+    local last = 0
+    for i = 1, #d.cards do
+        local rank = order[d.cards[i].kind]
+        assert(rank ~= nil, "unknown play card kind: " .. tostring(d.cards[i].kind))
+        assert(rank >= last, "kind sort is not grouped")
+        last = rank
+        assert(d.cards[i].month == nil)
+        assert(d.cards[i].kind ~= "gwang")
+    end
+    assert(d.cards[1].kind == "hongdan")
+    assert(d.cards[#d.cards].kind == "pi")
+    assert(deck.total(d) == before)
+    local counts = deck.counts(d)
+    assert(counts.hongdan == 5)
+    assert(counts.pi == 20)
+end
+
+function M.test_sort_by_effect()
+    local d = deck.new()
+    d.cards[1].effect = "polychrome"
+    d.cards[2].effect = "foil"
+    d.cards[3].effect = "hologram"
+    d.cards[4].effect = "foil"
+    reverse_cards(d)
+    deck.sort(d, "effect")
+    local order = { none = 1, foil = 2, hologram = 3, polychrome = 4 }
+    local last = 0
+    for i = 1, #d.cards do
+        local e = d.cards[i].effect or "none"
+        local rank = order[e]
+        assert(rank ~= nil, "unknown card effect: " .. tostring(e))
+        assert(rank >= last, "effect sort is not grouped")
+        last = rank
+    end
+    assert((d.cards[1].effect or "none") == "none")
+    assert(d.cards[#d.cards].effect == "polychrome")
+    local v = deck.view(d)
+    assert(v.by_effect.none == v.total - 4)
+    assert(v.by_effect.foil == 2)
+    assert(v.by_effect.hologram == 1)
+    assert(v.by_effect.polychrome == 1)
+    assert(v.total == deck.total(d))
+end
+
+function M.test_sort_rejects_unknown_and_gwang()
+    local d = deck.new()
+    local ok = pcall(deck.sort, d, "month")
+    assert(not ok, "sort must reject month key")
+    ok = pcall(deck.sort, d, "mae")
+    assert(not ok, "sort must reject fake poker keys")
+    ok = pcall(deck.sort, d)
+    assert(not ok, "sort needs kind or effect")
+    d.cards[#d.cards + 1] = { kind = "gwang" }
+    ok = pcall(deck.sort, d, "kind")
+    assert(not ok, "sort rejects gwang")
+    d = deck.new()
+    d.cards[1].month = 1
+    ok = pcall(deck.sort, d, "kind")
+    assert(not ok, "sort rejects month numbers")
 end
 
 return M

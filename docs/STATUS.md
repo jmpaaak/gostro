@@ -1,4 +1,15 @@
 # STATUS
+## 2026-09-08 — 덱 정렬 (`game/deck.lua`)
+
+- Added `deck.sort(d, key)` with `key = "kind"` or `"effect"`.
+  - Kind: hongdan → cheongdan → chodan → godori → pi (stable within kind by effect).
+  - Effect: none → foil → hologram → polychrome (stable within effect by kind).
+  - Rejects unknown keys (month/mae), missing key, gwang, month numbers.
+- Tests in `game/tests/deck.lua` GREEN (sort kind, sort effect, rejects).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (20) complete: viewer + enhance/destroy + sort.
+- Next slice: INBOX (21) — 광 조커 트리거 조건 다양화 (`game/gwang_catalog.lua`).
+
 ## 2026-09-08 — 덱 강화/파괴 (`game/deck.lua`)
 
 - Added `deck.enhance(d, index, effect)`: foil/hologram/polychrome on a play card. Rejects unknown editions, gwang, out-of-range index. Viewer `by_effect` updates.

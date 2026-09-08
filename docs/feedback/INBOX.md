@@ -8,14 +8,6 @@
 
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
-
-(20) **덱 편집 + 카드 강화** (msg `1546681659951153252`)
-  - 담당: `game/deck.lua` (새 모듈)
-  - 덱 뷰어 (현재 덱 내 카드 종류/수량/이펙트 확인)
-  - 카드 강화: 타로로 이펙트 부여, 파괴로 덱 압축 (발라트로 thin deck 전략)
-  - 덱 정렬: 종류별 / 이펙트별
-  - 테스트: `game/tests/deck.lua`
-
 (21) **광 조커 트리거 조건 다양화** (msg `1546681659951153252`)
   - 담당: `game/gwang_catalog.lua` (새 모듈, JSON은 `game/data/gwang_jokers.json`)
   - 발라트로 조커 트리거 패턴 이식:
@@ -55,6 +47,11 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+(20) **덱 편집 + 카드 강화** (msg `1546681659951153252`)
+  - `game/deck.lua`: starter viewer (kinds/counts/editions), enhance (foil/hologram/polychrome), destroy (thin deck), sort by kind / effect.
+  - Gwang rejected (joker slot). No month numbers/names. Tarot chariot/hanged_man stay visible in `deck.view`.
+  - `game/tests/deck.lua` GREEN. `make verify` GREEN.
+
 (19) **이자 시스템 + 경제** (msg `1546681659951153252`)
   - `game/economy.lua`: 이자 $1/$5 (기본 한도 $5, seed_money로 상향), 블라인드 보상 small $3/big $5/boss $8, 남은 핸드 $1장. 소지금 상한 없음.
   - `game/run.lua` `clear_blind`가 `economy.cash_out` 호출. 이자는 정산 전 소지금 기준.

@@ -1,5 +1,5 @@
 -- game/deck.lua
--- Play-card deck: starter composition + viewer + tarot enhance/destroy.
+-- Play-card deck: starter composition + viewer + tarot enhance/destroy + sort.
 -- Gwang is a joker slot, not a deck card. No month numbers.
 
 local hwatu = require("game.hwatu")
@@ -117,6 +117,54 @@ end
 function M.destroy(d, index)
     card_at(d, index)
     table.remove(d.cards, index)
+end
+
+local KIND_RANK = {
+    hongdan = 1,
+    cheongdan = 2,
+    chodan = 3,
+    godori = 4,
+    pi = 5,
+}
+
+local EFFECT_RANK = {
+    none = 1,
+    foil = 2,
+    hologram = 3,
+    polychrome = 4,
+}
+
+function M.sort(d, key)
+    if key ~= "kind" and key ~= "effect" then
+        error("deck sort key must be kind or effect")
+    end
+    if type(d) ~= "table" or type(d.cards) ~= "table" then
+        error("deck must have cards")
+    end
+    for i = 1, #d.cards do
+        assert_play_card(d.cards[i])
+        local effect = d.cards[i].effect
+        if effect ~= nil and EFFECT_RANK[effect] == nil then
+            error("unknown card effect: " .. tostring(effect))
+        end
+    end
+    table.sort(d.cards, function(a, b)
+        if key == "kind" then
+            local ra, rb = KIND_RANK[a.kind], KIND_RANK[b.kind]
+            if ra ~= rb then
+                return ra < rb
+            end
+            local ea = EFFECT_RANK[a.effect or "none"]
+            local eb = EFFECT_RANK[b.effect or "none"]
+            return ea < eb
+        end
+        local ea = EFFECT_RANK[a.effect or "none"]
+        local eb = EFFECT_RANK[b.effect or "none"]
+        if ea ~= eb then
+            return ea < eb
+        end
+        return KIND_RANK[a.kind] < KIND_RANK[b.kind]
+    end)
 end
 
 return M
