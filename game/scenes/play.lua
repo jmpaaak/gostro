@@ -4,7 +4,9 @@
 -- Keeps under 800 lines — pure delegation.
 
 local run           = require("game.run")
-local hwatu         = require("game.hwatu")
+local run_rules     = require("game.run_rules")
+local round_engine  = require("game.round_engine")
+local scoring       = require("game.scoring_pipeline")
 local hand_ui       = require("game.ui.hand")
 local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
@@ -17,23 +19,45 @@ local seed_ui       = require("game.ui.seed")
 local M = {}
 M.__index = M
 
--- Card kinds for dealing a random hand of 8
-local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
-
-local function random_hand_kinds(n)
-    local kinds = {}
-    for i = 1, n do
-        kinds[i] = PLAY_KINDS[math.random(1, #PLAY_KINDS)]
+local function normalize_config(value)
+    if type(value) == "table" then
+        return {
+            starting_deck_id = value.starting_deck_id or value.deck_id or "hwatu",
+            stake_id = value.stake_id or "white",
+            seeded = value.seeded == true,
+            seed = value.seed,
+            unlocks = value.unlocks,
+        }
     end
-    return kinds
+    return {
+        starting_deck_id = "hwatu",
+        stake_id = "white",
+        seeded = type(value) == "string" and value ~= "",
+        seed = value,
+    }
+end
+
+local function configured_run(config)
+    local state = run.new(config.seeded and config.seed or nil)
+    local applied, reason = run_rules.apply(state, config, config.unlocks)
+    assert(applied, reason)
+    return state
+end
+
+local function sync_round_ui(scene)
+    hand_ui.deal(scene.hand, scene.round.hand)
+    scene.buttons.hands_left = scene.round.hands_left
+    scene.buttons.discards_left = scene.round.discards_left
+    buttons_ui.set_selection(scene.buttons, 0)
 end
 
 --- Create a new play scene. Optional seed string (display + input).
-function M.new(seed_str)
+function M.new(seed_or_config)
     local self = setmetatable({}, M)
-    self.run_state   = run.new(seed_str)
+    self.run_config  = normalize_config(seed_or_config)
+    self.run_state   = configured_run(self.run_config)
     self.state       = "blind_select"
-    self.money       = 4  -- starting money
+    self.money       = self.run_state.money
 
     -- UI modules (created on demand per state)
     self.blind_select = blind_sel_ui.new(self.run_state.ante, self.run_state.blind)
@@ -43,13 +67,16 @@ function M.new(seed_str)
     self.scoreboard   = nil
     self.buttons      = nil
     self.shop         = nil
+    self.round        = nil
 
     return self
 end
 
 --- Apply a typed seed: restart the run from that seed string.
 function M.apply_seed(scene, seed_str)
-    scene.run_state   = run.new(seed_str)
+    scene.run_config.seeded = true
+    scene.run_config.seed = seed_str
+    scene.run_state   = configured_run(scene.run_config)
     scene.state       = "blind_select"
     scene.money       = scene.run_state.money
     scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
@@ -59,6 +86,7 @@ function M.apply_seed(scene, seed_str)
     scene.scoreboard  = nil
     scene.buttons     = nil
     scene.shop        = nil
+    scene.round       = nil
     return scene.run_state.seed
 end
 
@@ -69,17 +97,26 @@ function M.select_blind(scene, idx)
     local kind = scene.blind_select.selected
     -- Sync run_state blind (it may already be correct from leave_shop)
     scene.run_state.blind = kind
+    if kind == "boss" and not scene.run_state.boss then
+        run.select_boss(scene.run_state)
+    end
     scene.run_state.phase = "play"
     scene.run_state.round_score = 0
 
+    local target = run_rules.adjust_target(scene.run_state, run.blind_target(scene.run_state))
+    scene.round = round_engine.new(scene.run_state, scene.run_state.deck, {
+        target = target,
+        discards = run_rules.discard_limit(scene.run_state, 3),
+    })
+
     -- Create playing UI
     scene.hand = hand_ui.new()
-    hand_ui.deal(scene.hand, random_hand_kinds(8))
+    hand_ui.deal(scene.hand, scene.round.hand)
 
     scene.scoreboard = scoreboard_ui.new()
-    scoreboard_ui.set_target(scene.scoreboard, run.blind_target(scene.run_state))
+    scoreboard_ui.set_target(scene.scoreboard, target)
 
-    scene.buttons = buttons_ui.new()
+    scene.buttons = buttons_ui.new(scene.round.hands_left, scene.round.discards_left)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
 
     scene.state = "playing"
@@ -88,92 +125,48 @@ end
 --- Play the selected hand cards through the engine.
 function M.play_hand(scene)
     if scene.state ~= "playing" then return false end
-    local selected = hand_ui.get_selected(scene.hand)
-    if #selected == 0 then return false end
-    if not buttons_ui.use_hand(scene.buttons) then return false end
-
-    -- Build card list for hwatu evaluator
-    local cards = {}
-    for i, c in ipairs(selected) do
-        cards[i] = hwatu.card(c.kind)
-    end
-
-    local result = hwatu.evaluate(cards)
-
-    -- Apply gwang joker bonuses
-    local bonus_chips = 0
-    local bonus_mult  = 0
-    for _, g in ipairs(scene.run_state.gwang) do
-        if g.identity == "chips" then
-            bonus_chips = bonus_chips + 30
-        elseif g.identity == "mult" then
-            bonus_mult = bonus_mult + 4
-        elseif g.identity == "yaku_mult" and #result.yaku > 0 then
-            result.mult = result.mult * 1.5
-        end
-    end
-
-    local final_chips = result.chips + bonus_chips
-    local final_mult  = result.mult + bonus_mult
-    local score = math.floor(final_chips * final_mult)
-
-    run.add_score(scene.run_state, score)
-    scoreboard_ui.set_hand_result(scene.scoreboard, final_chips, final_mult)
-
-    -- Remove played cards from hand and redeal into gaps
     local indices = {}
-    for _, idx in ipairs(scene.hand.selected_order) do
-        indices[idx] = true
+    local cards = {}
+    for i, idx in ipairs(scene.hand.selected_order) do
+        indices[i] = idx
+        cards[i] = scene.round.hand[idx]
     end
-    local remaining = {}
-    for i, c in ipairs(scene.hand.cards) do
-        if not indices[i] then
-            remaining[#remaining + 1] = c.kind
-        end
-    end
-    -- Fill back to 8
-    while #remaining < 8 do
-        remaining[#remaining + 1] = PLAY_KINDS[math.random(1, #PLAY_KINDS)]
-    end
-    hand_ui.deal(scene.hand, remaining)
+    local allowed = round_engine.can_play(scene.round, indices)
+    if not allowed then return false end
 
-    return true
+    local result = scoring.score(cards, scene.run_state, { rng = scene.run_state.rng.cards })
+    if not result then return false end
+    local transition = round_engine.play(scene.round, indices, result)
+
+    run.add_score(scene.run_state, result.score)
+    scene.run_state.hands_left = scene.round.hands_left
+    scoreboard_ui.set_hand_result(scene.scoreboard, result.chips, result.mult)
+    sync_round_ui(scene)
+
+    if transition == "lose" then
+        run.lose(scene.run_state)
+        scene.state = "lost"
+    end
+    return true, transition, result
 end
 
 --- Discard selected cards and redraw.
 function M.discard_hand(scene)
     if scene.state ~= "playing" then return false end
-    local selected = hand_ui.get_selected(scene.hand)
-    if #selected == 0 then return false end
-    if not buttons_ui.use_discard(scene.buttons) then return false end
-
-    -- Remove discarded cards and redeal
     local indices = {}
-    for _, idx in ipairs(scene.hand.selected_order) do
-        indices[idx] = true
-    end
-    local remaining = {}
-    for i, c in ipairs(scene.hand.cards) do
-        if not indices[i] then
-            remaining[#remaining + 1] = c.kind
-        end
-    end
-    while #remaining < 8 do
-        remaining[#remaining + 1] = PLAY_KINDS[math.random(1, #PLAY_KINDS)]
-    end
-    hand_ui.deal(scene.hand, remaining)
-
+    for i, idx in ipairs(scene.hand.selected_order) do indices[i] = idx end
+    local ok = round_engine.discard(scene.round, indices)
+    if not ok then return false end
+    sync_round_ui(scene)
     return true
 end
 
 --- Check if blind is cleared; if so, transition to shop.
 function M.check_clear(scene)
     if scene.state ~= "playing" then return end
-    local target = run.blind_target(scene.run_state)
+    local target = scene.round and scene.round.target or run.blind_target(scene.run_state)
     if scene.run_state.round_score >= target then
-        if scene.buttons then
-            scene.run_state.hands_left = scene.buttons.hands_left
-        end
+        if scene.round then scene.run_state.hands_left = scene.round.hands_left end
         run.clear_blind(scene.run_state)
         if scene.run_state.phase == "won" then
             scene.state = "won"
@@ -181,6 +174,7 @@ function M.check_clear(scene)
         end
         scene.money = scene.run_state.money
         scene.shop = shop_ui.new(scene.money)
+        scene.round = nil
         scene.state = "shop"
     end
 end
@@ -254,6 +248,12 @@ function M:draw()
     elseif self.state == "won" then
         love.graphics.setColor(1, 0.9, 0.3, 1)
         love.graphics.print("승리!", 130, 80)
+        love.graphics.setColor(1, 1, 1, 1)
+    elseif self.state == "lost" then
+        love.graphics.setColor(0.95, 0.35, 0.35, 1)
+        love.graphics.print("패배", 136, 74)
+        love.graphics.setColor(0.75, 0.82, 0.84, 1)
+        love.graphics.print("목표 점수에 도달하지 못했습니다", 72, 92)
         love.graphics.setColor(1, 1, 1, 1)
     end
 end

@@ -32,10 +32,12 @@ local function begin_run(scene)
     local deck = run_setup.selected_deck(scene.setup)
     local stake = run_setup.selected_stake(scene.setup)
     local seed_string = scene.setup.seeded and scene.setup.seed or nil
-    local play_scene = PlayScene.new(seed_string)
-    play_scene.run_state.starting_deck_id = deck.id
-    play_scene.run_state.stake_id = stake.id
-    play_scene.run_state.seeded = scene.setup.seeded
+    local play_scene = PlayScene.new({
+        starting_deck_id = deck.id,
+        stake_id = stake.id,
+        seeded = scene.setup.seeded,
+        seed = seed_string,
+    })
     scene_stack.switch(scene.stack, play_scene)
 end
 

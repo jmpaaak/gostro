@@ -15,13 +15,24 @@ function M.run()
     assert(scene.run_state ~= nil, "must have run_state")
     assert(scene.run_state.ante == 1, "ante starts at 1")
 
-    -- (2) select_blind transitions to playing
+    -- (2) select_blind transitions to a deterministic finite round.
+    local old_random = math.random
+    math.random = function() error("play path must not use math.random") end
     play.select_blind(scene, 1) -- small blind
+    math.random = old_random
     assert(scene.state == "playing", "after blind select -> playing")
     assert(scene.run_state.blind == "small", "blind must be small")
+    assert(scene.run_state.deck and #scene.run_state.deck.cards == 40,
+        "default New Run config installs the finite hwatu deck")
+    assert(scene.round ~= nil, "playing owns a finite round engine")
+    assert(#scene.round.hand == 8 and #scene.round.draw_pile == 32,
+        "round deals 8 from the finite 40-card deck")
     assert(scene.hand ~= nil, "must have hand UI state")
     assert(scene.scoreboard ~= nil, "must have scoreboard")
     assert(scene.buttons ~= nil, "must have action buttons")
+    assert(scene.buttons.hands_left == scene.round.hands_left
+        and scene.buttons.discards_left == scene.round.discards_left,
+        "action buttons mirror round engine resources")
 
     -- (3) play_hand evaluates cards and adds score via engine
     -- Deal some cards and play them
@@ -36,6 +47,11 @@ function M.run()
     local ok = play.play_hand(scene)
     assert(ok, "play_hand must succeed with selection")
     assert(scene.run_state.round_score > 0, "score must increase after play")
+    assert(scene.round.hands_left == 3 and scene.buttons.hands_left == 3,
+        "round engine owns and UI mirrors consumed hands")
+    assert(#scene.round.hand == 8, "finite round refills the hand")
+    assert(#scene.round.hand + #scene.round.draw_pile + #scene.round.discard_pile == 40,
+        "play conserves the finite deck")
 
     -- (4) play enough to clear blind, then auto-transition to shop
     -- Force score high enough to clear
@@ -84,6 +100,18 @@ function M.run()
 
     -- (8) gwang slots sync from run state
     assert(scene2.gwang_slots ~= nil, "must have gwang_slots UI")
+
+    -- (9) The final unsuccessful hand ends the run instead of stalling.
+    local losing = play.new("LOSE-PATH")
+    play.select_blind(losing, 1)
+    losing.round.hands_left = 1
+    losing.round.target = math.huge
+    losing.buttons.hands_left = 1
+    hand_ui.select(losing.hand, 1)
+    buttons_ui.set_selection(losing.buttons, 1)
+    assert(play.play_hand(losing), "final hand can be played")
+    assert(losing.state == "lost" and losing.run_state.phase == "lost",
+        "hands exhausted below target transitions to a recorded loss")
 
     print("  play_integration: OK")
 end

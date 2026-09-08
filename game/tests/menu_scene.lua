@@ -62,6 +62,17 @@ function M.run()
     assert(stack.current.run_state.starting_deck_id == "hwatu", "selected deck id reaches run state")
     assert(stack.current.run_state.stake_id == "white", "selected stake id reaches run state")
 
+    local thin_menu = MenuScene.new()
+    local thin_stack = scene_stack.new(thin_menu)
+    thin_menu:bind(thin_stack)
+    press(thin_menu, main_menu.buttons(thin_menu.ui)[1])
+    assert(press(thin_menu, controls.deck_right) == "deck_changed")
+    assert(run_setup.selected_deck(thin_menu.setup).id == "thin")
+    assert(press(thin_menu, controls.play) == "start_run")
+    assert(thin_stack.current.run_state.starting_deck_id == "thin")
+    assert(#thin_stack.current.run_state.deck.cards == 32,
+        "the selected deck changes the finite gameplay deck, not just metadata")
+
     print("  menu_scene: OK")
 end
 
