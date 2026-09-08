@@ -1,13 +1,4 @@
 # STATUS
-## 2026-09-08 — 유한 덱 라운드·득점 파이프라인 실게임 연결
-
-- `game/scenes/play.lua`가 New Run 선택을 `run_rules`로 적용하고, 블라인드 진입 시 40장/32장 시작 패의 유한 덱을 `round_engine`으로 생성한다.
-- 놓기·버리기는 더 이상 `math.random`으로 카드를 무한 생성하거나 UI가 횟수를 소유하지 않는다. `round_engine`이 패/드로우/버림 더미와 hands/discards를 소유하고 UI는 상태를 반영한다.
-- 실제 놓기 경로가 `scoring_pipeline`을 사용해 행성·카드 이펙트·광·보스 효과를 한 번씩 적용하며, 마지막 hand로 목표 미달 시 `lost`로 전환한다.
-- 메뉴에서 고른 시작 패가 메타데이터에만 저장되지 않고 실제 덱에 적용된다. `얇은 패` 선택은 32장 덱으로 시작한다.
-- `game/tests/play_integration.lua`와 `game/tests/menu_scene.lua`에 결정적 셔플, 카드 보존, 자원 동기화, 패배 전이, 선택 덱 적용 회귀 테스트를 추가했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
-- Next slice: `game/scenes/play.lua`의 상점 생성·구매·리롤을 `game/shop_engine.lua`에 위임해 시드 재현성과 voucher/tag 효과를 실제 상점 경로에 연결한다.
 
 ## 2026-09-08 — 시드 기반 랜덤 상점 실게임 연결
 
@@ -123,5 +114,15 @@
 - TDD RED: `blind_flow.score` 미구현 실패를 확인했다. 구현 후 `game/tests/blind_flow.lua`와 전체 엔진 테스트가 GREEN이다.
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: 설정된 run 생성을 독립 계약으로 감싸 `game/scenes/play.lua`의 마지막 직접 `game.run` 의존성(`run.new`)을 제거한다.
+
+## 2026-09-08 — 설정 런 생성·블라인드 목표 투영 경계
+
+- `game/run_rules.lua`의 `create`가 New Run 선택을 먼저 검증한 뒤 seed RNG, 시작 덱·자금, stake 규칙과 진행 가능 여부가 모두 적용된 런만 반환한다. 잘못된 선택은 부분 런을 노출하지 않는다.
+- `game/scenes/play.lua`는 마지막 직접 `game.run` 의존성을 제거하고 모든 신규/시드 재시작 런 생성을 `run_rules.create`에 위임한다.
+- `game/ui/blind_select.lua`는 더 이상 임시 기본 런을 생성해 목표를 재계산하지 않고 `blind_flow.view`의 gameplay projection만 렌더링한다. 따라서 red stake 선택 화면도 실제 라운드와 같은 보정 목표 375를 표시한다.
+- TDD RED: `run_rules.create` 부재와 red stake UI 목표 300 불일치를 각각 확인했다. 구현 후 생성 결정성·실패 계약, 순수 UI 투영, 실제 scene 목표 일치 회귀 테스트가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `run_rules: OK`, `blind_select_ui: OK`, `play_integration: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: `game/round_engine.lua`가 fallback 목표 계산을 위해 직접 호출하는 `game.run.blind_target`을 gameplay projection 계약으로 옮겨 라운드 생성 경계를 더 작게 만든다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

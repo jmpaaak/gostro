@@ -2,13 +2,31 @@
 -- Headless tests for game/ui/blind_select.lua
 
 local blind_select = require("game.ui.blind_select")
-local run = require("game.run")
 
 local M = {}
 
+local function model(ante, current)
+    ante = ante or 1
+    current = current or "small"
+    local kinds = { "small", "big", "boss" }
+    local base_targets = { 300, 450, 600 }
+    local current_index = ({ small = 1, big = 2, boss = 3 })[current]
+    local blinds = {}
+    for i, kind in ipairs(kinds) do
+        blinds[i] = {
+            kind = kind,
+            target = base_targets[i] * ante,
+            playable = i == current_index,
+            status = i < current_index and "completed"
+                or (i == current_index and "current" or "upcoming"),
+        }
+    end
+    return { ante = ante, current = current, phase = "play", blinds = blinds }
+end
+
 function M.run()
     -- new() returns state with 3 blind entries for the given ante
-    local s = blind_select.new(1, "small")
+    local s = blind_select.new(model(1, "small"))
     assert(s.ante == 1, "ante stored")
     assert(#s.blinds == 3, "3 blinds (small/big/boss)")
     assert(s.blinds[1].kind == "small", "first is small")
@@ -24,18 +42,12 @@ function M.run()
             "blind " .. i .. " has reward text")
     end
 
-    -- Targets match run.blind_target
-    local rs = run.new()
-    rs.ante = 1
-    rs.blind = "small"
-    assert(s.blinds[1].target == run.blind_target(rs), "small target matches run")
-    rs.blind = "big"
-    assert(s.blinds[2].target == run.blind_target(rs), "big target matches run")
-    rs.blind = "boss"
-    assert(s.blinds[3].target == run.blind_target(rs), "boss target matches run")
+    assert(s.blinds[1].target == 300 and s.blinds[2].target == 450
+        and s.blinds[3].target == 600,
+        "UI preserves gameplay-projected targets")
 
     -- Ante 2 gives different targets
-    local s2 = blind_select.new(2)
+    local s2 = blind_select.new(model(2))
     assert(s2.blinds[1].target > s.blinds[1].target,
         "ante 2 small > ante 1 small")
 
@@ -50,13 +62,13 @@ function M.run()
     blind_select.select_blind(s, 1)
     assert(s.selected == "small", "selected small blind")
 
-    local big = blind_select.new(1, "big")
+    local big = blind_select.new(model(1, "big"))
     assert(big.blinds[2].available == true and big.blinds[1].available == false,
         "big is the only available blind after small")
     blind_select.select_blind(big, 2)
     assert(big.selected == "big", "current big blind can be selected")
 
-    local boss = blind_select.new(1, "boss")
+    local boss = blind_select.new(model(1, "boss"))
     assert(boss.blinds[3].available == true and boss.blinds[2].available == false,
         "boss is the only available blind after big")
     blind_select.select_blind(boss, 3)

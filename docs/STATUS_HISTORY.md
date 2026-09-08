@@ -763,3 +763,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - 새롭게 분리된 모든 엔진 모듈들의 테스트(`blind_flow`, `round_engine`, `run_rules`, `scoring_pipeline`, `shop_engine`)를 `game/self_test.lua`에 통합하고 GREEN을 확인했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
 - Next slice: `play.lua` 및 기존 UI가 여전히 거대 모듈 `run.lua`에 의존하고 있으므로, 이를 새로 작성된 개별 모듈(`blind_flow` 등)로 안전하게 교체하고 `run.lua`를 해체한다.
+
+## Archived from STATUS.md (2026-09-08 19:50)
+
+## 2026-09-08 — 유한 덱 라운드·득점 파이프라인 실게임 연결
+
+- `game/scenes/play.lua`가 New Run 선택을 `run_rules`로 적용하고, 블라인드 진입 시 40장/32장 시작 패의 유한 덱을 `round_engine`으로 생성한다.
+- 놓기·버리기는 더 이상 `math.random`으로 카드를 무한 생성하거나 UI가 횟수를 소유하지 않는다. `round_engine`이 패/드로우/버림 더미와 hands/discards를 소유하고 UI는 상태를 반영한다.
+- 실제 놓기 경로가 `scoring_pipeline`을 사용해 행성·카드 이펙트·광·보스 효과를 한 번씩 적용하며, 마지막 hand로 목표 미달 시 `lost`로 전환한다.
+- 메뉴에서 고른 시작 패가 메타데이터에만 저장되지 않고 실제 덱에 적용된다. `얇은 패` 선택은 32장 덱으로 시작한다.
+- `game/tests/play_integration.lua`와 `game/tests/menu_scene.lua`에 결정적 셔플, 카드 보존, 자원 동기화, 패배 전이, 선택 덱 적용 회귀 테스트를 추가했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
+- Next slice: `game/scenes/play.lua`의 상점 생성·구매·리롤을 `game/shop_engine.lua`에 위임해 시드 재현성과 voucher/tag 효과를 실제 상점 경로에 연결한다.

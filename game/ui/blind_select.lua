@@ -1,8 +1,6 @@
 -- game/ui/blind_select.lua
 -- Blind selection screen: 3 cards (small/big/boss), target score, reward/penalty.
 
-local run = require("game.run")
-
 local M = {}
 
 local VIEWPORT_W = 320
@@ -53,30 +51,29 @@ function M.card_positions()
     return positions
 end
 
---- Create a new blind-select state for the given ante.
-function M.new(ante, current)
-    ante = ante or 1
-    current = current or "small"
-    if not BLIND_NAMES[current] then
-        error("unknown current blind: " .. tostring(current))
+--- Create display state from the gameplay-owned blind projection.
+function M.new(model)
+    if type(model) ~= "table" or type(model.blinds) ~= "table" then
+        error("blind-select requires a blind flow model")
+    end
+    if not BLIND_NAMES[model.current] then
+        error("unknown current blind: " .. tostring(model.current))
     end
     local blinds = {}
-    local kinds = { "small", "big", "boss" }
-    for i, kind in ipairs(kinds) do
-        -- Compute target using run engine
-        local rs = run.new()
-        rs.ante = ante
-        rs.blind = kind
+    for i, projected in ipairs(model.blinds) do
         blinds[i] = {
-            kind   = kind,
-            target = run.blind_target(rs),
-            reward = BLIND_REWARDS[kind],
-            available = kind == current,
+            kind = projected.kind,
+            target = projected.target,
+            reward = BLIND_REWARDS[projected.kind],
+            available = projected.playable == true,
+            status = projected.status,
+            boss = projected.boss,
         }
     end
+    if #blinds ~= 3 then error("blind-select requires three blind projections") end
     return {
-        ante     = ante,
-        current  = current,
+        ante     = model.ante,
+        current  = model.current,
         blinds   = blinds,
         selected = nil,
     }

@@ -1,6 +1,5 @@
 -- game/scenes/play.lua
 
-local run           = require("game.run")
 local run_rules     = require("game.run_rules")
 local blind_flow    = require("game.blind_flow")
 local round_engine  = require("game.round_engine")
@@ -43,10 +42,12 @@ local function normalize_config(value)
 end
 
 local function configured_run(config)
-    local state = run.new(config.seeded and config.seed or nil)
-    local applied, reason = run_rules.apply(state, config, config.unlocks)
-    assert(applied, reason)
-    return state
+    local state, reason = run_rules.create(config, config.unlocks)
+    return assert(state, reason)
+end
+
+local function blind_selection_for(state)
+    return blind_sel_ui.new(blind_flow.view(state))
 end
 
 local function sync_round_ui(scene)
@@ -70,7 +71,7 @@ function M.new(seed_or_config)
     self.state       = "blind_select"
     self.money       = self.run_state.money
 
-    self.blind_select = blind_sel_ui.new(self.run_state.ante, self.run_state.blind)
+    self.blind_select = blind_selection_for(self.run_state)
     self.gwang_slots  = gwang_sl_ui.new()
     self.seed         = seed_ui.new(self.run_state.seed)
     self.hand         = nil
@@ -90,7 +91,7 @@ function M.apply_seed(scene, seed_str)
     scene.run_state   = configured_run(scene.run_config)
     scene.state       = "blind_select"
     scene.money       = scene.run_state.money
-    scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
+    scene.blind_select = blind_selection_for(scene.run_state)
     scene.gwang_slots  = gwang_sl_ui.new()
     seed_ui.set_seed(scene.seed, scene.run_state.seed)
     scene.hand        = nil
@@ -187,7 +188,7 @@ function M.leave_shop(scene)
     if scene.state ~= "shop" then return end
     scene.money = scene.run_state.money
     blind_flow.leave_shop(scene.run_state)
-    scene.blind_select = blind_sel_ui.new(scene.run_state.ante, scene.run_state.blind)
+    scene.blind_select = blind_selection_for(scene.run_state)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     scene.state = "blind_select"
 end

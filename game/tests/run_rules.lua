@@ -31,6 +31,22 @@ function M.run()
     }, { unlocked_decks = { gwang_jackpot = true } }))
     assert(valid.starting_deck_id == "gwang_jackpot", "explicit progress can unlock a deck")
 
+    local created_a = assert(run_rules.create({
+        starting_deck_id = "thin", stake_id = "white", seeded = true, seed = "create-seed",
+    }))
+    local created_b = assert(run_rules.create({
+        starting_deck_id = "thin", stake_id = "white", seeded = true, seed = "create-seed",
+    }))
+    assert(created_a.starting_deck_id == "thin" and created_a.seed == "CREATESEED",
+        "create returns a fully configured run")
+    assert(created_a.rng.cards(1, 100000) == created_b.rng.cards(1, 100000),
+        "create installs deterministic gameplay streams from the selected seed")
+    local rejected_create, create_reason = run_rules.create({
+        starting_deck_id = "missing", stake_id = "white",
+    })
+    assert(rejected_create == nil and type(create_reason) == "string",
+        "create rejects an invalid selection instead of returning a partial run")
+
     local run = require("game.run")
     local deck = require("game.deck")
 

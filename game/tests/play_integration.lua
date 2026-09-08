@@ -15,6 +15,14 @@ function M.run()
     assert(scene.run_state ~= nil, "must have run_state")
     assert(scene.run_state.ante == 1, "ante starts at 1")
 
+    local red_scene = play.new({
+        starting_deck_id = "hwatu",
+        stake_id = "red",
+        unlocks = { unlocked_stakes = { red = true } },
+    })
+    assert(red_scene.blind_select.blinds[1].target == 375,
+        "blind UI displays the stake-adjusted target used by the round")
+
     -- (2) select_blind transitions to a deterministic finite round.
     local old_random = math.random
     math.random = function() error("play path must not use math.random") end

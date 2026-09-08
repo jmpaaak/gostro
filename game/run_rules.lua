@@ -173,4 +173,15 @@ function M.apply(state, config, unlocks)
     return state
 end
 
+--- Create a base run and atomically configure it from a New Run selection.
+-- Invalid selections are rejected before a run state is exposed to callers.
+function M.create(config, unlocks)
+    local valid, reason = M.validate(config, unlocks)
+    if not valid then return nil, reason end
+
+    local seed = valid.seeded and valid.seed or nil
+    local state = require("game.run").new(seed)
+    return M.apply(state, valid, unlocks)
+end
+
 return M
