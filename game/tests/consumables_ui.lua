@@ -21,7 +21,7 @@ function M.run()
     assert(view.label == "소모품" and view.capacity == 2)
     assert(#view.slots == 2, "default capacity renders two slots")
     assert(view.slots[1].card.id == "the_magician")
-    assert(view.slots[1].name == "마법사")
+    assert(view.slots[1].name == "둔갑 부적")
     assert(view.slots[2].card == nil and view.slots[2].name == "비어 있음")
 
     local first_x, first_y = center(view.slots[1].bounds)

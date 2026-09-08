@@ -1,11 +1,11 @@
 local M = {}
 
 local PLANET_DEFS = {
-    hongdan = { id = "planet_hongdan", name = "Mars", yaku = "hongdan", level_chips = 15, level_mult = 1 },
-    cheongdan = { id = "planet_cheongdan", name = "Jupiter", yaku = "cheongdan", level_chips = 15, level_mult = 1 },
-    chodan = { id = "planet_chodan", name = "Venus", yaku = "chodan", level_chips = 15, level_mult = 1 },
-    godori = { id = "planet_godori", name = "Earth", yaku = "godori", level_chips = 30, level_mult = 2 },
-    pi = { id = "planet_pi", name = "Pluto", yaku = "pi", level_chips = 10, level_mult = 1 },
+    hongdan = { id = "planet_hongdan", name = "주작 기원패", yaku = "hongdan", level_chips = 15, level_mult = 1 },
+    cheongdan = { id = "planet_cheongdan", name = "청룡 기원패", yaku = "cheongdan", level_chips = 15, level_mult = 1 },
+    chodan = { id = "planet_chodan", name = "백호 기원패", yaku = "chodan", level_chips = 15, level_mult = 1 },
+    godori = { id = "planet_godori", name = "현무 기원패", yaku = "godori", level_chips = 30, level_mult = 2 },
+    pi = { id = "planet_pi", name = "황룡 기원패", yaku = "pi", level_chips = 10, level_mult = 1 },
 }
 
 function M.get_level(state, yaku)

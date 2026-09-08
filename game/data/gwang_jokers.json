@@ -194,39 +194,39 @@
     },
     {
       "id": "boss_x2",
-      "name": { "ko": "보스 배수", "en": "Boss Mult" },
+      "name": { "ko": "대장판 배수", "en": "Final Round Mult" },
       "rarity": "rare",
       "trigger": "blind",
       "blind_need": "boss",
       "effect": { "mult_mul": 2 },
-      "desc": { "ko": "대장판에서 ×2 배수", "en": "×2 mult on boss blinds" }
+      "desc": { "ko": "대장판에서 ×2 배수", "en": "×2 mult on final rounds" }
     },
     {
       "id": "boss_chips",
-      "name": { "ko": "보스 칩", "en": "Boss Chips" },
+      "name": { "ko": "대장판 칩", "en": "Final Round Chips" },
       "rarity": "uncommon",
       "trigger": "blind",
       "blind_need": "boss",
       "effect": { "chips": 40 },
-      "desc": { "ko": "대장판에서 +40 칩", "en": "+40 chips on boss blinds" }
+      "desc": { "ko": "대장판에서 +40 칩", "en": "+40 chips on final rounds" }
     },
     {
       "id": "small_chips",
-      "name": { "ko": "스몰 칩", "en": "Small Blind Chips" },
+      "name": { "ko": "첫판 칩", "en": "Opening Round Chips" },
       "rarity": "common",
       "trigger": "blind",
       "blind_need": "small",
       "effect": { "chips": 25 },
-      "desc": { "ko": "첫판에서 +25 칩", "en": "+25 chips on small blinds" }
+      "desc": { "ko": "첫판에서 +25 칩", "en": "+25 chips on opening rounds" }
     },
     {
       "id": "big_mult",
-      "name": { "ko": "빅 배수", "en": "Big Blind Mult" },
+      "name": { "ko": "큰판 배수", "en": "Main Round Mult" },
       "rarity": "uncommon",
       "trigger": "blind",
       "blind_need": "big",
       "effect": { "mult": 3 },
-      "desc": { "ko": "큰판에서 +3 배수", "en": "+3 mult on big blinds" }
+      "desc": { "ko": "큰판에서 +3 배수", "en": "+3 mult on main rounds" }
     },
     {
       "id": "once_x20",

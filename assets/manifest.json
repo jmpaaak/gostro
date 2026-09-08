@@ -533,7 +533,7 @@
       "status": "pending",
       "name": {
         "ko": "\ubcf4\uc2a4 \ubc30\uc218",
-        "en": "Boss Mult"
+        "en": "Final Round Mult"
       }
     },
     {
@@ -542,7 +542,7 @@
       "status": "pending",
       "name": {
         "ko": "\ubcf4\uc2a4 \uce69",
-        "en": "Boss Chips"
+        "en": "Final Round Chips"
       }
     },
     {
@@ -551,7 +551,7 @@
       "status": "pending",
       "name": {
         "ko": "\uc2a4\ubab0 \uce69",
-        "en": "Small Blind Chips"
+        "en": "Opening Round Chips"
       }
     },
     {
@@ -560,7 +560,7 @@
       "status": "pending",
       "name": {
         "ko": "\ube45 \ubc30\uc218",
-        "en": "Big Blind Mult"
+        "en": "Main Round Mult"
       }
     },
     {

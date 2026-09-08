@@ -1,6 +1,13 @@
 # STATUS
+## 2026-09-09 — Balatro 직수입 용어 화투·한국 테마 전면 교체 완료
 
-## 2026-09-09 — 갈고리 대장판 고해상도 에셋 적용
+- `game/planets.lua`, `game/tarots.lua`, `game/tags.lua`, `game/vouchers.lua`, `game/data/gwang_jokers.json`의 개별 카드/효과명을 우주·서양 점술 원명에서 한국적 이름(주작 기원패, 둔갑 부적, 단골 패찰, 명필의 인장 등)으로 교체했다.
+- UI 문자열과 영어 번역 제공 데이터에서도 Balatro 원명(Boss Mult 등)을 새 도메인명(Final Round Mult 등)으로 번역 교체했다.
+- `game/tests/consumables_ui.lua`, `game/tests/pack_ui.lua` 등 변경된 한국어 이름을 단언하는 테스트들을 함께 수정했다.
+- 전체 문자열/카탈로그 검색에서 player-facing `planet/tarot/tag/voucher/arcana/blind/ante` 잔존 0건 조건을 달성했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN (174 files).
+- INBOX (28) 완료 조건이 충족되어 처리 완료로 이동한다.
+- Next slice: (27) Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환 - 남은 에셋 카테고리에 대한 inventory 추적과 파이프라인 변환 작업을 재개한다.
 
 - `boss-blind.hook`에 400×560 벡터/PNG master와 Asset Studio 실제 `POST /api/pixel-perfect`에서 생성한 50×70 runtime PNG를 추가하고, hash·alpha bounds·변환 보고서·nearest 필터를 manifest에 기록했다.
 - `game/ui/blind_card_art.lua`가 대장판 ID별 아트를 독립적으로 해석하며, 미승격 대장판은 기존 색상 배경으로 안전하게 fallback한다.

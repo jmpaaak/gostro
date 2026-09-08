@@ -1159,3 +1159,8 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - 5종은 여전히 `candidate`이며 사람의 식별성·화투 아트 승인 전에는 runtime loader가 거부한다.
 - INBOX (27)은 전체 그래픽 전환과 플레이 패 사람 승인이 남아 있어 처리 대기로 유지한다.
 - Next slice: 사람이 `assets/runtime/cards/play-card-overlap-love-v1.png`에서 5종 상단 표식과 화투 아트를 승인/거부한 결과를 manifest에 기록하고, 승인 시에만 5종을 함께 runtime으로 승격한다.
+
+## Archived from STATUS.md (2026-09-09 01:22)
+
+
+## 2026-09-09 — 갈고리 대장판 고해상도 에셋 적용

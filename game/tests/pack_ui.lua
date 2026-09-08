@@ -20,9 +20,9 @@ function M.run()
         name = "아르카나 팩",
         choose = 1,
         choices = {
-            { id = "the_magician", name = "마법사", effect = "변환" },
+            { id = "the_magician", name = "둔갑 부적", effect = "변환" },
             { id = "the_hanged_man", name = "매달린 사람", effect = "파괴" },
-            { id = "the_chariot", name = "전차", effect = "효과 부여" },
+            { id = "the_chariot", name = "강화 부적", effect = "효과 부여" },
         },
     }
     local view = pack_ui.view(pending)

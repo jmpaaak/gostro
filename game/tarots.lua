@@ -10,10 +10,10 @@ local M = {}
 M.BASE_SLOTS = 2
 
 M.POOL = {
-    { id = "the_magician",    name = "마법사",   effect = "convert" },
-    { id = "the_hanged_man",  name = "매달린자", effect = "destroy" },
-    { id = "the_chariot",     name = "전차",     effect = "enhance" },
-    { id = "the_lovers",      name = "연인",     effect = "copy" },
+    { id = "the_magician",    name = "둔갑 부적",   effect = "convert" },
+    { id = "the_hanged_man",  name = "소멸 부적", effect = "destroy" },
+    { id = "the_chariot",     name = "강화 부적",     effect = "enhance" },
+    { id = "the_lovers",      name = "쌍둥이 부적",     effect = "copy" },
 }
 
 local BY_ID = {}

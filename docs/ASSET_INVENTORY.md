@@ -43,8 +43,8 @@
 - [ ] `gwang.wealthy_x2` - {'ko': '갑부', 'en': 'Wealthy'}
 - [ ] `gwang.boss_x2` - {'ko': '보스 배수', 'en': 'Boss Mult'}
 - [ ] `gwang.boss_chips` - {'ko': '보스 칩', 'en': 'Boss Chips'}
-- [ ] `gwang.small_chips` - {'ko': '스몰 칩', 'en': 'Small Blind Chips'}
-- [ ] `gwang.big_mult` - {'ko': '빅 배수', 'en': 'Big Blind Mult'}
+- [ ] `gwang.small_chips` - {'ko': '첫판 칩', 'en': 'Opening Round Chips'}
+- [ ] `gwang.big_mult` - {'ko': '큰판 배수', 'en': 'Main Round Mult'}
 - [ ] `gwang.once_x20` - {'ko': '일회성', 'en': 'Once'}
 - [ ] `gwang.once_chips` - {'ko': '일회성 칩', 'en': 'Once Chips'}
 - [ ] `gwang.compound` - {'ko': '복합', 'en': 'Compound'}

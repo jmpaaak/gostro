@@ -7,18 +7,18 @@ local M = {}
 -- 12 skip tags. Coupon = free shop reroll, investment = extra money,
 -- mega = duplicate the next gwang joker bought.
 M.POOL = {
-    { id = "coupon",      name = "쿠폰",     effect = "free_reroll",          amount = 1 },
-    { id = "investment",  name = "투자",     effect = "money",                amount = 15 },
-    { id = "handy",       name = "Handy",    effect = "money",                amount = 8 },
-    { id = "economy",     name = "이코노미", effect = "money",                amount = 10 },
-    { id = "mega",        name = "메가",     effect = "duplicate_next_gwang" },
-    { id = "foil",        name = "포일",     effect = "next_gwang_edition",   edition = "foil" },
-    { id = "hologram",    name = "홀로그램", effect = "next_gwang_edition",   edition = "hologram" },
-    { id = "polychrome",  name = "폴리크롬", effect = "next_gwang_edition",   edition = "polychrome" },
-    { id = "charm",       name = "참",       effect = "extra_shop_slots",     amount = 1 },
-    { id = "uncommon",    name = "언커먼",   effect = "uncommon_shop" },
-    { id = "juggle",      name = "저글",     effect = "hand_size",            amount = 1 },
-    { id = "d6",          name = "D6",       effect = "free_reroll",          amount = 2 },
+    { id = "coupon",      name = "단골 패찰",     effect = "free_reroll",          amount = 1 },
+    { id = "investment",  name = "거상 패찰",     effect = "money",                amount = 15 },
+    { id = "handy",       name = "재주꾼 패찰",    effect = "money",                amount = 8 },
+    { id = "economy",     name = "알뜰 패찰", effect = "money",                amount = 10 },
+    { id = "mega",        name = "대풍년 패찰",     effect = "duplicate_next_gwang" },
+    { id = "foil",        name = "은박 패찰",     effect = "next_gwang_edition",   edition = "foil" },
+    { id = "hologram",    name = "오색 패찰", effect = "next_gwang_edition",   edition = "hologram" },
+    { id = "polychrome",  name = "영롱 패찰", effect = "next_gwang_edition",   edition = "polychrome" },
+    { id = "charm",       name = "행운 패찰",       effect = "extra_shop_slots",     amount = 1 },
+    { id = "uncommon",    name = "진품 패찰",   effect = "uncommon_shop" },
+    { id = "juggle",      name = "곡예사 패찰",     effect = "hand_size",            amount = 1 },
+    { id = "d6",          name = "주령구 패찰",       effect = "free_reroll",          amount = 2 },
 }
 
 local BY_ID = {}

@@ -6,18 +6,18 @@ local M = {}
 
 -- 12 vouchers. Bought once in the shop after clearing a blind.
 M.POOL = {
-    { id = "paint_brush",     name = "붓",         effect = "hand_size",         amount = 1 },
-    { id = "wasteful",        name = "낭비",       effect = "discard",           amount = 1 },
-    { id = "grabber",         name = "그래버",     effect = "hands",             amount = 1 },
-    { id = "overstock",       name = "오버스톡",   effect = "shop_slots",        amount = 1 },
-    { id = "reroll_surplus",  name = "리롤잉여",   effect = "reroll_discount",   amount = 1 },
-    { id = "clearance_sale",  name = "세일",       effect = "shop_discount",     amount = 1 },
-    { id = "seed_money",      name = "시드머니",   effect = "interest_cap",      amount = 5 },
-    { id = "antimatter",      name = "반물질",     effect = "gwang_slots",       amount = 1 },
-    { id = "crystal_ball",    name = "수정구",     effect = "consumable_slots",  amount = 1 },
-    { id = "hone",            name = "연마",       effect = "edition_rate",      amount = 2 },
-    { id = "directors_cut",   name = "디렉터컷",   effect = "boss_rerolls",      amount = 1 },
-    { id = "money_tree",      name = "머니트리",   effect = "interest_rate",     amount = 1 },
+    { id = "paint_brush",     name = "명필의 인장",         effect = "hand_size",         amount = 1 },
+    { id = "wasteful",        name = "호탕한 인장",       effect = "discard",           amount = 1 },
+    { id = "grabber",         name = "갈퀴 인장",     effect = "hands",             amount = 1 },
+    { id = "overstock",       name = "만물상 인장",   effect = "shop_slots",        amount = 1 },
+    { id = "reroll_surplus",  name = "에누리 인장",   effect = "reroll_discount",   amount = 1 },
+    { id = "clearance_sale",  name = "떨이 인장",       effect = "shop_discount",     amount = 1 },
+    { id = "seed_money",      name = "밑천 인장",   effect = "interest_cap",      amount = 5 },
+    { id = "antimatter",      name = "허공 인장",     effect = "gwang_slots",       amount = 1 },
+    { id = "crystal_ball",    name = "천리안 인장",     effect = "consumable_slots",  amount = 1 },
+    { id = "hone",            name = "벼림 인장",       effect = "edition_rate",      amount = 2 },
+    { id = "directors_cut",   name = "판갈이 인장",   effect = "boss_rerolls",      amount = 1 },
+    { id = "money_tree",      name = "화수분 인장",   effect = "interest_rate",     amount = 1 },
 }
 
 local BY_ID = {}
