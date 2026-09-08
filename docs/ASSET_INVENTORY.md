@@ -39,7 +39,7 @@
 - [x] `gwang.tiny_deck_chips` - 아주 얇은 덱 / Tiny Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.lean_deck_mult` - 날씬한 덱 / Lean Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.rich_mult` - 부자 / Rich (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.loaded_chips` - {'ko': '두둑한 지갑', 'en': 'Loaded'}
+- [x] `gwang.loaded_chips` - 두둑한 지갑 / Loaded (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.wealthy_x2` - {'ko': '갑부', 'en': 'Wealthy'}
 - [ ] `gwang.boss_x2` - {'ko': '보스 배수', 'en': 'Boss Mult'}
 - [ ] `gwang.boss_chips` - {'ko': '보스 칩', 'en': 'Boss Chips'}

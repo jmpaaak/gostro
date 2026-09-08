@@ -179,3 +179,7 @@
 | 2026-09-09T08:35:47+0900 | `assets/masters/gwang/rich-mult-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T08:35:47+0900 | `assets/runtime/gwang/rich-mult-v1.png` | 56×32 runtime 부자 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T08:35:47+0900 | `assets/runtime/ui/gwang-rich-mult-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 부자 gwang in all five slots; SHA-256 `0fd116150be129ce5d9bfd8c5326734a9a1bfb432ce98304d68d559c322fd8b1` |
+| 2026-09-09T08:45:34+0900 | `assets/masters/gwang/loaded-chips-v1.svg` | Project-authored high-resolution 두둑한 지갑 gwang vector source with an overstuffed silk purse releasing coin stacks and eight tally chips into one blue additive-chip seal |
+| 2026-09-09T08:45:34+0900 | `assets/masters/gwang/loaded-chips-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T08:45:34+0900 | `assets/runtime/gwang/loaded-chips-v1.png` | 56×32 runtime 두둑한 지갑 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T08:45:34+0900 | `assets/runtime/ui/gwang-loaded-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 두둑한 지갑 gwang in all five slots; SHA-256 `f1f9547416f0a5732816b6277041473c1fa00514c3f6974df1548421cf987df9` |

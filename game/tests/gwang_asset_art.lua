@@ -215,6 +215,17 @@ function M.run()
     assert(assets.runtime_path("gwang.rich_mult") ==
         "assets/runtime/gwang/rich-mult-v1.png")
 
+    local loaded = assets.entry("gwang.loaded_chips")
+    assert(loaded and loaded.status == "runtime",
+        "loaded gwang must have tracked runtime artwork")
+    assert(loaded.master.width == 448 and loaded.master.height == 256,
+        "loaded gwang must preserve its high-resolution slot master")
+    assert(loaded.runtime.width == 56 and loaded.runtime.height == 32,
+        "loaded gwang runtime must scale exactly into a 28x16 slot")
+    assert(loaded.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.loaded_chips") ==
+        "assets/runtime/gwang/loaded-chips-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

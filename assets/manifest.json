@@ -1317,10 +1317,51 @@
     {
       "id": "gwang.loaded_chips",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "두둑한 지갑",
         "en": "Loaded"
+      },
+      "master": {
+        "source": "assets/masters/gwang/loaded-chips-v1.svg",
+        "sourceSha256": "fa164c68e6e79244b34243acbe9534803337cc3af0256fc7804e239b8fa95849",
+        "path": "assets/masters/gwang/loaded-chips-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "802e6629b13033d948fc748fe32f6ea711670d856c6bf4d7c3fd94b8471a0f10",
+        "provenance": "Project-authored high-resolution vector master showing an overstuffed traditional silk purse releasing coin stacks and eight tally chips into one blue additive-chip seal on teal lacquer; no month or text labels."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/loaded-chips-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "66d110d217f98cb81647b58c74aa1c1e300cbf03dd435d741ab8d9f6fb5daa78",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/loaded-chips-v1.report.json",
+        "reportSha256": "58bbbac7efc2181b597aff22b24a7c169a2b309148d65ad22cace221566a2b71"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
