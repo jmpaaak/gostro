@@ -61,6 +61,17 @@ function M.run()
     assert(fish.runtime.filter == "nearest")
     assert(assets.runtime_path(fish_id) == "assets/runtime/boss-blind/fish-v1.png")
 
+    local psychic_id = blind_card_art.asset_id("boss", { id = "psychic" })
+    assert(psychic_id == "boss-blind.psychic", "psychic boss must resolve its own card artwork")
+    local psychic = assets.entry(psychic_id)
+    assert(psychic and psychic.status == "runtime", "psychic boss artwork must be promoted")
+    assert(psychic.master.width == 400 and psychic.master.height == 560,
+        "psychic boss must preserve a 400x560 master")
+    assert(psychic.runtime.width == 50 and psychic.runtime.height == 70,
+        "psychic boss runtime must fit its selection card")
+    assert(psychic.runtime.filter == "nearest")
+    assert(assets.runtime_path(psychic_id) == "assets/runtime/boss-blind/psychic-v1.png")
+
     assets.clear_cache()
     print("  boss_blind_card_art: OK")
 end

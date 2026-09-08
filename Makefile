@@ -47,7 +47,7 @@ blind-card-qa:
 	@mkdir -p "$(BUILD_DIR)/blind-card-qa/assets/runtime/boss-blind"
 	@cp assets/runtime/boss-blind/hook-v1.png assets/runtime/boss-blind/wall-v1.png \
 		assets/runtime/boss-blind/flint-v1.png assets/runtime/boss-blind/mark-v1.png \
-		assets/runtime/boss-blind/fish-v1.png \
+		assets/runtime/boss-blind/fish-v1.png assets/runtime/boss-blind/psychic-v1.png \
 		"$(BUILD_DIR)/blind-card-qa/assets/runtime/boss-blind/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/blind-card-qa/assets/fonts/"
 	BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-round-cards-love-v1.png" \
@@ -63,6 +63,9 @@ blind-card-qa:
 		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
 	BLIND_CARD_QA_BOSS=fish \
 		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-fish-card-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
+	BLIND_CARD_QA_BOSS=psychic \
+		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-psychic-card-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
 
 smoke:

@@ -1085,8 +1085,59 @@
     {
       "id": "boss-blind.psychic",
       "category": "boss-blind",
-      "status": "pending",
-      "name": "\uc601\ub9e4"
+      "status": "runtime",
+      "name": "\uc601\ub9e4",
+      "master": {
+        "source": "assets/masters/boss-blind/psychic-v1.svg",
+        "sourceSha256": "927278a89eb9573f8f3c3d27f5651ab206af4a3b65d0777c6c02814057ca06a2",
+        "path": "assets/masters/boss-blind/psychic-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "e6607fa7b05f04d2f157322a4051931123a1418d50fb2f564353ae31cacbafe1",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer, bronze mirror, and protective eye motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/boss-blind/psychic-v1.png",
+        "width": 50,
+        "height": 70,
+        "alphaBounds": [
+          2,
+          0,
+          46,
+          69
+        ],
+        "sha256": "6fe4b7e6caacae2f903a8e72fbb12690a89ff9e6cc125a1b65e46cc9f3d1ccaf",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 50,
+        "targetHeight": 70,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/boss-blind/psychic-v1.report.json",
+        "reportSha256": "b74086dc6ce024cfea2bcb3eea456b4fb31b11716149b51ce6f47af468dc7da1"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      },
+      "loveQa": {
+        "renderer": "LOVE 11.5",
+        "canvas": [
+          320,
+          180
+        ],
+        "capture": "assets/runtime/ui/blind-psychic-card-love-v1.png",
+        "captureSha256": "778bf5f51156b578a4daa07b0c3ae78f5e9d8be6b6b124ad45f1d9d06d61b9c4",
+        "filter": "nearest"
+      }
     },
     {
       "id": "boss-blind.goad",
