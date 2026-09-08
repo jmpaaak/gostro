@@ -6,13 +6,6 @@
 
 ### Phase B — 핵심 UI 모듈 개발
 
-(7) **점수판 UI 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/scoreboard.lua` (새 모듈)
-  - 칩 × 배수 = 총점 실시간 표시
-  - 블라인드 목표 대비 현재 점수 바
-  - 점수 달성 시 팝업 숫자 연출 (발라트로 스타일 chips×mult 표시)
-  - 테스트: `game/tests/scoreboard_ui.lua`
-
 (8) **플레이/버리기 버튼 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/action_buttons.lua` (새 모듈)
   - 발라트로 스타일 하단 중앙 2버튼: "놓기" (파란) / "버리기" (빨간)
@@ -52,6 +45,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (7) **점수판 UI 모듈** (msg `1546674255045992608`)
+    - `game/ui/scoreboard.lua`: chips×mult=총점 실시간 표시, 블라인드 목표 대비 진행 바(0..1 클램프), 점수 달성 시 Balatro-style 팝업(부유+페이드), format_score_text.
+    - `game/tests/scoreboard_ui.lua` GREEN. `make verify` GREEN.
 
   (6) **광 조커 슬롯 UI 모듈** (msg `1546674255045992608`)
     - `game/ui/gwang_slots.lua`: 상단 5칸 가로줄 (28×16px, 점선 빈 칸, ★+이름+효과 장착 칸), equip/sync_from_run/display_text.

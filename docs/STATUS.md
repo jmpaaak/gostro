@@ -81,3 +81,19 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (6) → 처리 완료.
 - Next slice: INBOX (7) 점수판 UI 모듈 (`game/ui/scoreboard.lua`).
+
+## 2026-09-08 — 점수판 UI 모듈 (game/ui/scoreboard.lua)
+
+- Created `game/ui/scoreboard.lua`: scoreboard UI module for chips × mult = total score.
+  - `new()`: initial state (chips=0, mult=1, displayed_score=0, target=0, popup=nil).
+  - `set_target(sb, target)`: bind blind target for progress bar.
+  - `set_hand_result(sb, chips, mult)`: accumulates chips×mult to displayed_score, creates Balatro-style popup with floating text + fade.
+  - `progress_ratio(sb)`: 0..1 clamped ratio of score vs blind target.
+  - `reset(sb)`: clear between rounds.
+  - `update(sb, dt)`: tick popup timer, auto-clear expired popup.
+  - `format_score_text(chips, mult)`: returns "42 × 3 = 126" string.
+  - `draw(sb)`: right-side panel with chips×mult line, total/target, progress bar (blue→green on clear), floating popup with shadow+fade.
+- Tests in `game/tests/scoreboard_ui.lua`: new defaults, set_target, set_hand_result accumulation, progress_ratio clamping, reset, popup timer tick+expiry, format_score_text.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (7) → 처리 완료.
+- Next slice: INBOX (8) 플레이/버리기 버튼 모듈 (`game/ui/action_buttons.lua`).
