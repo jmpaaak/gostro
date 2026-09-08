@@ -9,13 +9,6 @@
 ### Phase D — 발라트로 게임 이펙트 구현 (msg `1546681659951153252`)
 
 
-(19) **이자 시스템 + 경제** (msg `1546681659951153252`)
-  - 담당: `game/economy.lua` (새 모듈)
-  - 발라트로 경제: 라운드 끝 기본 수입 + 소지금 $5당 이자 $1 (최대 $5), 핸드 남은 장수당 보너스
-  - 소지금 상한 없음 (바우처로 이자 한도 올림 가능)
-  - `game/run.lua` 라운드 정산에 통합
-  - 테스트: `game/tests/economy.lua`
-
 (20) **덱 편집 + 카드 강화** (msg `1546681659951153252`)
   - 담당: `game/deck.lua` (새 모듈)
   - 덱 뷰어 (현재 덱 내 카드 종류/수량/이펙트 확인)
@@ -62,6 +55,11 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+(19) **이자 시스템 + 경제** (msg `1546681659951153252`)
+  - `game/economy.lua`: 이자 $1/$5 (기본 한도 $5, seed_money로 상향), 블라인드 보상 small $3/big $5/boss $8, 남은 핸드 $1장. 소지금 상한 없음.
+  - `game/run.lua` `clear_blind`가 `economy.cash_out` 호출. 이자는 정산 전 소지금 기준.
+  - `game/tests/economy.lua` GREEN. `make verify` GREEN.
+
 (18) **타로 카드 (카드 변환/파괴)** (msg `1546681659951153252`)
   - `game/tarots.lua`: 마법사=변환, 매달린자=파괴, 전차=이펙트 부여, 연인=복제. 소비 슬롯 최대 2, crystal_ball 바우처로 +1. 상점/보스 보상에서 획득.
   - 변환/복제는 화투 플레이 카드만 (gwang/mae/ppeok/otti/month 금지). 실패 시 슬롯 유지.

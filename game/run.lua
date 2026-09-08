@@ -32,6 +32,7 @@ local PLAY_CARDS = {
 local tags = require("game.tags")
 local boss_blinds = require("game.boss_blinds")
 local vouchers = require("game.vouchers")
+local economy = require("game.economy")
 
 function M.new()
     return {
@@ -64,6 +65,8 @@ function M.new()
         },
         boss_id = nil,
         boss = nil,
+        money = 4,
+        hands_left = 4,
     }
 end
 
@@ -131,6 +134,7 @@ function M.clear_blind(state)
     if state.round_score < M.blind_target(state) then
         error("cannot clear below the blind")
     end
+    economy.cash_out(state)
     if state.ante >= M.FINAL_ANTE and state.blind == "boss" then
         state.phase = "won"
         return
@@ -219,6 +223,11 @@ function M.leave_shop(state)
     end
     state.phase = "play"
     state.round_score = 0
+    local extra = 0
+    if state.vouchers then
+        extra = state.vouchers.hands or 0
+    end
+    state.hands_left = 4 + extra
     vouchers.clear_shop(state)
 end
 

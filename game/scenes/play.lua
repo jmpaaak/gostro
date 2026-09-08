@@ -154,14 +154,15 @@ function M.check_clear(scene)
     if scene.state ~= "playing" then return end
     local target = run.blind_target(scene.run_state)
     if scene.run_state.round_score >= target then
+        if scene.buttons then
+            scene.run_state.hands_left = scene.buttons.hands_left
+        end
         run.clear_blind(scene.run_state)
         if scene.run_state.phase == "won" then
             scene.state = "won"
             return
         end
-        -- Reward money
-        local rewards = { small = 3, big = 5, boss = 8 }
-        scene.money = scene.money + (rewards[scene.run_state.blind] or 3)
+        scene.money = scene.run_state.money
         scene.shop = shop_ui.new(scene.money)
         scene.state = "shop"
     end
@@ -170,7 +171,8 @@ end
 --- Leave the shop and go to next blind select.
 function M.leave_shop(scene)
     if scene.state ~= "shop" then return end
-    scene.money = scene.shop.money  -- sync money back
+    scene.money = scene.shop.money
+    scene.run_state.money = scene.money
     run.leave_shop(scene.run_state)
     scene.blind_select = blind_sel_ui.new(scene.run_state.ante)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
