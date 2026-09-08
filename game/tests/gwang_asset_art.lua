@@ -50,6 +50,17 @@ function M.run()
     assert(assets.runtime_path("gwang.always_chips_mid") ==
         "assets/runtime/gwang/always-chips-mid-v1.png")
 
+    local mult_mid = assets.entry("gwang.always_mult_mid")
+    assert(mult_mid and mult_mid.status == "runtime",
+        "mid additive mult gwang must have tracked runtime artwork")
+    assert(mult_mid.master.width == 448 and mult_mid.master.height == 256,
+        "mid additive mult gwang must preserve its high-resolution slot master")
+    assert(mult_mid.runtime.width == 56 and mult_mid.runtime.height == 32,
+        "mid additive mult runtime must scale exactly into a 28x16 slot")
+    assert(mult_mid.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.always_mult_mid") ==
+        "assets/runtime/gwang/always-mult-mid-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

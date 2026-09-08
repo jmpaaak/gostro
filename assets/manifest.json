@@ -582,10 +582,51 @@
     {
       "id": "gwang.always_mult_mid",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "중배수",
         "en": "Mid Mult"
+      },
+      "master": {
+        "source": "assets/masters/gwang/always-mult-mid-v1.svg",
+        "sourceSha256": "20ae1d0297878f1f0c84fa4f4905942c9711f6c3447205d44fb591428ef9c391",
+        "path": "assets/masters/gwang/always-mult-mid-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "7e05a542b7ad9d408adea50209f06088fd47f0f2853fc9266a06751da9974211",
+        "provenance": "Project-authored high-resolution vector master using indigo Korean lacquer, dancheong lattice, four cinnabar beads, a brass hexagonal medallion, and a broad additive mark; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/always-mult-mid-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "fe3851d9a6024ef393a1688013552cb2bc7a0fbe552dde21c765168db43ab790",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/always-mult-mid-v1.report.json",
+        "reportSha256": "d4a7564de47f13a721bbc5e17cab42e9a868a2826522ab29ccf672ba75df3038"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

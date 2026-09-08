@@ -24,7 +24,7 @@
 - [ ] `gwang.always_chips_small` - {'ko': '잔칩', 'en': 'Small Chips'}
 - [ ] `gwang.always_mult_small` - {'ko': '잔배수', 'en': 'Small Mult'}
 - [ ] `gwang.always_chips_mid` - {'ko': '중칩', 'en': 'Mid Chips'}
-- [ ] `gwang.always_mult_mid` - {'ko': '중배수', 'en': 'Mid Mult'}
+- [x] `gwang.always_mult_mid` - 중배수 / Mid Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.hongdan_x2` - {'ko': '홍단 깃발', 'en': 'Hongdan Flag'}
 - [ ] `gwang.cheongdan_x2` - {'ko': '청단 깃발', 'en': 'Cheongdan Flag'}
 - [ ] `gwang.chodan_x2` - {'ko': '초단 깃발', 'en': 'Chodan Flag'}

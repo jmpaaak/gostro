@@ -120,3 +120,7 @@
 | 2026-09-09T06:25:22+0900 | `assets/masters/gwang/always-chips-mid-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
 | 2026-09-09T06:25:22+0900 | `assets/runtime/gwang/always-chips-mid-v1.png` | 56x32 runtime 중칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T06:25:22+0900 | `assets/runtime/ui/gwang-always-chips-mid-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 중칩 gwang in all five slots; SHA-256 `61d922848efa4b150f95d834804ada56d9738102ff149326c4b6a65dac94d256` |
+| 2026-09-09T06:33:44+0900 | `assets/masters/gwang/always-mult-mid-v1.svg` | Project-authored high-resolution 중배수 gwang vector source with indigo Korean lacquer, dancheong lattice, four cinnabar beads, and a brass hexagonal medallion |
+| 2026-09-09T06:33:44+0900 | `assets/masters/gwang/always-mult-mid-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
+| 2026-09-09T06:33:44+0900 | `assets/runtime/gwang/always-mult-mid-v1.png` | 56x32 runtime 중배수 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T06:33:44+0900 | `assets/runtime/ui/gwang-always-mult-mid-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 중배수 gwang in all five slots; SHA-256 `85a35f4dd431f35d63a7d88f87c62a55a72446aa3d0bd340acbcdfdaab0c243e` |

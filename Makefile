@@ -156,6 +156,7 @@ gwang-slot-qa:
 	@cp assets/runtime/gwang/chips-v1.png "$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
 	@cp assets/runtime/gwang/mult-v1.png assets/runtime/gwang/always-mult-small-v1.png \
 		assets/runtime/gwang/always-chips-small-v1.png assets/runtime/gwang/always-chips-mid-v1.png \
+		assets/runtime/gwang/always-mult-mid-v1.png \
 		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
 	GWANG_QA_IDENTITY="chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
@@ -166,6 +167,8 @@ gwang-slot-qa:
 	GWANG_QA_IDENTITY="always_chips_small" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-chips-small-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 	GWANG_QA_IDENTITY="always_chips_mid" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-chips-mid-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+	GWANG_QA_IDENTITY="always_mult_mid" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-mult-mid-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 
 smoke:

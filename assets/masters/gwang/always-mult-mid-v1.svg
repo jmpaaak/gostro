@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111a36"/>
+      <stop offset="0.48" stop-color="#34234f"/>
+      <stop offset="1" stop-color="#0b1028"/>
+    </linearGradient>
+    <linearGradient id="cinnabar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffb06c"/>
+      <stop offset="0.38" stop-color="#f05252"/>
+      <stop offset="1" stop-color="#991d3b"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0a0"/>
+      <stop offset="0.5" stop-color="#dcae45"/>
+      <stop offset="1" stop-color="#78511d"/>
+    </linearGradient>
+    <pattern id="dancheong" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 20L20 0l20 20-20 20z" fill="none" stroke="#43aa9a" stroke-width="4" opacity=".42"/>
+      <path d="M10 20l10-10 10 10-10 10z" fill="#dcae45" opacity=".3"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="432" height="240" rx="38" fill="#080d20" stroke="#26163c" stroke-width="16"/>
+  <rect x="22" y="22" width="404" height="212" rx="28" fill="url(#lacquer)" stroke="#43aa9a" stroke-width="8"/>
+  <rect x="34" y="34" width="380" height="188" rx="20" fill="url(#dancheong)" stroke="url(#brass)" stroke-width="4"/>
+  <path d="M50 64h348M50 192h348" stroke="#72d2b6" stroke-width="5" opacity=".55"/>
+  <path d="M62 46l20 16-20 16-20-16zm324 0l20 16-20 16-20-16zM62 178l20 16-20 16-20-16zm324 0l20 16-20 16-20-16z" fill="url(#brass)" stroke="#65451d" stroke-width="4"/>
+  <g transform="translate(224 128)">
+    <path d="M0-92L80-46v92L0 92-80 46v-92z" fill="#14142d" stroke="#43aa9a" stroke-width="10"/>
+    <path d="M0-77L65-39v78L0 77-65 39v-78z" fill="none" stroke="url(#brass)" stroke-width="5"/>
+    <circle cx="-55" cy="-42" r="15" fill="url(#cinnabar)" stroke="#ffc09a" stroke-width="4"/>
+    <circle cx="55" cy="-42" r="15" fill="url(#cinnabar)" stroke="#ffc09a" stroke-width="4"/>
+    <circle cx="-55" cy="42" r="15" fill="url(#cinnabar)" stroke="#ffc09a" stroke-width="4"/>
+    <circle cx="55" cy="42" r="15" fill="url(#cinnabar)" stroke="#ffc09a" stroke-width="4"/>
+    <path d="M-22-58h44v36h36v44H22v36h-44V22h-36v-44h36z" fill="url(#cinnabar)" stroke="#69132f" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M-10-44h20v34h34v20H10v34h-20V10h-34v-20h34z" fill="#ffd0a5" opacity=".68"/>
+  </g>
+</svg>
