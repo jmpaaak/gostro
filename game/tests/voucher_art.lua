@@ -75,6 +75,17 @@ function M.run()
     assert(clearance.runtime.filter == "nearest")
     assert(assets.runtime_path(clearance_id) == "assets/runtime/voucher/clearance-sale-v1.png")
 
+    local seed_money_id = voucher_art.asset_id({ kind = "voucher", identity = "seed_money" })
+    assert(seed_money_id == "voucher.seed_money", "seed money seal must resolve tracked artwork")
+    local seed_money = assets.entry(seed_money_id)
+    assert(seed_money and seed_money.status == "runtime", "seed money seal artwork must be promoted")
+    assert(seed_money.master.width == 400 and seed_money.master.height == 560,
+        "seed money seal must preserve a 400x560 master")
+    assert(seed_money.runtime.width == 36 and seed_money.runtime.height == 52,
+        "seed money seal runtime must fit its shop slot")
+    assert(seed_money.runtime.filter == "nearest")
+    assert(assets.runtime_path(seed_money_id) == "assets/runtime/voucher/seed-money-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

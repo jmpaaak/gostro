@@ -1,14 +1,15 @@
 # STATUS
 
-## 2026-09-09 — 떨이 인장 고해상도 픽셀 에셋 적용
+## 2026-09-09 — 밑천 인장 고해상도 픽셀 에셋 적용
 
-- `voucher.clearance_sale`에 풀어진 보자기와 파격 할인된 상품 무더기를 그린 400×560 SVG/PNG master와 36×52 runtime 에셋을 추가했다.
+- `voucher.seed_money`에 원금을 지키는 주머니, 늘어나는 엽전 더미와 새싹을 그린 400×560 SVG/PNG master와 36×52 runtime 에셋을 추가했다.
 - 실제 Asset Studio `POST /api/pixel-perfect` 결과 dimensions/palette/transparent alpha/alignment/nearest 5개 검사가 통과했으며 manifest에 master/runtime/report hash와 alpha bounds를 기록했다.
-- `game.ui.voucher_art`가 떨이 인장을 manifest-backed nearest texture로 표시하고, 실제 LÖVE 320×180 캡처 `shop-voucher-clearance-sale-love-v1.png`를 생성했다.
-- 구현 후 `voucher_art` 단위 테스트와 `shop-pack-qa`가 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, 모든 실제 캡처 QA, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (326 files).
+- `game.ui.voucher_art`가 밑천 인장을 manifest-backed nearest texture로 표시하고, 실제 LÖVE 320×180 캡처 `shop-voucher-seed-money-love-v1.png`를 생성했다.
+- 상점 QA bundle에 누락됐던 떨이 인장 texture도 포함해 기존 fallback 캡처를 실제 manifest-backed 캡처로 교정했다.
+- TDD RED는 `seed money seal must resolve tracked artwork`로 확인했고, 구현 후 `voucher_art`와 실제 상점 캡처 QA가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, 모든 실제 캡처 QA, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (332 files).
 - INBOX (27)은 나머지 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
-- Next slice: `voucher.seed_money` 밑천 인장의 400×560 master/runtime 에셋을 만들고 독립 manifest·LÖVE 상점 캡처 검증을 추가한다.
+- Next slice: `voucher.antimatter` 허공 인장의 400×560 master/runtime 에셋을 만들고 독립 manifest·LÖVE 상점 캡처 검증을 추가한다.
 
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 

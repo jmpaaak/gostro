@@ -936,8 +936,47 @@
     {
       "id": "voucher.seed_money",
       "category": "voucher",
-      "status": "pending",
-      "name": "\uc2dc\ub4dc\uba38\ub2c8"
+      "status": "runtime",
+      "name": "\ubc11\ucc9c \uc778\uc7a5",
+      "master": {
+        "path": "assets/masters/voucher/seed-money-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "ae3e7e1faaf5c335122dd4d46acc40d85aa1cfaf0084364c3e8ed75a9f3339ca",
+        "provenance": "Project-authored high-resolution vector master depicting a protected principal purse, stacked yeopjeon, and a growing sprout; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/seed-money-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          51
+        ],
+        "sha256": "eb919ab300f7b66a9eec8683fc064f6a8317326a8437c862eeef29fd7c46fa45",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/seed-money-v1.report.json",
+        "reportSha256": "cd29726942309bd12e7124f7faad49ffb6207d62178a2ca69285585518efa9a6"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.antimatter",

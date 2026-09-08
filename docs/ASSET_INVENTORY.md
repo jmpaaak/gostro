@@ -130,11 +130,11 @@
 - [x] `voucher.wasteful` - 호탕한 인장 (`assets/runtime/voucher/wasteful-v1.png`)
 - [x] `voucher.grabber` - 갈퀴 인장 (`assets/runtime/voucher/grabber-v1.png`)
 - [x] `voucher.overstock` - 만물상 인장 (`assets/runtime/voucher/overstock-v1.png`)
-- [ ] `voucher.reroll_surplus` - 리롤잉여
-- [ ] `voucher.clearance_sale` - 세일
-- [ ] `voucher.seed_money` - 시드머니
-- [ ] `voucher.antimatter` - 반물질
-- [ ] `voucher.crystal_ball` - 수정구
-- [ ] `voucher.hone` - 연마
-- [ ] `voucher.directors_cut` - 디렉터컷
-- [ ] `voucher.money_tree` - 머니트리
+- [x] `voucher.reroll_surplus` - 에누리 인장 (`assets/runtime/voucher/reroll-surplus-v1.png`)
+- [x] `voucher.clearance_sale` - 떨이 인장 (`assets/runtime/voucher/clearance-sale-v1.png`)
+- [x] `voucher.seed_money` - 밑천 인장 (`assets/runtime/voucher/seed-money-v1.png`)
+- [ ] `voucher.antimatter` - 허공 인장
+- [ ] `voucher.crystal_ball` - 천리안 인장
+- [ ] `voucher.hone` - 벼림 인장
+- [ ] `voucher.directors_cut` - 판갈이 인장
+- [ ] `voucher.money_tree` - 금맥 인장

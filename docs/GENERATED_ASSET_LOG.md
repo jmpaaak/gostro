@@ -76,3 +76,8 @@
 | 2026-09-09T03:52:00+0900 | `assets/masters/voucher/clearance-sale-v1.svg` | Project-authored high-resolution untied traditional cloth bundle spilling heavily discounted goods |
 | 2026-09-09T03:52:00+0900 | `assets/masters/voucher/clearance-sale-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T03:52:00+0900 | `assets/runtime/voucher/clearance-sale-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T04:04:09+0900 | `assets/runtime/ui/shop-voucher-clearance-sale-love-v1.png` | Corrected 320×180 LÖVE shop capture after bundling the manifest-backed clearance-sale texture instead of the primitive fallback |
+| 2026-09-09T04:04:09+0900 | `assets/masters/voucher/seed-money-v1.svg` | Project-authored high-resolution principal purse, stacked yeopjeon, growing sprout, dancheong, and vermilion-seal vector source |
+| 2026-09-09T04:04:09+0900 | `assets/masters/voucher/seed-money-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T04:04:09+0900 | `assets/runtime/voucher/seed-money-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T04:04:09+0900 | `assets/runtime/ui/shop-voucher-seed-money-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed seed-money seal in all three offer slots |
