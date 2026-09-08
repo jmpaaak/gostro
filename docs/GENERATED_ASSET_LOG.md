@@ -12,3 +12,7 @@
 | 2026-09-08T23:35:54+0900 | `assets/masters/cards/hongdan.svg` | Project-authored 192×288 vector source for the red-flag hongdan card face |
 | 2026-09-08T23:35:54+0900 | `assets/masters/cards/hongdan.png` | Preserved 192×288 RGBA raster master generated from the vector source |
 | 2026-09-08T23:35:54+0900 | `assets/runtime/cards/hongdan.png` | 24×36 candidate PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5; runtime approval withheld pending five-card overlap QA |
+| 2026-09-08T23:57:26+0900 | `assets/masters/cards/play-card-contact-sheet-v1.svg` | Project-authored 960×288 five-card vector source using one Korean hwatu-inspired visual grammar and distinct top marks |
+| 2026-09-08T23:57:26+0900 | `assets/masters/cards/play-card-contact-sheet-v1.png` | Preserved 960×288 RGBA raster master rendered from the contact-sheet vector source |
+| 2026-09-08T23:57:26+0900 | `assets/runtime/cards/play-card-contact-sheet-v1.png` | 120×36 candidate sheet from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-08T23:57:26+0900 | `assets/runtime/cards/play-card-overlap-v1.png` | Automated 64×40 overlap QA capture; five 24×36 candidates overlap at 10px spacing and retain unique top-mark fingerprints |

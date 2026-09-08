@@ -1058,3 +1058,17 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - TDD RED: red stake round fallback이 300을 반환하는 실패를 확인했다. 구현 후 `game/tests/round_engine.lua` 회귀 테스트와 전체 `make test`가 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: base ante/blind 및 보스 목표 계산의 소유권을 독립 모듈로 옮기고 `game.run.blind_target`은 호환 delegate로 축소해 gameplay projection이 거대 run 모듈을 경유하지 않게 한다.
+
+## Archived from STATUS.md (2026-09-08 23:49)
+
+## 2026-09-08 — 플레이 패 후보 에셋 승인 격리·manifest 로더
+
+## Archived from STATUS.md (2026-09-08 23:58)
+
+- 사람·월 숫자·월 이름·월 삽화 없이 홍단의 붉은 깃발 형태를 표현한 192×288 SVG/PNG master와 실제 Asset Studio `POST /api/pixel-perfect`의 24×36 출력·검사 보고서를 후보 자산으로 보존했다.
+- 피의 명시적 QA 거부와 “5종 겹침 QA 전 단일 runtime 완료 금지” 조건을 적용해 피·홍단을 `candidate`로 격리하고 인벤토리 완료 표시를 제거했다. 두 후보는 게임에서 fallback을 유지한다.
+- 신규 `game/asset_loader.lua`가 manifest의 `status=runtime`, PNG 경로·크기·nearest 계약을 모두 만족한 자산만 로드하고 texture cache를 소유한다. `card_art`는 5개 플레이 패 ID를 이 로더에 위임한다.
+- TDD RED: QA 거부된 피가 runtime 경로를 반환해 실패함을 확인했다. 구현 후 후보 격리, 승인 fixture의 nearest filter·cache, 플레이 패 fallback 계약이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (200 files).
+- INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: 플레이 패 5종을 하나의 시각 문법으로 함께 재설계한 master contact sheet를 만들고 겹친 카드 상단 식별 표식 QA를 자동 캡처한다. 승인 전에는 어느 패도 `runtime`으로 승격하지 않는다.

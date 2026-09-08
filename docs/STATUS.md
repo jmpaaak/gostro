@@ -1,13 +1,14 @@
 # STATUS
-## 2026-09-08 — 플레이 패 후보 에셋 승인 격리·manifest 로더
+## 2026-09-08 — 플레이 패 5종 통합 master·겹침 QA 후보
 
-- 사람·월 숫자·월 이름·월 삽화 없이 홍단의 붉은 깃발 형태를 표현한 192×288 SVG/PNG master와 실제 Asset Studio `POST /api/pixel-perfect`의 24×36 출력·검사 보고서를 후보 자산으로 보존했다.
-- 피의 명시적 QA 거부와 “5종 겹침 QA 전 단일 runtime 완료 금지” 조건을 적용해 피·홍단을 `candidate`로 격리하고 인벤토리 완료 표시를 제거했다. 두 후보는 게임에서 fallback을 유지한다.
-- 신규 `game/asset_loader.lua`가 manifest의 `status=runtime`, PNG 경로·크기·nearest 계약을 모두 만족한 자산만 로드하고 texture cache를 소유한다. `card_art`는 5개 플레이 패 ID를 이 로더에 위임한다.
-- TDD RED: QA 거부된 피가 runtime 경로를 반환해 실패함을 확인했다. 구현 후 후보 격리, 승인 fixture의 nearest filter·cache, 플레이 패 fallback 계약이 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (200 files).
-- INBOX (27)은 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
-- Next slice: 플레이 패 5종을 하나의 시각 문법으로 함께 재설계한 master contact sheet를 만들고 겹친 카드 상단 식별 표식 QA를 자동 캡처한다. 승인 전에는 어느 패도 `runtime`으로 승격하지 않는다.
+- 피·홍단·청단·초단·고도리를 같은 카드 틀과 한지 질감으로 묶은 960×288 SVG/PNG master contact sheet를 만들었다. 피는 지도 핀/영문 약어 대신 매화와 가지, 나머지는 색 띠·난초·제비 날개 상단 문양을 사용한다.
+- 실제 Asset Studio `POST /api/pixel-perfect`로 120×36(카드당 24×36) 후보 sheet를 생성했고 dimensions/palette/alpha/nearest 검사 5/5가 통과했다.
+- 신규 `card_overlap_qa.py`가 후보 셀을 10px 간격으로 겹친 64×40 캡처와 hash 보고서를 생성한다. 5개 상단 문양 fingerprint가 모두 고유함을 검증했다.
+- 5종 manifest는 공유 sheet를 가리키는 `candidate`로 함께 격리했다. 자동 검사는 사람의 아트 승인과 실제 320×180 LÖVE 캡처를 대신하지 않으므로 어느 패도 runtime으로 승격하지 않았다.
+- TDD RED: 청단·초단·고도리가 pending이고 5종이 공유 master를 가리키지 않아 실패함을 확인했다. 구현 후 5종 묶음 격리와 기존 runtime loader 계약이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (207 files).
+- INBOX (27)은 전체 그래픽 전환과 플레이 패 실런타임 승인이 남아 있어 처리 대기로 유지한다.
+- Next slice: 후보 sheet를 QA 전용 320×180 LÖVE 화면에 nearest로 그려 실제 겹침 캡처를 만들고, 사람의 식별성·화투 아트 승인 결과를 manifest에 기록한다.
 
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 

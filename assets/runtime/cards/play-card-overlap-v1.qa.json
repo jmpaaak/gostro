@@ -1,0 +1,25 @@
+{
+  "capture": "assets/runtime/cards/play-card-overlap-v1.png",
+  "captureSha256": "066bde247ad19c95e749a057121246185d04556a2f2ce070caf1c901f556ba48",
+  "cardOrder": [
+    "pi",
+    "hongdan",
+    "cheongdan",
+    "chodan",
+    "godori"
+  ],
+  "cardSize": [
+    24,
+    36
+  ],
+  "source": "assets/runtime/cards/play-card-contact-sheet-v1.png",
+  "topMarkFingerprints": [
+    "9b6108f7397a",
+    "b9c711dea04d",
+    "a9b2ba2ef138",
+    "8bb4e258b552",
+    "f47a872fcd00"
+  ],
+  "topVisiblePixels": 10,
+  "valid": true
+}

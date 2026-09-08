@@ -1,10 +1,56 @@
 {
   "version": 1,
+  "candidateSheets": [
+    {
+      "id": "play-card.contact-sheet-v1",
+      "status": "awaiting-art-approval",
+      "cardOrder": ["pi", "hongdan", "cheongdan", "chodan", "godori"],
+      "master": {
+        "source": "assets/masters/cards/play-card-contact-sheet-v1.svg",
+        "sourceSha256": "f6e8553295882930ffb3e1e06ee651cecf591822fdc1a634a3e0d1f6ae0796a7",
+        "path": "assets/masters/cards/play-card-contact-sheet-v1.png",
+        "width": 960,
+        "height": 288,
+        "sha256": "5aede4e38365aeac409c7db46b6ace31b0d9ffe17ca82624f565c2d1b83c7f6f",
+        "provenance": "Project-authored five-card vector master; Korean hwatu-inspired shape language with no people, month numbers, month names, month illustrations, map pins, or English abbreviations."
+      },
+      "pixelPerfectCandidate": {
+        "path": "assets/runtime/cards/play-card-contact-sheet-v1.png",
+        "width": 120,
+        "height": 36,
+        "cardWidth": 24,
+        "cardHeight": 36,
+        "alphaBounds": [0, 0, 119, 35],
+        "sha256": "b302d17fa40048e185ae3e0e164365941aa274d21a49f334f24ddb83257b9424",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 120,
+        "targetHeight": 36,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/cards/play-card-contact-sheet-v1.report.json",
+        "reportSha256": "a8d173387ecc5e0b27b0918eff45730f2765a3a36bd0a5815dfa99f491ccbdc7"
+      },
+      "overlapQa": {
+        "status": "automated-pass-human-pending",
+        "capture": "assets/runtime/cards/play-card-overlap-v1.png",
+        "captureSha256": "066bde247ad19c95e749a057121246185d04556a2f2ce070caf1c901f556ba48",
+        "report": "assets/runtime/cards/play-card-overlap-v1.qa.json",
+        "reportSha256": "6aaa3b4fcbbca0d56b6baffc4883da4278c85760b2c48624f1a18bd4fe49fbbc",
+        "topVisiblePixels": 10,
+        "topMarksUnique": true
+      }
+    }
+  ],
   "assets": [
     {
       "id": "play-card.pi",
       "category": "play-card",
       "status": "candidate",
+      "candidateSheet": "play-card.contact-sheet-v1",
       "master": {
         "source": "assets/masters/cards/pi.svg",
         "sourceSha256": "aebb8e897d550e97f75df63980c858b43c4649e320fd0a61f84405c0d2a2552c",
@@ -50,6 +96,7 @@
       "id": "play-card.hongdan",
       "category": "play-card",
       "status": "candidate",
+      "candidateSheet": "play-card.contact-sheet-v1",
       "name": "hongdan",
       "master": {
         "source": "assets/masters/cards/hongdan.svg",
@@ -87,19 +134,22 @@
     {
       "id": "play-card.cheongdan",
       "category": "play-card",
-      "status": "pending",
+      "status": "candidate",
+      "candidateSheet": "play-card.contact-sheet-v1",
       "name": "cheongdan"
     },
     {
       "id": "play-card.chodan",
       "category": "play-card",
-      "status": "pending",
+      "status": "candidate",
+      "candidateSheet": "play-card.contact-sheet-v1",
       "name": "chodan"
     },
     {
       "id": "play-card.godori",
       "category": "play-card",
-      "status": "pending",
+      "status": "candidate",
+      "candidateSheet": "play-card.contact-sheet-v1",
       "name": "godori"
     },
     {

@@ -16,6 +16,17 @@ function M.run()
     assert(assets.runtime_path("gwang.chips") == nil, "pending art cannot enter the runtime")
     assert(assets.runtime_path("missing.asset") == nil)
 
+    local play_card_ids = { "pi", "hongdan", "cheongdan", "chodan", "godori" }
+    for _, name in ipairs(play_card_ids) do
+        local entry = assets.entry("play-card." .. name)
+        assert(entry and entry.status == "candidate",
+            "the complete five-card visual grammar must remain candidate until overlap approval")
+        assert(entry.candidateSheet == "play-card.contact-sheet-v1",
+            "every play-card candidate must identify its shared high-resolution master sheet")
+        assert(assets.runtime_path("play-card." .. name) == nil,
+            "no member of an unapproved candidate sheet may enter runtime")
+    end
+
     assets.clear_cache()
     local calls = { images = 0 }
     local image = {
