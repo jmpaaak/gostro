@@ -1,22 +1,5 @@
 # STATUS
 
-## 2026-09-08 — 보스 블라인드 디버프 (`game/boss_blinds.lua`)
-
-- Created `game/boss_blinds.lua`: Balatro-style boss blinds mapped onto hwatu play kinds (no months, gwang never a play target).
-  - hook: discard 2 random hand cards
-  - wall: double boss target
-  - flint: floor-halve chips and mult
-  - mark: flip hongdan face-down
-  - fish: hide entire hand
-  - psychic: require a 5-card hand
-  - goad: only godori scores chips
-  - plant: cheongdan contributes 0 chips
-- `game/run.lua`: `select_boss(state, id)` on boss blinds; wall doubles `blind_target`; entering a boss (shop leave / skip big) auto-picks a boss; leaving boss clears it.
-- Tests in `game/tests/boss_blinds.lua` (pool ≥8, hwatu kinds, each effect, run select/apply, forbidden words).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (15) → 처리 완료.
-- Next slice: INBOX (16) 바우처 시스템 (`game/vouchers.lua`).
-
 ## 2026-09-08 — 바우처 시스템 (`game/vouchers.lua`)
 
 - Created `game/vouchers.lua`: Balatro-style shop vouchers. Pool of 12 (paint_brush hand+1, wasteful discard+1, grabber hands+1, overstock shop slots+1, reroll_surplus discount, clearance_sale shop discount, seed_money interest cap, antimatter gwang slots+1, crystal_ball consumable slots, hone edition rate, directors_cut boss rerolls, money_tree interest rate). Each identity once.
@@ -152,3 +135,12 @@
 - `game/tests/play_integration.lua`에서 실게임 상점 엔진 상태, 무료 리롤 태그 소비, 광 구매 적용을 회귀 검증했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
 - Next slice: `game/ui/shop.lua`가 engine의 추가 랜덤 슬롯·팩·바우처 슬롯을 모두 표시하고 hit-test하도록 순수 UI 계약을 확장한다.
+
+## 2026-09-08 — 엔진 상점 전체 슬롯 UI 연결
+
+- `game/ui/shop.lua`가 legacy `cards`뿐 아니라 `shop_engine`의 통합 `slots`를 순수 `slot_views` 계약으로 변환한다.
+- 바우처/태그로 늘어난 랜덤 상품과 팩·바우처 슬롯 전체를 320×180 안에 동적으로 배치하고, 그 동일한 bounds로 draw와 hit-test를 수행한다.
+- 엔진 소유 money와 동적 리롤 가격을 표시하며 광·행성·타로·팩·바우처에 구분된 이름/표현을 제공한다.
+- `game/tests/shop_ui.lua`가 4개 랜덤 슬롯 + 팩 + 바우처의 6개 위치, 각 hit-test, 팩/바우처 view, 엔진 money 표시를 검증한다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
+- Next slice: 신규 `game/shop_purchases.lua`가 바우처 슬롯 구매 적용/롤백을 소유하게 하고 `game/scenes/play.lua`는 해당 모듈로 위임한다. 팩 구매는 후속 독립 슬라이스로 유지한다.

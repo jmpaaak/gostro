@@ -85,9 +85,45 @@ function M.run()
     btn = shop.hit_test(s8, 0, 0)
     assert(btn == nil, "miss returns nil")
 
-    -- money_text
+    -- Engine-owned shops expose every random, pack, and voucher slot.
+    local engine_shop = {
+        run_state = { money = 17 },
+        random_offers = {
+            { slot_type = "random", kind = "gwang", identity = "one", price = 4 },
+            { slot_type = "random", kind = "planet", identity = "two", price = 3 },
+            { slot_type = "random", kind = "tarot", identity = "three", price = 3 },
+            { slot_type = "random", kind = "gwang", identity = "extra", price = 4 },
+        },
+        pack_slots = {
+            { slot_type = "pack", kind = "pack", identity = "arcana_pack", name = "아르카나 팩", price = 4 },
+        },
+        voucher_slots = {
+            { slot_type = "voucher", kind = "voucher", identity = "paint_brush", price = 10 },
+        },
+    }
+    engine_shop.slots = {
+        engine_shop.random_offers[1], engine_shop.random_offers[2],
+        engine_shop.random_offers[3], engine_shop.random_offers[4],
+        engine_shop.pack_slots[1], engine_shop.voucher_slots[1],
+    }
+    local engine_positions = shop.card_positions(engine_shop)
+    assert(#engine_positions == 6, "all engine slots have positions")
+    for i = 1, 6 do
+        local p = engine_positions[i]
+        assert(shop.hit_test(engine_shop, p.x + 1, p.y + 1) == i,
+            "engine slot " .. i .. " is hit-testable")
+    end
+    local views = shop.slot_views(engine_shop)
+    assert(#views == 6, "all engine slots have view data")
+    assert(views[5].slot_type == "pack" and views[5].label == "아르카나 팩",
+        "pack slot is represented")
+    assert(views[6].slot_type == "voucher" and views[6].label ~= "?",
+        "voucher slot is represented")
+
+    -- money_text accepts both legacy UI state and engine-owned run money.
     local txt = shop.money_text(s8)
     assert(txt:find("%$"), "money text contains $")
+    assert(shop.money_text(engine_shop) == "$17", "engine money is displayed")
 
     print("  shop_ui: OK")
 end

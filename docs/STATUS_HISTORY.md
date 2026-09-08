@@ -594,3 +594,22 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (14) → 처리 완료.
 - Next slice: INBOX (15) 보스 블라인드 디버프 (`game/boss_blinds.lua`).
+
+## Archived from STATUS.md (2026-09-08 18:18)
+
+## 2026-09-08 — 보스 블라인드 디버프 (`game/boss_blinds.lua`)
+
+- Created `game/boss_blinds.lua`: Balatro-style boss blinds mapped onto hwatu play kinds (no months, gwang never a play target).
+  - hook: discard 2 random hand cards
+  - wall: double boss target
+  - flint: floor-halve chips and mult
+  - mark: flip hongdan face-down
+  - fish: hide entire hand
+  - psychic: require a 5-card hand
+  - goad: only godori scores chips
+  - plant: cheongdan contributes 0 chips
+- `game/run.lua`: `select_boss(state, id)` on boss blinds; wall doubles `blind_target`; entering a boss (shop leave / skip big) auto-picks a boss; leaving boss clears it.
+- Tests in `game/tests/boss_blinds.lua` (pool ≥8, hwatu kinds, each effect, run select/apply, forbidden words).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (15) → 처리 완료.
+- Next slice: INBOX (16) 바우처 시스템 (`game/vouchers.lua`).
