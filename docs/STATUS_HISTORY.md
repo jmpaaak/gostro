@@ -278,3 +278,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (21) blind slice only. Self-destruct/compound and 30-joker catalog are not in this slice.
 - Next slice: INBOX (21) remaining — (g) 셀프 파괴형 (1회 ×20 후 소멸) on `game/gwang_catalog.lua`.
+
+## Archived from STATUS.md (2026-09-08 12:05)
+
+## 2026-09-08 — 광 조커 30종 JSON 카탈로그 (`game/data/gwang_jokers.json`)
+
+- `game/data/gwang_jokers.json`: 30 unique gwang jokers covering always / contains_kind / yaku / deck_size / money / blind / once / compound (chips+mult+money). No month numbers/names, no mae/ppeok/otti.
+- Existing apply loop in `game/gwang_catalog.lua` + `game/hwatu.lua` evaluate already fires these identities; this slice is catalog size only.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (prior a–h plus ≥30 unique ids, all trigger families, compound present).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) fully done: trigger patterns (a)–(h) + 30-joker catalog + hwatu apply loop.
+- Next slice: INBOX (22) 시드 기반 랜덤 + 런 히스토리 on `game/rng.lua`.
