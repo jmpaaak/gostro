@@ -1,8 +1,9 @@
 -- game/deck.lua
--- Play-card deck: starter composition + viewer (kinds / counts / editions).
+-- Play-card deck: starter composition + viewer + tarot enhance/destroy.
 -- Gwang is a joker slot, not a deck card. No month numbers.
 
 local hwatu = require("game.hwatu")
+local effects = require("game.ui.card_effects")
 
 local M = {}
 
@@ -88,6 +89,34 @@ function M.view(d)
         by_kind = by_kind,
         by_effect = by_effect,
     }
+end
+
+local function card_at(d, index)
+    if type(d) ~= "table" or type(d.cards) ~= "table" then
+        error("deck must have cards")
+    end
+    local card = d.cards[index]
+    if type(card) ~= "table" then
+        error("deck card index out of range")
+    end
+    assert_play_card(card)
+    return card
+end
+
+function M.enhance(d, index, effect)
+    local card = card_at(d, index)
+    if not effects.is_known(effect) then
+        error("unknown card effect: " .. tostring(effect))
+    end
+    effects.apply(card, effect)
+    card.month = nil
+    card.month_name = nil
+    return card
+end
+
+function M.destroy(d, index)
+    card_at(d, index)
+    table.remove(d.cards, index)
 end
 
 return M

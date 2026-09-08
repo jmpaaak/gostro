@@ -2,6 +2,8 @@
 -- Engine-hosted. No month numbers. Gwang is a joker, not a deck card.
 
 local deck = require("game.deck")
+local tarots = require("game.tarots")
+local run = require("game.run")
 
 local M = {}
 
@@ -13,6 +15,10 @@ function M.run()
     M.test_view_kinds_and_effects()
     M.test_view_reports_editions()
     M.test_rejects_gwang_and_months()
+    M.test_enhance_grants_edition()
+    M.test_enhance_rejects_unknown_and_gwang()
+    M.test_destroy_thins_deck()
+    M.test_tarot_enhance_and_destroy()
     print("  deck: OK")
 end
 
@@ -93,6 +99,65 @@ function M.test_rejects_gwang_and_months()
         deck.view(d)
     end)
     assert(not ok, "deck viewer rejects month numbers")
+end
+
+function M.test_enhance_grants_edition()
+    local d = deck.new()
+    local before = deck.total(d)
+    local kind = d.cards[1].kind
+    local card = deck.enhance(d, 1, "foil")
+    assert(card.effect == "foil")
+    assert(d.cards[1].effect == "foil")
+    assert(d.cards[1].kind == kind)
+    assert(d.cards[1].month == nil)
+    assert(d.cards[1].month_name == nil)
+    assert(deck.total(d) == before)
+    local v = deck.view(d)
+    assert(v.by_effect.foil == 1)
+    assert(v.by_effect.none == before - 1)
+end
+
+function M.test_enhance_rejects_unknown_and_gwang()
+    local d = deck.new()
+    local ok = pcall(deck.enhance, d, 1, "gold")
+    assert(not ok, "unknown edition must error")
+    ok = pcall(deck.enhance, d, 1, "gwang")
+    assert(not ok, "gwang is not an edition")
+    assert(d.cards[1].effect == nil)
+    ok = pcall(deck.enhance, d, 0, "foil")
+    assert(not ok, "enhance index out of range")
+end
+
+function M.test_destroy_thins_deck()
+    local d = deck.new()
+    local before = deck.total(d)
+    local counts = deck.counts(d)
+    local kind = d.cards[1].kind
+    deck.destroy(d, 1)
+    assert(deck.total(d) == before - 1)
+    local after = deck.counts(d)
+    assert(after[kind] == counts[kind] - 1)
+    local v = deck.view(d)
+    assert(v.total == before - 1)
+    local ok = pcall(deck.destroy, d, 0)
+    assert(not ok, "destroy index out of range")
+    ok = pcall(deck.destroy, d, before + 1)
+    assert(not ok, "destroy past end")
+end
+
+function M.test_tarot_enhance_and_destroy()
+    local d = deck.new()
+    local before = deck.total(d)
+    local state = run.new()
+    tarots.gain(state, "the_chariot", "shop")
+    tarots.use(state, 1, d.cards, 1, { effect = "hologram" })
+    assert(d.cards[1].effect == "hologram")
+    assert(deck.view(d).by_effect.hologram == 1)
+    tarots.gain(state, "the_hanged_man", "boss")
+    tarots.use(state, 1, d.cards, 1)
+    assert(deck.total(d) == before - 1)
+    assert(deck.view(d).by_effect.hologram == 0)
+    assert(deck.view(d).total == before - 1)
 end
 
 return M

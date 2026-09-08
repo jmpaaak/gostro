@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 덱 강화/파괴 (`game/deck.lua`)
+
+- Added `deck.enhance(d, index, effect)`: foil/hologram/polychrome on a play card. Rejects unknown editions, gwang, out-of-range index. Viewer `by_effect` updates.
+- Added `deck.destroy(d, index)`: remove one play card (thin-deck). Total/counts drop by 1. Out-of-range errors.
+- Tarot `the_chariot` / `the_hanged_man` operate on `d.cards` and stay visible in `deck.view`.
+- Tests in `game/tests/deck.lua` GREEN (enhance, reject, destroy, tarot enhance+destroy).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (20) enhance+destroy slice only. Deck sort (kind / effect) is not in this slice.
+- Next slice: INBOX (20) remaining — deck sort by kind / effect on `game/deck.lua`.
+
 ## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
 
 - Created `game/deck.lua`: starter play-card deck + viewer (kinds / counts / editions).
