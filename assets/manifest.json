@@ -75,28 +75,6 @@
       "id": "play-card.pi",
       "category": "play-card",
       "status": "runtime",
-      "candidateSheet": "play-card.contact-sheet-v1",
-      "candidateCell": {
-        "index": 1,
-        "masterRegion": [
-          0,
-          0,
-          192,
-          288
-        ],
-        "runtimeRegion": [
-          0,
-          0,
-          24,
-          36
-        ],
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ]
-      },
       "master": {
         "source": "assets/masters/cards/pi.svg",
         "sourceSha256": "aebb8e897d550e97f75df63980c858b43c4649e320fd0a61f84405c0d2a2552c",
@@ -136,23 +114,18 @@
           0,
           0
         ]
-      }
-    },
-    {
-      "id": "play-card.hongdan",
-      "category": "play-card",
-      "status": "runtime",
+      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
-        "index": 2,
+        "index": 1,
         "masterRegion": [
-          192,
+          0,
           0,
           192,
           288
         ],
         "runtimeRegion": [
-          24,
+          0,
           0,
           24,
           36
@@ -163,7 +136,12 @@
           23,
           35
         ]
-      },
+      }
+    },
+    {
+      "id": "play-card.hongdan",
+      "category": "play-card",
+      "status": "runtime",
       "name": "hongdan",
       "master": {
         "source": "assets/masters/cards/hongdan.svg",
@@ -204,12 +182,48 @@
           0,
           0
         ]
+      },
+      "candidateSheet": "play-card.contact-sheet-v1",
+      "candidateCell": {
+        "index": 2,
+        "masterRegion": [
+          192,
+          0,
+          192,
+          288
+        ],
+        "runtimeRegion": [
+          24,
+          0,
+          24,
+          36
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ]
       }
     },
     {
       "id": "play-card.cheongdan",
       "category": "play-card",
       "status": "runtime",
+      "name": "cheongdan",
+      "runtime": {
+        "path": "assets/runtime/cards/cheongdan.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "8e71d7b599edcaa3048264faa800f59999f6a1c3a9db1828e322cad6911383b6",
+        "filter": "nearest"
+      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 3,
@@ -231,10 +245,15 @@
           23,
           35
         ]
-      },
-      "name": "cheongdan",
+      }
+    },
+    {
+      "id": "play-card.chodan",
+      "category": "play-card",
+      "status": "runtime",
+      "name": "chodan",
       "runtime": {
-        "path": "assets/runtime/cards/cheongdan.png",
+        "path": "assets/runtime/cards/chodan.png",
         "width": 24,
         "height": 36,
         "alphaBounds": [
@@ -243,14 +262,9 @@
           23,
           35
         ],
-        "sha256": "8e71d7b599edcaa3048264faa800f59999f6a1c3a9db1828e322cad6911383b6",
+        "sha256": "40cc71e9fc801e0086feb983cf4defb1ebac6c4592d68de10374c205842e6725",
         "filter": "nearest"
-      }
-    },
-    {
-      "id": "play-card.chodan",
-      "category": "play-card",
-      "status": "runtime",
+      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 4,
@@ -272,10 +286,15 @@
           23,
           35
         ]
-      },
-      "name": "chodan",
+      }
+    },
+    {
+      "id": "play-card.godori",
+      "category": "play-card",
+      "status": "runtime",
+      "name": "godori",
       "runtime": {
-        "path": "assets/runtime/cards/chodan.png",
+        "path": "assets/runtime/cards/godori.png",
         "width": 24,
         "height": 36,
         "alphaBounds": [
@@ -284,14 +303,9 @@
           23,
           35
         ],
-        "sha256": "40cc71e9fc801e0086feb983cf4defb1ebac6c4592d68de10374c205842e6725",
+        "sha256": "a90aaec74b9d4b19449c898f3b9874999111aa9a72de9a92602441261e4a1cc5",
         "filter": "nearest"
-      }
-    },
-    {
-      "id": "play-card.godori",
-      "category": "play-card",
-      "status": "runtime",
+      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 5,
@@ -313,20 +327,6 @@
           23,
           35
         ]
-      },
-      "name": "godori",
-      "runtime": {
-        "path": "assets/runtime/cards/godori.png",
-        "width": 24,
-        "height": 36,
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ],
-        "sha256": "a90aaec74b9d4b19449c898f3b9874999111aa9a72de9a92602441261e4a1cc5",
-        "filter": "nearest"
       }
     },
     {

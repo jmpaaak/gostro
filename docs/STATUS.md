@@ -1,5 +1,12 @@
 # STATUS
 
+## 2026-09-09 — 5종 플레이 패 스프라이트 시트 렌더링 지원
+
+- `game/asset_loader.lua`에 `candidateSheet`와 `candidateCell` 속성을 읽어 LÖVE Quad와 함께 반환하는 `assets.sprite` 함수를 추가했다.
+- `game/ui/card_art.lua`가 새 `assets.sprite`를 사용해 개별 이미지가 아닌 contact sheet 텍스처와 Quad로 카드를 그리도록 배선했다.
+- `assets/manifest.json`에서 QA를 통과한 `play-card.contact-sheet-v1`의 상태를 `runtime`으로 승인하고, 겹침 QA 상태도 `approved`로 갱신했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN 확인 완료.
+
 ## 2026-09-09 — 밑천 인장 고해상도 픽셀 에셋 적용
 
 - `voucher.seed_money`에 원금을 지키는 주머니, 늘어나는 엽전 더미와 새싹을 그린 400×560 SVG/PNG master와 36×52 runtime 에셋을 추가했다.

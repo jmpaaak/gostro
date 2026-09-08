@@ -64,11 +64,11 @@
 
 ## play-card
 
-- [ ] `play-card.pi` - play-card.pi
-- [ ] `play-card.hongdan` - hongdan
-- [ ] `play-card.cheongdan` - cheongdan
-- [ ] `play-card.chodan` - chodan
-- [ ] `play-card.godori` - godori
+- [x] `play-card.pi` - play-card.pi
+- [x] `play-card.hongdan` - hongdan
+- [x] `play-card.cheongdan` - cheongdan
+- [x] `play-card.chodan` - chodan
+- [x] `play-card.godori` - godori
 
 ## tag
 

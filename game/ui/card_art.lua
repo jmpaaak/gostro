@@ -18,14 +18,18 @@ end
 function M.load(kind)
     local id = IDS[kind]
     if not id or not love or not love.graphics then return nil end
-    return assets.texture(id)
+    return assets.sprite(id)
 end
 
 function M.draw(kind, x, y)
-    local image = M.load(kind)
+    local image, quad = M.load(kind)
     if not image then return false end
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(image, x, y)
+    if quad then
+        love.graphics.draw(image, quad, x, y)
+    else
+        love.graphics.draw(image, x, y)
+    end
     return true
 end
 

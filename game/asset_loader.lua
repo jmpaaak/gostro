@@ -7,6 +7,7 @@ local MANIFEST_PATH = "assets/manifest.json"
 local manifest_cache
 local entries_by_id
 local texture_cache = {}
+local quad_cache = {}
 
 local runtime_api = {
     read = function(path)
@@ -162,6 +163,7 @@ function M.clear_cache()
     manifest_cache = nil
     entries_by_id = nil
     texture_cache = {}
+    quad_cache = {}
 end
 
 function M.entry(id, api)
@@ -199,6 +201,33 @@ function M.texture(id, api)
     if image.setFilter then image:setFilter("nearest", "nearest") end
     texture_cache[path] = image
     return image
+end
+
+function M.sprite(id, api)
+    api = api or runtime_api
+    local entry = M.entry(id, api)
+    if not entry or entry.status ~= "runtime" then return nil end
+
+    if type(entry.candidateSheet) == "string" and type(entry.candidateCell) == "table" then
+        local image = M.texture(entry.candidateSheet, api)
+        if not image then return nil end
+        
+        local region = entry.candidateCell.runtimeRegion
+        if not region then return nil end
+        
+        local cache_key = id .. "_quad"
+        if quad_cache[cache_key] == nil then
+            local quad = love.graphics.newQuad(region[1], region[2], region[3], region[4], image:getDimensions())
+            quad_cache[cache_key] = quad
+        end
+        return image, quad_cache[cache_key]
+    else
+        local image = M.texture(id, api)
+        if image then
+            return image, nil
+        end
+        return nil
+    end
 end
 
 return M
