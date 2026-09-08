@@ -62,6 +62,12 @@
       "category": "play-card",
       "status": "candidate",
       "candidateSheet": "play-card.contact-sheet-v1",
+      "candidateCell": {
+        "index": 1,
+        "masterRegion": [0, 0, 192, 288],
+        "runtimeRegion": [0, 0, 24, 36],
+        "alphaBounds": [0, 0, 23, 35]
+      },
       "master": {
         "source": "assets/masters/cards/pi.svg",
         "sourceSha256": "aebb8e897d550e97f75df63980c858b43c4649e320fd0a61f84405c0d2a2552c",
@@ -108,6 +114,12 @@
       "category": "play-card",
       "status": "candidate",
       "candidateSheet": "play-card.contact-sheet-v1",
+      "candidateCell": {
+        "index": 2,
+        "masterRegion": [192, 0, 192, 288],
+        "runtimeRegion": [24, 0, 24, 36],
+        "alphaBounds": [0, 0, 23, 35]
+      },
       "name": "hongdan",
       "master": {
         "source": "assets/masters/cards/hongdan.svg",
@@ -147,6 +159,12 @@
       "category": "play-card",
       "status": "candidate",
       "candidateSheet": "play-card.contact-sheet-v1",
+      "candidateCell": {
+        "index": 3,
+        "masterRegion": [384, 0, 192, 288],
+        "runtimeRegion": [48, 0, 24, 36],
+        "alphaBounds": [0, 0, 23, 35]
+      },
       "name": "cheongdan"
     },
     {
@@ -154,6 +172,12 @@
       "category": "play-card",
       "status": "candidate",
       "candidateSheet": "play-card.contact-sheet-v1",
+      "candidateCell": {
+        "index": 4,
+        "masterRegion": [576, 0, 192, 288],
+        "runtimeRegion": [72, 0, 24, 36],
+        "alphaBounds": [0, 0, 23, 35]
+      },
       "name": "chodan"
     },
     {
@@ -161,6 +185,12 @@
       "category": "play-card",
       "status": "candidate",
       "candidateSheet": "play-card.contact-sheet-v1",
+      "candidateCell": {
+        "index": 5,
+        "masterRegion": [768, 0, 192, 288],
+        "runtimeRegion": [96, 0, 24, 36],
+        "alphaBounds": [0, 0, 23, 35]
+      },
       "name": "godori"
     },
     {

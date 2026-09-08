@@ -4,6 +4,7 @@ local M = {}
 
 function M.run()
     require("game.tests.asset_loader").run()
+    require("game.tests.card_candidate_manifest").run()
 
     assert(card_art.path("pi") == nil, "QA-rejected pi candidate must keep its fallback")
     assert(card_art.path("hongdan") == nil, "unapproved card candidates must keep their fallback")
