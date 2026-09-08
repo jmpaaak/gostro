@@ -145,3 +145,15 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (17) → 처리 완료.
 - Next slice: INBOX (18) 타로 카드 (카드 변환/파괴) (`game/tarots.lua`).
+
+## 2026-09-08 — 타로 카드 변환/파괴 (`game/tarots.lua`)
+
+- Created `game/tarots.lua`: Balatro-style tarot consumables.
+  - Pool: `the_magician` (convert play-card kind) + `the_hanged_man` (destroy a card).
+  - Consumable slots max 2; `crystal_ball` voucher raises max to 3.
+  - `gain(state, id, source)` from shop or boss reward; `use` converts or destroys then consumes the slot.
+  - Convert keeps play-card contract: no month numbers/names, no gwang, no mae/ppeok/otti.
+- Tests in `game/tests/tarots.lua` GREEN (pool, slots, shop/boss gain, convert, destroy, consume).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- Enhance (edition grant) and copy are not in this slice.
+- Next slice: INBOX (18) remaining — tarot enhance + copy (`game/tarots.lua`).
