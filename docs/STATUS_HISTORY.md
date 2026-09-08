@@ -134,3 +134,36 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (8) → 처리 완료.
 - Next slice: INBOX (9) 상점 UI 모듈 (`game/ui/shop.lua`).
+
+## Archived from STATUS.md (2026-09-08 11:04)
+
+## 2026-09-08 — 상점 UI 모듈 (game/ui/shop.lua)
+
+- Created `game/ui/shop.lua`: shop screen with 3 gwang joker cards, reroll, next round, money.
+  - `new(money)`: generates 3 random gwang cards from pool (chips/mult/yaku_mult) with prices.
+  - `buy_card(s, idx)`: purchase card at slot 1-3, deducts price, marks sold. Fails on insufficient money, invalid index, or already-sold.
+  - `reroll(s)`: replaces unsold cards with fresh random gwang, costs $5. Fails if money < 5.
+  - `can_reroll(s)`: boolean check for reroll affordability.
+  - `hit_test(s, px, py)`: returns "reroll", "next", card index (1-3), or nil.
+  - `money_text(s)`: "$N" display string.
+  - `card_positions()`: 3-slot layout centred in 320×180 viewport.
+  - `draw(s)`: gold gwang cards with ★ + name + price tag, reroll button (green), next round button (blue), money display, sold-out slots.
+- Layout: 36×52px cards, 10px gap, buttons 60×18px below cards.
+- Tests in `game/tests/shop_ui.lua`: new state, buy success/fail (money/index/sold), reroll success/fail, can_reroll, hit_test (reroll/next/cards/miss), money_text.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (9) → 처리 완료.
+- Next slice: INBOX (10) 블라인드 선택 화면 모듈 (`game/ui/blind_select.lua`).
+
+## 2026-09-08 — 블라인드 선택 화면 모듈 (game/ui/blind_select.lua)
+
+- Created `game/ui/blind_select.lua`: blind selection screen with 3 cards (small/big/boss).
+  - `new(ante)`: generates 3 blind entries with targets from `run.blind_target`, reward text (+$3/+$5/+$8).
+  - `select_blind(s, idx)`: sets `s.selected` to the blind kind. Rejects out-of-range indices.
+  - `hit_test(s, px, py)`: returns card index (1-3) or nil.
+  - `card_positions()`: 3-slot layout centred in 320×180 viewport (50×70px cards, 14px gap).
+  - `display_name(kind)`: Korean blind names (스몰/빅/보스 블라인드).
+  - `draw(s)`: colour-coded cards (blue/gold/red) with name, target score, reward text, selection highlight, instruction hint.
+- Tests in `game/tests/blind_select_ui.lua`: new state (3 blinds, ante/targets/rewards), targets match run engine, ante 2 scaling, select_blind success/reject, hit_test cards/miss, display_name.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (10) → 처리 완료.
+- Next slice: INBOX (11) play 씬 리빌드: UI 모듈 통합 (`game/scenes/play.lua`).
