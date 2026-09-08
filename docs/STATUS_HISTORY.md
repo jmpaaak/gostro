@@ -1330,3 +1330,19 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, 모든 실제 캡처 QA, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (326 files).
 - INBOX (27)은 나머지 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
 - Next slice: `voucher.seed_money` 밑천 인장의 400×560 master/runtime 에셋을 만들고 독립 manifest·LÖVE 상점 캡처 검증을 추가한다.
+
+## Archived from STATUS.md (2026-09-09 04:15)
+
+
+## 2026-09-09 — 5종 플레이 패 스프라이트 시트 렌더링 지원
+
+## Archived from STATUS.md (2026-09-09 04:16)
+
+- `game/asset_loader.lua`에 `candidateSheet`와 `candidateCell` 속성을 읽어 LÖVE Quad와 함께 반환하는 `assets.sprite` 함수를 추가했다.
+- `game/ui/card_art.lua`가 새 `assets.sprite`를 사용해 개별 이미지가 아닌 contact sheet 텍스처와 Quad로 카드를 그리도록 배선했다.
+- `assets/manifest.json`에서 QA를 통과한 `play-card.contact-sheet-v1`의 상태를 `runtime`으로 승인하고, 겹침 QA 상태도 `approved`로 갱신했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN 확인 완료.
+
+## Archived from STATUS.md (2026-09-09 04:27)
+
+## 2026-09-09 — 밑천 인장 고해상도 픽셀 에셋 적용

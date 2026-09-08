@@ -119,6 +119,10 @@ shop-pack-qa:
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-seed-money-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-seed-money-love-v1.png"
+	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=antimatter \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-antimatter-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-antimatter-love-v1.png"
 
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .

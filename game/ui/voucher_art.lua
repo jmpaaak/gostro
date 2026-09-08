@@ -11,6 +11,7 @@ local IDS = {
     reroll_surplus = "voucher.reroll_surplus",
     clearance_sale = "voucher.clearance_sale",
     seed_money = "voucher.seed_money",
+    antimatter = "voucher.antimatter",
 }
 
 function M.asset_id(item)

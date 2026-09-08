@@ -86,6 +86,17 @@ function M.run()
     assert(seed_money.runtime.filter == "nearest")
     assert(assets.runtime_path(seed_money_id) == "assets/runtime/voucher/seed-money-v1.png")
 
+    local antimatter_id = voucher_art.asset_id({ kind = "voucher", identity = "antimatter" })
+    assert(antimatter_id == "voucher.antimatter", "empty-space seal must resolve tracked artwork")
+    local antimatter = assets.entry(antimatter_id)
+    assert(antimatter and antimatter.status == "runtime", "empty-space seal artwork must be promoted")
+    assert(antimatter.master.width == 400 and antimatter.master.height == 560,
+        "empty-space seal must preserve a 400x560 master")
+    assert(antimatter.runtime.width == 36 and antimatter.runtime.height == 52,
+        "empty-space seal runtime must fit its shop slot")
+    assert(antimatter.runtime.filter == "nearest")
+    assert(assets.runtime_path(antimatter_id) == "assets/runtime/voucher/antimatter-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

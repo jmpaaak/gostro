@@ -981,8 +981,49 @@
     {
       "id": "voucher.antimatter",
       "category": "voucher",
-      "status": "pending",
-      "name": "\ubc18\ubb3c\uc9c8"
+      "status": "runtime",
+      "name": "\ud5c8\uacf5 \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/antimatter-v1.svg",
+        "sourceSha256": "c6d3dba3846952c232dcc0e4eff6e46ba34e4a69452d9f4df5f73c0530a848d9",
+        "path": "assets/masters/voucher/antimatter-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "c5eef210c561565483ea0cfa20caf16ffac77010111dda3591ef5449eb30d87f",
+        "provenance": "Project-authored high-resolution vector master depicting traditional cloud bands framing an impossible empty center with split gwang rays and an empty ring for an additional gwang slot; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/antimatter-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          51
+        ],
+        "sha256": "90d94539fde6666d9eb9f040f0cbde862c6f81b51a3a2c6a8574bce0762d2fca",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/antimatter-v1.report.json",
+        "reportSha256": "57d6e114dd5120c3a9f421f21bbc849c475c605d0b7a06d014ca3e661a5ba0f6"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.crystal_ball",
