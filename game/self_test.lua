@@ -32,6 +32,7 @@ function M.run()
     require("game.tests.tarots").run()
     require("game.tests.economy").run()
     require("game.tests.deck").run()
+    require("game.tests.gwang_catalog").run()
     print("GOSTRO_UNIT_OK")
 end
 

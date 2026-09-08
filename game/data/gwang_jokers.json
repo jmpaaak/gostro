@@ -1,0 +1,36 @@
+{
+  "jokers": [
+    {
+      "id": "chips",
+      "name": { "ko": "칩", "en": "Chips" },
+      "rarity": "common",
+      "trigger": "always",
+      "effect": { "chips": 30 },
+      "desc": { "ko": "매 핸드 +30 칩", "en": "+30 chips every hand" }
+    },
+    {
+      "id": "mult",
+      "name": { "ko": "배수", "en": "Mult" },
+      "rarity": "common",
+      "trigger": "always",
+      "effect": { "mult": 4 },
+      "desc": { "ko": "매 핸드 +4 배수", "en": "+4 mult every hand" }
+    },
+    {
+      "id": "always_chips_small",
+      "name": { "ko": "잔칩", "en": "Small Chips" },
+      "rarity": "common",
+      "trigger": "always",
+      "effect": { "chips": 10 },
+      "desc": { "ko": "매 핸드 +10 칩", "en": "+10 chips every hand" }
+    },
+    {
+      "id": "always_mult_small",
+      "name": { "ko": "잔배수", "en": "Small Mult" },
+      "rarity": "common",
+      "trigger": "always",
+      "effect": { "mult": 2 },
+      "desc": { "ko": "매 핸드 +2 배수", "en": "+2 mult every hand" }
+    }
+  ]
+}

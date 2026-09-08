@@ -1,24 +1,15 @@
 # STATUS
-## 2026-09-08 — 덱 정렬 (`game/deck.lua`)
+## 2026-09-08 — 광 조커 always 트리거 (`game/gwang_catalog.lua`)
 
-- Added `deck.sort(d, key)` with `key = "kind"` or `"effect"`.
-  - Kind: hongdan → cheongdan → chodan → godori → pi (stable within kind by effect).
-  - Effect: none → foil → hologram → polychrome (stable within effect by kind).
-  - Rejects unknown keys (month/mae), missing key, gwang, month numbers.
-- Tests in `game/tests/deck.lua` GREEN (sort kind, sort effect, rejects).
+- Created `game/data/gwang_jokers.json` + `game/gwang_catalog.lua`.
+  - Catalog load: `all()` / `get(id)`. This slice trigger = `always` only.
+  - `chips` +30 chips, `mult` +4 mult every scored hand. Extra always entries: `always_chips_small` (+10), `always_mult_small` (+2).
+  - `apply(ctx)` loops equipped `state.gwang` identities; unknown ids are no-ops.
+- `game/hwatu.lua` `evaluate(hand, state)` runs the catalog apply loop after edition bonuses. Result includes `gwang_triggers`.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (load, get, apply chips/mult, evaluate, no-gwang unchanged, unknown noop).
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (20) complete: viewer + enhance/destroy + sort.
-- Next slice: INBOX (21) — 광 조커 트리거 조건 다양화 (`game/gwang_catalog.lua`).
-
-## 2026-09-08 — 덱 강화/파괴 (`game/deck.lua`)
-
-- Added `deck.enhance(d, index, effect)`: foil/hologram/polychrome on a play card. Rejects unknown editions, gwang, out-of-range index. Viewer `by_effect` updates.
-- Added `deck.destroy(d, index)`: remove one play card (thin-deck). Total/counts drop by 1. Out-of-range errors.
-- Tarot `the_chariot` / `the_hanged_man` operate on `d.cards` and stay visible in `deck.view`.
-- Tests in `game/tests/deck.lua` GREEN (enhance, reject, destroy, tarot enhance+destroy).
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (20) enhance+destroy slice only. Deck sort (kind / effect) is not in this slice.
-- Next slice: INBOX (20) remaining — deck sort by kind / effect on `game/deck.lua`.
+- INBOX (21) always-trigger slice only. Kind/yaku/economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (b) 특정 종류 포함 시 트리거 (홍단 있으면 ×2) on `game/gwang_catalog.lua`.
 
 ## 2026-09-08 — 덱 뷰어 (`game/deck.lua`)
 

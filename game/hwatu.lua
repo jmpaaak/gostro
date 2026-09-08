@@ -98,6 +98,17 @@ function M.evaluate(hand, state)
     
     local extras
     chips, mult, extras = effects.apply_bonuses(hand, chips, mult)
+    local gwang_triggers
+    if state then
+        local catalog = require("game.gwang_catalog")
+        chips, mult, gwang_triggers = catalog.apply({
+            chips = chips,
+            mult = mult,
+            yaku = yaku,
+            hand = hand,
+            state = state,
+        })
+    end
     return {
         yaku = yaku,
         chips = chips,
@@ -106,6 +117,7 @@ function M.evaluate(hand, state)
         effect_chips = extras.effect_chips,
         effect_mult_add = extras.effect_mult_add,
         effect_mult_mul = extras.effect_mult_mul,
+        gwang_triggers = gwang_triggers,
     }
 end
 
