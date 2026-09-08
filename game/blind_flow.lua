@@ -183,10 +183,30 @@ function M.leave_shop(state)
 end
 
 function M.skip(state, kind, tag_id)
+    if state.phase ~= "play" then error("skip only during play") end
     if not tag_id then error("skip requires a tag") end
     if kind == "boss" then error("boss cannot skip") end
+    if kind ~= "small" and kind ~= "big" then error("unknown blind") end
     if kind ~= state.blind then error("cannot skip a future blind") end
-    run.skip_blind(state, tag_id)
+    tags.by_id(tag_id) -- validate before mutating the run
+
+    tags.apply(state, tag_id)
+    local next_kind = kind == "small" and "big" or "boss"
+    M.enter(state, next_kind)
+    state.round_score = 0
+    return {
+        ante = state.ante,
+        kind = state.blind,
+        phase = state.phase,
+        tag_id = tag_id,
+        boss = state.boss_id and { id = state.boss_id } or nil,
+    }
+end
+
+--- Compatibility entry point for callers that historically omitted a tag id.
+function M.skip_current(state, tag_id)
+    local selected_tag = tag_id or tags.random().id
+    return M.skip(state, state.blind, selected_tag)
 end
 
 return M

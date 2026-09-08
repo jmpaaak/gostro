@@ -1,13 +1,5 @@
 # STATUS
 
-## 2026-09-08 — 아르카나 팩 개봉 상태 (`game/packs.lua`)
-
-- Created pure `game/packs.lua`: buying an Arcana Pack reveals three tarot choices from the seeded shop RNG and allows one choice or skip; opening does not silently grant a consumable.
-- `game/shop_purchases.lua` now applies pack purchases and preserves its transaction rollback when another pack is already open.
-- Tests in `game/tests/packs.lua` cover deterministic choices, one pending pack, choose, and skip; `game/tests/shop_purchases.lua` covers successful pack payment and failed-open rollback.
-- TDD RED was observed from the prior pack placeholder; `make verify LOVE=/Users/jm/.local/bin/love` is GREEN (`GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`, 158 files).
-- Next slice: add an independent `game/ui/pack.lua` choice/skip overlay and route the pending-pack input from the play scene with require/delegation only.
-
 ## 2026-09-08 — 아르카나 팩 선택 오버레이 (`game/ui/pack.lua`)
 
 - Added a pure render model and shared hit-test bounds for three revealed tarot choices plus `건너뛰기` in a modal 320×180 overlay.
@@ -123,5 +115,13 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `boss_blinds: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: small/big 블라인드 건너뛰기의 검증·태그 적용·다음 블라인드 진입을 `blind_flow`로 옮기고 `game.run.skip_blind`를 호환 delegate로 축소한다.
+
+## 2026-09-08 — 블라인드 건너뛰기 전환 분리
+
+- `game/blind_flow.skip`이 play phase·현재 small/big blind·명시적 태그를 전부 검증한 뒤 태그 적용, 다음 big/boss 진입, 라운드 점수 초기화를 하나의 전환으로 소유한다.
+- `game.run.skip_blind`는 태그를 생략하던 기존 호출까지 보존하는 `blind_flow.skip_current` 호환 delegate로 축소되어 `game.run`의 직접 `game.tags` 의존성이 제거됐다.
+- TDD RED: `blind_flow.skip`이 monkey-patched legacy `run.skip_blind`를 호출해 실패하는 것을 확인했다. 구현 후 독립 전환, boss 선택, 잘못된 phase/future blind 비변이 거부와 기존 `run.skip_blind` 경로가 GREEN이다.
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 블라인드 클리어의 목표 검증 이후 cash-out·승리 기록·상점 준비를 `blind_flow`로 옮기고 `game.run.clear_blind`를 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

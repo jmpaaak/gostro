@@ -13,7 +13,6 @@ local PLAY_CARDS = {
 
 local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
 
-local tags = require("game.tags")
 local vouchers = require("game.vouchers")
 local economy = require("game.economy")
 local rng = require("game.rng")
@@ -126,25 +125,9 @@ function M.deal_kinds(state, n)
     return kinds
 end
 
---- Skip the current small/big blind and claim a tag reward.
--- Boss blinds cannot be skipped. Stays in play on the next blind.
+--- Compatibility delegate; skip rules and progression are owned by game.blind_flow.
 function M.skip_blind(state, tag_id)
-    if state.phase ~= "play" then
-        error("skip only during play")
-    end
-    if state.blind == "boss" then
-        error("cannot skip boss blind")
-    end
-    if state.blind ~= "small" and state.blind ~= "big" then
-        error("unknown blind")
-    end
-    tags.apply(state, tag_id or tags.random().id)
-    if state.blind == "small" then
-        enter_blind(state, "big")
-    else
-        enter_blind(state, "boss")
-    end
-    state.round_score = 0
+    return require("game.blind_flow").skip_current(state, tag_id)
 end
 
 function M.buy_gwang(state, card)

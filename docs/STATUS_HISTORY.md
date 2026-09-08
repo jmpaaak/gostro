@@ -809,3 +809,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/shop_purchases.lua` verify successful voucher purchase and rollback on failure.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
 - Next slice: `play.lua` 및 기존 UI가 여전히 거대 모듈 `run.lua`에 의존하고 있으므로, 이를 새로 작성된 개별 모듈(`blind_flow` 등)로 교체하고 `run.lua`를 해체하는 남은 작업(또는 팩 개봉 기능 추가)을 진행한다.
+
+## Archived from STATUS.md (2026-09-08 20:29)
+
+
+## 2026-09-08 — 아르카나 팩 개봉 상태 (`game/packs.lua`)
+
+- Created pure `game/packs.lua`: buying an Arcana Pack reveals three tarot choices from the seeded shop RNG and allows one choice or skip; opening does not silently grant a consumable.
+- `game/shop_purchases.lua` now applies pack purchases and preserves its transaction rollback when another pack is already open.
+- Tests in `game/tests/packs.lua` cover deterministic choices, one pending pack, choose, and skip; `game/tests/shop_purchases.lua` covers successful pack payment and failed-open rollback.
+- TDD RED was observed from the prior pack placeholder; `make verify LOVE=/Users/jm/.local/bin/love` is GREEN (`GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`, 158 files).
+- Next slice: add an independent `game/ui/pack.lua` choice/skip overlay and route the pending-pack input from the play scene with require/delegation only.

@@ -82,8 +82,12 @@ function M.test_selection_only_accepts_current_blind()
     fails(function() blind_flow.select(state, "small") end, "cannot select outside play")
 end
 
-function M.test_skip_delegates_progression_and_tag_application_to_run()
+function M.test_skip_owns_progression_and_tag_application()
     local state = run.new("blind-flow-skip")
+    local legacy_skip = run.skip_blind
+    run.skip_blind = function()
+        error("blind_flow.skip must not delegate to run.skip_blind")
+    end
     blind_flow.skip(state, "small", "investment")
     assert(state.blind == "big" and state.phase == "play")
     assert(state.tags.pending_money == 15)
@@ -99,6 +103,15 @@ function M.test_skip_delegates_progression_and_tag_application_to_run()
     local future = run.new()
     fails(function() blind_flow.skip(future, "big", "coupon") end, "cannot skip a future blind")
     assert(future.blind == "small" and #future.tags.owned == 0)
+
+    local outside_play = run.new()
+    outside_play.phase = "shop"
+    fails(function() blind_flow.skip(outside_play, "small", "coupon") end,
+        "cannot skip outside play")
+    assert(outside_play.blind == "small" and #outside_play.tags.owned == 0,
+        "rejected skip does not grant a tag or advance")
+
+    run.skip_blind = legacy_skip
 end
 
 function M.test_boss_selection_and_target_are_owned_by_blind_flow()
@@ -237,7 +250,7 @@ function M.run()
     M.test_view_exposes_sequential_blinds_and_run_targets()
     M.test_skip_eligibility_requires_current_small_or_big_and_tag()
     M.test_selection_only_accepts_current_blind()
-    M.test_skip_delegates_progression_and_tag_application_to_run()
+    M.test_skip_owns_progression_and_tag_application()
     M.test_boss_selection_and_target_are_owned_by_blind_flow()
     M.test_enter_owns_boss_setup_and_cleanup()
     M.test_completed_progression_is_derived_from_run_state()
