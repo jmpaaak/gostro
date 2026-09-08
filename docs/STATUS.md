@@ -148,3 +148,11 @@
 - Tests in `game/tests/economy.lua` GREEN (reward, hand bonus, cash-out components, interest-before-payout, clear_blind shop + win).
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (19) complete. Next slice: INBOX (20) 덱 편집 + 카드 강화 (`game/deck.lua`).
+
+## 2026-09-08 — Balatro New Run 실기기 관찰 사전 점검
+
+- `docs/BALATRO_NEW_RUN_ANALYSIS.md`에 직접 관찰 증거 규칙과 New Run→상점 체크포인트 표를 추가했다.
+- 물리 iPhone Air(iOS 26.6.1), Appium 3.7.0, XCUITest driver 12.10.0 설치 및 연결/잠금 해제 상태를 확인했다.
+- Appium 서버는 ready였지만 CoreDevice RSD 할당 실패로 설치 앱 조회와 WDA 시작이 실패했다. Balatro 실행·터치·캡처 및 실기기 QA는 아직 수행하지 못했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- Next slice: CoreDevice RSD 연결을 복구하고 실제 설치 앱 목록에서 Balatro bundle identifier를 확인한 뒤, 앱 시작 화면의 PNG/page-source 증거 묶음을 수집한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).
