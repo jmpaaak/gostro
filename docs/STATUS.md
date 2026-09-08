@@ -1,14 +1,5 @@
 # STATUS
 
-## 2026-09-08 — 시드 기반 랜덤 상점 실게임 연결
-
-- 블라인드 클리어 후 `game/scenes/play.lua`가 기존 UI 난수 상점 대신 `game/shop_engine.lua`로 랜덤 제안 3개를 생성한다.
-- 실제 리롤은 shop RNG, 증가 비용, 무료 리롤 태그와 바우처 할인을 사용하며 돈을 `run_state`에서 단일 소유한다.
-- 랜덤 광·행성·타로 구매는 shop engine에서 원자적으로 결제한 뒤 런에 적용하고, 적용 실패 시 결제와 sold 상태를 롤백한다.
-- `game/tests/play_integration.lua`에서 실게임 상점 엔진 상태, 무료 리롤 태그 소비, 광 구매 적용을 회귀 검증했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
-- Next slice: `game/ui/shop.lua`가 engine의 추가 랜덤 슬롯·팩·바우처 슬롯을 모두 표시하고 hit-test하도록 순수 UI 계약을 확장한다.
-
 ## 2026-09-08 — 엔진 상점 전체 슬롯 UI 연결
 
 - `game/ui/shop.lua`가 legacy `cards`뿐 아니라 `shop_engine`의 통합 `slots`를 순수 `slot_views` 계약으로 변환한다.
