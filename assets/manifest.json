@@ -1075,8 +1075,49 @@
     {
       "id": "voucher.hone",
       "category": "voucher",
-      "status": "pending",
-      "name": "\uc5f0\ub9c8"
+      "status": "runtime",
+      "name": "\ubcbc\ub9bc \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/hone-v1.svg",
+        "sourceSha256": "29527a615eeb054ae7dbf86178e893a9e40c9ed830d100cdef173192d5be9b2b",
+        "path": "assets/masters/voucher/hone-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "b556e180a0a85f942988f62371c714b197f0f5430b8c6771ba27b1fcc58167fb",
+        "provenance": "Project-authored high-resolution vector master depicting a smith's hammer striking a glowing card-shaped billet, with two sparks for the +2 edition-rate effect; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/hone-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          1,
+          35,
+          50
+        ],
+        "sha256": "054a7c7d4a43ecaf0a7d6cecdc58bbda5144310b62f58b51ba1d9b96167438b6",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/hone-v1.report.json",
+        "reportSha256": "24c6c84d223f04c4cb1e16b390f7bb65a2a830ac82d3ccaef6f793a972b64de8"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.directors_cut",

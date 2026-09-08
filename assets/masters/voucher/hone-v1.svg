@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f2dfb4"/><stop offset="0.55" stop-color="#c69a62"/><stop offset="1" stop-color="#6c3d3d"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4f1d7"/><stop offset="0.32" stop-color="#a9b7b1"/><stop offset="0.7" stop-color="#53626c"/><stop offset="1" stop-color="#202b3a"/>
+    </linearGradient>
+    <radialGradient id="heat" cx="50%" cy="45%" r="58%">
+      <stop offset="0" stop-color="#fff1a6"/><stop offset="0.35" stop-color="#f5a23d"/><stop offset="0.72" stop-color="#b83b2e"/><stop offset="1" stop-color="#541f2c"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter>
+  </defs>
+
+  <rect x="28" y="27" width="344" height="508" rx="34" fill="#17141d" opacity=".5" filter="url(#shadow)"/>
+  <rect x="20" y="18" width="360" height="510" rx="32" fill="#3b1f2b" stroke="#130d16" stroke-width="12"/>
+  <rect x="34" y="32" width="332" height="482" rx="23" fill="url(#paper)" stroke="#783b37" stroke-width="9"/>
+
+  <!-- Forge-cloud frame keeps the permanent upgrade in the Korean seal family. -->
+  <path d="M50 84Q69 55 95 77Q119 48 145 78Q167 56 188 79Q166 102 140 89Q113 114 86 92Q67 103 50 84Z" fill="#73352f" stroke="#351d29" stroke-width="7"/>
+  <path d="M350 458Q331 487 305 465Q281 494 255 464Q233 486 212 463Q234 440 260 453Q287 428 314 450Q333 439 350 458Z" fill="#73352f" stroke="#351d29" stroke-width="7"/>
+  <path d="M52 119H348M52 427H348" stroke="#4a2630" stroke-width="11"/>
+  <path d="M56 119l18-13 18 13 18-13 18 13 18-13 18 13 18-13 18 13 18-13 18 13 18-13 18 13 18-13 18 13 18-13 18 13" fill="none" stroke="#e1ad55" stroke-width="6"/>
+
+  <!-- Two sparks directly encode the +2 edition-rate effect. -->
+  <g fill="#ffe28a" stroke="#873628" stroke-width="6" stroke-linejoin="round">
+    <path d="M104 157l9 20 21 4-16 14 4 22-19-11-20 10 5-21-15-15 21-3z"/>
+    <path d="M299 153l9 20 21 4-16 14 4 22-19-11-20 10 5-21-15-15 21-3z"/>
+  </g>
+
+  <!-- A smith's hammer strikes a glowing card-shaped billet. -->
+  <g transform="rotate(-34 200 265)">
+    <rect x="181" y="145" width="39" height="193" rx="15" fill="#743f2d" stroke="#311d25" stroke-width="10"/>
+    <path d="M119 134h151l24 35-25 52H121l-24-33z" fill="url(#steel)" stroke="#242430" stroke-width="11" stroke-linejoin="round"/>
+    <path d="M130 153h119" stroke="#f9efcf" stroke-width="9" stroke-linecap="round" opacity=".8"/>
+  </g>
+  <path d="M132 326L200 291l69 35-19 99H151Z" fill="url(#heat)" stroke="#3c2630" stroke-width="11" stroke-linejoin="round"/>
+  <path d="M165 337l35-18 35 18-9 52h-52z" fill="#ffd86c" stroke="#9d4030" stroke-width="8"/>
+  <path d="M182 354h36M188 371h24" stroke="#6d2830" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- Impact rays survive the 36x52 conversion and communicate active honing. -->
+  <g stroke="#fff0a2" stroke-width="10" stroke-linecap="round">
+    <path d="M200 250v-29M154 268l-22-23M246 268l22-23M140 307h-29M260 307h29"/>
+  </g>
+
+  <rect x="282" y="361" width="61" height="61" rx="7" fill="#b63337" stroke="#691c29" stroke-width="8"/>
+  <path d="M295 375h33v33h-33zm11 0v33m12-33v33m-23-16h33" fill="none" stroke="#ead69c" stroke-width="6"/>
+  <path d="M151 18h98l-13 28h-72z" fill="#d6a34e" stroke="#5b3028" stroke-width="7"/>
+  <circle cx="200" cy="31" r="8" fill="#a73b32"/>
+</svg>

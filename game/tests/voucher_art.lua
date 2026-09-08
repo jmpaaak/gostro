@@ -108,6 +108,17 @@ function M.run()
     assert(crystal_ball.runtime.filter == "nearest")
     assert(assets.runtime_path(crystal_ball_id) == "assets/runtime/voucher/crystal-ball-v1.png")
 
+    local hone_id = voucher_art.asset_id({ kind = "voucher", identity = "hone" })
+    assert(hone_id == "voucher.hone", "forging seal must resolve tracked artwork")
+    local hone = assets.entry(hone_id)
+    assert(hone and hone.status == "runtime", "forging seal artwork must be promoted")
+    assert(hone.master.width == 400 and hone.master.height == 560,
+        "forging seal must preserve a 400x560 master")
+    assert(hone.runtime.width == 36 and hone.runtime.height == 52,
+        "forging seal runtime must fit its shop slot")
+    assert(hone.runtime.filter == "nearest")
+    assert(assets.runtime_path(hone_id) == "assets/runtime/voucher/hone-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end
