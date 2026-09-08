@@ -50,3 +50,11 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (3) → 처리 완료.
 - Next slice: INBOX (4) 카드 렌더링 모듈 (`game/ui/card.lua`).
+
+## 2026-09-08 — 카드 렌더링 모듈 (game/ui/card.lua)
+
+- Created `game/ui/card.lua`: single hwatu card widget — new/toggle_select/draw_y/symbol/bg_color/hit_test/draw. 24×36px, 8px lift on select, 5 play kinds only (gwang rejected). Background rect + kind symbol + selection border highlight.
+- Tests in `game/tests/card_ui.lua`: constants, new, toggle, draw_y, symbol, hit_test (including lifted hitbox), bg_color for all kinds.
+- `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (4) → 처리 완료.
+- Next slice: INBOX (5) 핸드 디스플레이 모듈 (`game/ui/hand.lua`).

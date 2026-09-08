@@ -6,13 +6,6 @@
 
 ### Phase B — 핵심 UI 모듈 개발
 
-(4) **카드 렌더링 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/card.lua` (새 모듈)
-  - 화투 카드 한 장 그리기: 배경 직사각형 + 종류 심볼(★/깃발/난초/동물/점)
-  - 카드 크기: 24×36px (320×180 기준). 선택 시 위로 8px 올림.
-  - hover 없음 (터치 전용). 탭으로 선택/해제 토글.
-  - 테스트: `game/tests/card_ui.lua`
-
 (5) **핸드 디스플레이 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/hand.lua` (새 모듈)
   - 핸드 카드 8장을 하단에 가로 배치 (발라트로 스타일 겹침 배열)
@@ -73,6 +66,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (4) **카드 렌더링 모듈** (msg `1546674255045992608`)
+    - `game/ui/card.lua`: 24×36px 카드 위젯 (5종 심볼, 선택 리프트, hit_test).
+    - `game/tests/card_ui.lua` GREEN. `make verify` GREEN.
 
   (3) **고스트로 UI 와이어프레임 생성** (msg `1546674255045992608`)
     - `tools/gen_wireframe.py` PIL 스크립트로 320×180 와이어프레임 4장 생성 (play/shop/blind_select/result).
