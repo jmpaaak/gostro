@@ -1117,10 +1117,51 @@
     {
       "id": "gwang.thin_deck_x3",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "얇은 덱",
         "en": "Thin Deck"
+      },
+      "master": {
+        "source": "assets/masters/gwang/thin-deck-x3-v1.svg",
+        "sourceSha256": "271d9fb035071e6425c3e3f2c9c5a6d4b908c218467d8c6461e80bff532b1203",
+        "path": "assets/masters/gwang/thin-deck-x3-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "e299409d397ac2cecae9d51a4abaf81dacf1c6d6b597596d1f75945f95b833f6",
+        "provenance": "Project-authored high-resolution vector master showing a compressed side-profile hwatu deck beneath three linked multiplier seals on purple lacquer; no month or text labels."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/thin-deck-x3-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "15ad04dc0c5d64c5f9d672a6437d2fe39d09558879bb7b42f4b7fa9035b2701e",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/thin-deck-x3-v1.report.json",
+        "reportSha256": "a00476471490a746d95efb68983309ed8c6c4dc2f031580588e5a59810432c00"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

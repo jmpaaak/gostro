@@ -171,6 +171,17 @@ function M.run()
     assert(assets.runtime_path("gwang.pi_yaku_mult") ==
         "assets/runtime/gwang/pi-yaku-mult-v1.png")
 
+    local thin_deck = assets.entry("gwang.thin_deck_x3")
+    assert(thin_deck and thin_deck.status == "runtime",
+        "thin deck gwang must have tracked runtime artwork")
+    assert(thin_deck.master.width == 448 and thin_deck.master.height == 256,
+        "thin deck gwang must preserve its high-resolution slot master")
+    assert(thin_deck.runtime.width == 56 and thin_deck.runtime.height == 32,
+        "thin deck gwang runtime must scale exactly into a 28x16 slot")
+    assert(thin_deck.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.thin_deck_x3") ==
+        "assets/runtime/gwang/thin-deck-x3-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

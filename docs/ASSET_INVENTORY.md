@@ -35,7 +35,7 @@
 - [x] `gwang.cheongdan_chips` - 청단 칩 / Cheongdan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.chodan_chips` - 초단 칩 / Chodan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.pi_yaku_mult` - 피 족보 / Pi Yaku (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.thin_deck_x3` - {'ko': '얇은 덱', 'en': 'Thin Deck'}
+- [x] `gwang.thin_deck_x3` - 얇은 덱 / Thin Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.tiny_deck_chips` - {'ko': '아주 얇은 덱', 'en': 'Tiny Deck'}
 - [ ] `gwang.lean_deck_mult` - {'ko': '날씬한 덱', 'en': 'Lean Deck'}
 - [ ] `gwang.rich_mult` - {'ko': '부자', 'en': 'Rich'}
