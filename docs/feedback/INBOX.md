@@ -6,14 +6,6 @@
 
 ### Phase C — 씬 통합
 
-(11) **play 씬 리빌드: UI 모듈 통합** (msg `1546674255045992608`)
-  - 담당: `game/scenes/play.lua` (기존 파일 교체, 모든 UI 모듈 require)
-  - 게임 상태 머신: `blind_select → playing → scoring → shop → next_blind`
-  - 각 상태에서 해당 UI 모듈만 draw/update
-  - `game/run.lua` + `game/hwatu.lua` 엔진 연동
-  - `play.lua`는 위임만, 800줄 한도 엄수
-  - 테스트: `game/tests/play_integration.lua`
-
 (12) **점수 연출 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/score_anim.lua` (새 모듈)
   - 발라트로 스타일: 각 카드에서 칩 팝업 → 배수 적용 → 최종 합산 카운트업
@@ -116,6 +108,10 @@
   - 테스트: `python3 -m unittest tools.test_gwang_editor -v` (JSON 스키마 검증)
 
 ## 처리 완료
+
+  (11) **play 씬 리빌드: UI 모듈 통합** (msg `1546674255045992608`)
+    - `game/scenes/play.lua`: 상태 머신 `blind_select → playing → shop → next blind_select`. 모든 UI 모듈 require + 위임. `game/run.lua` + `game/hwatu.lua` 엔진 연동. 광 조커 보너스 적용. < 250줄 순수 글루.
+    - `game/tests/play_integration.lua` GREEN. `make verify` GREEN.
 
   (10) **블라인드 선택 화면 모듈** (msg `1546674255045992608`)
     - `game/ui/blind_select.lua`: 스몰/빅/보스 3장 카드 레이아웃 (50×70px, 색상 구분), 목표 점수 + 보상 표시, 선택 탭 → 해당 블라인드 진입, hit_test.
