@@ -8,6 +8,7 @@ local run_rules     = require("game.run_rules")
 local round_engine  = require("game.round_engine")
 local scoring       = require("game.scoring_pipeline")
 local shop_engine   = require("game.shop_engine")
+local packs         = require("game.packs")
 local planets       = require("game.planets")
 local tarots        = require("game.tarots")
 local shop_purchases = require("game.shop_purchases")
@@ -15,6 +16,7 @@ local hand_ui       = require("game.ui.hand")
 local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
 local shop_ui       = require("game.ui.shop")
+local pack_ui       = require("game.ui.pack")
 local blind_sel_ui  = require("game.ui.blind_select")
 local gwang_sl_ui   = require("game.ui.gwang_slots")
 local planets_ui    = require("game.ui.planets_ui")
@@ -247,6 +249,7 @@ function M:draw()
 
     elseif self.state == "shop" then
         shop_ui.draw(self.shop)
+        pack_ui.draw(self.run_state.pending_pack)
 
     elseif self.state == "won" then
         love.graphics.setColor(1, 0.9, 0.3, 1)
@@ -263,6 +266,16 @@ end
 
 --- Handle mouse/touch press.
 function M:mousepressed(px, py)
+    if self.state == "shop" and self.run_state.pending_pack then
+        local hit = pack_ui.hit_test(self.run_state.pending_pack, px, py)
+        if type(hit) == "number" then
+            packs.choose(self.run_state, hit)
+        elseif hit == "skip" then
+            packs.skip(self.run_state)
+        end
+        return
+    end
+
     if seed_ui.hit_test(self.seed, px, py) == "field" then
         seed_ui.focus(self.seed)
         return
