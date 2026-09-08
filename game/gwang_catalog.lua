@@ -3,7 +3,8 @@
 -- yaku (+chips when scored yaku matches yaku_need),
 -- deck_size (×mult when play-card deck count ≤ deck_max),
 -- money (+mult when held money ≥ money_min),
--- blind (×mult when current blind matches blind_need, e.g. boss).
+-- blind (×mult when current blind matches blind_need, e.g. boss),
+-- once (×mult once, then destroy the equipped slot).
 
 local M = {}
 
@@ -263,6 +264,9 @@ local function should_trigger(def, ctx)
         local need = def.blind_need
         return type(b) == "string" and type(need) == "string" and b == need
     end
+    if def.trigger == "once" then
+        return true
+    end
     return false
 end
 
@@ -288,6 +292,7 @@ end
 -- deck_size: fire when play-card count (ctx.deck_size or state.deck) ≤ deck_max.
 -- money: fire when held money (ctx.money or state.money) ≥ money_min.
 -- blind: fire when current blind (ctx.blind or state.blind) == blind_need (e.g. boss → ×2).
+-- once: fire once (e.g. ×20), then remove that equipped slot.
 function M.apply(ctx)
     local chips = ctx.chips or 0
     local mult = ctx.mult or 1
@@ -297,13 +302,21 @@ function M.apply(ctx)
         return chips, mult, triggered
     end
     load()
-    for i = 1, #state.gwang do
+    local i = 1
+    while i <= #state.gwang do
         local g = state.gwang[i]
         local id = g and g.identity
         local def = id and by_id[id]
         if def and should_trigger(def, ctx) then
             chips, mult = apply_effect(chips, mult, def.effect)
             triggered[#triggered + 1] = { id = def.id, slot = i }
+            if def.trigger == "once" then
+                table.remove(state.gwang, i)
+            else
+                i = i + 1
+            end
+        else
+            i = i + 1
         end
     end
     return chips, mult, triggered

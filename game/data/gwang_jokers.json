@@ -121,6 +121,14 @@
       "blind_need": "boss",
       "effect": { "chips": 40 },
       "desc": { "ko": "보스 블라인드에서 +40 칩", "en": "+40 chips on boss blinds" }
+    },
+    {
+      "id": "once_x20",
+      "name": { "ko": "일회성", "en": "Once" },
+      "rarity": "legendary",
+      "trigger": "once",
+      "effect": { "mult_mul": 20 },
+      "desc": { "ko": "1회 ×20 배수 후 소멸", "en": "×20 mult once, then destroy" }
     }
   ]
 }

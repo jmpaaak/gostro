@@ -1,5 +1,5 @@
--- Tests for always + contains-kind + yaku + deck-size + money + blind gwang jokers
--- (INBOX 21a/21b/21c/21d/21e/21f). Catalog JSON + apply loop in hwatu.evaluate.
+-- Tests for always + contains-kind + yaku + deck-size + money + blind + once
+-- gwang jokers (INBOX 21a–21g). Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
 local hwatu = require("game.hwatu")
@@ -45,6 +45,10 @@ function M.run()
     M.test_apply_boss_x2_when_blind_is_boss()
     M.test_apply_boss_x2_skips_when_blind_not_boss()
     M.test_hwatu_evaluate_boss_x2()
+    M.test_catalog_loads_once()
+    M.test_apply_once_x20_then_destroys()
+    M.test_apply_once_x20_second_hand_is_noop()
+    M.test_hwatu_evaluate_once_x20()
     print("  gwang_catalog: OK")
 end
 
@@ -61,7 +65,8 @@ function M.test_catalog_loads_always_jokers()
                 or j.trigger == "yaku"
                 or j.trigger == "deck_size"
                 or j.trigger == "money"
-                or j.trigger == "blind",
+                or j.trigger == "blind"
+                or j.trigger == "once",
             "known trigger"
         )
         assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
@@ -459,6 +464,80 @@ function M.test_hwatu_evaluate_boss_x2()
     assert(with.score == 32 * 4)
     assert(with.gwang_triggers and #with.gwang_triggers == 1)
     assert(with.gwang_triggers[1].id == "boss_x2")
+end
+
+function M.test_catalog_loads_once()
+    local j = catalog.get("once_x20")
+    assert(j, "once_x20 joker in catalog")
+    assert(j.trigger == "once")
+    assert((j.effect.mult_mul or 0) == 20)
+end
+
+function M.test_apply_once_x20_then_destroys()
+    local state = {
+        gwang = {
+            { kind = "gwang", identity = "chips" },
+            { kind = "gwang", identity = "once_x20" },
+            { kind = "gwang", identity = "mult" },
+        },
+    }
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        state = state,
+    })
+    assert(chips == 62, "neighbor chips still +30, got " .. tostring(chips))
+    assert(mult == 44, "once ×20 then +4 mult, got " .. tostring(mult))
+    assert(#triggered == 3)
+    assert(triggered[2].id == "once_x20")
+    assert(#state.gwang == 2, "once_x20 destroyed after fire")
+    assert(state.gwang[1].identity == "chips")
+    assert(state.gwang[2].identity == "mult")
+end
+
+function M.test_apply_once_x20_second_hand_is_noop()
+    local state = { gwang = { { identity = "once_x20" } } }
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        state = state,
+    })
+    assert(chips == 32, "once trigger does not add chips")
+    assert(mult == 40, "first hand ×20, got " .. tostring(mult))
+    assert(#triggered == 1)
+    assert(triggered[1].id == "once_x20")
+    assert(#state.gwang == 0)
+
+    chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        state = state,
+    })
+    assert(chips == 32)
+    assert(mult == 2, "destroyed once_x20 does not fire again, got " .. tostring(mult))
+    assert(#triggered == 0)
+end
+
+function M.test_hwatu_evaluate_once_x20()
+    local hand = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "once_x20" } }
+
+    local base = hwatu.evaluate(hand)
+    assert(base.chips == 32)
+    assert(base.mult == 2)
+    local with = hwatu.evaluate(hand, state)
+    assert(with.chips == 32)
+    assert(with.mult == 40, "once ×20, got " .. tostring(with.mult))
+    assert(with.score == 32 * 40)
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "once_x20")
+    assert(#state.gwang == 0, "evaluate destroys once_x20")
+
+    local after = hwatu.evaluate(hand, state)
+    assert(after.chips == 32)
+    assert(after.mult == 2, "second hand no ×20, got " .. tostring(after.mult))
+    assert(not after.gwang_triggers or #after.gwang_triggers == 0)
 end
 
 return M

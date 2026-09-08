@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 조커 once 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `once_x20` (`trigger=once`, `effect.mult_mul=20`).
+- `game/gwang_catalog.lua` `apply(ctx)`: previous triggers unchanged; `once` fires every equipped hand (1회 ×20) then `table.remove`s that slot. Neighbors keep their slots.
+- `game/hwatu.lua` already passes `state` into catalog apply; evaluate reports `gwang_triggers` then the identity is gone on the next hand.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply ×20 then destroy / second hand noop, hwatu evaluate ×20 then skip).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) once slice only. Compound (chips+mult+money) and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (h) 복합 (칩+배수+돈 동시) on `game/gwang_catalog.lua`.
+
 ## 2026-09-08 — 광 조커 blind 트리거 (`game/gwang_catalog.lua`)
 
 - `game/data/gwang_jokers.json`: `boss_x2` (`trigger=blind`, `blind_need=boss`, `effect.mult_mul=2`) / `boss_chips` (`blind_need=boss`, `effect.chips=40`).
