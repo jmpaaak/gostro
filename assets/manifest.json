@@ -41,7 +41,18 @@
         "report": "assets/runtime/cards/play-card-overlap-v1.qa.json",
         "reportSha256": "6aaa3b4fcbbca0d56b6baffc4883da4278c85760b2c48624f1a18bd4fe49fbbc",
         "topVisiblePixels": 10,
-        "topMarksUnique": true
+        "topMarksUnique": true,
+        "loveCapture": {
+          "renderer": "LOVE 11.5",
+          "canvas": [320, 180],
+          "capture": "assets/runtime/cards/play-card-overlap-love-v1.png",
+          "captureSha256": "25e0b8939c7748bcf1150be223e737273f803925a857b3da7b3bab59e6358876",
+          "report": "assets/runtime/cards/play-card-overlap-love-v1.qa.json",
+          "reportSha256": "f7ef3921cd3088e06b775f5b2c8202afced6a3f00b4efa06300c818577e3bdeb",
+          "filter": "nearest",
+          "repeatCaptureDeterministic": true,
+          "artApproval": "human-pending"
+        }
       }
     }
   ],

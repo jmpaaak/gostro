@@ -1,12 +1,13 @@
 # STATUS
-- 피·홍단·청단·초단·고도리를 같은 카드 틀과 한지 질감으로 묶은 960×288 SVG/PNG master contact sheet를 만들었다. 피는 지도 핀/영문 약어 대신 매화와 가지, 나머지는 색 띠·난초·제비 날개 상단 문양을 사용한다.
-- 실제 Asset Studio `POST /api/pixel-perfect`로 120×36(카드당 24×36) 후보 sheet를 생성했고 dimensions/palette/alpha/nearest 검사 5/5가 통과했다.
-- 신규 `card_overlap_qa.py`가 후보 셀을 10px 간격으로 겹친 64×40 캡처와 hash 보고서를 생성한다. 5개 상단 문양 fingerprint가 모두 고유함을 검증했다.
-- 5종 manifest는 공유 sheet를 가리키는 `candidate`로 함께 격리했다. 자동 검사는 사람의 아트 승인과 실제 320×180 LÖVE 캡처를 대신하지 않으므로 어느 패도 runtime으로 승격하지 않았다.
-- TDD RED: 청단·초단·고도리가 pending이고 5종이 공유 master를 가리키지 않아 실패함을 확인했다. 구현 후 5종 묶음 격리와 기존 runtime loader 계약이 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `asset_loader: OK`, `card_art: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (207 files).
-- INBOX (27)은 전체 그래픽 전환과 플레이 패 실런타임 승인이 남아 있어 처리 대기로 유지한다.
-- Next slice: 후보 sheet를 QA 전용 320×180 LÖVE 화면에 nearest로 그려 실제 겹침 캡처를 만들고, 사람의 식별성·화투 아트 승인 결과를 manifest에 기록한다.
+## 2026-09-09 — 플레이 패 후보 320×180 LÖVE 겹침 캡처
+
+- 별도 `game/qa/card_overlap.lua` 렌더러가 120×36 후보 sheet의 피·홍단·청단·초단·고도리를 24×36 셀로 잘라 320×180 Canvas에 10px 간격, 정수 좌표, nearest 필터로 그린다.
+- `make card-overlap-qa LOVE=/Users/jm/.local/bin/love`가 LÖVE 11.5로 실제 캡처 `play-card-overlap-love-v1.png`를 생성했다. 2회 출력 SHA-256이 `25e0b893...e6358876`으로 동일했고 PNG 크기는 320×180이다.
+- TDD RED: QA 모듈 부재로 전용 target이 실패함을 확인했다. 구현 후 레이아웃·quad·nearest 계약을 검사하는 engine-hosted `game/tests/card_overlap_qa.lua`와 전용 캡처가 GREEN이다.
+- manifest와 QA report에 Canvas 크기, 카드 순서/크기/위치, renderer, filter, capture hash를 기록했다. 사람의 식별성·화투 아트 승인은 대기 중이며 5종 모두 `candidate`라 runtime loader에는 적용되지 않는다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `card_overlap_qa: OK`, `CARD_OVERLAP_LOVE_QA_OK 320x180`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (215 files).
+- INBOX (27)은 전체 그래픽 전환과 플레이 패 사람 승인이 남아 있어 처리 대기로 유지한다.
+- Next slice: 사람이 320×180 캡처에서 5종 상단 표식과 화투 아트를 승인/거부한 결과를 manifest에 기록하고, 승인 시에만 5종을 함께 runtime으로 승격한다.
 
 ## 2026-09-09 — 한국 테마 용어 계약 신설 및 일부 적용 (판/고)
 
