@@ -8,6 +8,7 @@ local IDS = { small = "ui.blind_small", big = "ui.blind_big" }
 local BOSS_IDS = {
     hook = "boss-blind.hook",
     wall = "boss-blind.wall",
+    flint = "boss-blind.flint",
 }
 
 function M.asset_id(kind, boss)

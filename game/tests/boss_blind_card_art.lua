@@ -27,6 +27,17 @@ function M.run()
         "wall boss runtime must fit its selection card")
     assert(wall.runtime.filter == "nearest")
     assert(assets.runtime_path(wall_id) == "assets/runtime/boss-blind/wall-v1.png")
+
+    local flint_id = blind_card_art.asset_id("boss", { id = "flint" })
+    assert(flint_id == "boss-blind.flint", "flint boss must resolve its own card artwork")
+    local flint = assets.entry(flint_id)
+    assert(flint and flint.status == "runtime", "flint boss artwork must be promoted")
+    assert(flint.master.width == 400 and flint.master.height == 560,
+        "flint boss must preserve a 400x560 master")
+    assert(flint.runtime.width == 50 and flint.runtime.height == 70,
+        "flint boss runtime must fit its selection card")
+    assert(flint.runtime.filter == "nearest")
+    assert(assets.runtime_path(flint_id) == "assets/runtime/boss-blind/flint-v1.png")
     assets.clear_cache()
     print("  boss_blind_card_art: OK")
 end

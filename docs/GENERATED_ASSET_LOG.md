@@ -30,3 +30,7 @@
 | 2026-09-09T01:30:35+0900 | `assets/masters/boss-blind/wall-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T01:30:35+0900 | `assets/runtime/boss-blind/wall-v1.png` | 50×70 runtime boss card from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T01:30:35+0900 | `assets/runtime/ui/blind-wall-card-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture including the wall boss artwork with nearest filtering |
+| 2026-09-09T01:37:49+0900 | `assets/masters/boss-blind/flint-v1.svg` | Project-authored high-resolution Korean lacquer, dancheong, paired flint stones, and spark vector source |
+| 2026-09-09T01:37:49+0900 | `assets/masters/boss-blind/flint-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T01:37:49+0900 | `assets/runtime/boss-blind/flint-v1.png` | 50×70 runtime boss card from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T01:37:49+0900 | `assets/runtime/ui/blind-flint-card-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture including the flint boss artwork with nearest filtering |
