@@ -50,6 +50,17 @@ function M.run()
     assert(mark.runtime.filter == "nearest")
     assert(assets.runtime_path(mark_id) == "assets/runtime/boss-blind/mark-v1.png")
 
+    local fish_id = blind_card_art.asset_id("boss", { id = "fish" })
+    assert(fish_id == "boss-blind.fish", "fish boss must resolve its own card artwork")
+    local fish = assets.entry(fish_id)
+    assert(fish and fish.status == "runtime", "fish boss artwork must be promoted")
+    assert(fish.master.width == 400 and fish.master.height == 560,
+        "fish boss must preserve a 400x560 master")
+    assert(fish.runtime.width == 50 and fish.runtime.height == 70,
+        "fish boss runtime must fit its selection card")
+    assert(fish.runtime.filter == "nearest")
+    assert(assets.runtime_path(fish_id) == "assets/runtime/boss-blind/fish-v1.png")
+
     assets.clear_cache()
     print("  boss_blind_card_art: OK")
 end

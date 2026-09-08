@@ -10,6 +10,7 @@ local BOSS_IDS = {
     wall = "boss-blind.wall",
     flint = "boss-blind.flint",
     mark = "boss-blind.mark",
+    fish = "boss-blind.fish",
 }
 
 function M.asset_id(kind, boss)
