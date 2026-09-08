@@ -1372,3 +1372,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN 확인 완료.
 - INBOX (27)은 나머지 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
 - Next slice: `voucher.hone` 벼림 인장의 400×560 master/runtime 에셋을 만들고 독립 manifest·LÖVE 상점 캡처 검증을 추가한다.
+
+## Archived from STATUS.md (2026-09-09 05:19)
+
+- `voucher.hone`에 대장장이 망치, 달아오른 카드형 쇳조각, edition rate +2를 뜻하는 불꽃 둘, 한국식 구름 테두리를 그린 400×560 SVG/PNG master와 36×52 runtime 에셋을 추가했다.
+- 실제 Asset Studio `POST /api/pixel-perfect` 결과 dimensions/palette/transparent alpha/alignment/nearest 5개 검사가 통과했으며 manifest에 master/runtime/report hash와 alpha bounds를 기록했다.
+- `game.ui.voucher_art`가 벼림 인장을 manifest-backed nearest texture로 표시하고, 실제 LÖVE 320×180 캡처 `shop-voucher-hone-love-v1.png`를 생성하도록 상점 QA를 갱신했다.
+- 구현 후 `voucher_art`와 실제 상점 캡처 QA가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN 확인 완료.
+- INBOX (27)은 현재 12종 인장 중 10종을 runtime artwork로 전환했고 나머지 전체 그래픽 전환이 남아 있어 처리 대기로 유지한다.
+- Next slice: `voucher.directors_cut` 판갈이 인장의 400×560 master/runtime 에셋을 만들고 독립 manifest·LÖVE 상점 캡처 검증을 추가한다.

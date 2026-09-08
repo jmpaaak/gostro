@@ -119,6 +119,17 @@ function M.run()
     assert(hone.runtime.filter == "nearest")
     assert(assets.runtime_path(hone_id) == "assets/runtime/voucher/hone-v1.png")
 
+    local directors_cut_id = voucher_art.asset_id({ kind = "voucher", identity = "directors_cut" })
+    assert(directors_cut_id == "voucher.directors_cut", "boss reroll seal must resolve tracked artwork")
+    local directors_cut = assets.entry(directors_cut_id)
+    assert(directors_cut and directors_cut.status == "runtime", "boss reroll seal artwork must be promoted")
+    assert(directors_cut.master.width == 400 and directors_cut.master.height == 560,
+        "boss reroll seal must preserve a 400x560 master")
+    assert(directors_cut.runtime.width == 36 and directors_cut.runtime.height == 52,
+        "boss reroll seal runtime must fit its shop slot")
+    assert(directors_cut.runtime.filter == "nearest")
+    assert(assets.runtime_path(directors_cut_id) == "assets/runtime/voucher/directors-cut-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

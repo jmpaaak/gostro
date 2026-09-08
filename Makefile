@@ -92,6 +92,7 @@ shop-pack-qa:
 		assets/runtime/voucher/reroll-surplus-v1.png assets/runtime/voucher/clearance-sale-v1.png \
 		assets/runtime/voucher/seed-money-v1.png assets/runtime/voucher/antimatter-v1.png \
 		assets/runtime/voucher/crystal-ball-v1.png assets/runtime/voucher/hone-v1.png \
+		assets/runtime/voucher/directors-cut-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
 	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
@@ -132,6 +133,10 @@ shop-pack-qa:
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-hone-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-hone-love-v1.png"
+	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=directors_cut \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-directors-cut-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-directors-cut-love-v1.png"
 
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .

@@ -14,6 +14,7 @@ local IDS = {
     antimatter = "voucher.antimatter",
     crystal_ball = "voucher.crystal_ball",
     hone = "voucher.hone",
+    directors_cut = "voucher.directors_cut",
 }
 
 function M.asset_id(item)

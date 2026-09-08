@@ -1122,8 +1122,49 @@
     {
       "id": "voucher.directors_cut",
       "category": "voucher",
-      "status": "pending",
-      "name": "\ub514\ub809\ud130\ucef7"
+      "status": "runtime",
+      "name": "\ud310\uac08\uc774 \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/directors-cut-v1.svg",
+        "sourceSha256": "71333beec9fb8ea82a1ad8123d0453cbaaa20f198cd88864b5500f4e5dc076a4",
+        "path": "assets/masters/voucher/directors-cut-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "aa85232c88197ed6313300c9b3a52e032cbdc7e43149ce9faa6d7f5d6c8483b9",
+        "provenance": "Project-authored high-resolution vector master depicting a hinged cut slate, horned boss mask, opposed reroll arrows, and one seal bead for the once-per-ante boss reroll; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/directors-cut-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          1,
+          35,
+          50
+        ],
+        "sha256": "e508de019e478344086d9a54df3568e0b04504bd279c306e9969759d5afb6ba1",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/directors-cut-v1.report.json",
+        "reportSha256": "5f2896a9d7094296a6d3f77526ca3aee611e6de758730bdacddba3a5a9b7a092"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.money_tree",

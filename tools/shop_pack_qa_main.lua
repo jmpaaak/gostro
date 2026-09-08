@@ -29,6 +29,7 @@ function love.load()
         antimatter = "허공 인장",
         crystal_ball = "천리안 인장",
         hone = "벼림 인장",
+        directors_cut = "판갈이 인장",
     }
     local item = kind == "voucher"
         and { kind = "voucher", identity = voucher_identity,

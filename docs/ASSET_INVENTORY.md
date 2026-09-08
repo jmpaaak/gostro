@@ -133,8 +133,8 @@
 - [x] `voucher.reroll_surplus` - 에누리 인장 (`assets/runtime/voucher/reroll-surplus-v1.png`)
 - [x] `voucher.clearance_sale` - 떨이 인장 (`assets/runtime/voucher/clearance-sale-v1.png`)
 - [x] `voucher.seed_money` - 밑천 인장 (`assets/runtime/voucher/seed-money-v1.png`)
-- [ ] `voucher.antimatter` - 허공 인장
-- [ ] `voucher.crystal_ball` - 천리안 인장
-- [ ] `voucher.hone` - 벼림 인장
-- [ ] `voucher.directors_cut` - 판갈이 인장
+- [x] `voucher.antimatter` - 허공 인장 (`assets/runtime/voucher/antimatter-v1.png`)
+- [x] `voucher.crystal_ball` - 천리안 인장 (`assets/runtime/voucher/crystal-ball-v1.png`)
+- [x] `voucher.hone` - 벼림 인장 (`assets/runtime/voucher/hone-v1.png`)
+- [x] `voucher.directors_cut` - 판갈이 인장 (`assets/runtime/voucher/directors-cut-v1.png`)
 - [ ] `voucher.money_tree` - 금맥 인장
