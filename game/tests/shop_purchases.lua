@@ -49,7 +49,7 @@ local function run_tests()
     assert(state.money == start_money, "money rolled back")
     assert(shop.slots[voucher_idx].sold == false, "slot sold rolled back")
 
-    -- Pack purchase rollback check (not implemented)
+    -- Buying a pack opens a deterministic choice without auto-granting a tarot.
     local pack_idx = nil
     for i, slot in ipairs(shop.slots) do
         if slot.kind == "pack" then
@@ -59,9 +59,24 @@ local function run_tests()
     end
     assert(pack_idx, "shop has a pack slot")
     local ok4 = shop_purchases.buy(shop, pack_idx)
-    assert(not ok4, "pack purchase returns false due to error")
-    assert(state.money == start_money, "money rolled back on pack error")
-    assert(shop.slots[pack_idx].sold == false, "pack slot sold rolled back")
+    assert(ok4, "pack purchase succeeds")
+    assert(state.money == start_money - shop_engine.PACK_PRICE, "pack price deducted")
+    assert(shop.slots[pack_idx].sold == true, "pack slot marked sold")
+    assert(state.pending_pack and state.pending_pack.id == "arcana_pack", "pack opens")
+    assert(#state.pending_pack.choices == 3, "arcana pack offers three choices")
+    assert(#(state.tarots or {}) == 0, "opening does not auto-grant a tarot")
+
+    -- An already-open pack makes a later pack transaction roll back atomically.
+    local second_shop = shop_engine.new(state)
+    local second_pack_idx
+    for i, slot in ipairs(second_shop.slots) do
+        if slot.kind == "pack" then second_pack_idx = i end
+    end
+    local money_before_second_pack = state.money
+    local ok5 = shop_purchases.buy(second_shop, second_pack_idx)
+    assert(not ok5, "cannot open a second pack")
+    assert(state.money == money_before_second_pack, "failed pack purchase refunds money")
+    assert(second_shop.slots[second_pack_idx].sold == false, "failed pack purchase restores slot")
 
     print("  shop_purchases: OK")
 end

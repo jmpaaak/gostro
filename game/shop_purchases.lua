@@ -2,6 +2,7 @@
 local shop_engine = require("game.shop_engine")
 local planets = require("game.planets")
 local tarots = require("game.tarots")
+local packs = require("game.packs")
 local run = require("game.run")
 
 local M = {}
@@ -24,7 +25,7 @@ function M.buy(shop, slot_or_index)
         elseif card_data.kind == "voucher" then
             run.buy_voucher(shop.run_state, card_data.identity)
         elseif card_data.kind == "pack" then
-            error("pack purchase not implemented in this slice")
+            packs.open(shop.run_state, card_data.identity)
         else
             error("unsupported shop offer: " .. tostring(card_data.kind))
         end
