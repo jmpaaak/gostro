@@ -15,6 +15,7 @@ local IDS = {
     crystal_ball = "voucher.crystal_ball",
     hone = "voucher.hone",
     directors_cut = "voucher.directors_cut",
+    money_tree = "voucher.money_tree",
 }
 
 function M.asset_id(item)

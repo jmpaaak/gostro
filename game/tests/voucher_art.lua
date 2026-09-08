@@ -130,6 +130,17 @@ function M.run()
     assert(directors_cut.runtime.filter == "nearest")
     assert(assets.runtime_path(directors_cut_id) == "assets/runtime/voucher/directors-cut-v1.png")
 
+    local money_tree_id = voucher_art.asset_id({ kind = "voucher", identity = "money_tree" })
+    assert(money_tree_id == "voucher.money_tree", "money tree seal must resolve tracked artwork")
+    local money_tree = assets.entry(money_tree_id)
+    assert(money_tree and money_tree.status == "runtime", "money tree seal artwork must be promoted")
+    assert(money_tree.master.width == 400 and money_tree.master.height == 560,
+        "money tree seal must preserve a 400x560 master")
+    assert(money_tree.runtime.width == 36 and money_tree.runtime.height == 52,
+        "money tree seal runtime must fit its shop slot")
+    assert(money_tree.runtime.filter == "nearest")
+    assert(assets.runtime_path(money_tree_id) == "assets/runtime/voucher/money-tree-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

@@ -334,7 +334,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uce69",
+        "ko": "칩",
         "en": "Chips"
       }
     },
@@ -343,7 +343,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ubc30\uc218",
+        "ko": "배수",
         "en": "Mult"
       }
     },
@@ -352,7 +352,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc794\uce69",
+        "ko": "잔칩",
         "en": "Small Chips"
       }
     },
@@ -361,7 +361,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc794\ubc30\uc218",
+        "ko": "잔배수",
         "en": "Small Mult"
       }
     },
@@ -370,7 +370,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc911\uce69",
+        "ko": "중칩",
         "en": "Mid Chips"
       }
     },
@@ -379,7 +379,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc911\ubc30\uc218",
+        "ko": "중배수",
         "en": "Mid Mult"
       }
     },
@@ -388,7 +388,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ud64d\ub2e8 \uae43\ubc1c",
+        "ko": "홍단 깃발",
         "en": "Hongdan Flag"
       }
     },
@@ -397,7 +397,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uccad\ub2e8 \uae43\ubc1c",
+        "ko": "청단 깃발",
         "en": "Cheongdan Flag"
       }
     },
@@ -406,7 +406,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ucd08\ub2e8 \uae43\ubc1c",
+        "ko": "초단 깃발",
         "en": "Chodan Flag"
       }
     },
@@ -415,7 +415,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uace0\ub3c4\ub9ac \uae43\ubc1c",
+        "ko": "고도리 깃발",
         "en": "Godori Flag"
       }
     },
@@ -424,7 +424,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ud53c \uc794\uce69",
+        "ko": "피 잔칩",
         "en": "Pi Chips"
       }
     },
@@ -433,7 +433,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uace0\ub3c4\ub9ac \uce69",
+        "ko": "고도리 칩",
         "en": "Godori Chips"
       }
     },
@@ -442,7 +442,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ud64d\ub2e8 \uce69",
+        "ko": "홍단 칩",
         "en": "Hongdan Chips"
       }
     },
@@ -451,7 +451,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uccad\ub2e8 \uce69",
+        "ko": "청단 칩",
         "en": "Cheongdan Chips"
       }
     },
@@ -460,7 +460,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ucd08\ub2e8 \uce69",
+        "ko": "초단 칩",
         "en": "Chodan Chips"
       }
     },
@@ -469,7 +469,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ud53c \uc871\ubcf4",
+        "ko": "피 족보",
         "en": "Pi Yaku"
       }
     },
@@ -478,7 +478,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc587\uc740 \ub371",
+        "ko": "얇은 덱",
         "en": "Thin Deck"
       }
     },
@@ -487,7 +487,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc544\uc8fc \uc587\uc740 \ub371",
+        "ko": "아주 얇은 덱",
         "en": "Tiny Deck"
       }
     },
@@ -496,7 +496,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ub0a0\uc52c\ud55c \ub371",
+        "ko": "날씬한 덱",
         "en": "Lean Deck"
       }
     },
@@ -505,7 +505,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ubd80\uc790",
+        "ko": "부자",
         "en": "Rich"
       }
     },
@@ -514,7 +514,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ub450\ub451\ud55c \uc9c0\uac11",
+        "ko": "두둑한 지갑",
         "en": "Loaded"
       }
     },
@@ -523,7 +523,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uac11\ubd80",
+        "ko": "갑부",
         "en": "Wealthy"
       }
     },
@@ -532,7 +532,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ubcf4\uc2a4 \ubc30\uc218",
+        "ko": "보스 배수",
         "en": "Final Round Mult"
       }
     },
@@ -541,7 +541,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ubcf4\uc2a4 \uce69",
+        "ko": "보스 칩",
         "en": "Final Round Chips"
       }
     },
@@ -550,7 +550,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc2a4\ubab0 \uce69",
+        "ko": "스몰 칩",
         "en": "Opening Round Chips"
       }
     },
@@ -559,7 +559,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ube45 \ubc30\uc218",
+        "ko": "빅 배수",
         "en": "Main Round Mult"
       }
     },
@@ -568,7 +568,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc77c\ud68c\uc131",
+        "ko": "일회성",
         "en": "Once"
       }
     },
@@ -577,7 +577,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\uc77c\ud68c\uc131 \uce69",
+        "ko": "일회성 칩",
         "en": "Once Chips"
       }
     },
@@ -586,7 +586,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ubcf5\ud569",
+        "ko": "복합",
         "en": "Compound"
       }
     },
@@ -595,7 +595,7 @@
       "category": "gwang",
       "status": "pending",
       "name": {
-        "ko": "\ubcf5\ud569 \ud3ed\uc8fc",
+        "ko": "복합 폭주",
         "en": "Compound Burst"
       }
     },
@@ -633,31 +633,31 @@
       "id": "tarot.the_magician",
       "category": "tarot",
       "status": "pending",
-      "name": "\ub9c8\ubc95\uc0ac"
+      "name": "마법사"
     },
     {
       "id": "tarot.the_hanged_man",
       "category": "tarot",
       "status": "pending",
-      "name": "\ub9e4\ub2ec\ub9b0\uc790"
+      "name": "매달린자"
     },
     {
       "id": "tarot.the_chariot",
       "category": "tarot",
       "status": "pending",
-      "name": "\uc804\ucc28"
+      "name": "전차"
     },
     {
       "id": "tarot.the_lovers",
       "category": "tarot",
       "status": "pending",
-      "name": "\uc5f0\uc778"
+      "name": "연인"
     },
     {
       "id": "voucher.paint_brush",
       "category": "voucher",
       "status": "runtime",
-      "name": "\uba85\ud544\uc758 \uc778\uc7a5",
+      "name": "명필의 인장",
       "master": {
         "source": "assets/masters/voucher/paint-brush-v1.svg",
         "sourceSha256": "5db3b2c26e7b7d1059a00797252d7f666495e73b7212ed3ac393d7fde2e51c0b",
@@ -704,7 +704,7 @@
       "id": "voucher.wasteful",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ud638\ud0d5\ud55c \uc778\uc7a5",
+      "name": "호탕한 인장",
       "master": {
         "source": "assets/masters/voucher/wasteful-v1.svg",
         "sourceSha256": "7960b842d7e78848628dad53f46facf633f63703e49479d63ac251dfd440f04c",
@@ -751,7 +751,7 @@
       "id": "voucher.grabber",
       "category": "voucher",
       "status": "runtime",
-      "name": "\uac08\ud034 \uc778\uc7a5",
+      "name": "갈퀴 인장",
       "master": {
         "source": "assets/masters/voucher/grabber-v1.svg",
         "sourceSha256": "ee51216dd30caf24a698672d085812db7174d42e601fef7b8c590b57bebd9ab4",
@@ -798,7 +798,7 @@
       "id": "voucher.overstock",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ub9cc\ubb3c\uc0c1 \uc778\uc7a5",
+      "name": "만물상 인장",
       "master": {
         "source": "assets/masters/voucher/overstock-v1.svg",
         "sourceSha256": "eda9f7f1216e7fe97816c0b34b103e7eac58d46a24ad920a6e505fc09fa73f4c",
@@ -845,7 +845,7 @@
       "id": "voucher.reroll_surplus",
       "category": "voucher",
       "status": "runtime",
-      "name": "\uc5d0\ub204\ub9ac \uc778\uc7a5",
+      "name": "에누리 인장",
       "master": {
         "source": "assets/masters/voucher/reroll-surplus-v1.svg",
         "sourceSha256": "8ef520542774a4618e6650c14a4a29dda793e0f1b16bd61e76569331f74dfd53",
@@ -892,7 +892,7 @@
       "id": "voucher.clearance_sale",
       "category": "voucher",
       "status": "runtime",
-      "name": "\uc138\uc77c",
+      "name": "세일",
       "master": {
         "path": "assets/masters/voucher/clearance-sale-v1.png",
         "width": 400,
@@ -937,7 +937,7 @@
       "id": "voucher.seed_money",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ubc11\ucc9c \uc778\uc7a5",
+      "name": "밑천 인장",
       "master": {
         "path": "assets/masters/voucher/seed-money-v1.png",
         "width": 400,
@@ -982,7 +982,7 @@
       "id": "voucher.antimatter",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ud5c8\uacf5 \uc778\uc7a5",
+      "name": "허공 인장",
       "master": {
         "source": "assets/masters/voucher/antimatter-v1.svg",
         "sourceSha256": "c6d3dba3846952c232dcc0e4eff6e46ba34e4a69452d9f4df5f73c0530a848d9",
@@ -1029,7 +1029,7 @@
       "id": "voucher.crystal_ball",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ucc9c\ub9ac\uc548 \uc778\uc7a5",
+      "name": "천리안 인장",
       "master": {
         "source": "assets/masters/voucher/crystal-ball-v1.svg",
         "sourceSha256": "53a15e36f084b5545a9f349eadd15b1dc52c683ad77a5bb31f2c9894c7e70250",
@@ -1076,7 +1076,7 @@
       "id": "voucher.hone",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ubcbc\ub9bc \uc778\uc7a5",
+      "name": "벼림 인장",
       "master": {
         "source": "assets/masters/voucher/hone-v1.svg",
         "sourceSha256": "29527a615eeb054ae7dbf86178e893a9e40c9ed830d100cdef173192d5be9b2b",
@@ -1123,7 +1123,7 @@
       "id": "voucher.directors_cut",
       "category": "voucher",
       "status": "runtime",
-      "name": "\ud310\uac08\uc774 \uc778\uc7a5",
+      "name": "판갈이 인장",
       "master": {
         "source": "assets/masters/voucher/directors-cut-v1.svg",
         "sourceSha256": "71333beec9fb8ea82a1ad8123d0453cbaaa20f198cd88864b5500f4e5dc076a4",
@@ -1167,22 +1167,16 @@
       }
     },
     {
-      "id": "voucher.money_tree",
-      "category": "voucher",
-      "status": "pending",
-      "name": "\uba38\ub2c8\ud2b8\ub9ac"
-    },
-    {
       "id": "tag.coupon",
       "category": "tag",
       "status": "pending",
-      "name": "\ucfe0\ud3f0"
+      "name": "쿠폰"
     },
     {
       "id": "tag.investment",
       "category": "tag",
       "status": "pending",
-      "name": "\ud22c\uc790"
+      "name": "투자"
     },
     {
       "id": "tag.handy",
@@ -1194,49 +1188,49 @@
       "id": "tag.economy",
       "category": "tag",
       "status": "pending",
-      "name": "\uc774\ucf54\ub178\ubbf8"
+      "name": "이코노미"
     },
     {
       "id": "tag.mega",
       "category": "tag",
       "status": "pending",
-      "name": "\uba54\uac00"
+      "name": "메가"
     },
     {
       "id": "tag.foil",
       "category": "tag",
       "status": "pending",
-      "name": "\ud3ec\uc77c"
+      "name": "포일"
     },
     {
       "id": "tag.hologram",
       "category": "tag",
       "status": "pending",
-      "name": "\ud640\ub85c\uadf8\ub7a8"
+      "name": "홀로그램"
     },
     {
       "id": "tag.polychrome",
       "category": "tag",
       "status": "pending",
-      "name": "\ud3f4\ub9ac\ud06c\ub86c"
+      "name": "폴리크롬"
     },
     {
       "id": "tag.charm",
       "category": "tag",
       "status": "pending",
-      "name": "\ucc38"
+      "name": "참"
     },
     {
       "id": "tag.uncommon",
       "category": "tag",
       "status": "pending",
-      "name": "\uc5b8\ucee4\uba3c"
+      "name": "언커먼"
     },
     {
       "id": "tag.juggle",
       "category": "tag",
       "status": "pending",
-      "name": "\uc800\uae00"
+      "name": "저글"
     },
     {
       "id": "tag.d6",
@@ -1248,7 +1242,7 @@
       "id": "boss-blind.hook",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\uac08\uace0\ub9ac",
+      "name": "갈고리",
       "master": {
         "source": "assets/masters/boss-blind/hook-v1.svg",
         "sourceSha256": "4f93f3a1f0ee7cc8a6d192a12683caab1a0b8ec7dc35a7b1efe7018241890bd4",
@@ -1305,7 +1299,7 @@
       "id": "boss-blind.wall",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\uc131\ubcbd",
+      "name": "성벽",
       "master": {
         "source": "assets/masters/boss-blind/wall-v1.svg",
         "sourceSha256": "d8485d5d9e8e1741fc43accbd7d4a76c2e1466a4f22cd39beb303b4d86be337b",
@@ -1362,7 +1356,7 @@
       "id": "boss-blind.flint",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\ubd80\uc2ef\ub3cc",
+      "name": "부싯돌",
       "master": {
         "source": "assets/masters/boss-blind/flint-v1.svg",
         "sourceSha256": "5cc6d3d5d7da8ee1555f39ebad4771fe0ab64405ee09d15eb05a8c53b9a3adac",
@@ -1419,7 +1413,7 @@
       "id": "boss-blind.mark",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\ub099\uc778",
+      "name": "낙인",
       "master": {
         "source": "assets/masters/boss-blind/mark-v1.svg",
         "sourceSha256": "6b3cc0169a70f9945bf0f6afa74d94c576f380cce20e9498f608946ac3aea319",
@@ -1476,7 +1470,7 @@
       "id": "boss-blind.fish",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\ubb3c\uace0\uae30",
+      "name": "물고기",
       "master": {
         "source": "assets/masters/boss-blind/fish-v1.svg",
         "sourceSha256": "1ebbf5efdfc5ecc59a79b4dd380e5f20920e3a7d2921a276b666735ce01db94b",
@@ -1533,7 +1527,7 @@
       "id": "boss-blind.psychic",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\uc601\ub9e4",
+      "name": "영매",
       "master": {
         "source": "assets/masters/boss-blind/psychic-v1.svg",
         "sourceSha256": "927278a89eb9573f8f3c3d27f5651ab206af4a3b65d0777c6c02814057ca06a2",
@@ -1590,7 +1584,7 @@
       "id": "boss-blind.goad",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\ubab0\uc774",
+      "name": "몰이",
       "master": {
         "source": "assets/masters/boss-blind/goad-v1.svg",
         "sourceSha256": "80f2bc6e9dbb25705aa2239f77f5726e84c88ae5c616a20fd698a652d30eb9b5",
@@ -1647,7 +1641,7 @@
       "id": "boss-blind.plant",
       "category": "boss-blind",
       "status": "runtime",
-      "name": "\ucd08\ubaa9",
+      "name": "초목",
       "master": {
         "source": "assets/masters/boss-blind/plant-v1.svg",
         "sourceSha256": "a653eeb792e425d64efe841d1351bde652a43dbbc8659cd5ffabcc779c47ad7b",
@@ -1704,7 +1698,7 @@
       "id": "pack.arcana_pack",
       "category": "pack",
       "status": "runtime",
-      "name": "\ubd80\uc801 \uafb8\ub7ec\ubbf8",
+      "name": "부적 꾸러미",
       "master": {
         "source": "assets/masters/pack/talisman-bundle-v1.svg",
         "sourceSha256": "3a5eb51a6e85095d8af0b26d1f31df91f56c06325f0a41a386a624eb70314d26",
@@ -2020,6 +2014,38 @@
       "category": "effect",
       "status": "pending",
       "name": "effect.polychrome"
+    },
+    {
+      "id": "voucher.money_tree",
+      "category": "voucher",
+      "status": "runtime",
+      "name": "금맥 인장",
+      "master": {
+        "source": "assets/masters/voucher/money-tree-v1.svg",
+        "sourceSha256": "64599493af1314cd8d31eb76efbf4a1a15a6cdc5ecfad875542b154577f830db",
+        "path": "assets/masters/voucher/money-tree-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "c9185a38d8ff3a43a4b12466e4dd5d5204c8aff7d3e9f2d2ed162b0c47fbeb59",
+        "provenance": "Project-authored high-resolution vector master depicting a gold vein tree with traditional square-hole coin leaves and red stamp seal; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/money-tree-v1.png",
+        "width": 36,
+        "height": 52,
+        "filter": "nearest",
+        "sha256": "493fe56d971017ab6644e74da57f9e70db7f0fa37663f020e997f447cdc928c7",
+        "report": {
+          "path": "assets/runtime/voucher/money-tree-v1.report.json",
+          "sha256": "ac23b2ba7b5e1f2834f99ceaba43625e53aa8a79481a51085d4b96a8c112cf81"
+        },
+        "alphaBounds": {
+          "minX": 0,
+          "minY": 0,
+          "maxX": 35,
+          "maxY": 51
+        }
+      }
     }
   ]
 }

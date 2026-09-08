@@ -30,6 +30,7 @@ function love.load()
         crystal_ball = "천리안 인장",
         hone = "벼림 인장",
         directors_cut = "판갈이 인장",
+        money_tree = "금맥 인장",
     }
     local item = kind == "voucher"
         and { kind = "voucher", identity = voucher_identity,

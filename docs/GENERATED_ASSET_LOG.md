@@ -97,3 +97,6 @@
 | 2026-09-09T05:26:04+0900 | `assets/masters/voucher/directors-cut-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T05:26:04+0900 | `assets/runtime/voucher/directors-cut-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T05:26:04+0900 | `assets/runtime/ui/shop-voucher-directors-cut-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed boss-reroll seal in all three offer slots |
+2026-09-09T05:45:00+0900 | assets/masters/voucher/money-tree-v1.svg | Project-authored vector for money tree / gold vein seal
+2026-09-09T05:45:00+0900 | assets/masters/voucher/money-tree-v1.png | Rasterized 400x560 master for money tree / gold vein seal
+2026-09-09T05:45:00+0900 | assets/runtime/voucher/money-tree-v1.png | Asset Studio 36x52 pixel-perfect downscale for money tree seal

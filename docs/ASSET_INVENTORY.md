@@ -137,4 +137,4 @@
 - [x] `voucher.crystal_ball` - 천리안 인장 (`assets/runtime/voucher/crystal-ball-v1.png`)
 - [x] `voucher.hone` - 벼림 인장 (`assets/runtime/voucher/hone-v1.png`)
 - [x] `voucher.directors_cut` - 판갈이 인장 (`assets/runtime/voucher/directors-cut-v1.png`)
-- [ ] `voucher.money_tree` - 금맥 인장
+- [x] `voucher.money_tree` - 금맥 인장
