@@ -1,6 +1,6 @@
 local viewport = require("game.viewport")
 local sceneStack = require("game.scene_stack")
-local PlayScene = require("game.scenes.play")
+local MenuScene = require("game.scenes.menu")
 
 local canvas
 local scenes
@@ -19,7 +19,9 @@ function love.load()
     require("game.fonts").install()
     canvas = love.graphics.newCanvas(viewport.width, viewport.height)
     canvas:setFilter("nearest", "nearest")
-    scenes = sceneStack.new(PlayScene.new())
+    local menu = MenuScene.new()
+    scenes = sceneStack.new(menu)
+    menu:bind(scenes)
 end
 
 function love.update(dt)

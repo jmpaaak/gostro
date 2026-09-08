@@ -136,3 +136,21 @@
 - Appium 서버는 ready였지만 CoreDevice RSD 할당 실패로 설치 앱 조회와 WDA 시작이 실패했다. Balatro 실행·터치·캡처 및 실기기 QA는 아직 수행하지 못했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - Next slice: CoreDevice RSD 연결을 복구하고 실제 설치 앱 목록에서 Balatro bundle identifier를 확인한 뒤, 앱 시작 화면의 PNG/page-source 증거 묶음을 수집한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).
+
+## 2026-09-08 — Gostro 첫 메뉴/UI 슬라이스
+
+- 직접 관찰된 Balatro 랜딩의 큰 `PLAY`와 PLAY 서브메뉴의 `New Run`(파랑) / `Continue`(빨강) / `Challenges`(주황) 세로 계층만 구현 근거로 사용했다. New Run 이후 덱 화면은 미관찰로 유지했다.
+- Gostro는 이제 320×180 네이티브 픽셀 랜딩의 큰 `게임 시작` 버튼으로 시작하고, 탭 즉시 `새 게임` / `계속하기` / `도전` 메뉴로 전환한다.
+- `새 게임`은 scene stack을 통해 새 `PlayScene`의 `blind_select`로 전환한다. `계속하기`와 `도전`은 메뉴에 남아 `준비 중` 피드백을 반환하므로 새 런으로 위장하지 않는다.
+- `game/ui/main_menu.lua`에 순수 상태/hit-test와 화투 꽃 인장·한글 픽셀 UI를, `game/scenes/menu.lua`에 라우팅만 분리했다. `game/scenes/play.lua`는 변경하지 않았다.
+- `game/tests/main_menu_ui.lua`, `game/tests/menu_scene.lua`를 self-test에 등록했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
+- INBOX (26)은 후속 실기기 관찰이 남아 있어 처리 대기로 유지한다.
+
+## 2026-09-08 — Balatro 실기기 연결 복구와 앱 식별
+
+- 사용자 CoreDeviceService를 재시작한 뒤 설치 앱 조회가 정상화됐다.
+- 실기기 설치 목록에서 Balatro 1.0.19(50)의 bundle identifier가 `com.playstack.balatropremium`임을 확인했다.
+- `devicectl`로 해당 bundle identifier를 실행해 성공 응답을 받았다. 화면 내용은 아직 관찰 사실로 기록하지 않았다.
+- WDA 세션은 연결 복구 후 빌드 단계까지 진행했지만 development team 미설정으로 code 65가 발생했다. PNG/page source는 아직 확보하지 못했다.
+- Next slice: WDA 서명을 구성하고 앱 시작 화면의 PNG와 page source를 같은 체크포인트 증거 묶음으로 저장한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).
