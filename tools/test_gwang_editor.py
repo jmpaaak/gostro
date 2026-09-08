@@ -197,5 +197,70 @@ class GwangEditorGridTests(unittest.TestCase):
         self.assertIn("data-id", render)
 
 
+class GwangEditorImageUploadTests(unittest.TestCase):
+    """INBOX (23c): per-card image upload, center-crop into the hwatu frame."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(HTML_PATH, encoding="utf-8") as f:
+            cls.html = f.read()
+        with open(CSS_PATH, encoding="utf-8") as f:
+            cls.css = f.read()
+
+    def test_render_grid_emits_per_card_image_input(self):
+        render = _fn_body(self.js, "renderGrid")
+        self.assertTrue(render, "renderGrid must exist")
+        self.assertIn('type="file"', render)
+        self.assertIn("accept=", render)
+        self.assertIn("image/*", render)
+        self.assertIn("card-image-input", render)
+
+    def test_center_crop_resizes_to_card_aspect(self):
+        crop = _fn_body(self.js, "centerCropToCard")
+        self.assertTrue(crop, "centerCropToCard must exist")
+        self.assertIn("createElement", crop)
+        self.assertIn("canvas", crop)
+        self.assertIn("drawImage", crop)
+        self.assertIn("toDataURL", crop)
+        self.assertRegex(
+            crop,
+            r"2\s*/\s*3|CARD_ASPECT|240|360",
+            "crop must keep the hwatu 2:3 card ratio",
+        )
+        self.assertRegex(
+            crop,
+            r"sx|sy|\(srcW\s*-\s*sw\)\s*/\s*2|\(srcH\s*-\s*sh\)\s*/\s*2",
+            "crop must be centered",
+        )
+
+    def test_image_upload_places_art_in_card_frame(self):
+        render = _fn_body(self.js, "renderGrid")
+        self.assertIn("joker.image", render)
+        self.assertIn("hwatu-art", render)
+        self.assertIn("centerCropToCard", self.js)
+        self.assertIn("wireImageUploads", self.js)
+        wire = _fn_body(self.js, "wireImageUploads")
+        self.assertTrue(wire, "wireImageUploads must exist")
+        self.assertIn("card-image-input", wire)
+        self.assertIn("centerCropToCard", wire)
+        self.assertIn("joker.image", wire)
+        self.assertIn("renderGrid", wire)
+
+    def test_css_art_fills_card_frame(self):
+        self.assertIn(".hwatu-art", self.css)
+        self.assertRegex(
+            self.css,
+            r"\.hwatu-art\s*\{[^}]*object-fit\s*:",
+            "uploaded art must fill the card frame",
+        )
+        self.assertRegex(
+            self.css,
+            r"\.hwatu-art\s*\{[^}]*position\s*:\s*absolute",
+            "art sits inside the rounded hwatu frame",
+        )
+
+
 if __name__ == "__main__":
     unittest.main()

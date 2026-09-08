@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 카드 에디터 이미지 업로드 (`tools/gwang-editor/`)
+
+- `tools/gwang-editor/`: per-card image upload into the hwatu frame.
+  - Hidden `input.card-image-input` (accept image/*) on each card; `wireImageUploads` handles change.
+  - `centerCropToCard` canvas-crops to 2:3 (240×360), centered (`sx`/`sy`), then `toDataURL`.
+  - Cropped art renders as `.hwatu-art` (`position: absolute`, `object-fit: cover`) inside the rounded card.
+- Tests: `python3 -m unittest tools.test_gwang_editor -v` GREEN (17 tests: schema + File API/FSA + grid + image upload).
+- INBOX (23) slice (c) only. JSON `image` persist on save, overlays, edit form, New/Delete, locale, runtime image decode are not in this slice.
+- Next slice: INBOX (23) remaining — (d) 이미지는 base64 data URL로 JSON `image` 필드에 저장 on `tools/gwang-editor/`.
+
 ## 2026-09-08 — 광 카드 에디터 그리드 뷰 (`tools/gwang-editor/`)
 
 - `tools/gwang-editor/`: each loaded joker renders as a hwatu card (`article.hwatu-card`).

@@ -1,5 +1,5 @@
 // gwang-editor: static, dependency-free editor for game/data/gwang_jokers.json
-// (docs/feedback/INBOX.md item 23b — hwatu-shaped card grid).
+// (docs/feedback/INBOX.md item 23c — per-card image upload, center-crop).
 //
 // Validation mirrors the catalog fields used by game/gwang_catalog.lua.
 
@@ -11,6 +11,9 @@ const KNOWN_EFFECT_KEYS = ["chips", "mult", "mult_mul", "money"];
 const KNOWN_KINDS = ["hongdan", "cheongdan", "chodan", "godori", "pi"];
 const KNOWN_BLINDS = ["small", "big", "boss"];
 const KNOWN_YAKU = ["hongdan", "cheongdan", "chodan", "godori", "pi"];
+const CARD_ASPECT = 2 / 3;
+const CARD_ART_W = 240;
+const CARD_ART_H = 360;
 
 /** @type {{jokers: Array<object>}|null} */
 let pool = null;
@@ -198,6 +201,55 @@ function escapeHtml(s) {
     .replace(/"/g, "&quot;");
 }
 
+function centerCropToCard(img) {
+  const canvas = document.createElement("canvas");
+  canvas.width = CARD_ART_W;
+  canvas.height = CARD_ART_H;
+  const srcW = img.naturalWidth || img.width;
+  const srcH = img.naturalHeight || img.height;
+  let sx = 0;
+  let sy = 0;
+  let sw = srcW;
+  let sh = srcH;
+  const srcAspect = srcW / srcH;
+  if (srcAspect > CARD_ASPECT) {
+    sw = srcH * CARD_ASPECT;
+    sx = (srcW - sw) / 2;
+  } else if (srcAspect < CARD_ASPECT) {
+    sh = srcW / CARD_ASPECT;
+    sy = (srcH - sh) / 2;
+  }
+  const ctx = canvas.getContext("2d");
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, CARD_ART_W, CARD_ART_H);
+  return canvas.toDataURL("image/png");
+}
+
+function wireImageUploads() {
+  if (!els.grid) return;
+  els.grid.querySelectorAll(".card-image-input").forEach((input) => {
+    input.addEventListener("change", () => {
+      const file = input.files && input.files[0];
+      if (!file || !pool) return;
+      const id = input.getAttribute("data-id");
+      const joker = pool.jokers.find((item) => item.id === id);
+      if (!joker) return;
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => {
+        joker.image = centerCropToCard(img);
+        URL.revokeObjectURL(url);
+        renderGrid();
+        setStatus("Image placed in card frame (center crop, 2:3).", "ok");
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        setStatus("Failed to load image.", "error");
+      };
+      img.src = url;
+    });
+  });
+}
+
 function renderGrid() {
   if (!els.grid) return;
   if (!pool || !Array.isArray(pool.jokers)) {
@@ -207,8 +259,12 @@ function renderGrid() {
   els.grid.innerHTML = pool.jokers.map((joker) => {
     const name = (joker.name && joker.name.en) || joker.id || "?";
     const id = joker.id || "";
-    return `<article class="hwatu-card" data-id="${escapeHtml(id)}"><div class="star">★</div><div class="name">${escapeHtml(name)}</div></article>`;
+    const art = joker.image
+      ? `<img class="hwatu-art" alt="" src="${escapeHtml(joker.image)}">`
+      : "";
+    return `<article class="hwatu-card" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="name">${escapeHtml(name)}</div><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></article>`;
   }).join("");
+  wireImageUploads();
 }
 
 async function autoLoadDefaults() {
