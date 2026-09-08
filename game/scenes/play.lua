@@ -144,8 +144,7 @@ function M.play_hand(scene)
     if not result then return false end
     local transition = round_engine.play(scene.round, indices, result)
 
-    run.add_score(scene.run_state, result.score)
-    scene.run_state.hands_left = scene.round.hands_left
+    blind_flow.score(scene.run_state, result.score, scene.round.hands_left)
     scoreboard_ui.set_hand_result(scene.scoreboard, result.chips, result.mult)
     sync_round_ui(scene)
 

@@ -93,6 +93,13 @@ function M.begin(state, kind, boss_id)
     return selected
 end
 
+--- Apply one scored hand and mirror the round engine's remaining hands.
+function M.score(state, amount, hands_left)
+    run.add_score(state, amount)
+    state.hands_left = hands_left
+    return state.round_score
+end
+
 --- Clear the current blind once its adjusted target is met.
 -- Returns the resulting run phase, or nil while the target is unmet.
 function M.clear(state, hands_left)

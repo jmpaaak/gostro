@@ -195,6 +195,23 @@ function M.test_lose_owns_exhausted_hand_transition()
     assert(cleared.phase == "play", "completed blind remains available to clear")
 end
 
+function M.test_score_owns_hand_result_transfer()
+    local state = run.new("blind-flow-score")
+    state.round_score = 25
+    state.hands_left = 4
+
+    assert(blind_flow.score(state, 120, 3) == 145,
+        "score returns the accumulated round score")
+    assert(state.round_score == 145 and state.hands_left == 3,
+        "score transfers points and the round engine hand count together")
+
+    state.phase = "shop"
+    fails(function() blind_flow.score(state, 10, 2) end,
+        "score rejects results outside active play")
+    assert(state.round_score == 145 and state.hands_left == 3,
+        "a rejected score result does not mutate run state")
+end
+
 function M.run()
     M.test_view_exposes_sequential_blinds_and_run_targets()
     M.test_skip_eligibility_requires_current_small_or_big_and_tag()
@@ -205,6 +222,7 @@ function M.run()
     M.test_begin_owns_stake_adjusted_round_transition()
     M.test_clear_and_shop_exit_own_sequential_progression()
     M.test_lose_owns_exhausted_hand_transition()
+    M.test_score_owns_hand_result_transfer()
     print("  blind_flow: OK")
 end
 

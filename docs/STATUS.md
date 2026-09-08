@@ -1,11 +1,4 @@
 # STATUS
-## 2026-09-08 — WDA 서명 빌드 검증
-
-- Appium 3.7.0 + XCUITest driver 12.11.0을 저장소의 무시된 `build/` 경로에 격리 설치했다.
-- development team `2JQN8PNHSY`와 `com.jmpaxk.WebDriverAgentRunner` bundle id로 WDA가 `TEST BUILD SUCCEEDED`를 통과했고, 서명된 runner 1.0이 실기기에 설치된 것을 확인했다.
-- WDA 실행은 실기기에서 Developer App 인증서가 신뢰되지 않아 CoreDevice 10002로 차단됐다. PNG/page source와 추가 UI 관찰은 아직 없다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
-- Next slice: 실기기 설정에서 개발자 인증서를 신뢰한 뒤 WDA 세션을 열고 앱 시작 화면 PNG와 page source를 같은 `00-launch` 증거 묶음으로 저장한다 (`docs/BALATRO_NEW_RUN_ANALYSIS.md`).
 
 ## 2026-09-08 — 엔진 모듈 분리 및 테스트 통합 완료
 
@@ -131,5 +124,13 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `play_integration: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: 한 hand 득점과 남은 hand 이관을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.add_score` 호출과 `run_state.hands_left` 대입을 제거한다.
+
+## 2026-09-08 — hand 득점·잔여 hand 이관 모듈화
+
+- `game/blind_flow.lua`의 `score`가 한 hand의 점수 누적과 round engine 잔여 hand 이관을 하나의 전환 계약으로 소유한다.
+- `game/scenes/play.lua`의 직접 `run.add_score` 호출과 `run_state.hands_left` 대입을 제거하고 `blind_flow.score`에 위임했다.
+- TDD RED: `blind_flow.score` 미구현 실패를 확인했다. 구현 후 `game/tests/blind_flow.lua`와 전체 엔진 테스트가 GREEN이다.
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: 설정된 run 생성을 독립 계약으로 감싸 `game/scenes/play.lua`의 마지막 직접 `game.run` 의존성(`run.new`)을 제거한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
