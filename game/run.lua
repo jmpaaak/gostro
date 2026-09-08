@@ -30,6 +30,7 @@ local PLAY_CARDS = {
 }
 
 local tags = require("game.tags")
+local boss_blinds = require("game.boss_blinds")
 
 function M.new()
     return {
@@ -45,6 +46,8 @@ function M.new()
             extra_shop_slots = 0,
             hand_size_bonus = 0,
         },
+        boss_id = nil,
+        boss = nil,
     }
 end
 
@@ -54,7 +57,40 @@ function M.blind_target(state)
     if not base or not mult then
         error("unknown ante or blind")
     end
-    return math.floor(base * mult)
+    local target = math.floor(base * mult)
+    if state.blind == "boss" and state.boss and state.boss.effect == "double_target" then
+        target = boss_blinds.apply_wall(target)
+    end
+    return target
+end
+
+local function enter_blind(state, blind)
+    state.blind = blind
+    if blind == "boss" then
+        if not state.boss then
+            M.select_boss(state)
+        end
+    else
+        state.boss_id = nil
+        state.boss = nil
+    end
+end
+
+--- Choose the boss blind for this ante. Only valid while on a boss blind.
+function M.select_boss(state, boss_id)
+    if state.blind ~= "boss" then
+        error("select_boss only on boss blinds")
+    end
+    local def = boss_id and boss_blinds.by_id(boss_id) or boss_blinds.random()
+    state.boss_id = def.id
+    state.boss = {
+        id = def.id,
+        name = def.name,
+        effect = def.effect,
+        kind = def.kind,
+        amount = def.amount,
+    }
+    return def
 end
 
 function M.add_score(state, amount)
@@ -92,9 +128,9 @@ function M.skip_blind(state, tag_id)
     end
     tags.apply(state, tag_id or tags.random().id)
     if state.blind == "small" then
-        state.blind = "big"
+        enter_blind(state, "big")
     else
-        state.blind = "boss"
+        enter_blind(state, "boss")
     end
     state.round_score = 0
 end
@@ -129,12 +165,12 @@ function M.leave_shop(state)
         error("leave shop only from shop")
     end
     if state.blind == "small" then
-        state.blind = "big"
+        enter_blind(state, "big")
     elseif state.blind == "big" then
-        state.blind = "boss"
+        enter_blind(state, "boss")
     else
         state.ante = state.ante + 1
-        state.blind = "small"
+        enter_blind(state, "small")
     end
     state.phase = "play"
     state.round_score = 0

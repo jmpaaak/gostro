@@ -26,6 +26,7 @@ function M.run()
     require("game.tests.score_anim_ui").run()
     require("game.tests.card_effects").run()
     require("game.tests.tags").run()
+    require("game.tests.boss_blinds").run()
     print("GOSTRO_UNIT_OK")
 end
 
