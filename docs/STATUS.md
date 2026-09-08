@@ -1,12 +1,12 @@
 # STATUS
-## 2026-09-08 — Gostro Play 패널 탭과 New Run 설정 UI
+## 2026-09-08 — New Run 설정 씬 라우팅
 
-- Balatro의 New Run 관찰에 따라 `game/ui/main_menu.lua`를 `새 게임`/`계속하기`/`도전` 가로 탭 구조로 개편했다.
-- `game/ui/run_setup.lua`를 신규 생성하여 덱 선택 캐러셀, 잠금 조건 표출, 기본 난이도, 시드 입력 토글의 순수 상태와 UI 배치를 구현했다.
-- `game/tests/menu_scene.lua`와 `game/tests/run_setup_ui.lua` 등 테스트를 갱신 및 추가하여 GREEN 상태를 확보했다.
-- 두 UI(`main_menu`와 `run_setup`)의 씬 연결 및 실제 렌더링 통합은 미완성 상태이나, 모든 단위 테스트가 통과하는 안전한 조각으로 커밋했다.
+- `game/scenes/menu.lua`가 독립 `run_setup` 상태를 소유하고 `새 게임` 탭 선택 뒤 설정 화면의 draw/input을 라우팅하도록 연결했다.
+- 잠긴 덱의 PLAY는 메뉴에 머물며, 해금 덱의 PLAY만 `PlayScene`으로 전환한다.
+- Seeded Run의 정규화된 시드와 선택한 시작 덱/스테이크 ID가 새 런 상태에 전달된다.
+- `game/tests/menu_scene.lua`에서 설정 draw 라우팅, 덱 이동, 잠금 차단, 시드 토글, PLAY 전환을 엔진 호스트로 검증했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
-- INBOX (26)은 씬 통합 및 후속 뷰 관찰이 필요하여 처리 대기로 유지한다.
+- INBOX (26)은 계속 처리 중이다. 다음 최소 조각은 `계속하기` 탭에 활성 런이 없다는 명시적 준비 중 상태를 구현하는 것이다.
 
 ## 2026-09-08 — 태그 시스템 (스몰/빅 블라인드 스킵 보상)
 

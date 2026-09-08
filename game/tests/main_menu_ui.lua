@@ -34,7 +34,7 @@ function M.run()
     assert(tabs[2].id == "continue" and tabs[2].label == "계속하기", "continue tab is second")
     assert(tabs[3].id == "challenges" and tabs[3].label == "도전", "challenges tab is third")
     for i, tab in ipairs(tabs) do
-        assert(tab.w >= 80 and tab.h >= 44, "tab " .. i .. " is a large touch target")
+        assert(tab.w >= 80 and tab.h >= 28, "tab " .. i .. " is a large scaled touch target")
         if i > 1 then
             assert(tabs[i - 1].x + tabs[i - 1].w <= tab.x, "tabs are horizontally ordered and non-overlapping")
             assert(tabs[i - 1].y == tab.y, "tabs share one horizontal row")
@@ -66,7 +66,7 @@ function M.run()
 
     local back = main_menu.back_button(menu)
     assert(back.id == "back" and back.label == "뒤로", "panel exposes the observed Korean back action")
-    assert(back.w >= 200 and back.h >= 36, "back is a wide bottom touch target")
+    assert(back.w >= 200 and back.h >= 16, "back is a wide scaled bottom touch target")
     assert(back.y > tabs[1].y + tabs[1].h, "back sits below tab content")
     x, y = center(back)
     assert(main_menu.hit_test(menu, x, y) == "back", "back button is hit-testable")

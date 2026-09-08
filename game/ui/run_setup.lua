@@ -40,17 +40,17 @@ local STAKES = {
 }
 
 local LAYOUT = {
-    panel = { x = 35, y = 17, w = 250, h = 101 },
-    deck_art = { x = 48, y = 30, w = 68, h = 68 },
-    deck_info = { x = 126, y = 28, w = 146, h = 72 },
-    deck_left = { x = 5, y = 43, w = 30, h = 45 },
-    deck_right = { x = 285, y = 43, w = 30, h = 45 },
-    dots = { x = 137, y = 106, w = 46, h = 8 },
-    stake_left = { x = 10, y = 120, w = 26, h = 24 },
-    stake = { x = 40, y = 120, w = 240, h = 24 },
-    stake_right = { x = 284, y = 120, w = 26, h = 24 },
-    seeded = { x = 39, y = 149, w = 112, h = 25 },
-    play = { x = 181, y = 148, w = 100, h = 27 },
+    panel = { x = 35, y = 60, w = 250, h = 59 },
+    deck_art = { x = 48, y = 66, w = 48, h = 48 },
+    deck_info = { x = 104, y = 62, w = 168, h = 54 },
+    deck_left = { x = 5, y = 67, w = 30, h = 42 },
+    deck_right = { x = 285, y = 67, w = 30, h = 42 },
+    dots = { x = 137, y = 116, w = 46, h = 5 },
+    stake_left = { x = 10, y = 122, w = 26, h = 18 },
+    stake = { x = 40, y = 122, w = 240, h = 18 },
+    stake_right = { x = 284, y = 122, w = 26, h = 18 },
+    seeded = { x = 39, y = 143, w = 112, h = 14 },
+    play = { x = 181, y = 142, w = 100, h = 16 },
 }
 
 local function copy_entries(source)
@@ -212,20 +212,20 @@ local function draw_deck_info(graphics, font, state)
     graphics.rectangle("line", rect.x, rect.y, rect.w, rect.h, 4, 4)
 
     if not deck.unlocked then
-        draw_lock(graphics, rect.x + 8, rect.y + 8)
+        draw_lock(graphics, rect.x + 6, rect.y + 3)
         graphics.setColor(0.96, 0.80, 0.38, 1)
-        graphics.print("잠김 · " .. deck.name, rect.x + 34, rect.y + 8)
+        graphics.print("잠김 · " .. deck.name, rect.x + 31, rect.y + 4)
         graphics.setColor(0.88, 0.88, 0.84, 1)
-        graphics.printf("해금 조건\n" .. deck.unlock_condition, rect.x + 8, rect.y + 33, rect.w - 16, "left")
+        graphics.printf("해금 조건 · " .. deck.unlock_condition, rect.x + 6, rect.y + 29, rect.w - 12, "left")
         return
     end
 
     graphics.setColor(0.98, 0.82, 0.34, 1)
-    graphics.print(deck.name, rect.x + 8, rect.y + 7)
+    graphics.print(deck.name, rect.x + 7, rect.y + 4)
     graphics.setColor(1, 1, 1, 1)
-    graphics.print(deck.description, rect.x + 8, rect.y + 25)
+    graphics.print(deck.description, rect.x + 7, rect.y + 20)
     graphics.setColor(0.72, 0.80, 0.77, 1)
-    graphics.printf(deck.detail, rect.x + 8, rect.y + 43, rect.w - 16, "left")
+    graphics.printf(deck.detail, rect.x + 7, rect.y + 35, rect.w - 14, "left")
 end
 
 local function draw_dots(graphics, state)
@@ -248,7 +248,7 @@ local function draw_stake(graphics, state)
     local rect = LAYOUT.stake
     draw_shadowed_box(graphics, rect, { 0.78, 0.80, 0.77, 1 }, 3)
     graphics.setColor(0.13, 0.15, 0.16, 1)
-    graphics.printf(stake.label .. " · " .. stake.name, rect.x, rect.y + 6, rect.w, "center")
+    graphics.printf(stake.label .. " · " .. stake.name, rect.x, rect.y + 3, rect.w, "center")
     draw_arrow(graphics, LAYOUT.stake_left, false, true)
     draw_arrow(graphics, LAYOUT.stake_right, true, true)
 end
@@ -259,7 +259,7 @@ local function draw_seed_toggle(graphics, state)
     draw_shadowed_box(graphics, rect, color, 4)
     graphics.setColor(1, 1, 1, 1)
     local label = state.seeded and ("시드 ON  " .. state.seed) or "시드 런 OFF"
-    graphics.printf(label, rect.x + 3, rect.y + 7, rect.w - 6, "center")
+    graphics.printf(label, rect.x + 3, rect.y + 2, rect.w - 6, "center")
 end
 
 local function draw_play(graphics, state)
@@ -267,10 +267,10 @@ local function draw_play(graphics, state)
     local color = M.can_play(state) and { 0.08, 0.43, 0.74, 1 } or { 0.35, 0.36, 0.38, 1 }
     draw_shadowed_box(graphics, rect, color, 5)
     graphics.setColor(1, 1, 1, M.can_play(state) and 1 or 0.52)
-    graphics.printf("PLAY", rect.x, rect.y + 7, rect.w, "center")
+    graphics.printf("PLAY", rect.x, rect.y + 2, rect.w, "center")
 end
 
-function M.draw(state, graphics)
+function M.draw(state, graphics, embedded)
     graphics = graphics or (love and love.graphics)
     if not graphics then return end
 
@@ -279,11 +279,13 @@ function M.draw(state, graphics)
     local font = fonts.get(11, graphics)
     graphics.setFont(font)
 
-    graphics.clear(0.025, 0.075, 0.085, 1)
-    graphics.setColor(0.04, 0.15, 0.15, 1)
-    graphics.rectangle("fill", 0, 0, M.VIEWPORT_W, M.VIEWPORT_H)
-    graphics.setColor(0.96, 0.78, 0.28, 1)
-    graphics.printf("새 게임", 0, 3, M.VIEWPORT_W, "center")
+    if not embedded then
+        graphics.clear(0.025, 0.075, 0.085, 1)
+        graphics.setColor(0.04, 0.15, 0.15, 1)
+        graphics.rectangle("fill", 0, 0, M.VIEWPORT_W, M.VIEWPORT_H)
+        graphics.setColor(0.96, 0.78, 0.28, 1)
+        graphics.printf("새 게임", 0, 3, M.VIEWPORT_W, "center")
+    end
 
     draw_shadowed_box(graphics, LAYOUT.panel, { 0.08, 0.11, 0.13, 1 }, 6)
     draw_deck_art(graphics, M.selected_deck(state))
@@ -295,7 +297,7 @@ function M.draw(state, graphics)
     draw_seed_toggle(graphics, state)
     draw_play(graphics, state)
 
-    if state.notice then
+    if state.notice and not embedded then
         graphics.setColor(1, 0.77, 0.32, 1)
         graphics.printf(state.notice, 0, 175 - font:getHeight(), M.VIEWPORT_W, "center")
     end

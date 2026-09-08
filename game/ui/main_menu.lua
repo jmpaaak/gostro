@@ -11,13 +11,13 @@ local LANDING_BUTTON = {
 }
 
 local TAB_RECTS = {
-    { id = "new_game", label = "새 게임", x = 20, y = 54, w = 92, h = 44 },
-    { id = "continue", label = "계속하기", x = 114, y = 54, w = 92, h = 44 },
-    { id = "challenges", label = "도전", x = 208, y = 54, w = 92, h = 44 },
+    { id = "new_game", label = "새 게임", x = 20, y = 28, w = 92, h = 28 },
+    { id = "continue", label = "계속하기", x = 114, y = 28, w = 92, h = 28 },
+    { id = "challenges", label = "도전", x = 208, y = 28, w = 92, h = 28 },
 }
 
 local BACK_BUTTON = {
-    id = "back", label = "뒤로", x = 20, y = 136, w = 280, h = 36,
+    id = "back", label = "뒤로", x = 20, y = 160, w = 280, h = 17,
     color = { 0.22, 0.28, 0.29 },
 }
 
@@ -138,9 +138,9 @@ end
 
 local function draw_play_panel(menu, graphics, font)
     graphics.setColor(0.025, 0.075, 0.085, 0.94)
-    graphics.rectangle("fill", 14, 47, 292, 130, 5, 5)
+    graphics.rectangle("fill", 14, 24, 292, 154, 5, 5)
     graphics.setColor(0.76, 0.59, 0.20, 0.7)
-    graphics.rectangle("line", 14, 47, 292, 130, 5, 5)
+    graphics.rectangle("line", 14, 24, 292, 154, 5, 5)
 
     for _, tab in ipairs(M.tabs(menu)) do
         if tab.selected then
@@ -159,8 +159,10 @@ local function draw_play_panel(menu, graphics, font)
     graphics.setColor(0.98, 0.72, 0.20, 1)
     graphics.rectangle("fill", indicator.x, indicator.y, indicator.w, indicator.h)
 
-    graphics.setColor(0.72, 0.82, 0.78, 1)
-    graphics.printf(TAB_CONTENT[menu.selected_tab], 20, 108, 280, "center")
+    if menu.selected_tab ~= "new_game" then
+        graphics.setColor(0.72, 0.82, 0.78, 1)
+        graphics.printf(TAB_CONTENT[menu.selected_tab], 20, 92, 280, "center")
+    end
     draw_button(graphics, font, BACK_BUTTON)
 end
 
