@@ -3,6 +3,9 @@ local run_rules = require("game.run_rules")
 local tags = require("game.tags")
 local blind_targets = require("game.blind_targets")
 local boss_blinds = require("game.boss_blinds")
+local economy = require("game.economy")
+local vouchers = require("game.vouchers")
+local run_history = require("game.run_history")
 
 local M = {}
 
@@ -152,7 +155,15 @@ function M.clear(state, hands_left)
         return nil
     end
     if hands_left ~= nil then state.hands_left = hands_left end
-    run.clear_blind(state)
+    economy.cash_out(state)
+    if state.ante >= blind_targets.FINAL_ANTE and state.blind == "boss" then
+        state.phase = "won"
+        run_history.record(state, "won")
+    else
+        state.phase = "shop"
+        local shop_rng = state.rng and state.rng.shop
+        vouchers.stock_shop(state, shop_rng)
+    end
     return state.phase
 end
 

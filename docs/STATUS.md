@@ -1,7 +1,4 @@
 # STATUS
-
-## 2026-09-08 — 아르카나 팩 선택 오버레이 (`game/ui/pack.lua`)
-
 - Added a pure render model and shared hit-test bounds for three revealed tarot choices plus `건너뛰기` in a modal 320×180 overlay.
 - The play scene draws the overlay above the shop and routes choice/skip through `game/packs.lua`; while open, it consumes all pointer input so reroll, purchases, next-round, and seed controls cannot fire underneath it.
 - TDD RED was observed for the missing module. `game/tests/pack_ui.lua` verifies layout/hit-test, selected tarot grant, skip, and modal shop blocking.
@@ -123,5 +120,14 @@
 - TDD RED: `blind_flow.skip`이 monkey-patched legacy `run.skip_blind`를 호출해 실패하는 것을 확인했다. 구현 후 독립 전환, boss 선택, 잘못된 phase/future blind 비변이 거부와 기존 `run.skip_blind` 경로가 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 블라인드 클리어의 목표 검증 이후 cash-out·승리 기록·상점 준비를 `blind_flow`로 옮기고 `game.run.clear_blind`를 호환 delegate로 축소한다.
+
+## 2026-09-08 — 블라인드 클리어 결과 전환 분리
+
+- `game/blind_flow.clear`가 보정 목표 검증 뒤 남은 손·블라인드 보상·이자를 정산하고, 일반 클리어는 상점 phase와 voucher stock을 준비하며 ante 8 boss 클리어는 승리 기록을 남긴다.
+- 최종 ante 정의는 `game/blind_targets.lua`가 목표표와 함께 소유한다. `game.run.clear_blind`와 `game.run.FINAL_ANTE`는 기존 호출자를 위한 호환 delegate/alias로 축소됐다.
+- TDD RED: monkey-patched legacy `run.clear_blind` 호출 실패를 확인했다. 구현 후 일반 상점 전환·정산·voucher stock과 최종 승리 기록 회귀 테스트가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `blind_targets: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 상점 이탈 시 small→big→boss→다음 ante small 진행과 새 라운드 초기화를 `blind_flow.leave_shop`으로 옮기고 `game.run.leave_shop`을 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

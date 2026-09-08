@@ -1,7 +1,6 @@
 local M = {}
 
 M.MAX_GWANG = 5
-M.FINAL_ANTE = 8
 
 local PLAY_CARDS = {
     hongdan = true,
@@ -14,10 +13,11 @@ local PLAY_CARDS = {
 local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
 
 local vouchers = require("game.vouchers")
-local economy = require("game.economy")
 local rng = require("game.rng")
 local run_history = require("game.run_history")
 local blind_targets = require("game.blind_targets")
+
+M.FINAL_ANTE = blind_targets.FINAL_ANTE
 
 function M.new(seed_str)
     local plan = rng.plan(seed_str)
@@ -97,21 +97,9 @@ function M.add_score(state, amount)
 end
 
 function M.clear_blind(state)
-    if state.phase ~= "play" then
-        error("clear only during play")
-    end
-    if state.round_score < M.blind_target(state) then
-        error("cannot clear below the blind")
-    end
-    economy.cash_out(state)
-    if state.ante >= M.FINAL_ANTE and state.blind == "boss" then
-        state.phase = "won"
-        run_history.record(state, "won")
-        return
-    end
-    state.phase = "shop"
-    local shop_rng = state.rng and state.rng.shop
-    vouchers.stock_shop(state, shop_rng)
+    local phase = require("game.blind_flow").clear(state)
+    if not phase then error("cannot clear below the blind") end
+    return phase
 end
 
 --- Deal n play-card kinds from the run's cards stream. No months.

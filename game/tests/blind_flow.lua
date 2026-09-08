@@ -209,6 +209,35 @@ function M.test_clear_and_shop_exit_own_sequential_progression()
         "shop exit prepares the next blind selection")
 end
 
+function M.test_clear_owns_cash_out_shop_stock_and_final_win()
+    local run_history = require("game.run_history")
+    local state = run.new("blind-flow-clear-owner")
+    state.hands_left = 2
+    state.round_score = blind_flow.target(state)
+
+    local legacy_clear = run.clear_blind
+    run.clear_blind = function()
+        error("blind_flow.clear must not delegate to run.clear_blind")
+    end
+
+    assert(blind_flow.clear(state) == "shop")
+    assert(state.money == 9, "clear cashes out blind reward and remaining hands")
+    assert(state.vouchers.shop_id ~= nil, "clear stocks the next shop voucher")
+
+    run_history.reset()
+    local final = run.new("blind-flow-final-win")
+    final.ante = 8
+    blind_flow.enter(final, "boss", "wall")
+    final.round_score = blind_flow.target(final)
+    assert(blind_flow.clear(final, 1) == "won")
+    assert(final.phase == "won", "final boss clear ends the run without a shop")
+    local history = run_history.list()
+    assert(#history == 1 and history[1].outcome == "won" and history[1].ante == 8,
+        "final clear records one win")
+
+    run.clear_blind = legacy_clear
+end
+
 function M.test_lose_owns_exhausted_hand_transition()
     local state = run.new("blind-flow-loss")
     state.round_score = run.blind_target(state) - 1
@@ -256,6 +285,7 @@ function M.run()
     M.test_completed_progression_is_derived_from_run_state()
     M.test_begin_owns_stake_adjusted_round_transition()
     M.test_clear_and_shop_exit_own_sequential_progression()
+    M.test_clear_owns_cash_out_shop_stock_and_final_win()
     M.test_lose_owns_exhausted_hand_transition()
     M.test_score_owns_hand_result_transfer()
     print("  blind_flow: OK")

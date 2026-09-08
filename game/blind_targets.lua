@@ -2,6 +2,8 @@ local boss_blinds = require("game.boss_blinds")
 
 local M = {}
 
+M.FINAL_ANTE = 8
+
 -- Balatro-style ante bases. Small = base, big = 1.5x, boss = 2x.
 local ANTE_BASE = {
     [1] = 300,
@@ -11,7 +13,7 @@ local ANTE_BASE = {
     [5] = 11000,
     [6] = 20000,
     [7] = 35000,
-    [8] = 50000,
+    [M.FINAL_ANTE] = 50000,
 }
 
 local BLIND_MULT = {
