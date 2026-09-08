@@ -38,6 +38,18 @@ function M.run()
         "flint boss runtime must fit its selection card")
     assert(flint.runtime.filter == "nearest")
     assert(assets.runtime_path(flint_id) == "assets/runtime/boss-blind/flint-v1.png")
+
+    local mark_id = blind_card_art.asset_id("boss", { id = "mark" })
+    assert(mark_id == "boss-blind.mark", "mark boss must resolve its own card artwork")
+    local mark = assets.entry(mark_id)
+    assert(mark and mark.status == "runtime", "mark boss artwork must be promoted")
+    assert(mark.master.width == 400 and mark.master.height == 560,
+        "mark boss must preserve a 400x560 master")
+    assert(mark.runtime.width == 50 and mark.runtime.height == 70,
+        "mark boss runtime must fit its selection card")
+    assert(mark.runtime.filter == "nearest")
+    assert(assets.runtime_path(mark_id) == "assets/runtime/boss-blind/mark-v1.png")
+
     assets.clear_cache()
     print("  boss_blind_card_art: OK")
 end

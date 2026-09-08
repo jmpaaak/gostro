@@ -1,10 +1,10 @@
 # STATUS
-- `boss-blind.flint`에 400×560 벡터/PNG master와 통합 Asset Studio의 실제 `POST /api/pixel-perfect`에서 생성한 50×70 runtime PNG를 추가했다.
-- manifest에 master/runtime hash, alpha bounds, 원본 팔레트 변환 보고서, nearest 필터 계약을 기록하고 `game/ui/blind_card_art.lua`에 부싯돌 전용 배선을 추가했다.
+- `boss-blind.mark`에 400×560 벡터/PNG master와 통합 Asset Studio의 실제 `POST /api/pixel-perfect`에서 생성한 50×70 runtime PNG를 추가했다.
+- manifest에 master/runtime hash, alpha bounds, 원본 팔레트 변환 보고서, nearest 필터 계약을 기록하고 `game/ui/blind_card_art.lua`에 낙인 전용 배선을 추가했다.
 - LÖVE 11.5의 실제 320×180 선택 화면 캡처를 별도로 생성했으며, 신규 회귀 단언이 master/runtime 크기와 런타임 경로를 검증한다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
 - INBOX (27)은 나머지 대장판과 정적/애니메이션 에셋 카테고리가 남아 있어 처리 대기로 유지한다.
-- Next slice: `boss-blind.mark` 하나의 master/runtime manifest 계약과 실제 LÖVE 배선을 같은 방식으로 완성한다.
+- Next slice: `boss-blind.fish` 하나의 master/runtime manifest 계약과 실제 LÖVE 배선을 같은 방식으로 완성한다.
 
 ## 2026-09-09 — Balatro 직수입 용어 화투·한국 테마 전면 교체 완료
 - `game/planets.lua`, `game/tarots.lua`, `game/tags.lua`, `game/vouchers.lua`, `game/data/gwang_jokers.json`의 개별 카드/효과명을 우주·서양 점술 원명에서 한국적 이름(주작 기원패, 둔갑 부적, 단골 패찰, 명필의 인장 등)으로 교체했다.
