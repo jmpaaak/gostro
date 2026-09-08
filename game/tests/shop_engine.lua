@@ -48,7 +48,7 @@ function M.test_seeded_generation_uses_only_shop_stream()
         local offer = a.random_offers[i]
         assert(offer.slot_type == "random")
         assert(offer.identity and offer.price >= 1)
-        assert(offer.kind == "gwang" or offer.kind == "planet" or offer.kind == "tarot")
+        assert(offer.kind == "gwang" or offer.kind == "wish_card" or offer.kind == "tarot")
     end
 end
 

@@ -2,7 +2,7 @@
 --
 -- The mechanics run in this deterministic order:
 --   1. score-time boss validation (Psychic)
---   2. hwatu.evaluate(hand, run_state), which owns base/yaku, planet,
+--   2. hwatu.evaluate(hand, run_state), which owns base/yaku, wish-card,
 --      edition, and gwang ordering (including money/once state changes)
 --   3. one score-mutating boss hook (Flint/Goad/Plant)
 --   4. final score event
@@ -10,7 +10,7 @@
 -- This module does not add the score to run_state. The caller owns that commit.
 
 local hwatu = require("game.hwatu")
-local planets = require("game.planets")
+local wish_cards = require("game.wish_cards")
 local boss_blinds = require("game.boss_blinds")
 
 local M = {}
@@ -58,15 +58,16 @@ local function append_mechanic_events(events, hand, state, result)
         yaku = copy_list(result.yaku),
     }
 
-    -- Planet application is owned by hwatu.evaluate. These events only expose
+    -- Wish-card application is owned by hwatu.evaluate. These events only expose
     -- the applied levels to animation; they never recalculate or reapply it.
     if type(state) == "table" then
         for i = 1, #(result.yaku or {}) do
             local yaku = result.yaku[i]
-            local level = planets.get_level(state, yaku)
+            local level = wish_cards.get_level(state, yaku)
             if level > 1 then
                 events[#events + 1] = {
-                    type = "planet",
+                    type = "wish_card",
+                    legacy_type = "planet",
                     yaku = yaku,
                     level = level,
                 }
@@ -116,7 +117,7 @@ function M.score(hand, run_state, opts)
         end
     end
 
-    -- This is the sole call that applies planet, edition, and gwang mechanics.
+    -- This is the sole call that applies wish-card, edition, and gwang mechanics.
     local result = hwatu.evaluate(hand, run_state)
     local events = {}
     append_mechanic_events(events, hand, run_state, result)

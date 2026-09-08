@@ -3,7 +3,7 @@
 -- All random inventory is sourced exclusively from run_state.rng.shop.
 
 local gwang_catalog = require("game.gwang_catalog")
-local planets = require("game.planets")
+local wish_cards = require("game.wish_cards")
 local tarots = require("game.tarots")
 
 local M = {}
@@ -47,10 +47,11 @@ local function require_shop_rng(run_state)
     return random
 end
 
-local function sorted_planets()
-    local list = planets.all()
+local function sorted_wish_cards()
+    local list = wish_cards.all()
     table.sort(list, function(a, b)
-        return a.id < b.id
+        -- Legacy ids retain the pre-migration index order for seeded shops.
+        return (a.legacy_id or a.id) < (b.legacy_id or b.id)
     end)
     return list
 end
@@ -80,10 +81,12 @@ local function offer(run_state, kind, definition, base_price)
         kind = kind,
         identity = definition.id,
         id = definition.id,
+        legacy_id = definition.legacy_id,
         name = definition.name,
         rarity = definition.rarity,
         yaku = definition.yaku,
         effect = definition.effect,
+        symbol = definition.symbol,
         base_price = base_price,
         price = discounted_price(run_state, base_price),
         sold = false,
@@ -97,9 +100,9 @@ local function random_offer(run_state, random)
         local item = pool[random(1, #pool)]
         return offer(run_state, "gwang", item, GWANG_PRICE[item.rarity] or 4)
     elseif roll <= 75 then
-        local pool = sorted_planets()
+        local pool = sorted_wish_cards()
         local item = pool[random(1, #pool)]
-        return offer(run_state, "planet", item, 3)
+        return offer(run_state, "wish_card", item, 3)
     else
         local pool = tarots.POOL
         local item = pool[random(1, #pool)]

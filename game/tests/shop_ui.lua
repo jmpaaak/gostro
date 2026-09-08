@@ -11,7 +11,7 @@ function M.run()
     assert(s.money == 100, "initial money 100, got " .. tostring(s.money))
     assert(#s.cards == 3, "3 cards on display, got " .. #s.cards)
     for i, c in ipairs(s.cards) do
-        assert(c.kind == "gwang" or c.kind == "planet", "card " .. i .. " is gwang or planet")
+        assert(c.kind == "gwang" or c.kind == "wish_card", "card " .. i .. " is gwang or wish card")
         assert(c.identity ~= nil, "card " .. i .. " has identity")
         assert(c.price > 0, "card " .. i .. " has price > 0")
     end
@@ -22,7 +22,7 @@ function M.run()
     local price = card.price
     local ok, bought = shop.buy_card(s2, 1)
     assert(ok == true, "buy succeeds")
-    assert(bought.kind == "gwang" or bought.kind == "planet", "bought valid kind")
+    assert(bought.kind == "gwang" or bought.kind == "wish_card", "bought valid kind")
     assert(s2.money == 50 - price, "money decreased by price")
     assert(s2.cards[1] == nil or s2.cards[1].sold == true, "slot emptied or marked sold")
 
@@ -90,7 +90,7 @@ function M.run()
         run_state = { money = 17 },
         random_offers = {
             { slot_type = "random", kind = "gwang", identity = "one", price = 4 },
-            { slot_type = "random", kind = "planet", identity = "two", price = 3 },
+            { slot_type = "random", kind = "wish_card", identity = "two", price = 3 },
             { slot_type = "random", kind = "tarot", identity = "three", price = 3 },
             { slot_type = "random", kind = "gwang", identity = "extra", price = 4 },
         },
@@ -119,6 +119,12 @@ function M.run()
         "pack slot is represented")
     assert(views[6].slot_type == "voucher" and views[6].label ~= "?",
         "voucher slot is represented")
+    assert(views[2].label == "기원패", "wish-card fallback uses the Korean category name")
+
+    local legacy_view = shop.slot_views({ cards = {
+        { kind = "planet", identity = "planet_hongdan", price = 3 },
+    } })
+    assert(legacy_view[1].label == "기원패", "legacy offers never expose the old category name")
 
     -- money_text accepts both legacy UI state and engine-owned run money.
     local txt = shop.money_text(s8)

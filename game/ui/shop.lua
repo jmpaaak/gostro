@@ -73,13 +73,14 @@ end
 --- Pick a random item from the pool.
 local function random_item()
     if math.random() < 0.3 then
-        local planets = require("game.planets").all()
-        local p = planets[math.random(1, #planets)]
+        local wish_cards = require("game.wish_cards").all()
+        local card = wish_cards[math.random(1, #wish_cards)]
         return {
-            kind = "planet",
-            yaku = p.yaku,
-            identity = p.id,
-            name = "행성: " .. (p.name or "Unknown"),
+            kind = "wish_card",
+            yaku = card.yaku,
+            identity = card.id,
+            name = card.name,
+            symbol = card.symbol,
             price = 3,
             sold = false,
         }
@@ -161,7 +162,7 @@ local function item_label(item)
     end
     if item.kind == "pack" then return "카드 팩" end
     if item.kind == "tarot" then return "타로" end
-    if item.kind == "planet" then return "행성" end
+    if item.kind == "wish_card" or item.kind == "planet" then return "기원패" end
     return GWANG_NAMES[item.identity] or "광"
 end
 
@@ -231,14 +232,23 @@ function M.draw(s)
         local card = view.item
 
         if card and not card.sold then
-            if card.kind == "planet" or card.kind == "tarot" then
-                love.graphics.setColor(0.3, 0.4, 0.7, 1)
+            if card.kind == "wish_card" or card.kind == "planet" or card.kind == "tarot" then
+                local is_wish_card = card.kind == "wish_card" or card.kind == "planet"
+                if is_wish_card then
+                    love.graphics.setColor(0.52, 0.16, 0.22, 1)
+                else
+                    love.graphics.setColor(0.3, 0.4, 0.7, 1)
+                end
                 love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
-                love.graphics.setColor(0.5, 0.6, 1.0, 1)
+                if is_wish_card then
+                    love.graphics.setColor(0.95, 0.68, 0.28, 1)
+                else
+                    love.graphics.setColor(0.5, 0.6, 1.0, 1)
+                end
                 love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
 
                 love.graphics.setColor(1, 1, 1, 1)
-                local sym = "●"
+                local sym = is_wish_card and (card.symbol or "원") or "●"
                 local sw = font:getWidth(sym)
                 love.graphics.print(sym, p.x + math.floor((p.w - sw) / 2), p.y + 6)
                 

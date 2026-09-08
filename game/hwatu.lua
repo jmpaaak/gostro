@@ -92,8 +92,8 @@ function M.evaluate(hand, state)
     end
     
     if state then
-        local planets = require("game.planets")
-        chips, mult = planets.apply_level_bonus(state, yaku, chips, mult)
+        local wish_cards = require("game.wish_cards")
+        chips, mult = wish_cards.apply_level_bonus(state, yaku, chips, mult)
     end
     
     local extras

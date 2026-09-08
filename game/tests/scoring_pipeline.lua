@@ -26,7 +26,7 @@ local function event_types(events)
 end
 
 function M.run()
-    M.test_combines_planet_edition_gwang_then_boss_once()
+    M.test_combines_wish_card_edition_gwang_then_boss_once()
     M.test_commits_gwang_money_and_once_via_evaluate()
     M.test_psychic_rejects_before_stateful_gwang_triggers()
     M.test_non_scoring_boss_is_not_reapplied_during_scoring()
@@ -34,7 +34,7 @@ function M.run()
     print("  scoring_pipeline: OK")
 end
 
-function M.test_combines_planet_edition_gwang_then_boss_once()
+function M.test_combines_wish_card_edition_gwang_then_boss_once()
     local state = run.new()
     state.blind = "boss"
     run.select_boss(state, "flint")
@@ -47,7 +47,7 @@ function M.test_combines_planet_edition_gwang_then_boss_once()
         "hongdan"
     ), state))
 
-    -- hwatu order: base 30x2, planet -> 45x3, foil -> 95x3,
+    -- hwatu order: base 30x2, wish card -> 45x3, foil -> 95x3,
     -- gwang -> 95x7; then the score boss -> floor halves 47x3.
     assert(result.chips == 47)
     assert(result.mult == 3)
@@ -56,8 +56,9 @@ function M.test_combines_planet_edition_gwang_then_boss_once()
     assert(result.gwang_triggers[1].id == "mult")
     assert(state.round_score == 0, "the pure pipeline does not add score to the run")
 
-    assert(event_types(result.events) == "hand,planet,edition,gwang,boss,score")
+    assert(event_types(result.events) == "hand,wish_card,edition,gwang,boss,score")
     assert(result.events[2].yaku == "hongdan" and result.events[2].level == 2)
+    assert(result.events[2].legacy_type == "planet", "legacy animation consumers can migrate safely")
     assert(result.events[4].id == "mult" and result.events[4].slot == 1)
     assert(result.events[5].id == "flint")
     assert(result.events[6].score == 141)

@@ -78,6 +78,20 @@ local function run_tests()
     assert(state.money == money_before_second_pack, "failed pack purchase refunds money")
     assert(second_shop.slots[second_pack_idx].sold == false, "failed pack purchase restores slot")
 
+    -- Canonical and legacy wish-card offers both level the existing saved hand state.
+    local wish_state = mock_run()
+    local wish_shop = {
+        run_state = wish_state,
+        slots = {
+            { kind = "wish_card", identity = "wish_card_hongdan", yaku = "hongdan", price = 3, sold = false },
+            { kind = "planet", identity = "planet_cheongdan", price = 3, sold = false },
+        },
+    }
+    assert(shop_purchases.buy(wish_shop, 1), "wish-card purchase succeeds")
+    assert(wish_state.hands.hongdan.level == 2, "canonical offer levels hongdan")
+    assert(shop_purchases.buy(wish_shop, 2), "legacy wish-card purchase succeeds")
+    assert(wish_state.hands.cheongdan.level == 2, "legacy id levels cheongdan")
+
     print("  shop_purchases: OK")
 end
 
