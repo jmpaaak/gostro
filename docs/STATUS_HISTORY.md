@@ -1103,3 +1103,12 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 ## Archived from STATUS.md (2026-09-09 00:30)
 
 ## 2026-09-09 — 플레이 패 contact sheet 셀 추적 계약
+
+## Archived from STATUS.md (2026-09-09 00:41)
+
+- `assets/manifest.json`의 플레이 패 5종 각각에 공유 960×288 master와 120×36 runtime 후보 sheet 안의 정확한 셀 순서·영역, 24×36 alpha bounds를 기록했다.
+- 신규 engine-hosted `game/tests/card_candidate_manifest.lua`가 피·홍단·청단·초단·고도리의 192×288 master 셀과 24×36 runtime 셀이 겹치거나 순서가 바뀌지 않는 계약을 검사한다.
+- TDD RED: 기존 manifest에는 `candidateCell`이 없어 실패함을 확인했다. 구현 후 `card_candidate_manifest: OK`와 전체 unit/smoke 테스트가 GREEN이다.
+- 5종은 여전히 `candidate`이며 사람의 식별성·화투 아트 승인 전에는 runtime loader가 거부한다.
+- INBOX (27)은 전체 그래픽 전환과 플레이 패 사람 승인이 남아 있어 처리 대기로 유지한다.
+- Next slice: 사람이 `assets/runtime/cards/play-card-overlap-love-v1.png`에서 5종 상단 표식과 화투 아트를 승인/거부한 결과를 manifest에 기록하고, 승인 시에만 5종을 함께 runtime으로 승격한다.

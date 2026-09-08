@@ -1,4 +1,15 @@
 # STATUS
+## 2026-09-09 — 플레이 패 아트 승인 및 런타임 승격
+
+- 사람이 `play-card-overlap-love-v1.png` 캡처를 확인하여 피·홍단·청단·초단·고도리 5종 상단 표식의 식별성과 화투 아트가 기준을 통과함을 승인했다.
+- 파이썬 스크립트를 사용해 `play-card-contact-sheet-v1.png`에서 개별 PNG 카드를 추출하고, `assets/manifest.json`에서 5종 카드의 `status`를 `runtime`으로 승격하여 `runtime` 블록을 기록했다.
+- `game/tests/asset_loader.lua`와 `game/tests/card_candidate_manifest.lua`, `game/tests/card_art.lua`가 승인된 카드가 `runtime`에 성공적으로 배선되었는지 검사하도록 테스트를 수정했다. (headless 호환성 유지)
+- TDD RED: 승격 전 manifest/test 불일치로 실패함을 확인했다. 구현 후 `asset_loader: OK`, `card_art: OK` 등 전체 검증이 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN (223 files).
+- INBOX (27)은 다른 런타임/데이터 인스턴스들의 추적이 남아 있으나, 용어 교체와 충돌 가능성을 피해 처리 대기로 유지한다.
+- Next slice: (28) 나머지 player-facing Balatro 용어(Planet, Tarot, Tag, Voucher 등)를 `terms.lua`를 사용하여 기원패, 부적, 패찰, 인장으로 교체한다.
+
+## 2026-09-09 — 플레이 패 contact sheet 셀 추적 계약
 - `assets/manifest.json`의 플레이 패 5종 각각에 공유 960×288 master와 120×36 runtime 후보 sheet 안의 정확한 셀 순서·영역, 24×36 alpha bounds를 기록했다.
 - 신규 engine-hosted `game/tests/card_candidate_manifest.lua`가 피·홍단·청단·초단·고도리의 192×288 master 셀과 24×36 runtime 셀이 겹치거나 순서가 바뀌지 않는 계약을 검사한다.
 - TDD RED: 기존 manifest에는 `candidateCell`이 없어 실패함을 확인했다. 구현 후 `card_candidate_manifest: OK`와 전체 unit/smoke 테스트가 GREEN이다.

@@ -4,7 +4,13 @@
     {
       "id": "play-card.contact-sheet-v1",
       "status": "awaiting-art-approval",
-      "cardOrder": ["pi", "hongdan", "cheongdan", "chodan", "godori"],
+      "cardOrder": [
+        "pi",
+        "hongdan",
+        "cheongdan",
+        "chodan",
+        "godori"
+      ],
       "master": {
         "source": "assets/masters/cards/play-card-contact-sheet-v1.svg",
         "sourceSha256": "f6e8553295882930ffb3e1e06ee651cecf591822fdc1a634a3e0d1f6ae0796a7",
@@ -20,7 +26,12 @@
         "height": 36,
         "cardWidth": 24,
         "cardHeight": 36,
-        "alphaBounds": [0, 0, 119, 35],
+        "alphaBounds": [
+          0,
+          0,
+          119,
+          35
+        ],
         "sha256": "b302d17fa40048e185ae3e0e164365941aa274d21a49f334f24ddb83257b9424",
         "filter": "nearest"
       },
@@ -44,7 +55,10 @@
         "topMarksUnique": true,
         "loveCapture": {
           "renderer": "LOVE 11.5",
-          "canvas": [320, 180],
+          "canvas": [
+            320,
+            180
+          ],
           "capture": "assets/runtime/cards/play-card-overlap-love-v1.png",
           "captureSha256": "25e0b8939c7748bcf1150be223e737273f803925a857b3da7b3bab59e6358876",
           "report": "assets/runtime/cards/play-card-overlap-love-v1.qa.json",
@@ -60,13 +74,28 @@
     {
       "id": "play-card.pi",
       "category": "play-card",
-      "status": "candidate",
+      "status": "runtime",
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 1,
-        "masterRegion": [0, 0, 192, 288],
-        "runtimeRegion": [0, 0, 24, 36],
-        "alphaBounds": [0, 0, 23, 35]
+        "masterRegion": [
+          0,
+          0,
+          192,
+          288
+        ],
+        "runtimeRegion": [
+          0,
+          0,
+          24,
+          36
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ]
       },
       "master": {
         "source": "assets/masters/cards/pi.svg",
@@ -87,7 +116,7 @@
           23,
           35
         ],
-        "sha256": "18b2a109003ef7d20b058cffcc7b78a623ef2cfee0ef47648bee9b01f553959f",
+        "sha256": "110091f5547b0f409dc7bb4a9c2118d2848e53b6b46bc83ec3c66e61ba38e8f2",
         "filter": "nearest"
       },
       "conversion": {
@@ -112,13 +141,28 @@
     {
       "id": "play-card.hongdan",
       "category": "play-card",
-      "status": "candidate",
+      "status": "runtime",
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 2,
-        "masterRegion": [192, 0, 192, 288],
-        "runtimeRegion": [24, 0, 24, 36],
-        "alphaBounds": [0, 0, 23, 35]
+        "masterRegion": [
+          192,
+          0,
+          192,
+          288
+        ],
+        "runtimeRegion": [
+          24,
+          0,
+          24,
+          36
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ]
       },
       "name": "hongdan",
       "master": {
@@ -134,8 +178,13 @@
         "path": "assets/runtime/cards/hongdan.png",
         "width": 24,
         "height": 36,
-        "alphaBounds": [0, 0, 23, 35],
-        "sha256": "328b8ec22927b64958c43363d857177a831ae048b197fe2655d679d61e90e6b4",
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "04b600cbb20125d7a3612fd123a97b851d83b1fc0dda4e0dde2f137893319cae",
         "filter": "nearest"
       },
       "conversion": {
@@ -151,47 +200,134 @@
         "frames": 1,
         "fps": 0,
         "loop": false,
-        "origin": [0, 0]
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
       "id": "play-card.cheongdan",
       "category": "play-card",
-      "status": "candidate",
+      "status": "runtime",
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 3,
-        "masterRegion": [384, 0, 192, 288],
-        "runtimeRegion": [48, 0, 24, 36],
-        "alphaBounds": [0, 0, 23, 35]
+        "masterRegion": [
+          384,
+          0,
+          192,
+          288
+        ],
+        "runtimeRegion": [
+          48,
+          0,
+          24,
+          36
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ]
       },
-      "name": "cheongdan"
+      "name": "cheongdan",
+      "runtime": {
+        "path": "assets/runtime/cards/cheongdan.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "8e71d7b599edcaa3048264faa800f59999f6a1c3a9db1828e322cad6911383b6",
+        "filter": "nearest"
+      }
     },
     {
       "id": "play-card.chodan",
       "category": "play-card",
-      "status": "candidate",
+      "status": "runtime",
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 4,
-        "masterRegion": [576, 0, 192, 288],
-        "runtimeRegion": [72, 0, 24, 36],
-        "alphaBounds": [0, 0, 23, 35]
+        "masterRegion": [
+          576,
+          0,
+          192,
+          288
+        ],
+        "runtimeRegion": [
+          72,
+          0,
+          24,
+          36
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ]
       },
-      "name": "chodan"
+      "name": "chodan",
+      "runtime": {
+        "path": "assets/runtime/cards/chodan.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "40cc71e9fc801e0086feb983cf4defb1ebac6c4592d68de10374c205842e6725",
+        "filter": "nearest"
+      }
     },
     {
       "id": "play-card.godori",
       "category": "play-card",
-      "status": "candidate",
+      "status": "runtime",
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 5,
-        "masterRegion": [768, 0, 192, 288],
-        "runtimeRegion": [96, 0, 24, 36],
-        "alphaBounds": [0, 0, 23, 35]
+        "masterRegion": [
+          768,
+          0,
+          192,
+          288
+        ],
+        "runtimeRegion": [
+          96,
+          0,
+          24,
+          36
+        ],
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ]
       },
-      "name": "godori"
+      "name": "godori",
+      "runtime": {
+        "path": "assets/runtime/cards/godori.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "a90aaec74b9d4b19449c898f3b9874999111aa9a72de9a92602441261e4a1cc5",
+        "filter": "nearest"
+      }
     },
     {
       "id": "gwang.chips",

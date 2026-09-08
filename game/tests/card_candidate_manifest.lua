@@ -15,7 +15,7 @@ function M.run()
 
     for index, name in ipairs(CARD_NAMES) do
         local entry = assert(assets.entry("play-card." .. name))
-        assert(entry.status == "candidate" and entry.candidateSheet == "play-card.contact-sheet-v1")
+        assert(entry.status == "runtime" and entry.candidateSheet == "play-card.contact-sheet-v1")
 
         local cell = assert(entry.candidateCell, name .. " candidate cell metadata is required")
         assert(cell.index == index, name .. " must retain the candidate sheet order")

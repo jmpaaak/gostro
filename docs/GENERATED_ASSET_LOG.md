@@ -17,3 +17,8 @@
 | 2026-09-08T23:57:26+0900 | `assets/runtime/cards/play-card-contact-sheet-v1.png` | 120×36 candidate sheet from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-08T23:57:26+0900 | `assets/runtime/cards/play-card-overlap-v1.png` | Automated 64×40 overlap QA capture; five 24×36 candidates overlap at 10px spacing and retain unique top-mark fingerprints |
 | 2026-09-09T00:15:20+0900 | `assets/runtime/cards/play-card-overlap-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture of the five candidate cards at 10px overlap, nearest filtering; art approval remains human-pending |
+2026-09-09T00:37:54+0900 | assets/runtime/cards/pi.png | extracted 24x36 pi card from play-card-contact-sheet-v1.png
+2026-09-09T00:37:54+0900 | assets/runtime/cards/hongdan.png | extracted 24x36 hongdan card from play-card-contact-sheet-v1.png
+2026-09-09T00:37:54+0900 | assets/runtime/cards/cheongdan.png | extracted 24x36 cheongdan card from play-card-contact-sheet-v1.png
+2026-09-09T00:37:54+0900 | assets/runtime/cards/chodan.png | extracted 24x36 chodan card from play-card-contact-sheet-v1.png
+2026-09-09T00:37:54+0900 | assets/runtime/cards/godori.png | extracted 24x36 godori card from play-card-contact-sheet-v1.png

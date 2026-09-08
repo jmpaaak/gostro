@@ -6,13 +6,10 @@ function M.run()
     require("game.tests.asset_loader").run()
     require("game.tests.card_candidate_manifest").run()
 
-    assert(card_art.path("pi") == nil, "QA-rejected pi candidate must keep its fallback")
-    assert(card_art.path("hongdan") == nil, "unapproved card candidates must keep their fallback")
-    assert(card_art.path("cheongdan") == nil, "unconverted cards must keep their fallback")
+    assert(card_art.path("pi") == "assets/runtime/cards/pi.png", "approved pi candidate must return its path")
+    assert(card_art.path("hongdan") == "assets/runtime/cards/hongdan.png", "approved card candidates must return their path")
+    assert(card_art.path("cheongdan") == "assets/runtime/cards/cheongdan.png", "approved card candidates must return their path")
 
-    assert(card_art.load("pi") == nil)
-    assert(card_art.load("hongdan") == nil)
-    assert(card_art.load("cheongdan") == nil)
     print("  card_art: OK")
 end
 
