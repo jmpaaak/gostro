@@ -17,6 +17,7 @@ local function cards(...)
 end
 
 function M.run()
+    require("game.tests.gwang_asset_art").run()
     M.test_catalog_loads_always_jokers()
     M.test_get_by_id()
     M.test_apply_always_chips()

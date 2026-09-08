@@ -1,6 +1,7 @@
 -- Optional data-URL artwork for gwang joker slots.
 
 local catalog = require("game.gwang_catalog")
+local asset_art = require("game.ui.gwang_asset_art")
 
 local M = {}
 local cache = {}
@@ -84,6 +85,9 @@ end
 --- Draw artwork with a centered cover crop. Returns false for the star fallback.
 function M.draw(gwang, rect, api, lookup)
     api = api or runtime_api
+    if asset_art.draw(gwang, rect, api) then
+        return true
+    end
     local texture = M.texture_for(gwang, api, lookup)
     if not texture then
         return false

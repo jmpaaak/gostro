@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#30101d"/>
+      <stop offset="0.52" stop-color="#781f2b"/>
+      <stop offset="1" stop-color="#200914"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0a0"/>
+      <stop offset="0.35" stop-color="#e8af35"/>
+      <stop offset="1" stop-color="#8a4518"/>
+    </linearGradient>
+    <pattern id="grain" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M0 16h32M16 0v32" stroke="#d66745" stroke-width="2" opacity=".16"/>
+      <circle cx="16" cy="16" r="3" fill="#f3bd59" opacity=".18"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="432" height="240" rx="38" fill="#130811" stroke="#4a1c21" stroke-width="16"/>
+  <rect x="22" y="22" width="404" height="212" rx="28" fill="url(#lacquer)" stroke="#e2a83e" stroke-width="8"/>
+  <rect x="34" y="34" width="380" height="188" rx="20" fill="url(#grain)" stroke="#6fdbca" stroke-width="3"/>
+  <path d="M42 74h364M42 182h364" stroke="#edc75b" stroke-width="5" opacity=".72"/>
+  <path d="M64 52l18 12-18 12-18-12zm320 0l18 12-18 12-18-12zM64 180l18 12-18 12-18-12zm320 0l18 12-18 12-18-12z" fill="#69cfc0" stroke="#132f3a" stroke-width="4"/>
+  <g transform="translate(224 128)">
+    <path d="M-142 0h284M0-76v152M-102-54L102 54M102-54L-102 54" stroke="#ffd86a" stroke-width="8" opacity=".25"/>
+    <g transform="translate(-76 -2) rotate(-8)">
+      <ellipse cy="42" rx="60" ry="20" fill="#693316"/>
+      <rect x="-60" y="-24" width="120" height="66" fill="#a96019"/>
+      <ellipse cy="-24" rx="60" ry="20" fill="url(#brass)" stroke="#542915" stroke-width="7"/>
+      <ellipse cy="8" rx="60" ry="20" fill="url(#brass)" stroke="#542915" stroke-width="7"/>
+      <rect x="-13" y="-38" width="26" height="28" rx="4" fill="#4c2618"/>
+    </g>
+    <g transform="translate(62 -14) rotate(9)">
+      <ellipse cy="45" rx="66" ry="22" fill="#693316"/>
+      <rect x="-66" y="-40" width="132" height="85" fill="#b46a1c"/>
+      <ellipse cy="-40" rx="66" ry="22" fill="url(#brass)" stroke="#542915" stroke-width="7"/>
+      <ellipse cy="2" rx="66" ry="22" fill="url(#brass)" stroke="#542915" stroke-width="7"/>
+      <rect x="-14" y="-56" width="28" height="31" rx="4" fill="#4c2618"/>
+    </g>
+    <circle cx="0" cy="-4" r="47" fill="url(#brass)" stroke="#4a2416" stroke-width="8"/>
+    <circle cx="0" cy="-4" r="34" fill="none" stroke="#fff0a0" stroke-width="5"/>
+    <rect x="-13" y="-17" width="26" height="26" rx="3" fill="#50251a" stroke="#2a1010" stroke-width="4"/>
+    <path d="M-25-38l10 8M25-38l-10 8M-25 30l10-8M25 30l-10-8" stroke="#fff2a6" stroke-width="5" stroke-linecap="round"/>
+  </g>
+</svg>

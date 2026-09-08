@@ -1,13 +1,12 @@
 # STATUS
-## 2026-09-09 — 금맥 인장 고해상도 픽셀 에셋 적용
+## 2026-09-09 — 칩(Chips) 광 고해상도 픽셀 에셋 적용
 
-- `voucher.money_tree`에 엽전 열매를 맺은 금맥 나무와 붉은 인주를 그린 400×560 SVG/PNG master 및 36×52 runtime 에셋을 추가했다.
+- `gwang.chips` 광 슬롯 아이템에 한국 전통 단청 기하학 패턴, 엽전, 빛줄기 모티프를 결합한 448×256 SVG/PNG master 및 56×32 runtime 에셋을 추가했다.
 - 실제 Asset Studio `POST /api/pixel-perfect` 결과 dimensions/palette/transparent alpha/alignment/nearest 5개 검사가 통과했으며 manifest에 source/master/runtime/report hash와 alpha bounds를 기록했다.
-- `game.ui.voucher_art`가 금맥 인장을 manifest-backed nearest texture로 표시하고, 실제 LÖVE 320×180 상점 캡처를 생성하도록 QA를 확장했다.
+- 신규 `game.ui.gwang_asset_art`가 광 아이템을 manifest-backed nearest texture로 표시하고, 실제 LÖVE 320×180 캡처를 생성하도록 `gwang-slot-qa`를 추가했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 유닛 테스트 및 LÖVE 캡처 QA 성공.
-- INBOX (27)은 모든 바우처 인장 12종의 런타임 에셋 전환을 완료했으나 다른 요소가 남아 처리 대기로 유지한다.
-- Next slice: `boss-blind.wall` 성벽 보스의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.
-
+- INBOX (27)은 모든 광 아이템의 런타임 에셋 전환을 시작했으나 다른 요소가 많이 남아 처리 대기로 유지한다.
+- Next slice: `gwang.mult` 배수(Mult) 광 슬롯 아이템의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.
 ## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
 
 - 신규 `game/blind_targets.lua`가 8개 ante 기본값, small/big/boss 배수, Wall 보스의 목표 2배 적용을 독립적으로 소유한다.

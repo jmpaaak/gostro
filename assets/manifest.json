@@ -332,10 +332,51 @@
     {
       "id": "gwang.chips",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "칩",
         "en": "Chips"
+      },
+      "master": {
+        "source": "assets/masters/gwang/chips-v1.svg",
+        "sourceSha256": "1e707d9161e23b8dec73430ced475e662a71863afd5d3fb818ac7604f32774e7",
+        "path": "assets/masters/gwang/chips-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "fc5bb60a17b7c6426ec81f73c4488a984dc27a8960c915b77969166c06c2b0cc",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer, dancheong geometry, brass yeopjeon coins, and light-ray motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/chips-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "dcf7fad8977296693f17ea60b4c4db4b96da13fe57807ac01502ca30127c00cf",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/chips-v1.report.json",
+        "reportSha256": "85a4d62183d25501c953d1f13c399745f8b4b0dc68b7df896bb4b112ba9fdf67"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

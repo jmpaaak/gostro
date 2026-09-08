@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test font-test card-overlap-qa blind-card-qa shop-pack-qa smoke love verify clean
+.PHONY: test status-test font-test card-overlap-qa blind-card-qa shop-pack-qa gwang-slot-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -142,6 +142,21 @@ shop-pack-qa:
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-money-tree-love-v1.png"
 
+gwang-slot-qa:
+	@rm -rf "$(BUILD_DIR)/gwang-slot-qa"
+	@mkdir -p "$(BUILD_DIR)/gwang-slot-qa/game/ui" \
+		"$(BUILD_DIR)/gwang-slot-qa/game/data" \
+		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang"
+	@cp tools/gwang_slot_qa_main.lua "$(BUILD_DIR)/gwang-slot-qa/main.lua"
+	@cp game/ui/gwang_slots.lua game/ui/gwang_art.lua game/ui/gwang_asset_art.lua \
+		"$(BUILD_DIR)/gwang-slot-qa/game/ui/"
+	@cp game/asset_loader.lua game/gwang_catalog.lua "$(BUILD_DIR)/gwang-slot-qa/game/"
+	@cp game/data/gwang_jokers.json "$(BUILD_DIR)/gwang-slot-qa/game/data/"
+	@cp assets/manifest.json "$(BUILD_DIR)/gwang-slot-qa/assets/"
+	@cp assets/runtime/gwang/chips-v1.png "$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
+	GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -153,7 +168,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test test font-test card-overlap-qa blind-card-qa shop-pack-qa smoke love
+verify: status-test test font-test card-overlap-qa blind-card-qa shop-pack-qa gwang-slot-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 
