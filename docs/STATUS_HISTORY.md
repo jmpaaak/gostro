@@ -370,3 +370,16 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - Tests in `game/tests/run_history.lua` GREEN. `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (22) fully done (rng + shop/cards/boss wiring + seed UI + run history).
 - Next slice: INBOX (23) 광 카드 에디터 — 웹 도구 (`tools/gwang-editor/`).
+
+## Archived from STATUS.md (2026-09-08 12:53)
+
+## 2026-09-08 — 광 카드 에디터 카드 오버레이 (`tools/gwang-editor/`)
+
+- Each hwatu card now overlays its English name, effect summary, and a rarity ribbon above uploaded art.
+  - Effect text formats chips, additive mult, multiplicative mult, and money catalog effects.
+  - Common/uncommon/rare/legendary ribbons use gray/green/blue/purple theme colors.
+- TDD: new `GwangEditorCardOverlayTests` observed RED (4 failures), then GREEN.
+- `python3 -m unittest tools.test_gwang_editor -v` GREEN (25 tests).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (23) slice (e) only. Edit form, New/Delete, locale toggle, and runtime image decode remain.
+- Next slice: INBOX (23f) 카드 편집 폼 on `tools/gwang-editor/`.

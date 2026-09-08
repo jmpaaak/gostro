@@ -8,7 +8,7 @@
 <body>
 <header>
   <h1>Gwang Editor</h1>
-  <p class="subtitle">Gwang joker catalog editor — game/data/gwang_jokers.json (docs/feedback/INBOX.md item 23d)</p>
+  <p class="subtitle">Gwang joker catalog editor — game/data/gwang_jokers.json</p>
 </header>
 
 <section class="toolbar">
@@ -29,6 +29,53 @@
 
 <main>
   <section id="grid" class="card-grid"></section>
+  <aside class="editor-panel">
+    <p id="editorEmpty">Choose Edit on a card.</p>
+    <form id="editorForm" hidden>
+      <h2>Edit card</h2>
+      <div class="editor-grid">
+        <label>ID<input id="cardId" required pattern="[^ ]+"></label>
+        <label>Rarity<select id="rarity">
+          <option value="common">Common</option>
+          <option value="uncommon">Uncommon</option>
+          <option value="rare">Rare</option>
+          <option value="legendary">Legendary</option>
+        </select></label>
+        <label>Name (KO)<input id="nameKo" required></label>
+        <label>Name (EN)<input id="nameEn" required></label>
+        <label class="wide">Trigger<select id="trigger">
+          <option value="always">Always</option>
+          <option value="contains_kind">Contains kind</option>
+          <option value="yaku">Yaku</option>
+          <option value="deck_size">Deck size</option>
+          <option value="money">Money</option>
+          <option value="blind">Blind</option>
+          <option value="once">Once</option>
+        </select></label>
+        <label data-trigger-field="contains_kind">Required kind<select id="kindNeed">
+          <option value="hongdan">Hongdan</option><option value="cheongdan">Cheongdan</option>
+          <option value="chodan">Chodan</option><option value="godori">Godori</option><option value="pi">Pi</option>
+        </select></label>
+        <label data-trigger-field="yaku">Required yaku<select id="yakuNeed">
+          <option value="hongdan">Hongdan</option><option value="cheongdan">Cheongdan</option>
+          <option value="chodan">Chodan</option><option value="godori">Godori</option><option value="pi">Pi</option>
+        </select></label>
+        <label data-trigger-field="deck_size">Maximum deck size<input id="deckMax" type="number" step="1"></label>
+        <label data-trigger-field="money">Minimum money<input id="moneyMin" type="number" step="1"></label>
+        <label data-trigger-field="blind">Required blind<select id="blindNeed">
+          <option value="small">Small</option><option value="big">Big</option><option value="boss">Boss</option>
+        </select></label>
+        <fieldset class="wide effect-fields"><legend>Effect</legend>
+          <label>Chips +<input id="effectChips" type="number"></label>
+          <label>Mult +<input id="effectMult" type="number" step="any"></label>
+          <label>Mult ×<input id="effectMultMul" type="number" step="any"></label>
+        </fieldset>
+        <label class="wide">Description (KO)<textarea id="descKo" required></textarea></label>
+        <label class="wide">Description (EN)<textarea id="descEn" required></textarea></label>
+      </div>
+      <button type="submit" class="primary">Apply changes</button>
+    </form>
+  </aside>
 </main>
 
 <script src="editor.js"></script>

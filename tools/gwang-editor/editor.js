@@ -1,5 +1,5 @@
 // gwang-editor: static, dependency-free editor for game/data/gwang_jokers.json
-// (docs/feedback/INBOX.md item 23e — card metadata overlays).
+// (docs/feedback/INBOX.md item 23f — catalog edit form).
 //
 // Validation mirrors the catalog fields used by game/gwang_catalog.lua.
 
@@ -18,10 +18,16 @@ const CARD_ART_H = 360;
 /** @type {{jokers: Array<object>}|null} */
 let pool = null;
 let fileHandle = null;
+let selectedJokerId = null;
 
 const els = {};
 function cacheEls() {
-  ["openJsonInput", "openFsaBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid"]
+  [
+    "openJsonInput", "openFsaBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
+    "editorEmpty", "editorForm", "cardId", "nameKo", "nameEn", "rarity", "trigger",
+    "kindNeed", "yakuNeed", "deckMax", "moneyMin", "blindNeed",
+    "effectChips", "effectMult", "effectMultMul", "descKo", "descEn",
+  ]
     .forEach((id) => { els[id] = document.getElementById(id); });
 }
 
@@ -107,6 +113,7 @@ function validatePool(doc) {
 function loadDocument(doc, name) {
   const errors = validatePool(doc);
   pool = doc;
+  selectedJokerId = null;
   els.downloadBtn.disabled = false;
   if (errors.length > 0) {
     setStatus(`Loaded '${name}' but it failed validation:\n` + errors.join("\n"), "error");
@@ -114,6 +121,7 @@ function loadDocument(doc, name) {
     setStatus(`Loaded '${name}' — ${doc.jokers.length} card(s), all valid.`, "ok");
   }
   renderGrid();
+  renderEditor();
 }
 
 function readFileAsJson(file) {
@@ -271,6 +279,104 @@ function formatEffectText(effect) {
   return parts.join(" · ");
 }
 
+function optionalNumber(input) {
+  const value = input.value.trim();
+  return value === "" ? undefined : Number(value);
+}
+
+function updateTriggerFields() {
+  document.querySelectorAll("[data-trigger-field]").forEach((label) => {
+    label.hidden = label.getAttribute("data-trigger-field") !== els.trigger.value;
+  });
+}
+
+function renderEditor() {
+  const joker = pool && pool.jokers.find((item) => item.id === selectedJokerId);
+  els.editorEmpty.hidden = Boolean(joker);
+  els.editorForm.hidden = !joker;
+  if (!joker) return;
+  els.cardId.value = joker.id;
+  els.nameKo.value = joker.name.ko;
+  els.nameEn.value = joker.name.en;
+  els.rarity.value = joker.rarity;
+  els.trigger.value = joker.trigger;
+  els.kindNeed.value = joker.kind_need || "hongdan";
+  els.yakuNeed.value = joker.yaku_need || "hongdan";
+  els.deckMax.value = joker.deck_max == null ? "" : joker.deck_max;
+  els.moneyMin.value = joker.money_min == null ? "" : joker.money_min;
+  els.blindNeed.value = joker.blind_need || "small";
+  els.effectChips.value = joker.effect.chips == null ? "" : joker.effect.chips;
+  els.effectMult.value = joker.effect.mult == null ? "" : joker.effect.mult;
+  els.effectMultMul.value = joker.effect.mult_mul == null ? "" : joker.effect.mult_mul;
+  els.descKo.value = joker.desc.ko;
+  els.descEn.value = joker.desc.en;
+  updateTriggerFields();
+}
+
+function selectJoker(id) {
+  selectedJokerId = id;
+  renderGrid();
+  renderEditor();
+}
+
+function wireCardSelection() {
+  els.grid.querySelectorAll(".edit-card-btn").forEach((button) => {
+    button.addEventListener("click", () => selectJoker(button.getAttribute("data-id")));
+  });
+}
+
+function applyEditor(event) {
+  event.preventDefault();
+  if (!pool) return;
+  const index = pool.jokers.findIndex((item) => item.id === selectedJokerId);
+  if (index < 0) return;
+  const original = pool.jokers[index];
+  const effect = { ...original.effect };
+  [
+    ["chips", els.effectChips], ["mult", els.effectMult], ["mult_mul", els.effectMultMul],
+  ].forEach(([key, input]) => {
+    const value = optionalNumber(input);
+    if (value == null) delete effect[key]; else effect[key] = value;
+  });
+  const candidate = {
+    ...original,
+    id: els.cardId.value.trim(),
+    name: { ko: els.nameKo.value.trim(), en: els.nameEn.value.trim() },
+    rarity: els.rarity.value,
+    trigger: els.trigger.value,
+    effect,
+    desc: { ko: els.descKo.value.trim(), en: els.descEn.value.trim() },
+  };
+  delete candidate.kind_need;
+  delete candidate.yaku_need;
+  delete candidate.deck_max;
+  delete candidate.money_min;
+  delete candidate.blind_need;
+  if (candidate.trigger === "contains_kind") candidate.kind_need = els.kindNeed.value;
+  if (candidate.trigger === "yaku") candidate.yaku_need = els.yakuNeed.value;
+  if (candidate.trigger === "deck_size") candidate.deck_max = optionalNumber(els.deckMax);
+  if (candidate.trigger === "money") candidate.money_min = optionalNumber(els.moneyMin);
+  if (candidate.trigger === "blind") candidate.blind_need = els.blindNeed.value;
+
+  const draft = { ...pool, jokers: pool.jokers.slice() };
+  draft.jokers[index] = candidate;
+  const errors = validatePool(draft);
+  if (errors.length > 0) {
+    setStatus("Cannot apply changes:\n" + errors.join("\n"), "error");
+    return;
+  }
+  pool = draft;
+  selectedJokerId = candidate.id;
+  renderGrid();
+  renderEditor();
+  setStatus(`Applied changes to '${candidate.id}'. Save or download JSON to persist them.`, "ok");
+}
+
+function wireEditor() {
+  els.editorForm.addEventListener("submit", applyEditor);
+  els.trigger.addEventListener("change", updateTriggerFields);
+}
+
 function renderGrid() {
   if (!els.grid) return;
   if (!pool || !Array.isArray(pool.jokers)) {
@@ -285,9 +391,11 @@ function renderGrid() {
     const art = joker.image
       ? `<img class="hwatu-art" alt="" src="${escapeHtml(joker.image)}">`
       : "";
-    return `<article class="hwatu-card" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="rarity-ribbon ${rarity}">${escapeHtml(rarity)}</div><div class="card-overlay"><div class="name">${escapeHtml(name)}</div><div class="effect-text">${escapeHtml(effectText)}</div><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></div></article>`;
+    const selected = id === selectedJokerId ? " selected" : "";
+    return `<article class="hwatu-card${selected}" data-id="${escapeHtml(id)}">${art}<div class="star">★</div><div class="rarity-ribbon ${rarity}">${escapeHtml(rarity)}</div><div class="card-overlay"><div class="name">${escapeHtml(name)}</div><div class="effect-text">${escapeHtml(effectText)}</div><div class="card-actions"><button class="edit-card-btn" type="button" data-id="${escapeHtml(id)}">Edit</button><label class="card-image-btn">Upload image<input class="card-image-input" type="file" accept="image/*" data-id="${escapeHtml(id)}" hidden></label></div></div></article>`;
   }).join("");
   wireImageUploads();
+  wireCardSelection();
 }
 
 async function autoLoadDefaults() {
@@ -309,6 +417,7 @@ function init() {
   wireOpenFsa();
   wireSaveFsa();
   wireDownload();
+  wireEditor();
   autoLoadDefaults();
 }
 

@@ -352,5 +352,58 @@ class GwangEditorCardOverlayTests(unittest.TestCase):
         self.assertRegex(self.css, r"\.effect-text\s*\{[^}]*text-shadow\s*:")
 
 
+class GwangEditorEditFormTests(unittest.TestCase):
+    """INBOX (23f): selected-card catalog edit form."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(HTML_PATH, encoding="utf-8") as f:
+            cls.html = f.read()
+        with open(CSS_PATH, encoding="utf-8") as f:
+            cls.css = f.read()
+
+    def test_html_has_all_required_card_fields(self):
+        self.assertIn('id="editorForm"', self.html)
+        for field_id in (
+            "cardId", "nameKo", "nameEn", "rarity", "trigger",
+            "effectChips", "effectMult", "effectMultMul", "descKo", "descEn",
+        ):
+            self.assertIn(f'id="{field_id}"', self.html)
+        for rarity in KNOWN_RARITIES:
+            self.assertIn(f'value="{rarity}"', self.html)
+        for trigger in KNOWN_TRIGGERS:
+            self.assertIn(f'value="{trigger}"', self.html)
+
+    def test_grid_offers_edit_action_for_each_card(self):
+        render = _fn_body(self.js, "renderGrid")
+        self.assertIn("edit-card-btn", render)
+        self.assertIn("wireCardSelection", render)
+
+    def test_selecting_card_populates_form(self):
+        select = _fn_body(self.js, "selectJoker")
+        self.assertTrue(select, "selectJoker must exist")
+        self.assertIn("renderEditor", select)
+        editor = _fn_body(self.js, "renderEditor")
+        self.assertIn("selectedJokerId", editor)
+        for field in ("cardId", "nameKo", "nameEn", "rarity", "trigger", "descKo", "descEn"):
+            self.assertIn(field, editor)
+
+    def test_submit_updates_catalog_and_rerenders(self):
+        apply_editor = _fn_body(self.js, "applyEditor")
+        self.assertTrue(apply_editor, "applyEditor must exist")
+        self.assertIn("validatePool", apply_editor)
+        self.assertIn("renderGrid", apply_editor)
+        for field in ("effectChips", "effectMult", "effectMultMul"):
+            self.assertIn(field, apply_editor)
+        wire = _fn_body(self.js, "wireEditor")
+        self.assertIn('addEventListener("submit"', wire)
+
+    def test_css_has_distinct_editor_panel(self):
+        self.assertIn(".editor-panel", self.css)
+        self.assertIn(".editor-grid", self.css)
+
+
 if __name__ == "__main__":
     unittest.main()

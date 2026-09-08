@@ -75,6 +75,34 @@ main {
   gap: 16px;
 }
 
+.editor-panel {
+  position: sticky;
+  top: 16px;
+  flex: 0 0 320px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.editor-panel h2 { margin: 0 0 14px; font-size: 18px; }
+.editor-panel > p { margin: 0; color: var(--muted); }
+.editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.editor-grid .wide { grid-column: 1 / -1; }
+.editor-grid label { display: grid; gap: 4px; color: var(--muted); font-size: 11px; }
+.editor-grid input, .editor-grid select, .editor-grid textarea {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: #0f141d;
+  color: var(--text);
+  font: inherit;
+}
+.editor-grid textarea { min-height: 58px; resize: vertical; }
+.effect-fields { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 0; border: 1px solid var(--border); }
+.primary { width: 100%; margin-top: 14px; border-color: var(--accent); }
+
 /* Hwatu face: vertical rectangle, rounded corners (INBOX 23b). */
 .hwatu-card {
   position: relative;
@@ -90,6 +118,8 @@ main {
   padding: 10px 8px;
   color: var(--text);
 }
+
+.hwatu-card.selected { outline: 2px solid var(--accent); }
 
 .hwatu-card .star {
   position: absolute;
@@ -158,9 +188,11 @@ main {
   z-index: 1;
 }
 
-.card-image-btn {
+.card-actions { display: flex; gap: 4px; margin-top: 6px; }
+
+.card-image-btn, .edit-card-btn {
   display: block;
-  margin-top: 6px;
+  flex: 1;
   font-size: 11px;
   padding: 4px 6px;
   background: rgba(14, 18, 26, 0.72);
@@ -170,6 +202,11 @@ main {
   color: var(--text);
 }
 
-.card-image-btn:hover {
+.card-image-btn:hover, .edit-card-btn:hover {
   border-color: var(--accent);
+}
+
+@media (max-width: 760px) {
+  main { flex-direction: column; }
+  .editor-panel { position: static; width: 100%; flex-basis: auto; order: -1; }
 }
