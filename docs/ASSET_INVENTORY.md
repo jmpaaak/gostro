@@ -1,0 +1,140 @@
+# Asset Pipeline Checklist
+
+## boss-blind
+
+- [ ] `boss-blind.hook` - 갈고리
+- [ ] `boss-blind.wall` - 성벽
+- [ ] `boss-blind.flint` - 부싯돌
+- [ ] `boss-blind.mark` - 낙인
+- [ ] `boss-blind.fish` - 물고기
+- [ ] `boss-blind.psychic` - 영매
+- [ ] `boss-blind.goad` - 몰이
+- [ ] `boss-blind.plant` - 초목
+
+## effect
+
+- [ ] `effect.foil` - effect.foil
+- [ ] `effect.hologram` - effect.hologram
+- [ ] `effect.polychrome` - effect.polychrome
+
+## gwang
+
+- [ ] `gwang.chips` - {'ko': '칩', 'en': 'Chips'}
+- [ ] `gwang.mult` - {'ko': '배수', 'en': 'Mult'}
+- [ ] `gwang.always_chips_small` - {'ko': '잔칩', 'en': 'Small Chips'}
+- [ ] `gwang.always_mult_small` - {'ko': '잔배수', 'en': 'Small Mult'}
+- [ ] `gwang.always_chips_mid` - {'ko': '중칩', 'en': 'Mid Chips'}
+- [ ] `gwang.always_mult_mid` - {'ko': '중배수', 'en': 'Mid Mult'}
+- [ ] `gwang.hongdan_x2` - {'ko': '홍단 깃발', 'en': 'Hongdan Flag'}
+- [ ] `gwang.cheongdan_x2` - {'ko': '청단 깃발', 'en': 'Cheongdan Flag'}
+- [ ] `gwang.chodan_x2` - {'ko': '초단 깃발', 'en': 'Chodan Flag'}
+- [ ] `gwang.godori_x2` - {'ko': '고도리 깃발', 'en': 'Godori Flag'}
+- [ ] `gwang.pi_chips_kind` - {'ko': '피 잔칩', 'en': 'Pi Chips'}
+- [ ] `gwang.godori_chips` - {'ko': '고도리 칩', 'en': 'Godori Chips'}
+- [ ] `gwang.hongdan_chips` - {'ko': '홍단 칩', 'en': 'Hongdan Chips'}
+- [ ] `gwang.cheongdan_chips` - {'ko': '청단 칩', 'en': 'Cheongdan Chips'}
+- [ ] `gwang.chodan_chips` - {'ko': '초단 칩', 'en': 'Chodan Chips'}
+- [ ] `gwang.pi_yaku_mult` - {'ko': '피 족보', 'en': 'Pi Yaku'}
+- [ ] `gwang.thin_deck_x3` - {'ko': '얇은 덱', 'en': 'Thin Deck'}
+- [ ] `gwang.tiny_deck_chips` - {'ko': '아주 얇은 덱', 'en': 'Tiny Deck'}
+- [ ] `gwang.lean_deck_mult` - {'ko': '날씬한 덱', 'en': 'Lean Deck'}
+- [ ] `gwang.rich_mult` - {'ko': '부자', 'en': 'Rich'}
+- [ ] `gwang.loaded_chips` - {'ko': '두둑한 지갑', 'en': 'Loaded'}
+- [ ] `gwang.wealthy_x2` - {'ko': '갑부', 'en': 'Wealthy'}
+- [ ] `gwang.boss_x2` - {'ko': '보스 배수', 'en': 'Boss Mult'}
+- [ ] `gwang.boss_chips` - {'ko': '보스 칩', 'en': 'Boss Chips'}
+- [ ] `gwang.small_chips` - {'ko': '스몰 칩', 'en': 'Small Blind Chips'}
+- [ ] `gwang.big_mult` - {'ko': '빅 배수', 'en': 'Big Blind Mult'}
+- [ ] `gwang.once_x20` - {'ko': '일회성', 'en': 'Once'}
+- [ ] `gwang.once_chips` - {'ko': '일회성 칩', 'en': 'Once Chips'}
+- [ ] `gwang.compound` - {'ko': '복합', 'en': 'Compound'}
+- [ ] `gwang.compound_burst` - {'ko': '복합 폭주', 'en': 'Compound Burst'}
+
+## pack
+
+- [ ] `pack.arcana_pack` - arcana_pack
+
+## planet
+
+- [ ] `planet.planet_hongdan` - Mars
+- [ ] `planet.planet_cheongdan` - Jupiter
+- [ ] `planet.planet_chodan` - Venus
+- [ ] `planet.planet_godori` - Earth
+- [ ] `planet.planet_pi` - Pluto
+
+## play-card
+
+- [x] `play-card.pi` - play-card.pi
+- [ ] `play-card.hongdan` - hongdan
+- [ ] `play-card.cheongdan` - cheongdan
+- [ ] `play-card.chodan` - chodan
+- [ ] `play-card.godori` - godori
+
+## tag
+
+- [ ] `tag.coupon` - 쿠폰
+- [ ] `tag.investment` - 투자
+- [ ] `tag.handy` - Handy
+- [ ] `tag.economy` - 이코노미
+- [ ] `tag.mega` - 메가
+- [ ] `tag.foil` - 포일
+- [ ] `tag.hologram` - 홀로그램
+- [ ] `tag.polychrome` - 폴리크롬
+- [ ] `tag.charm` - 참
+- [ ] `tag.uncommon` - 언커먼
+- [ ] `tag.juggle` - 저글
+- [ ] `tag.d6` - D6
+
+## tarot
+
+- [ ] `tarot.the_magician` - 마법사
+- [ ] `tarot.the_hanged_man` - 매달린자
+- [ ] `tarot.the_chariot` - 전차
+- [ ] `tarot.the_lovers` - 연인
+
+## ui
+
+- [ ] `ui.menu_bg` - ui.menu_bg
+- [ ] `ui.play_bg` - ui.play_bg
+- [ ] `ui.shop_bg` - ui.shop_bg
+- [ ] `ui.panel_wood` - ui.panel_wood
+- [ ] `ui.panel_metal` - ui.panel_metal
+- [ ] `ui.panel_glass` - ui.panel_glass
+- [ ] `ui.btn_primary` - ui.btn_primary
+- [ ] `ui.btn_secondary` - ui.btn_secondary
+- [ ] `ui.btn_danger` - ui.btn_danger
+- [ ] `ui.btn_disabled` - ui.btn_disabled
+- [ ] `ui.icon_chip` - ui.icon_chip
+- [ ] `ui.icon_mult` - ui.icon_mult
+- [ ] `ui.icon_money` - ui.icon_money
+- [ ] `ui.icon_deck` - ui.icon_deck
+- [ ] `ui.icon_discard` - ui.icon_discard
+- [ ] `ui.icon_hand` - ui.icon_hand
+- [ ] `ui.effect_select` - ui.effect_select
+- [ ] `ui.effect_score` - ui.effect_score
+- [ ] `ui.effect_lock` - ui.effect_lock
+- [ ] `ui.effect_win` - ui.effect_win
+- [ ] `ui.effect_loss` - ui.effect_loss
+- [ ] `ui.deck_blue` - ui.deck_blue
+- [ ] `ui.deck_red` - ui.deck_red
+- [ ] `ui.deck_yellow` - ui.deck_yellow
+- [ ] `ui.stake_white` - ui.stake_white
+- [ ] `ui.stake_red` - ui.stake_red
+- [ ] `ui.stake_green` - ui.stake_green
+- [ ] `ui.blind_small` - ui.blind_small
+- [ ] `ui.blind_big` - ui.blind_big
+
+## voucher
+
+- [ ] `voucher.paint_brush` - 붓
+- [ ] `voucher.wasteful` - 낭비
+- [ ] `voucher.grabber` - 그래버
+- [ ] `voucher.overstock` - 오버스톡
+- [ ] `voucher.reroll_surplus` - 리롤잉여
+- [ ] `voucher.clearance_sale` - 세일
+- [ ] `voucher.seed_money` - 시드머니
+- [ ] `voucher.antimatter` - 반물질
+- [ ] `voucher.crystal_ball` - 수정구
+- [ ] `voucher.hone` - 연마
+- [ ] `voucher.directors_cut` - 디렉터컷
+- [ ] `voucher.money_tree` - 머니트리

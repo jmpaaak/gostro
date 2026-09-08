@@ -15,6 +15,10 @@
 
 공식 워크플로 이름의 “Asset Studio 고품질 픽셀 변환”은 처리 절차를 뜻한다. **PixelPerfect 엔진 또는 그와 같은 이름의 런타임 엔진을 사용한다는 뜻이 아니다.**
 
+## Gostro에서 확인한 로컬 API 계약
+
+2026-09-08에 통합 에셋 스튜디오 `http://127.0.0.1:4176/index.html`이 사용하는 실제 요청을 확인했다. `POST /api/pixel-perfect`의 JSON body는 `image: {width, height, data}` RGBA byte 배열과 `targetWidth`, `targetHeight`, `pixelBlock`, `backgroundTolerance`, `paletteLimit`을 받는다. 성공 응답의 `image` RGBA와 `report.valid`, `report.checks`를 모두 확인한 뒤에만 runtime PNG를 기록한다. `tools/asset_pipeline/pixel_perfect.py`가 이 계약을 호출하며 임의 resize 대체 경로는 제공하지 않는다.
+
 ## 출처와 우선순위
 
 - 구매·라이선스 팩에서 목적에 맞는 에셋을 먼저 찾고 재사용한다.

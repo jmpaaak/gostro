@@ -1,4 +1,12 @@
 # STATUS
+## 2026-09-08 — 자산 파이프라인 인벤토리 및 card_art 모듈화
+
+- `assets/manifest.json` 및 `docs/ASSET_INVENTORY.md`를 생성해 전체 게임 내 모든 그래픽 인스턴스(총 108개)를 기계적으로 인벤토리화하고 추적 체크리스트를 구축했다.
+- `game/ui/card.lua`의 직접적인 fallback 렌더링에 앞서 새로운 자산 로더/드로어인 `game/ui/card_art.lua`를 신규 분리해 적용했다.
+- TDD RED: `card_art.lua` 부재. 구현 후 `make verify` 전체 GREEN 확인.
+- INBOX (27) 에셋 파이프라인 전환 작업의 첫 단계(인벤토리 구축 및 기본 card_art 분리)를 완료했으며, 후속 작업(gwang_art 분리 등)을 위해 대기 상태를 유지한다.
+- Next slice: 기존 `game/ui/gwang_art.lua`를 수정하여 `assets/manifest.json` 기반의 독립 asset loader 모듈을 연동한다.
+
 ## 2026-09-08 — run facade·blind flow 순환 의존 제거
 
 - `game/blind_flow.lua`의 사용되지 않는 `game.run` import를 제거해 진행 규칙이 호환 facade를 역참조하지 않는다.

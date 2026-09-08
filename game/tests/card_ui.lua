@@ -6,6 +6,8 @@ local card = require("game.ui.card")
 local M = {}
 
 function M.run()
+    require("game.tests.card_art").run()
+
     -- Constants
     assert(card.WIDTH == 24, "card width must be 24")
     assert(card.HEIGHT == 36, "card height must be 36")

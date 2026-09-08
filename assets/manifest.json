@@ -1,0 +1,788 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "play-card.pi",
+      "category": "play-card",
+      "status": "runtime",
+      "master": {
+        "source": "assets/masters/cards/pi.svg",
+        "sourceSha256": "aebb8e897d550e97f75df63980c858b43c4649e320fd0a61f84405c0d2a2552c",
+        "path": "assets/masters/cards/pi.png",
+        "width": 192,
+        "height": 288,
+        "sha256": "bbfd0b09efbd3f30cc9a243520af5f5f972489840cfeb89e3cce89e722290f8e",
+        "provenance": "Project-authored vector shape/type master; no photo, person, month number, month name, or month illustration."
+      },
+      "runtime": {
+        "path": "assets/runtime/cards/pi.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "18b2a109003ef7d20b058cffcc7b78a623ef2cfee0ef47648bee9b01f553959f",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 24,
+        "targetHeight": 36,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/cards/pi.report.json"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "id": "play-card.hongdan",
+      "category": "play-card",
+      "status": "pending",
+      "name": "hongdan"
+    },
+    {
+      "id": "play-card.cheongdan",
+      "category": "play-card",
+      "status": "pending",
+      "name": "cheongdan"
+    },
+    {
+      "id": "play-card.chodan",
+      "category": "play-card",
+      "status": "pending",
+      "name": "chodan"
+    },
+    {
+      "id": "play-card.godori",
+      "category": "play-card",
+      "status": "pending",
+      "name": "godori"
+    },
+    {
+      "id": "gwang.chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uce69",
+        "en": "Chips"
+      }
+    },
+    {
+      "id": "gwang.mult",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ubc30\uc218",
+        "en": "Mult"
+      }
+    },
+    {
+      "id": "gwang.always_chips_small",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc794\uce69",
+        "en": "Small Chips"
+      }
+    },
+    {
+      "id": "gwang.always_mult_small",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc794\ubc30\uc218",
+        "en": "Small Mult"
+      }
+    },
+    {
+      "id": "gwang.always_chips_mid",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc911\uce69",
+        "en": "Mid Chips"
+      }
+    },
+    {
+      "id": "gwang.always_mult_mid",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc911\ubc30\uc218",
+        "en": "Mid Mult"
+      }
+    },
+    {
+      "id": "gwang.hongdan_x2",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ud64d\ub2e8 \uae43\ubc1c",
+        "en": "Hongdan Flag"
+      }
+    },
+    {
+      "id": "gwang.cheongdan_x2",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uccad\ub2e8 \uae43\ubc1c",
+        "en": "Cheongdan Flag"
+      }
+    },
+    {
+      "id": "gwang.chodan_x2",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ucd08\ub2e8 \uae43\ubc1c",
+        "en": "Chodan Flag"
+      }
+    },
+    {
+      "id": "gwang.godori_x2",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uace0\ub3c4\ub9ac \uae43\ubc1c",
+        "en": "Godori Flag"
+      }
+    },
+    {
+      "id": "gwang.pi_chips_kind",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ud53c \uc794\uce69",
+        "en": "Pi Chips"
+      }
+    },
+    {
+      "id": "gwang.godori_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uace0\ub3c4\ub9ac \uce69",
+        "en": "Godori Chips"
+      }
+    },
+    {
+      "id": "gwang.hongdan_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ud64d\ub2e8 \uce69",
+        "en": "Hongdan Chips"
+      }
+    },
+    {
+      "id": "gwang.cheongdan_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uccad\ub2e8 \uce69",
+        "en": "Cheongdan Chips"
+      }
+    },
+    {
+      "id": "gwang.chodan_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ucd08\ub2e8 \uce69",
+        "en": "Chodan Chips"
+      }
+    },
+    {
+      "id": "gwang.pi_yaku_mult",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ud53c \uc871\ubcf4",
+        "en": "Pi Yaku"
+      }
+    },
+    {
+      "id": "gwang.thin_deck_x3",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc587\uc740 \ub371",
+        "en": "Thin Deck"
+      }
+    },
+    {
+      "id": "gwang.tiny_deck_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc544\uc8fc \uc587\uc740 \ub371",
+        "en": "Tiny Deck"
+      }
+    },
+    {
+      "id": "gwang.lean_deck_mult",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ub0a0\uc52c\ud55c \ub371",
+        "en": "Lean Deck"
+      }
+    },
+    {
+      "id": "gwang.rich_mult",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ubd80\uc790",
+        "en": "Rich"
+      }
+    },
+    {
+      "id": "gwang.loaded_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ub450\ub451\ud55c \uc9c0\uac11",
+        "en": "Loaded"
+      }
+    },
+    {
+      "id": "gwang.wealthy_x2",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uac11\ubd80",
+        "en": "Wealthy"
+      }
+    },
+    {
+      "id": "gwang.boss_x2",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ubcf4\uc2a4 \ubc30\uc218",
+        "en": "Boss Mult"
+      }
+    },
+    {
+      "id": "gwang.boss_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ubcf4\uc2a4 \uce69",
+        "en": "Boss Chips"
+      }
+    },
+    {
+      "id": "gwang.small_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc2a4\ubab0 \uce69",
+        "en": "Small Blind Chips"
+      }
+    },
+    {
+      "id": "gwang.big_mult",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ube45 \ubc30\uc218",
+        "en": "Big Blind Mult"
+      }
+    },
+    {
+      "id": "gwang.once_x20",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc77c\ud68c\uc131",
+        "en": "Once"
+      }
+    },
+    {
+      "id": "gwang.once_chips",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\uc77c\ud68c\uc131 \uce69",
+        "en": "Once Chips"
+      }
+    },
+    {
+      "id": "gwang.compound",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ubcf5\ud569",
+        "en": "Compound"
+      }
+    },
+    {
+      "id": "gwang.compound_burst",
+      "category": "gwang",
+      "status": "pending",
+      "name": {
+        "ko": "\ubcf5\ud569 \ud3ed\uc8fc",
+        "en": "Compound Burst"
+      }
+    },
+    {
+      "id": "planet.planet_hongdan",
+      "category": "planet",
+      "status": "pending",
+      "name": "Mars"
+    },
+    {
+      "id": "planet.planet_cheongdan",
+      "category": "planet",
+      "status": "pending",
+      "name": "Jupiter"
+    },
+    {
+      "id": "planet.planet_chodan",
+      "category": "planet",
+      "status": "pending",
+      "name": "Venus"
+    },
+    {
+      "id": "planet.planet_godori",
+      "category": "planet",
+      "status": "pending",
+      "name": "Earth"
+    },
+    {
+      "id": "planet.planet_pi",
+      "category": "planet",
+      "status": "pending",
+      "name": "Pluto"
+    },
+    {
+      "id": "tarot.the_magician",
+      "category": "tarot",
+      "status": "pending",
+      "name": "\ub9c8\ubc95\uc0ac"
+    },
+    {
+      "id": "tarot.the_hanged_man",
+      "category": "tarot",
+      "status": "pending",
+      "name": "\ub9e4\ub2ec\ub9b0\uc790"
+    },
+    {
+      "id": "tarot.the_chariot",
+      "category": "tarot",
+      "status": "pending",
+      "name": "\uc804\ucc28"
+    },
+    {
+      "id": "tarot.the_lovers",
+      "category": "tarot",
+      "status": "pending",
+      "name": "\uc5f0\uc778"
+    },
+    {
+      "id": "voucher.paint_brush",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\ubd93"
+    },
+    {
+      "id": "voucher.wasteful",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\ub0ad\ube44"
+    },
+    {
+      "id": "voucher.grabber",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uadf8\ub798\ubc84"
+    },
+    {
+      "id": "voucher.overstock",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uc624\ubc84\uc2a4\ud1a1"
+    },
+    {
+      "id": "voucher.reroll_surplus",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\ub9ac\ub864\uc789\uc5ec"
+    },
+    {
+      "id": "voucher.clearance_sale",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uc138\uc77c"
+    },
+    {
+      "id": "voucher.seed_money",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uc2dc\ub4dc\uba38\ub2c8"
+    },
+    {
+      "id": "voucher.antimatter",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\ubc18\ubb3c\uc9c8"
+    },
+    {
+      "id": "voucher.crystal_ball",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uc218\uc815\uad6c"
+    },
+    {
+      "id": "voucher.hone",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uc5f0\ub9c8"
+    },
+    {
+      "id": "voucher.directors_cut",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\ub514\ub809\ud130\ucef7"
+    },
+    {
+      "id": "voucher.money_tree",
+      "category": "voucher",
+      "status": "pending",
+      "name": "\uba38\ub2c8\ud2b8\ub9ac"
+    },
+    {
+      "id": "tag.coupon",
+      "category": "tag",
+      "status": "pending",
+      "name": "\ucfe0\ud3f0"
+    },
+    {
+      "id": "tag.investment",
+      "category": "tag",
+      "status": "pending",
+      "name": "\ud22c\uc790"
+    },
+    {
+      "id": "tag.handy",
+      "category": "tag",
+      "status": "pending",
+      "name": "Handy"
+    },
+    {
+      "id": "tag.economy",
+      "category": "tag",
+      "status": "pending",
+      "name": "\uc774\ucf54\ub178\ubbf8"
+    },
+    {
+      "id": "tag.mega",
+      "category": "tag",
+      "status": "pending",
+      "name": "\uba54\uac00"
+    },
+    {
+      "id": "tag.foil",
+      "category": "tag",
+      "status": "pending",
+      "name": "\ud3ec\uc77c"
+    },
+    {
+      "id": "tag.hologram",
+      "category": "tag",
+      "status": "pending",
+      "name": "\ud640\ub85c\uadf8\ub7a8"
+    },
+    {
+      "id": "tag.polychrome",
+      "category": "tag",
+      "status": "pending",
+      "name": "\ud3f4\ub9ac\ud06c\ub86c"
+    },
+    {
+      "id": "tag.charm",
+      "category": "tag",
+      "status": "pending",
+      "name": "\ucc38"
+    },
+    {
+      "id": "tag.uncommon",
+      "category": "tag",
+      "status": "pending",
+      "name": "\uc5b8\ucee4\uba3c"
+    },
+    {
+      "id": "tag.juggle",
+      "category": "tag",
+      "status": "pending",
+      "name": "\uc800\uae00"
+    },
+    {
+      "id": "tag.d6",
+      "category": "tag",
+      "status": "pending",
+      "name": "D6"
+    },
+    {
+      "id": "boss-blind.hook",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\uac08\uace0\ub9ac"
+    },
+    {
+      "id": "boss-blind.wall",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\uc131\ubcbd"
+    },
+    {
+      "id": "boss-blind.flint",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\ubd80\uc2ef\ub3cc"
+    },
+    {
+      "id": "boss-blind.mark",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\ub099\uc778"
+    },
+    {
+      "id": "boss-blind.fish",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\ubb3c\uace0\uae30"
+    },
+    {
+      "id": "boss-blind.psychic",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\uc601\ub9e4"
+    },
+    {
+      "id": "boss-blind.goad",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\ubab0\uc774"
+    },
+    {
+      "id": "boss-blind.plant",
+      "category": "boss-blind",
+      "status": "pending",
+      "name": "\ucd08\ubaa9"
+    },
+    {
+      "id": "pack.arcana_pack",
+      "category": "pack",
+      "status": "pending",
+      "name": "arcana_pack"
+    },
+    {
+      "id": "ui.menu_bg",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.menu_bg"
+    },
+    {
+      "id": "ui.play_bg",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.play_bg"
+    },
+    {
+      "id": "ui.shop_bg",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.shop_bg"
+    },
+    {
+      "id": "ui.panel_wood",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.panel_wood"
+    },
+    {
+      "id": "ui.panel_metal",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.panel_metal"
+    },
+    {
+      "id": "ui.panel_glass",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.panel_glass"
+    },
+    {
+      "id": "ui.btn_primary",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.btn_primary"
+    },
+    {
+      "id": "ui.btn_secondary",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.btn_secondary"
+    },
+    {
+      "id": "ui.btn_danger",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.btn_danger"
+    },
+    {
+      "id": "ui.btn_disabled",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.btn_disabled"
+    },
+    {
+      "id": "ui.icon_chip",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.icon_chip"
+    },
+    {
+      "id": "ui.icon_mult",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.icon_mult"
+    },
+    {
+      "id": "ui.icon_money",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.icon_money"
+    },
+    {
+      "id": "ui.icon_deck",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.icon_deck"
+    },
+    {
+      "id": "ui.icon_discard",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.icon_discard"
+    },
+    {
+      "id": "ui.icon_hand",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.icon_hand"
+    },
+    {
+      "id": "ui.effect_select",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.effect_select"
+    },
+    {
+      "id": "ui.effect_score",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.effect_score"
+    },
+    {
+      "id": "ui.effect_lock",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.effect_lock"
+    },
+    {
+      "id": "ui.effect_win",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.effect_win"
+    },
+    {
+      "id": "ui.effect_loss",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.effect_loss"
+    },
+    {
+      "id": "ui.deck_blue",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.deck_blue"
+    },
+    {
+      "id": "ui.deck_red",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.deck_red"
+    },
+    {
+      "id": "ui.deck_yellow",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.deck_yellow"
+    },
+    {
+      "id": "ui.stake_white",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.stake_white"
+    },
+    {
+      "id": "ui.stake_red",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.stake_red"
+    },
+    {
+      "id": "ui.stake_green",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.stake_green"
+    },
+    {
+      "id": "ui.blind_small",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.blind_small"
+    },
+    {
+      "id": "ui.blind_big",
+      "category": "ui",
+      "status": "pending",
+      "name": "ui.blind_big"
+    },
+    {
+      "id": "effect.foil",
+      "category": "effect",
+      "status": "pending",
+      "name": "effect.foil"
+    },
+    {
+      "id": "effect.hologram",
+      "category": "effect",
+      "status": "pending",
+      "name": "effect.hologram"
+    },
+    {
+      "id": "effect.polychrome",
+      "category": "effect",
+      "status": "pending",
+      "name": "effect.polychrome"
+    }
+  ]
+}

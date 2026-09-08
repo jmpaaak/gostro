@@ -3,6 +3,7 @@
 -- Play cards only (no gwang — gwang is a joker slot).
 
 local effects = require("game.ui.card_effects")
+local card_art = require("game.ui.card_art")
 
 local M = {}
 
@@ -87,9 +88,12 @@ function M.draw(c)
     local dy = M.draw_y(c)
     local bg = BG_COLORS[c.kind]
 
-    -- background rect
-    love.graphics.setColor(bg[1], bg[2], bg[3], 1)
-    love.graphics.rectangle("fill", c.x, dy, M.WIDTH, M.HEIGHT, 2, 2)
+    local uses_asset = card_art.draw(c.kind, c.x, dy)
+    if not uses_asset then
+        -- Procedural fallback while the remaining card masters are converted.
+        love.graphics.setColor(bg[1], bg[2], bg[3], 1)
+        love.graphics.rectangle("fill", c.x, dy, M.WIDTH, M.HEIGHT, 2, 2)
+    end
 
     -- border (highlight when selected)
     if c.selected then
@@ -99,13 +103,15 @@ function M.draw(c)
     end
     love.graphics.rectangle("line", c.x, dy, M.WIDTH, M.HEIGHT, 2, 2)
 
-    -- symbol centred
-    love.graphics.setColor(1, 1, 1, 1)
-    local sym = SYMBOLS[c.kind]
-    local font = love.graphics.getFont()
-    local tw = font:getWidth(sym)
-    local th = font:getHeight()
-    love.graphics.print(sym, c.x + (M.WIDTH - tw) / 2, dy + (M.HEIGHT - th) / 2)
+    if not uses_asset then
+        -- symbol centred
+        love.graphics.setColor(1, 1, 1, 1)
+        local sym = SYMBOLS[c.kind]
+        local font = love.graphics.getFont()
+        local tw = font:getWidth(sym)
+        local th = font:getHeight()
+        love.graphics.print(sym, c.x + (M.WIDTH - tw) / 2, dy + (M.HEIGHT - th) / 2)
+    end
 
     -- hologram / foil / polychrome overlay
     if c.effect then
