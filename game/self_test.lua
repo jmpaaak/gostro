@@ -30,6 +30,7 @@ function M.run()
     require("game.tests.vouchers").run()
     require("game.tests.planets").run()
     require("game.tests.tarots").run()
+    require("game.tests.economy").run()
     print("GOSTRO_UNIT_OK")
 end
 
