@@ -1,4 +1,4 @@
--- Tests for Balatro-style tarot consumables (convert / destroy / enhance).
+-- Tests for Balatro-style tarot consumables (convert / destroy / enhance / copy).
 -- Engine-hosted: slots + use on play cards. No month numbers.
 
 local tarots = require("game.tarots")
@@ -33,6 +33,9 @@ function M.run()
     M.test_no_month_on_cards()
     M.test_enhance_grants_effect()
     M.test_enhance_rejects_unknown()
+    M.test_copy_card()
+    M.test_copy_preserves_effect()
+    M.test_copy_rejects_gwang()
     print("  tarots: OK")
 end
 
@@ -52,6 +55,7 @@ function M.test_pool()
     assert(effects.convert, "pool must include convert")
     assert(effects.destroy, "pool must include destroy")
     assert(effects.enhance, "pool must include enhance")
+    assert(effects.copy, "pool must include copy")
 end
 
 function M.test_by_id()
@@ -60,6 +64,8 @@ function M.test_by_id()
     assert(t.effect == "convert")
     local d = tarots.by_id("the_hanged_man")
     assert(d.effect == "destroy")
+    local c = tarots.by_id("the_lovers")
+    assert(c.effect == "copy")
     local ok = pcall(tarots.by_id, "not_a_tarot")
     assert(not ok, "unknown tarot must error")
 end
@@ -200,6 +206,50 @@ function M.test_enhance_rejects_unknown()
     assert(not ok, "gwang is not an edition")
     assert(cards[1].effect == nil)
     assert(#state.tarots == 1, "failed use must not consume the slot")
+end
+
+function M.test_copy_card()
+    local state = run.new()
+    tarots.gain(state, "the_lovers", "shop")
+    local cards = {
+        hwatu.card("godori"),
+        hwatu.card("pi"),
+    }
+    local used = tarots.use(state, 1, cards, 1)
+    assert(used.effect == "copy")
+    assert(#cards == 3)
+    assert(cards[1].kind == "godori")
+    assert(cards[2].kind == "pi")
+    assert(cards[3].kind == "godori")
+    assert(cards[3] ~= cards[1], "copy must be a new table")
+    assert(cards[3].month == nil)
+    assert(cards[3].month_name == nil)
+    assert(#state.tarots == 0)
+end
+
+function M.test_copy_preserves_effect()
+    local state = run.new()
+    tarots.gain(state, "the_lovers", "boss")
+    local cards = {
+        hwatu.card("hongdan", { effect = "hologram" }),
+        hwatu.card("cheongdan"),
+    }
+    tarots.use(state, 1, cards, 1)
+    assert(#cards == 3)
+    assert(cards[3].kind == "hongdan")
+    assert(cards[3].effect == "hologram")
+    cards[3].effect = "foil"
+    assert(cards[1].effect == "hologram", "copy must not alias the original")
+end
+
+function M.test_copy_rejects_gwang()
+    local state = run.new()
+    tarots.gain(state, "the_lovers", "shop")
+    local cards = { { kind = "gwang" } }
+    local ok = pcall(tarots.use, state, 1, cards, 1)
+    assert(not ok, "cannot copy gwang joker as a play card")
+    assert(#cards == 1)
+    assert(#state.tarots == 1, "failed copy must not consume the slot")
 end
 
 return M

@@ -1,5 +1,5 @@
 -- game/tarots.lua
--- Balatro-style tarot consumables: convert / destroy / enhance play cards.
+-- Balatro-style tarot consumables: convert / destroy / enhance / copy play cards.
 -- Slots max 2, expanded by crystal_ball voucher. Headless-safe.
 
 local hwatu = require("game.hwatu")
@@ -9,11 +9,11 @@ local M = {}
 
 M.BASE_SLOTS = 2
 
--- Consumable pool. Copy later.
 M.POOL = {
     { id = "the_magician",    name = "마법사",   effect = "convert" },
     { id = "the_hanged_man",  name = "매달린자", effect = "destroy" },
     { id = "the_chariot",     name = "전차",     effect = "enhance" },
+    { id = "the_lovers",      name = "연인",     effect = "copy" },
 }
 
 local BY_ID = {}
@@ -102,8 +102,29 @@ local function enhance_card(card, effect)
     return card
 end
 
+local function copy_card(cards, index)
+    local src = cards[index]
+    if type(src) ~= "table" then
+        error("copy target must be a card")
+    end
+    if src.kind == "gwang" then
+        error("gwang is a joker slot, not a play card")
+    end
+    if not PLAY_KINDS[src.kind] then
+        error("unknown play card kind: " .. tostring(src.kind))
+    end
+    local extra = nil
+    if src.effect ~= nil then
+        extra = { effect = src.effect }
+    end
+    local clone = hwatu.card(src.kind, extra)
+    cards[#cards + 1] = clone
+    return clone
+end
+
 --- Use the tarot in slot `slot` on cards[index].
 -- Convert needs opts.kind; enhance needs opts.effect (foil/hologram/polychrome).
+-- Copy appends an independent play-card clone (kind + edition, no months).
 function M.use(state, slot, cards, index, opts)
     local slots = M.ensure(state)
     local held = slots[slot]
@@ -125,6 +146,8 @@ function M.use(state, slot, cards, index, opts)
     elseif def.effect == "enhance" then
         opts = opts or {}
         enhance_card(cards[index], opts.effect)
+    elseif def.effect == "copy" then
+        copy_card(cards, index)
     else
         error("unknown tarot effect: " .. tostring(def.effect))
     end
