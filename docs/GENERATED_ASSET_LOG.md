@@ -100,3 +100,11 @@
 2026-09-09T05:45:00+0900 | assets/masters/voucher/money-tree-v1.svg | Project-authored vector for money tree / gold vein seal
 2026-09-09T05:45:00+0900 | assets/masters/voucher/money-tree-v1.png | Rasterized 400x560 master for money tree / gold vein seal
 2026-09-09T05:45:00+0900 | assets/runtime/voucher/money-tree-v1.png | Asset Studio 36x52 pixel-perfect downscale for money tree seal
+| 2026-09-09T06:01:00+0900 | `assets/masters/gwang/chips-v1.svg` | Project-authored high-resolution chips gwang vector source with Korean lacquer, dancheong geometry, brass yeopjeon coins, and light-ray motifs |
+| 2026-09-09T06:01:00+0900 | `assets/masters/gwang/chips-v1.png` | Preserved 448x256 RGBA raster master for chips gwang generated from vector source |
+| 2026-09-09T06:01:00+0900 | `assets/runtime/gwang/chips-v1.png` | 56x32 runtime chips gwang from actual Asset Studio POST /api/pixel-perfect |
+| 2026-09-09T06:01:00+0900 | `assets/runtime/ui/gwang-chips-slots-love-v1.png` | 320x180 LÖVE-rendered shop QA capture proving chips gwang slots |
+| 2026-09-09T06:03:00+0900 | `assets/masters/gwang/mult-v1.svg` | Project-authored high-resolution mult gwang vector source with Korean lacquer, dancheong geometry, and bright red X motifs |
+| 2026-09-09T06:03:00+0900 | `assets/masters/gwang/mult-v1.png` | Preserved 448x256 RGBA raster master for mult gwang generated from vector source |
+| 2026-09-09T06:03:00+0900 | `assets/runtime/gwang/mult-v1.png` | 56x32 runtime mult gwang from actual Asset Studio POST /api/pixel-perfect |
+| 2026-09-09T06:03:00+0900 | `assets/runtime/ui/gwang-mult-slots-love-v1.png` | 320x180 LÖVE-rendered shop QA capture proving mult gwang slots |

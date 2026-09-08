@@ -154,7 +154,10 @@ gwang-slot-qa:
 	@cp game/data/gwang_jokers.json "$(BUILD_DIR)/gwang-slot-qa/game/data/"
 	@cp assets/manifest.json "$(BUILD_DIR)/gwang-slot-qa/assets/"
 	@cp assets/runtime/gwang/chips-v1.png "$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
-	GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
+	@cp assets/runtime/gwang/mult-v1.png "$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
+	GWANG_QA_IDENTITY="chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+	GWANG_QA_IDENTITY="mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-mult-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 
 smoke:

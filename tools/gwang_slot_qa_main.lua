@@ -11,8 +11,9 @@ function love.load()
     love.window.setMode(320, 180, { fullscreen = false, resizable = false, vsync = 0 })
     love.graphics.setDefaultFilter("nearest", "nearest")
     local slots = gwang_slots.new()
+    local identity = os.getenv("GWANG_QA_IDENTITY") or "chips"
     for _ = 1, gwang_slots.MAX_SLOTS do
-        assert(gwang_slots.equip(slots, { identity = "chips" }))
+        assert(gwang_slots.equip(slots, { identity = identity }))
     end
 
     local canvas = love.graphics.newCanvas(320, 180)

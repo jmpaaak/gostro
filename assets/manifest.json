@@ -382,10 +382,51 @@
     {
       "id": "gwang.mult",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "배수",
         "en": "Mult"
+      },
+      "master": {
+        "source": "assets/masters/gwang/mult-v1.svg",
+        "sourceSha256": "10805db461c4e4651abed73ad18f5b592f928fab0abe881cfc914f2a6dd8339d",
+        "path": "assets/masters/gwang/mult-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "e39bf94c093e60f4673f3ee15fa1f9126db28ab9b3ad6e94a659e789df773a46",
+        "provenance": "Project-authored high-resolution vector master using Korean lacquer, dancheong geometry, and bright red X motifs; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/mult-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "8b422efbc821fd88802b3c503ac48e06a96b895b6cda1be02f7bf08d5930e1d2",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/mult-v1.report.json",
+        "reportSha256": "c08fdaae3de19ee269b5b4c8015a2948f54b70988ba920d428891f7247b28ed9"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
