@@ -66,3 +66,7 @@
 | 2026-09-09T03:28:13+0900 | `assets/masters/voucher/grabber-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T03:28:13+0900 | `assets/runtime/voucher/grabber-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T03:28:13+0900 | `assets/runtime/ui/shop-voucher-grabber-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed rake seal in all three offer slots |
+| 2026-09-09T03:36:18+0900 | `assets/masters/voucher/overstock-v1.svg` | Project-authored high-resolution Korean general store, packed shelves, tiled awning, dancheong, and vermilion-seal vector source |
+| 2026-09-09T03:36:18+0900 | `assets/masters/voucher/overstock-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T03:36:18+0900 | `assets/runtime/voucher/overstock-v1.png` | 36×52 runtime seal offer from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T03:37:49+0900 | `assets/runtime/ui/shop-voucher-overstock-love-v1.png` | 320×180 LÖVE-rendered shop QA capture proving the manifest-backed general-store seal in all three offer slots |

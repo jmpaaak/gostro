@@ -42,6 +42,17 @@ function M.run()
     assert(grabber.runtime.filter == "nearest")
     assert(assets.runtime_path(grabber_id) == "assets/runtime/voucher/grabber-v1.png")
 
+    local overstock_id = voucher_art.asset_id({ kind = "voucher", identity = "overstock" })
+    assert(overstock_id == "voucher.overstock", "general store seal must resolve tracked artwork")
+    local overstock = assets.entry(overstock_id)
+    assert(overstock and overstock.status == "runtime", "general store seal artwork must be promoted")
+    assert(overstock.master.width == 400 and overstock.master.height == 560,
+        "general store seal must preserve a 400x560 master")
+    assert(overstock.runtime.width == 36 and overstock.runtime.height == 52,
+        "general store seal runtime must fit its shop slot")
+    assert(overstock.runtime.filter == "nearest")
+    assert(assets.runtime_path(overstock_id) == "assets/runtime/voucher/overstock-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

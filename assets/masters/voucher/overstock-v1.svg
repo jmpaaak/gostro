@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0bf"/><stop offset="1" stop-color="#d8aa61"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b96732"/><stop offset="1" stop-color="#5a2925"/>
+    </linearGradient>
+    <linearGradient id="awning" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#276f68"/><stop offset="1" stop-color="#17434b"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <!-- A crowded Korean general store communicates one additional shop offer. -->
+  <rect x="27" y="25" width="346" height="510" rx="34" fill="#321f38" opacity=".36" filter="url(#shadow)"/>
+  <rect x="20" y="18" width="360" height="510" rx="32" fill="#35213f" stroke="#140d1b" stroke-width="12"/>
+  <rect x="34" y="32" width="332" height="482" rx="23" fill="url(#paper)" stroke="#bd3f37" stroke-width="9"/>
+  <!-- Shared dancheong frame keeps the permanent-seal family recognizable. -->
+  <path d="M49 64H351M49 482H351" stroke="#174f5f" stroke-width="17"/>
+  <path d="M49 64l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17M49 482l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17" fill="none" stroke="#e8b43e" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="62" cy="104" r="10" fill="#bd3f37"/><circle cx="338" cy="104" r="10" fill="#bd3f37"/>
+  <circle cx="62" cy="441" r="10" fill="#174f5f"/><circle cx="338" cy="441" r="10" fill="#174f5f"/>
+  <!-- Broad tiled awning and wooden posts form a strong storefront silhouette. -->
+  <path d="M69 190L104 132H296L331 190Z" fill="#223a4d" stroke="#54252a" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M82 184l29-42h178l29 42" fill="url(#awning)" stroke="#e8b43e" stroke-width="8"/>
+  <path d="M103 144l24 40 24-40 24 40 25-40 25 40 24-40 24 40 24-40" fill="none" stroke="#c54138" stroke-width="10" stroke-linejoin="round"/>
+  <path d="M90 185v238M310 185v238" stroke="#4b2925" stroke-width="20"/>
+  <path d="M90 185v238M310 185v238" stroke="url(#wood)" stroke-width="11"/>
+  <!-- Three packed shelves remain distinct at the 36x52 runtime size. -->
+  <rect x="98" y="205" width="204" height="207" rx="8" fill="#70402d" stroke="#3c2529" stroke-width="10"/>
+  <path d="M101 274H299M101 345H299" stroke="#e1a543" stroke-width="12"/>
+  <g stroke="#54252a" stroke-width="6">
+    <path d="M119 226h39l6 35h-51z" fill="#e3bd56"/><path d="M172 219h45v43h-45z" fill="#c94b3e"/>
+    <path d="M233 227q23-24 46 0l-6 35h-34z" fill="#4f8a61"/>
+    <path d="M113 296q25-28 50 0v36h-50z" fill="#315f72"/><path d="M177 291h39l8 42h-55z" fill="#e9d18a"/>
+    <path d="M235 292h48v41h-48z" fill="#bd4939"/>
+    <path d="M112 366h50v33h-50z" fill="#d48c38"/><path d="M174 361q24-21 48 0v38h-48z" fill="#4b7a56"/>
+    <path d="M238 365h44l-5 34h-34z" fill="#e4c967"/>
+  </g>
+  <g fill="#f7df97">
+    <circle cx="135" cy="241" r="7"/><circle cx="194" cy="240" r="7"/><circle cx="256" cy="242" r="7"/>
+    <circle cx="137" cy="312" r="7"/><circle cx="197" cy="311" r="7"/><circle cx="258" cy="312" r="7"/>
+  </g>
+  <!-- Vermilion seal and brass notch identify an in-game seal. -->
+  <rect x="276" y="91" width="64" height="64" rx="6" fill="#c9362d" stroke="#751d21" stroke-width="8"/>
+  <path d="M290 107h36v32h-36zm9 0v32m17-32v32m-26-16h36" fill="none" stroke="#f6d78d" stroke-width="6"/>
+  <path d="M151 18h98l-13 28h-72z" fill="#e8b43e" stroke="#6c3a24" stroke-width="7"/>
+  <circle cx="200" cy="31" r="8" fill="#8e2f2c"/>
+</svg>

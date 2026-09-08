@@ -797,8 +797,49 @@
     {
       "id": "voucher.overstock",
       "category": "voucher",
-      "status": "pending",
-      "name": "\uc624\ubc84\uc2a4\ud1a1"
+      "status": "runtime",
+      "name": "\ub9cc\ubb3c\uc0c1 \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/overstock-v1.svg",
+        "sourceSha256": "eda9f7f1216e7fe97816c0b34b103e7eac58d46a24ad920a6e505fc09fa73f4c",
+        "path": "assets/masters/voucher/overstock-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "dbaa50ca8b52bdb6a3fe74a6a83ed26735d6070736cdd78d3c0ebe1789792e40",
+        "provenance": "Project-authored high-resolution vector master depicting a crowded Korean general store with a tiled awning, packed shelves, dancheong frame, and vermilion seal; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/overstock-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          51
+        ],
+        "sha256": "132dfd638878a57e2b7e761490321f9a2f32ef74b3c88ae6b9fbb672a9c3b872",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/overstock-v1.report.json",
+        "reportSha256": "8c88a21babdd505aa2616243d031012b3d3138bd92e95aea03190af6aac1d00b"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.reroll_surplus",
