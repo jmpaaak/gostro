@@ -1,0 +1,239 @@
+-- game/ui/shop.lua
+-- Shop UI: 3 gwang joker cards on display, reroll ($5), next round, money.
+
+local M = {}
+
+local VIEWPORT_W = 320
+local VIEWPORT_H = 180
+
+-- Gwang pool with prices
+local GWANG_POOL = {
+    { identity = "chips",     price = 6 },
+    { identity = "mult",      price = 7 },
+    { identity = "yaku_mult", price = 8 },
+}
+
+local GWANG_NAMES = {
+    chips     = "칩 +30",
+    mult      = "배수 +4",
+    yaku_mult = "족보 ×1.5",
+}
+
+M.REROLL_COST = 5
+
+-- Card layout: 3 cards centred
+local CARD_W = 36
+local CARD_H = 52
+local CARD_GAP = 10
+local CARD_Y = 40
+
+-- Buttons
+M.BUTTON_W = 60
+M.BUTTON_H = 18
+M.REROLL_X = math.floor(VIEWPORT_W / 2 - M.BUTTON_W - 6)
+M.REROLL_Y = CARD_Y + CARD_H + 14
+M.NEXT_X   = math.floor(VIEWPORT_W / 2 + 6)
+M.NEXT_Y   = M.REROLL_Y
+
+--- Return card display positions for 3 slots (centred).
+function M.card_positions()
+    local total_w = 3 * CARD_W + 2 * CARD_GAP
+    local start_x = math.floor((VIEWPORT_W - total_w) / 2)
+    local positions = {}
+    for i = 1, 3 do
+        positions[i] = {
+            x = start_x + (i - 1) * (CARD_W + CARD_GAP),
+            y = CARD_Y,
+            w = CARD_W,
+            h = CARD_H,
+        }
+    end
+    return positions
+end
+
+--- Pick a random gwang from the pool.
+local function random_gwang()
+    local entry = GWANG_POOL[math.random(1, #GWANG_POOL)]
+    return {
+        kind     = "gwang",
+        identity = entry.identity,
+        price    = entry.price,
+        sold     = false,
+    }
+end
+
+--- Generate 3 fresh shop cards.
+local function generate_cards()
+    local cards = {}
+    for i = 1, 3 do
+        cards[i] = random_gwang()
+    end
+    return cards
+end
+
+--- Create a new shop state.
+-- @param money  number  player's current money
+function M.new(money)
+    return {
+        money = money or 0,
+        cards = generate_cards(),
+    }
+end
+
+--- Buy a card at index (1-3). Returns ok, card_data.
+function M.buy_card(s, idx)
+    if idx < 1 or idx > 3 then return false, nil end
+    local card = s.cards[idx]
+    if not card or card.sold then return false, nil end
+    if s.money < card.price then return false, nil end
+    s.money = s.money - card.price
+    card.sold = true
+    return true, { kind = card.kind, identity = card.identity }
+end
+
+--- Reroll: replace unsold cards, cost $5. Returns true on success.
+function M.reroll(s)
+    if s.money < M.REROLL_COST then return false end
+    s.money = s.money - M.REROLL_COST
+    for i = 1, 3 do
+        if not s.cards[i].sold then
+            s.cards[i] = random_gwang()
+        end
+    end
+    return true
+end
+
+--- Can the player afford a reroll?
+function M.can_reroll(s)
+    return s.money >= M.REROLL_COST
+end
+
+--- Money display text.
+function M.money_text(s)
+    return "$" .. tostring(s.money)
+end
+
+--- Hit-test: returns "reroll", "next", card index (1-3), or nil.
+function M.hit_test(s, px, py)
+    -- Reroll button
+    if px >= M.REROLL_X and px < M.REROLL_X + M.BUTTON_W
+       and py >= M.REROLL_Y and py < M.REROLL_Y + M.BUTTON_H then
+        return "reroll"
+    end
+    -- Next round button
+    if px >= M.NEXT_X and px < M.NEXT_X + M.BUTTON_W
+       and py >= M.NEXT_Y and py < M.NEXT_Y + M.BUTTON_H then
+        return "next"
+    end
+    -- Card slots
+    local positions = M.card_positions()
+    for i = 1, 3 do
+        local p = positions[i]
+        if px >= p.x and px < p.x + p.w
+           and py >= p.y and py < p.y + p.h then
+            return i
+        end
+    end
+    return nil
+end
+
+--- Draw shop UI (requires love.graphics).
+function M.draw(s)
+    if not love or not love.graphics then return end
+    local font = love.graphics.getFont()
+    local fh = font:getHeight()
+    local positions = M.card_positions()
+
+    -- Title
+    love.graphics.setColor(1, 0.9, 0.3, 1)
+    local title = "상점"
+    love.graphics.print(title,
+        math.floor(VIEWPORT_W / 2 - font:getWidth(title) / 2), CARD_Y - 18)
+
+    -- Money display (top right area)
+    love.graphics.setColor(0.3, 1, 0.4, 1)
+    local mtxt = M.money_text(s)
+    love.graphics.print(mtxt, VIEWPORT_W - font:getWidth(mtxt) - 8, 6)
+
+    -- Cards
+    for i = 1, 3 do
+        local p = positions[i]
+        local card = s.cards[i]
+
+        if card and not card.sold then
+            -- Card background (gwang gold)
+            love.graphics.setColor(0.85, 0.7, 0.15, 1)
+            love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
+            love.graphics.setColor(1, 0.85, 0.2, 1)
+            love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
+
+            -- Star symbol
+            love.graphics.setColor(1, 1, 1, 1)
+            local sym = "★"
+            local sw = font:getWidth(sym)
+            love.graphics.print(sym,
+                p.x + math.floor((p.w - sw) / 2), p.y + 6)
+
+            -- Name/effect
+            local name = GWANG_NAMES[card.identity] or "?"
+            local nw = font:getWidth(name)
+            love.graphics.setColor(0.1, 0.05, 0, 1)
+            love.graphics.print(name,
+                p.x + math.floor((p.w - nw) / 2), p.y + 6 + fh + 2)
+
+            -- Price tag at bottom
+            local ptxt = "$" .. tostring(card.price)
+            local pw = font:getWidth(ptxt)
+            love.graphics.setColor(0.2, 0.8, 0.3, 1)
+            love.graphics.print(ptxt,
+                p.x + math.floor((p.w - pw) / 2), p.y + p.h - fh - 4)
+        else
+            -- Sold / empty slot
+            love.graphics.setColor(0.3, 0.3, 0.3, 0.4)
+            love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
+            love.graphics.setColor(0.5, 0.5, 0.5, 0.5)
+            local sold_txt = "SOLD"
+            love.graphics.print(sold_txt,
+                p.x + math.floor((p.w - font:getWidth(sold_txt)) / 2),
+                p.y + math.floor((p.h - fh) / 2))
+        end
+    end
+
+    -- Reroll button
+    local can_rr = M.can_reroll(s)
+    if can_rr then
+        love.graphics.setColor(0.2, 0.5, 0.2, 0.9)
+    else
+        love.graphics.setColor(0.25, 0.25, 0.25, 0.9)
+    end
+    love.graphics.rectangle("fill", M.REROLL_X, M.REROLL_Y,
+        M.BUTTON_W, M.BUTTON_H, 3, 3)
+    love.graphics.setColor(0.4, 0.8, 0.4, 0.8)
+    love.graphics.rectangle("line", M.REROLL_X, M.REROLL_Y,
+        M.BUTTON_W, M.BUTTON_H, 3, 3)
+    local rr_txt = "리롤 ($" .. tostring(M.REROLL_COST) .. ")"
+    local rr_w = font:getWidth(rr_txt)
+    love.graphics.setColor(1, 1, 1, can_rr and 1 or 0.4)
+    love.graphics.print(rr_txt,
+        M.REROLL_X + math.floor((M.BUTTON_W - rr_w) / 2),
+        M.REROLL_Y + math.floor((M.BUTTON_H - fh) / 2))
+
+    -- Next round button
+    love.graphics.setColor(0.15, 0.35, 0.7, 0.9)
+    love.graphics.rectangle("fill", M.NEXT_X, M.NEXT_Y,
+        M.BUTTON_W, M.BUTTON_H, 3, 3)
+    love.graphics.setColor(0.4, 0.6, 1, 0.8)
+    love.graphics.rectangle("line", M.NEXT_X, M.NEXT_Y,
+        M.BUTTON_W, M.BUTTON_H, 3, 3)
+    local nx_txt = "다음 라운드"
+    local nx_w = font:getWidth(nx_txt)
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.print(nx_txt,
+        M.NEXT_X + math.floor((M.BUTTON_W - nx_w) / 2),
+        M.NEXT_Y + math.floor((M.BUTTON_H - fh) / 2))
+
+    -- Reset colour
+    love.graphics.setColor(1, 1, 1, 1)
+end
+
+return M

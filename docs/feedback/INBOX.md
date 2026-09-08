@@ -6,14 +6,6 @@
 
 ### Phase B — 핵심 UI 모듈 개발
 
-(9) **상점 UI 모듈** (msg `1546674255045992608`)
-  - 담당: `game/ui/shop.lua` (새 모듈)
-  - 광 조커 3장 진열 (카드 형태, 가격 태그)
-  - 리롤 버튼 ($5) + "다음 라운드" 버튼
-  - 소지금 표시. 구매 시 카드 날아가는 연출은 후속.
-  - `game/run.lua`의 상점 로직 연동
-  - 테스트: `game/tests/shop_ui.lua`
-
 (10) **블라인드 선택 화면 모듈** (msg `1546674255045992608`)
   - 담당: `game/ui/blind_select.lua` (새 모듈)
   - 스몰/빅/보스 블라인드 3장 카드 레이아웃
@@ -38,6 +30,10 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (9) **상점 UI 모듈** (msg `1546674255045992608`)
+    - `game/ui/shop.lua`: 광 조커 3장 진열 (카드 형태, ★ + 이름 + 가격 태그), 리롤 버튼 ($5), "다음 라운드" 버튼, 소지금 표시, hit_test, buy/reroll 로직.
+    - `game/tests/shop_ui.lua` GREEN. `make verify` GREEN.
 
   (8) **플레이/버리기 버튼 모듈** (msg `1546674255045992608`)
     - `game/ui/action_buttons.lua`: Balatro-style 하단 중앙 2버튼 "놓기"(파란)/"버리기"(빨간), 남은 횟수 표시, 터치 hit_test, space/d 키보드 단축키.
