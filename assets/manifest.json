@@ -732,10 +732,51 @@
     {
       "id": "gwang.chodan_x2",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "초단 깃발",
         "en": "Chodan Flag"
+      },
+      "master": {
+        "source": "assets/masters/gwang/chodan-x2-v1.svg",
+        "sourceSha256": "773893874808c1c517bec8b993d6e3c16e0b637ef8032836a36a299ad1036063",
+        "path": "assets/masters/gwang/chodan-x2-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "e768781c8abf05f7f80dc2f005a855422175c86f3842614532e322b8eb3974a0",
+        "provenance": "Project-authored high-resolution vector master using green Korean lacquer, jade dancheong framing, paired yellow-green ribbons, and an orchid knot to identify the Chodan doubling effect; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/chodan-x2-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "9387f0ced3be6ff9e4952c0968e407f0f951c78b3b034f8c4d2e7acbdb69c59b",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/chodan-x2-v1.report.json",
+        "reportSha256": "89d5b372c7ec5ef3d0d57f4d1e8272c24253eef11ab806cea7043da48cb67794"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

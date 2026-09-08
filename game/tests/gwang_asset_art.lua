@@ -83,6 +83,17 @@ function M.run()
     assert(assets.runtime_path("gwang.cheongdan_x2") ==
         "assets/runtime/gwang/cheongdan-x2-v1.png")
 
+    local chodan = assets.entry("gwang.chodan_x2")
+    assert(chodan and chodan.status == "runtime",
+        "chodan flag gwang must have tracked runtime artwork")
+    assert(chodan.master.width == 448 and chodan.master.height == 256,
+        "chodan flag gwang must preserve its high-resolution slot master")
+    assert(chodan.runtime.width == 56 and chodan.runtime.height == 32,
+        "chodan flag runtime must scale exactly into a 28x16 slot")
+    assert(chodan.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.chodan_x2") ==
+        "assets/runtime/gwang/chodan-x2-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
