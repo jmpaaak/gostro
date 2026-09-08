@@ -8,6 +8,7 @@ local function beat_current_blind(state)
 end
 
 function M.run()
+    require("game.tests.run_state").run()
     require("game.tests.card_deal").run()
     require("game.tests.gwang_inventory").run()
 

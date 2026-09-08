@@ -1,13 +1,4 @@
 # STATUS
-## 2026-09-08 — 블라인드 시작 전환 모듈화
-
-- `game/blind_flow.lua`의 `begin`이 현재 블라인드 검증, 라운드 점수 초기화, stake 보정 목표와 버리기 횟수 산출을 하나의 전환 계약으로 소유한다. `view`도 동일한 stake 보정 목표를 노출한다.
-- `game/scenes/play.lua`는 보스 선택·점수 초기화·목표/버리기 규칙을 직접 조합하지 않고 `blind_flow.begin` 결과로 라운드를 생성한다.
-- TDD RED: red stake의 선택 전 목표가 300으로 남는 실패를 확인했다. 구현 후 `game/tests/blind_flow.lua`와 전체 테스트가 GREEN이다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: 블라인드 클리어와 상점 퇴장 후 다음 블라인드 진행을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.clear_blind`/`run.leave_shop` 호출을 제거한다.
-
 ## 2026-09-08 — 블라인드 클리어·상점 퇴장 전환 모듈화
 
 - `game/blind_flow.lua`의 `clear`가 stake 보정 목표 충족 여부, 남은 hand 이관, 클리어 후 shop/won phase를 소유하고, `leave_shop`이 다음 ante/blind 선택 상태를 반환한다.
@@ -135,5 +126,14 @@
 - TDD RED: 전체 `make test`에서 `game.vouchers.buy` 부재 실패를 확인했다. 구현 후 독립 구매 계약과 monkey-patched delegate 경계 회귀 테스트가 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: seed RNG와 기본 run state 조립을 독립 `game/run_state.lua`로 옮기고 `game.run.new`를 호환 delegate로 축소해 `game.run_rules.create`의 거대 run 역의존을 제거한다.
+
+## 2026-09-08 — 기본 run state 조립 모듈화
+
+- 신규 `game/run_state.lua`가 정규화된 seed와 독립 shop/cards/boss RNG 스트림, 블라인드·경제·태그·바우처 기본 상태 조립을 소유한다. 각 호출은 중첩 컬렉션을 공유하지 않는다.
+- `game.run.new`는 호환 delegate로 축소됐고 `game.run_rules.create`는 더 이상 `game.run`을 역참조하지 않고 base state를 직접 구성·검증한다.
+- TDD RED: 전체 `make test`에서 `game.run_state` 모듈 부재 실패를 확인했다. 구현 후 `run_state: OK`와 전체 엔진 테스트가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (174 files).
+- INBOX (26)은 `game.run` facade와 `game.blind_flow` 사이의 남은 역의존 정리가 필요해 처리 중으로 유지한다.
+- Next slice: `game/blind_flow.lua`의 사용되지 않는 `game.run` import를 제거하고 flow 테스트 fixture를 `game/run_state.lua`와 직접 계약으로 전환해 순환 의존을 끊는다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

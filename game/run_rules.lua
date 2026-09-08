@@ -2,6 +2,7 @@
 -- Owns gameplay definitions while UI modules only choose their ids.
 
 local M = {}
+local run_state = require("game.run_state")
 
 M.DECKS = {
     { id = "hwatu", unlocked = true },
@@ -180,7 +181,7 @@ function M.create(config, unlocks)
     if not valid then return nil, reason end
 
     local seed = valid.seeded and valid.seed or nil
-    local state = require("game.run").new(seed)
+    local state = run_state.new(seed)
     return M.apply(state, valid, unlocks)
 end
 

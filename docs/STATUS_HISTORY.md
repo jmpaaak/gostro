@@ -880,3 +880,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `game/tests/tarot_use_flow.lua`에서 실제 씬의 옵션 게이팅, 모달 입력 차단, 변환 실행, 인벤토리 소비, hand UI 동기화, 취소 보존을 검증한다. 배선 전 RED를 관찰했고 구현 후 전체 테스트를 GREEN으로 전환했다.
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: 현재 `game/run.lua`가 계속 소유한 블라인드 전환을 `blind_flow`/`run_rules`로 치환해 play scene의 거대 run 의존성을 한 단계 줄인다.
+
+## Archived from STATUS.md (2026-09-08 21:15)
+
+## 2026-09-08 — 블라인드 시작 전환 모듈화
+
+- `game/blind_flow.lua`의 `begin`이 현재 블라인드 검증, 라운드 점수 초기화, stake 보정 목표와 버리기 횟수 산출을 하나의 전환 계약으로 소유한다. `view`도 동일한 stake 보정 목표를 노출한다.
+- `game/scenes/play.lua`는 보스 선택·점수 초기화·목표/버리기 규칙을 직접 조합하지 않고 `blind_flow.begin` 결과로 라운드를 생성한다.
+- TDD RED: red stake의 선택 전 목표가 300으로 남는 실패를 확인했다. 구현 후 `game/tests/blind_flow.lua`와 전체 테스트가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: 블라인드 클리어와 상점 퇴장 후 다음 블라인드 진행을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.clear_blind`/`run.leave_shop` 호출을 제거한다.
