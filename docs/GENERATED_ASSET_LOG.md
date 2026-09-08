@@ -26,3 +26,7 @@
 | 2026-09-09T01:13:22+0900 | `assets/masters/boss-blind/hook-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
 | 2026-09-09T01:13:22+0900 | `assets/runtime/boss-blind/hook-v1.png` | 50×70 runtime boss card from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T01:13:22+0900 | `assets/runtime/ui/blind-round-cards-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture including the hook boss artwork with nearest filtering |
+| 2026-09-09T01:30:35+0900 | `assets/masters/boss-blind/wall-v1.svg` | Project-authored high-resolution Korean fortress gate, stone masonry, dancheong, lacquer, and brass vector source |
+| 2026-09-09T01:30:35+0900 | `assets/masters/boss-blind/wall-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T01:30:35+0900 | `assets/runtime/boss-blind/wall-v1.png` | 50×70 runtime boss card from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T01:30:35+0900 | `assets/runtime/ui/blind-wall-card-love-v1.png` | Actual LÖVE 11.5 320×180 Canvas capture including the wall boss artwork with nearest filtering |

@@ -45,10 +45,13 @@ blind-card-qa:
 	@cp assets/runtime/ui/blind-small-v1.png assets/runtime/ui/blind-big-v1.png \
 		"$(BUILD_DIR)/blind-card-qa/assets/runtime/ui/"
 	@mkdir -p "$(BUILD_DIR)/blind-card-qa/assets/runtime/boss-blind"
-	@cp assets/runtime/boss-blind/hook-v1.png \
+	@cp assets/runtime/boss-blind/hook-v1.png assets/runtime/boss-blind/wall-v1.png \
 		"$(BUILD_DIR)/blind-card-qa/assets/runtime/boss-blind/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/blind-card-qa/assets/fonts/"
 	BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-round-cards-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
+	BLIND_CARD_QA_BOSS=wall \
+		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-wall-card-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/blind-card-qa"
 
 smoke:

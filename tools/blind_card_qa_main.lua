@@ -16,13 +16,14 @@ function love.load()
     canvas:setFilter("nearest", "nearest")
     love.graphics.setCanvas(canvas)
     love.graphics.clear(0.025, 0.035, 0.08, 1)
+    local boss_id = os.getenv("BLIND_CARD_QA_BOSS") or "hook"
     blind_select.draw(blind_select.new({
         ante = 1,
         current = "small",
         blinds = {
             { kind = "small", target = 300, playable = true, status = "current" },
             { kind = "big", target = 450, playable = false, status = "upcoming" },
-            { kind = "boss", target = 600, playable = false, status = "upcoming", boss = { id = "hook" } },
+            { kind = "boss", target = 600, playable = false, status = "upcoming", boss = { id = boss_id } },
         },
     }))
     love.graphics.setCanvas()

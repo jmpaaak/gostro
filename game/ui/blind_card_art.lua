@@ -5,7 +5,10 @@ local assets = require("game.asset_loader")
 
 local M = {}
 local IDS = { small = "ui.blind_small", big = "ui.blind_big" }
-local BOSS_IDS = { hook = "boss-blind.hook" }
+local BOSS_IDS = {
+    hook = "boss-blind.hook",
+    wall = "boss-blind.wall",
+}
 
 function M.asset_id(kind, boss)
     if kind == "boss" then

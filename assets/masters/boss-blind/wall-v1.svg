@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#18323a"/><stop offset=".55" stop-color="#10252d"/><stop offset="1" stop-color="#09171f"/>
+    </linearGradient>
+    <linearGradient id="stone" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#d6c49b"/><stop offset=".35" stop-color="#96866a"/><stop offset=".7" stop-color="#615848"/><stop offset="1" stop-color="#b4a27d"/>
+    </linearGradient>
+    <pattern id="masonry" width="82" height="54" patternUnits="userSpaceOnUse">
+      <rect width="82" height="54" fill="url(#stone)"/>
+      <path d="M0 52h82M41 0v52" fill="none" stroke="#443f36" stroke-width="7"/>
+      <path d="M5 8h29M48 9h25M7 39h22M49 37h20" stroke="#eadbb6" stroke-width="4" opacity=".3"/>
+    </pattern>
+  </defs>
+  <path d="M38 8h324q30 0 30 34v476q0 34-30 34H38Q8 552 8 518V42Q8 8 38 8z" fill="#071119" stroke="#cfab59" stroke-width="16"/>
+  <path d="M43 30h314q17 0 17 20v460q0 20-17 20H43q-17 0-17-20V50q0-20 17-20z" fill="url(#night)" stroke="#35676b" stroke-width="8"/>
+  <path d="M54 84h292v40H54zM54 436h292v40H54z" fill="#8e342d" stroke="#deb85c" stroke-width="8"/>
+  <path d="M66 103h268M66 455h268" stroke="#3b8985" stroke-width="9" stroke-dasharray="22 13"/>
+  <g transform="translate(200 280)">
+    <circle r="132" fill="#0a1820" stroke="#d0aa58" stroke-width="12"/>
+    <path d="M-108 93V-53h25v-37h43v37h26v-37h43v37h26v-37h43v37h25V93z" fill="url(#masonry)" stroke="#403b32" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M-75 93V28q0-45 41-45t41 45v65" fill="#12272e" stroke="#514838" stroke-width="9"/>
+    <path d="M34 92V21h48v71M45 34h26M45 52h26" fill="none" stroke="#403b32" stroke-width="9"/>
+    <path d="M-104 72h209" stroke="#e2d1aa" stroke-width="7" opacity=".38"/>
+    <path d="M-98-53h196" stroke="#e5d4ad" stroke-width="6" opacity=".42"/>
+    <circle cx="-34" cy="30" r="8" fill="#f0c55f"/>
+  </g>
+  <path d="M56 145q144-42 288 0M56 415q144 42 288 0" fill="none" stroke="#45938d" stroke-width="7" stroke-linecap="round"/>
+  <g fill="#d7ae58"><circle cx="53" cy="54" r="9"/><circle cx="347" cy="54" r="9"/><circle cx="53" cy="506" r="9"/><circle cx="347" cy="506" r="9"/></g>
+</svg>

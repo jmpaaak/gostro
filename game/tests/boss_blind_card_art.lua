@@ -17,8 +17,16 @@ function M.run()
     assert(entry.runtime.filter == "nearest")
     assert(assets.runtime_path(id) == "assets/runtime/boss-blind/hook-v1.png")
 
-    assert(blind_card_art.asset_id("boss", { id = "wall" }) == nil,
-        "unpromoted bosses must retain the fallback background")
+    local wall_id = blind_card_art.asset_id("boss", { id = "wall" })
+    assert(wall_id == "boss-blind.wall", "wall boss must resolve its own card artwork")
+    local wall = assets.entry(wall_id)
+    assert(wall and wall.status == "runtime", "wall boss artwork must be promoted")
+    assert(wall.master.width == 400 and wall.master.height == 560,
+        "wall boss must preserve a 400x560 master")
+    assert(wall.runtime.width == 50 and wall.runtime.height == 70,
+        "wall boss runtime must fit its selection card")
+    assert(wall.runtime.filter == "nearest")
+    assert(assets.runtime_path(wall_id) == "assets/runtime/boss-blind/wall-v1.png")
     assets.clear_cache()
     print("  boss_blind_card_art: OK")
 end

@@ -841,8 +841,43 @@
     {
       "id": "boss-blind.wall",
       "category": "boss-blind",
-      "status": "pending",
-      "name": "\uc131\ubcbd"
+      "status": "runtime",
+      "name": "\uc131\ubcbd",
+      "master": {
+        "source": "assets/masters/boss-blind/wall-v1.svg",
+        "sourceSha256": "d8485d5d9e8e1741fc43accbd7d4a76c2e1466a4f22cd39beb303b4d86be337b",
+        "path": "assets/masters/boss-blind/wall-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "c58fa5cab81c5a204e03d7e15d031a6d2f06fddbe5243f114d856b6abcd256d7",
+        "provenance": "Project-authored high-resolution vector master using a Korean fortress gate, stone masonry, dancheong, lacquer, and brass motif; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/boss-blind/wall-v1.png",
+        "width": 50,
+        "height": 70,
+        "alphaBounds": [0, 0, 49, 69],
+        "sha256": "343626388b2be14330b0eef656812fd54578f391ea53e6a44ddc84b19cfff6fd",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 50,
+        "targetHeight": 70,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/boss-blind/wall-v1.report.json",
+        "reportSha256": "ad144c31f6ea643fce81b60f8f79615b143c27ea61f750fdf36e32caab8379be"
+      },
+      "animation": { "frames": 1, "fps": 0, "loop": false, "origin": [0, 0] },
+      "loveQa": {
+        "renderer": "LOVE 11.5",
+        "canvas": [320, 180],
+        "capture": "assets/runtime/ui/blind-wall-card-love-v1.png",
+        "captureSha256": "2ad82df284aedefeda0087a12378ce597f69c040045d7e0eb8e10277401c19ee",
+        "filter": "nearest"
+      }
     },
     {
       "id": "boss-blind.flint",
