@@ -1,5 +1,5 @@
 local blind_flow = require("game.blind_flow")
-local run = require("game.run")
+local run_state = require("game.run_state")
 local run_history = require("game.run_history")
 
 local M = {}
@@ -10,31 +10,31 @@ local function fails(fn, message)
 end
 
 local function beat_and_leave_shop(state)
-    run.add_score(state, run.blind_target(state))
-    run.clear_blind(state)
-    run.leave_shop(state)
+    blind_flow.score(state, blind_flow.target(state), state.hands_left)
+    blind_flow.clear(state)
+    blind_flow.leave_shop(state)
 end
 
 function M.test_view_exposes_sequential_blinds_and_run_targets()
-    local state = run.new("blind-flow-sequence")
+    local state = run_state.new("blind-flow-sequence")
     local view = blind_flow.view(state, "coupon")
 
     assert(view.ante == 1 and view.current == "small" and view.phase == "play")
     assert(#view.blinds == 3)
     for i, kind in ipairs({ "small", "big", "boss" }) do
         local card = view.blinds[i]
-        local projected = run.new("blind-flow-target")
+        local projected = run_state.new("blind-flow-target")
         projected.ante = state.ante
         projected.blind = kind
         assert(card.kind == kind)
-        assert(card.target == run.blind_target(projected), kind .. " target uses run rules")
+        assert(card.target == blind_flow.target(projected), kind .. " target uses run rules")
         assert(card.playable == (kind == "small"), "only current blind is playable")
     end
     assert(view.blinds[1].status == "current")
     assert(view.blinds[2].status == "upcoming")
     assert(view.blinds[3].status == "upcoming")
 
-    run.skip_blind(state, "coupon")
+    blind_flow.skip_current(state, "coupon")
     view = blind_flow.view(state, "investment")
     assert(view.current == "big")
     assert(view.blinds[1].status == "completed")
@@ -43,7 +43,7 @@ function M.test_view_exposes_sequential_blinds_and_run_targets()
 end
 
 function M.test_skip_eligibility_requires_current_small_or_big_and_tag()
-    local state = run.new("blind-flow-skip-view")
+    local state = run_state.new("blind-flow-skip-view")
     local no_tag = blind_flow.view(state)
     assert(not no_tag.blinds[1].skippable, "skip requires an offered tag")
 
@@ -53,11 +53,11 @@ function M.test_skip_eligibility_requires_current_small_or_big_and_tag()
     assert(view.blinds[1].skip_tag.name ~= nil)
     assert(not view.blinds[2].skippable and not view.blinds[3].skippable)
 
-    run.skip_blind(state, "coupon")
+    blind_flow.skip_current(state, "coupon")
     view = blind_flow.view(state, "mega")
     assert(view.blinds[2].skippable == true and view.blinds[2].skip_tag.id == "mega")
 
-    run.skip_blind(state, "mega")
+    blind_flow.skip_current(state, "mega")
     view = blind_flow.view(state, "coupon")
     assert(state.blind == "boss" and state.boss_id ~= nil)
     assert(not view.blinds[3].skippable, "boss cannot be skipped")
@@ -69,14 +69,14 @@ function M.test_skip_eligibility_requires_current_small_or_big_and_tag()
 end
 
 function M.test_selection_only_accepts_current_blind()
-    local state = run.new("blind-flow-select")
+    local state = run_state.new("blind-flow-select")
     fails(function() blind_flow.select(state, "big") end, "cannot jump to big")
     fails(function() blind_flow.select(state, "boss") end, "cannot jump to boss")
     assert(state.blind == "small")
 
     local selected = blind_flow.select(state, "small")
     assert(selected.kind == "small")
-    assert(selected.target == run.blind_target(state))
+    assert(selected.target == blind_flow.target(state))
     assert(selected.playable == true)
 
     state.phase = "shop"
@@ -84,11 +84,7 @@ function M.test_selection_only_accepts_current_blind()
 end
 
 function M.test_skip_owns_progression_and_tag_application()
-    local state = run.new("blind-flow-skip")
-    local legacy_skip = run.skip_blind
-    run.skip_blind = function()
-        error("blind_flow.skip must not delegate to run.skip_blind")
-    end
+    local state = run_state.new("blind-flow-skip")
     blind_flow.skip(state, "small", "investment")
     assert(state.blind == "big" and state.phase == "play")
     assert(state.tags.pending_money == 15)
@@ -99,24 +95,23 @@ function M.test_skip_owns_progression_and_tag_application()
     assert(state.boss_id ~= nil, "run transition selected the boss")
 
     fails(function() blind_flow.skip(state, "boss", "coupon") end, "boss cannot skip")
-    fails(function() blind_flow.skip(run.new(), "small", nil) end, "skip requires a tag")
+    fails(function() blind_flow.skip(run_state.new(), "small", nil) end, "skip requires a tag")
 
-    local future = run.new()
+    local future = run_state.new()
     fails(function() blind_flow.skip(future, "big", "coupon") end, "cannot skip a future blind")
     assert(future.blind == "small" and #future.tags.owned == 0)
 
-    local outside_play = run.new()
+    local outside_play = run_state.new()
     outside_play.phase = "shop"
     fails(function() blind_flow.skip(outside_play, "small", "coupon") end,
         "cannot skip outside play")
     assert(outside_play.blind == "small" and #outside_play.tags.owned == 0,
         "rejected skip does not grant a tag or advance")
 
-    run.skip_blind = legacy_skip
 end
 
 function M.test_boss_selection_and_target_are_owned_by_blind_flow()
-    local state = run.new("blind-flow-boss")
+    local state = run_state.new("blind-flow-boss")
     state.blind = "boss"
     state.boss = nil
     state.boss_id = nil
@@ -129,8 +124,8 @@ function M.test_boss_selection_and_target_are_owned_by_blind_flow()
 
     local selected = blind_flow.select(state, "boss")
     assert(selected.boss.id == "wall")
-    assert(selected.target == run.blind_target(state))
-    assert(selected.target == 1200, "wall target is resolved by run.blind_target")
+    assert(selected.target == blind_flow.target(state))
+    assert(selected.target == 1200, "wall target is resolved by blind_flow.target")
 
     local view = blind_flow.view(state, "coupon")
     assert(view.blinds[3].boss.id == "wall")
@@ -139,7 +134,7 @@ function M.test_boss_selection_and_target_are_owned_by_blind_flow()
 end
 
 function M.test_enter_owns_boss_setup_and_cleanup()
-    local state = run.new("blind-flow-enter")
+    local state = run_state.new("blind-flow-enter")
 
     local entered = blind_flow.enter(state, "boss", "hook")
     assert(state.blind == "boss" and state.boss_id == "hook")
@@ -155,7 +150,7 @@ function M.test_enter_owns_boss_setup_and_cleanup()
 end
 
 function M.test_completed_progression_is_derived_from_run_state()
-    local state = run.new("blind-flow-clears")
+    local state = run_state.new("blind-flow-clears")
     beat_and_leave_shop(state)
     assert(blind_flow.view(state, "coupon").current == "big")
     beat_and_leave_shop(state)
@@ -168,7 +163,7 @@ end
 
 function M.test_begin_owns_stake_adjusted_round_transition()
     local run_rules = require("game.run_rules")
-    local state = assert(run_rules.apply(run.new("blind-flow-begin"), {
+    local state = assert(run_rules.apply(run_state.new("blind-flow-begin"), {
         starting_deck_id = "hwatu",
         stake_id = "red",
     }, { unlocked_stakes = { red = true } }))
@@ -188,17 +183,17 @@ end
 
 function M.test_clear_and_shop_exit_own_sequential_progression()
     local run_rules = require("game.run_rules")
-    local state = assert(run_rules.apply(run.new("blind-flow-progression"), {
+    local state = assert(run_rules.apply(run_state.new("blind-flow-progression"), {
         starting_deck_id = "hwatu",
         stake_id = "red",
     }, { unlocked_stakes = { red = true } }))
-    run.add_score(state, run.blind_target(state))
+    blind_flow.score(state, blind_flow.target(state) - 75, state.hands_left)
 
     assert(blind_flow.clear(state, 2) == nil,
         "clear waits for the stake-adjusted target")
     assert(state.phase == "play", "an uncleared blind stays in play")
 
-    run.add_score(state, 75)
+    blind_flow.score(state, 75, state.hands_left)
     assert(blind_flow.clear(state, 2) == "shop",
         "clear returns the resulting shop phase")
     assert(state.phase == "shop" and state.hands_left == 2,
@@ -211,18 +206,13 @@ function M.test_clear_and_shop_exit_own_sequential_progression()
 end
 
 function M.test_shop_exit_owns_every_progression_and_round_reset()
-    local state = run.new("blind-flow-shop-exit-owner")
+    local state = run_state.new("blind-flow-shop-exit-owner")
     state.phase = "shop"
     state.round_score = 321
     state.hands_left = 1
     state.vouchers.hands = 2
     state.vouchers.shop_id = "overstock"
     state.vouchers.bought_this_shop = true
-
-    local legacy_leave_shop = run.leave_shop
-    run.leave_shop = function()
-        error("blind_flow.leave_shop must not delegate to run.leave_shop")
-    end
 
     local big = blind_flow.leave_shop(state)
     assert(big.ante == 1 and big.kind == "big" and big.phase == "play")
@@ -242,26 +232,20 @@ function M.test_shop_exit_owns_every_progression_and_round_reset()
     assert(state.boss_id == nil and state.boss == nil,
         "boss shop exit starts the next ante without stale boss state")
 
-    run.leave_shop = legacy_leave_shop
 end
 
 function M.test_clear_owns_cash_out_shop_stock_and_final_win()
     local run_history = require("game.run_history")
-    local state = run.new("blind-flow-clear-owner")
+    local state = run_state.new("blind-flow-clear-owner")
     state.hands_left = 2
     state.round_score = blind_flow.target(state)
-
-    local legacy_clear = run.clear_blind
-    run.clear_blind = function()
-        error("blind_flow.clear must not delegate to run.clear_blind")
-    end
 
     assert(blind_flow.clear(state) == "shop")
     assert(state.money == 9, "clear cashes out blind reward and remaining hands")
     assert(state.vouchers.shop_id ~= nil, "clear stocks the next shop voucher")
 
     run_history.reset()
-    local final = run.new("blind-flow-final-win")
+    local final = run_state.new("blind-flow-final-win")
     final.ante = 8
     blind_flow.enter(final, "boss", "wall")
     final.round_score = blind_flow.target(final)
@@ -271,18 +255,12 @@ function M.test_clear_owns_cash_out_shop_stock_and_final_win()
     assert(#history == 1 and history[1].outcome == "won" and history[1].ante == 8,
         "final clear records one win")
 
-    run.clear_blind = legacy_clear
 end
 
 function M.test_lose_owns_exhausted_hand_transition()
     run_history.reset()
-    local state = run.new("blind-flow-loss")
-    state.round_score = run.blind_target(state) - 1
-    local legacy_lose = run.lose
-    run.lose = function()
-        error("blind_flow.lose must not delegate to run.lose")
-    end
-
+    local state = run_state.new("blind-flow-loss")
+    state.round_score = blind_flow.target(state) - 1
     fails(function() blind_flow.lose(state, 1) end,
         "loss requires the round to exhaust its hands")
     assert(state.phase == "play", "invalid loss does not mutate the run")
@@ -296,23 +274,17 @@ function M.test_lose_owns_exhausted_hand_transition()
             and history[1].seed == "BLINDFLOWLOSS",
         "loss records the run directly through run history")
 
-    local cleared = run.new("blind-flow-not-loss")
-    run.add_score(cleared, run.blind_target(cleared))
+    local cleared = run_state.new("blind-flow-not-loss")
+    blind_flow.score(cleared, blind_flow.target(cleared), cleared.hands_left)
     fails(function() blind_flow.lose(cleared, 0) end,
         "a completed blind cannot be recorded as a loss")
     assert(cleared.phase == "play", "completed blind remains available to clear")
-    run.lose = legacy_lose
 end
 
 function M.test_score_owns_hand_result_transfer()
-    local state = run.new("blind-flow-score")
+    local state = run_state.new("blind-flow-score")
     state.round_score = 25
     state.hands_left = 4
-    local legacy_add_score = run.add_score
-    run.add_score = function()
-        error("blind_flow.score must not delegate to run.add_score")
-    end
-
     assert(blind_flow.score(state, 120, 3) == 145,
         "score returns the accumulated round score")
     assert(state.round_score == 145 and state.hands_left == 3,
@@ -323,7 +295,6 @@ function M.test_score_owns_hand_result_transfer()
         "score rejects results outside active play")
     assert(state.round_score == 145 and state.hands_left == 3,
         "a rejected score result does not mutate run state")
-    run.add_score = legacy_add_score
 end
 
 function M.run()

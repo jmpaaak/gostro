@@ -81,6 +81,7 @@
 | 12 | 스몰/빅만 건너뛰고 태그 획득 뒤 다음 블라인드 진입 | 검증·태그 적용·진입이 `run.skip_blind`에 결합 | `blind_flow.skip`이 건너뛰기 전환을 소유하고 `run.skip_blind`는 호환 delegate로 유지 | 구현·테스트 GREEN |
 | 13 | 목표 달성 뒤 보상 정산 후 상점 또는 최종 승리 | cash-out·승리 기록·상점 준비가 `run.clear_blind`에 결합 | `blind_flow.clear`가 클리어 결과 전환을 소유하고 `run.clear_blind`는 호환 delegate로 유지 | 구현·테스트 GREEN |
 | 14 | 시드 런에서 동일한 카드 배분 재현 | play-card 종류와 cards RNG 배분이 `run.lua`에 결합 | `card_deal.deal`이 5종 play-card 배분을 소유하고 `run.deal_kinds`는 호환 delegate로 유지 | 구현·테스트 GREEN |
+| 15 | 런 생성과 블라인드 진행 규칙의 독립성 | `blind_flow`와 테스트 fixture가 호환 facade인 `game.run`을 역참조 | `run_state`가 fixture를 조립하고 `blind_flow`가 진행 규칙을 직접 소유; `game.run`은 단방향 호환 facade | 구현·테스트 GREEN |
 
 ## 연결 종료 뒤 문헌 조사
 

@@ -1,4 +1,3 @@
-local run = require("game.run")
 local run_rules = require("game.run_rules")
 local tags = require("game.tags")
 local blind_targets = require("game.blind_targets")

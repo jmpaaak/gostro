@@ -891,3 +891,7 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (166 files).
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: 블라인드 클리어와 상점 퇴장 후 다음 블라인드 진행을 `blind_flow` 계약으로 감싸 `play.lua`의 직접 `run.clear_blind`/`run.leave_shop` 호출을 제거한다.
+
+## Archived from STATUS.md (2026-09-08 21:22)
+
+## 2026-09-08 — 블라인드 클리어·상점 퇴장 전환 모듈화

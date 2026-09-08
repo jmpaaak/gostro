@@ -1,4 +1,12 @@
 # STATUS
+## 2026-09-08 — run facade·blind flow 순환 의존 제거
+
+- `game/blind_flow.lua`의 사용되지 않는 `game.run` import를 제거해 진행 규칙이 호환 facade를 역참조하지 않는다.
+- `game/tests/blind_flow.lua` fixture를 `game.run_state`로 직접 조립하고 목표·점수·스킵·클리어·상점 이탈을 모두 `blind_flow` 공개 계약으로 검증한다.
+- stake 보정 목표 회귀는 300점에서 clear 거부, 375점에서 허용되는 경계를 보존한다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (174 files).
+- INBOX (26)의 직접 관찰 범위, 문헌 조사 기반 순차 블라인드 규칙, New Run 설정→런 생성 경계와 후속 모듈화 큐가 모두 구현되어 완료 처리했다.
+
 ## 2026-09-08 — 블라인드 클리어·상점 퇴장 전환 모듈화
 
 - `game/blind_flow.lua`의 `clear`가 stake 보정 목표 충족 여부, 남은 hand 이관, 클리어 후 shop/won phase를 소유하고, `leave_shop`이 다음 ante/blind 선택 상태를 반환한다.
