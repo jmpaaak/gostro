@@ -1,22 +1,4 @@
 # STATUS
-## 2026-09-08 — 플레이/버리기 버튼 모듈 (game/ui/action_buttons.lua)
-
-- Created `game/ui/action_buttons.lua`: Balatro-style bottom-center 2-button UI.
-  - `new(hands, discards)`: initial state (default 4 hands, 3 discards), play/discard disabled.
-  - `set_selection(ab, count)`: enables/disables buttons based on card selection count and remaining uses.
-  - `use_hand(ab)`: decrements hands_left, returns true/false. Fails if disabled or no selection.
-  - `use_discard(ab)`: decrements discards_left, returns true/false. Fails if disabled or no selection.
-  - `reset(ab, hands, discards)`: restore counts for new round.
-  - `hit_test(ab, px, py)`: returns "play"/"discard"/nil for touch tap support.
-  - `display_text(ab, which)`: "놓기 (N)" / "버리기 (N)" with remaining count.
-  - `keypressed(ab, key)`: space → play, d → discard keyboard shortcuts.
-  - `draw(ab)`: blue play button (left) + red discard button (right), dimmed when disabled, centred text with count.
-- Layout: 52×18px buttons, 8px gap, centred at bottom of 320×180 viewport.
-- Tests in `game/tests/action_buttons_ui.lua`: new defaults, custom counts, set_selection enable/disable, use_hand/use_discard success/fail/no-selection, reset, hit_test play/discard/miss, display_text content.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
-- INBOX (8) → 처리 완료.
-- Next slice: INBOX (9) 상점 UI 모듈 (`game/ui/shop.lua`).
-
 ## 2026-09-08 — 상점 UI 모듈 (game/ui/shop.lua)
 
 - Created `game/ui/shop.lua`: shop screen with 3 gwang joker cards, reroll, next round, money.
@@ -157,3 +139,12 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - Enhance (edition grant) and copy are not in this slice.
 - Next slice: INBOX (18) remaining — tarot enhance + copy (`game/tarots.lua`).
+
+## 2026-09-08 — 타로 이펙트 부여 (`game/tarots.lua`)
+
+- `the_chariot` (전차) enhance tarot grants foil/hologram/polychrome via `card_effects.apply`.
+- Failed enhance (unknown edition / gwang) errors and does not consume the slot.
+- Convert / destroy / slots unchanged. Copy not in this slice.
+- Tests in `game/tests/tarots.lua` GREEN (pool includes enhance, grant foil, reject unknown).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- Next slice: INBOX (18) remaining — tarot copy (`game/tarots.lua`).

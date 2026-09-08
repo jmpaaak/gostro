@@ -1,4 +1,4 @@
--- Tests for Balatro-style tarot consumables (convert / destroy).
+-- Tests for Balatro-style tarot consumables (convert / destroy / enhance).
 -- Engine-hosted: slots + use on play cards. No month numbers.
 
 local tarots = require("game.tarots")
@@ -31,6 +31,8 @@ function M.run()
     M.test_use_consumes_slot()
     M.test_unknown_rejects()
     M.test_no_month_on_cards()
+    M.test_enhance_grants_effect()
+    M.test_enhance_rejects_unknown()
     print("  tarots: OK")
 end
 
@@ -49,6 +51,7 @@ function M.test_pool()
     end
     assert(effects.convert, "pool must include convert")
     assert(effects.destroy, "pool must include destroy")
+    assert(effects.enhance, "pool must include enhance")
 end
 
 function M.test_by_id()
@@ -169,6 +172,34 @@ function M.test_no_month_on_cards()
     for _, kind in ipairs(PLAY_KINDS) do
         assert(kind ~= "gwang")
     end
+end
+
+function M.test_enhance_grants_effect()
+    local state = run.new()
+    tarots.gain(state, "the_chariot", "shop")
+    local cards = {
+        hwatu.card("pi"),
+        hwatu.card("godori"),
+    }
+    local used = tarots.use(state, 1, cards, 1, { effect = "foil" })
+    assert(used.effect == "enhance")
+    assert(cards[1].kind == "pi")
+    assert(cards[1].effect == "foil")
+    assert(cards[2].effect == nil)
+    assert(cards[1].month == nil)
+    assert(#state.tarots == 0)
+end
+
+function M.test_enhance_rejects_unknown()
+    local state = run.new()
+    tarots.gain(state, "the_chariot", "shop")
+    local cards = { hwatu.card("hongdan") }
+    local ok = pcall(tarots.use, state, 1, cards, 1, { effect = "gold" })
+    assert(not ok, "unknown edition must error")
+    ok = pcall(tarots.use, state, 1, cards, 1, { effect = "gwang" })
+    assert(not ok, "gwang is not an edition")
+    assert(cards[1].effect == nil)
+    assert(#state.tarots == 1, "failed use must not consume the slot")
 end
 
 return M

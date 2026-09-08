@@ -1,17 +1,19 @@
 -- game/tarots.lua
--- Balatro-style tarot consumables: convert / destroy play cards.
+-- Balatro-style tarot consumables: convert / destroy / enhance play cards.
 -- Slots max 2, expanded by crystal_ball voucher. Headless-safe.
 
 local hwatu = require("game.hwatu")
+local effects = require("game.ui.card_effects")
 
 local M = {}
 
 M.BASE_SLOTS = 2
 
--- Consumable pool. Convert / destroy this slice; enhance / copy later.
+-- Consumable pool. Copy later.
 M.POOL = {
     { id = "the_magician",    name = "마법사",   effect = "convert" },
     { id = "the_hanged_man",  name = "매달린자", effect = "destroy" },
+    { id = "the_chariot",     name = "전차",     effect = "enhance" },
 }
 
 local BY_ID = {}
@@ -90,7 +92,18 @@ local function destroy_card(cards, index)
     table.remove(cards, index)
 end
 
---- Use the tarot in slot `slot` on cards[index]. Convert needs opts.kind.
+local function enhance_card(card, effect)
+    if not effects.is_known(effect) then
+        error("unknown card effect: " .. tostring(effect))
+    end
+    effects.apply(card, effect)
+    card.month = nil
+    card.month_name = nil
+    return card
+end
+
+--- Use the tarot in slot `slot` on cards[index].
+-- Convert needs opts.kind; enhance needs opts.effect (foil/hologram/polychrome).
 function M.use(state, slot, cards, index, opts)
     local slots = M.ensure(state)
     local held = slots[slot]
@@ -109,6 +122,9 @@ function M.use(state, slot, cards, index, opts)
         convert_card(cards[index], opts.kind)
     elseif def.effect == "destroy" then
         destroy_card(cards, index)
+    elseif def.effect == "enhance" then
+        opts = opts or {}
+        enhance_card(cards[index], opts.effect)
     else
         error("unknown tarot effect: " .. tostring(def.effect))
     end
