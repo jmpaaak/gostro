@@ -8,6 +8,8 @@ from pathlib import Path
 import subprocess
 import sys
 
+from module_policy import parse_pending_items, pending_module_issues
+
 READY = 0
 CHECK_FAILED = 1
 INTERNAL_ERROR = 2
@@ -17,20 +19,7 @@ IDLE = 3
 def pending_feedback(root: Path) -> list[str]:
     path = root / "docs" / "feedback" / "INBOX.md"
     text = path.read_text(encoding="utf-8")
-    before, marker, after = text.partition("## 처리 대기")
-    if not marker or "## 처리 완료" not in after:
-        raise RuntimeError("feedback inbox must contain one pending and completed section")
-    section = after.split("## 처리 완료", 1)[0]
-    pending: list[str] = []
-    for line in section.splitlines():
-        stripped = line.strip()
-        if stripped.startswith("-"):
-            pending.append(stripped)
-        elif stripped and stripped[0].isdigit() and ". " in stripped:
-            pending.append(stripped)
-        elif stripped.startswith("(") and ")" in stripped[:8]:
-            pending.append(stripped)
-    return pending
+    return [item.title for item in parse_pending_items(text)]
 
 
 def compact_inbox_status_notes(root: Path, max_note_chars: int = 300) -> None:
@@ -233,6 +222,16 @@ def main() -> int:
         print("\n\n".join(failures))
         return CHECK_FAILED
     pending = pending_feedback(root)
+    inbox_text = (root / "docs" / "feedback" / "INBOX.md").read_text(encoding="utf-8")
+    module_issues = pending_module_issues(inbox_text)
+    if module_issues:
+        print("PREFLIGHT_RESULT=READY")
+        print(
+            "MODULE_SETUP_REQUIRED: create and assign a dedicated module before "
+            "implementing the feature."
+        )
+        print("\n".join(f"- {item.title}" for item in module_issues))
+        return READY
     if pending and recent_commits_doc_only_streak(root):
         reason = (
             f"last {DOC_ONLY_STREAK_THRESHOLD} commits touched only docs/STATUS*/INBOX.md "
