@@ -1,14 +1,5 @@
 # STATUS
 
-## 2026-09-08 — 엔진 상점 전체 슬롯 UI 연결
-
-- `game/ui/shop.lua`가 legacy `cards`뿐 아니라 `shop_engine`의 통합 `slots`를 순수 `slot_views` 계약으로 변환한다.
-- 바우처/태그로 늘어난 랜덤 상품과 팩·바우처 슬롯 전체를 320×180 안에 동적으로 배치하고, 그 동일한 bounds로 draw와 hit-test를 수행한다.
-- 엔진 소유 money와 동적 리롤 가격을 표시하며 광·행성·타로·팩·바우처에 구분된 이름/표현을 제공한다.
-- `game/tests/shop_ui.lua`가 4개 랜덤 슬롯 + 팩 + 바우처의 6개 위치, 각 hit-test, 팩/바우처 view, 엔진 money 표시를 검증한다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
-- Next slice: 신규 `game/shop_purchases.lua`가 바우처 슬롯 구매 적용/롤백을 소유하게 하고 `game/scenes/play.lua`는 해당 모듈로 위임한다. 팩 구매는 후속 독립 슬라이스로 유지한다.
-
 ## 2026-09-08 — 상점 구매 위임 및 바우처 적용 (`game/shop_purchases.lua`)
 
 - Created `game/shop_purchases.lua` to manage shop transaction application and rollback, supporting planets, tarots, gwang, and newly vouchers.
@@ -123,5 +114,14 @@
 - TDD RED: red stake round fallback이 300을 반환하는 실패를 확인했다. 구현 후 `game/tests/round_engine.lua` 회귀 테스트와 전체 `make test`가 GREEN이다.
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: base ante/blind 및 보스 목표 계산의 소유권을 독립 모듈로 옮기고 `game.run.blind_target`은 호환 delegate로 축소해 gameplay projection이 거대 run 모듈을 경유하지 않게 한다.
+
+## 2026-09-08 — 블라인드 기본·보스 목표 규칙 분리
+
+- 신규 `game/blind_targets.lua`가 8개 ante 기본값, small/big/boss 배수, Wall 보스의 목표 2배 적용을 독립적으로 소유한다.
+- `game.run.blind_target`은 기존 호출자를 보존하는 호환 delegate로 축소했고, `blind_flow.target` gameplay projection은 거대 `game.run`을 경유하지 않고 새 목표 모듈을 직접 사용한다.
+- TDD RED: `game.blind_targets` 모듈 부재 실패를 확인했다. 구현 후 기본 목표표·잘못된 입력·보스 적용 범위·호환 delegate 회귀 테스트가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_targets: OK`, `blind_flow: OK`, `round_engine: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 보스 선택/복사와 블라인드 진입 상태 전환을 `blind_flow` 계약으로 옮기고 `game.run.select_boss`는 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

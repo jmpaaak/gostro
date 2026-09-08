@@ -1,6 +1,7 @@
 local run = require("game.run")
 local run_rules = require("game.run_rules")
 local tags = require("game.tags")
+local blind_targets = require("game.blind_targets")
 
 local M = {}
 
@@ -22,7 +23,7 @@ function M.target(state, kind)
         projected.boss_id = nil
         projected.boss = nil
     end
-    return run_rules.adjust_target(state, run.blind_target(projected))
+    return run_rules.adjust_target(state, blind_targets.target(projected))
 end
 
 function M.view(state, tag_id)

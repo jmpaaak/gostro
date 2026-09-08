@@ -3,24 +3,6 @@ local M = {}
 M.MAX_GWANG = 5
 M.FINAL_ANTE = 8
 
--- Balatro-style ante bases. Small = base, big = 1.5x, boss = 2x.
-local ANTE_BASE = {
-    [1] = 300,
-    [2] = 800,
-    [3] = 2000,
-    [4] = 5000,
-    [5] = 11000,
-    [6] = 20000,
-    [7] = 35000,
-    [8] = 50000,
-}
-
-local BLIND_MULT = {
-    small = 1,
-    big = 1.5,
-    boss = 2,
-}
-
 local PLAY_CARDS = {
     hongdan = true,
     cheongdan = true,
@@ -37,6 +19,7 @@ local vouchers = require("game.vouchers")
 local economy = require("game.economy")
 local rng = require("game.rng")
 local run_history = require("game.run_history")
+local blind_targets = require("game.blind_targets")
 
 function M.new(seed_str)
     local plan = rng.plan(seed_str)
@@ -90,16 +73,7 @@ function M.max_gwang(state)
 end
 
 function M.blind_target(state)
-    local base = ANTE_BASE[state.ante]
-    local mult = BLIND_MULT[state.blind]
-    if not base or not mult then
-        error("unknown ante or blind")
-    end
-    local target = math.floor(base * mult)
-    if state.blind == "boss" and state.boss and state.boss.effect == "double_target" then
-        target = boss_blinds.apply_wall(target)
-    end
-    return target
+    return blind_targets.target(state)
 end
 
 local function enter_blind(state, blind)

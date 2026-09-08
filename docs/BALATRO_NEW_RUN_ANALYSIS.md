@@ -77,6 +77,7 @@
 | 8 | 앤티당 스몰→빅→보스 순차 진행 | 3개 블라인드를 모두 즉시 선택 가능 | 현재 블라인드만 활성화하고 나머지는 순서 미리보기로 제한 | 구현·테스트 GREEN |
 | 9 | New Run 설정이 이후 런 규칙을 결정 | 선택 UI와 실제 런 생성 경계가 분산 | 검증·생성을 `run_rules.create`로 원자화하고 stake 보정 목표를 블라인드 UI/라운드가 공유 | 구현·테스트 GREEN |
 | 10 | 선택 화면과 실제 라운드의 목표 일치 | 라운드 기본값이 `run.blind_target`을 직접 호출해 stake 보정을 누락 | `blind_flow.target` gameplay projection을 UI·전환·라운드 기본값의 공통 계약으로 사용 | 구현·테스트 GREEN |
+| 11 | 앤티·블라인드·보스 규칙이 하나의 목표를 결정 | 목표 표와 보스 보정이 거대 `run.lua` 내부에 결합 | `blind_targets`가 기본/보스 목표를 소유하고 `run.blind_target`은 호환 delegate로 유지 | 구현·테스트 GREEN |
 
 ## 연결 종료 뒤 문헌 조사
 

@@ -786,3 +786,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `game/tests/play_integration.lua`에서 실게임 상점 엔진 상태, 무료 리롤 태그 소비, 광 구매 적용을 회귀 검증했다.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
 - Next slice: `game/ui/shop.lua`가 engine의 추가 랜덤 슬롯·팩·바우처 슬롯을 모두 표시하고 hit-test하도록 순수 UI 계약을 확장한다.
+
+## Archived from STATUS.md (2026-09-08 20:09)
+
+## 2026-09-08 — 엔진 상점 전체 슬롯 UI 연결
+
+- `game/ui/shop.lua`가 legacy `cards`뿐 아니라 `shop_engine`의 통합 `slots`를 순수 `slot_views` 계약으로 변환한다.
+- 바우처/태그로 늘어난 랜덤 상품과 팩·바우처 슬롯 전체를 320×180 안에 동적으로 배치하고, 그 동일한 bounds로 draw와 hit-test를 수행한다.
+- 엔진 소유 money와 동적 리롤 가격을 표시하며 광·행성·타로·팩·바우처에 구분된 이름/표현을 제공한다.
+- `game/tests/shop_ui.lua`가 4개 랜덤 슬롯 + 팩 + 바우처의 6개 위치, 각 hit-test, 팩/바우처 view, 엔진 money 표시를 검증한다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (bundle 154 files).
+- Next slice: 신규 `game/shop_purchases.lua`가 바우처 슬롯 구매 적용/롤백을 소유하게 하고 `game/scenes/play.lua`는 해당 모듈로 위임한다. 팩 구매는 후속 독립 슬라이스로 유지한다.
