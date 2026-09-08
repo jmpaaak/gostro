@@ -10,8 +10,6 @@ local PLAY_CARDS = {
     pi = true,
 }
 
-local PLAY_KINDS = { "hongdan", "cheongdan", "chodan", "godori", "pi" }
-
 local vouchers = require("game.vouchers")
 local rng = require("game.rng")
 local blind_targets = require("game.blind_targets")
@@ -94,15 +92,9 @@ function M.clear_blind(state)
     return phase
 end
 
---- Deal n play-card kinds from the run's cards stream. No months.
+--- Compatibility delegate; play-card kind distribution is owned by game.card_deal.
 function M.deal_kinds(state, n)
-    n = n or 8
-    local cards = (state.rng and state.rng.cards) or math.random
-    local kinds = {}
-    for i = 1, n do
-        kinds[i] = PLAY_KINDS[cards(1, #PLAY_KINDS)]
-    end
-    return kinds
+    return require("game.card_deal").deal(state, n)
 end
 
 --- Compatibility delegate; skip rules and progression are owned by game.blind_flow.

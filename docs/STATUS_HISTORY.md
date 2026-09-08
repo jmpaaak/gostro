@@ -857,3 +857,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `consumables_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (162 files).
 - INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
 - Next slice: 선택된 타로의 변환/파괴/효과 부여/복제별 옵션과 대상 패를 고르는 독립 `game/ui/tarot_target.lua` 순수 상태/hit-test 흐름을 추가하되 아직 `play.lua`에서 실행하지 않는다.
+
+## Archived from STATUS.md (2026-09-08 20:58)
+
+## 2026-09-08 — 타로 옵션/대상 선택 UI
+
+- `game/ui/tarot_target.lua`에 독립 모달 상태, 공유 draw/hit-test bounds, 취소/토글 동작, 완료된 사용 요청 데이터 계약을 추가했다. 변환은 5종 패, 효과 부여는 포일/홀로그램/폴리크롬 옵션을 먼저 요구하고, 파괴/복제는 바로 단일 대상 선택으로 진행한다.
+- 이 모듈은 `tarots.use`를 호출하거나 대상 패를 변경하지 않는다. `game/tests/tarot_target_ui.lua`와 self-test 등록으로 옵션 게이팅, 네 효과, 요청 인자, 토글/취소, 패 불변성을 검증한다.
+- TDD RED: 전체 `make test`에서 `game.ui.tarot_target` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `tarot_target_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (164 files)로 GREEN이다.
+- INBOX (26)은 실제 사용 배선이 남아 있어 처리 중으로 유지한다.
+- Next slice: 타로 대상 선택기를 play scene에 모달로 배선하고 완료된 요청을 `tarots.use`로 실행한 뒤 변경된 패를 hand UI에 재동기화하고 소모품/대상 선택을 해제한다. 효과 규칙은 scene glue에 추가하지 않는다.

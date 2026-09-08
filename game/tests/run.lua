@@ -8,6 +8,8 @@ local function beat_current_blind(state)
 end
 
 function M.run()
+    require("game.tests.card_deal").run()
+
     local state = run.new()
     assert(state.ante == 1)
     assert(state.blind == "small")

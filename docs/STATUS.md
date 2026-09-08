@@ -1,13 +1,4 @@
 # STATUS
-
-## 2026-09-08 — 타로 옵션/대상 선택 UI
-
-- `game/ui/tarot_target.lua`에 독립 모달 상태, 공유 draw/hit-test bounds, 취소/토글 동작, 완료된 사용 요청 데이터 계약을 추가했다. 변환은 5종 패, 효과 부여는 포일/홀로그램/폴리크롬 옵션을 먼저 요구하고, 파괴/복제는 바로 단일 대상 선택으로 진행한다.
-- 이 모듈은 `tarots.use`를 호출하거나 대상 패를 변경하지 않는다. `game/tests/tarot_target_ui.lua`와 self-test 등록으로 옵션 게이팅, 네 효과, 요청 인자, 토글/취소, 패 불변성을 검증한다.
-- TDD RED: 전체 `make test`에서 `game.ui.tarot_target` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `tarot_target_ui: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (164 files)로 GREEN이다.
-- INBOX (26)은 실제 사용 배선이 남아 있어 처리 중으로 유지한다.
-- Next slice: 타로 대상 선택기를 play scene에 모달로 배선하고 완료된 요청을 `tarots.use`로 실행한 뒤 변경된 패를 hand UI에 재동기화하고 소모품/대상 선택을 해제한다. 효과 규칙은 scene glue에 추가하지 않는다.
-
 ## 2026-09-08 — 타로 대상 선택·사용 실게임 연결
 
 - `game/tarot_use.lua` 컨트롤러가 보유 타로 선택부터 옵션/대상 모달, `tarots.use` 실행, 성공/취소 정리까지 소유한다. 변환·파괴·강화·복제 규칙은 계속 `game/tarots.lua`에만 있다.
@@ -129,5 +120,13 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
 - INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: play-card 종류와 cards RNG 기반 배분을 독립 `game/card_deal.lua`로 옮기고 `game.run.deal_kinds`는 호환 delegate로 축소한다.
+
+## 2026-09-08 — 카드 종류·배분 규칙 모듈화
+
+- `game/card_deal.lua`가 월 숫자·이름 없는 5종 play-card 목록과 run의 전용 cards RNG를 이용한 배분을 독립적으로 소유한다.
+- `game.run.deal_kinds`는 기존 호출자를 보존하는 호환 delegate로 축소됐다. 기본 8장, RNG 호출 범위·횟수와 delegate 경계를 `game/tests/card_deal.lua`에서 검증한다.
+- TDD RED: 전체 `make test`에서 `game.card_deal` 모듈 부재 실패를 확인했다. 구현 후 `make verify LOVE=/Users/jm/.local/bin/love`는 `card_deal: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (170 files)로 GREEN이다.
+- INBOX (26)은 `game/run.lua`의 남은 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 광 슬롯 한도와 구매 검증·삽입을 독립 `game/gwang_inventory.lua`로 옮기고 `game.run.max_gwang`/`buy_gwang`은 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
