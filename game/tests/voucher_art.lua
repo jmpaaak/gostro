@@ -53,6 +53,17 @@ function M.run()
     assert(overstock.runtime.filter == "nearest")
     assert(assets.runtime_path(overstock_id) == "assets/runtime/voucher/overstock-v1.png")
 
+    local reroll_id = voucher_art.asset_id({ kind = "voucher", identity = "reroll_surplus" })
+    assert(reroll_id == "voucher.reroll_surplus", "bargain seal must resolve tracked artwork")
+    local reroll = assets.entry(reroll_id)
+    assert(reroll and reroll.status == "runtime", "bargain seal artwork must be promoted")
+    assert(reroll.master.width == 400 and reroll.master.height == 560,
+        "bargain seal must preserve a 400x560 master")
+    assert(reroll.runtime.width == 36 and reroll.runtime.height == 52,
+        "bargain seal runtime must fit its shop slot")
+    assert(reroll.runtime.filter == "nearest")
+    assert(assets.runtime_path(reroll_id) == "assets/runtime/voucher/reroll-surplus-v1.png")
+
     assets.clear_cache()
     print("  voucher_art: OK")
 end

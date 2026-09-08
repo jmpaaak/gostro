@@ -844,8 +844,49 @@
     {
       "id": "voucher.reroll_surplus",
       "category": "voucher",
-      "status": "pending",
-      "name": "\ub9ac\ub864\uc789\uc5ec"
+      "status": "runtime",
+      "name": "\uc5d0\ub204\ub9ac \uc778\uc7a5",
+      "master": {
+        "source": "assets/masters/voucher/reroll-surplus-v1.svg",
+        "sourceSha256": "8ef520542774a4618e6650c14a4a29dda793e0f1b16bd61e76569331f74dfd53",
+        "path": "assets/masters/voucher/reroll-surplus-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "28380694bc6b544bc751361c588c0b3c86049a5533c48036c3792ac922031cca",
+        "provenance": "Project-authored high-resolution vector master depicting a traditional counting frame, asymmetric bargain beads, lowered yeopjeon coin, dancheong frame, and vermilion seal; no photo or third-party material."
+      },
+      "runtime": {
+        "path": "assets/runtime/voucher/reroll-surplus-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          1,
+          35,
+          50
+        ],
+        "sha256": "457ae14ffa755c3cb0530ed5931f96d48be22ce25b7e4ece34b26d13301e404b",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/voucher/reroll-surplus-v1.report.json",
+        "reportSha256": "35da584981b46d6054382cade136f1f3482ee4c299be367784fd2ca6726ff8e0"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "voucher.clearance_sale",

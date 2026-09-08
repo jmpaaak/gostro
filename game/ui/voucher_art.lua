@@ -8,6 +8,7 @@ local IDS = {
     wasteful = "voucher.wasteful",
     grabber = "voucher.grabber",
     overstock = "voucher.overstock",
+    reroll_surplus = "voucher.reroll_surplus",
 }
 
 function M.asset_id(item)

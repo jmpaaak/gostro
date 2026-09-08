@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff0bf"/><stop offset="1" stop-color="#d8aa61"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b96732"/><stop offset="1" stop-color="#5a2925"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+  <!-- A traditional counting frame and lowered coin make the bargain identity readable without text. -->
+  <rect x="27" y="25" width="346" height="510" rx="34" fill="#321f38" opacity=".36" filter="url(#shadow)"/>
+  <rect x="20" y="18" width="360" height="510" rx="32" fill="#35213f" stroke="#140d1b" stroke-width="12"/>
+  <rect x="34" y="32" width="332" height="482" rx="23" fill="url(#paper)" stroke="#bd3f37" stroke-width="9"/>
+  <!-- Shared dancheong frame identifies the permanent-seal family. -->
+  <path d="M49 64H351M49 482H351" stroke="#174f5f" stroke-width="17"/>
+  <path d="M49 64l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17M49 482l24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17 24-17 24 17" fill="none" stroke="#e8b43e" stroke-width="9" stroke-linejoin="round"/>
+  <circle cx="62" cy="104" r="10" fill="#bd3f37"/><circle cx="338" cy="104" r="10" fill="#bd3f37"/>
+  <circle cx="62" cy="441" r="10" fill="#174f5f"/><circle cx="338" cy="441" r="10" fill="#174f5f"/>
+  <!-- Broad abacus silhouette, with asymmetric beads showing a newly negotiated count. -->
+  <rect x="76" y="145" width="248" height="230" rx="18" fill="#633128" stroke="#291a24" stroke-width="13"/>
+  <rect x="94" y="165" width="212" height="190" rx="8" fill="#f0d78c" stroke="#bd6d35" stroke-width="8"/>
+  <g stroke="#315f66" stroke-width="9" stroke-linecap="round">
+    <path d="M105 194H295"/><path d="M105 228H295"/><path d="M105 262H295"/>
+    <path d="M105 296H295"/><path d="M105 330H295"/>
+  </g>
+  <g fill="#c54138" stroke="#6f2528" stroke-width="5">
+    <ellipse cx="132" cy="194" rx="18" ry="13"/><ellipse cx="177" cy="194" rx="18" ry="13"/>
+    <ellipse cx="222" cy="228" rx="18" ry="13"/><ellipse cx="267" cy="228" rx="18" ry="13"/>
+    <ellipse cx="146" cy="262" rx="18" ry="13"/><ellipse cx="191" cy="262" rx="18" ry="13"/>
+    <ellipse cx="236" cy="296" rx="18" ry="13"/><ellipse cx="281" cy="296" rx="18" ry="13"/>
+    <ellipse cx="123" cy="330" rx="18" ry="13"/><ellipse cx="168" cy="330" rx="18" ry="13"/>
+  </g>
+  <!-- A yeopjeon drops to the cheaper notch; the heavy chevron survives 36x52 conversion. -->
+  <path d="M161 393h78l-19-18m19 18-19 18" fill="none" stroke="#174f5f" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="200" cy="432" r="33" fill="#e8b43e" stroke="#6c3a24" stroke-width="9"/>
+  <rect x="187" y="419" width="26" height="26" rx="3" fill="#7b3c2d"/>
+  <!-- Vermilion seal and brass notch match the other voucher masters. -->
+  <rect x="276" y="91" width="64" height="64" rx="6" fill="#c9362d" stroke="#751d21" stroke-width="8"/>
+  <path d="M290 107h36v32h-36zm9 0v32m17-32v32m-26-16h36" fill="none" stroke="#f6d78d" stroke-width="6"/>
+  <path d="M151 18h98l-13 28h-72z" fill="#e8b43e" stroke="#6c3a24" stroke-width="7"/>
+  <circle cx="200" cy="31" r="8" fill="#8e2f2c"/>
+</svg>
