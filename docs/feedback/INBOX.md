@@ -2,6 +2,12 @@
 
 ## 처리 대기
 
+(26) **Balatro New Run 실기기 관찰 기반 기능·UI 역설계 및 Gostro 순차 구현** (msg `1546786558852726826`)
+  - 담당: `docs/BALATRO_NEW_RUN_ANALYSIS.md`, 신규 `game/ui/*`·`game/*.lua` 모듈, 대응 `game/tests/*`; `game/scenes/play.lua`는 require/위임만 허용.
+  - Appium/WDA로 Balatro의 `New Run`부터 실제 터치 진행하며 화면 전환, 정보 계층, 버튼·카드·팝업, 선택 피드백, 라운드/상점 흐름을 체크포인트별 캡처와 함께 목록화한다.
+  - 관찰 결과를 Gostro 기존 구현과 대조해 미구현/품질차 항목을 우선순위화하고, 비중첩 모듈은 병렬 작업 단위로 나눠 하나씩 구현한다.
+  - 각 단위는 순수/라우팅 UI 테스트와 `make verify LOVE=/Users/jm/.local/bin/love` GREEN, 필요 시 런타임 캡처로 검증한 뒤에만 완료 처리한다.
+
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 완료
