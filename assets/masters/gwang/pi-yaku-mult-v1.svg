@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#270307"/>
+      <stop offset="0.5" stop-color="#720d18"/>
+      <stop offset="1" stop-color="#180104"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff8dc"/>
+      <stop offset="1" stop-color="#d9bd83"/>
+    </linearGradient>
+    <radialGradient id="pearl">
+      <stop offset="0" stop-color="#fff8d0"/>
+      <stop offset="0.45" stop-color="#f29c38"/>
+      <stop offset="1" stop-color="#8f180e"/>
+    </radialGradient>
+    <pattern id="needles" width="62" height="42" patternUnits="userSpaceOnUse">
+      <path d="M5 35L28 8M17 38L40 11M30 38L53 11" stroke="#d98f98" stroke-width="3" opacity=".16"/>
+    </pattern>
+  </defs>
+  <rect x="8" y="8" width="432" height="240" rx="38" fill="#120104" stroke="#310309" stroke-width="16"/>
+  <rect x="22" y="22" width="404" height="212" rx="28" fill="url(#lacquer)" stroke="#e2b658" stroke-width="8"/>
+  <rect x="35" y="35" width="378" height="186" rx="18" fill="url(#needles)" stroke="#9f2733" stroke-width="4"/>
+  <path d="M51 54h346M51 202h346" stroke="#ffe1a0" stroke-width="5" opacity=".35"/>
+  <!-- Three compact hwatu-like pi slips make the yaku readable without letters. -->
+  <g transform="translate(51 49)" stroke="#40100d" stroke-width="5" stroke-linejoin="round">
+    <g transform="rotate(-12 67 78)">
+      <rect x="8" y="8" width="86" height="142" rx="10" fill="#250507" opacity=".55"/>
+      <rect width="86" height="142" rx="10" fill="url(#paper)"/>
+      <path d="M8 111C29 81 48 86 80 54v80H8z" fill="#15130d"/>
+      <path d="M9 104c19-16 37-15 68-43M17 117c19-17 35-14 56-38" fill="none" stroke="#2f6d33" stroke-width="9"/>
+      <circle cx="65" cy="27" r="12" fill="#c71920" stroke="none"/>
+    </g>
+    <g transform="translate(43 -5)">
+      <rect x="8" y="8" width="86" height="142" rx="10" fill="#250507" opacity=".55"/>
+      <rect width="86" height="142" rx="10" fill="url(#paper)"/>
+      <path d="M8 110c18-30 41-27 70-66v90H8z" fill="#17130c"/>
+      <path d="M9 105c18-18 37-17 67-49M16 120c20-21 38-18 57-44" fill="none" stroke="#47792c" stroke-width="9"/>
+      <circle cx="63" cy="27" r="12" fill="#c71920" stroke="none"/>
+    </g>
+    <g transform="translate(96 9) rotate(12 43 71)">
+      <rect x="8" y="8" width="86" height="142" rx="10" fill="#250507" opacity=".55"/>
+      <rect width="86" height="142" rx="10" fill="url(#paper)"/>
+      <path d="M8 107c22-23 41-27 70-65v92H8z" fill="#16120b"/>
+      <path d="M9 103c20-16 39-20 67-52M16 118c22-19 39-21 57-43" fill="none" stroke="#2e682d" stroke-width="9"/>
+      <circle cx="63" cy="27" r="12" fill="#c71920" stroke="none"/>
+    </g>
+  </g>
+  <!-- Three multiplier seals echo the +3 mult rule. -->
+  <g transform="translate(266 65)" stroke="#4c0b0c" stroke-width="7">
+    <circle cx="48" cy="34" r="29" fill="url(#pearl)"/>
+    <circle cx="93" cy="70" r="34" fill="url(#pearl)"/>
+    <circle cx="43" cy="116" r="38" fill="url(#pearl)"/>
+    <path d="M32 22l32 24M64 22L32 46M74 55l38 30M112 55L74 85M22 98l43 36M65 98l-43 36" fill="none" stroke="#fff4c1" stroke-width="9" stroke-linecap="round"/>
+  </g>
+</svg>

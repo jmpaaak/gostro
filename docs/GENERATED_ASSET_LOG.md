@@ -158,3 +158,8 @@
 2026-09-09T07:52:12+0900 | assets/masters/gwang/chodan-chips-v1.svg | Project-authored vector master for chodan chips
 2026-09-09T07:52:12+0900 | assets/masters/gwang/chodan-chips-v1.png | Rasterized from SVG
 2026-09-09T07:52:12+0900 | assets/runtime/gwang/chodan-chips-v1.png | Asset Studio pixel-perfect conversion (56x32)
+| 2026-09-09T08:00:26+0900 | `assets/masters/gwang/pi-yaku-mult-v1.svg` | Project-authored high-resolution 피 족보 gwang vector source with three hwatu-like pi slips and three multiplier seals on burgundy lacquer |
+| 2026-09-09T08:00:26+0900 | `assets/masters/gwang/pi-yaku-mult-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T08:00:26+0900 | `assets/runtime/gwang/pi-yaku-mult-v1.png` | 56×32 runtime 피 족보 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T08:00:26+0900 | `assets/runtime/ui/gwang-pi-yaku-mult-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 피 족보 gwang in all five slots; SHA-256 `843b3698eda6fdca1f58b7ecd3b0ca94cdc0facc304dbd18373dc5ff90e2c613` |
+| 2026-09-09T08:00:26+0900 | `assets/runtime/ui/gwang-chodan-chips-slots-love-v1.png` | Regenerated LÖVE 11.5 320×180 slot QA capture after adding the omitted 초단 칩 runtime asset to the isolated QA bundle; SHA-256 `f2968d6295139edd89067e761c15e1a481f0905cebaefe6f8cebe3f757186966` |

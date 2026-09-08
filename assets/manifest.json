@@ -1067,10 +1067,51 @@
     {
       "id": "gwang.pi_yaku_mult",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "피 족보",
         "en": "Pi Yaku"
+      },
+      "master": {
+        "source": "assets/masters/gwang/pi-yaku-mult-v1.svg",
+        "sourceSha256": "40e9194006f4a09f99ebad9558d08769a0b408da8e6a4f07c7215b5c3c6a7652",
+        "path": "assets/masters/gwang/pi-yaku-mult-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "b2ee7e969009d8574f2076b2959eb3d5662f8f82c71d7ca1cbe81e8698389d43",
+        "provenance": "Project-authored high-resolution vector master using three compact hwatu-like pi slips and three multiplier seals on burgundy lacquer; no month or text labels."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/pi-yaku-mult-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "4f677367b83db16816d4b882592cc3c967beba6dba46f5a86e99e0a68cfd52e1",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/pi-yaku-mult-v1.report.json",
+        "reportSha256": "2cd3d8fb40de8113c1938df8a6064dd4472ce11dd5776db2855e7a9bc3679f46"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

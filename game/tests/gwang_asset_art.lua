@@ -160,6 +160,17 @@ function M.run()
     assert(assets.runtime_path("gwang.chodan_chips") ==
         "assets/runtime/gwang/chodan-chips-v1.png")
 
+    local pi_yaku = assets.entry("gwang.pi_yaku_mult")
+    assert(pi_yaku and pi_yaku.status == "runtime",
+        "pi yaku gwang must have tracked runtime artwork")
+    assert(pi_yaku.master.width == 448 and pi_yaku.master.height == 256,
+        "pi yaku gwang must preserve its high-resolution slot master")
+    assert(pi_yaku.runtime.width == 56 and pi_yaku.runtime.height == 32,
+        "pi yaku gwang runtime must scale exactly into a 28x16 slot")
+    assert(pi_yaku.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.pi_yaku_mult") ==
+        "assets/runtime/gwang/pi-yaku-mult-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
