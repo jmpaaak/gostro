@@ -405,5 +405,43 @@ class GwangEditorEditFormTests(unittest.TestCase):
         self.assertIn(".editor-grid", self.css)
 
 
+class GwangEditorNewCardTests(unittest.TestCase):
+    """INBOX (23g) slice: append a valid editable gwang card."""
+
+    @classmethod
+    def setUpClass(cls):
+        with open(JS_PATH, encoding="utf-8") as f:
+            cls.js = f.read()
+        with open(HTML_PATH, encoding="utf-8") as f:
+            cls.html = f.read()
+
+    def test_html_has_new_card_action(self):
+        self.assertIn('id="newCardBtn"', self.html)
+        self.assertRegex(self.html, r">\s*\+ New Card\s*<")
+
+    def test_new_card_uses_unique_id_and_valid_defaults(self):
+        create = _fn_body(self.js, "createNewJoker")
+        self.assertTrue(create, "createNewJoker must exist")
+        self.assertIn("pool.jokers.some", create)
+        for required in ("id", "name", "rarity", "trigger", "effect", "desc"):
+            self.assertIn(required, create)
+        self.assertIn("pool.jokers.push", create)
+        self.assertIn("validatePool", create)
+
+    def test_new_card_is_selected_and_rendered_for_immediate_editing(self):
+        create = _fn_body(self.js, "createNewJoker")
+        self.assertIn("selectedJokerId", create)
+        self.assertIn("renderGrid", create)
+        self.assertIn("renderEditor", create)
+
+    def test_new_card_action_is_wired_and_enabled_after_load(self):
+        wire = _fn_body(self.js, "wireNewCard")
+        self.assertTrue(wire, "wireNewCard must exist")
+        self.assertIn("createNewJoker", wire)
+        init = _fn_body(self.js, "init")
+        self.assertIn("wireNewCard", init)
+        load = _fn_body(self.js, "loadDocument")
+        self.assertIn("newCardBtn.disabled", load)
+
 if __name__ == "__main__":
     unittest.main()

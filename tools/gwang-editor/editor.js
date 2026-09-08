@@ -1,5 +1,5 @@
 // gwang-editor: static, dependency-free editor for game/data/gwang_jokers.json
-// (docs/feedback/INBOX.md item 23f — catalog edit form).
+// (docs/feedback/INBOX.md item 23g — add catalog cards).
 //
 // Validation mirrors the catalog fields used by game/gwang_catalog.lua.
 
@@ -23,7 +23,7 @@ let selectedJokerId = null;
 const els = {};
 function cacheEls() {
   [
-    "openJsonInput", "openFsaBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
+    "openJsonInput", "openFsaBtn", "newCardBtn", "saveFsaBtn", "downloadBtn", "statusBar", "grid",
     "editorEmpty", "editorForm", "cardId", "nameKo", "nameEn", "rarity", "trigger",
     "kindNeed", "yakuNeed", "deckMax", "moneyMin", "blindNeed",
     "effectChips", "effectMult", "effectMultMul", "descKo", "descEn",
@@ -114,6 +114,7 @@ function loadDocument(doc, name) {
   const errors = validatePool(doc);
   pool = doc;
   selectedJokerId = null;
+  els.newCardBtn.disabled = false;
   els.downloadBtn.disabled = false;
   if (errors.length > 0) {
     setStatus(`Loaded '${name}' but it failed validation:\n` + errors.join("\n"), "error");
@@ -377,6 +378,40 @@ function wireEditor() {
   els.trigger.addEventListener("change", updateTriggerFields);
 }
 
+function createNewJoker() {
+  if (!pool) return;
+  const baseId = "gwang_new";
+  let id = baseId;
+  let suffix = 2;
+  while (pool.jokers.some((joker) => joker.id === id)) {
+    id = `${baseId}_${suffix}`;
+    suffix += 1;
+  }
+  const joker = {
+    id,
+    name: { ko: "새 광", en: "New Gwang" },
+    rarity: "common",
+    trigger: "always",
+    effect: { chips: 1 },
+    desc: { ko: "새 광 효과", en: "New gwang effect" },
+  };
+  pool.jokers.push(joker);
+  const errors = validatePool(pool);
+  if (errors.length > 0) {
+    pool.jokers.pop();
+    setStatus("Cannot create card:\n" + errors.join("\n"), "error");
+    return;
+  }
+  selectedJokerId = id;
+  renderGrid();
+  renderEditor();
+  setStatus(`Created '${id}'. Edit it, then save or download JSON.`, "ok");
+}
+
+function wireNewCard() {
+  els.newCardBtn.addEventListener("click", createNewJoker);
+}
+
 function renderGrid() {
   if (!els.grid) return;
   if (!pool || !Array.isArray(pool.jokers)) {
@@ -418,6 +453,7 @@ function init() {
   wireSaveFsa();
   wireDownload();
   wireEditor();
+  wireNewCard();
   autoLoadDefaults();
 }
 
