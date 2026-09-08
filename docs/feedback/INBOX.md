@@ -11,6 +11,12 @@
   - 각 에셋은 master/runtime 크기, alpha bounds, 출력 hash, 변환 설정, frame 수/FPS/loop/origin을 기록하고, 투명도·셀 경계·팔레트/색 보존·nearest filtering을 자동 검사한다. 실제 320×180 LÖVE 캡처에서 카드 식별성, 겹친 카드 상단 표식, UI 비중첩을 확인한 뒤에만 적용 완료 처리한다.
   - **2026-09-08 `play-card.pi` 첫 pilot은 아트 QA 거부:** 192×288 master가 지도 핀으로 오인되고 24×36 runtime의 `PI` 글자가 읽히지 않아 피 카드로 식별되지 않는다. 이를 승인 스타일로 복제하지 말고, 지도 핀/영문 약어가 아닌 한국 화투 계열의 상단 식별 문양과 카드 본체 그림을 가진 고해상도 master로 재생성한다. 플레이 패 5종이 하나의 시각 문법으로 실제 겹침 QA를 통과하기 전에는 어떤 단일 카드도 runtime 완료로 세지 않는다.
 
+(28) **Balatro 직수입 용어를 화투·한국 테마로 전면 교체** (msg `1546892527838302351`)
+  - 담당: 신규 `game/terms.lua`를 단일 player-facing 용어 계약으로 두고 `game/ui/**`, `game/scenes/**`, `game/data/**`, 관련 순수 모듈·테스트·`docs/ASSET_INVENTORY.md`·`assets/manifest.json`을 카테고리별 독립 lane으로 마이그레이션한다. 현재 (27) 에셋 작업의 미커밋 파일과 충돌하는 manifest/inventory 변경은 해당 owner가 용어 계약을 읽어 반영한다.
+  - 확정 용어: 행성 카드 5종 → **기원패 5종**, 타로 4종 → **부적 4종**, 태그 12종 → **패찰 12종**, 바우처 12종 → **인장 12종**, 아르카나 팩 1종 → **부적 꾸러미 1종**, Blind → **판** (`small/big/boss`는 **첫판/큰판/대장판**), Ante → **고** (`1고`…`8고`).
+  - 영문도 Balatro 명칭을 노출하지 않는다: `Wish Card`, `Talisman`, `Plaque`, `Seal`, `Talisman Bundle`, `Round` (`Opening/Main/Final Round`), `Go`. 저장 데이터 호환이 필요한 legacy id/field는 즉시 파괴하지 말고 내부 alias/migration으로만 보존하며 UI·에셋 키·신규 코드에서는 새 도메인명을 사용한다.
+  - 각 개별 카드/효과명도 우주·서양 점술·Balatro 원명을 그대로 옮기지 말고 기능을 보존한 한국적 이름과 도상으로 바꾼다. 전체 문자열/카탈로그 검색에서 player-facing `planet/tarot/tag/voucher/arcana/blind/ante` 잔존 0건, 기존 save/seed 결정성 보존, 관련 모듈 테스트와 `make verify LOVE=/Users/jm/.local/bin/love` GREEN을 완료 조건으로 한다.
+
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 중
