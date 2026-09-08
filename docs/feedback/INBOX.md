@@ -4,18 +4,6 @@
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
-### Phase A — 발라트로 UI 벤치마크 & 와이어프레임
-
-(3) **고스트로 UI 와이어프레임 생성** (msg `1546674255045992608`)
-  - 담당: `docs/WIREFRAME.md` + `tools/gen_wireframe.py` → `docs/wireframes/*.png`
-  - PIL 스크립트로 320×180 픽셀 와이어프레임 4장 생성:
-    (a) 플레이 화면: 상단 광 슬롯 5칸, 중앙 점수판, 하단 핸드 카드 8장+선택 표시, 플레이/버리기 버튼
-    (b) 상점 화면: 광 조커 3장 진열 + 가격, 리롤/다음 버튼, 소지금
-    (c) 블라인드 선택: 스몰/빅/보스 카드 3장, 앤티 표시
-    (d) 결과 화면: 점수 + 칩×배수 내역
-  - 각 와이어프레임은 회색 박스+레이블, 실제 구현 좌표 주석 포함
-  - `docs/GENERATED_ASSET_LOG.md`에 기록
-
 ### Phase B — 핵심 UI 모듈 개발
 
 (4) **카드 렌더링 모듈** (msg `1546674255045992608`)
@@ -85,6 +73,11 @@
   - 테스트: `game/tests/score_anim_ui.lua`
 
 ## 처리 완료
+
+  (3) **고스트로 UI 와이어프레임 생성** (msg `1546674255045992608`)
+    - `tools/gen_wireframe.py` PIL 스크립트로 320×180 와이어프레임 4장 생성 (play/shop/blind_select/result).
+    - `docs/WIREFRAME.md` 좌표 주석 포함. `docs/GENERATED_ASSET_LOG.md` 기록.
+    - `make verify` GREEN.
 
   (2) **발라트로 UI 벤치마크 문서 작성** (msg `1546674255045992608`)
     - `docs/UI_BENCHMARK.md` 생성: 메인 플레이/상점/블라인드 선택/게임오버 화면 + 시각 스타일 + 320×180 좌표 스케치 + 색상 팔레트.

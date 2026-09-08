@@ -40,3 +40,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - 코드 변경 없음. `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
 - INBOX (2) → 처리 완료.
 - Next slice: INBOX (3) 고스트로 UI 와이어프레임 생성 (`tools/gen_wireframe.py` → `docs/wireframes/*.png`).
+
+## 2026-09-08 — UI 와이어프레임 4장 생성
+
+- Created `tools/gen_wireframe.py` (PIL, 46 lines): 320×180 wireframe 4장 생성.
+- Output: `docs/wireframes/{play,shop,blind_select,result}.png` — 회색 박스+레이블.
+- Created `docs/WIREFRAME.md`: 각 화면 요소별 실제 구현 좌표(x,y,w,h) 테이블.
+- Created `docs/GENERATED_ASSET_LOG.md`: 4개 에셋 타임스탬프 기록.
+- `make verify` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (3) → 처리 완료.
+- Next slice: INBOX (4) 카드 렌더링 모듈 (`game/ui/card.lua`).
