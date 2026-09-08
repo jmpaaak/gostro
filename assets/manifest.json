@@ -1217,10 +1217,51 @@
     {
       "id": "gwang.lean_deck_mult",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "날씬한 덱",
         "en": "Lean Deck"
+      },
+      "master": {
+        "source": "assets/masters/gwang/lean-deck-mult-v1.svg",
+        "sourceSha256": "e498bb5b61dd290e528948b669b2fec5e4aef94376a847ed116dfa8eaea87b74",
+        "path": "assets/masters/gwang/lean-deck-mult-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "14fcce8727cdf55745ff5c8207c17278d845a7d2a1a7f1175304976e906bb6cb",
+        "provenance": "Project-authored high-resolution vector master showing a lean hwatu deck channeling three additive multiplier sparks into one jade and brass seal on blue lacquer; no month or text labels."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/lean-deck-mult-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "d8957a9585386ddbd230f46894162393bf4e0aee74bbd1c4fcfaaa831ccac76b",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/lean-deck-mult-v1.report.json",
+        "reportSha256": "18f9327f92358e499e5636f526fdb11b4d9a1f9a1a3985b9845ea097e3e7227a"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

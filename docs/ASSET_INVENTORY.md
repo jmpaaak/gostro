@@ -37,7 +37,7 @@
 - [x] `gwang.pi_yaku_mult` - 피 족보 / Pi Yaku (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.thin_deck_x3` - 얇은 덱 / Thin Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.tiny_deck_chips` - 아주 얇은 덱 / Tiny Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.lean_deck_mult` - {'ko': '날씬한 덱', 'en': 'Lean Deck'}
+- [x] `gwang.lean_deck_mult` - 날씬한 덱 / Lean Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.rich_mult` - {'ko': '부자', 'en': 'Rich'}
 - [ ] `gwang.loaded_chips` - {'ko': '두둑한 지갑', 'en': 'Loaded'}
 - [ ] `gwang.wealthy_x2` - {'ko': '갑부', 'en': 'Wealthy'}

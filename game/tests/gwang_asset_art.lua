@@ -193,6 +193,17 @@ function M.run()
     assert(assets.runtime_path("gwang.tiny_deck_chips") ==
         "assets/runtime/gwang/tiny-deck-chips-v1.png")
 
+    local lean_deck = assets.entry("gwang.lean_deck_mult")
+    assert(lean_deck and lean_deck.status == "runtime",
+        "lean deck gwang must have tracked runtime artwork")
+    assert(lean_deck.master.width == 448 and lean_deck.master.height == 256,
+        "lean deck gwang must preserve its high-resolution slot master")
+    assert(lean_deck.runtime.width == 56 and lean_deck.runtime.height == 32,
+        "lean deck gwang runtime must scale exactly into a 28x16 slot")
+    assert(lean_deck.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.lean_deck_mult") ==
+        "assets/runtime/gwang/lean-deck-mult-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
