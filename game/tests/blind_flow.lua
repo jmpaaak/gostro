@@ -209,6 +209,41 @@ function M.test_clear_and_shop_exit_own_sequential_progression()
         "shop exit prepares the next blind selection")
 end
 
+function M.test_shop_exit_owns_every_progression_and_round_reset()
+    local state = run.new("blind-flow-shop-exit-owner")
+    state.phase = "shop"
+    state.round_score = 321
+    state.hands_left = 1
+    state.vouchers.hands = 2
+    state.vouchers.shop_id = "overstock"
+    state.vouchers.bought_this_shop = true
+
+    local legacy_leave_shop = run.leave_shop
+    run.leave_shop = function()
+        error("blind_flow.leave_shop must not delegate to run.leave_shop")
+    end
+
+    local big = blind_flow.leave_shop(state)
+    assert(big.ante == 1 and big.kind == "big" and big.phase == "play")
+    assert(state.round_score == 0 and state.hands_left == 6,
+        "shop exit resets score and applies the permanent extra-hand voucher")
+    assert(state.vouchers.shop_id == nil and state.vouchers.bought_this_shop == false,
+        "shop exit clears temporary voucher stock")
+
+    state.phase = "shop"
+    local boss = blind_flow.leave_shop(state)
+    assert(boss.kind == "boss" and state.boss_id ~= nil,
+        "big shop exit enters and selects the boss")
+
+    state.phase = "shop"
+    local next_ante = blind_flow.leave_shop(state)
+    assert(next_ante.ante == 2 and next_ante.kind == "small")
+    assert(state.boss_id == nil and state.boss == nil,
+        "boss shop exit starts the next ante without stale boss state")
+
+    run.leave_shop = legacy_leave_shop
+end
+
 function M.test_clear_owns_cash_out_shop_stock_and_final_win()
     local run_history = require("game.run_history")
     local state = run.new("blind-flow-clear-owner")
@@ -285,6 +320,7 @@ function M.run()
     M.test_completed_progression_is_derived_from_run_state()
     M.test_begin_owns_stake_adjusted_round_transition()
     M.test_clear_and_shop_exit_own_sequential_progression()
+    M.test_shop_exit_owns_every_progression_and_round_reset()
     M.test_clear_owns_cash_out_shop_stock_and_final_win()
     M.test_lose_owns_exhausted_hand_transition()
     M.test_score_owns_hand_result_transfer()

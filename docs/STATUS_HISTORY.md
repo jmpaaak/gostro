@@ -825,3 +825,16 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 
 
 ## 2026-09-08 — 아르카나 팩 선택 오버레이 (`game/ui/pack.lua`)
+
+## Archived from STATUS.md (2026-09-08 20:39)
+
+- Added a pure render model and shared hit-test bounds for three revealed tarot choices plus `건너뛰기` in a modal 320×180 overlay.
+- The play scene draws the overlay above the shop and routes choice/skip through `game/packs.lua`; while open, it consumes all pointer input so reroll, purchases, next-round, and seed controls cannot fire underneath it.
+- TDD RED was observed for the missing module. `game/tests/pack_ui.lua` verifies layout/hit-test, selected tarot grant, skip, and modal shop blocking.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (160 files).
+- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
+- Next slice: consumable slots are already engine-owned but not playable; add an independent `game/ui/consumables.lua` inventory/selection contract before routing tarot targets in the play scene.
+
+## Archived from STATUS.md (2026-09-08 20:40)
+
+## 2026-09-08 — 타로 소모품 인벤토리 선택 계약 (`game/ui/consumables.lua`)

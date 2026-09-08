@@ -185,7 +185,24 @@ end
 
 --- Advance from the shop and describe the next selectable blind.
 function M.leave_shop(state)
-    run.leave_shop(state)
+    if state.phase ~= "shop" then
+        error("leave shop only from shop")
+    end
+    if state.blind == "small" then
+        M.enter(state, "big")
+    elseif state.blind == "big" then
+        M.enter(state, "boss")
+    elseif state.blind == "boss" then
+        state.ante = state.ante + 1
+        M.enter(state, "small")
+    else
+        error("unknown blind")
+    end
+    state.phase = "play"
+    state.round_score = 0
+    local extra_hands = state.vouchers and state.vouchers.hands or 0
+    state.hands_left = 4 + extra_hands
+    vouchers.clear_shop(state)
     return {
         ante = state.ante,
         kind = state.blind,

@@ -1,10 +1,4 @@
 # STATUS
-- Added a pure render model and shared hit-test bounds for three revealed tarot choices plus `건너뛰기` in a modal 320×180 overlay.
-- The play scene draws the overlay above the shop and routes choice/skip through `game/packs.lua`; while open, it consumes all pointer input so reroll, purchases, next-round, and seed controls cannot fire underneath it.
-- TDD RED was observed for the missing module. `game/tests/pack_ui.lua` verifies layout/hit-test, selected tarot grant, skip, and modal shop blocking.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (160 files).
-- INBOX (26)은 후속 순차 구현이 남아 있어 처리 중으로 유지한다.
-- Next slice: consumable slots are already engine-owned but not playable; add an independent `game/ui/consumables.lua` inventory/selection contract before routing tarot targets in the play scene.
 
 ## 2026-09-08 — 타로 소모품 인벤토리 선택 계약 (`game/ui/consumables.lua`)
 
@@ -129,5 +123,14 @@
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `blind_targets: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK` (168 files).
 - INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
 - Next slice: 상점 이탈 시 small→big→boss→다음 ante small 진행과 새 라운드 초기화를 `blind_flow.leave_shop`으로 옮기고 `game.run.leave_shop`을 호환 delegate로 축소한다.
+
+## 2026-09-08 — 상점 이탈·다음 블라인드 전환 분리
+
+- `game/blind_flow.leave_shop`이 shop phase 검증, small→big→boss→다음 ante small 진행, 보스 선택/정리, 점수·손 초기화와 임시 바우처 진열 정리를 직접 소유한다.
+- `game.run.leave_shop`은 기존 호출자를 보존하는 호환 delegate로 축소됐다.
+- TDD RED: monkey-patched legacy `run.leave_shop` 호출 실패를 확인했다. 구현 후 세 블라인드 진행, 영구 추가 손 적용, 바우처 진열 정리와 보스 상태 회귀 테스트가 GREEN이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: `blind_flow: OK`, `GOSTRO_UNIT_OK`, `GOSTRO_FONT_OK`, `GOSTRO_SMOKE_OK`, `LOVE_BUNDLE_OK`.
+- INBOX (26)은 `game/run.lua`의 남은 진행 책임 분리가 필요해 처리 중으로 유지한다.
+- Next slice: 손 소진 패배 검증 이후 phase 변경과 패배 기록을 `blind_flow.lose`가 직접 소유하게 하고 `game.run.lose`를 호환 delegate로 축소한다.
 
 > 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.

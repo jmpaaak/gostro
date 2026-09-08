@@ -74,10 +74,6 @@ function M.blind_target(state)
     return blind_targets.target(state)
 end
 
-local function enter_blind(state, blind)
-    return require("game.blind_flow").enter(state, blind)
-end
-
 --- Compatibility delegate; boss selection is owned by game.blind_flow.
 function M.select_boss(state, boss_id)
     return require("game.blind_flow").select_boss(state, boss_id)
@@ -163,26 +159,9 @@ function M.buy_voucher(state, id)
     return v
 end
 
+--- Compatibility delegate; shop progression is owned by game.blind_flow.
 function M.leave_shop(state)
-    if state.phase ~= "shop" then
-        error("leave shop only from shop")
-    end
-    if state.blind == "small" then
-        enter_blind(state, "big")
-    elseif state.blind == "big" then
-        enter_blind(state, "boss")
-    else
-        state.ante = state.ante + 1
-        enter_blind(state, "small")
-    end
-    state.phase = "play"
-    state.round_score = 0
-    local extra = 0
-    if state.vouchers then
-        extra = state.vouchers.hands or 0
-    end
-    state.hands_left = 4 + extra
-    vouchers.clear_shop(state)
+    return require("game.blind_flow").leave_shop(state)
 end
 
 return M
