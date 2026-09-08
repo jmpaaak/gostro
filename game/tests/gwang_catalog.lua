@@ -1,4 +1,4 @@
--- Tests for always + contains-kind gwang jokers (INBOX 21a/21b).
+-- Tests for always + contains-kind + yaku gwang jokers (INBOX 21a/21b/21c).
 -- Catalog JSON + apply loop in hwatu.evaluate.
 
 local catalog = require("game.gwang_catalog")
@@ -28,6 +28,10 @@ function M.run()
     M.test_apply_hongdan_x2_when_hand_has_hongdan()
     M.test_apply_hongdan_x2_skips_without_hongdan()
     M.test_hwatu_evaluate_hongdan_x2()
+    M.test_catalog_loads_yaku()
+    M.test_apply_godori_chips_when_yaku_is_godori()
+    M.test_apply_godori_chips_skips_without_godori_yaku()
+    M.test_hwatu_evaluate_godori_chips()
     print("  gwang_catalog: OK")
 end
 
@@ -38,7 +42,7 @@ function M.test_catalog_loads_always_jokers()
     for i = 1, #all do
         local j = all[i]
         assert(j.id and j.id ~= "", "each joker has an id")
-        assert(j.trigger == "always" or j.trigger == "contains_kind", "known trigger")
+        assert(j.trigger == "always" or j.trigger == "contains_kind" or j.trigger == "yaku", "known trigger")
         assert(j.kind == nil or j.kind == "gwang", "gwang are joker slots")
         seen[j.id] = j
     end
@@ -191,6 +195,67 @@ function M.test_hwatu_evaluate_hongdan_x2()
     local skipped = hwatu.evaluate(no_hd, state)
     assert(skipped.chips == base_no.chips)
     assert(skipped.mult == base_no.mult)
+    assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
+end
+
+function M.test_catalog_loads_yaku()
+    local j = catalog.get("godori_chips")
+    assert(j, "godori_chips joker in catalog")
+    assert(j.trigger == "yaku")
+    assert(j.yaku_need == "godori")
+    assert((j.effect.chips or 0) == 100)
+end
+
+function M.test_apply_godori_chips_when_yaku_is_godori()
+    local chips, mult, triggered = catalog.apply({
+        chips = 62,
+        mult = 2,
+        yaku = { "godori" },
+        hand = cards("godori", "godori", "godori", "pi", "pi"),
+        state = { gwang = { { kind = "gwang", identity = "godori_chips" } } },
+    })
+    assert(chips == 162, "godori yaku +100 chips, got " .. tostring(chips))
+    assert(mult == 2, "godori_chips does not change mult")
+    assert(#triggered == 1)
+    assert(triggered[1].id == "godori_chips")
+end
+
+function M.test_apply_godori_chips_skips_without_godori_yaku()
+    -- 1 godori in hand is not the godori yaku (needs 3).
+    local chips, mult, triggered = catalog.apply({
+        chips = 32,
+        mult = 2,
+        yaku = { "hongdan" },
+        hand = cards("hongdan", "hongdan", "hongdan", "godori", "pi"),
+        state = { gwang = { { identity = "godori_chips" } } },
+    })
+    assert(chips == 32, "no godori yaku → no +100, got " .. tostring(chips))
+    assert(mult == 2)
+    assert(#triggered == 0)
+end
+
+function M.test_hwatu_evaluate_godori_chips()
+    local godori_hand = cards("godori", "godori", "godori", "pi", "pi")
+    local hongdan_hand = cards("hongdan", "hongdan", "hongdan", "pi", "pi")
+    local state = run.new()
+    state.gwang = { { kind = "gwang", identity = "godori_chips" } }
+
+    local base_g = hwatu.evaluate(godori_hand)
+    -- 3*20 + 2*1 = 62 chips, godori yaku mult 2
+    assert(base_g.chips == 62)
+    assert(base_g.mult == 2)
+    assert(base_g.yaku[1] == "godori")
+    local with = hwatu.evaluate(godori_hand, state)
+    assert(with.chips == 162, "evaluate applies yaku +100 chips, got " .. tostring(with.chips))
+    assert(with.mult == 2)
+    assert(with.score == 162 * 2)
+    assert(with.gwang_triggers and #with.gwang_triggers == 1)
+    assert(with.gwang_triggers[1].id == "godori_chips")
+
+    local base_h = hwatu.evaluate(hongdan_hand)
+    local skipped = hwatu.evaluate(hongdan_hand, state)
+    assert(skipped.chips == base_h.chips)
+    assert(skipped.mult == base_h.mult)
     assert(not skipped.gwang_triggers or #skipped.gwang_triggers == 0)
 end
 

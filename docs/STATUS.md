@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-08 — 광 조커 yaku 트리거 (`game/gwang_catalog.lua`)
+
+- `game/data/gwang_jokers.json`: `godori_chips` / `hongdan_chips` (`trigger=yaku`, `yaku_need`, `effect.chips` +100/+50).
+- `game/gwang_catalog.lua` `apply(ctx)`: `always` / `contains_kind` unchanged; `yaku` fires when `ctx.yaku` includes `yaku_need` (고도리 치면 +100칩). One godori in hand without the yaku is a no-op.
+- `game/hwatu.lua` already passes `yaku` into catalog apply; evaluate reports `gwang_triggers` for the fired identity.
+- Tests in `game/tests/gwang_catalog.lua` GREEN (catalog load, apply with/without godori yaku, hwatu evaluate +100 / skip).
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK.
+- INBOX (21) yaku-trigger slice only. Economy/ante/self-destruct/compound and 30-joker catalog are not in this slice.
+- Next slice: INBOX (21) remaining — (d) 보유 조건 트리거 (덱 카드 수 ≤30이면 ×3) on `game/gwang_catalog.lua`.
+
 ## 2026-09-08 — 광 조커 contains_kind 트리거 (`game/gwang_catalog.lua`)
 
 - `game/data/gwang_jokers.json`: `hongdan_x2` / `cheongdan_x2` (`trigger=contains_kind`, `kind_need`, `effect.mult_mul=2`).

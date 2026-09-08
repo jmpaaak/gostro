@@ -1,5 +1,6 @@
 -- Gwang joker catalog: JSON identities + trigger apply loop.
--- Triggers this slice: always (+chips, +mult) and contains_kind (×mult if kind in hand).
+-- Triggers: always (+chips, +mult), contains_kind (×mult if kind in hand),
+-- yaku (+chips when scored yaku matches yaku_need).
 
 local M = {}
 
@@ -185,12 +186,27 @@ local function hand_has_kind(hand, kind)
     return false
 end
 
+local function yaku_has(yaku, need)
+    if type(yaku) ~= "table" or not need then
+        return false
+    end
+    for i = 1, #yaku do
+        if yaku[i] == need then
+            return true
+        end
+    end
+    return false
+end
+
 local function should_trigger(def, ctx)
     if def.trigger == "always" then
         return true
     end
     if def.trigger == "contains_kind" then
         return hand_has_kind(ctx.hand, def.kind_need)
+    end
+    if def.trigger == "yaku" then
+        return yaku_has(ctx.yaku, def.yaku_need)
     end
     return false
 end
@@ -213,6 +229,7 @@ end
 -- ctx = { chips, mult, yaku, state, hand }
 -- always: +chips / +mult every hand.
 -- contains_kind: fire when ctx.hand includes def.kind_need (e.g. hongdan → ×2).
+-- yaku: fire when ctx.yaku includes def.yaku_need (e.g. godori → +100 chips).
 function M.apply(ctx)
     local chips = ctx.chips or 0
     local mult = ctx.mult or 1

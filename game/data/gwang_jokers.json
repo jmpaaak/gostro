@@ -49,6 +49,24 @@
       "kind_need": "cheongdan",
       "effect": { "mult_mul": 2 },
       "desc": { "ko": "청단 있으면 ×2 배수", "en": "×2 mult if hand has cheongdan" }
+    },
+    {
+      "id": "godori_chips",
+      "name": { "ko": "고도리 칩", "en": "Godori Chips" },
+      "rarity": "uncommon",
+      "trigger": "yaku",
+      "yaku_need": "godori",
+      "effect": { "chips": 100 },
+      "desc": { "ko": "고도리 치면 +100 칩", "en": "+100 chips when scoring godori" }
+    },
+    {
+      "id": "hongdan_chips",
+      "name": { "ko": "홍단 칩", "en": "Hongdan Chips" },
+      "rarity": "uncommon",
+      "trigger": "yaku",
+      "yaku_need": "hongdan",
+      "effect": { "chips": 50 },
+      "desc": { "ko": "홍단 치면 +50 칩", "en": "+50 chips when scoring hongdan" }
     }
   ]
 }
