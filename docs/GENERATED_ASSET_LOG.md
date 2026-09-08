@@ -144,3 +144,7 @@
 | 2026-09-09T07:16:47+0900 | `assets/masters/gwang/pi-chips-kind-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
 | 2026-09-09T07:16:47+0900 | `assets/runtime/gwang/pi-chips-kind-v1.png` | 56x32 runtime 피 잔칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T07:16:47+0900 | `assets/runtime/ui/gwang-pi-chips-kind-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 피 잔칩 gwang in all five slots; SHA-256 `58d843d6c3e6271c0e7c9186583adc307dd8b8c82e1936c70f2bc75d7948a63d` |
+| 2026-09-09T07:29:43+0900 | `assets/masters/gwang/godori-chips-v1.svg` | Project-authored high-resolution 고도리 칩 gwang vector source with teal Korean lacquer, three abstract bird wings, and a three-tier jade chip stack |
+| 2026-09-09T07:29:43+0900 | `assets/masters/gwang/godori-chips-v1.png` | Preserved 448x256 RGBA raster master generated from the vector source |
+| 2026-09-09T07:29:43+0900 | `assets/runtime/gwang/godori-chips-v1.png` | 56x32 runtime 고도리 칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T07:29:43+0900 | `assets/runtime/ui/gwang-godori-chips-slots-love-v1.png` | 320x180 LÖVE-rendered slot QA capture proving the manifest-backed 고도리 칩 gwang in all five slots; SHA-256 `811f5d993ad9313720db3bac3a17fe96c30f556c50914ba593f9506ca6f9f686` |
