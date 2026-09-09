@@ -1,39 +1,10 @@
 # STATUS
-- Previous cycle left uncommitted `conf.lua` + `tools/qa_conf.lua` that disabled window/graphics for all QA, breaking `make font-test` (`LÖVE graphics is required to load fonts`).
-- Root `conf.lua` still disables window/graphics for `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP` so unit/smoke stay windowless.
-- Isolated font/capture packages copy `tools/qa_conf.lua`, which now keeps a 1x1 offscreen window with graphics enabled (OpenGL context) instead of `t.window=false`.
-- To completely hide the Dock icon when launching the QA offscreen window on macOS, `tools/run_love_qa.sh` and `loop/bin/love` now clone `love.app` to `build/qa_app/love-qa.app` with `LSUIElement=true`.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (835 files).
+## 2026-09-09 — Batch capture QA so verify finishes under 120s
+- Preflight FAIL was `make verify LOVE=/Users/jm/.local/bin/love` timing out after 120s, not a unit assertion.
+- Sequential Love launches for shop-pack, gwang-slot, tag, and blind-card captures exceeded the cycle preflight budget.
+- Each of those QA mains now writes all variants in one process via `*_QA_OUTDIR`; Makefile uses one launch per target.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN in 41.43s: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (834 files).
 - Next slice: INBOX의 다음 우선순위 항목 진행
-
-## 2026-09-09 — QA offscreen window stays 1x1
-
-- Previous cycle left uncommitted `game/tests/offscreen_window.lua`; it failed because `minimizeWindow(320, 180)` resized the visible Love window to the capture canvas.
-- `game/qa/offscreen_window.lua` now always `setMode(1, 1)` offscreen/borderless/minimized and ignores capture size.
-- Wired `game/tests/offscreen_window.lua` from `game/self_test.lua`.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (835 files).
-- Next slice: INBOX의 다음 우선순위 항목 진행
-
-## 2026-09-09 — 패배 효과 고해상도 픽셀 에셋 적용
-
-- `ui.effect_loss`에 960×540 한국 화투 패배 베일 PNG master와 320×180 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 기존 `game/ui/effect_art.lua`에 `draw_loss` 계약을 추가하고 플레이 씬 패배 상태의 하드코딩된 텍스트를 배선했다.
-- 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 627개 파일이다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.deck_blue` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 덱 선택 UI에 적용한다.
-
-## 2026-09-09 — 승리 효과 고해상도 픽셀 에셋 적용
-- `ui.effect_win`에 960×540 한국 화투 승리 광선 PNG master와 320×180 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 기존 `game/ui/effect_art.lua`에 `draw_win` 계약을 추가하고 플레이 씬 승리 상태의 하드코딩된 텍스트를 배선했다.
-- 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 621개 파일이다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.effect_loss` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 패배 효과에 적용한다.
 
 ## 2026-09-09 — 잠금 효과 고해상도 픽셀 에셋 적용
 - `ui.effect_lock`에 384×480 황동 자물쇠 PNG master와 16×20 runtime 에셋을 추가했다.

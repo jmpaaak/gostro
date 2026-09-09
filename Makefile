@@ -60,28 +60,7 @@ blind-card-qa:
 		assets/runtime/boss-blind/goad-v1.png assets/runtime/boss-blind/plant-v1.png \
 		"$(BUILD_DIR)/blind-card-qa/assets/runtime/boss-blind/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/blind-card-qa/assets/fonts/"
-	BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-round-cards-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=wall \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-wall-card-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=flint \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-flint-card-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=mark \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-mark-card-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=fish \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-fish-card-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=psychic \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-psychic-card-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=goad \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-goad-card-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
-	BLIND_CARD_QA_BOSS=plant \
-		BLIND_CARD_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/blind-plant-card-love-v1.png" \
+	BLIND_CARD_QA_OUTDIR="$(CURDIR)/assets/runtime/ui" \
 		$(LOVE_QA) "$(BUILD_DIR)/blind-card-qa"
 
 shop-pack-qa:
@@ -116,88 +95,8 @@ shop-pack-qa:
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui"
 	@cp assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
-	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
+	SHOP_PACK_QA_OUTDIR="$(CURDIR)/assets/runtime/ui" \
 		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	SHOP_QA_KIND=voucher \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=wasteful \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-wasteful-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=grabber \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-grabber-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=overstock \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-overstock-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=reroll_surplus \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-reroll-surplus-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-reroll-surplus-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=clearance_sale \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-clearance-sale-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-clearance-sale-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=seed_money \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-seed-money-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-seed-money-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=antimatter \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-antimatter-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-antimatter-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=crystal_ball \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-crystal-ball-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-crystal-ball-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=hone \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-hone-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-hone-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=directors_cut \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-directors-cut-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-directors-cut-love-v1.png"
-	SHOP_QA_KIND=voucher SHOP_QA_VOUCHER=money_tree \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-money-tree-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-money-tree-love-v1.png"
-	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_hongdan \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-hongdan-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-hongdan-love-v1.png"
-	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_cheongdan \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-cheongdan-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-cheongdan-love-v1.png"
-	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_chodan \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-chodan-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-chodan-love-v1.png"
-	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_godori \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-godori-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-godori-love-v1.png"
-	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_pi \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-pi-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-pi-love-v1.png"
-	SHOP_QA_KIND=tarot SHOP_QA_TAROT=the_magician \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-magician-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-magician-love-v1.png"
-	SHOP_QA_KIND=tarot SHOP_QA_TAROT=the_hanged_man \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-hanged-man-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-hanged-man-love-v1.png"
-	SHOP_QA_KIND=tarot SHOP_QA_TAROT=the_chariot \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-chariot-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-chariot-love-v1.png"
-	SHOP_QA_KIND=tarot SHOP_QA_TAROT=the_lovers \
-		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-lovers-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/shop-pack-qa"
-	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-lovers-love-v1.png"
 
 pack-panel-qa:
 	@rm -rf "$(BUILD_DIR)/pack-panel-qa"
@@ -289,63 +188,7 @@ gwang-slot-qa:
 		assets/runtime/gwang/once-x20-v1.png assets/runtime/gwang/once-chips-v1.png \
 		assets/runtime/gwang/compound-v1.png \
 		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
-	GWANG_QA_IDENTITY="chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-mult-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="always_mult_small" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-mult-small-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="always_chips_small" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-chips-small-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="always_chips_mid" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-chips-mid-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="always_mult_mid" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-always-mult-mid-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="hongdan_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-hongdan-x2-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="cheongdan_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-cheongdan-x2-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="chodan_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chodan-x2-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="godori_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-godori-x2-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="pi_chips_kind" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-pi-chips-kind-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="godori_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-godori-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="hongdan_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-hongdan-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="cheongdan_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-cheongdan-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="chodan_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chodan-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="pi_yaku_mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-pi-yaku-mult-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="thin_deck_x3" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-thin-deck-x3-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="tiny_deck_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-tiny-deck-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="lean_deck_mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-lean-deck-mult-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="rich_mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-rich-mult-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="loaded_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-loaded-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="wealthy_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-wealthy-x2-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="boss_x2" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-boss-x2-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="boss_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-boss-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="small_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-small-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="big_mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-big-mult-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="once_x20" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-once-x20-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="once_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-once-chips-slots-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
-	GWANG_QA_IDENTITY="compound" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-compound-slots-love-v1.png" \
+	GWANG_SLOT_QA_OUTDIR="$(CURDIR)/assets/runtime/ui" \
 		$(LOVE_QA) "$(BUILD_DIR)/gwang-slot-qa"
 
 score-icon-qa:
@@ -561,42 +404,8 @@ tag-qa:
 	@cp assets/manifest.json "$(BUILD_DIR)/tag-qa/assets/"
 	@cp assets/runtime/tag/coupon-v1.png assets/runtime/tag/investment-v1.png assets/runtime/tag/handy-v1.png assets/runtime/tag/economy-v1.png assets/runtime/tag/mega-v1.png assets/runtime/tag/foil-v1.png assets/runtime/tag/hologram-v1.png assets/runtime/tag/polychrome-v1.png assets/runtime/tag/charm-v1.png assets/runtime/tag/uncommon-v1.png assets/runtime/tag/juggle-v1.png assets/runtime/tag/d6-v1.png "$(BUILD_DIR)/tag-qa/assets/runtime/tag/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/tag-qa/assets/fonts/"
-	TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-coupon-love-v1.png" \
+	TAG_QA_OUTDIR="$(CURDIR)/assets/runtime/ui" \
 		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK coupon 320x180 $(CURDIR)/assets/runtime/ui/tag-coupon-love-v1.png"
-	TAG_QA_IDENTITY=investment TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-investment-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK investment 320x180 $(CURDIR)/assets/runtime/ui/tag-investment-love-v1.png"
-	TAG_QA_IDENTITY=handy TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-handy-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK handy 320x180 $(CURDIR)/assets/runtime/ui/tag-handy-love-v1.png"
-	TAG_QA_IDENTITY=economy TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-economy-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK economy 320x180 $(CURDIR)/assets/runtime/ui/tag-economy-love-v1.png"
-	TAG_QA_IDENTITY=mega TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-mega-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK mega 320x180 $(CURDIR)/assets/runtime/ui/tag-mega-love-v1.png"
-	TAG_QA_IDENTITY=foil TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-foil-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK foil 320x180 $(CURDIR)/assets/runtime/ui/tag-foil-love-v1.png"
-	TAG_QA_IDENTITY=hologram TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-hologram-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK hologram 320x180 $(CURDIR)/assets/runtime/ui/tag-hologram-love-v1.png"
-	TAG_QA_IDENTITY=polychrome TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-polychrome-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK polychrome 320x180 $(CURDIR)/assets/runtime/ui/tag-polychrome-love-v1.png"
-	TAG_QA_IDENTITY=charm TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-charm-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK charm 320x180 $(CURDIR)/assets/runtime/ui/tag-charm-love-v1.png"
-	TAG_QA_IDENTITY=uncommon TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-uncommon-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK uncommon 320x180 $(CURDIR)/assets/runtime/ui/tag-uncommon-love-v1.png"
-	TAG_QA_IDENTITY=juggle TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-juggle-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK juggle 320x180 $(CURDIR)/assets/runtime/ui/tag-juggle-love-v1.png"
-	TAG_QA_IDENTITY=d6 TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-d6-love-v1.png" \
-		$(LOVE_QA) "$(BUILD_DIR)/tag-qa"
-	@echo "TAG_LOVE_QA_OK d6 320x180 $(CURDIR)/assets/runtime/ui/tag-d6-love-v1.png"
 
 foil-effect-qa:
 	@rm -rf "$(BUILD_DIR)/foil-effect-qa"
