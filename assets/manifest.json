@@ -2838,8 +2838,49 @@
     {
       "id": "ui.panel_glass",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.panel_glass"
+      "status": "runtime",
+      "name": "ui.panel_glass",
+      "master": {
+        "source": "assets/masters/ui/panel-glass-v1.png",
+        "sourceSha256": "6fee64141e88a3cab9c5d662cd3d04aceb5803543e578e9a717a0276086190a5",
+        "path": "assets/masters/ui/panel-glass-v1.png",
+        "width": 640,
+        "height": 368,
+        "sha256": "6fee64141e88a3cab9c5d662cd3d04aceb5803543e578e9a717a0276086190a5",
+        "provenance": "Project-authored high-resolution celadon glass overlay with najeon plum-blossom corners for 9-slice UI."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/panel-glass-v1.png",
+        "width": 80,
+        "height": 46,
+        "filter": "nearest",
+        "sha256": "c969a246dac5735fbac8a31a2b9d3eef460facc09a5124049d45650cb7e8caaf",
+        "alphaBounds": [
+          0,
+          0,
+          79,
+          45
+        ]
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 80,
+        "targetHeight": 46,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/panel-glass-v1.report.json",
+        "reportSha256": "9dcadb1e356139b79faa0ff4ae3a5c109faeacfc751bc402f9dd16d11156bf82"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.btn_primary",

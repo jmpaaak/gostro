@@ -47,14 +47,38 @@ def metal() -> Image.Image:
     return im
 
 
+def glass() -> Image.Image:
+    """Celadon glass overlay with najeon plum-blossom corners for 9-slice UI."""
+    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(im)
+    draw.rounded_rectangle((0, 14, W, H), radius=R, fill=(8, 18, 22, 90))
+    draw.rounded_rectangle((0, 0, W, H - 14), radius=R, fill=(62, 122, 120, 235))
+    draw.rounded_rectangle((14, 12, W - 14, H - 28), radius=36, fill=(72, 132, 128, 210))
+    for x in range(-40, W, 44):
+        draw.line((x, 24, x + 168, H - 40), fill=(210, 236, 228, 42), width=6)
+    draw.rounded_rectangle((28, 22, W - 28, 70), radius=18, fill=(186, 228, 220, 72))
+    draw.rounded_rectangle((22, 18, W - 22, H - 34), radius=28, outline=(214, 232, 236, 255), width=10)
+    draw.rounded_rectangle((40, 34, W - 40, H - 50), radius=16, outline=(28, 64, 68, 255), width=6)
+    for cx, cy in ((30, 28), (W - 30, 28), (30, H - 40), (W - 30, H - 40)):
+        for dx, dy in ((0, -16), (14, -6), (10, 12), (-10, 12), (-14, -6)):
+            draw.ellipse((cx + dx - 10, cy + dy - 10, cx + dx + 10, cy + dy + 10),
+                         fill=(236, 244, 240, 255))
+        draw.ellipse((cx - 8, cy - 8, cx + 8, cy + 8), fill=(196, 86, 92, 255))
+        draw.ellipse((cx - 3, cy - 3, cx + 3, cy + 3), fill=(255, 228, 160, 255))
+    return im
+
+
 def run() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     wood_path = OUT_DIR / "panel-wood-v1.png"
     metal_path = OUT_DIR / "panel-metal-v1.png"
+    glass_path = OUT_DIR / "panel-glass-v1.png"
     wood().save(wood_path)
     metal().save(metal_path)
+    glass().save(glass_path)
     print(f"Saved {wood_path}")
     print(f"Saved {metal_path}")
+    print(f"Saved {glass_path}")
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ local M = {}
 local IDS = {
     wood = "ui.panel_wood",
     metal = "ui.panel_metal",
+    glass = "ui.panel_glass",
 }
 
 local patch_cache = {}

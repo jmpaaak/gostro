@@ -84,7 +84,38 @@ function M.run()
         and metal_draws[1][3] == 210 and metal_draws[1][4] == 24,
         "metal panel must start at the requested scoreboard origin")
 
-    assert(panel_art.draw("glass", { x = 0, y = 0, w = 40, h = 40 }) == false,
+    assert(assets.runtime_path("ui.panel_glass") == "assets/runtime/ui/panel-glass-v1.png",
+        "glass panel must resolve through the runtime manifest")
+    local glass = assets.entry("ui.panel_glass")
+    assert(glass and glass.status == "runtime", "glass panel artwork must be promoted")
+    assert(glass.master.width == 640 and glass.master.height == 368,
+        "glass panel must preserve a 640x368 master")
+    assert(glass.runtime.width == 80 and glass.runtime.height == 46,
+        "glass panel runtime must be a 9-sliceable 80x46 tile")
+    assert(glass.runtime.filter == "nearest")
+    assert(glass.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+
+    local glass_draws = {}
+    graphics.draw = function(...) glass_draws[#glass_draws + 1] = { ... } end
+    local glass_texture = {
+        getWidth = function() return 80 end,
+        getHeight = function() return 46 end,
+        getDimensions = function() return 80, 46 end,
+    }
+    local drawn_glass = panel_art.draw("glass", { x = 12, y = 56, w = 296, h = 118 }, {
+        texture = function(id)
+            assert(id == "ui.panel_glass", "tarot overlay must request the glass panel")
+            return glass_texture
+        end,
+        graphics = graphics,
+    })
+    assert(drawn_glass, "runtime glass panel art must draw")
+    assert(#glass_draws == 9, "glass panel must 9-slice into nine patches")
+    assert(glass_draws[1][1] == glass_texture
+        and glass_draws[1][3] == 12 and glass_draws[1][4] == 56,
+        "glass panel must start at the requested tarot overlay origin")
+
+    assert(panel_art.draw("paper", { x = 0, y = 0, w = 40, h = 40 }) == false,
         "unknown panel kinds must not pretend to draw")
 
     assets.clear_cache()

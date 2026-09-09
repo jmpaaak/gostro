@@ -2,6 +2,8 @@
 -- Headless-safe tarot option and single-card target selection. This module
 -- builds a use request but deliberately never calls game.tarots.use.
 
+local panel_art = require("game.ui.panel_art")
+
 local M = {}
 
 local VIEWPORT_W = 320
@@ -238,10 +240,12 @@ function M.draw(flow, cards)
     if not flow or not love or not love.graphics then return end
     local view = M.view(flow, cards)
     local panel = view.panel_bounds
-    love.graphics.setColor(0.02, 0.025, 0.06, 0.96)
-    love.graphics.rectangle("fill", panel.x, panel.y, panel.w, panel.h, 5, 5)
-    love.graphics.setColor(0.72, 0.45, 0.92, 1)
-    love.graphics.rectangle("line", panel.x, panel.y, panel.w, panel.h, 5, 5)
+    if not panel_art.draw("glass", panel) then
+        love.graphics.setColor(0.02, 0.025, 0.06, 0.96)
+        love.graphics.rectangle("fill", panel.x, panel.y, panel.w, panel.h, 5, 5)
+        love.graphics.setColor(0.72, 0.45, 0.92, 1)
+        love.graphics.rectangle("line", panel.x, panel.y, panel.w, panel.h, 5, 5)
+    end
     love.graphics.setColor(1, 0.82, 0.35, 1)
     centered(view.title, panel, panel.y + 5, 0.9)
     love.graphics.setColor(0.72, 0.78, 0.88, 1)

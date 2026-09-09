@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa gwang-slot-qa score-icon-qa score-effect-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa gwang-slot-qa score-icon-qa score-effect-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -161,6 +161,20 @@ pack-panel-qa:
 	PACK_PANEL_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/pack-panel-wood-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/pack-panel-qa"
 
+glass-panel-qa:
+	@rm -rf "$(BUILD_DIR)/glass-panel-qa"
+	@mkdir -p "$(BUILD_DIR)/glass-panel-qa/game/ui" \
+		"$(BUILD_DIR)/glass-panel-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/glass-panel-qa/assets/fonts"
+	@cp tools/glass_panel_qa_main.lua "$(BUILD_DIR)/glass-panel-qa/main.lua"
+	@cp game/ui/tarot_target.lua game/ui/panel_art.lua "$(BUILD_DIR)/glass-panel-qa/game/ui/"
+	@cp game/asset_loader.lua "$(BUILD_DIR)/glass-panel-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/glass-panel-qa/assets/"
+	@cp assets/runtime/ui/panel-glass-v1.png "$(BUILD_DIR)/glass-panel-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/glass-panel-qa/assets/fonts/"
+	GLASS_PANEL_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/pack-panel-glass-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/glass-panel-qa"
+
 gwang-slot-qa:
 	@rm -rf "$(BUILD_DIR)/gwang-slot-qa"
 	@mkdir -p "$(BUILD_DIR)/gwang-slot-qa/game/ui" \
@@ -293,7 +307,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa gwang-slot-qa score-icon-qa score-effect-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa gwang-slot-qa score-icon-qa score-effect-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

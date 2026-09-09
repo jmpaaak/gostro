@@ -103,7 +103,7 @@
 - [ ] `ui.shop_bg` - ui.shop_bg
 - [x] `ui.panel_wood` - ui.panel_wood
 - [x] `ui.panel_metal` - ui.panel_metal
-- [ ] `ui.panel_glass` - ui.panel_glass
+- [x] `ui.panel_glass` - ui.panel_glass
 - [x] `ui.btn_primary` - ui.btn_primary
 - [x] `ui.btn_secondary` - ui.btn_secondary
 - [x] `ui.btn_danger` - ui.btn_danger
