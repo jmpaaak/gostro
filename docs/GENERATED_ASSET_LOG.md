@@ -356,3 +356,7 @@
 2026-09-09T16:32:00+0900 | assets/runtime/tag/investment-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T16:32:00+0900 | assets/runtime/tag/investment-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 7-color palette, alignment, and nearest-neighbor validation
 2026-09-09T16:32:00+0900 | assets/runtime/ui/tag-investment-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 거상 패찰; SHA-256 dece6dc9db5a3de8a37c501b5acef6d37421a5c5ae7e16845c9084a4dcfaabd3
+2026-09-09T16:34:05+0900 | assets/masters/tag/handy-v1.png | 재주꾼 패찰 (tag.handy) high-res procedural wooden plaque with a folding fan and leftover-hand coin; no people or month imagery
+2026-09-09T16:34:05+0900 | assets/runtime/tag/handy-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T16:34:05+0900 | assets/runtime/tag/handy-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T16:34:05+0900 | assets/runtime/ui/tag-handy-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 재주꾼 패찰; SHA-256 0b53ec3593940c0edcea6e00c8100eb92db107f773905f6ed2b919a37f3d3a67

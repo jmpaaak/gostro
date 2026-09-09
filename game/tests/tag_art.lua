@@ -37,6 +37,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "investment" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local handy_id = tag_art.asset_id({ kind = "tag", identity = "handy" })
+    assert(handy_id == "tag.handy", "재주꾼 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "handy" }) == "tag.handy",
+        "skip offers keyed by id must resolve 재주꾼 패찰")
+
+    local handy = assets.entry(handy_id)
+    assert(handy and handy.status == "runtime", "재주꾼 패찰 artwork must be promoted")
+    assert(handy.master.width == 256 and handy.master.height == 384,
+        "재주꾼 패찰 must preserve a 256x384 master")
+    assert(handy.runtime.width == 32 and handy.runtime.height == 48,
+        "재주꾼 패찰 runtime must fit its skip-tag slot")
+    assert(handy.runtime.filter == "nearest")
+    assert(handy.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(handy_id) == "assets/runtime/tag/handy-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "handy" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end
