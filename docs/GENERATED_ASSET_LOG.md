@@ -215,3 +215,7 @@
 | 2026-09-09T09:59:26+0900 | `assets/masters/gwang/compound-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T09:59:26+0900 | `assets/runtime/gwang/compound-v1.png` | 56×32 runtime 복합 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T10:01:23+0900 | `assets/runtime/ui/gwang-compound-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 복합 gwang in all five slots; SHA-256 `185344305884458e233d17560583b29419bd0fc963283e0e035652cb7e20c82a` |
+| 2026-09-09T10:50:28+0900 | `assets/masters/ui/icon-chip-v1.svg` | Project-authored high-resolution HUD chip vector source with blue mother-of-pearl lacquer, eight brass inlays, and a square-holed yeopjeon center |
+| 2026-09-09T10:50:28+0900 | `assets/masters/ui/icon-chip-v1.png` | Preserved 384×384 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T10:50:28+0900 | `assets/runtime/ui/icon-chip-v1.png` | 12×12 runtime score-chip icon from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T10:50:28+0900 | `assets/runtime/ui/score-icon-love-v1.png` | Actual LÖVE 11.5 320×180 scoreboard QA capture proving the manifest-backed chip icon beside the chips×mult line; SHA-256 `f12f66a69c3316444c908f8084b9682599b7b1688db1e97c79e155c61ac1063d` |

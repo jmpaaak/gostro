@@ -2,14 +2,14 @@
 
 ## boss-blind
 
-- [x] `boss-blind.hook` - 갈고리 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.wall` - 성벽 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.flint` - 부싯돌 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.mark` - 낙인 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.fish` - 물고기 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.psychic` - 영매 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.goad` - 몰이 (400×560 master → 50×70 runtime)
-- [x] `boss-blind.plant` - 초목 (400×560 master → 50×70 runtime)
+- [x] `boss-blind.hook` - 갈고리
+- [x] `boss-blind.wall` - 성벽
+- [x] `boss-blind.flint` - 부싯돌
+- [x] `boss-blind.mark` - 낙인
+- [x] `boss-blind.fish` - 물고기
+- [x] `boss-blind.psychic` - 영매
+- [x] `boss-blind.goad` - 몰이
+- [x] `boss-blind.plant` - 초목
 
 ## effect
 
@@ -19,40 +19,40 @@
 
 ## gwang
 
-- [x] `gwang.chips` - 칩 / Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.mult` - 배수 / Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.always_chips_small` - 잔칩 / Small Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.always_mult_small` - 잔배수 / Small Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.always_chips_mid` - 중칩 / Mid Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.always_mult_mid` - 중배수 / Mid Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.hongdan_x2` - 홍단 깃발 / Hongdan Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.cheongdan_x2` - 청단 깃발 / Cheongdan Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.chodan_x2` - 초단 깃발 / Chodan Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.godori_x2` - 고도리 깃발 / Godori Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.pi_chips_kind` - 피 잔칩 / Pi Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.godori_chips` - 고도리 칩 / Godori Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.hongdan_chips` - 홍단 칩 / Hongdan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.cheongdan_chips` - 청단 칩 / Cheongdan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.chodan_chips` - 초단 칩 / Chodan Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.pi_yaku_mult` - 피 족보 / Pi Yaku (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.thin_deck_x3` - 얇은 덱 / Thin Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.tiny_deck_chips` - 아주 얇은 덱 / Tiny Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.lean_deck_mult` - 날씬한 덱 / Lean Deck (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.rich_mult` - 부자 / Rich (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.loaded_chips` - 두둑한 지갑 / Loaded (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.wealthy_x2` - 갑부 / Wealthy (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.boss_x2` - 보스 배수 / Boss Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.boss_chips` - 보스 칩 / Final Round Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.small_chips` - 첫판 칩 / Opening Round Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.big_mult` - 큰판 배수 / Main Round Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.once_x20` - 일회성 / Once (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.once_chips` - 일회성 칩 / Once Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [x] `gwang.compound` - 복합 / Compound (448×256 master → 56×32 runtime; LÖVE slot QA)
+- [x] `gwang.chips` - {'ko': '칩', 'en': 'Chips'}
+- [x] `gwang.mult` - {'ko': '배수', 'en': 'Mult'}
+- [x] `gwang.always_chips_small` - {'ko': '잔칩', 'en': 'Small Chips'}
+- [x] `gwang.always_mult_small` - {'ko': '잔배수', 'en': 'Small Mult'}
+- [x] `gwang.always_chips_mid` - {'ko': '중칩', 'en': 'Mid Chips'}
+- [x] `gwang.always_mult_mid` - {'ko': '중배수', 'en': 'Mid Mult'}
+- [x] `gwang.hongdan_x2` - {'ko': '홍단 깃발', 'en': 'Hongdan Flag'}
+- [x] `gwang.cheongdan_x2` - {'ko': '청단 깃발', 'en': 'Cheongdan Flag'}
+- [x] `gwang.chodan_x2` - {'ko': '초단 깃발', 'en': 'Chodan Flag'}
+- [x] `gwang.godori_x2` - {'ko': '고도리 깃발', 'en': 'Godori Flag'}
+- [x] `gwang.pi_chips_kind` - {'ko': '피 잔칩', 'en': 'Pi Chips'}
+- [x] `gwang.godori_chips` - {'ko': '고도리 칩', 'en': 'Godori Chips'}
+- [x] `gwang.hongdan_chips` - {'ko': '홍단 칩', 'en': 'Hongdan Chips'}
+- [x] `gwang.cheongdan_chips` - {'ko': '청단 칩', 'en': 'Cheongdan Chips'}
+- [x] `gwang.chodan_chips` - {'ko': '초단 칩', 'en': 'Chodan Chips'}
+- [x] `gwang.pi_yaku_mult` - {'ko': '피 족보', 'en': 'Pi Yaku'}
+- [x] `gwang.thin_deck_x3` - {'ko': '얇은 덱', 'en': 'Thin Deck'}
+- [x] `gwang.tiny_deck_chips` - {'ko': '아주 얇은 덱', 'en': 'Tiny Deck'}
+- [x] `gwang.lean_deck_mult` - {'ko': '날씬한 덱', 'en': 'Lean Deck'}
+- [x] `gwang.rich_mult` - {'ko': '부자', 'en': 'Rich'}
+- [x] `gwang.loaded_chips` - {'ko': '두둑한 지갑', 'en': 'Loaded'}
+- [x] `gwang.wealthy_x2` - {'ko': '갑부', 'en': 'Wealthy'}
+- [x] `gwang.boss_x2` - {'ko': '보스 배수', 'en': 'Final Round Mult'}
+- [x] `gwang.boss_chips` - {'ko': '보스 칩', 'en': 'Final Round Chips'}
+- [x] `gwang.small_chips` - {'ko': '첫판 칩', 'en': 'Opening Round Chips'}
+- [x] `gwang.big_mult` - {'ko': '큰판 배수', 'en': 'Main Round Mult'}
+- [x] `gwang.once_x20` - {'ko': '일회성', 'en': 'Once'}
+- [x] `gwang.once_chips` - {'ko': '일회성 칩', 'en': 'Once Chips'}
+- [x] `gwang.compound` - {'ko': '복합', 'en': 'Compound'}
 - [ ] `gwang.compound_burst` - {'ko': '복합 폭주', 'en': 'Compound Burst'}
 
 ## pack
 
-- [x] `pack.arcana_pack` - 부적 꾸러미 (`assets/runtime/pack/talisman-bundle-v1.png`)
+- [x] `pack.arcana_pack` - 부적 꾸러미
 
 ## planet
 
@@ -63,14 +63,16 @@
 - [ ] `planet.planet_pi` - Pluto
 
 ## play-card
-- [x] `play-card.contact-sheet-v1` - play-card.contact-sheet-v1
-
 
 - [x] `play-card.pi` - play-card.pi
-- [x] `play-card.hongdan` - hongdan
-- [x] `play-card.cheongdan` - cheongdan
-- [x] `play-card.chodan` - chodan
-- [x] `play-card.godori` - godori
+- [x] `play-card.hongdan` - play-card.hongdan
+- [x] `play-card.cheongdan` - play-card.cheongdan
+- [x] `play-card.chodan` - play-card.chodan
+- [x] `play-card.godori` - play-card.godori
+
+## play-card-sheet
+
+- [x] `play-card.contact-sheet-v1` - play-card.contact-sheet-v1
 
 ## tag
 
@@ -106,7 +108,7 @@
 - [ ] `ui.btn_secondary` - ui.btn_secondary
 - [ ] `ui.btn_danger` - ui.btn_danger
 - [ ] `ui.btn_disabled` - ui.btn_disabled
-- [ ] `ui.icon_chip` - ui.icon_chip
+- [x] `ui.icon_chip` - ui.icon_chip
 - [ ] `ui.icon_mult` - ui.icon_mult
 - [ ] `ui.icon_money` - ui.icon_money
 - [ ] `ui.icon_deck` - ui.icon_deck
@@ -123,20 +125,20 @@
 - [ ] `ui.stake_white` - ui.stake_white
 - [ ] `ui.stake_red` - ui.stake_red
 - [ ] `ui.stake_green` - ui.stake_green
-- [x] `ui.blind_small` - 첫판 선택 카드 (400×560 master → 50×70 runtime)
-- [x] `ui.blind_big` - 큰판 선택 카드 (400×560 master → 50×70 runtime)
+- [x] `ui.blind_small` - first-round card
+- [x] `ui.blind_big` - big-round card
 
 ## voucher
 
-- [x] `voucher.paint_brush` - 명필의 인장 (`assets/runtime/voucher/paint-brush-v1.png`)
-- [x] `voucher.wasteful` - 호탕한 인장 (`assets/runtime/voucher/wasteful-v1.png`)
-- [x] `voucher.grabber` - 갈퀴 인장 (`assets/runtime/voucher/grabber-v1.png`)
-- [x] `voucher.overstock` - 만물상 인장 (`assets/runtime/voucher/overstock-v1.png`)
-- [x] `voucher.reroll_surplus` - 에누리 인장 (`assets/runtime/voucher/reroll-surplus-v1.png`)
-- [x] `voucher.clearance_sale` - 떨이 인장 (`assets/runtime/voucher/clearance-sale-v1.png`)
-- [x] `voucher.seed_money` - 밑천 인장 (`assets/runtime/voucher/seed-money-v1.png`)
-- [x] `voucher.antimatter` - 허공 인장 (`assets/runtime/voucher/antimatter-v1.png`)
-- [x] `voucher.crystal_ball` - 천리안 인장 (`assets/runtime/voucher/crystal-ball-v1.png`)
-- [x] `voucher.hone` - 벼림 인장 (`assets/runtime/voucher/hone-v1.png`)
-- [x] `voucher.directors_cut` - 판갈이 인장 (`assets/runtime/voucher/directors-cut-v1.png`)
+- [x] `voucher.paint_brush` - 명필의 인장
+- [x] `voucher.wasteful` - 호탕한 인장
+- [x] `voucher.grabber` - 갈퀴 인장
+- [x] `voucher.overstock` - 만물상 인장
+- [x] `voucher.reroll_surplus` - 에누리 인장
+- [x] `voucher.clearance_sale` - 세일
+- [x] `voucher.seed_money` - 밑천 인장
+- [x] `voucher.antimatter` - 허공 인장
+- [x] `voucher.crystal_ball` - 천리안 인장
+- [x] `voucher.hone` - 벼림 인장
+- [x] `voucher.directors_cut` - 판갈이 인장
 - [x] `voucher.money_tree` - 금맥 인장

@@ -1,5 +1,14 @@
 # STATUS
 
+## 2026-09-09 — 점수판 칩 아이콘 고해상도 픽셀 에셋 적용
+
+- `ui.icon_chip`에 384×384 청색 자개 칩·팔방 황동 상감·네모 구멍 엽전 중심의 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed 전용 draw 모듈로 점수판에 적용했다.
+- 독립 engine-hosted draw 계약 테스트와 실제 LÖVE 320×180 점수판 캡처 QA를 추가했다.
+- `gwang.compound_burst` sprite-gen은 재시도했으나 이번에는 Codex provider 인증 401로 생성되지 않았으며 정적 반복 프레임으로 대체하지 않았다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.icon_mult` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 점수판 배수 값 옆에 manifest-backed로 적용한다.
+
 ## 2026-09-09 — 플레이 카드 공유 시트 전환 복구
 
 - 승인된 5종 플레이 카드 후보를 개별 중복 runtime 대신 `play-card.contact-sheet-v1` 단일 runtime atlas와 셀 영역으로 승격했다.

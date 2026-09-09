@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 384 384">
+  <defs>
+    <radialGradient id="lacquer" cx="38%" cy="30%" r="72%">
+      <stop offset="0" stop-color="#68ddf2"/>
+      <stop offset="0.42" stop-color="#236e9f"/>
+      <stop offset="0.78" stop-color="#102e5d"/>
+      <stop offset="1" stop-color="#07172f"/>
+    </radialGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0a0"/>
+      <stop offset="0.32" stop-color="#dcae43"/>
+      <stop offset="0.67" stop-color="#8c5c1f"/>
+      <stop offset="1" stop-color="#f4cf68"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+  <circle cx="198" cy="210" r="146" fill="#020817" opacity=".72" filter="url(#shadow)"/>
+  <circle cx="192" cy="192" r="166" fill="#071226" stroke="#030817" stroke-width="12"/>
+  <circle cx="192" cy="192" r="146" fill="url(#lacquer)" stroke="#e9c75f" stroke-width="13"/>
+  <circle cx="192" cy="192" r="112" fill="none" stroke="#8ce5e8" stroke-width="8" stroke-dasharray="18 13"/>
+  <g fill="url(#brass)" stroke="#6c4217" stroke-width="4">
+    <path d="M175 39h34l10 43-27 18-27-18z"/>
+    <path d="M175 345h34l10-43-27-18-27 18z"/>
+    <path d="M39 175v34l43 10 18-27-18-27z"/>
+    <path d="M345 175v34l-43 10-18-27 18-27z"/>
+    <path d="M76 76l24-24 37 24-6 32-32 6z"/>
+    <path d="M308 76l-24-24-37 24 6 32 32 6z"/>
+    <path d="M76 308l24 24 37-24-6-32-32-6z"/>
+    <path d="M308 308l-24 24-37-24 6-32 32-6z"/>
+  </g>
+  <circle cx="192" cy="192" r="76" fill="#0a2448" stroke="#d9f4ed" stroke-width="8"/>
+  <circle cx="192" cy="192" r="60" fill="url(#brass)" stroke="#714719" stroke-width="7"/>
+  <path d="M158 158h68v68h-68z" fill="#061226" stroke="#fff0a0" stroke-width="8"/>
+  <path d="M171 174h42v10h-31v29h-11z" fill="#74e8ee"/>
+  <path d="M205 171h11v42h-42v-10h31z" fill="#277ca6"/>
+  <g fill="#eafcff" opacity=".9">
+    <circle cx="117" cy="145" r="7"/><circle cx="267" cy="145" r="7"/>
+    <circle cx="117" cy="239" r="7"/><circle cx="267" cy="239" r="7"/>
+  </g>
+</svg>

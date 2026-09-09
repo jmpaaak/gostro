@@ -7,6 +7,8 @@ local run = require("game.run")
 local M = {}
 
 function M.run()
+    require("game.tests.score_icon_art").run()
+
     -- new() returns a valid scoreboard state
     local sb = scoreboard.new()
     assert(sb.chips == 0, "initial chips == 0")

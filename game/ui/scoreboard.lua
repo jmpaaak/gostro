@@ -1,6 +1,8 @@
 -- game/ui/scoreboard.lua
 -- Scoreboard UI: chips × mult = total, progress bar, popup animation.
 
+local score_icon_art = require("game.ui.score_icon_art")
+
 local M = {}
 
 local VIEWPORT_W = 320
@@ -87,14 +89,18 @@ function M.draw(sb)
     love.graphics.rectangle("line", box_x, box_y, box_w, box_h, 3, 3)
 
     -- Chips × Mult line
+    local chips_x = box_x + 4
+    if score_icon_art.draw_chip(chips_x, box_y + 2, 12) then
+        chips_x = chips_x + 14
+    end
     love.graphics.setColor(0.6, 0.85, 1, 1)
     local chips_txt = tostring(sb.chips)
-    love.graphics.print(chips_txt, box_x + 4, box_y + 3)
+    love.graphics.print(chips_txt, chips_x, box_y + 3)
     love.graphics.setColor(0.8, 0.8, 0.8, 1)
-    love.graphics.print(" × ", box_x + 4 + font:getWidth(chips_txt), box_y + 3)
+    love.graphics.print(" × ", chips_x + font:getWidth(chips_txt), box_y + 3)
     love.graphics.setColor(1, 0.5, 0.3, 1)
     love.graphics.print(tostring(sb.mult),
-        box_x + 4 + font:getWidth(chips_txt .. " × "), box_y + 3)
+        chips_x + font:getWidth(chips_txt .. " × "), box_y + 3)
 
     -- Total score
     love.graphics.setColor(1, 1, 1, 1)
