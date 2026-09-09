@@ -223,32 +223,16 @@ function M.draw(sa, hand_cards)
         love.graphics.print(mult_txt, cx + 10, cy)
     end
 
-    -- Phase: total — countup
+    -- Phase: total — burst only. The counting number is owned by scoreboard.popup.
     if sa.phase == "total" or sa.phase == "done" then
         local cx = VIEWPORT_W / 2
         local cy = VIEWPORT_H / 2
-
-        local total_txt = tostring(sa.displayed_total)
-        -- Scale effect: start large, settle down
         local scale = 1
         if sa.phase == "total" then
             local ratio = math.min(1, sa.total_timer / M.TOTAL_DURATION)
             scale = 1.5 - 0.5 * ratio
         end
-
         effect_art.draw_score(cx, cy + fh / 2, scale, 0.9)
-
-        -- Shadow
-        love.graphics.setColor(0, 0, 0, 0.6)
-        love.graphics.print(total_txt,
-            cx - font:getWidth(total_txt) * scale / 2 + 1,
-            cy + 1, 0, scale, scale)
-
-        -- Main text (gold)
-        love.graphics.setColor(1, 0.95, 0.3, 1)
-        love.graphics.print(total_txt,
-            cx - font:getWidth(total_txt) * scale / 2,
-            cy, 0, scale, scale)
     end
 
     love.graphics.setColor(1, 1, 1, 1)

@@ -31,7 +31,7 @@ function M.set_target(sb, target)
     sb.target = target
 end
 
---- Record a hand result: chips × mult → adds to displayed_score, triggers popup.
+--- Record a hand result and wait for score_anim to drive the total timeline.
 function M.set_hand_result(sb, chips, mult)
     sb.chips = chips
     sb.mult = mult
@@ -54,22 +54,51 @@ function M.sync_anim(sb, anim)
     if anim.phase == "cards" then
         sb.display_chips = anim.chips_shown or 0
         sb.display_mult = 1
-    elseif anim.phase == "mult" then
+        return
+    end
+    if anim.phase == "mult" then
         sb.display_chips = sb.chips
         sb.display_mult = sb.mult
-    elseif anim.phase == "total" or anim.phase == "done" then
-        sb.display_chips = sb.chips
-        sb.display_mult = sb.mult
-        if sb.countup and sb.countup.waiting then
-            sb.countup.waiting = false
+        return
+    end
+    if anim.phase ~= "total" and anim.phase ~= "done" then
+        return
+    end
+
+    sb.display_chips = sb.chips
+    sb.display_mult = sb.mult
+    if sb.countup and sb.countup.waiting then
+        sb.countup.waiting = false
+    end
+
+    local live = anim.phase == "total"
+    local driven = anim.displayed_total ~= nil
+    if sb.countup and driven then
+        sb.countup.driven = true
+        if live then
+            sb.displayed_score = sb.countup.from + anim.displayed_total
+        else
+            sb.displayed_score = sb.countup.to
+            sb.countup = nil
         end
-        if anim.phase == "done" and not sb.popup then
-            sb.popup = {
-                value = sb.chips * sb.mult,
-                timer = POPUP_DURATION,
-                text = M.format_score_text(sb.chips, sb.mult),
-            }
-        end
+    end
+
+    local value
+    if driven and live then
+        value = anim.displayed_total
+    else
+        value = sb.chips * sb.mult
+    end
+    if not sb.popup then
+        sb.popup = {
+            value = value,
+            timer = POPUP_DURATION,
+            text = M.format_score_text(sb.chips, sb.mult),
+            live = live,
+        }
+    else
+        sb.popup.live = live
+        sb.popup.value = value
     end
 end
 
@@ -102,15 +131,16 @@ function M.set_preview(sb, preview)
     sb.preview = preview
 end
 
---- Tick popup timer.
+--- Fade the popup after the shared clock finishes. Stub anims without
+--- displayed_total still tick an independent countup.
 function M.update(sb, dt)
-    if sb.popup then
+    if sb.popup and not sb.popup.live then
         sb.popup.timer = sb.popup.timer - dt
         if sb.popup.timer <= 0 then
             sb.popup = nil
         end
     end
-    if sb.countup and not sb.countup.waiting then
+    if sb.countup and not sb.countup.waiting and not sb.countup.driven then
         sb.countup.timer = sb.countup.timer + dt
         local ratio = math.min(1, sb.countup.timer / sb.countup.duration)
         local eased = 1 - (1 - ratio) * (1 - ratio)

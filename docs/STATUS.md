@@ -1,4 +1,11 @@
 # STATUS
+## 2026-09-10 — Scoreboard and center popup share one timeline
+- `scoreboard.sync_anim` derives both the running blind tally and center popup value from `score_anim.displayed_total`.
+- The popup remains live throughout the total phase and starts its fade timer only after the animation reaches done.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (43) moved to 처리 완료.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Discarded cards slide off to the right
 - Selected discards slide off-screen to the right (`hand.start_discard_slide`) before the engine redeals.
 - Play scene waits for the slide, then consumes the discard and refills the fan.

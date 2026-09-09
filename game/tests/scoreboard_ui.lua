@@ -40,21 +40,20 @@ function M.run()
     scoreboard.sync_anim(sb, { phase = "mult" })
     assert(sb.display_chips == 50 and sb.display_mult == 2)
 
-    scoreboard.sync_anim(sb, { phase = "total" })
+    scoreboard.sync_anim(sb, { phase = "total", displayed_total = 0 })
     assert(sb.countup.waiting == false)
-    scoreboard.update(sb, 10)
+    assert(sb.popup and sb.popup.live == true)
+    scoreboard.sync_anim(sb, { phase = "done", displayed_total = 100 })
     assert(sb.displayed_score == 100, "countup settles on the scored total")
     assert(sb.countup == nil)
 
-    scoreboard.sync_anim(sb, { phase = "done" })
     assert(sb.popup ~= nil, "popup created")
     assert(sb.popup.value == 100, "popup value matches score")
     assert(sb.popup.timer > 0, "popup timer starts positive")
 
     -- accumulate: add more hand results
     scoreboard.set_hand_result(sb, 30, 3)
-    scoreboard.sync_anim(sb, { phase = "total" })
-    scoreboard.update(sb, 10)
+    scoreboard.sync_anim(sb, { phase = "done", displayed_total = 90 })
     assert(sb.displayed_score == 190, "100 + 30×3 = 190")
 
     -- progress_ratio: score vs target
@@ -64,8 +63,7 @@ function M.run()
 
     -- progress clamped at 1.0 when score >= target
     scoreboard.set_hand_result(sb, 200, 1)
-    scoreboard.sync_anim(sb, { phase = "total" })
-    scoreboard.update(sb, 10)
+    scoreboard.sync_anim(sb, { phase = "done", displayed_total = 200 })
     ratio = scoreboard.progress_ratio(sb)
     assert(ratio == 1.0, "clamped at 1.0 when over target")
     assert(sb.displayed_score == 390, "total 390")
@@ -86,7 +84,7 @@ function M.run()
     -- update ticks popup timer down
     scoreboard.set_target(sb, 300)
     scoreboard.set_hand_result(sb, 10, 1)
-    scoreboard.sync_anim(sb, { phase = "done" })
+    scoreboard.sync_anim(sb, { phase = "done", displayed_total = 10 })
     assert(sb.popup ~= nil)
     local initial_timer = sb.popup.timer
     scoreboard.update(sb, 0.5)

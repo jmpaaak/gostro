@@ -10,6 +10,11 @@
 
 ## 처리 완료
 
+(43) **발라트로급 칩 카운트업·중앙 팝업 한 타임라인** (msg `1547290362782031952`)
+  - 담당: `game/ui/scoreboard.lua`, `game/ui/score_anim.lua`.
+  - 점수판 합계와 중앙 팝업이 같은 `score_anim` 시계를 따른다. `play.lua`는 위임만.
+  - 완료: 한 타임라인, `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
+
 (42) **발라트로급 버리기 패가 옆으로 빠짐** (msg `1547290362782031952`)
   - 담당: `game/ui/hand.lua`, `game/scenes/play.lua`.
   - 버리기 시 선택한 패가 오른쪽으로 미끄러진 뒤 손패를 다시 깔음.
