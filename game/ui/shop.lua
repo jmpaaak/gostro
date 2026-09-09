@@ -3,6 +3,7 @@
 
 local terms = require("game.terms")
 local pack_art = require("game.ui.pack_art")
+local planet_art = require("game.ui.planet_art")
 local voucher_art = require("game.ui.voucher_art")
 local score_icon_art = require("game.ui.score_icon_art")
 
@@ -240,22 +241,26 @@ function M.draw(s)
 
         if card and not card.sold then
             if card.kind == "planet" or card.kind == "tarot" then
-                love.graphics.setColor(0.3, 0.4, 0.7, 1)
-                love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
-                love.graphics.setColor(0.5, 0.6, 1.0, 1)
-                love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
+                local has_planet = card.kind == "planet"
+                    and planet_art.draw(card, p.x, p.y, p.w, p.h)
+                if not has_planet then
+                    love.graphics.setColor(0.3, 0.4, 0.7, 1)
+                    love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
+                    love.graphics.setColor(0.5, 0.6, 1.0, 1)
+                    love.graphics.rectangle("line", p.x, p.y, p.w, p.h, 3, 3)
 
-                love.graphics.setColor(1, 1, 1, 1)
-                local sym = "●"
-                local sw = font:getWidth(sym)
-                love.graphics.print(sym, p.x + math.floor((p.w - sw) / 2), p.y + 6)
-                
-                local nw = font:getWidth(view.label)
-                love.graphics.setColor(0.9, 0.9, 1, 1)
-                local scale = math.min(1, (p.w - 4) / math.max(1, nw))
-                love.graphics.print(view.label,
-                    p.x + math.floor((p.w - nw * scale) / 2),
-                    p.y + 6 + fh + 2, 0, scale, scale)
+                    love.graphics.setColor(1, 1, 1, 1)
+                    local sym = "●"
+                    local sw = font:getWidth(sym)
+                    love.graphics.print(sym, p.x + math.floor((p.w - sw) / 2), p.y + 6)
+
+                    local nw = font:getWidth(view.label)
+                    love.graphics.setColor(0.9, 0.9, 1, 1)
+                    local scale = math.min(1, (p.w - 4) / math.max(1, nw))
+                    love.graphics.print(view.label,
+                        p.x + math.floor((p.w - nw * scale) / 2),
+                        p.y + 6 + fh + 2, 0, scale, scale)
+                end
             elseif card.kind == "pack" or card.kind == "voucher" then
                 local is_voucher = card.kind == "voucher"
                 local has_art = is_voucher

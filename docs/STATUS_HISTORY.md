@@ -1605,3 +1605,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 661개 파일이다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
 - Next slice: `ui.stake_green` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 난이도 선택 UI에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 14:47)
+
+## 2026-09-09 — 푸른 난이도 칩 고해상도 픽셀 에셋 적용
+
+- `ui.stake_green`에 384×384 옻칠 비취색 화투 난이도 칩 PNG master와 16×16 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 기존 `game/ui/stake_art.lua`에 `draw_green` 계약을 두고 새 게임 설정의 잠긴 푸른 인장 행에 배선했다.
+- 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: 나머지 그래픽 요소(팩 개봉, 보스 애니메이션 등) 중 하나를 선택해 진행한다.

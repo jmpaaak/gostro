@@ -32,10 +32,21 @@ function love.load()
         directors_cut = "판갈이 인장",
         money_tree = "금맥 인장",
     }
-    local item = kind == "voucher"
-        and { kind = "voucher", identity = voucher_identity,
+    local planet_identity = os.getenv("SHOP_QA_PLANET") or "planet_hongdan"
+    local planet_names = {
+        planet_hongdan = "주작 기원패",
+        hongdan = "주작 기원패",
+    }
+    local item
+    if kind == "voucher" then
+        item = { kind = "voucher", identity = voucher_identity,
             name = assert(voucher_names[voucher_identity]), price = 10 }
-        or { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 }
+    elseif kind == "planet" then
+        item = { kind = "planet", identity = planet_identity,
+            name = assert(planet_names[planet_identity]), price = 3 }
+    else
+        item = { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 }
+    end
     shop.draw({
         money = 12,
         cards = {
