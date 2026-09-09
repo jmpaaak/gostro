@@ -2,13 +2,15 @@
 -- Balatro-style bottom-center play/discard buttons with hand/discard counts.
 -- Touch tap + keyboard shortcuts (space = play, d = discard).
 
+local score_icon_art = require("game.ui.score_icon_art")
+
 local M = {}
 
 local VIEWPORT_W = 320
 local VIEWPORT_H = 180
 
 -- Button dimensions
-M.BUTTON_W = 52
+M.BUTTON_W = 58
 M.BUTTON_H = 18
 
 -- Layout: two buttons centred at bottom, 8px gap between them
@@ -117,10 +119,10 @@ function M.draw(ab)
 
     -- Play text
     local play_txt = M.display_text(ab, "play")
-    local ptw = font:getWidth(play_txt)
+    score_icon_art.draw_hand(M.PLAY_X + 3, M.BUTTON_Y + 3, 12)
     love.graphics.setColor(1, 1, 1, ab.play_enabled and 1 or 0.4)
     love.graphics.print(play_txt,
-        M.PLAY_X + math.floor((M.BUTTON_W - ptw) / 2),
+        M.PLAY_X + 17,
         M.BUTTON_Y + math.floor((M.BUTTON_H - fh) / 2))
 
     -- Discard button (red)
@@ -134,10 +136,10 @@ function M.draw(ab)
 
     -- Discard text
     local dis_txt = M.display_text(ab, "discard")
-    local dtw = font:getWidth(dis_txt)
+    score_icon_art.draw_discard(M.DISCARD_X + 3, M.BUTTON_Y + 3, 12)
     love.graphics.setColor(1, 1, 1, ab.discard_enabled and 1 or 0.4)
     love.graphics.print(dis_txt,
-        M.DISCARD_X + math.floor((M.BUTTON_W - dtw) / 2),
+        M.DISCARD_X + 17,
         M.BUTTON_Y + math.floor((M.BUTTON_H - fh) / 2))
 
     -- Reset color

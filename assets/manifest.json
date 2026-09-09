@@ -2998,8 +2998,49 @@
     {
       "id": "ui.icon_hand",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.icon_hand"
+      "status": "runtime",
+      "name": "ui.icon_hand",
+      "master": {
+        "source": "assets/masters/ui/icon-hand-v1.svg",
+        "sourceSha256": "fd7f5f55f31d18583298de6a9b312e63b943563a406ac8af4a82abee5546841a",
+        "path": "assets/masters/ui/icon-hand-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "c3f5f6cb3f1097179892c37c0c21b903c8d41cd8a1ae2cfce7421c72c4b93c83",
+        "provenance": "Project-authored high-resolution master: three fanned geometric hwatu card backs held by a brass grip, using no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/icon-hand-v1.png",
+        "width": 12,
+        "height": 12,
+        "alphaBounds": [
+          1,
+          0,
+          11,
+          11
+        ],
+        "sha256": "a898b9b0f60665db59953aaad3bce81a3f09f320b38f34215a5de97a4e1bffd1",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 12,
+        "targetHeight": 12,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/icon-hand-v1.report.json",
+        "reportSha256": "aabfaadd91745380ee2300af95cb8eb93450c2769c7bc70f63439d641d0eda2c"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.effect_select",

@@ -72,6 +72,22 @@ function M.run()
     assert(call_discard and call_discard[1] == texture and call_discard[2] == 46 and call_discard[3] == 9,
         "discard art must draw at the requested HUD position")
 
+    assert(assets.runtime_path("ui.icon_hand") == "assets/runtime/ui/icon-hand-v1.png",
+        "hand icon must resolve through the runtime manifest")
+
+    local call_hand
+    local drawn_hand = art.draw_hand(59, 9, 12, {
+        set_color = function() end,
+        draw = function(...) call_hand = { ... } end,
+    }, function(id)
+        assert(id == "ui.icon_hand", "hand HUD must request the hand icon")
+        return texture
+    end)
+
+    assert(drawn_hand, "runtime hand art must draw")
+    assert(call_hand and call_hand[1] == texture and call_hand[2] == 59 and call_hand[3] == 9,
+        "hand art must draw at the requested HUD position")
+
     print("  score_icon_art: OK")
 end
 

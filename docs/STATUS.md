@@ -1,5 +1,13 @@
 # STATUS
 
+## 2026-09-09 — 남은 손 아이콘 고해상도 픽셀 에셋 적용
+
+- `ui.icon_hand`에 세 장의 기하학 화투패를 부채꼴로 쥔 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed `score_icon_art.draw_hand` 계약을 추가했다.
+- 실제 플레이/버리기 버튼에 남은 손/버리기 아이콘을 배선했고 LÖVE 320×180 캡처에서 버튼 배치를 검증했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.effect_select` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
+
 ## 2026-09-09 — 버리기 아이콘 고해상도 픽셀 에셋 적용
 
 - `ui.icon_discard`에 화투패가 대나무 버림패 함으로 떨어지는 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.

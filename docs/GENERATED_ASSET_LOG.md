@@ -235,3 +235,8 @@
 2026-09-09T11:25:02+0900 | assets/runtime/ui/icon-discard-v1.png | 12x12 runtime discard icon from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5.
 2026-09-09T11:25:02+0900 | assets/runtime/ui/icon-discard-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 36-color palette, alignment, and nearest-neighbor validation.
 2026-09-09T11:25:02+0900 | assets/runtime/ui/score-icon-love-v1.png | Actual LÖVE 11.5 320x180 HUD QA capture proving the manifest-backed discard icon; SHA-256 a5e6c39b695861f7961fe4e6eeea6fab62f2329a877c427099b742b7e78c1489.
+2026-09-09T11:35:29+0900 | assets/masters/ui/icon-hand-v1.svg | Project-authored high-resolution hand icon vector source with three fanned geometric hwatu card backs and a brass grip.
+2026-09-09T11:35:29+0900 | assets/masters/ui/icon-hand-v1.png | Preserved 384x384 RGBA raster master rendered directly from the vector source.
+2026-09-09T11:35:29+0900 | assets/runtime/ui/icon-hand-v1.png | 12x12 runtime hand icon from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5.
+2026-09-09T11:35:29+0900 | assets/runtime/ui/icon-hand-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 59-color palette, alignment, and nearest-neighbor validation.
+2026-09-09T11:35:29+0900 | assets/runtime/ui/score-icon-love-v1.png | Actual LÖVE 11.5 320x180 HUD and action-button QA capture proving the manifest-backed hand icon with no button overlap; SHA-256 4024192e22732986e96986d47a290bcb1490a0a00c2637ad5a8ba3ee8277866b.

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 384 384">
+  <defs>
+    <linearGradient id="ivory" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff9dc"/>
+      <stop offset="0.58" stop-color="#eadba9"/>
+      <stop offset="1" stop-color="#b99355"/>
+    </linearGradient>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ed4050"/>
+      <stop offset="0.55" stop-color="#a8162d"/>
+      <stop offset="1" stop-color="#4d0b20"/>
+    </linearGradient>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#68d89b"/>
+      <stop offset="0.55" stop-color="#197253"/>
+      <stop offset="1" stop-color="#073a35"/>
+    </linearGradient>
+    <filter id="shadow" x="-35%" y="-35%" width="170%" height="170%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="192" cy="323" rx="151" ry="30" fill="#020b12" opacity="0.72" filter="url(#shadow)"/>
+
+  <!-- Three fanned hwatu backs communicate the playable hands remaining. -->
+  <g transform="rotate(-22 135 202)">
+    <rect x="72" y="57" width="126" height="238" rx="14" fill="url(#ivory)" stroke="#281023" stroke-width="12"/>
+    <rect x="87" y="73" width="96" height="205" rx="7" fill="url(#jade)" stroke="#f4c85b" stroke-width="7"/>
+    <path d="M104 96h62M104 255h62" stroke="#d7f5c6" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="135" cy="175" r="34" fill="#f2c951" stroke="#542018" stroke-width="8"/>
+    <path d="M135 137v76M97 175h76M108 148l54 54M162 148l-54 54" stroke="#b72432" stroke-width="8"/>
+  </g>
+
+  <g transform="rotate(22 249 202)">
+    <rect x="186" y="57" width="126" height="238" rx="14" fill="url(#ivory)" stroke="#281023" stroke-width="12"/>
+    <rect x="201" y="73" width="96" height="205" rx="7" fill="url(#lacquer)" stroke="#f4c85b" stroke-width="7"/>
+    <path d="M218 96h62M218 255h62" stroke="#ffd491" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="249" cy="175" r="34" fill="#f2c951" stroke="#542018" stroke-width="8"/>
+    <path d="M249 137v76M211 175h76M222 148l54 54M276 148l-54 54" stroke="#175b54" stroke-width="8"/>
+  </g>
+
+  <g>
+    <rect x="129" y="36" width="126" height="254" rx="14" fill="url(#ivory)" stroke="#281023" stroke-width="12"/>
+    <rect x="144" y="52" width="96" height="221" rx="7" fill="url(#lacquer)" stroke="#f4c85b" stroke-width="7"/>
+    <path d="M161 76h62M161 250h62" stroke="#ffd491" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="192" cy="161" r="42" fill="#f7d968" stroke="#5b1622" stroke-width="9"/>
+    <path d="M192 114v94M145 161h94M159 128l66 66M225 128l-66 66" stroke="#c51f36" stroke-width="10"/>
+    <circle cx="192" cy="161" r="13" fill="#fff4b3" stroke="#78411f" stroke-width="6"/>
+  </g>
+
+  <!-- A brass grip visually groups the cards as one hand. -->
+  <path d="M82 286c36 43 184 43 220 0" fill="none" stroke="#321712" stroke-width="32" stroke-linecap="round"/>
+  <path d="M82 282c37 35 183 35 220 0" fill="none" stroke="#e4ad3e" stroke-width="19" stroke-linecap="round"/>
+  <path d="M105 285c43 21 131 23 174 0" fill="none" stroke="#fff09a" stroke-width="6" stroke-linecap="round"/>
+</svg>
