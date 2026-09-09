@@ -211,3 +211,7 @@
 | 2026-09-09T09:51:23+0900 | `assets/masters/gwang/once-chips-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T09:51:23+0900 | `assets/runtime/gwang/once-chips-v1.png` | 56×32 runtime 일회성 칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T09:51:23+0900 | `assets/runtime/ui/gwang-once-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 일회성 칩 gwang in all five slots; SHA-256 `a57298ae2cb95e2f492c4e69e6a65b3803159a476fa1e533f39c0a028c9f809e` |
+| 2026-09-09T09:59:26+0900 | `assets/masters/gwang/compound-v1.svg` | Project-authored high-resolution 복합 gwang vector source joining a blue scoring chip, crimson multiplier knot, and brass yeopjeon into one three-part engine |
+| 2026-09-09T09:59:26+0900 | `assets/masters/gwang/compound-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T09:59:26+0900 | `assets/runtime/gwang/compound-v1.png` | 56×32 runtime 복합 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T10:01:23+0900 | `assets/runtime/ui/gwang-compound-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 복합 gwang in all five slots; SHA-256 `185344305884458e233d17560583b29419bd0fc963283e0e035652cb7e20c82a` |

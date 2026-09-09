@@ -1717,10 +1717,51 @@
     {
       "id": "gwang.compound",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "복합",
         "en": "Compound"
+      },
+      "master": {
+        "source": "assets/masters/gwang/compound-v1.svg",
+        "sourceSha256": "cff1c287118cafe5fb7ca78515ef5552148e64b5deca0c18ef20acb40f41f68a",
+        "path": "assets/masters/gwang/compound-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "a60af4bdb3e7a0d8c578ce5d3c65edb890915705514234431c8bd1c57c98df29",
+        "provenance": "Project-authored master: a blue mother-of-pearl scoring chip, crimson crossed silk multiplier knot, and square-holed brass yeopjeon joined as one repeating three-part engine, communicating chips, multiplier, and money without text or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/compound-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "85c7c77319acbad886296d554b5d8dcb21c2145edb6bf72f0c58dd686f50e61f",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/compound-v1.report.json",
+        "reportSha256": "787fe54632e1711ec402a60d159ef8fe8338f35d61dd01fc6a8a99e97432aac2"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

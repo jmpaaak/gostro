@@ -303,6 +303,17 @@ function M.run()
     assert(assets.runtime_path("gwang.once_chips") ==
         "assets/runtime/gwang/once-chips-v1.png")
 
+    local compound = assets.entry("gwang.compound")
+    assert(compound and compound.status == "runtime",
+        "compound gwang must have tracked runtime artwork")
+    assert(compound.master.width == 448 and compound.master.height == 256,
+        "compound gwang must preserve its high-resolution slot master")
+    assert(compound.runtime.width == 56 and compound.runtime.height == 32,
+        "compound gwang runtime must scale exactly into a 28x16 slot")
+    assert(compound.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.compound") ==
+        "assets/runtime/gwang/compound-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
