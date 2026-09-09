@@ -10,6 +10,11 @@
 
 ## 처리 완료
 
+(42) **발라트로급 버리기 패가 옆으로 빠짐** (msg `1547290362782031952`)
+  - 담당: `game/ui/hand.lua`, `game/scenes/play.lua`.
+  - 버리기 시 선택한 패가 오른쪽으로 미끄러진 뒤 손패를 다시 깔음.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
+
 (41) **발라트로급 손패 부채꼴·놓기 시 패가 중앙으로 모임** (msg `1547290362782031952`)
   - 담당: `game/ui/hand.lua`, `game/ui/card.lua`, `game/scenes/play.lua`.
   - 8장 손패가 가운데 기준으로 기울어 부채꼴. 놓기 시 선택한 패가 중앙으로 모인 뒤 점수 연출.

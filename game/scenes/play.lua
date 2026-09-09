@@ -207,14 +207,17 @@ function M.play_hand(scene)
     return true, transition, result
 end
 
---- Discard selected cards and redraw.
+--- Discard selected cards and redraw after they slide off to the right.
 function M.discard_hand(scene)
     if scene.state ~= "playing" then return false end
     local indices = {}
     for i, idx in ipairs(scene.hand.selected_order) do indices[i] = idx end
-    local ok = round_engine.discard(scene.round, indices)
-    if not ok then return false end
-    sync_round_ui(scene)
+    if not round_engine.can_discard(scene.round, indices) then return false end
+    if not hand_ui.start_discard_slide(scene.hand) then return false end
+    scene.pending_discard = indices
+    scene.buttons.discards_left = math.max(0, (scene.round.discards_left or 1) - 1)
+    buttons_ui.set_selection(scene.buttons, 0)
+    M.sync_preview(scene)
     return true
 end
 
@@ -273,6 +276,11 @@ end
 function M:update(dt)
     if self.state == "playing" and self.scoreboard then
         if self.hand then hand_ui.update(self.hand, dt) end
+        if self.pending_discard and self.hand and not self.hand.slide then
+            round_engine.discard(self.round, self.pending_discard)
+            self.pending_discard = nil
+            sync_round_ui(self)
+        end
         if self.pending_redeal and self.hand and not self.hand.gather then
             sync_round_ui(self)
             self.pending_redeal = nil

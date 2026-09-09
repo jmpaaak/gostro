@@ -29,6 +29,7 @@ function M.run()
     require("game.tests.score_preview").run()
     require("game.tests.hand_hover").run()
     require("game.tests.hand_fan").run()
+    require("game.tests.hand_discard").run()
     require("game.tests.round_hud").run()
     require("game.tests.button_art").run()
 

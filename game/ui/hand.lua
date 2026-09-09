@@ -18,6 +18,7 @@ local HAND_Y     = VIEWPORT_H - card.HEIGHT - BOTTOM_PAD  -- top edge of unselec
 local FAN_SPREAD = 0.07 -- radians per step from center
 M.FAN_SPREAD = FAN_SPREAD
 M.GATHER_DURATION = 0.22
+M.SLIDE_DURATION = 0.22
 M.HAND_Y = HAND_Y
 
 --- Create a new empty hand state.
@@ -27,6 +28,7 @@ function M.new()
         selected_order = {},   -- list of card indices in selection order
         hover          = nil,
         gather         = nil,
+        slide          = nil,
     }
 end
 
@@ -43,6 +45,7 @@ function M.deal(h, cards)
     h.selected_order = {}
     h.hover = nil
     h.gather = nil
+    h.slide = nil
     local mid = (n + 1) / 2
     for i, source in ipairs(cards) do
         local domain = type(source) == "table" and source or { kind = source }
@@ -185,19 +188,47 @@ function M.start_gather(h)
     return h.gather
 end
 
-function M.update(h, dt)
-    local gather = h.gather
-    if not gather then return end
-    gather.timer = gather.timer + dt
-    local t = math.min(1, gather.timer / gather.duration)
+function M.start_discard_slide(h)
+    local selected = M.get_selected(h)
+    if #selected == 0 then return nil end
+    local snapshots = {}
+    for i, c in ipairs(selected) do
+        snapshots[i] = {
+            card = c,
+            from_x = c.x,
+            from_y = c.y,
+            from_angle = c.angle or 0,
+            to_x = VIEWPORT_W + card.WIDTH + 24,
+            to_y = c.y,
+            to_angle = c.angle or 0,
+        }
+    end
+    h.slide = { timer = 0, duration = M.SLIDE_DURATION, cards = snapshots }
+    return h.slide
+end
+
+local function tick_motion(motion, dt)
+    if not motion then return false end
+    motion.timer = motion.timer + dt
+    local t = math.min(1, motion.timer / motion.duration)
     local e = 1 - (1 - t) * (1 - t)
-    for _, snap in ipairs(gather.cards) do
+    for _, snap in ipairs(motion.cards) do
         snap.card.x = snap.from_x + (snap.to_x - snap.from_x) * e
         snap.card.y = snap.from_y + (snap.to_y - snap.from_y) * e
         snap.card.angle = snap.from_angle + (snap.to_angle - snap.from_angle) * e
     end
-    if t >= 1 then
-        h.gather = nil
+    return t >= 1
+end
+
+function M.update(h, dt)
+    if h.gather then
+        if tick_motion(h.gather, dt) then
+            h.gather = nil
+        end
+        return
+    end
+    if h.slide and tick_motion(h.slide, dt) then
+        h.slide = nil
     end
 end
 

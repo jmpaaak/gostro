@@ -1,4 +1,11 @@
 # STATUS
+## 2026-09-10 — Discarded cards slide off to the right
+- Selected discards slide off-screen to the right (`hand.start_discard_slide`) before the engine redeals.
+- Play scene waits for the slide, then consumes the discard and refills the fan.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (42) moved to 처리 완료.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Score sync, shop money tween, gwang slot size
 - Scoreboard chips/mult follow score_anim phases; popup and countup wait until total/done.
 - Shop $ readout tweens on buy via `sync_money`; gwang slots are 72×96 and HUD chrome shifted below.
