@@ -22,9 +22,10 @@ local seed_ui       = require("game.ui.seed")
 local consumables_ui = require("game.ui.consumables")
 local tarot_use      = require("game.tarot_use")
 local scene_bg       = require("game.ui.scene_bg")
-local effect_art     = require("game.ui.effect_art")
+local end_screen     = require("game.ui.end_screen")
 local score_anim_ui  = require("game.ui.score_anim")
 local play_hand_flow = require("game.scenes.play_hand_flow")
+local play_run_flow  = require("game.scenes.play_run_flow")
 
 local M = {}
 M.__index = M
@@ -110,6 +111,11 @@ function M.apply_seed(scene, seed_str)
     scene.selected_consumable = nil
     scene.tarot_target = nil
     return scene.run_state.seed
+end
+
+--- Restart with the same deck/stake/seed policy, replacing all transient state.
+function M.restart(scene)
+    return play_run_flow.restart(scene, M.new)
 end
 
 --- Select a blind and transition to playing.
@@ -259,20 +265,8 @@ function M:draw()
         pack_ui.draw(self.run_state.pending_pack)
         shop_fly.draw(self.shop)
 
-    elseif self.state == "won" then
-        if not effect_art.draw_win(0, 0) then
-            love.graphics.setColor(1, 0.9, 0.3, 1)
-            love.graphics.print("승리!", 130, 80)
-            love.graphics.setColor(1, 1, 1, 1)
-        end
-    elseif self.state == "lost" then
-        if not effect_art.draw_loss(0, 0) then
-            love.graphics.setColor(0.95, 0.35, 0.35, 1)
-            love.graphics.print("패배", 136, 74)
-            love.graphics.setColor(0.75, 0.82, 0.84, 1)
-            love.graphics.print("목표 점수에 도달하지 못했습니다", 72, 92)
-            love.graphics.setColor(1, 1, 1, 1)
-        end
+    elseif self.state == "won" or self.state == "lost" then
+        end_screen.draw(self)
     end
 
     tarot_use.draw(self)
@@ -280,6 +274,7 @@ end
 
 --- Handle mouse/touch press.
 function M:mousepressed(px, py)
+    if end_screen.route(self, "mousepressed", px, py, M.restart) then return end
     if self.state == "shop" and self.run_state.pending_pack then
         local hit = pack_ui.hit_test(self.run_state.pending_pack, px, py)
         if type(hit) == "number" then
@@ -341,6 +336,7 @@ function M:mousepressed(px, py)
 end
 
 function M:mousemoved(px, py)
+    if end_screen.route(self, "mousemoved", px, py) then return end
     if px == nil or py == nil then
         if self.hand then hand_ui.set_hover(self.hand, nil) end
         if self.shop then shop_ui.set_hover(self.shop, nil) end
@@ -373,6 +369,7 @@ end
 
 --- Handle key press.
 function M:keypressed(key)
+    if end_screen.route(self, "keypressed", key, nil, M.restart) then return end
     if self.tarot_target then return end
     if self.seed.focused then
         local applied = seed_ui.keypressed(self.seed, key)

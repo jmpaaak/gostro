@@ -5,7 +5,7 @@ LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 HEADLESS_ENV = GAME_HEADLESS=1 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 LOVE_QA = LOVE_BIN="$(LOVE)" "$(CURDIR)/tools/run_love_qa.sh"
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa hologram-effect-qa polychrome-effect-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa end-screen-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa hologram-effect-qa polychrome-effect-qa smoke love verify clean
 
 test:
 	$(HEADLESS_ENV) GAME_UNIT=1 $(LOVE_QA) .
@@ -470,6 +470,21 @@ polychrome-effect-qa:
 	POLYCHROME_EFFECT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/effect-polychrome-love-v1.png" \
 		$(LOVE_QA) "$(BUILD_DIR)/polychrome-effect-qa"
 
+end-screen-qa:
+	@rm -rf "$(BUILD_DIR)/end-screen-qa" "$(BUILD_DIR)/end-screen-qa.png"
+	@mkdir -p "$(BUILD_DIR)/end-screen-qa/game" \
+		"$(BUILD_DIR)/end-screen-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/end-screen-qa/assets/fonts"
+	@cp -R game/. "$(BUILD_DIR)/end-screen-qa/game/"
+	@cp tools/end_screen_qa_main.lua "$(BUILD_DIR)/end-screen-qa/main.lua"
+	@cp assets/manifest.json "$(BUILD_DIR)/end-screen-qa/assets/"
+	@cp assets/runtime/ui/effect-win-v1.png assets/runtime/ui/effect-loss-v1.png \
+		assets/runtime/ui/panel-metal-v1.png "$(BUILD_DIR)/end-screen-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/end-screen-qa/assets/fonts/"
+	END_SCREEN_QA_OUTPUT="$(CURDIR)/$(BUILD_DIR)/end-screen-qa.png" \
+		$(LOVE_QA) "$(BUILD_DIR)/end-screen-qa"
+	@test -s "$(BUILD_DIR)/end-screen-qa.png"
+
 smoke:
 	$(HEADLESS_ENV) $(LOVE_QA) .
 
@@ -481,7 +496,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa hologram-effect-qa polychrome-effect-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa end-screen-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa hologram-effect-qa polychrome-effect-qa smoke love
 	$(HEADLESS_ENV) $(LOVE_QA) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

@@ -10,6 +10,11 @@
 
 ## 처리 완료
 
+(47) **승리·패배 결과 요약 + 재시작 화면** (msg `1547290362782031952`)
+  - 담당: 새 `game/ui/end_screen.lua`, `game/scenes/play_run_flow.lua`; `play.lua`는 draw/input 위임만.
+  - 최종 고·점수·보유 광·시드를 표시하고 마우스/터치/Enter로 같은 설정의 새 런을 시작한다.
+  - 순수 view/hit + 실제 씬 재시작 테스트, 1920×540 승리/패배 캡처, `make verify LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
+
 (46) **칩 팝업이 중앙으로 모이는 패를 따라감** (msg `1547290362782031952`)
   - 담당: `game/ui/score_anim.lua`, `game/scenes/play_hand_flow.lua`.
   - 실제 패 위젯을 앵커로 삼아 이동 중에도 패 위에서 칩이 뜬다. `play.lua` 무변경.
