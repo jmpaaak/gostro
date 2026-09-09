@@ -9,11 +9,11 @@ local M = {}
 
 M.MAX_SELECT = 5
 
--- Layout constants for 320×180 viewport
-local VIEWPORT_W = 320
-local VIEWPORT_H = 180
-local OVERLAP    = 28   -- horizontal gap between cards (< card.WIDTH=48 → overlap)
-local BOTTOM_PAD = 4    -- pixels from bottom edge of viewport
+-- Layout constants for 960×540 viewport
+local VIEWPORT_W = 960
+local VIEWPORT_H = 540
+local OVERLAP    = 42   -- horizontal gap between cards (< card.WIDTH=72 → overlap)
+local BOTTOM_PAD = 12   -- pixels from bottom edge of viewport
 local HAND_Y     = VIEWPORT_H - card.HEIGHT - BOTTOM_PAD  -- top edge of unselected cards
 
 --- Create a new empty hand state.

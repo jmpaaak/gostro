@@ -2,22 +2,22 @@
 
 local M = {}
 
-M.VIEWPORT_W = 320
-M.VIEWPORT_H = 180
+M.VIEWPORT_W = 960
+M.VIEWPORT_H = 540
 
 local LANDING_BUTTON = {
-    id = "play", label = "게임 시작", x = 88, y = 102, w = 144, h = 44,
+    id = "play", label = "게임 시작", x = 264, y = 306, w = 432, h = 132,
     color = { 0.10, 0.43, 0.70 },
 }
 
 local TAB_RECTS = {
-    { id = "new_game", label = "새 게임", x = 20, y = 28, w = 92, h = 28 },
-    { id = "continue", label = "계속하기", x = 114, y = 28, w = 92, h = 28 },
-    { id = "challenges", label = "도전", x = 208, y = 28, w = 92, h = 28 },
+    { id = "new_game", label = "새 게임", x = 60, y = 84, w = 276, h = 84 },
+    { id = "continue", label = "계속하기", x = 342, y = 84, w = 276, h = 84 },
+    { id = "challenges", label = "도전", x = 624, y = 84, w = 276, h = 84 },
 }
 
 local BACK_BUTTON = {
-    id = "back", label = "뒤로", x = 20, y = 160, w = 280, h = 17,
+    id = "back", label = "뒤로", x = 60, y = 480, w = 840, h = 51,
     color = { 0.22, 0.28, 0.29 },
 }
 

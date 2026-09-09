@@ -9,9 +9,9 @@ function M.run()
     require("game.tests.card_art").run()
 
     -- Constants
-    assert(card.WIDTH == 48, "card width must be 48")
-    assert(card.HEIGHT == 72, "card height must be 72")
-    assert(card.LIFT == 10, "selected lift must be 10")
+    assert(card.WIDTH == 72, "card width must be 72")
+    assert(card.HEIGHT == 108, "card height must be 108")
+    assert(card.LIFT == 16, "selected lift must be 16")
 
     -- new() creates a card widget with position and kind
     local c = card.new("hongdan", 10, 50)
@@ -55,13 +55,13 @@ function M.run()
     -- hit_test checks if a point is inside the card rect
     local h = card.new("pi", 100, 100)
     assert(card.hit_test(h, 100, 100) == true, "top-left corner")
-    assert(card.hit_test(h, 147, 171) == true, "bottom-right inside")
-    assert(card.hit_test(h, 148, 172) == false, "outside right/bottom")
+    assert(card.hit_test(h, 171, 207) == true, "bottom-right inside")
+    assert(card.hit_test(h, 172, 208) == false, "outside right/bottom")
     assert(card.hit_test(h, 99, 100) == false, "outside left")
     -- hit_test uses draw_y for selected cards
     h.selected = true
-    assert(card.hit_test(h, 100, 90) == true, "selected card lifted hitbox")
-    assert(card.hit_test(h, 100, 89) == false, "above lifted hitbox")
+    assert(card.hit_test(h, 100, 84) == true, "selected card lifted hitbox")
+    assert(card.hit_test(h, 100, 83) == false, "above lifted hitbox")
 
     -- color table exists for each kind
     for _, kind in ipairs({"hongdan", "cheongdan", "chodan", "godori", "pi"}) do

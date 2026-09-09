@@ -13,8 +13,8 @@ end
 
 function M.run()
     local state = run_setup.new(" gostro-01 ")
-    assert(run_setup.VIEWPORT_W == 320 and run_setup.VIEWPORT_H == 180,
-        "run setup targets the native 320x180 viewport")
+    assert(run_setup.VIEWPORT_W == 960 and run_setup.VIEWPORT_H == 540,
+        "run setup targets the native 960x540 viewport")
     assert(#state.decks >= 3, "at least three starter deck variants are available")
     assert(state.deck_index == 1, "the first deck is selected by default")
     assert(state.decks[1].name == "화투패" and state.decks[1].description == "기본 패 구성",

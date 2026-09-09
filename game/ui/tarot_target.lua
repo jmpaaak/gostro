@@ -6,16 +6,16 @@ local panel_art = require("game.ui.panel_art")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local PANEL = { x = 12, y = 56, w = 296, h = 118 }
-local CANCEL = { x = 270, y = 61, w = 30, h = 14 }
-local OPTION_Y = 82
-local OPTION_H = 18
-local OPTION_GAP = 4
-local TARGET_Y = 126
-local TARGET_W = 24
-local TARGET_H = 36
-local TARGET_GAP = 6
+local VIEWPORT_W = 960
+local PANEL = { x = 36, y = 168, w = 888, h = 354 }
+local CANCEL = { x = 810, y = 183, w = 90, h = 42 }
+local OPTION_Y = 246
+local OPTION_H = 54
+local OPTION_GAP = 12
+local TARGET_Y = 378
+local TARGET_W = 72
+local TARGET_H = 108
+local TARGET_GAP = 18
 
 local EFFECTS = {
     convert = {

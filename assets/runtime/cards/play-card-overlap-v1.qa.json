@@ -1,6 +1,6 @@
 {
   "capture": "assets/runtime/cards/play-card-overlap-v1.png",
-  "captureSha256": "f9f936cad374d5deffc611381539f9b3a2fd550954037697d317b27bac62b1c1",
+  "captureSha256": "dfc616efe5e2377ca8bcd42b34ef6cf0ba10e831a06f2ee2d953621ac0b39363",
   "cardOrder": [
     "pi",
     "hongdan",
@@ -9,17 +9,17 @@
     "godori"
   ],
   "cardSize": [
-    48,
-    72
+    72,
+    108
   ],
   "source": "assets/runtime/cards/play-card-contact-sheet-v1.png",
   "topMarkFingerprints": [
-    "f23b9b4ec031",
+    "b3fe5a5ae698",
     "b9c711dea04d",
     "a9b2ba2ef138",
-    "da9dd3cefc52",
-    "79b353ffb6f9"
+    "5d2873c001b1",
+    "54dde9bbb040"
   ],
-  "topVisiblePixels": 20,
+  "topVisiblePixels": 30,
   "valid": true
 }

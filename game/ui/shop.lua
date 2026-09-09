@@ -10,8 +10,8 @@ local score_icon_art = require("game.ui.score_icon_art")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local VIEWPORT_H = 180
+local VIEWPORT_W = 960
+local VIEWPORT_H = 540
 
 -- Gwang pool with prices
 local GWANG_POOL = {
@@ -37,14 +37,14 @@ local VOUCHER_NAMES = {
 M.REROLL_COST = 5
 
 -- Card layout
-local CARD_W = 36
-local CARD_H = 52
-local CARD_GAP = 10
-local CARD_Y = 40
+local CARD_W = 108
+local CARD_H = 156
+local CARD_GAP = 30
+local CARD_Y = 120
 
 -- Buttons
-M.BUTTON_W = 60
-M.BUTTON_H = 18
+M.BUTTON_W = 180
+M.BUTTON_H = 54
 M.REROLL_X = math.floor(VIEWPORT_W / 2 - M.BUTTON_W - 6)
 M.REROLL_Y = CARD_Y + CARD_H + 14
 M.NEXT_X   = math.floor(VIEWPORT_W / 2 + 6)

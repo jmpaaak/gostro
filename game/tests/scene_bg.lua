@@ -7,8 +7,8 @@ local M = {}
 
 local function graphics_stub()
     local texture = {
-        getWidth = function() return 320 end,
-        getHeight = function() return 180 end,
+        getWidth = function() return 960 end,
+        getHeight = function() return 540 end,
     }
     local draws = {}
     local cleared = {}
@@ -30,8 +30,8 @@ function M.run()
     assert(play_entry and play_entry.status == "runtime", "play background artwork must be promoted")
     assert(play_entry.master.width == 960 and play_entry.master.height == 540,
         "play background must preserve a 960x540 master")
-    assert(play_entry.runtime.width == 320 and play_entry.runtime.height == 180,
-        "play background runtime must fill the 320x180 canvas")
+    assert(play_entry.runtime.width == 960 and play_entry.runtime.height == 540,
+        "play background runtime must fill the 960x540 canvas")
     assert(play_entry.runtime.filter == "nearest")
     assert(play_entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
 
@@ -57,8 +57,8 @@ function M.run()
     assert(shop_entry and shop_entry.status == "runtime", "shop background artwork must be promoted")
     assert(shop_entry.master.width == 960 and shop_entry.master.height == 540,
         "shop background must preserve a 960x540 master")
-    assert(shop_entry.runtime.width == 320 and shop_entry.runtime.height == 180,
-        "shop background runtime must fill the 320x180 canvas")
+    assert(shop_entry.runtime.width == 960 and shop_entry.runtime.height == 540,
+        "shop background runtime must fill the 960x540 canvas")
     assert(shop_entry.runtime.filter == "nearest")
     assert(shop_entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
 

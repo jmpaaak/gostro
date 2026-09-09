@@ -18,14 +18,14 @@
         "runtimeRegion": [
           0,
           0,
-          48,
-          72
+          72,
+          108
         ],
         "alphaBounds": [
           0,
           0,
-          47,
-          71
+          71,
+          107
         ]
       }
     },
@@ -43,16 +43,16 @@
           288
         ],
         "runtimeRegion": [
-          48,
+          72,
           0,
-          48,
-          72
+          72,
+          108
         ],
         "alphaBounds": [
           0,
           0,
-          47,
-          71
+          71,
+          107
         ]
       }
     },
@@ -70,16 +70,16 @@
           288
         ],
         "runtimeRegion": [
-          96,
+          144,
           0,
-          48,
-          72
+          72,
+          108
         ],
         "alphaBounds": [
           0,
           0,
-          47,
-          71
+          71,
+          107
         ]
       }
     },
@@ -97,16 +97,16 @@
           288
         ],
         "runtimeRegion": [
-          144,
+          216,
           0,
-          48,
-          72
+          72,
+          108
         ],
         "alphaBounds": [
           0,
           0,
-          47,
-          71
+          71,
+          107
         ]
       }
     },
@@ -124,16 +124,16 @@
           288
         ],
         "runtimeRegion": [
-          192,
+          288,
           0,
-          48,
-          72
+          72,
+          108
         ],
         "alphaBounds": [
           0,
           0,
-          47,
-          71
+          71,
+          107
         ]
       }
     },
@@ -3540,13 +3540,20 @@
           "nearestNeighbor": true,
           "palette": true,
           "transparentAlpha": true
-        }
+        },
+        "targetWidth": 960,
+        "targetHeight": 540,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/menu-bg-v1.report.json",
+        "reportSha256": "9ad379c4b869c0f4faf50119118cb2634d9fbabc567a048683e94756aa504ae7"
       },
       "runtime": {
         "path": "assets/runtime/ui/menu-bg-v1.png",
-        "width": 320,
-        "height": 180,
-        "sha256": "ed1c39d1b4a748177816885761f240db26775fa0bd304e4b85f466483985ffdc",
+        "width": 960,
+        "height": 540,
+        "sha256": "c637a9420bc96e12de4a2c392f760939fb0135118df44c41a88036d2aa15c34b",
         "filter": "nearest",
         "frames": 1,
         "fps": 0,
@@ -3573,13 +3580,13 @@
       },
       "conversion": {
         "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 320,
-        "targetHeight": 180,
+        "targetWidth": 960,
+        "targetHeight": 540,
         "pixelBlock": 1,
         "backgroundTolerance": 0,
         "paletteLimit": "original",
         "report": "assets/runtime/ui/play-bg-v1.report.json",
-        "reportSha256": "ce7a1864ed8d6f639038e3cb18b2f8af6be31c1844f3e5a4b630c16377ed640e",
+        "reportSha256": "a3169979b77aef43dc37ad694edae7752dd1a8f51ebcfef96a9975ecc69a37d4",
         "validation": {
           "alignment": true,
           "dimensions": true,
@@ -3590,9 +3597,9 @@
       },
       "runtime": {
         "path": "assets/runtime/ui/play-bg-v1.png",
-        "width": 320,
-        "height": 180,
-        "sha256": "32f45eb81a8cfbc6bd40aa9d0b4dd06bfb1d6f68d657143c5115407500bff45c",
+        "width": 960,
+        "height": 540,
+        "sha256": "52afed913d449c703658a2211fa67a3be3b8309c102fedad9d54aa624fd46258",
         "filter": "nearest",
         "frames": 1,
         "fps": 0,
@@ -3625,13 +3632,13 @@
       },
       "conversion": {
         "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 320,
-        "targetHeight": 180,
+        "targetWidth": 960,
+        "targetHeight": 540,
         "pixelBlock": 1,
         "backgroundTolerance": 0,
         "paletteLimit": "original",
         "report": "assets/runtime/ui/shop-bg-v1.report.json",
-        "reportSha256": "34d44f67b56b87f5abb816f159d0076aa5f42fd90afe63331c9628155c3d1d34",
+        "reportSha256": "da4044794028f13fa48d9b11cc260f20829585722092a72a815072f7c9a83d07",
         "validation": {
           "alignment": true,
           "dimensions": true,
@@ -3642,9 +3649,9 @@
       },
       "runtime": {
         "path": "assets/runtime/ui/shop-bg-v1.png",
-        "width": 320,
-        "height": 180,
-        "sha256": "dc19356b491a0dac6e944fb0d668cb209f27219083115937d434d6a81c16566b",
+        "width": 960,
+        "height": 540,
+        "sha256": "93795a7356c3605343cf5a224bc0ecc63c871486cdef954700560eba4d25cd4d",
         "filter": "nearest",
         "frames": 1,
         "fps": 0,
@@ -4268,26 +4275,26 @@
       },
       "runtime": {
         "path": "assets/runtime/ui/effect-win-v1.png",
-        "width": 320,
-        "height": 180,
+        "width": 960,
+        "height": 540,
         "alphaBounds": [
           10,
           0,
           309,
           179
         ],
-        "sha256": "bbe5bea014afbe302e2c2ba81ae6dec39e56e5677836a7954eb782406ddd8be8",
+        "sha256": "6cde396b099f810ec3aa8246d9e41cb2e43b1f0306f56ace4e74d5c5852ce3be",
         "filter": "nearest"
       },
       "conversion": {
         "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 320,
-        "targetHeight": 180,
+        "targetWidth": 960,
+        "targetHeight": 540,
         "pixelBlock": 1,
         "backgroundTolerance": 0,
         "paletteLimit": "original",
         "report": "assets/runtime/ui/effect-win-v1.report.json",
-        "reportSha256": "5b06dd7e8d1fd11ae54673bad0fa7a8ea638a86b38a1f1a04fa4b8d36ba2fee0"
+        "reportSha256": "bc191c0befc39ac76290e91aee692a103e9c9ab179671ddf6c8d8a09ac127f15"
       },
       "animation": {
         "frames": 1,
@@ -4313,26 +4320,26 @@
       },
       "runtime": {
         "path": "assets/runtime/ui/effect-loss-v1.png",
-        "width": 320,
-        "height": 180,
+        "width": 960,
+        "height": 540,
         "alphaBounds": [
           0,
           1,
           319,
           177
         ],
-        "sha256": "ee4ce9eed4088e4b74e090bf3ebe5c6c5cd1f1c49daacdcf870b40ae816e8774",
+        "sha256": "cd6d67856ae788df2c9668f981ff0da2c6384ac3f8d35e4327eddd060bbb0847",
         "filter": "nearest"
       },
       "conversion": {
         "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 320,
-        "targetHeight": 180,
+        "targetWidth": 960,
+        "targetHeight": 540,
         "pixelBlock": 1,
         "backgroundTolerance": 0,
         "paletteLimit": "original",
         "report": "assets/runtime/ui/effect-loss-v1.report.json",
-        "reportSha256": "5f9359349e4a41b31ddd7fc1bc8a60a3e3af456088437511f75037bbb3e795ab"
+        "reportSha256": "086a07208a3ce8c3ebd2f9873d6819298ed6a297e083ab9f894f604e369371eb"
       },
       "animation": {
         "frames": 1,
@@ -4896,28 +4903,28 @@
       },
       "runtime": {
         "path": "assets/runtime/cards/play-card-contact-sheet-v1.png",
-        "width": 240,
-        "height": 72,
-        "cardWidth": 48,
-        "cardHeight": 72,
+        "width": 360,
+        "height": 108,
+        "cardWidth": 72,
+        "cardHeight": 108,
         "alphaBounds": [
           0,
           0,
-          239,
-          71
+          359,
+          107
         ],
-        "sha256": "1fe2fdb8277fa79aaadae450f177bbf4d861f4c7fb477adb528179144f6943d9",
+        "sha256": "84235e6c0b2452f518b81d00b21a0ad268f313a9b9a39170645302319ea8da31",
         "filter": "nearest"
       },
       "conversion": {
         "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 240,
-        "targetHeight": 72,
+        "targetWidth": 360,
+        "targetHeight": 108,
         "pixelBlock": 1,
         "backgroundTolerance": 0,
         "paletteLimit": "original",
         "report": "assets/runtime/cards/play-card-contact-sheet-v1.report.json",
-        "reportSha256": "2aee45e20b15d3c973d39f223eb89488bd00a93a5b1faf27d0466de552b20a17"
+        "reportSha256": "8cce97fc68cd544d2bb8c335acd68d6018b389bab4c51d202915b402e75653ca"
       },
       "overlapQa": {
         "status": "automated-pass",

@@ -7,15 +7,15 @@ local button_art = require("game.ui.button_art")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local VIEWPORT_H = 180
+local VIEWPORT_W = 960
+local VIEWPORT_H = 540
 
 -- Button dimensions
-M.BUTTON_W = 58
-M.BUTTON_H = 18
+M.BUTTON_W = 174
+M.BUTTON_H = 54
 
 -- Layout: two buttons centred at bottom, 8px gap between them
-local GAP = 8
+local GAP = 24
 M.PLAY_X    = math.floor(VIEWPORT_W / 2 - M.BUTTON_W - GAP / 2)
 M.DISCARD_X = math.floor(VIEWPORT_W / 2 + GAP / 2)
 M.BUTTON_Y  = VIEWPORT_H - M.BUTTON_H - 4

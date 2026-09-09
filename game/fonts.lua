@@ -1,7 +1,7 @@
 local M = {}
 
 local FONT_PATH = "assets/fonts/Galmuri11.ttf"
-local DEFAULT_SIZE = 11
+local DEFAULT_SIZE = 33
 local cache = {}
 
 local function graphics_or_default(graphics)

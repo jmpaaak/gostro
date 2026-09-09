@@ -12,8 +12,8 @@ M.MULT_DURATION = 0.5   -- mult application phase duration
 M.TOTAL_DURATION = 0.8  -- total countup phase duration
 M.GLOW_DURATION = 2.0   -- gwang slot glow duration
 
-local VIEWPORT_W = 320
-local VIEWPORT_H = 180
+local VIEWPORT_W = 960
+local VIEWPORT_H = 540
 
 --- Create a new score_anim state.
 function M.new()

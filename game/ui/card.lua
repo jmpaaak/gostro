@@ -7,9 +7,9 @@ local card_art = require("game.ui.card_art")
 
 local M = {}
 
-M.WIDTH  = 48
-M.HEIGHT = 72
-M.LIFT   = 10  -- pixels to raise when selected
+M.WIDTH  = 72
+M.HEIGHT = 108
+M.LIFT   = 16  -- pixels to raise when selected
 
 local PLAY_KINDS = {
     hongdan   = true,

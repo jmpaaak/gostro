@@ -20,10 +20,10 @@ function M.run()
         local cell = assert(entry.candidateCell, name .. " candidate cell metadata is required")
         assert(cell.index == index, name .. " must retain the candidate sheet order")
         assert_region(cell.masterRegion, (index - 1) * 192, 192, 288, name .. " master")
-        assert_region(cell.runtimeRegion, (index - 1) * 48, 48, 72, name .. " runtime")
+        assert_region(cell.runtimeRegion, (index - 1) * 72, 72, 108, name .. " runtime")
         assert(cell.alphaBounds and cell.alphaBounds[1] == 0 and cell.alphaBounds[2] == 0
-            and cell.alphaBounds[3] == 47 and cell.alphaBounds[4] == 71,
-            name .. " alpha bounds must cover its 48x72 runtime cell")
+            and cell.alphaBounds[3] == 71 and cell.alphaBounds[4] == 107,
+            name .. " alpha bounds must cover its 72x108 runtime cell")
     end
 
     print("  card_candidate_manifest: OK")
