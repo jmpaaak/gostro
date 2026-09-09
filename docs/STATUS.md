@@ -1,23 +1,12 @@
 # STATUS
 
-## 2026-09-09 — 화살표(New Run carousel arrows) 고해상도 픽셀 에셋 적용 및 미커밋 테스트 수정
+## 2026-09-09 — QA offscreen window stays 1x1
 
-- 이전 사이클에서 작성 후 실패 상태로 남겨진 `game/tests/arrow_art.lua` 엔진 테스트를 수정하고 통과시켰다.
-- `ui.arrow_left`, `ui.arrow_right`에 대한 624x432 PNG master와 26x18 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 시 브라우저 웹 세션 쿠키와 CSRF를 통과하도록 `pixel_perfect.py` 파이프라인을 수정하여 성공적으로 변환했다.
-- `assets/manifest.json`과 `docs/ASSET_INVENTORY.md`를 갱신하고 `game/ui/arrow_art.lua` 모듈을 신규 생성하여 `game/ui/run_setup.lua`의 화살표 렌더링에 배선했다.
-- 전체 엔진 테스트와 `make verify`를 통과했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
+- Previous cycle left uncommitted `game/tests/offscreen_window.lua`; it failed because `minimizeWindow(320, 180)` resized the visible Love window to the capture canvas.
+- `game/qa/offscreen_window.lua` now always `setMode(1, 1)` offscreen/borderless/minimized and ignores capture size.
+- Wired `game/tests/offscreen_window.lua` from `game/self_test.lua`.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (835 files).
 - Next slice: INBOX의 다음 우선순위 항목 진행
-
-- `ui.deck_blue`에 384×384 옻칠 남색 화투 뒷면 PNG master와 48×48 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 신규 `game/ui/deck_art.lua`에 `draw_blue` 계약을 두고 새 게임 설정의 기본 화투패 하드코딩 도형을 배선했다.
-- 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 635개 파일이다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.deck_red` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 덱 선택 UI에 적용한다.
 
 ## 2026-09-09 — 패배 효과 고해상도 픽셀 에셋 적용
 

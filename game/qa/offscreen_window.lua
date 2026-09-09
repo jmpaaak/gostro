@@ -1,8 +1,10 @@
 local M = {}
 
-function M.minimizeWindow(width, height)
+function M.minimizeWindow(_width, _height)
+    -- Capture canvas size is not the visible window. Keep QA at 1x1 offscreen
+    -- so setMode never flashes a 320x180 (or other capture) window.
     if love.window and love.window.setMode then
-        love.window.setMode(width or 1, height or 1, {
+        love.window.setMode(1, 1, {
             fullscreen = false,
             resizable = false,
             vsync = 0,
