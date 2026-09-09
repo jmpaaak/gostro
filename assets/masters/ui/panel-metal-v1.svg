@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="368" viewBox="0 0 640 368">
+  <defs>
+    <linearGradient id="bronze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5c6c7c"/>
+      <stop offset="0.5" stop-color="#3a4856"/>
+      <stop offset="1" stop-color="#1c242c"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f0d878"/>
+      <stop offset="0.45" stop-color="#d6ba60"/>
+      <stop offset="1" stop-color="#7a5418"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="12" width="640" height="356" rx="48" fill="#12161c"/>
+  <rect x="0" y="0" width="640" height="356" rx="48" fill="url(#bronze)"/>
+  <rect x="12" y="10" width="616" height="334" rx="36" fill="#3a4856"/>
+  <g stroke="#1c222a" stroke-width="3" opacity="0.45" fill="none">
+    <path d="M30 40 C 180 34, 460 52, 610 38"/>
+    <path d="M30 84 C 200 92, 430 70, 610 88"/>
+    <path d="M30 128 C 170 118, 470 140, 610 126"/>
+    <path d="M30 172 C 210 186, 420 160, 610 176"/>
+    <path d="M30 216 C 190 208, 450 228, 610 214"/>
+    <path d="M30 260 C 220 274, 410 248, 610 266"/>
+    <path d="M30 304 C 180 292, 470 318, 610 300"/>
+  </g>
+  <rect x="24" y="20" width="592" height="312" rx="26" fill="none" stroke="url(#brass)" stroke-width="10"/>
+  <rect x="42" y="36" width="556" height="280" rx="16" fill="none" stroke="#181e26" stroke-width="6"/>
+  <g>
+    <circle cx="28" cy="26" r="22" fill="#c45636"/>
+    <path d="M10 26 A18 18 0 0 1 46 26" fill="#242a36"/>
+    <circle cx="28" cy="26" r="7" fill="#e8cc6e"/>
+    <circle cx="612" cy="26" r="22" fill="#c45636"/>
+    <path d="M594 26 A18 18 0 0 1 630 26" fill="#242a36"/>
+    <circle cx="612" cy="26" r="7" fill="#e8cc6e"/>
+    <circle cx="28" cy="330" r="22" fill="#c45636"/>
+    <path d="M10 330 A18 18 0 0 1 46 330" fill="#242a36"/>
+    <circle cx="28" cy="330" r="7" fill="#e8cc6e"/>
+    <circle cx="612" cy="330" r="22" fill="#c45636"/>
+    <path d="M594 330 A18 18 0 0 1 630 330" fill="#242a36"/>
+    <circle cx="612" cy="330" r="7" fill="#e8cc6e"/>
+  </g>
+</svg>

@@ -250,3 +250,8 @@
 2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-disabled-v1.png | btn_disabled button graphic generated via PIL rounded rectangle
 2026-09-09T12:15:00+0900 | assets/masters/ui/panel-wood-v1.png | High-resolution lacquered wood panel with brass corner braces for 9-slice UI
 2026-09-09T12:15:00+0900 | assets/runtime/ui/panel-wood-v1.png | 80x46 runtime downscale for 9-slice UI panel
+| 2026-09-09T12:21:53+0900 | `assets/masters/ui/panel-metal-v1.svg` | Project-authored high-resolution patina bronze HUD panel with taegeuk corner bosses for 9-slice UI |
+| 2026-09-09T12:21:53+0900 | `assets/masters/ui/panel-metal-v1.png` | Preserved 640×368 RGBA raster master generated from the vector source |
+| 2026-09-09T12:21:53+0900 | `assets/runtime/ui/panel-metal-v1.png` | 80×46 runtime 9-slice tile from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T12:21:53+0900 | `assets/runtime/ui/panel-metal-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 16-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T12:21:53+0900 | `assets/runtime/ui/score-icon-love-v1.png` | Actual LÖVE 11.5 320×180 scoreboard capture proving the manifest-backed metal panel; SHA-256 `8316e9b7df633adc428fff380bc38db36773c6f6589cd119a112075a3d26c436` |

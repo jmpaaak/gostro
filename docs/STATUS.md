@@ -1,4 +1,12 @@
 # STATUS
+## 2026-09-09 — 점수판 금속 패널 고해상도 픽셀 에셋 적용
+
+- `ui.panel_metal`에 640×368 녹청 청동 패와 태극 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과하고 기존 `panel_art` 9-slice 모듈에 metal kind를 추가했다.
+- 점수판 배경의 하드코딩된 도형 렌더링을 신규 metal 패널로 교체했고, 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.panel_glass` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed 9-slice 패널 모듈에 통합한다.
+
 ## 2026-09-09 — 상점/팩 우드 패널 고해상도 픽셀 에셋 적용
 
 - `ui.panel_wood`에 640×368 옻칠 목재 및 황동 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.

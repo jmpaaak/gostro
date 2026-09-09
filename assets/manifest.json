@@ -2791,8 +2791,49 @@
     {
       "id": "ui.panel_metal",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.panel_metal"
+      "status": "runtime",
+      "name": "ui.panel_metal",
+      "master": {
+        "source": "assets/masters/ui/panel-metal-v1.png",
+        "sourceSha256": "6cdda59b6277a6a6a905669343809cfa739c02acb0541618d087ed520c15d0c0",
+        "path": "assets/masters/ui/panel-metal-v1.png",
+        "width": 640,
+        "height": 368,
+        "sha256": "6cdda59b6277a6a6a905669343809cfa739c02acb0541618d087ed520c15d0c0",
+        "provenance": "Project-authored high-resolution patina bronze HUD panel with taegeuk corner bosses for 9-slice UI."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/panel-metal-v1.png",
+        "width": 80,
+        "height": 46,
+        "filter": "nearest",
+        "sha256": "8f7c97f1e06f33b435c30d44714d9bf8f49c25ddc7e6a0fa207c5c643270c3dc",
+        "alphaBounds": [
+          0,
+          0,
+          79,
+          45
+        ]
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 80,
+        "targetHeight": 46,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/panel-metal-v1.report.json",
+        "reportSha256": "f44755c1334995229bdbb1dbbd463d31f04a926a041723c76c5054010cc7de63"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.panel_glass",
