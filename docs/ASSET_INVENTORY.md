@@ -3,9 +3,9 @@
 ## boss-blind
 
 - [x] `boss-blind.hook` - 갈고리 (400×560 master → 50×70 runtime)
-- [ ] `boss-blind.wall` - 성벽
-- [ ] `boss-blind.flint` - 부싯돌
-- [ ] `boss-blind.mark` - 낙인
+- [x] `boss-blind.wall` - 성벽 (400×560 master → 50×70 runtime)
+- [x] `boss-blind.flint` - 부싯돌 (400×560 master → 50×70 runtime)
+- [x] `boss-blind.mark` - 낙인 (400×560 master → 50×70 runtime)
 - [x] `boss-blind.fish` - 물고기 (400×560 master → 50×70 runtime)
 - [x] `boss-blind.psychic` - 영매 (400×560 master → 50×70 runtime)
 - [x] `boss-blind.goad` - 몰이 (400×560 master → 50×70 runtime)
@@ -19,11 +19,11 @@
 
 ## gwang
 
-- [ ] `gwang.chips` - {'ko': '칩', 'en': 'Chips'}
-- [ ] `gwang.mult` - {'ko': '배수', 'en': 'Mult'}
-- [ ] `gwang.always_chips_small` - {'ko': '잔칩', 'en': 'Small Chips'}
-- [ ] `gwang.always_mult_small` - {'ko': '잔배수', 'en': 'Small Mult'}
-- [ ] `gwang.always_chips_mid` - {'ko': '중칩', 'en': 'Mid Chips'}
+- [x] `gwang.chips` - 칩 / Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
+- [x] `gwang.mult` - 배수 / Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
+- [x] `gwang.always_chips_small` - 잔칩 / Small Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
+- [x] `gwang.always_mult_small` - 잔배수 / Small Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
+- [x] `gwang.always_chips_mid` - 중칩 / Mid Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.always_mult_mid` - 중배수 / Mid Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.hongdan_x2` - 홍단 깃발 / Hongdan Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.cheongdan_x2` - 청단 깃발 / Cheongdan Flag (448×256 master → 56×32 runtime; LÖVE slot QA)
