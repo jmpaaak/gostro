@@ -2726,8 +2726,41 @@
     {
       "id": "ui.menu_bg",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.menu_bg"
+      "status": "runtime",
+      "name": "ui.menu_bg",
+      "master": {
+        "source": "assets/masters/ui/menu-bg-v1.png",
+        "sourceSha256": "8e2b55259ba2a1e0467773f8e5046129c8aef8b32e6ffce9f92c2fef3acb6d94",
+        "path": "assets/masters/ui/menu-bg-v1.png",
+        "width": 960,
+        "height": 540,
+        "sha256": "8e2b55259ba2a1e0467773f8e5046129c8aef8b32e6ffce9f92c2fef3acb6d94",
+        "provenance": "Project-authored 960x540 dark teal menu background with red and yellow plum blossom motifs."
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "validation": {
+          "alignment": true,
+          "dimensions": true,
+          "nearestNeighbor": true,
+          "palette": true,
+          "transparentAlpha": true
+        }
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/menu-bg-v1.png",
+        "width": 320,
+        "height": 180,
+        "sha256": "ed1c39d1b4a748177816885761f240db26775fa0bd304e4b85f466483985ffdc",
+        "filter": "nearest",
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.play_bg",

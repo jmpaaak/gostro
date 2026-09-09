@@ -1,4 +1,12 @@
 # STATUS
+## 2026-09-09 — 메인 메뉴 배경 고해상도 픽셀 에셋 적용
+
+- `ui.menu_bg`에 960×540 크기의 매화 장식이 있는 짙은 청록색 배경 PNG master와 320×180 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 메인 메뉴(`game/ui/main_menu.lua`)의 하드코딩된 도형 렌더링을 신규 `ui.menu_bg` 에셋 렌더링으로 교체했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.play_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 플레이 씬 배경에 적용한다.
+
 ## 2026-09-09 — 부적 선택 유리 패널 고해상도 픽셀 에셋 적용
 
 - `ui.panel_glass`에 640×368 청자 유리와 나전 매화 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.

@@ -98,7 +98,7 @@
 
 ## ui
 
-- [ ] `ui.menu_bg` - ui.menu_bg
+- [x] `ui.menu_bg` - ui.menu_bg
 - [ ] `ui.play_bg` - ui.play_bg
 - [ ] `ui.shop_bg` - ui.shop_bg
 - [x] `ui.panel_wood` - ui.panel_wood

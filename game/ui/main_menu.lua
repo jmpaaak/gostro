@@ -128,20 +128,28 @@ function M.activate(menu, x, y)
     return nil
 end
 
-local function draw_background(graphics)
-    graphics.clear(0.025, 0.10, 0.12, 1)
-    graphics.setColor(0.04, 0.18, 0.18, 1)
-    graphics.rectangle("fill", 0, 0, M.VIEWPORT_W, M.VIEWPORT_H)
+local assets = require("game.asset_loader")
 
-    graphics.setColor(0.72, 0.12, 0.16, 0.28)
-    graphics.circle("fill", 30, 27, 16)
-    graphics.circle("fill", 290, 153, 19)
-    graphics.setColor(0.94, 0.72, 0.22, 0.34)
-    for i = 0, 4 do
-        local angle = i * math.pi * 2 / 5
-        graphics.circle("fill", 30 + math.cos(angle) * 8, 27 + math.sin(angle) * 8, 4)
+local function draw_background(graphics)
+    local bg = assets.texture("ui.menu_bg")
+    if bg then
+        graphics.setColor(1, 1, 1, 1)
+        graphics.draw(bg, 0, 0)
+    else
+        graphics.clear(0.025, 0.10, 0.12, 1)
+        graphics.setColor(0.04, 0.18, 0.18, 1)
+        graphics.rectangle("fill", 0, 0, M.VIEWPORT_W, M.VIEWPORT_H)
+
+        graphics.setColor(0.72, 0.12, 0.16, 0.28)
+        graphics.circle("fill", 30, 27, 16)
+        graphics.circle("fill", 290, 153, 19)
+        graphics.setColor(0.94, 0.72, 0.22, 0.34)
+        for i = 0, 4 do
+            local angle = i * math.pi * 2 / 5
+            graphics.circle("fill", 30 + math.cos(angle) * 8, 27 + math.sin(angle) * 8, 4)
+        end
+        graphics.circle("fill", 30, 27, 3)
     end
-    graphics.circle("fill", 30, 27, 3)
 end
 
 local function draw_button(graphics, font, button)

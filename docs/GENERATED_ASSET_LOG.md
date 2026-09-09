@@ -260,3 +260,6 @@
 || 2026-09-09T12:32:18+0900 | `assets/runtime/ui/panel-glass-v1.png` | 80×46 runtime 9-slice tile from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 || 2026-09-09T12:32:18+0900 | `assets/runtime/ui/panel-glass-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 10-color palette, alignment, and nearest-neighbor validation |
 || 2026-09-09T12:32:18+0900 | `assets/runtime/ui/pack-panel-glass-love-v1.png` | Actual LÖVE 11.5 320×180 tarot overlay capture proving the manifest-backed glass panel; SHA-256 `9408a5c32586d3dcefd074578576257621c35d0b598df7fdab31805a979fed6c` |
+| 2026-09-09T12:40:34+0900 | `assets/masters/ui/menu-bg-v1.png` | Project-authored 960x540 dark teal menu background with red and yellow plum blossom motifs |
+| 2026-09-09T12:40:34+0900 | `assets/runtime/ui/menu-bg-v1.png` | 320x180 runtime pixel perfect tile |
+| 2026-09-09T12:40:34+0900 | `assets/runtime/ui/menu-bg-v1.report.json` | Asset Studio conversion report |
