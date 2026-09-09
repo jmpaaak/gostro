@@ -360,3 +360,7 @@
 2026-09-09T16:34:05+0900 | assets/runtime/tag/handy-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T16:34:05+0900 | assets/runtime/tag/handy-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T16:34:05+0900 | assets/runtime/ui/tag-handy-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 재주꾼 패찰; SHA-256 0b53ec3593940c0edcea6e00c8100eb92db107f773905f6ed2b919a37f3d3a67
+2026-09-09T16:40:00+0900 | assets/masters/tag/economy-v1.png | 알뜰 패찰 (tag.economy) high-res procedural wooden plaque with a string of cash coins; no people or month imagery
+2026-09-09T16:40:00+0900 | assets/runtime/tag/economy-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T16:40:00+0900 | assets/runtime/tag/economy-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T16:40:00+0900 | assets/runtime/ui/tag-economy-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 알뜰 패찰; SHA-256 15464c6f24ec265bbc3a005e1554bd73bf98fe421cd2d94f191cb0f36722835c

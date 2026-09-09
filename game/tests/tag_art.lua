@@ -54,6 +54,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "handy" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local economy_id = tag_art.asset_id({ kind = "tag", identity = "economy" })
+    assert(economy_id == "tag.economy", "알뜰 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "economy" }) == "tag.economy",
+        "skip offers keyed by id must resolve 알뜰 패찰")
+
+    local economy = assets.entry(economy_id)
+    assert(economy and economy.status == "runtime", "알뜰 패찰 artwork must be promoted")
+    assert(economy.master.width == 256 and economy.master.height == 384,
+        "알뜰 패찰 must preserve a 256x384 master")
+    assert(economy.runtime.width == 32 and economy.runtime.height == 48,
+        "알뜰 패찰 runtime must fit its skip-tag slot")
+    assert(economy.runtime.filter == "nearest")
+    assert(economy.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(economy_id) == "assets/runtime/tag/economy-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "economy" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end
