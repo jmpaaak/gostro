@@ -3,6 +3,7 @@
 -- Selection up to 5 cards with order tracking.
 
 local card = require("game.ui.card")
+local effect_art = require("game.ui.effect_art")
 
 local M = {}
 
@@ -111,6 +112,7 @@ function M.draw(h)
         local sel_idx = M.selection_index(h, i)
         if sel_idx then
             local dy = card.draw_y(c)
+            effect_art.draw_select(c.x, dy, card.WIDTH, card.HEIGHT)
             local num = tostring(sel_idx)
             local tw = font:getWidth(num)
             love.graphics.setColor(1, 1, 0.3, 1)

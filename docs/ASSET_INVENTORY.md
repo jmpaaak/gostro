@@ -114,7 +114,7 @@
 - [x] `ui.icon_deck` - ui.icon_deck
 - [x] `ui.icon_discard` - ui.icon_discard
 - [x] `ui.icon_hand` - ui.icon_hand
-- [ ] `ui.effect_select` - ui.effect_select
+- [x] `ui.effect_select` - ui.effect_select
 - [ ] `ui.effect_score` - ui.effect_score
 - [ ] `ui.effect_lock` - ui.effect_lock
 - [ ] `ui.effect_win` - ui.effect_win

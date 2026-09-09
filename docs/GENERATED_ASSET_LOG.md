@@ -240,3 +240,7 @@
 2026-09-09T11:35:29+0900 | assets/runtime/ui/icon-hand-v1.png | 12x12 runtime hand icon from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5.
 2026-09-09T11:35:29+0900 | assets/runtime/ui/icon-hand-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 59-color palette, alignment, and nearest-neighbor validation.
 2026-09-09T11:35:29+0900 | assets/runtime/ui/score-icon-love-v1.png | Actual LÖVE 11.5 320x180 HUD and action-button QA capture proving the manifest-backed hand icon with no button overlap; SHA-256 4024192e22732986e96986d47a290bcb1490a0a00c2637ad5a8ba3ee8277866b.
+2026-09-09T11:44:47+0900 | assets/masters/ui/effect-select-v1.svg | Project-authored high-resolution selection effect SVG.
+2026-09-09T11:44:47+0900 | assets/masters/ui/effect-select-v1.png | Preserved 208x304 RGBA raster master rendered directly from the vector source.
+2026-09-09T11:44:47+0900 | assets/runtime/ui/effect-select-v1.png | 26x38 runtime effect-select icon from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5.
+2026-09-09T11:44:47+0900 | assets/runtime/ui/effect-select-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, alignment, and nearest-neighbor validation.
