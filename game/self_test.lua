@@ -9,6 +9,7 @@ function M.run()
     require("game.tests.run_setup_ui").run()
     require("game.tests.deck_art").run()
     require("game.tests.stake_art").run()
+    require("game.tests.arrow_art").run()
 
     local actor = player.new()
     player.update(actor, 1, { right = true })

@@ -2601,7 +2601,7 @@
       "id": "tag.investment",
       "category": "tag",
       "status": "runtime",
-      "name": "거상 패찰",
+      "name": "\uac70\uc0c1 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/investment-v1.png",
         "sourceSha256": "febab578b300df9677165d26e50b0b9e28a98a960f701cc4796ba3208f8f6727",
@@ -2639,7 +2639,7 @@
       "id": "tag.handy",
       "category": "tag",
       "status": "runtime",
-      "name": "재주꾼 패찰",
+      "name": "\uc7ac\uc8fc\uafbc \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/handy-v1.png",
         "sourceSha256": "7000a2147abc0485bb6a38975704ae2ca2067a937f9f14a3e585fff94f01fd92",
@@ -2677,7 +2677,7 @@
       "id": "tag.economy",
       "category": "tag",
       "status": "runtime",
-      "name": "알뜰 패찰",
+      "name": "\uc54c\ub730 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/economy-v1.png",
         "sourceSha256": "941b155b4413c30cc47c18c7eb3c0a59cdfb1d10323f81f5276f2611b49a29c7",
@@ -2715,7 +2715,7 @@
       "id": "tag.mega",
       "category": "tag",
       "status": "runtime",
-      "name": "대풍년 패찰",
+      "name": "\ub300\ud48d\ub144 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/mega-v1.png",
         "sourceSha256": "600d338cb168311abd03c68e2735f1c661dce1d7068ce9fcebe97cbfd50fe0cc",
@@ -2753,7 +2753,7 @@
       "id": "tag.foil",
       "category": "tag",
       "status": "runtime",
-      "name": "은박 패찰",
+      "name": "\uc740\ubc15 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/foil-v1.png",
         "sourceSha256": "42bd20a8a2ca380622ddc35d14511efb710c544f38248339a8761be627b37030",
@@ -2791,7 +2791,7 @@
       "id": "tag.hologram",
       "category": "tag",
       "status": "runtime",
-      "name": "오색 패찰",
+      "name": "\uc624\uc0c9 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/hologram-v1.png",
         "sourceSha256": "7e17515be2fea6026ac160bc5b73406fa0cb3481be4557491fe6d3d0b424fb06",
@@ -2829,7 +2829,7 @@
       "id": "tag.polychrome",
       "category": "tag",
       "status": "runtime",
-      "name": "영롱 패찰",
+      "name": "\uc601\ub871 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/polychrome-v1.png",
         "sourceSha256": "d4543c2569b6c8fe0f89d6ebcca007521c95b89fb9d48457cd764b3e3cf8d619",
@@ -2867,7 +2867,7 @@
       "id": "tag.charm",
       "category": "tag",
       "status": "runtime",
-      "name": "행운 패찰",
+      "name": "\ud589\uc6b4 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/charm-v1.png",
         "sourceSha256": "883e14741f9e39b877104e1e2a12c2b13c25c35062d463356f1c17cb8041f9e2",
@@ -2905,7 +2905,7 @@
       "id": "tag.uncommon",
       "category": "tag",
       "status": "runtime",
-      "name": "진품 패찰",
+      "name": "\uc9c4\ud488 \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/uncommon-v1.png",
         "sourceSha256": "f663e031a447e067ea90e680d9369d43cc3625e09a7592459ff3c7447c8e4c50",
@@ -2943,7 +2943,7 @@
       "id": "tag.juggle",
       "category": "tag",
       "status": "runtime",
-      "name": "곡예사 패찰",
+      "name": "\uace1\uc608\uc0ac \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/juggle-v1.png",
         "sourceSha256": "180e0ccf5c9444dedabcb882a157b4685b549514d8f22ba01d1111eb543e84e8",
@@ -2981,7 +2981,7 @@
       "id": "tag.d6",
       "category": "tag",
       "status": "runtime",
-      "name": "주령구 패찰",
+      "name": "\uc8fc\ub839\uad6c \ud328\ucc30",
       "master": {
         "source": "assets/masters/tag/d6-v1.png",
         "sourceSha256": "60e48159d963f3a3b1aa4fd816e6ff094c028a05f9c80fc7699d7f4ab426fa8f",
@@ -2989,7 +2989,7 @@
         "width": 256,
         "height": 384,
         "sha256": "60e48159d963f3a3b1aa4fd816e6ff094c028a05f9c80fc7699d7f4ab426fa8f",
-        "provenance": "Project-authored high-resolution procedural wooden plaque with a Silla 주령구 polyhedron for two free shop rerolls; no photo, people, or month imagery."
+        "provenance": "Project-authored high-resolution procedural wooden plaque with a Silla \uc8fc\ub839\uad6c polyhedron for two free shop rerolls; no photo, people, or month imagery."
       },
       "runtime": {
         "path": "assets/runtime/tag/d6-v1.png",
@@ -4712,7 +4712,7 @@
       "id": "effect.foil",
       "category": "effect",
       "status": "runtime",
-      "name": "은박 효과",
+      "name": "\uc740\ubc15 \ud6a8\uacfc",
       "master": {
         "source": "assets/masters/effect/foil-v1.png",
         "sourceSha256": "5f37b5f3ef3048535a9e0631779613e99c4780b4dca889b51e8bedfc7f1a7c3a",
@@ -4759,7 +4759,7 @@
       "id": "effect.hologram",
       "category": "effect",
       "status": "runtime",
-      "name": "오색 효과",
+      "name": "\uc624\uc0c9 \ud6a8\uacfc",
       "master": {
         "source": "assets/masters/effect/hologram-v1.png",
         "sourceSha256": "fdb93c2d6260d40d114aa1f39c2e08f557ee805dff316acd942429614ad6df5c",
@@ -4806,7 +4806,7 @@
       "id": "effect.polychrome",
       "category": "effect",
       "status": "runtime",
-      "name": "영롱 효과",
+      "name": "\uc601\ub871 \ud6a8\uacfc",
       "master": {
         "source": "assets/masters/effect/polychrome-v1.png",
         "sourceSha256": "7426b5d1741f437546c7519f28e48f813e729e2e1275dffc6eeddb71439f8d74",
@@ -4941,6 +4941,76 @@
           "repeatCaptureDeterministic": true,
           "artApproval": "approved"
         }
+      }
+    },
+    {
+      "id": "ui.arrow_left",
+      "category": "ui",
+      "status": "runtime",
+      "name": "left-arrow",
+      "master": {
+        "path": "assets/masters/ui/arrow-left-v1.png",
+        "width": 624,
+        "height": 432,
+        "sha256": "19fcec0ed427da7d285f65cf22dfdab9939fa311065e1d44dc1b91ceff300d93",
+        "provenance": "Project-authored high-resolution vector master depicting a left arrow."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/arrow-left-v1.png",
+        "width": 26,
+        "height": 18,
+        "alphaBounds": [
+          0,
+          0,
+          26,
+          18
+        ],
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 26,
+        "targetHeight": 18,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/arrow-left-v1.report.json",
+        "reportSha256": "416b45385b2bf22428b78ea77821b68cbb274dc90691d44bab6c7cc11d3d77bf"
+      }
+    },
+    {
+      "id": "ui.arrow_right",
+      "category": "ui",
+      "status": "runtime",
+      "name": "right-arrow",
+      "master": {
+        "path": "assets/masters/ui/arrow-right-v1.png",
+        "width": 624,
+        "height": 432,
+        "sha256": "18b4d49df8b7f55662876a23f1b77cabf622ec33f7d101b5f42f36143bf16943",
+        "provenance": "Project-authored high-resolution vector master depicting a right arrow."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/arrow-right-v1.png",
+        "width": 26,
+        "height": 18,
+        "alphaBounds": [
+          0,
+          0,
+          26,
+          18
+        ],
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 26,
+        "targetHeight": 18,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/arrow-right-v1.report.json",
+        "reportSha256": "dbb0e27242473416328260f1665b9b1cc866cb8f526e29505df8e7e6156f6a4f"
       }
     }
   ]

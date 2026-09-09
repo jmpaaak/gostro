@@ -10,11 +10,7 @@ end
 function love.load()
     require("game.tests.card_overlap_qa").run()
     local spec = qa.spec()
-    love.window.setMode(spec.canvas_width, spec.canvas_height, {
-        fullscreen = false,
-        resizable = false,
-        vsync = 0,
-    })
+    require("game.qa.offscreen_window").minimizeWindow(spec.canvas_width, spec.canvas_height)
     love.graphics.setDefaultFilter("nearest", "nearest")
     local sheet = love.graphics.newImage("assets/runtime/cards/play-card-contact-sheet-v1.png")
     local canvas = love.graphics.newCanvas(spec.canvas_width, spec.canvas_height)

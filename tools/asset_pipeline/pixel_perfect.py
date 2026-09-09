@@ -67,6 +67,22 @@ def write_rgba(path, width, height, pixels):
     destination.write_bytes(encoded)
 
 
+
+def get_session():
+    import urllib.request
+    req = urllib.request.Request("http://127.0.0.1:4176/index.html")
+    with urllib.request.urlopen(req) as resp:
+        cookies = resp.headers.get_all('Set-Cookie')
+        if not cookies:
+            return "", ""
+        cookie_str = "; ".join(c.split(";")[0] for c in cookies)
+        csrf = ""
+        for c in cookies:
+            if "pas_csrf=" in c:
+                csrf = c.split("pas_csrf=")[1].split(";")[0]
+        return cookie_str, csrf
+
+
 def convert(args):
     width, height, pixels = read_rgba(args.master)
     payload = {
@@ -77,10 +93,20 @@ def convert(args):
         "backgroundTolerance": args.background_tolerance,
         "paletteLimit": args.palette,
     }
+    cookie_str, csrf = get_session()
+    headers = {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+        "Referer": "http://127.0.0.1:4176/index.html",
+        "Origin": "http://127.0.0.1:4176",
+        "Accept": "application/json",
+        "Cookie": cookie_str,
+        "x-pas-csrf": csrf
+    }
     request = urllib.request.Request(
         args.endpoint,
         data=json.dumps(payload, separators=(",", ":")).encode(),
-        headers={"content-type": "application/json"},
+        headers=headers,
         method="POST",
     )
     with urllib.request.urlopen(request, timeout=30) as response:

@@ -8,13 +8,12 @@ local function write_capture(canvas, path)
 end
 
 function love.load()
-    require("game.qa.offscreen_window").minimizeWindow(320, 180)
+    love.window.setMode(320, 180, { fullscreen = false, resizable = false, vsync = 0 })
     love.graphics.setDefaultFilter("nearest", "nearest")
     love.graphics.setFont(love.graphics.newFont("assets/fonts/Galmuri11.ttf", 8))
 
     local state = run_setup.new("GOSTRO01")
-    assert(run_setup.selected_stake(state).id == "white",
-        "QA capture must show the white stake chip")
+    assert(run_setup.selected_deck(state).id == "hwatu", "QA capture must show the default deck carousel")
 
     local canvas = love.graphics.newCanvas(320, 180)
     canvas:setFilter("nearest", "nearest")
@@ -22,8 +21,8 @@ function love.load()
     run_setup.draw(state)
     love.graphics.setCanvas()
 
-    local output = assert(os.getenv("STAKE_WHITE_QA_OUTPUT"), "STAKE_WHITE_QA_OUTPUT is required")
+    local output = assert(os.getenv("ARROW_QA_OUTPUT"), "ARROW_QA_OUTPUT is required")
     write_capture(canvas, output)
-    print("STAKE_WHITE_LOVE_QA_OK 320x180 " .. output)
+    print("ARROW_LOVE_QA_OK 320x180 " .. output)
     love.event.quit(0)
 end

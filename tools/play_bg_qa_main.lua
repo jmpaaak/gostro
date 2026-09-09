@@ -8,7 +8,7 @@ local function write_capture(canvas, path)
 end
 
 function love.load()
-    love.window.setMode(320, 180, { fullscreen = false, resizable = false, vsync = 0 })
+    require("game.qa.offscreen_window").minimizeWindow(320, 180)
     love.graphics.setDefaultFilter("nearest", "nearest")
 
     local canvas = love.graphics.newCanvas(320, 180)

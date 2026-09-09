@@ -2,11 +2,12 @@ LOVE ?= love
 ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
+HEADLESS_ENV = GAME_HEADLESS=1 SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 
 .PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa hologram-effect-qa polychrome-effect-qa smoke love verify clean
 
 test:
-	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
+	$(HEADLESS_ENV) GAME_UNIT=1 $(LOVE) .
 
 status-test:
 	python3 -m unittest -v scripts.test_compact_status
@@ -29,6 +30,8 @@ card-overlap-qa:
 		"$(BUILD_DIR)/card-overlap-qa/game/qa" \
 		"$(BUILD_DIR)/card-overlap-qa/assets/runtime/cards"
 	@cp tools/card_overlap_qa_main.lua "$(BUILD_DIR)/card-overlap-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/card-overlap-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/card-overlap-qa/game/qa/"
 	@cp game/tests/card_overlap_qa.lua "$(BUILD_DIR)/card-overlap-qa/game/tests/"
 	@cp game/qa/card_overlap.lua "$(BUILD_DIR)/card-overlap-qa/game/qa/"
 	@cp assets/runtime/cards/play-card-contact-sheet-v1.png \
@@ -42,6 +45,8 @@ blind-card-qa:
 		"$(BUILD_DIR)/blind-card-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/blind-card-qa/assets/fonts"
 	@cp tools/blind_card_qa_main.lua "$(BUILD_DIR)/blind-card-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/blind-card-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/blind-card-qa/game/qa/"
 	@cp game/ui/blind_select.lua game/ui/blind_card_art.lua "$(BUILD_DIR)/blind-card-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/blind-card-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/blind-card-qa/assets/"
@@ -87,6 +92,8 @@ shop-pack-qa:
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/tarot" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/fonts"
 	@cp tools/shop_pack_qa_main.lua "$(BUILD_DIR)/shop-pack-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/shop-pack-qa/game/qa/"
 	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua game/ui/planet_art.lua game/ui/tarot_art.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/shop-pack-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
@@ -197,6 +204,8 @@ pack-panel-qa:
 		"$(BUILD_DIR)/pack-panel-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/pack-panel-qa/assets/fonts"
 	@cp tools/pack_panel_qa_main.lua "$(BUILD_DIR)/pack-panel-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/pack-panel-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/pack-panel-qa/game/qa/"
 	@cp game/ui/pack.lua game/ui/panel_art.lua "$(BUILD_DIR)/pack-panel-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/pack-panel-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/pack-panel-qa/assets/"
@@ -211,6 +220,8 @@ glass-panel-qa:
 		"$(BUILD_DIR)/glass-panel-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/glass-panel-qa/assets/fonts"
 	@cp tools/glass_panel_qa_main.lua "$(BUILD_DIR)/glass-panel-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/glass-panel-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/glass-panel-qa/game/qa/"
 	@cp game/ui/tarot_target.lua game/ui/panel_art.lua "$(BUILD_DIR)/glass-panel-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/glass-panel-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/glass-panel-qa/assets/"
@@ -224,6 +235,8 @@ play-bg-qa:
 	@mkdir -p "$(BUILD_DIR)/play-bg-qa/game/ui" \
 		"$(BUILD_DIR)/play-bg-qa/assets/runtime/ui"
 	@cp tools/play_bg_qa_main.lua "$(BUILD_DIR)/play-bg-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/play-bg-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/play-bg-qa/game/qa/"
 	@cp game/ui/scene_bg.lua "$(BUILD_DIR)/play-bg-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/play-bg-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/play-bg-qa/assets/"
@@ -236,6 +249,8 @@ shop-bg-qa:
 	@mkdir -p "$(BUILD_DIR)/shop-bg-qa/game/ui" \
 		"$(BUILD_DIR)/shop-bg-qa/assets/runtime/ui"
 	@cp tools/shop_bg_qa_main.lua "$(BUILD_DIR)/shop-bg-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/shop-bg-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/shop-bg-qa/game/qa/"
 	@cp game/ui/scene_bg.lua "$(BUILD_DIR)/shop-bg-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/shop-bg-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-bg-qa/assets/"
@@ -249,6 +264,8 @@ gwang-slot-qa:
 		"$(BUILD_DIR)/gwang-slot-qa/game/data" \
 		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang"
 	@cp tools/gwang_slot_qa_main.lua "$(BUILD_DIR)/gwang-slot-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/gwang-slot-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/gwang-slot-qa/game/qa/"
 	@cp game/ui/gwang_slots.lua game/ui/gwang_art.lua game/ui/gwang_asset_art.lua \
 		"$(BUILD_DIR)/gwang-slot-qa/game/ui/"
 	@cp game/asset_loader.lua game/gwang_catalog.lua "$(BUILD_DIR)/gwang-slot-qa/game/"
@@ -336,6 +353,8 @@ score-icon-qa:
 		"$(BUILD_DIR)/score-icon-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/score-icon-qa/assets/fonts"
 	@cp tools/score_icon_qa_main.lua "$(BUILD_DIR)/score-icon-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/score-icon-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/score-icon-qa/game/qa/"
 	@cp game/ui/scoreboard.lua game/ui/score_icon_art.lua game/ui/action_buttons.lua \
 		game/ui/panel_art.lua \
 		"$(BUILD_DIR)/score-icon-qa/game/ui/"
@@ -356,6 +375,8 @@ score-effect-qa:
 		"$(BUILD_DIR)/score-effect-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/score-effect-qa/assets/fonts"
 	@cp tools/score_effect_qa_main.lua "$(BUILD_DIR)/score-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/score-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/score-effect-qa/game/qa/"
 	@cp game/ui/score_anim.lua game/ui/effect_art.lua "$(BUILD_DIR)/score-effect-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/score-effect-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/score-effect-qa/assets/"
@@ -370,6 +391,8 @@ lock-effect-qa:
 		"$(BUILD_DIR)/lock-effect-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/lock-effect-qa/assets/fonts"
 	@cp tools/lock_effect_qa_main.lua "$(BUILD_DIR)/lock-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/lock-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/lock-effect-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/lock-effect-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/lock-effect-qa/game/"
@@ -386,6 +409,8 @@ win-effect-qa:
 		"$(BUILD_DIR)/win-effect-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/win-effect-qa/assets/fonts"
 	@cp tools/win_effect_qa_main.lua "$(BUILD_DIR)/win-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/win-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/win-effect-qa/game/qa/"
 	@cp game/ui/effect_art.lua game/ui/scene_bg.lua \
 		"$(BUILD_DIR)/win-effect-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/win-effect-qa/game/"
@@ -402,6 +427,8 @@ loss-effect-qa:
 		"$(BUILD_DIR)/loss-effect-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/loss-effect-qa/assets/fonts"
 	@cp tools/loss_effect_qa_main.lua "$(BUILD_DIR)/loss-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/loss-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/loss-effect-qa/game/qa/"
 	@cp game/ui/effect_art.lua game/ui/scene_bg.lua \
 		"$(BUILD_DIR)/loss-effect-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/loss-effect-qa/game/"
@@ -418,6 +445,8 @@ deck-blue-qa:
 		"$(BUILD_DIR)/deck-blue-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/deck-blue-qa/assets/fonts"
 	@cp tools/deck_blue_qa_main.lua "$(BUILD_DIR)/deck-blue-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/deck-blue-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/deck-blue-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/deck-blue-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-blue-qa/game/"
@@ -434,6 +463,8 @@ deck-red-qa:
 		"$(BUILD_DIR)/deck-red-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/deck-red-qa/assets/fonts"
 	@cp tools/deck_red_qa_main.lua "$(BUILD_DIR)/deck-red-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/deck-red-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/deck-red-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/deck-red-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-red-qa/game/"
@@ -450,6 +481,8 @@ deck-yellow-qa:
 		"$(BUILD_DIR)/deck-yellow-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/deck-yellow-qa/assets/fonts"
 	@cp tools/deck_yellow_qa_main.lua "$(BUILD_DIR)/deck-yellow-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/deck-yellow-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/deck-yellow-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/deck-yellow-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-yellow-qa/game/"
@@ -466,6 +499,8 @@ stake-white-qa:
 		"$(BUILD_DIR)/stake-white-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/stake-white-qa/assets/fonts"
 	@cp tools/stake_white_qa_main.lua "$(BUILD_DIR)/stake-white-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/stake-white-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/stake-white-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/stake-white-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/stake-white-qa/game/"
@@ -482,6 +517,8 @@ stake-red-qa:
 		"$(BUILD_DIR)/stake-red-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/stake-red-qa/assets/fonts"
 	@cp tools/stake_red_qa_main.lua "$(BUILD_DIR)/stake-red-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/stake-red-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/stake-red-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/stake-red-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/stake-red-qa/game/"
@@ -498,6 +535,8 @@ stake-green-qa:
 		"$(BUILD_DIR)/stake-green-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/stake-green-qa/assets/fonts"
 	@cp tools/stake_green_qa_main.lua "$(BUILD_DIR)/stake-green-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/stake-green-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/stake-green-qa/game/qa/"
 	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/stake-green-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/stake-green-qa/game/"
@@ -514,6 +553,8 @@ tag-qa:
 		"$(BUILD_DIR)/tag-qa/assets/runtime/tag" \
 		"$(BUILD_DIR)/tag-qa/assets/fonts"
 	@cp tools/tag_qa_main.lua "$(BUILD_DIR)/tag-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/tag-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/tag-qa/game/qa/"
 	@cp game/ui/tag_art.lua "$(BUILD_DIR)/tag-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua game/rng.lua "$(BUILD_DIR)/tag-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/tag-qa/assets/"
@@ -563,6 +604,8 @@ foil-effect-qa:
 		"$(BUILD_DIR)/foil-effect-qa/assets/runtime/effect" \
 		"$(BUILD_DIR)/foil-effect-qa/assets/fonts"
 	@cp tools/foil_effect_qa_main.lua "$(BUILD_DIR)/foil-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/foil-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/foil-effect-qa/game/qa/"
 	@cp game/ui/card.lua game/ui/card_art.lua game/ui/edition_art.lua \
 		"$(BUILD_DIR)/foil-effect-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/foil-effect-qa/game/"
@@ -582,6 +625,8 @@ hologram-effect-qa:
 		"$(BUILD_DIR)/hologram-effect-qa/assets/runtime/effect" \
 		"$(BUILD_DIR)/hologram-effect-qa/assets/fonts"
 	@cp tools/hologram_effect_qa_main.lua "$(BUILD_DIR)/hologram-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/hologram-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/hologram-effect-qa/game/qa/"
 	@cp game/ui/card.lua game/ui/card_art.lua game/ui/edition_art.lua \
 		"$(BUILD_DIR)/hologram-effect-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/hologram-effect-qa/game/"
@@ -601,6 +646,8 @@ polychrome-effect-qa:
 		"$(BUILD_DIR)/polychrome-effect-qa/assets/runtime/effect" \
 		"$(BUILD_DIR)/polychrome-effect-qa/assets/fonts"
 	@cp tools/polychrome_effect_qa_main.lua "$(BUILD_DIR)/polychrome-effect-qa/main.lua"
+	@mkdir -p "$(BUILD_DIR)/polychrome-effect-qa/game/qa"
+	@cp game/qa/offscreen_window.lua "$(BUILD_DIR)/polychrome-effect-qa/game/qa/"
 	@cp game/ui/card.lua game/ui/card_art.lua game/ui/edition_art.lua \
 		"$(BUILD_DIR)/polychrome-effect-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/polychrome-effect-qa/game/"
@@ -614,7 +661,7 @@ polychrome-effect-qa:
 		$(LOVE) "$(BUILD_DIR)/polychrome-effect-qa"
 
 smoke:
-	GAME_HEADLESS=1 $(LOVE) .
+	$(HEADLESS_ENV) $(LOVE) .
 
 love:
 	@mkdir -p "$(BUILD_DIR)"
@@ -625,7 +672,7 @@ love:
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
 verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa hologram-effect-qa polychrome-effect-qa smoke love
-	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
+	$(HEADLESS_ENV) $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 
 clean:

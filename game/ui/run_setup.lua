@@ -198,15 +198,44 @@ local function draw_shadowed_box(graphics, rect, color, radius)
     graphics.rectangle("fill", rect.x, rect.y, rect.w, rect.h, radius, radius)
 end
 
+local arrow_art = require("game.ui.arrow_art")
+
 local function draw_arrow(graphics, rect, points_right, enabled)
-    draw_shadowed_box(graphics, rect, enabled and { 0.72, 0.12, 0.15, 1 } or { 0.31, 0.30, 0.33, 1 }, 4)
-    graphics.setColor(1, 0.91, 0.66, enabled and 1 or 0.55)
-    local cx, cy = rect.x + rect.w / 2, rect.y + rect.h / 2
-    local direction = points_right and 1 or -1
-    graphics.polygon("fill",
-        cx + 6 * direction, cy,
-        cx - 5 * direction, cy - 8,
-        cx - 5 * direction, cy + 8)
+    local w, h = 26, 18
+    local cx, cy = rect.x + math.floor((rect.w - w) / 2), rect.y + math.floor((rect.h - h) / 2)
+    local api = {
+        set_color = function(...)
+            local r, g, b, a = ...
+            if not enabled then
+                graphics.setColor(r * 0.5, g * 0.5, b * 0.5, a)
+            else
+                graphics.setColor(...)
+            end
+        end,
+        draw = function(...)
+            if graphics.draw then
+                return graphics.draw(...)
+            end
+        end,
+    }
+
+    local drawn
+    if points_right then
+        drawn = arrow_art.draw_right(cx, cy, w, h, api)
+    else
+        drawn = arrow_art.draw_left(cx, cy, w, h, api)
+    end
+
+    if not drawn then
+        draw_shadowed_box(graphics, rect, enabled and { 0.72, 0.12, 0.15, 1 } or { 0.31, 0.30, 0.33, 1 }, 4)
+        graphics.setColor(1, 0.91, 0.66, enabled and 1 or 0.55)
+        local px, py = rect.x + rect.w / 2, rect.y + rect.h / 2
+        local direction = points_right and 1 or -1
+        graphics.polygon("fill",
+            px + 6 * direction, py,
+            px - 5 * direction, py - 8,
+            px - 5 * direction, py + 8)
+    end
 end
 
 local function draw_deck_art(graphics, deck)

@@ -127,6 +127,8 @@
 - [x] `ui.stake_green` - ui.stake_green
 - [x] `ui.blind_small` - first-round card
 - [x] `ui.blind_big` - big-round card
+- [x] `ui.arrow_left` - left-arrow
+- [x] `ui.arrow_right` - right-arrow
 
 ## voucher
 
