@@ -8,28 +8,16 @@ function love.conf(t)
     t.version = "11.5"
     if headless or qa then
         -- Loop/QA must not create a macOS window at all. 1x1 offscreen still
-        -- flashes a Dock icon. Canvas captures that need graphics should run
-        -- as a user-invoked Makefile target, not from the autonomous loop.
+        -- flashes a Dock icon. Isolated font/capture packages use tools/qa_conf.lua
+        -- (1x1 offscreen with graphics) because they need an OpenGL context.
         t.window = false
         t.modules.audio = false
         t.modules.window = false
         t.modules.graphics = false
         return
     end
-    t.window.title = qa and "Gostro QA" or "Gostro"
+    t.window.title = "Gostro"
     t.window.msaa = 0
-    if qa then
-        t.window.width = 1
-        t.window.height = 1
-        t.window.borderless = true
-        t.window.resizable = false
-        t.window.highdpi = false
-        t.window.vsync = 0
-        t.window.x = -32000
-        t.window.y = -32000
-        t.modules.audio = false
-        return
-    end
     t.window.width = 320 * scale
     t.window.height = 180 * scale
     t.window.resizable = true
