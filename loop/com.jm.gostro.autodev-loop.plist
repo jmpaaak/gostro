@@ -14,7 +14,15 @@
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
-    <string>/Users/jm/Applications/love.app/Contents/MacOS:/Users/jm/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <string>/Users/jm/orca/workspaces/interactive-story-game-factory/gostro/loop/bin:/Users/jm/Applications/love.app/Contents/MacOS:/Users/jm/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>GOSTRO_LOOP</key>
+    <string>1</string>
+    <key>GAME_QA</key>
+    <string>1</string>
+    <key>SDL_MAC_BACKGROUND_APP</key>
+    <string>1</string>
+    <key>SDL_HINT_VIDEO_MAC_BACKGROUND_APP</key>
+    <string>1</string>
     <key>LOOP_ROOT</key>
     <string>/Users/jm/orca/workspaces/interactive-story-game-factory/gostro</string>
     <key>HOME</key><string>/Users/jm</string>

@@ -189,6 +189,10 @@ def main() -> int:
         pass
     warn_large_source_files(root)
     env = os.environ.copy()
+    env.setdefault("GOSTRO_LOOP", "1")
+    env.setdefault("GAME_QA", "1")
+    env.setdefault("SDL_MAC_BACKGROUND_APP", "1")
+    env.setdefault("SDL_HINT_VIDEO_MAC_BACKGROUND_APP", "1")
     love = "/Users/jm/.local/bin/love"
     checks = [
         ("engine tests and package", ["make", "verify", f"LOVE={love}"], 120),

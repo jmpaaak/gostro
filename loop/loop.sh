@@ -21,6 +21,11 @@ if [[ ! -f "${ENV_FILE}" ]]; then
 fi
 # shellcheck source=env.sh
 source "${ENV_FILE}"
+export GOSTRO_LOOP=1
+export GAME_QA=1
+export SDL_MAC_BACKGROUND_APP=1
+export SDL_HINT_VIDEO_MAC_BACKGROUND_APP=1
+export PATH="${SCRIPT_DIR}/bin:${PATH}"
 
 for name in MAX_TURNS RUN_BUDGET_SECONDS MAX_IDLE_SECONDS WAIT_SECONDS MAX_LOOPS; do
   value="${!name}"

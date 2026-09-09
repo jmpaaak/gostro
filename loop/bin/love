@@ -1,0 +1,12 @@
+#!/bin/sh
+# Gostro-loop PATH shim. Never replace ~/.local/bin/love.
+# Forces background/offscreen Love so autonomous verify cannot steal focus.
+export GOSTRO_LOOP=1
+export GAME_QA=1
+export SDL_MAC_BACKGROUND_APP=1
+export SDL_HINT_VIDEO_MAC_BACKGROUND_APP=1
+REAL="${GOSTRO_LOVE_REAL:-/Users/jm/Applications/love.app/Contents/MacOS/love}"
+if [ ! -x "$REAL" ]; then
+  REAL="/Users/jm/.local/bin/love"
+fi
+exec "$REAL" "$@"

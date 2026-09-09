@@ -41,7 +41,7 @@ Gwang are jokers (slot passives, 1 point base). Play cards have **no month numbe
 3. If preflight reports FAIL, reproduce and fix that exact failure first.
 4. Otherwise choose one small user-visible or state-machine slice from the top pending requirement.
 5. Use test-driven development: add a failing engine-hosted test, observe RED, implement, then run focused GREEN tests. New tests live in `game/tests/<topic>.lua` (do not grow `game/self_test.lua`).
-6. Run `make verify LOVE=/Users/jm/.local/bin/love` before a checkpoint commit.
+6. Run `make verify LOVE=/Users/jm/.local/bin/love` before a checkpoint commit. Never launch `/Users/jm/.local/bin/love` or `love` directly — that opens a desktop window. Use Makefile targets or `tools/run_love_qa.sh`. Loop children inherit `GOSTRO_LOOP=1` so even a mistaken direct `love` stays offscreen.
 7. Update `docs/STATUS.md` with verified facts for this cycle only and the exact next slice. Commit owned changes with a specific message. Push only after tests pass and the worktree is clean.
 8. When an INBOX item is fully done, move it from `## 처리 대기` into `## 처리 완료` in the same commit with evidence. Do not move an item to 처리 완료 just because it was written down. Empty 처리 대기 is IDLE.
 
