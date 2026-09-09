@@ -6,12 +6,12 @@ local tarots = require("game.tarots")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local RIGHT_PAD = 4
-local SLOT_Y = 24
-local SLOT_W = 42
-local SLOT_H = 28
-local SLOT_GAP = 3
+local VIEWPORT_W = 960
+local RIGHT_PAD = 12
+local SLOT_Y = 72
+local SLOT_W = 126
+local SLOT_H = 84
+local SLOT_GAP = 9
 
 local EFFECT_LABELS = {
     convert = "패 변환",

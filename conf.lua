@@ -2,7 +2,7 @@ function love.conf(t)
     local headless = os.getenv("GAME_HEADLESS") == "1"
     -- GOSTRO_LOOP covers absolute-path `love` spawned by the autonomous cycle.
     local qa = os.getenv("GAME_QA") == "1" or os.getenv("GOSTRO_LOOP") == "1"
-    local scale = math.max(1, math.min(4, math.floor(tonumber(os.getenv("GAME_SCALE")) or 3)))
+    local scale = math.max(1, math.min(4, math.floor(tonumber(os.getenv("GAME_SCALE")) or 1)))
 
     t.identity = "gostro"
     t.version = "11.5"

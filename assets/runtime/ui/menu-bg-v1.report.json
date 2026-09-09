@@ -1,9 +1,9 @@
 {
   "bounds": {
-    "maxX": 319,
-    "maxY": 176,
+    "maxX": 959,
+    "maxY": 531,
     "minX": 0,
-    "minY": 2
+    "minY": 8
   },
   "checks": {
     "alignment": true,
@@ -13,6 +13,6 @@
     "transparentAlpha": true
   },
   "paletteSize": 2,
-  "transparentPixels": 55281,
+  "transparentPixels": 497608,
   "valid": true
 }

@@ -6,8 +6,8 @@ local score_icon_art = require("game.ui.score_icon_art")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local VIEWPORT_H = 180
+local VIEWPORT_W = 960
+local VIEWPORT_H = 540
 local POPUP_DURATION = 1.5  -- seconds
 
 --- Create a new scoreboard state.
@@ -78,10 +78,10 @@ function M.draw(sb)
     local fh = font:getHeight()
 
     -- Score area: right side, below gwang slots
-    local box_x = VIEWPORT_W - 110
-    local box_y = 24
-    local box_w = 105
-    local box_h = 50
+    local box_x = VIEWPORT_W - 330
+    local box_y = 72
+    local box_w = 315
+    local box_h = 150
 
     -- Background panel
     if not panel_art.draw("metal", { x = box_x, y = box_y, w = box_w, h = box_h }) then

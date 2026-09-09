@@ -8,8 +8,8 @@ local arrow_art = require("game.ui.arrow_art")
 
 local M = {}
 
-M.VIEWPORT_W = 320
-M.VIEWPORT_H = 180
+M.VIEWPORT_W = 960
+M.VIEWPORT_H = 540
 
 local DECKS = {
     {
@@ -58,17 +58,17 @@ local STAKES = {
 }
 
 local LAYOUT = {
-    panel = { x = 35, y = 60, w = 250, h = 59 },
-    deck_art = { x = 48, y = 66, w = 48, h = 48 },
-    deck_info = { x = 104, y = 62, w = 168, h = 54 },
-    deck_left = { x = 5, y = 67, w = 30, h = 42 },
-    deck_right = { x = 285, y = 67, w = 30, h = 42 },
-    dots = { x = 137, y = 116, w = 46, h = 5 },
-    stake_left = { x = 10, y = 122, w = 26, h = 18 },
-    stake = { x = 40, y = 122, w = 240, h = 18 },
-    stake_right = { x = 284, y = 122, w = 26, h = 18 },
-    seeded = { x = 39, y = 143, w = 112, h = 14 },
-    play = { x = 181, y = 142, w = 100, h = 16 },
+    panel = { x = 105, y = 180, w = 750, h = 177 },
+    deck_art = { x = 144, y = 198, w = 144, h = 144 },
+    deck_info = { x = 312, y = 186, w = 504, h = 162 },
+    deck_left = { x = 15, y = 201, w = 90, h = 126 },
+    deck_right = { x = 855, y = 201, w = 90, h = 126 },
+    dots = { x = 411, y = 348, w = 138, h = 15 },
+    stake_left = { x = 30, y = 366, w = 78, h = 54 },
+    stake = { x = 120, y = 366, w = 720, h = 54 },
+    stake_right = { x = 852, y = 366, w = 78, h = 54 },
+    seeded = { x = 117, y = 429, w = 336, h = 42 },
+    play = { x = 543, y = 426, w = 300, h = 48 },
 }
 
 local function copy_entries(source)

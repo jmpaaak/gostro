@@ -44,24 +44,24 @@ def main():
     parser.add_argument("report")
     args = parser.parse_args()
     sheet_width, sheet_height, pixels = read_rgba(args.sheet)
-    if (sheet_width, sheet_height) != (240, 72):
-        raise ValueError("contact sheet must be the 240x72 Pixel Perfect output")
-    cards = [crop(pixels, sheet_width, index * 48, 0, 48, 72) for index in range(5)]
-    fingerprints = [fingerprint(card, 48, 20) for card in cards]
+    if (sheet_width, sheet_height) != (360, 108):
+        raise ValueError("contact sheet must be the 360x108 Pixel Perfect output")
+    cards = [crop(pixels, sheet_width, index * 72, 0, 72, 108) for index in range(5)]
+    fingerprints = [fingerprint(card, 72, 30) for card in cards]
     if len(set(fingerprints)) != 5:
         raise ValueError("top-edge card marks are not uniquely identifiable")
-    step, margin = 20, 2
-    capture_width, capture_height = margin * 2 + 48 + step * 4, 76
+    step, margin = 30, 2
+    capture_width, capture_height = margin * 2 + 72 + step * 4, 112
     canvas = bytearray(capture_width * capture_height * 4)
     for index, card in enumerate(cards):
-        paste(canvas, capture_width, card, 48, 72, margin + index * step, 2)
+        paste(canvas, capture_width, card, 72, 108, margin + index * step, 2)
     write_rgba(args.capture, capture_width, capture_height, canvas)
     result = {
         "valid": True,
         "source": args.sheet,
         "capture": args.capture,
         "cardOrder": ["pi", "hongdan", "cheongdan", "chodan", "godori"],
-        "cardSize": [48, 72],
+        "cardSize": [72, 108],
         "topVisiblePixels": step,
         "topMarkFingerprints": fingerprints,
         "captureSha256": hashlib.sha256(Path(args.capture).read_bytes()).hexdigest(),

@@ -5,13 +5,13 @@ local panel_art = require("game.ui.panel_art")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local PANEL = { x = 28, y = 14, w = 264, h = 152 }
-local CHOICE_Y = 50
-local CHOICE_H = 48
-local CHOICE_W = 58
-local CHOICE_GAP = 12
-local SKIP = { x = 130, y = 136, w = 60, h = 18 }
+local VIEWPORT_W = 960
+local PANEL = { x = 84, y = 42, w = 792, h = 330 }
+local CHOICE_Y = 120
+local CHOICE_H = 144
+local CHOICE_W = 174
+local CHOICE_GAP = 36
+local SKIP = { x = 390, y = 300, w = 180, h = 54 }
 
 local function contains(bounds, x, y)
     return x >= bounds.x and x < bounds.x + bounds.w

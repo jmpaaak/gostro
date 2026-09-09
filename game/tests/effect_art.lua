@@ -43,12 +43,12 @@ function M.run()
     assert(win_entry and win_entry.status == "runtime", "win effect artwork must be promoted")
     assert(win_entry.master.width == 960 and win_entry.master.height == 540,
         "win effect must preserve a 960x540 master")
-    assert(win_entry.runtime.width == 320 and win_entry.runtime.height == 180,
-        "win effect runtime must fill the 320x180 canvas")
+    assert(win_entry.runtime.width == 960 and win_entry.runtime.height == 540,
+        "win effect runtime must fill the 960x540 canvas")
     assert(win_entry.runtime.filter == "nearest")
     assert(win_entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
 
-    local win_texture = { getDimensions = function() return 320, 180 end }
+    local win_texture = { getDimensions = function() return 960, 540 end }
     local win_calls = {}
     local win_requested
     local win_drawn = effect_art.draw_win(0, 0, {
@@ -86,12 +86,12 @@ function M.run()
     assert(loss_entry and loss_entry.status == "runtime", "loss effect artwork must be promoted")
     assert(loss_entry.master.width == 960 and loss_entry.master.height == 540,
         "loss effect must preserve a 960x540 master")
-    assert(loss_entry.runtime.width == 320 and loss_entry.runtime.height == 180,
-        "loss effect runtime must fill the 320x180 canvas")
+    assert(loss_entry.runtime.width == 960 and loss_entry.runtime.height == 540,
+        "loss effect runtime must fill the 960x540 canvas")
     assert(loss_entry.runtime.filter == "nearest")
     assert(loss_entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
 
-    local loss_texture = { getDimensions = function() return 320, 180 end }
+    local loss_texture = { getDimensions = function() return 960, 540 end }
     local loss_calls = {}
     local loss_requested
     local loss_drawn = effect_art.draw_loss(0, 0, {

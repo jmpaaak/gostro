@@ -8,12 +8,12 @@ local M = {}
 
 M.MAX_SLOTS = 5
 
--- Layout: 320×180 viewport, slots near top
-local VIEWPORT_W = 320
-local SLOT_W     = 28
-local SLOT_H     = 16
-local SLOT_GAP   = 4
-local TOP_PAD    = 4
+-- Layout: 960×540 viewport, slots near top
+local VIEWPORT_W = 960
+local SLOT_W     = 84
+local SLOT_H     = 48
+local SLOT_GAP   = 12
+local TOP_PAD    = 12
 
 -- Gwang identity → display info
 local GWANG_INFO = {

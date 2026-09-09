@@ -6,14 +6,14 @@ local blind_card_art = require("game.ui.blind_card_art")
 
 local M = {}
 
-local VIEWPORT_W = 320
-local VIEWPORT_H = 180
+local VIEWPORT_W = 960
+local VIEWPORT_H = 540
 
 -- Card layout: 3 cards centred
-local CARD_W = 50
-local CARD_H = 70
-local CARD_GAP = 14
-local CARD_Y = 36
+local CARD_W = 150
+local CARD_H = 210
+local CARD_GAP = 42
+local CARD_Y = 108
 
 local BLIND_REWARDS = {
     small = "+$3",
