@@ -2,7 +2,11 @@
 
 ## 처리 대기
 
-프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
+(31) **플레이 패가 고화질이 아님 — 24×36 런타임이 화면에서 뭉개짐** (msg `1547268256992198666`)
+  - 담당: `game/ui/card.lua`, `game/ui/hand.lua`, `game/ui/card_art.lua`, `assets/manifest.json`, `assets/runtime/cards/**`, `tools/asset_pipeline/**`.
+  - 사용자 캡처: 손패가 작은 저화질 도트 카드로 보인다. 마스터는 192×288인데 런타임 PNG와 드로우 크기가 24×36이라 고해상도 디테일이 화면에 안 나온다.
+  - 요구: 플레이 패 5종 런타임을 48×72(2×) 이상으로 올리고, 손패 레이아웃이 320×180 안에 들어가게 겹침을 조정한다. 192×288 마스터를 nearest로 스케일다운한 실제 Pixel Perfect 결과를 쓴다. 색 사각형/기호 폴백을 최종으로 두지 않는다.
+  - 완료 조건: 실제 손패 캡처에서 카드 종류가 고해상도 픽셀로 식별되고, 관련 테스트와 `make test LOVE=/Users/jm/.local/bin/love` GREEN.
 
 ## 처리 중
 
