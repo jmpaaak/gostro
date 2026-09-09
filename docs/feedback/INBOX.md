@@ -2,12 +2,6 @@
 
 ## 처리 대기
 
-(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, `1547202068216029215`)
-  - 담당: `tools/love_dispatch.sh`, `loop/bin/love`, `tools/run_love_qa.sh`, `tools/qa_conf.lua`. **Gostro 루프만.**
-  - 2026-09-09 재현: 루프가 `/Users/jm/.local/bin/love build/test --filter …`를 직접 실행. `build/test`에 `conf.lua`가 없어 Love **기본 800×600** 창이 뜬다. `GOSTRO_LOOP=1` 환경만으로는 게임 `conf.lua`가 로드되지 않는다.
-  - 요구: `GOSTRO_LOOP=1`일 때만 `~/.local/bin/love`가 `loop/bin/love`로 위임하고, 대상 디렉터리에 `conf.lua`가 없으면 `tools/qa_conf.lua`(1×1 오프스크린)를 주입한다. 플래그 없는 MOK/직접 플레이는 Love.app 원본으로 간다.
-  - 완료 조건: Gostro 루프의 `love <dir>`가 800×600 기본 창을 만들지 않음. 사용자 `love .`와 MOK 레인은 그대로.
-
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 중
@@ -16,9 +10,10 @@
 
 ## 처리 완료
 
-(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, Discord `1547202111937323009`)
-  - 1×1 오프스크린도 macOS Dock 아이콘이 깜빡임. `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP`면 `t.window=false` + window/graphics 모듈 비활성.
-  - `tools/qa_conf.lua`도 창 없음. `make test` GREEN, 테스트 후 love 프로세스 없음. 사용자 `love .`는 그대로. [DONE 2026-09-09]
+(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, `1547202068216029215`)
+  - 1×1 오프스크린도 macOS Dock 아이콘이 깜빡임. 게임 `conf.lua`는 `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP`면 `t.window=false`.
+  - 재현: 루프가 `/Users/jm/.local/bin/love build/test`를 직접 실행하면 `conf.lua`가 없어 Love **기본 800×600**이 뜬다. `GOSTRO_LOOP=1`일 때만 `~/.local/bin/love`가 `loop/bin/love`로 위임하고, 대상 디렉터리에 `conf.lua`가 없으면 `tools/qa_conf.lua`(1×1 오프스크린)를 주입한다. 플래그 없는 MOK/직접 플레이는 Love.app 원본.
+  - 확인: `GOSTRO_LOOP=1 love <noconf-dir>` → W=1 H=1 + conf 주입. 플래그 없음 → W=800 H=600, 주입 없음. `make font-test` GREEN. [DONE 2026-09-09]
 
 (27) **Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환** (msg `1546885987525988473`)
   - 담당: `docs/ASSET_PIPELINE.md`, `docs/GENERATED_ASSET_LOG.md`, `assets/manifest.json`, 신규 `assets/masters/**`·`assets/runtime/**`, 신규 `tools/asset_pipeline/**`; 런타임 배선은 기존 `game/ui/card.lua`, `game/ui/gwang_art.lua` 등을 직접 비대화하지 말고 asset loader/draw 모듈을 신규 분리한다.

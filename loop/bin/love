@@ -1,12 +1,18 @@
 #!/bin/sh
-# Gostro-loop PATH shim. Never replace ~/.local/bin/love.
-# Forces background/offscreen Love so autonomous verify cannot steal focus.
+# Gostro-loop Love launcher. Never exec ~/.local/bin/love (recursion).
+# Injects tools/qa_conf.lua into game dirs that have no conf.lua so Love
+# cannot fall back to the default 800x600 window.
+set -e
 export GOSTRO_LOOP=1
 export GAME_QA=1
 export SDL_MAC_BACKGROUND_APP=1
 export SDL_HINT_VIDEO_MAC_BACKGROUND_APP=1
 REAL="${GOSTRO_LOVE_REAL:-/Users/jm/Applications/love.app/Contents/MacOS/love}"
-if [ ! -x "$REAL" ]; then
-  REAL="/Users/jm/.local/bin/love"
+HERE=$(CDPATH= cd -- "$(dirname "$0")" && pwd)
+ROOT=$(CDPATH= cd -- "$HERE/../.." && pwd)
+QA_CONF="$ROOT/tools/qa_conf.lua"
+TARGET="$1"
+if [ -n "$TARGET" ] && [ -d "$TARGET" ] && [ ! -f "$TARGET/conf.lua" ] && [ -f "$QA_CONF" ]; then
+  cp "$QA_CONF" "$TARGET/conf.lua"
 fi
 exec "$REAL" "$@"

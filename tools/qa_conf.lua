@@ -1,9 +1,9 @@
 function love.conf(t)
     t.identity = "gostro-qa"
     t.version = "11.5"
-    -- Isolated font/capture packages need an OpenGL context. Disabling
-    -- graphics here breaks font-test and every canvas QA. Keep a 1x1
-    -- offscreen window instead of t.window=false.
+    -- Isolated packages (font-test, build/test, *-qa) do not load the game
+    -- conf.lua. Without this file Love opens the default 800x600 window.
+    -- Keep a 1x1 offscreen window so canvas/font QA still has OpenGL.
     t.window.title = "Gostro QA"
     t.window.width = 1
     t.window.height = 1
@@ -14,6 +14,7 @@ function love.conf(t)
     t.window.highdpi = false
     t.window.x = -32000
     t.window.y = -32000
+    t.window.centered = false
     t.modules.audio = false
     t.modules.joystick = false
     t.modules.physics = false
