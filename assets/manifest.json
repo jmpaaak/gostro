@@ -2816,8 +2816,40 @@
     {
       "id": "tag.charm",
       "category": "tag",
-      "status": "pending",
-      "name": "\ucc38"
+      "status": "runtime",
+      "name": "행운 패찰",
+      "master": {
+        "source": "assets/masters/tag/charm-v1.png",
+        "sourceSha256": "883e14741f9e39b877104e1e2a12c2b13c25c35062d463356f1c17cb8041f9e2",
+        "path": "assets/masters/tag/charm-v1.png",
+        "width": 256,
+        "height": 384,
+        "sha256": "883e14741f9e39b877104e1e2a12c2b13c25c35062d463356f1c17cb8041f9e2",
+        "provenance": "Project-authored high-resolution procedural wooden plaque with a lucky pouch and twin shop lanterns for extra shop-slot skip reward; no photo, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tag/charm-v1.png",
+        "width": 32,
+        "height": 48,
+        "alphaBounds": [
+          3,
+          0,
+          28,
+          47
+        ],
+        "sha256": "72fcac2b817d7b08d2ec3131cb9d58a6f8409df3469a2327b7bb4c30015a71dc",
+        "filter": "nearest",
+        "report": "assets/runtime/tag/charm-v1.report.json",
+        "reportSha256": "7ba40a09819bc8eae61c271c6b88d83ef66fc6ef0c1439219940feed2e5fb490"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 32,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original"
+      }
     },
     {
       "id": "tag.uncommon",

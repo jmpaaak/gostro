@@ -139,6 +139,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "polychrome" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local charm_id = tag_art.asset_id({ kind = "tag", identity = "charm" })
+    assert(charm_id == "tag.charm", "행운 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "charm" }) == "tag.charm",
+        "skip offers keyed by id must resolve 행운 패찰")
+
+    local charm = assets.entry(charm_id)
+    assert(charm and charm.status == "runtime", "행운 패찰 artwork must be promoted")
+    assert(charm.master.width == 256 and charm.master.height == 384,
+        "행운 패찰 must preserve a 256x384 master")
+    assert(charm.runtime.width == 32 and charm.runtime.height == 48,
+        "행운 패찰 runtime must fit its skip-tag slot")
+    assert(charm.runtime.filter == "nearest")
+    assert(charm.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(charm_id) == "assets/runtime/tag/charm-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "charm" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

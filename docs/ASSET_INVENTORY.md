@@ -84,7 +84,7 @@
 - [x] `tag.foil` - 은박 패찰
 - [x] `tag.hologram` - 오색 패찰
 - [x] `tag.polychrome` - 영롱 패찰
-- [ ] `tag.charm` - 참
+- [x] `tag.charm` - 행운 패찰
 - [ ] `tag.uncommon` - 언커먼
 - [ ] `tag.juggle` - 저글
 - [ ] `tag.d6` - D6

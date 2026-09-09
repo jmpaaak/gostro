@@ -380,3 +380,7 @@
 2026-09-09T17:20:00+0900 | assets/runtime/tag/polychrome-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T17:20:00+0900 | assets/runtime/tag/polychrome-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 10-color palette, alignment, and nearest-neighbor validation
 2026-09-09T17:20:00+0900 | assets/runtime/ui/tag-polychrome-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 영롱 패찰; SHA-256 ddb3d3aa34d9232e89ace23e7dc2190d6ae4765de6a5b04f08b9ce706d21b9f0
+2026-09-09T17:25:00+0900 | assets/masters/tag/charm-v1.png | 행운 패찰 (tag.charm) high-res procedural wooden plaque with a lucky pouch and twin shop lanterns; no people or month imagery
+2026-09-09T17:25:00+0900 | assets/runtime/tag/charm-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T17:25:00+0900 | assets/runtime/tag/charm-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T17:25:00+0900 | assets/runtime/ui/tag-charm-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 행운 패찰; SHA-256 5dc5cbf3290eaf53bfe912934caeda6a538a61a1953112bb0093d7fe5300a141
