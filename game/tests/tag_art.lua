@@ -122,6 +122,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "hologram" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local polychrome_id = tag_art.asset_id({ kind = "tag", identity = "polychrome" })
+    assert(polychrome_id == "tag.polychrome", "영롱 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "polychrome" }) == "tag.polychrome",
+        "skip offers keyed by id must resolve 영롱 패찰")
+
+    local polychrome = assets.entry(polychrome_id)
+    assert(polychrome and polychrome.status == "runtime", "영롱 패찰 artwork must be promoted")
+    assert(polychrome.master.width == 256 and polychrome.master.height == 384,
+        "영롱 패찰 must preserve a 256x384 master")
+    assert(polychrome.runtime.width == 32 and polychrome.runtime.height == 48,
+        "영롱 패찰 runtime must fit its skip-tag slot")
+    assert(polychrome.runtime.filter == "nearest")
+    assert(polychrome.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(polychrome_id) == "assets/runtime/tag/polychrome-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "polychrome" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

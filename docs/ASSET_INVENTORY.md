@@ -83,7 +83,7 @@
 - [x] `tag.mega` - 대풍년 패찰
 - [x] `tag.foil` - 은박 패찰
 - [x] `tag.hologram` - 오색 패찰
-- [ ] `tag.polychrome` - 폴리크롬
+- [x] `tag.polychrome` - 영롱 패찰
 - [ ] `tag.charm` - 참
 - [ ] `tag.uncommon` - 언커먼
 - [ ] `tag.juggle` - 저글
