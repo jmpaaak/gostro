@@ -2,6 +2,13 @@
 
 ## 처리 대기
 
+(32) **배경이 발라트로처럼 고해상도가 아님 — 320×180에 묶여 있음** (msg `1547270254495928380`)
+  - 담당: `main.lua`, `game/viewport.lua`, `game/ui/scene_bg.lua`, `assets/manifest.json`, `assets/runtime/ui/*-bg-v1.png`.
+  - 원인: UI는 320×180 nearest 캔버스인데 배경도 같은 캔버스에 그려져 창(기본 960, 최대 ~1920)에서 저화질로 확대된다. 마스터는 960×540.
+  - 요구: 배경만 창 크기에 맞춰 그린다. 런타임 배경은 1920×1080 Pixel Perfect. UI/카드는 320×180 nearest 유지. 사용자 `love .` 플레이 창은 그대로.
+  - 완료 조건: 배경이 창 해상도로 선명하고, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
+
 ## 처리 중
 
 (없음)
