@@ -330,4 +330,9 @@
 | 2026-09-09T15:28:58+0900 | `assets/runtime/planet/pi-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T15:28:58+0900 | `assets/runtime/planet/pi-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T15:28:58+0900 | `assets/runtime/ui/shop-planet-pi-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 황룡 기원패; SHA-256 `9675e1a968e04b7c348e23e600b4c047b5aad7064ff396cf6a3107f9d26c05b8` |
+| 2026-09-09T15:40:00+0900 | `assets/masters/tarot/the-magician-v1.svg` | Project-authored 400×560 violet hwatu talisman vector with purple silk banner, overlapping diamond shapeshift mark, gold notch, and seal; no text, people, or month imagery |
+| 2026-09-09T15:40:00+0900 | `assets/masters/tarot/the-magician-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T15:40:00+0900 | `assets/runtime/tarot/the-magician-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T15:40:00+0900 | `assets/runtime/tarot/the-magician-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T15:40:00+0900 | `assets/runtime/ui/shop-tarot-the-magician-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 둔갑 부적; SHA-256 `3e14fe92a68e0cbba73b4e8239fc2eeda178fc680c08206f73ff5bb3d4999c81` |
 

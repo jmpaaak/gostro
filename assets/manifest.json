@@ -1819,8 +1819,49 @@
     {
       "id": "tarot.the_magician",
       "category": "tarot",
-      "status": "pending",
-      "name": "마법사"
+      "status": "runtime",
+      "name": "둔갑 부적",
+      "master": {
+        "source": "assets/masters/tarot/the-magician-v1.svg",
+        "sourceSha256": "089f6b628a6e5f1fb031731ded0940983b6cb5be0c2314dccdd61bc4683bfc58",
+        "path": "assets/masters/tarot/the-magician-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "ab30946324a5c73aa71e9335b7130e2d75cf25085871673cd7c16d2c17a0782a",
+        "provenance": "Project-authored 400x560 lacquered violet hwatu talisman master with purple silk banner, overlapping diamond shapeshift mark, gold notch, and seal; no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tarot/the-magician-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          50
+        ],
+        "sha256": "9d33e1cffa7164806e5571af2ca0050912b49d69ad13cde9b8574a6ee4526146",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/tarot/the-magician-v1.report.json",
+        "reportSha256": "f931c90fb8add85d1bde1eb32182f97629fe722f423e1e78ca676d918293282e"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "tarot.the_hanged_man",

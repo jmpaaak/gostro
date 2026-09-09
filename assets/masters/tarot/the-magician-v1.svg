@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e8c8"/>
+      <stop offset="1" stop-color="#d4b878"/>
+    </linearGradient>
+    <linearGradient id="silk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8a3c96"/>
+      <stop offset="1" stop-color="#4a1c58"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="22" width="364" height="528" rx="28" fill="#100812" opacity=".42"/>
+  <rect x="12" y="14" width="376" height="528" rx="26" fill="#241436" stroke="#d6a848" stroke-width="10"/>
+  <rect x="28" y="30" width="344" height="496" rx="18" fill="url(#paper)" stroke="#6c2c78" stroke-width="8"/>
+  <path d="M130 14h140l-18 32H148z" fill="#d6a848" stroke="#241436" stroke-width="6"/>
+  <circle cx="200" cy="32" r="10" fill="#6c2c78"/>
+  <rect x="48" y="78" width="304" height="40" fill="url(#silk)"/>
+  <path d="M48 78l40-20 40 20 40-20 40 20 40-20 40 20 40-20 24 20" fill="#d6a848"/>
+  <!-- Shapeshift mark: two overlapping diamonds and a geometric fox crest. No people or month art. -->
+  <path d="M92 250 168 176 244 250 168 324z" fill="#6c2c78" stroke="#d6a848" stroke-width="8"/>
+  <path d="M156 250 232 176 308 250 232 324z" fill="#8a3c96" stroke="#fff4d6" stroke-width="8"/>
+  <path d="M168 214 200 154 232 214 200 246z" fill="#d6a848"/>
+  <path d="M154 168 168 128 182 168z" fill="#fff4d6"/>
+  <path d="M218 168 232 128 246 168z" fill="#fff4d6"/>
+  <ellipse cx="200" cy="236" rx="28" ry="22" fill="#241436"/>
+  <ellipse cx="200" cy="238" rx="12" ry="12" fill="#fff4d6"/>
+  <path d="M72 360 200 332 328 360 200 402z" fill="#8a3c96" stroke="#d6a848" stroke-width="6"/>
+  <path d="M110 430 200 390 290 430 200 470z" fill="#6c2c78" stroke="#d6a848" stroke-width="6"/>
+  <rect x="278" y="392" width="68" height="68" rx="6" fill="#a81c24" stroke="#d6a848" stroke-width="6"/>
+  <path d="M290 410h44M290 428h44M290 444h44" fill="none" stroke="#d6a848" stroke-width="6"/>
+  <circle cx="70" cy="504" r="16" fill="#6c2c78"/>
+  <circle cx="330" cy="504" r="16" fill="#18484e"/>
+</svg>

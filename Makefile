@@ -84,9 +84,10 @@ shop-pack-qa:
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/planet" \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/tarot" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/fonts"
 	@cp tools/shop_pack_qa_main.lua "$(BUILD_DIR)/shop-pack-qa/main.lua"
-	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua game/ui/planet_art.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
+	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua game/ui/planet_art.lua game/ui/tarot_art.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/shop-pack-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
 	@cp assets/runtime/pack/talisman-bundle-v1.png \
@@ -102,6 +103,8 @@ shop-pack-qa:
 		assets/runtime/planet/chodan-v1.png assets/runtime/planet/godori-v1.png \
 		assets/runtime/planet/pi-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/planet/"
+	@cp assets/runtime/tarot/the-magician-v1.png \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/tarot/"
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui"
 	@cp assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
@@ -171,6 +174,10 @@ shop-pack-qa:
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-pi-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-pi-love-v1.png"
+	SHOP_QA_KIND=tarot SHOP_QA_TAROT=the_magician \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-magician-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-magician-love-v1.png"
 
 pack-panel-qa:
 	@rm -rf "$(BUILD_DIR)/pack-panel-qa"

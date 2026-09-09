@@ -45,6 +45,10 @@ function love.load()
         planet_pi = "황룡 기원패",
         pi = "황룡 기원패",
     }
+    local tarot_identity = os.getenv("SHOP_QA_TAROT") or "the_magician"
+    local tarot_names = {
+        the_magician = "둔갑 부적",
+    }
     local item
     if kind == "voucher" then
         item = { kind = "voucher", identity = voucher_identity,
@@ -52,6 +56,9 @@ function love.load()
     elseif kind == "planet" then
         item = { kind = "planet", identity = planet_identity,
             name = assert(planet_names[planet_identity]), price = 3 }
+    elseif kind == "tarot" then
+        item = { kind = "tarot", identity = tarot_identity,
+            name = assert(tarot_names[tarot_identity]), price = 3 }
     else
         item = { kind = "pack", identity = "arcana_pack", name = "부적 꾸러미", price = 4 }
     end

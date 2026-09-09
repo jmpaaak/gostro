@@ -4,6 +4,7 @@
 local terms = require("game.terms")
 local pack_art = require("game.ui.pack_art")
 local planet_art = require("game.ui.planet_art")
+local tarot_art = require("game.ui.tarot_art")
 local voucher_art = require("game.ui.voucher_art")
 local score_icon_art = require("game.ui.score_icon_art")
 
@@ -241,9 +242,11 @@ function M.draw(s)
 
         if card and not card.sold then
             if card.kind == "planet" or card.kind == "tarot" then
-                local has_planet = card.kind == "planet"
-                    and planet_art.draw(card, p.x, p.y, p.w, p.h)
-                if not has_planet then
+                local has_art = (card.kind == "planet"
+                    and planet_art.draw(card, p.x, p.y, p.w, p.h))
+                    or (card.kind == "tarot"
+                    and tarot_art.draw(card, p.x, p.y, p.w, p.h))
+                if not has_art then
                     love.graphics.setColor(0.3, 0.4, 0.7, 1)
                     love.graphics.rectangle("fill", p.x, p.y, p.w, p.h, 3, 3)
                     love.graphics.setColor(0.5, 0.6, 1.0, 1)
