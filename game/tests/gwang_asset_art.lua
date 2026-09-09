@@ -259,6 +259,17 @@ function M.run()
     assert(assets.runtime_path("gwang.boss_chips") ==
         "assets/runtime/gwang/boss-chips-v1.png")
 
+    local small_chips = assets.entry("gwang.small_chips")
+    assert(small_chips and small_chips.status == "runtime",
+        "small_chips gwang must have tracked runtime artwork")
+    assert(small_chips.master.width == 448 and small_chips.master.height == 256,
+        "small_chips gwang must preserve its high-resolution slot master")
+    assert(small_chips.runtime.width == 56 and small_chips.runtime.height == 32,
+        "small_chips gwang runtime must scale exactly into a 28x16 slot")
+    assert(small_chips.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.small_chips") ==
+        "assets/runtime/gwang/small-chips-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
