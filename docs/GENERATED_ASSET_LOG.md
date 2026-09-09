@@ -368,3 +368,7 @@
 2026-09-09T16:55:00+0900 | assets/runtime/tag/mega-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T16:55:00+0900 | assets/runtime/tag/mega-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T16:55:00+0900 | assets/runtime/ui/tag-mega-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 대풍년 패찰; SHA-256 b0c2314741861e632af0cc8b182b561115b85facb5c00d50c5b0794cb327abec
+2026-09-09T16:57:55+0900 | assets/masters/tag/foil-v1.png | 은박 패찰 (tag.foil) high-res procedural wooden plaque with a folded silver-foil leaf and gwang star; no people or month imagery
+2026-09-09T16:57:55+0900 | assets/runtime/tag/foil-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T16:57:55+0900 | assets/runtime/tag/foil-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T16:57:55+0900 | assets/runtime/ui/tag-foil-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 은박 패찰; SHA-256 9e852fe509773ee5fee25a4c6f6246acacece7941953519585c27dfcace3362a

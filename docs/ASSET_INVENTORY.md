@@ -81,7 +81,7 @@
 - [x] `tag.handy` - 재주꾼 패찰
 - [x] `tag.economy` - 알뜰 패찰
 - [x] `tag.mega` - 대풍년 패찰
-- [ ] `tag.foil` - 포일
+- [x] `tag.foil` - 은박 패찰
 - [ ] `tag.hologram` - 홀로그램
 - [ ] `tag.polychrome` - 폴리크롬
 - [ ] `tag.charm` - 참

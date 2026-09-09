@@ -88,6 +88,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "mega" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local foil_id = tag_art.asset_id({ kind = "tag", identity = "foil" })
+    assert(foil_id == "tag.foil", "은박 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "foil" }) == "tag.foil",
+        "skip offers keyed by id must resolve 은박 패찰")
+
+    local foil = assets.entry(foil_id)
+    assert(foil and foil.status == "runtime", "은박 패찰 artwork must be promoted")
+    assert(foil.master.width == 256 and foil.master.height == 384,
+        "은박 패찰 must preserve a 256x384 master")
+    assert(foil.runtime.width == 32 and foil.runtime.height == 48,
+        "은박 패찰 runtime must fit its skip-tag slot")
+    assert(foil.runtime.filter == "nearest")
+    assert(foil.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(foil_id) == "assets/runtime/tag/foil-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "foil" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

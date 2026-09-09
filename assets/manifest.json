@@ -2702,8 +2702,40 @@
     {
       "id": "tag.foil",
       "category": "tag",
-      "status": "pending",
-      "name": "\ud3ec\uc77c"
+      "status": "runtime",
+      "name": "은박 패찰",
+      "master": {
+        "source": "assets/masters/tag/foil-v1.png",
+        "sourceSha256": "42bd20a8a2ca380622ddc35d14511efb710c544f38248339a8761be627b37030",
+        "path": "assets/masters/tag/foil-v1.png",
+        "width": 256,
+        "height": 384,
+        "sha256": "42bd20a8a2ca380622ddc35d14511efb710c544f38248339a8761be627b37030",
+        "provenance": "Project-authored high-resolution procedural wooden plaque with a folded silver-foil leaf and gwang star for next-gwang foil edition skip reward; no photo, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tag/foil-v1.png",
+        "width": 32,
+        "height": 48,
+        "alphaBounds": [
+          3,
+          0,
+          28,
+          47
+        ],
+        "sha256": "7b23c463c30200aaf5ba21a9743c200c3b5c132195669748a0c517ffc2250785",
+        "filter": "nearest",
+        "report": "assets/runtime/tag/foil-v1.report.json",
+        "reportSha256": "7ba40a09819bc8eae61c271c6b88d83ef66fc6ef0c1439219940feed2e5fb490"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 32,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original"
+      }
     },
     {
       "id": "tag.hologram",

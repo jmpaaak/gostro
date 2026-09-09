@@ -1789,3 +1789,28 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
 - Next slice: 다음 미완료 그래픽(`tag.mega`) 고해상도 master를 생성하고 런타임에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 16:52)
+
+## 2026-09-09 — 대풍년 패찰 고해상도 픽셀 에셋 적용
+- `tag.mega`에 256×384 대풍년 패찰 PNG master와 32×48 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 기존 `game/ui/tag_art.lua` draw 계약으로 대풍년 패찰을 배선하고 `game/tests/tag_art.lua`로 런타임 승격을 검증했다.
+- QA 스크립트(`tools/tag_qa_main.lua`)와 LÖVE 320×180 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: 다음 미완료 그래픽(`tag.foil`) 고해상도 master를 생성하고 런타임에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 16:57)
+
+## 2026-09-09 — 덱 아이콘 고해상도 픽셀 에셋 적용
+
+- `ui.icon_deck`에 기하학적 화투 뒷면 덱이 쌓여있는 형태의 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed draw 모듈(`score_icon_art.draw_deck`)을 추가했다.
+- `make verify`의 score-icon-qa 화면에 덱 아이콘을 함께 렌더링하도록 QA 스크립트를 갱신했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.icon_discard` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
+
+> Older cycle history lives in `docs/STATUS_HISTORY.md`. Only search it when tracking a specific past bug; do not read it by default.
+
+> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
