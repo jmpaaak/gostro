@@ -2,7 +2,11 @@
 
 ## 처리 대기
 
-(없음)
+(36) **발라트로급 상점·판 선택·점수 카운트업 디테일** (msg `1547290362782031952`)
+  - 담당: `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/ui/scoreboard.lua`, `game/ui/score_anim.lua`, `game/scenes/play.lua`.
+  - 상점 슬롯 호버 리프트+가격 강조. 판 선택에 목표/보상/스킵 안내와 호버. 점수판 총점이 칩→배수 연출에 맞춰 카운트업.
+  - 완료: 상점 호버, 판 안내, 카운트업, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
 
 ## 처리 중
 
