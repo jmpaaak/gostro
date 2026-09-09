@@ -2664,8 +2664,40 @@
     {
       "id": "tag.mega",
       "category": "tag",
-      "status": "pending",
-      "name": "메가"
+      "status": "runtime",
+      "name": "대풍년 패찰",
+      "master": {
+        "source": "assets/masters/tag/mega-v1.png",
+        "sourceSha256": "600d338cb168311abd03c68e2735f1c661dce1d7068ce9fcebe97cbfd50fe0cc",
+        "path": "assets/masters/tag/mega-v1.png",
+        "width": 256,
+        "height": 384,
+        "sha256": "600d338cb168311abd03c68e2735f1c661dce1d7068ce9fcebe97cbfd50fe0cc",
+        "provenance": "Project-authored high-resolution procedural wooden plaque with twin gwang stars and grain for duplicate-next-gwang harvest skip reward; no photo, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tag/mega-v1.png",
+        "width": 32,
+        "height": 48,
+        "alphaBounds": [
+          3,
+          0,
+          28,
+          47
+        ],
+        "sha256": "50784db6a7830b65dc0ca21db3d8d3924e2c0a2203909fd4cf7bb5d6ce007677",
+        "filter": "nearest",
+        "report": "assets/runtime/tag/mega-v1.report.json",
+        "reportSha256": "7ba40a09819bc8eae61c271c6b88d83ef66fc6ef0c1439219940feed2e5fb490"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 32,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original"
+      }
     },
     {
       "id": "tag.foil",

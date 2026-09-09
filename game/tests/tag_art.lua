@@ -71,6 +71,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "economy" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local mega_id = tag_art.asset_id({ kind = "tag", identity = "mega" })
+    assert(mega_id == "tag.mega", "대풍년 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "mega" }) == "tag.mega",
+        "skip offers keyed by id must resolve 대풍년 패찰")
+
+    local mega = assets.entry(mega_id)
+    assert(mega and mega.status == "runtime", "대풍년 패찰 artwork must be promoted")
+    assert(mega.master.width == 256 and mega.master.height == 384,
+        "대풍년 패찰 must preserve a 256x384 master")
+    assert(mega.runtime.width == 32 and mega.runtime.height == 48,
+        "대풍년 패찰 runtime must fit its skip-tag slot")
+    assert(mega.runtime.filter == "nearest")
+    assert(mega.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(mega_id) == "assets/runtime/tag/mega-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "mega" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

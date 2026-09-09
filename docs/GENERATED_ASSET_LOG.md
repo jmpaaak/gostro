@@ -364,3 +364,7 @@
 2026-09-09T16:40:00+0900 | assets/runtime/tag/economy-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T16:40:00+0900 | assets/runtime/tag/economy-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T16:40:00+0900 | assets/runtime/ui/tag-economy-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 알뜰 패찰; SHA-256 15464c6f24ec265bbc3a005e1554bd73bf98fe421cd2d94f191cb0f36722835c
+2026-09-09T16:55:00+0900 | assets/masters/tag/mega-v1.png | 대풍년 패찰 (tag.mega) high-res procedural wooden plaque with twin gwang stars and grain; no people or month imagery
+2026-09-09T16:55:00+0900 | assets/runtime/tag/mega-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T16:55:00+0900 | assets/runtime/tag/mega-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T16:55:00+0900 | assets/runtime/ui/tag-mega-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 대풍년 패찰; SHA-256 b0c2314741861e632af0cc8b182b561115b85facb5c00d50c5b0794cb327abec
