@@ -1,14 +1,11 @@
 # STATUS
-
-## 2026-09-09 — 청룡 기원패 고해상도 픽셀 에셋 적용
-
-- `planet.planet_cheongdan`에 400×560 청룡 기원패 PNG master와 36×52 runtime 에셋을 추가했다.
+- `planet.planet_chodan`에 400×560 백호 기원패 PNG master와 36×52 runtime 에셋을 추가했다.
 - Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 기존 `game/ui/planet_art.lua`에 청룡 기원패 id를 추가하고 상점 기원패 표시에 배선했다.
+- 기존 `game/ui/planet_art.lua`에 백호 기원패 id를 추가하고 상점 기원패 표시에 배선했다.
 - 엔진 테스트와 LÖVE 320×180 상점 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 683개 파일이다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: 다음 기원패(`planet_chodan`) 고해상도 master를 생성하고 런타임에 적용한다.
+- Next slice: 다음 기원패(`planet_godori`) 고해상도 master를 생성하고 런타임에 적용한다.
 
 ## 2026-09-09 — 주작 기원패 고해상도 픽셀 에셋 적용
 - `planet.planet_hongdan`에 400×560 주작 기원패 PNG master와 36×52 runtime 에셋을 추가했다.
@@ -151,36 +148,6 @@
 - `make verify`의 score-icon-qa 화면에 덱 아이콘을 함께 렌더링하도록 QA 스크립트를 갱신했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
 - Next slice: `ui.icon_discard` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
-
-## 2026-09-09 — 상점 재화 아이콘 고해상도 픽셀 에셋 적용
-
-- `ui.icon_money`에 비취 메달 위 세 개의 사각 구멍 황동 엽전을 표현한 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed draw 경로로 상점 보유 재화 표시 옆에 적용했다.
-- engine-hosted draw 계약과 실제 LÖVE 320×180 HUD 캡처 QA가 재화 아이콘을 검증하도록 갱신했다.
-- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-
-## 2026-09-09 — 점수판 배수 아이콘 고해상도 픽셀 에셋 적용
-
-- `ui.icon_mult`에 384×384 붉은 화염 형상의 중심에 황금 윤곽이 있는 십자 모양의 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed 전용 draw 모듈로 점수판 배수 값 옆에 적용했다.
-- 독립 engine-hosted draw 계약 테스트와 실제 LÖVE 320×180 점수판 캡처 QA를 추가하고 `Makefile`을 갱신했다.
-- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: `ui.icon_money` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
-## 2026-09-09 — 점수판 칩 아이콘 고해상도 픽셀 에셋 적용
-
-- `ui.icon_chip`에 384×384 청색 자개 칩·팔방 황동 상감·네모 구멍 엽전 중심의 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed 전용 draw 모듈로 점수판에 적용했다.
-- 독립 engine-hosted draw 계약 테스트와 실제 LÖVE 320×180 점수판 캡처 QA를 추가했다.
-- `gwang.compound_burst` sprite-gen은 재시도했으나 이번에는 Codex provider 인증 401로 생성되지 않았으며 정적 반복 프레임으로 대체하지 않았다.
-- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: `ui.icon_mult` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 점수판 배수 값 옆에 manifest-backed로 적용한다.
-
-## 2026-09-09 — 플레이 카드 공유 시트 전환 복구
-
-- 승인된 5종 플레이 카드 후보를 개별 중복 runtime 대신 `play-card.contact-sheet-v1` 단일 runtime atlas와 셀 영역으로 승격했다.
-- manifest-backed loader가 카드 ID에서 공유 시트 경로를 해석하도록 보완하고, 셀 순서·master/runtime 영역·alpha bounds 계약을 유지했다.
-- 적용 스크립트의 반복 실행이 같은 manifest를 생성함을 확인했으며 `make verify LOVE=/Users/jm/.local/bin/love` 전체 검증을 통과했다.
-- Next slice: `gwang.compound_burst` 복합 폭주 광 슬롯 아이템의 provider-backed sprite states/frames를 생성하고 Pixel Perfect 후처리·atlas/manifest 및 런타임 적용을 추가한다.
 
 > Older cycle history lives in `docs/STATUS_HISTORY.md`. Only search it when tracking a specific past bug; do not read it by default.
 

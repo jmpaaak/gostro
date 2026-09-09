@@ -58,7 +58,7 @@
 
 - [x] `planet.planet_hongdan` - 주작 기원패
 - [x] `planet.planet_cheongdan` - 청룡 기원패
-- [ ] `planet.planet_chodan` - Venus
+- [x] `planet.planet_chodan` - 백호 기원패
 - [ ] `planet.planet_godori` - Earth
 - [ ] `planet.planet_pi` - Pluto
 

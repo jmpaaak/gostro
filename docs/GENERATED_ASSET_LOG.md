@@ -315,4 +315,9 @@
 | 2026-09-09T14:55:11+0900 | `assets/runtime/planet/cheongdan-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T14:55:11+0900 | `assets/runtime/planet/cheongdan-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T14:55:11+0900 | `assets/runtime/ui/shop-planet-cheongdan-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 청룡 기원패; SHA-256 `afc04bd8b17283cff4754a74273cfbb1ff21ffd6a6a3ab299b1d194af947d8f8` |
+| 2026-09-09T15:06:07+0900 | `assets/masters/planet/chodan-v1.svg` | Project-authored 400×560 ivory hwatu wish-card vector with pale silk banner, geometric white-tiger mark, gold notch, and seal; no text, people, or month imagery |
+| 2026-09-09T15:06:07+0900 | `assets/masters/planet/chodan-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T15:06:07+0900 | `assets/runtime/planet/chodan-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T15:06:07+0900 | `assets/runtime/planet/chodan-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T15:06:07+0900 | `assets/runtime/ui/shop-planet-chodan-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 백호 기원패; SHA-256 `13f727419db1cecad2c4c03cb63b868f717dbdb18cc9c6638298ae15bfd1ae77` |
 

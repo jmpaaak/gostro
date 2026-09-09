@@ -1678,8 +1678,49 @@
     {
       "id": "planet.planet_chodan",
       "category": "planet",
-      "status": "pending",
-      "name": "Venus"
+      "status": "runtime",
+      "name": "백호 기원패",
+      "master": {
+        "source": "assets/masters/planet/chodan-v1.svg",
+        "sourceSha256": "f90278a7bf492415bd0118e1069a2af749eda009291d11a19b5ba377bb75845d",
+        "path": "assets/masters/planet/chodan-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "027f8a84e36b57612db017afd1ae4e82e389dfac1f9a539a007b177f556cf450",
+        "provenance": "Project-authored 400x560 lacquered ivory hwatu wish-card master with pale silk banner, geometric white-tiger mark, gold notch, and seal; no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/planet/chodan-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          50
+        ],
+        "sha256": "4c65efa358d63ce711d0a8da4119b917fadceed62cab33bd720885b6c35700e3",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/planet/chodan-v1.report.json",
+        "reportSha256": "f931c90fb8add85d1bde1eb32182f97629fe722f423e1e78ca676d918293282e"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "planet.planet_godori",

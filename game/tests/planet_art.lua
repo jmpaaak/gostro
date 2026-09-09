@@ -37,7 +37,22 @@ function M.run()
     assert(cheongdan.runtime.filter == "nearest")
     assert(cheongdan.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
     assert(assets.runtime_path(cheongdan_id) == "assets/runtime/planet/cheongdan-v1.png")
-    assert(planet_art.asset_id({ kind = "planet", identity = "planet_chodan" }) == nil,
+
+    local chodan_id = planet_art.asset_id({ kind = "planet", identity = "planet_chodan" })
+    assert(chodan_id == "planet.planet_chodan", "백호 기원패 must resolve tracked artwork")
+    assert(planet_art.asset_id({ kind = "planet", identity = "chodan" }) == "planet.planet_chodan",
+        "shop offers keyed by yaku must resolve 백호 기원패")
+
+    local chodan = assets.entry(chodan_id)
+    assert(chodan and chodan.status == "runtime", "백호 기원패 artwork must be promoted")
+    assert(chodan.master.width == 400 and chodan.master.height == 560,
+        "백호 기원패 must preserve a 400x560 master")
+    assert(chodan.runtime.width == 36 and chodan.runtime.height == 52,
+        "백호 기원패 runtime must fit its shop slot")
+    assert(chodan.runtime.filter == "nearest")
+    assert(chodan.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(chodan_id) == "assets/runtime/planet/chodan-v1.png")
+    assert(planet_art.asset_id({ kind = "planet", identity = "planet_godori" }) == nil,
         "other wish cards stay pending until their own slice")
 
     assets.clear_cache()

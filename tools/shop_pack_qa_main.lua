@@ -38,6 +38,8 @@ function love.load()
         hongdan = "주작 기원패",
         planet_cheongdan = "청룡 기원패",
         cheongdan = "청룡 기원패",
+        planet_chodan = "백호 기원패",
+        chodan = "백호 기원패",
     }
     local item
     if kind == "voucher" then
