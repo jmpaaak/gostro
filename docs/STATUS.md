@@ -1,15 +1,4 @@
 # STATUS
-## 2026-09-09 — 영롱 효과 고해상도 픽셀 에셋 적용
-- `effect.polychrome`에 192×288 영롱 플레이 카드 오버레이 PNG master와 24×36 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 기존 `game/ui/edition_art.lua`에 polychrome overlay 계약을 추가하고 `game/ui/card_effects.lua` 배선을 재사용했다.
-- QA 스크립트(`tools/polychrome_effect_qa_main.lua`)와 LÖVE 320×180 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 815개 파일이다.
-- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: 다음 미완료 그래픽(`gwang.compound_burst`) 고해상도 master를 생성하고 런타임에 적용한다.
-
-## 2026-09-09 — 노란 덱 썸네일 고해상도 픽셀 에셋 적용
-
 - `ui.deck_yellow`에 384×384 옻칠 황토색 화투 뒷면 PNG master와 48×48 runtime 에셋을 추가했다.
 - Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
 - 기존 `game/ui/deck_art.lua`에 `draw_yellow` 계약을 두고 새 게임 설정의 광대박패 하드코딩 도형을 배선했다.
@@ -130,7 +119,16 @@
 - Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed draw 모듈(`score_icon_art.draw_discard`)을 추가했다.
 - engine-hosted draw 계약과 실제 LÖVE 320×180 HUD 캡처 QA가 버리기 아이콘을 검증한다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: `ui.icon_hand` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
+- Next slice: `gwang.compound_burst` 고해상도 master를 실제 sprite-gen으로 생성하고 Pixel Perfect runtime으로 변환한다.
+
+## 2026-09-09 — 복합 폭주(gwang.compound_burst) 애니메이션 고해상도 에셋 적용
+
+- `gwang.compound_burst`에 1024x512 sprite-gen (grok provider) master 아틀라스와 224x112 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환을 거쳐 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과했다.
+- `assets/manifest.json`을 갱신하고 `make_checklist.py`를 실행하여 모든 에셋 인벤토리 전환이 완료되었다.
+- `make gwang-slot-qa`를 비롯한 LÖVE 엔진 QA 검증을 통과했다.
+- INBOX (27) Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환 작업을 완전히 완료했다.
+- Next slice: INBOX의 다음 우선순위 작업을 진행한다.
 
 > Older cycle history lives in `docs/STATUS_HISTORY.md`. Only search it when tracking a specific past bug; do not read it by default.
 

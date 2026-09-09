@@ -48,7 +48,7 @@
 - [x] `gwang.once_x20` - {'ko': '일회성', 'en': 'Once'}
 - [x] `gwang.once_chips` - {'ko': '일회성 칩', 'en': 'Once Chips'}
 - [x] `gwang.compound` - {'ko': '복합', 'en': 'Compound'}
-- [ ] `gwang.compound_burst` - {'ko': '복합 폭주', 'en': 'Compound Burst'}
+- [x] `gwang.compound_burst` - {'ko': '복합 폭주', 'en': 'Compound Burst'}
 
 ## pack
 

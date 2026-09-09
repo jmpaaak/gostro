@@ -1575,10 +1575,60 @@
     {
       "id": "gwang.compound_burst",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "\ubcf5\ud569 \ud3ed\uc8fc",
         "en": "Compound Burst"
+      },
+      "master": {
+        "source": "assets/masters/gwang/compound-burst-v1.png",
+        "sourceSha256": "67b0ab01e8db0ee6c2c21fe17744d63c667ce0227af6f31ea1e4f59b0e9a53fb",
+        "path": "assets/masters/gwang/compound-burst-v1.png",
+        "width": 1024,
+        "height": 512,
+        "sha256": "67b0ab01e8db0ee6c2c21fe17744d63c667ce0227af6f31ea1e4f59b0e9a53fb",
+        "provenance": "Provider-backed sprite-gen from compound-v1.png"
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/compound-burst-v1.png",
+        "width": 224,
+        "height": 112,
+        "alphaBounds": [
+          0,
+          0,
+          223,
+          111
+        ],
+        "sha256": "588697fc7df96a6eb59b30734f253286aa70b09ba5044a2a9da2736f90cf0f6e",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 224,
+        "targetHeight": 112,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/compound-burst-v1.report.json",
+        "reportSha256": "4598ca693b789000cba8293be9225daff9a96ab1e99f0f01d4d661d7decefdbf"
+      },
+      "animation": {
+        "states": [
+          {
+            "id": "idle",
+            "frames": 4,
+            "fps": 4,
+            "loop": true,
+            "action": "idle animation"
+          },
+          {
+            "id": "burst",
+            "frames": 4,
+            "fps": 8,
+            "loop": true,
+            "action": "burst energy animation"
+          }
+        ]
       }
     },
     {
