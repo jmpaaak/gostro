@@ -39,7 +39,14 @@ local DECKS = {
 
 -- Kept as a list so additional stake tiers can be added without changing controls.
 local STAKES = {
-    { id = "white", label = "화이트 스테이크", name = "기본 난이도" },
+    { id = "white", label = "흰 인장", name = "기본 난이도", unlocked = true },
+    {
+        id = "red",
+        label = "붉은 인장",
+        name = "높은 난이도",
+        unlocked = false,
+        unlock_condition = "8고를 클리어하면 해금",
+    },
 }
 
 local LAYOUT = {
@@ -104,7 +111,9 @@ end
 
 function M.can_play(state)
     local deck = M.selected_deck(state)
+    local stake = M.selected_stake(state)
     return deck ~= nil and deck.unlocked == true
+        and stake ~= nil and stake.unlocked ~= false
 end
 
 function M.set_seed(state, seed_string)
@@ -130,6 +139,12 @@ end
 
 local function select_stake(state, amount)
     state.stake_index = cycle(state.stake_index, amount, #state.stakes)
+    local stake = M.selected_stake(state)
+    if stake.unlocked == false then
+        state.notice = stake.unlock_condition
+    elseif M.selected_deck(state).unlocked then
+        state.notice = nil
+    end
     return "stake_changed"
 end
 
@@ -153,7 +168,12 @@ function M.activate(state, x, y)
             return "start_run"
         end
         local deck = M.selected_deck(state)
-        state.notice = deck.unlock_condition or "잠긴 패입니다"
+        local stake = M.selected_stake(state)
+        if deck.unlocked ~= true then
+            state.notice = deck.unlock_condition or "잠긴 패입니다"
+        else
+            state.notice = (stake and stake.unlock_condition) or "잠긴 난이도입니다"
+        end
         return "locked"
     end
     return nil
@@ -294,9 +314,14 @@ local function draw_stake(graphics, state)
     }
     if stake.id == "white" then
         stake_art.draw_white(rect.x + 4, rect.y + 1, 16, api)
+    elseif stake.id == "red" then
+        stake_art.draw_red(rect.x + 4, rect.y + 1, 16, api)
     end
     graphics.setColor(0.13, 0.15, 0.16, 1)
     graphics.printf(stake.label .. " · " .. stake.name, rect.x, rect.y + 3, rect.w, "center")
+    if stake.unlocked == false then
+        draw_lock(graphics, rect.x + 22, rect.y + 1)
+    end
     draw_arrow(graphics, LAYOUT.stake_left, false, true)
     draw_arrow(graphics, LAYOUT.stake_right, true, true)
 end

@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -432,6 +432,22 @@ stake-white-qa:
 	STAKE_WHITE_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/stake-white-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/stake-white-qa"
 
+stake-red-qa:
+	@rm -rf "$(BUILD_DIR)/stake-red-qa"
+	@mkdir -p "$(BUILD_DIR)/stake-red-qa/game/ui" \
+		"$(BUILD_DIR)/stake-red-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/stake-red-qa/assets/fonts"
+	@cp tools/stake_red_qa_main.lua "$(BUILD_DIR)/stake-red-qa/main.lua"
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
+		"$(BUILD_DIR)/stake-red-qa/game/ui/"
+	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/stake-red-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/stake-red-qa/assets/"
+	@cp assets/runtime/ui/stake-red-v1.png assets/runtime/ui/stake-white-v1.png assets/runtime/ui/deck-blue-v1.png assets/runtime/ui/effect-lock-v1.png \
+		"$(BUILD_DIR)/stake-red-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/stake-red-qa/assets/fonts/"
+	STAKE_RED_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/stake-red-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/stake-red-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -443,7 +459,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

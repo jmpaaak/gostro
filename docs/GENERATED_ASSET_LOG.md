@@ -300,5 +300,9 @@
 | 2026-09-09T17:20:00+0900 | `assets/runtime/ui/stake-white-v1.png` | 16×16 runtime stake chip from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T17:20:00+0900 | `assets/runtime/ui/stake-white-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 11-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T17:20:00+0900 | `assets/runtime/ui/stake-white-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed white stake chip; SHA-256 `97feacb89e5832d40d781b0d6fd3d7684bfa4cb6808b131b410d463bd174dcc8` |
+| 2026-09-09T18:10:00+0900 | `assets/masters/ui/stake-red-v1.png` | Project-authored 384×384 lacquered crimson hwatu stake chip with brass rim, a mother-of-pearl center mark, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T18:10:00+0900 | `assets/runtime/ui/stake-red-v1.png` | 16×16 runtime stake chip from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T18:10:00+0900 | `assets/runtime/ui/stake-red-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 10-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T18:10:00+0900 | `assets/runtime/ui/stake-red-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed red stake chip; SHA-256 `296b735a7c71781e7c04574c948b0c09b12d44e13c54cb62a6cd9c7b1b89dff4` |
 
 

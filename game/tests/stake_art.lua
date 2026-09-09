@@ -52,6 +52,16 @@ function M.run()
     assert(white.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
     assert_draw("white", "ui.stake_white", "assets/runtime/ui/stake-white-v1.png", 44, 123)
 
+    local red = assets.entry("ui.stake_red")
+    assert(red and red.status == "runtime", "red stake artwork must be promoted")
+    assert(red.master.width == 384 and red.master.height == 384,
+        "red stake must preserve a 384x384 master")
+    assert(red.runtime.width == 16 and red.runtime.height == 16,
+        "red stake runtime must fill the 16x16 stake-chip slot")
+    assert(red.runtime.filter == "nearest")
+    assert(red.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert_draw("red", "ui.stake_red", "assets/runtime/ui/stake-red-v1.png", 44, 123)
+
     print("  stake_art: OK")
 end
 

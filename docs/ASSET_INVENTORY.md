@@ -123,7 +123,7 @@
 - [x] `ui.deck_red` - ui.deck_red
 - [x] `ui.deck_yellow` - ui.deck_yellow
 - [x] `ui.stake_white` - ui.stake_white
-- [ ] `ui.stake_red` - ui.stake_red
+- [x] `ui.stake_red` - ui.stake_red
 - [ ] `ui.stake_green` - ui.stake_green
 - [x] `ui.blind_small` - first-round card
 - [x] `ui.blind_big` - big-round card

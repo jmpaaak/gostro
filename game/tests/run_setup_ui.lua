@@ -69,8 +69,13 @@ function M.run()
 
     assert(activate_rect(state, rects.stake_left) == "stake_changed", "stake arrows are active")
     assert(state.stake_index == #state.stakes, "stake model supports reverse wrap")
+    assert(run_setup.selected_stake(state).id == "red", "wrapped stake is the locked red chip")
+    assert(state.notice == state.stakes[2].unlock_condition, "selecting a locked stake exposes its condition")
+    assert(run_setup.can_play(state) == false, "play is disabled for a locked stake")
+    assert(activate_rect(state, rects.play) == "locked", "locked red stake play returns explicit feedback")
     assert(activate_rect(state, rects.stake_right) == "stake_changed", "stake forward arrow is active")
-    assert(state.stake_index == 1, "single base stake wraps safely")
+    assert(state.stake_index == 1, "stake forward wrap returns to the base chip")
+    assert(run_setup.can_play(state) == true, "play re-enables on the unlocked base stake")
 
     assert(activate_rect(state, rects.seeded) == "seed_on", "seed toggle reports enabled state")
     assert(state.seeded == true and type(state.seed) == "string" and #state.seed > 0,
