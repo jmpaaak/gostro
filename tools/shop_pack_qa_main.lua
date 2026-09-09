@@ -50,6 +50,7 @@ function love.load()
         the_magician = "둔갑 부적",
         the_hanged_man = "소멸 부적",
         the_chariot = "강화 부적",
+        the_lovers = "쌍둥이 부적",
     }
     local item
     if kind == "voucher" then

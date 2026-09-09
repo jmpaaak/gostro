@@ -345,4 +345,9 @@
 | 2026-09-09T16:20:00+0900 | `assets/runtime/tarot/the-chariot-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T16:20:00+0900 | `assets/runtime/tarot/the-chariot-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T16:20:00+0900 | `assets/runtime/ui/shop-tarot-the-chariot-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 강화 부적; SHA-256 `75c5da4a55a47f86e7105425b434907543cb0e3756498c3461c6afcd285aae1d` |
+| 2026-09-09T16:35:00+0900 | `assets/masters/tarot/the-lovers-v1.svg` | Project-authored 400×560 rose hwatu talisman vector with twin fans, linking bar, gold notch, and seal; no text, people, or month imagery |
+| 2026-09-09T16:35:00+0900 | `assets/masters/tarot/the-lovers-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T16:35:00+0900 | `assets/runtime/tarot/the-lovers-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T16:35:00+0900 | `assets/runtime/tarot/the-lovers-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T16:35:00+0900 | `assets/runtime/ui/shop-tarot-the-lovers-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 쌍둥이 부적; SHA-256 `dad3a387152aa712975b7285d07102810e7ecadd430597472a49268ce7b62818` |
 

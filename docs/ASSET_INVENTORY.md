@@ -94,7 +94,7 @@
 - [x] `tarot.the_magician` - 둔갑 부적
 - [x] `tarot.the_hanged_man` - 소멸 부적
 - [x] `tarot.the_chariot` - 강화 부적
-- [ ] `tarot.the_lovers` - 연인
+- [x] `tarot.the_lovers` - 쌍둥이 부적
 
 ## ui
 

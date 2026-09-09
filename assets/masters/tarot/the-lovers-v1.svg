@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e4d0"/>
+      <stop offset="1" stop-color="#d4a888"/>
+    </linearGradient>
+    <linearGradient id="silk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a83048"/>
+      <stop offset="1" stop-color="#781838"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="22" width="364" height="528" rx="28" fill="#18080c" opacity=".42"/>
+  <rect x="12" y="14" width="376" height="528" rx="26" fill="#301018" stroke="#d6a848" stroke-width="10"/>
+  <rect x="28" y="30" width="344" height="496" rx="18" fill="url(#paper)" stroke="#a83048" stroke-width="8"/>
+  <path d="M130 14h140l-18 32H148z" fill="#d6a848" stroke="#301018" stroke-width="6"/>
+  <circle cx="200" cy="32" r="10" fill="#a83048"/>
+  <rect x="48" y="78" width="304" height="40" fill="url(#silk)"/>
+  <path d="M48 78l40-20 40 20 40-20 40 20 40-20 40 20 40-20 24 20" fill="#d6a848"/>
+  <!-- Copy mark: twin hwatu fans and a linking bar. No people or month art. -->
+  <path d="M92 290 148 164 204 290z" fill="#a83048" stroke="#d6a848" stroke-width="8"/>
+  <path d="M120 264 148 200 176 264z" fill="#f4e4d0"/>
+  <ellipse cx="148" cy="244" rx="16" ry="16" fill="#301018"/>
+  <ellipse cx="148" cy="248" rx="7" ry="7" fill="#fff4d6"/>
+  <path d="M196 290 252 164 308 290z" fill="#a83048" stroke="#d6a848" stroke-width="8"/>
+  <path d="M224 264 252 200 280 264z" fill="#f4e4d0"/>
+  <ellipse cx="252" cy="244" rx="16" ry="16" fill="#301018"/>
+  <ellipse cx="252" cy="248" rx="7" ry="7" fill="#fff4d6"/>
+  <path d="M168 248h64v16h-64z" fill="#d6a848"/>
+  <path d="M72 360 200 332 328 360 200 402z" fill="#a83048" stroke="#d6a848" stroke-width="6"/>
+  <path d="M110 430 200 390 290 430 200 470z" fill="#781838" stroke="#d6a848" stroke-width="6"/>
+  <rect x="278" y="392" width="68" height="68" rx="6" fill="#a81c24" stroke="#d6a848" stroke-width="6"/>
+  <path d="M290 410h44M290 428h44M290 444h44" fill="none" stroke="#d6a848" stroke-width="6"/>
+  <circle cx="70" cy="504" r="16" fill="#a83048"/>
+  <circle cx="330" cy="504" r="16" fill="#18484e"/>
+</svg>
