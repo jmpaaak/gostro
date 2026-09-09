@@ -2,7 +2,12 @@
 
 ## 처리 대기
 
-(없음)
+(34) **플레이 HUD가 발라트로 대비 진행 안내·선택 점수·겹침이 없다** (msg `1547282298062372965`)
+  - 담당: `game/ui/scoreboard.lua`, `game/ui/action_buttons.lua`, `game/ui/hand.lua`, `game/ui/gwang_slots.lua`, `game/ui/consumables.lua`, `game/ui/planets_ui.lua`, `game/ui/seed.lua`, `game/scenes/play.lua`, `game/scoring_pipeline.lua`.
+  - 스크린샷: 놓기/버리기가 손패를 덮음, 우상단 점수판이 소모품·광 슬롯을 가림, 패 선택 시 족보/칩×배수 미리보기 없음, 시드·족보 레벨이 320 좌표/33px로 화면을 덮음.
+  - 요구: 점수판은 좌측, 소모품은 우상단 단독, 광 슬롯과 겹치지 않음. 버튼은 손패 좌우. 선택 즉시 예상 족보+칩×배수(광 once/money 비파괴). 한 줄 진행 안내.
+  - 완료: 겹침 없음, 선택 미리보기, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
 
 ## 처리 중
 
