@@ -2009,3 +2009,8 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 ## Archived from STATUS.md (2026-09-09 20:07)
 
 ## 2026-09-09 — 패배 효과 고해상도 픽셀 에셋 적용
+
+## Archived from STATUS.md (2026-09-09 20:43)
+
+
+## 2026-09-09 — Restore graphics for isolated QA packages
