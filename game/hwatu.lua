@@ -22,6 +22,25 @@ local CHIPS = {
 
 local NAMED_YAKU = { "hongdan", "cheongdan", "chodan", "godori" }
 
+local YAKU_LABELS = {
+    hongdan = "홍단",
+    cheongdan = "청단",
+    chodan = "초단",
+    godori = "고도리",
+    pi = "피",
+}
+
+function M.yaku_label(yaku)
+    if type(yaku) ~= "table" or #yaku == 0 then
+        return "바닥"
+    end
+    local parts = {}
+    for i = 1, #yaku do
+        parts[i] = YAKU_LABELS[yaku[i]] or yaku[i]
+    end
+    return table.concat(parts, "·")
+end
+
 function M.card(kind, extra)
     if kind == "gwang" then
         error("gwang is a joker slot, not a play card")

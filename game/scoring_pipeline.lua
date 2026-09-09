@@ -152,6 +152,56 @@ function M.score(hand, run_state, opts)
     return result
 end
 
+local function preview_state(state)
+    if type(state) ~= "table" then
+        return state
+    end
+    local copy = {}
+    for key, value in pairs(state) do
+        copy[key] = value
+    end
+    if type(state.gwang) == "table" then
+        local gwang = {}
+        for i = 1, #state.gwang do
+            local equipped = state.gwang[i]
+            gwang[i] = {
+                kind = equipped.kind,
+                identity = equipped.identity,
+            }
+        end
+        copy.gwang = gwang
+    end
+    return copy
+end
+
+--- Prospective chips x mult for the current selection. Must not consume
+--- once-gwang or grant money; those only commit on a real play.
+function M.preview(hand, run_state)
+    if type(hand) ~= "table" or #hand == 0 then
+        return nil
+    end
+    local result, err = M.score(hand, preview_state(run_state))
+    if not result then
+        return {
+            allowed = false,
+            err = err,
+            chips = 0,
+            mult = 1,
+            score = 0,
+            yaku = {},
+            yaku_label = "불가",
+        }
+    end
+    return {
+        allowed = true,
+        chips = result.chips,
+        mult = result.mult,
+        score = result.score,
+        yaku = result.yaku,
+        yaku_label = hwatu.yaku_label(result.yaku),
+    }
+end
+
 -- `evaluate` is the scene-facing spelling; `score` is the concise API name.
 M.evaluate = M.score
 

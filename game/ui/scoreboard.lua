@@ -9,6 +9,7 @@ local M = {}
 local VIEWPORT_W = 960
 local VIEWPORT_H = 540
 local POPUP_DURATION = 1.5  -- seconds
+local BOX = { x = 12, y = 72, w = 300, h = 168 }
 
 --- Create a new scoreboard state.
 function M.new()
@@ -17,6 +18,7 @@ function M.new()
         mult = 1,
         displayed_score = 0,
         target = 0,
+        preview = nil,  -- { chips, mult, score, yaku_label }
         popup = nil,  -- { value, timer, text }
     }
 end
@@ -53,7 +55,16 @@ function M.reset(sb)
     sb.mult = 1
     sb.displayed_score = 0
     sb.target = 0
+    sb.preview = nil
     sb.popup = nil
+end
+
+function M.layout()
+    return { x = BOX.x, y = BOX.y, w = BOX.w, h = BOX.h }
+end
+
+function M.set_preview(sb, preview)
+    sb.preview = preview
 end
 
 --- Tick popup timer.
@@ -77,11 +88,11 @@ function M.draw(sb)
     local font = love.graphics.getFont()
     local fh = font:getHeight()
 
-    -- Score area: right side, below gwang slots
-    local box_x = VIEWPORT_W - 330
-    local box_y = 72
-    local box_w = 315
-    local box_h = 150
+    -- Score area: left side, below gwang slots
+    local box_x = BOX.x
+    local box_y = BOX.y
+    local box_w = BOX.w
+    local box_h = BOX.h
 
     -- Background panel
     if not panel_art.draw("metal", { x = box_x, y = box_y, w = box_w, h = box_h }) then
@@ -110,19 +121,38 @@ function M.draw(sb)
     local mult_icon_x = mult_x + font:getWidth(mult_txt) + 2
     score_icon_art.draw_mult(mult_icon_x, box_y + 2, 12)
 
-    -- Total score
+    -- Total score vs blind target
     love.graphics.setColor(1, 1, 1, 1)
     local score_str = tostring(sb.displayed_score)
     love.graphics.print(score_str, box_x + 4, box_y + 3 + fh + 2)
 
-    -- Target text
     love.graphics.setColor(0.6, 0.6, 0.6, 1)
     love.graphics.print("/ " .. tostring(sb.target),
         box_x + 4 + font:getWidth(score_str .. " "), box_y + 3 + fh + 2)
 
+    local cursor_y = box_y + 3 + (fh + 2) * 2
+
+    -- Selection preview: yaku name + chips x mult
+    if sb.preview then
+        love.graphics.setColor(0.98, 0.86, 0.42, 1)
+        love.graphics.print(sb.preview.yaku_label or "바닥", box_x + 4, cursor_y)
+        cursor_y = cursor_y + fh + 2
+        love.graphics.setColor(0.6, 0.85, 1, 1)
+        local preview_txt = tostring(sb.preview.chips) .. " × " .. tostring(sb.preview.mult)
+        love.graphics.print(preview_txt, box_x + 4, cursor_y)
+        love.graphics.setColor(1, 1, 1, 1)
+        love.graphics.print("= " .. tostring(sb.preview.score),
+            box_x + 4 + font:getWidth(preview_txt .. " "), cursor_y)
+        cursor_y = cursor_y + fh + 2
+    else
+        love.graphics.setColor(0.72, 0.76, 0.82, 1)
+        love.graphics.print("패를 고르세요", box_x + 4, cursor_y)
+        cursor_y = cursor_y + fh + 2
+    end
+
     -- Progress bar
     local bar_x = box_x + 4
-    local bar_y = box_y + 3 + (fh + 2) * 2
+    local bar_y = cursor_y + 4
     local bar_w = box_w - 8
     local bar_h = 6
     local ratio = M.progress_ratio(sb)

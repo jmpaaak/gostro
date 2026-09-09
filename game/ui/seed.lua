@@ -8,7 +8,7 @@ local M = {}
 M.MAX_LEN = 8
 
 function M.field_rect()
-    return { x = 2, y = 2, w = 78, h = 14 }
+    return { x = 12, y = 12, w = 228, h = 36 }
 end
 
 function M.new(seed_str)
@@ -109,7 +109,7 @@ function M.draw(s)
     end
     love.graphics.rectangle("line", r.x, r.y, r.w, r.h, 2, 2)
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print(M.label(s), r.x + 2, r.y + 3, 0, 0.7, 0.7)
+    love.graphics.print(M.label(s), r.x + 8, r.y + 4)
     love.graphics.setColor(1, 1, 1, 1)
 end
 

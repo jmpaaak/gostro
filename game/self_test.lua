@@ -25,6 +25,8 @@ function M.run()
     require("game.tests.gwang_slots_ui").run()
     require("game.tests.scoreboard_ui").run()
     require("game.tests.action_buttons_ui").run()
+    require("game.tests.play_hud_layout").run()
+    require("game.tests.score_preview").run()
     require("game.tests.button_art").run()
 
     require("game.tests.scoring_pipeline").run()

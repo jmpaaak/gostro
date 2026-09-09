@@ -52,7 +52,12 @@ function M.run()
     assert(sb.mult == 1)
     assert(sb.displayed_score == 0)
     assert(sb.popup == nil)
+    assert(sb.preview == nil)
     assert(sb.target == 0)
+
+    local box = scoreboard.layout()
+    assert(box.x == 12 and box.y == 72, "scoreboard is left of the play field")
+    assert(box.x + box.w <= 480, "scoreboard stays on the left half")
 
     -- update ticks popup timer down
     scoreboard.set_target(sb, 300)

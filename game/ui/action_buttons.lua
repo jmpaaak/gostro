@@ -14,11 +14,10 @@ local VIEWPORT_H = 540
 M.BUTTON_W = 174
 M.BUTTON_H = 54
 
--- Layout: two buttons centred at bottom, 8px gap between them
-local GAP = 24
-M.PLAY_X    = math.floor(VIEWPORT_W / 2 - M.BUTTON_W - GAP / 2)
-M.DISCARD_X = math.floor(VIEWPORT_W / 2 + GAP / 2)
-M.BUTTON_Y  = VIEWPORT_H - M.BUTTON_H - 4
+-- Layout: buttons sit left/right of the 8-card fan, not over the cards.
+M.PLAY_X    = 18
+M.DISCARD_X = VIEWPORT_W - M.BUTTON_W - 18
+M.BUTTON_Y  = VIEWPORT_H - M.BUTTON_H - 126
 
 -- Default counts per round (Balatro standard)
 local DEFAULT_HANDS    = 4

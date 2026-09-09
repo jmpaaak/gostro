@@ -15,7 +15,9 @@ local function yaku_blob(result)
 end
 
 function M.run()
-    assert(hwatu.GWANG_BASE == 1, "gwang joker base is 1 point")
+    assert(hwatu.yaku_label({}) == "바닥")
+    assert(hwatu.yaku_label({ "hongdan" }) == "홍단")
+    assert(hwatu.yaku_label({ "godori", "pi" }) == "고도리·피")
     assert(hwatu.card("hongdan").kind == "hongdan")
     assert(hwatu.card("cheongdan").kind == "cheongdan")
     assert(hwatu.card("chodan").kind == "chodan")

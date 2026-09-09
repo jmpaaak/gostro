@@ -57,6 +57,7 @@ local function sync_round_ui(scene)
     scene.buttons.hands_left = scene.round.hands_left
     scene.buttons.discards_left = scene.round.discards_left
     buttons_ui.set_selection(scene.buttons, 0)
+    M.sync_preview(scene)
 end
 
 local function sync_shop_ui(scene)
@@ -127,8 +128,21 @@ function M.select_blind(scene, idx)
 
     scene.buttons = buttons_ui.new(scene.round.hands_left, scene.round.discards_left)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
+    M.sync_preview(scene)
 
     scene.state = "playing"
+end
+
+--- Prospective chips x mult for the current selection. Safe to call on empty hands.
+function M.sync_preview(scene)
+    if not scene.scoreboard then return end
+    if not scene.hand then
+        scoreboard_ui.set_preview(scene.scoreboard, nil)
+        return
+    end
+    scoreboard_ui.set_preview(
+        scene.scoreboard,
+        scoring.preview(hand_ui.get_selected(scene.hand), scene.run_state))
 end
 
 --- Play the selected hand cards through the engine.
@@ -220,6 +234,7 @@ function M:update(dt)
         scoreboard_ui.update(self.scoreboard, dt)
         -- Update button enabled state based on selection
         buttons_ui.set_selection(self.buttons, #self.hand.selected_order)
+        M.sync_preview(self)
     end
 end
 
@@ -314,6 +329,7 @@ function M:mousepressed(px, py)
             if idx then
                 hand_ui.toggle(self.hand, idx)
                 buttons_ui.set_selection(self.buttons, #self.hand.selected_order)
+                M.sync_preview(self)
             end
         end
 
