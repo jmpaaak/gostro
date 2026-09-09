@@ -199,3 +199,7 @@
 | 2026-09-09T09:22:40+0900 | `assets/masters/gwang/small-chips-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T09:22:40+0900 | `assets/runtime/gwang/small-chips-v1.png` | 56×32 runtime 첫판 칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T09:22:40+0900 | `assets/runtime/ui/gwang-small-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 첫판 칩 gwang in all five slots; SHA-256 `68e49f57b5c5c3eaef36d06a49c707d0c36b6a47a0fa64c8864523c20bb06de8` |
+| 2026-09-09T09:31:11+0900 | `assets/masters/gwang/big-mult-v1.svg` | Project-authored high-resolution 큰판 배수 gwang vector source with a great vermilion court drum, dancheong pavilion, paired studs, and crossing mallets |
+| 2026-09-09T09:31:11+0900 | `assets/masters/gwang/big-mult-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T09:31:11+0900 | `assets/runtime/gwang/big-mult-v1.png` | 56×32 runtime 큰판 배수 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T09:31:11+0900 | `assets/runtime/ui/gwang-big-mult-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 큰판 배수 gwang in all five slots; SHA-256 `addd9cd6913c60ae79b1b73bd79ada95b1427518614ae6ce0440d52623015be3` |

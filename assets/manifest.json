@@ -1567,10 +1567,51 @@
     {
       "id": "gwang.big_mult",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
-        "ko": "빅 배수",
+        "ko": "큰판 배수",
         "en": "Main Round Mult"
+      },
+      "master": {
+        "source": "assets/masters/gwang/big-mult-v1.svg",
+        "sourceSha256": "b9277a9f9a8bfb0d4430ad579ce956aad16f55bda91c95a8ae1ac3122c2463ea",
+        "path": "assets/masters/gwang/big-mult-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "14f4034240b859af2c04ffeab6c0fae4a10b3a00410208fcf77891ef031ad949",
+        "provenance": "Project-authored master: a great vermilion court drum at full beat beneath a dancheong pavilion with two crossing mallets, signifying the main-round multiplier without text or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/big-mult-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "e1efe505a13a091db41ce1d012cb71598886d501700a71ffb0c8613a5f505591",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/big-mult-v1.report.json",
+        "reportSha256": "428eb1dfa6224f82c563a28aba9cb09da795065039a86631190ee059d06e813f"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
