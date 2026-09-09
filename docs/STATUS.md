@@ -1,4 +1,12 @@
 # STATUS
+## 2026-09-10 — Hover lift, chips-to-mult anim, and round HUD
+- Added hover states to hand cards (`M.HOVER_LIFT` in `card.lua`) via `mousemoved`.
+- Bound `scoring_pipeline` results to `score_anim.lua`, rendering chips, mult, and total floating over actual card coordinates.
+- Added Run Info (Round HUD) to the right side of the play screen showing Ante, Blind, Money, and Remaining Deck.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (35) completion: Hover lift, scoring animation, and round HUD implemented.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Balatro-style play HUD preview and unclip overlapping chrome
 - Scoreboard moved to the left, Play/Discard buttons split around the hand, Seed field moved left of Gwang slots.
 - Hand selection now previews the level name, chip, and multiplier (non-destructive test of `scoring_pipeline`).
