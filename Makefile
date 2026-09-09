@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -330,7 +330,7 @@ lock-effect-qa:
 		"$(BUILD_DIR)/lock-effect-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/lock-effect-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/lock-effect-qa/assets/"
-	@cp assets/runtime/ui/effect-lock-v1.png \
+	@cp assets/runtime/ui/effect-lock-v1.png assets/runtime/ui/deck-yellow-v1.png \
 		"$(BUILD_DIR)/lock-effect-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/lock-effect-qa/assets/fonts/"
 	LOCK_EFFECT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/effect-lock-love-v1.png" \
@@ -400,6 +400,22 @@ deck-red-qa:
 	DECK_RED_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/deck-red-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/deck-red-qa"
 
+deck-yellow-qa:
+	@rm -rf "$(BUILD_DIR)/deck-yellow-qa"
+	@mkdir -p "$(BUILD_DIR)/deck-yellow-qa/game/ui" \
+		"$(BUILD_DIR)/deck-yellow-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/deck-yellow-qa/assets/fonts"
+	@cp tools/deck_yellow_qa_main.lua "$(BUILD_DIR)/deck-yellow-qa/main.lua"
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua \
+		"$(BUILD_DIR)/deck-yellow-qa/game/ui/"
+	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-yellow-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/deck-yellow-qa/assets/"
+	@cp assets/runtime/ui/deck-yellow-v1.png assets/runtime/ui/effect-lock-v1.png \
+		"$(BUILD_DIR)/deck-yellow-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/deck-yellow-qa/assets/fonts/"
+	DECK_YELLOW_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/deck-yellow-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/deck-yellow-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -411,7 +427,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

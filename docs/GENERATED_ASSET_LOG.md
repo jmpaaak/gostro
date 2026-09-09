@@ -275,7 +275,7 @@
 | 2026-09-09T14:20:00+0900 | `assets/masters/ui/effect-lock-v1.png` | Preserved 384×480 RGBA raster master with transparent background |
 | 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-v1.png` | 16×20 runtime lock glyph from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
-| 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed lock glyph on a locked deck; SHA-256 `c3ecec86f42568c8b59a838304ad8e5f8ff0fc7ffb5c9bdce4a4070372ce1d01` |
+| 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed lock glyph on a locked deck; SHA-256 `0753a6d63067baffacb4577902920d17e89f34a22238efd0a8c3231a0d50b65f` |
 | 2026-09-09T15:10:00+0900 | `assets/masters/ui/effect-win-v1.png` | Project-authored 960×540 Korean hwatu victory burst with gold sunburst, dancheong rays, brass corners, and five geometric type marks; no text, people, or month imagery |
 | 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-v1.png` | 320×180 runtime overlay from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 15-color palette, alignment, and nearest-neighbor validation |
@@ -292,5 +292,9 @@
 | 2026-09-09T13:42:04+0900 | `assets/runtime/ui/deck-red-v1.png` | 48×48 runtime thumbnail from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T13:42:04+0900 | `assets/runtime/ui/deck-red-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 17-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T13:42:04+0900 | `assets/runtime/ui/deck-red-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed red thin-deck thumbnail; SHA-256 `00fe3efb4b6099071676c8be865a0a1baff5b7deeac9d63c2ac42f5ee4eac6ec` |
+| 2026-09-09T13:55:00+0900 | `assets/masters/ui/deck-yellow-v1.png` | Project-authored 384×384 lacquered ochre hwatu deck back with brass corners, a mother-of-pearl center mark, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T13:55:00+0900 | `assets/runtime/ui/deck-yellow-v1.png` | 48×48 runtime thumbnail from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T13:55:00+0900 | `assets/runtime/ui/deck-yellow-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 14-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T13:55:00+0900 | `assets/runtime/ui/deck-yellow-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed yellow gwang-jackpot thumbnail; SHA-256 `0753a6d63067baffacb4577902920d17e89f34a22238efd0a8c3231a0d50b65f` |
 
 

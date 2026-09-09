@@ -199,6 +199,10 @@ local function draw_deck_art(graphics, deck)
         if deck_art.draw_red(rect.x, rect.y, rect.w, api) then
             return
         end
+    elseif deck.id == "gwang_jackpot" then
+        if deck_art.draw_yellow(rect.x, rect.y, rect.w, api) then
+            return
+        end
     end
     draw_shadowed_box(graphics, rect, deck.colors[1], 5)
     graphics.setColor(0.96, 0.91, 0.73, 1)

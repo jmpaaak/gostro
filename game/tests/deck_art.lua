@@ -62,6 +62,16 @@ function M.run()
     assert(red.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
     assert_draw("red", "ui.deck_red", "assets/runtime/ui/deck-red-v1.png", 48, 66)
 
+    local yellow = assets.entry("ui.deck_yellow")
+    assert(yellow and yellow.status == "runtime", "yellow deck artwork must be promoted")
+    assert(yellow.master.width == 384 and yellow.master.height == 384,
+        "yellow deck must preserve a 384x384 master")
+    assert(yellow.runtime.width == 48 and yellow.runtime.height == 48,
+        "yellow deck runtime must fill the 48x48 deck-art slot")
+    assert(yellow.runtime.filter == "nearest")
+    assert(yellow.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert_draw("yellow", "ui.deck_yellow", "assets/runtime/ui/deck-yellow-v1.png", 48, 66)
+
     print("  deck_art: OK")
 end
 

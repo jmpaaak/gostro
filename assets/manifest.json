@@ -3642,8 +3642,47 @@
     {
       "id": "ui.deck_yellow",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.deck_yellow"
+      "status": "runtime",
+      "name": "ui.deck_yellow",
+      "master": {
+        "path": "assets/masters/ui/deck-yellow-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "9deccff06358d1db50fce6f6e57b6ebb288f90aec1c2e96230718259e3ffcf8e",
+        "provenance": "Project-authored 384x384 RGBA lacquered ochre hwatu deck back with brass corners, a mother-of-pearl center mark, and five geometric type marks. No text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/deck-yellow-v1.png",
+        "width": 48,
+        "height": 48,
+        "alphaBounds": [
+          0,
+          0,
+          46,
+          47
+        ],
+        "sha256": "e4c8c43ebb855e3005c156d338f843cc71b40fde5e51b2a8291a6a7ca8c9f4d4",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 48,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/deck-yellow-v1.report.json",
+        "reportSha256": "9b022317bafc8ecc47b1f7b90adc6deb4baa6cbd89a83cb5fee9d0f7e3842db2"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.stake_white",

@@ -121,7 +121,7 @@
 - [x] `ui.effect_loss` - ui.effect_loss
 - [x] `ui.deck_blue` - ui.deck_blue
 - [x] `ui.deck_red` - ui.deck_red
-- [ ] `ui.deck_yellow` - ui.deck_yellow
+- [x] `ui.deck_yellow` - ui.deck_yellow
 - [ ] `ui.stake_white` - ui.stake_white
 - [ ] `ui.stake_red` - ui.stake_red
 - [ ] `ui.stake_green` - ui.stake_green
