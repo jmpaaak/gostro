@@ -3777,8 +3777,47 @@
     {
       "id": "ui.stake_green",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.stake_green"
+      "status": "runtime",
+      "name": "ui.stake_green",
+      "master": {
+        "path": "assets/masters/ui/stake-green-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "6c0b864d54fc9730a2563f13121a2fd19bf12ea7ab72fa79b37681d28924f365",
+        "provenance": "Project-authored 384x384 RGBA lacquered jade hwatu stake chip with brass rim, a mother-of-pearl center mark, and five geometric type marks. No text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/stake-green-v1.png",
+        "width": 16,
+        "height": 16,
+        "alphaBounds": [
+          0,
+          0,
+          15,
+          15
+        ],
+        "sha256": "bab9fcb2f9579472b75358f8a24f1ce72f23870f7efd1df2a66f32cfe6d0584a",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 16,
+        "targetHeight": 16,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/stake-green-v1.report.json",
+        "reportSha256": "fc4c88ec920a218a63957c92f8fc223d4b0694ff929849aa8700810033fa25de"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.blind_small",

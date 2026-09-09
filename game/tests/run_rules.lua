@@ -24,6 +24,7 @@ function M.run()
     expect_rejected({ starting_deck_id = "hwatu", stake_id = "missing" }, nil, "unknown stake")
     expect_rejected({ starting_deck_id = "gwang_jackpot", stake_id = "white" }, nil, "locked deck")
     expect_rejected({ starting_deck_id = "hwatu", stake_id = "red" }, nil, "locked stake")
+    expect_rejected({ starting_deck_id = "hwatu", stake_id = "green" }, nil, "locked green stake")
 
     valid = assert(run_rules.validate({
         starting_deck_id = "gwang_jackpot",
@@ -111,6 +112,20 @@ function M.run()
     require("game.vouchers").apply(red, "wasteful")
     assert(run_rules.discard_limit(red) == 3,
         "voucher discard bonuses compose with the stake constraint")
+
+    local green = assert(run_rules.apply(run.new(), {
+        starting_deck_id = "hwatu", stake_id = "green",
+    }, { unlocked_stakes = { red = true, green = true } }))
+    assert(green.run_rules.applied_stakes[1] == "white"
+        and green.run_rules.applied_stakes[2] == "red"
+        and green.run_rules.applied_stakes[3] == "green",
+        "green stake cumulatively applies every earlier tier")
+    assert(run_rules.adjust_target(green, 300) == 375,
+        "green stake keeps the red target until a later cycle adds its own effects")
+    assert(run_rules.adjust_economy(green, 7) == 5 and green.money == 3,
+        "green stake keeps the red economy until a later cycle adds its own effects")
+    assert(run_rules.discard_limit(green, 3) == 2 and green.discard_limit == 2,
+        "green stake keeps the red discard limit until a later cycle adds its own effects")
 
     local untouched = run.new()
     local rejected = run_rules.apply(untouched, {

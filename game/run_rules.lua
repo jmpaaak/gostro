@@ -22,6 +22,11 @@ M.STAKES = {
         unlocked = false,
         effects = { target_multiplier = 1.25, economy_multiplier = 0.75, discard_delta = -1 },
     },
+    {
+        id = "green",
+        unlocked = false,
+        effects = { target_multiplier = 1, economy_multiplier = 1, discard_delta = 0 },
+    },
 }
 
 local function index_by_id(entries)

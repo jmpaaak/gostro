@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -326,7 +326,7 @@ lock-effect-qa:
 		"$(BUILD_DIR)/lock-effect-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/lock-effect-qa/assets/fonts"
 	@cp tools/lock_effect_qa_main.lua "$(BUILD_DIR)/lock-effect-qa/main.lua"
-	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua \
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/lock-effect-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/lock-effect-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/lock-effect-qa/assets/"
@@ -374,7 +374,7 @@ deck-blue-qa:
 		"$(BUILD_DIR)/deck-blue-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/deck-blue-qa/assets/fonts"
 	@cp tools/deck_blue_qa_main.lua "$(BUILD_DIR)/deck-blue-qa/main.lua"
-	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua \
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/deck-blue-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-blue-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/deck-blue-qa/assets/"
@@ -390,7 +390,7 @@ deck-red-qa:
 		"$(BUILD_DIR)/deck-red-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/deck-red-qa/assets/fonts"
 	@cp tools/deck_red_qa_main.lua "$(BUILD_DIR)/deck-red-qa/main.lua"
-	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua \
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/deck-red-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-red-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/deck-red-qa/assets/"
@@ -406,7 +406,7 @@ deck-yellow-qa:
 		"$(BUILD_DIR)/deck-yellow-qa/assets/runtime/ui" \
 		"$(BUILD_DIR)/deck-yellow-qa/assets/fonts"
 	@cp tools/deck_yellow_qa_main.lua "$(BUILD_DIR)/deck-yellow-qa/main.lua"
-	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua \
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
 		"$(BUILD_DIR)/deck-yellow-qa/game/ui/"
 	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/deck-yellow-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/deck-yellow-qa/assets/"
@@ -448,6 +448,22 @@ stake-red-qa:
 	STAKE_RED_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/stake-red-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/stake-red-qa"
 
+stake-green-qa:
+	@rm -rf "$(BUILD_DIR)/stake-green-qa"
+	@mkdir -p "$(BUILD_DIR)/stake-green-qa/game/ui" \
+		"$(BUILD_DIR)/stake-green-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/stake-green-qa/assets/fonts"
+	@cp tools/stake_green_qa_main.lua "$(BUILD_DIR)/stake-green-qa/main.lua"
+	@cp game/ui/run_setup.lua game/ui/seed.lua game/ui/effect_art.lua game/ui/deck_art.lua game/ui/stake_art.lua \
+		"$(BUILD_DIR)/stake-green-qa/game/ui/"
+	@cp game/asset_loader.lua game/fonts.lua game/rng.lua "$(BUILD_DIR)/stake-green-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/stake-green-qa/assets/"
+	@cp assets/runtime/ui/stake-green-v1.png assets/runtime/ui/stake-red-v1.png assets/runtime/ui/stake-white-v1.png assets/runtime/ui/deck-blue-v1.png assets/runtime/ui/effect-lock-v1.png \
+		"$(BUILD_DIR)/stake-green-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/stake-green-qa/assets/fonts/"
+	STAKE_GREEN_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/stake-green-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/stake-green-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -459,7 +475,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

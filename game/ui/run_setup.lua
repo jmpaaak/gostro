@@ -47,6 +47,13 @@ local STAKES = {
         unlocked = false,
         unlock_condition = "8고를 클리어하면 해금",
     },
+    {
+        id = "green",
+        label = "푸른 인장",
+        name = "최고 난이도",
+        unlocked = false,
+        unlock_condition = "붉은 인장으로 8고를 클리어하면 해금",
+    },
 }
 
 local LAYOUT = {
@@ -316,6 +323,8 @@ local function draw_stake(graphics, state)
         stake_art.draw_white(rect.x + 4, rect.y + 1, 16, api)
     elseif stake.id == "red" then
         stake_art.draw_red(rect.x + 4, rect.y + 1, 16, api)
+    elseif stake.id == "green" then
+        stake_art.draw_green(rect.x + 4, rect.y + 1, 16, api)
     end
     graphics.setColor(0.13, 0.15, 0.16, 1)
     graphics.printf(stake.label .. " · " .. stake.name, rect.x, rect.y + 3, rect.w, "center")

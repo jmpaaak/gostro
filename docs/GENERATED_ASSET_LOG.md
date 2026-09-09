@@ -306,3 +306,7 @@
 | 2026-09-09T18:10:00+0900 | `assets/runtime/ui/stake-red-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed red stake chip; SHA-256 `296b735a7c71781e7c04574c948b0c09b12d44e13c54cb62a6cd9c7b1b89dff4` |
 
 
+| 2026-09-09T18:15:00+0900 | `assets/masters/ui/stake-green-v1.png` | Project-authored 384x384 RGBA lacquered jade hwatu stake chip with brass rim, a mother-of-pearl center mark, and five geometric type marks. No text, people, or month imagery. |
+| 2026-09-09T18:15:00+0900 | `assets/runtime/ui/stake-green-v1.png` | 16x16 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T18:15:00+0900 | `assets/runtime/ui/stake-green-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, alignment, and nearest-neighbor validation |
+| 2026-09-09T18:15:00+0900 | `assets/runtime/ui/stake-green-love-v1.png` | Actual LÖVE 11.5 320x180 New Run capture proving the manifest-backed green stake chip |

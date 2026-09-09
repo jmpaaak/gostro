@@ -29,4 +29,8 @@ function M.draw_red(x, y, size, api, texture_provider)
     return draw_id("ui.stake_red", x, y, size, api, texture_provider)
 end
 
+function M.draw_green(x, y, size, api, texture_provider)
+    return draw_id("ui.stake_green", x, y, size, api, texture_provider)
+end
+
 return M
