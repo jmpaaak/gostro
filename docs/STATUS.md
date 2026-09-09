@@ -1,4 +1,12 @@
 # STATUS
+## 2026-09-10 — Default window 960×540 for Balatro-scale canvas
+- After the 960×540 canvas / 72×108 card lift, `conf.lua` still opened 320×180.
+- Default play window is now 960×540 (1×). `GAME_SCALE=2` is integer 2× 1920×1080.
+- `game/tests/window_conf.lua` covers play vs headless window sizes.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK.
+- INBOX (32) completion: canvas 960×540, cards 72×108, HUD 3×, Galmuri 33, backgrounds 960×540 Pixel Perfect valid, default window 960×540.
+- Next slice: 처리 대기 empty → IDLE
+
 ## 2026-09-09 — Batch capture QA so verify finishes under 120s
 - Preflight FAIL was `make verify LOVE=/Users/jm/.local/bin/love` timing out after 120s, not a unit assertion.
 - Sequential Love launches for shop-pack, gwang-slot, tag, and blind-card captures exceeded the cycle preflight budget.

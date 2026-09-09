@@ -18,8 +18,8 @@ function love.conf(t)
     end
     t.window.title = "Gostro"
     t.window.msaa = 0
-    t.window.width = 320 * scale
-    t.window.height = 180 * scale
+    t.window.width = 960 * scale
+    t.window.height = 540 * scale
     t.window.resizable = true
     t.window.highdpi = true
     t.window.vsync = 1
