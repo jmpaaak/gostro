@@ -119,6 +119,7 @@ function M.new(money)
         cards = generate_cards(),
         reroll_cost = M.REROLL_COST,
         hover = nil,
+        buy_flash = nil,
     }
 end
 
@@ -133,6 +134,7 @@ function M.buy_card(s, idx)
     if s.hover == idx then
         s.hover = nil
     end
+    s.buy_flash = { index = idx, timer = 0.35 }
     return true, { kind = card.kind, identity = card.identity, yaku = card.yaku }
 end
 
@@ -274,6 +276,18 @@ function M.set_hover_at(s, px, py)
     end
 end
 
+function M.mark_bought(s, idx)
+    s.buy_flash = { index = idx, timer = 0.35 }
+end
+
+function M.update(s, dt)
+    if not s.buy_flash then return end
+    s.buy_flash.timer = s.buy_flash.timer - dt
+    if s.buy_flash.timer <= 0 then
+        s.buy_flash = nil
+    end
+end
+
 --- Draw shop UI (requires love.graphics).
 function M.draw(s)
     if not love or not love.graphics then return end
@@ -396,6 +410,11 @@ function M.draw(s)
             love.graphics.print(sold_txt,
                 p.x + math.floor((p.w - font:getWidth(sold_txt)) / 2),
                 p.y + math.floor((p.h - fh) / 2))
+            if s.buy_flash and s.buy_flash.index == i then
+                local alpha = math.max(0, s.buy_flash.timer / 0.35)
+                love.graphics.setColor(1, 0.92, 0.35, alpha)
+                love.graphics.rectangle("line", p.x - 3, p.y - 3, p.w + 6, p.h + 6, 4, 4)
+            end
         end
     end
 

@@ -248,6 +248,7 @@ function M.buy_shop_card(scene, idx)
     local ok = shop_purchases.buy(scene.shop, idx)
     if ok then
         gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
+        shop_ui.mark_bought(scene.shop, idx)
     end
     sync_shop_ui(scene)
     return ok
@@ -261,6 +262,8 @@ function M:update(dt)
         -- Update button enabled state based on selection
         buttons_ui.set_selection(self.buttons, #self.hand.selected_order)
         M.sync_preview(self)
+    elseif self.state == "shop" and self.shop then
+        shop_ui.update(self.shop, dt)
     end
 end
 

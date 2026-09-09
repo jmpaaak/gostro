@@ -11,6 +11,7 @@ M.WIDTH  = 72
 M.HEIGHT = 108
 M.LIFT   = 16  -- pixels to raise when selected
 M.HOVER_LIFT = 8  -- smaller peek while the pointer is over a card
+M.HOVER_SCALE = 1.12  -- Balatro-style enlarge on hover (selection stays 1x)
 
 local PLAY_KINDS = {
     hongdan   = true,
@@ -73,6 +74,14 @@ function M.draw_y(c)
     return c.y
 end
 
+--- Draw scale. Hover peeks larger; selection lift already owns attention.
+function M.draw_scale(c)
+    if c.hovered and not c.selected then
+        return M.HOVER_SCALE
+    end
+    return 1
+end
+
 --- Symbol character for a play-card kind.
 function M.symbol(kind)
     return SYMBOLS[kind]
@@ -95,6 +104,16 @@ function M.draw(c)
     if not love or not love.graphics then return end
     local dy = M.draw_y(c)
     local bg = BG_COLORS[c.kind]
+    local scale = M.draw_scale(c)
+    if scale ~= 1 then
+        -- Grow from the bottom-center so the fan stays planted.
+        local cx = c.x + M.WIDTH / 2
+        local cy = dy + M.HEIGHT
+        love.graphics.push()
+        love.graphics.translate(cx, cy)
+        love.graphics.scale(scale, scale)
+        love.graphics.translate(-cx, -cy)
+    end
 
     local uses_asset = card_art.draw(c.kind, c.x, dy)
     if not uses_asset then
@@ -126,6 +145,10 @@ function M.draw(c)
     -- hologram / foil / polychrome overlay
     if c.effect then
         effects.draw_overlay(c.effect, c.x, dy, M.WIDTH, M.HEIGHT, c.effect_t or 0)
+    end
+
+    if scale ~= 1 then
+        love.graphics.pop()
     end
 end
 

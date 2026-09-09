@@ -65,6 +65,8 @@ function M.new(model)
             available = projected.playable == true,
             status = projected.status,
             boss = projected.boss,
+            skippable = projected.skippable == true,
+            skip_tag = projected.skip_tag,
         }
     end
     if #blinds ~= 3 then error("blind-select requires three blind projections") end
@@ -109,11 +111,21 @@ function M.card_copy(blind)
     elseif blind.status == "completed" then
         status = "클리어"
     end
+    local skip_label
+    if blind.kind == "boss" then
+        skip_label = "스킵 불가"
+    elseif blind.skippable then
+        local tag = blind.skip_tag
+        skip_label = "스킵 보상: " .. ((tag and tag.name) or "패찰")
+    else
+        skip_label = "스킵 없음"
+    end
     return {
         name = terms.blind_name(blind.kind),
         target_label = "목표 " .. tostring(blind.target),
         reward_label = "보상 " .. tostring(blind.reward),
         status = status,
+        skip_label = skip_label,
     }
 end
 
@@ -188,7 +200,11 @@ function M.draw(s)
         love.graphics.setColor(0.3, 1, 0.4, 1)
         local rw = font:getWidth(copy.reward_label)
         love.graphics.print(copy.reward_label,
-            p.x + math.floor((p.w - rw) / 2), p.y + p.h - fh - 4)
+            p.x + math.floor((p.w - rw) / 2), p.y + p.h - fh * 2 - 6)
+        love.graphics.setColor(0.85, 0.78, 0.45, available and 0.95 or 0.5)
+        local skip_w = font:getWidth(copy.skip_label)
+        love.graphics.print(copy.skip_label,
+            p.x + math.floor((p.w - skip_w) / 2), p.y + p.h - fh - 4)
     end
 
     -- Instruction

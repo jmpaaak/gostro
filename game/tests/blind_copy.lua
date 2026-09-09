@@ -20,14 +20,21 @@ end
 function M.run()
     local s = blind_select.new(model())
     local current = blind_select.card_copy(s.blinds[1])
+    local waiting = blind_select.card_copy(s.blinds[2])
     assert(current.name == "첫판")
     assert(current.target_label == "목표 300")
     assert(current.reward_label == "보상 +$3")
     assert(current.status == "지금 도전")
-
-    local waiting = blind_select.card_copy(s.blinds[2])
+    assert(current.skip_label == "스킵 없음")
     assert(waiting.status == "대기")
     assert(waiting.target_label == "목표 450")
+    assert(waiting.skip_label == "스킵 없음")
+    local boss = blind_select.card_copy(s.blinds[3])
+    assert(boss.skip_label == "스킵 불가")
+
+    s.blinds[1].skippable = true
+    s.blinds[1].skip_tag = { name = "투자 패찰" }
+    assert(blind_select.card_copy(s.blinds[1]).skip_label == "스킵 보상: 투자 패찰")
 
     local pos = blind_select.card_positions()[1]
     blind_select.set_hover_at(s, pos.x + 2, pos.y + 2)

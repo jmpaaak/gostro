@@ -2,17 +2,18 @@
 
 ## 처리 대기
 
-(38) **발라트로급 호버 확대·상점 구매 피드백·판 스킵 안내** (msg `1547290362782031952`)
-  - 담당: `game/ui/card.lua`, `game/ui/card_art.lua`, `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/scenes/play.lua`.
-  - 호버 시 패가 살짝 확대. 상점 구매 시 슬롯 판매 연출. 판 카드에 스킵 가능/불가 카피.
-  - 완료: 확대·구매 피드백·스킵 카피, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
-
+(없음)
 
 ## 처리 중
 
 (없음)
 
 ## 처리 완료
+
+(38) **발라트로급 호버 확대·상점 구매 피드백·판 스킵 안내** (msg `1547290362782031952`)
+  - 담당: `game/ui/card.lua`, `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/scenes/play.lua`.
+  - 호버 시 패가 1.12배 확대(선택은 리프트만). 상점 구매 시 슬롯 금색 플래시. 판 카드에 스킵 없음/스킵 불가/스킵 보상 카피.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
 
 (37) **발라트로급 팩·광 슬롯 툴팁·버튼 호버** (msg `1547290362782031952`)
   - 담당: `game/ui/pack.lua`, `game/ui/gwang_slots.lua`, `game/ui/action_buttons.lua`, `game/ui/consumables.lua`, `game/scenes/play.lua`.

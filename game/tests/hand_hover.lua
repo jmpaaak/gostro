@@ -13,8 +13,10 @@ function M.run()
     assert(card.draw_y(c) == 200)
     c.hovered = true
     assert(card.draw_y(c) == 200 - card.HOVER_LIFT, "hovered cards rise")
+    assert(card.draw_scale(c) == card.HOVER_SCALE, "hovered cards enlarge")
     c.selected = true
     assert(card.draw_y(c) == 200 - card.LIFT, "selection lift beats hover")
+    assert(card.draw_scale(c) == 1, "selection does not also enlarge")
 
     local h = hand.new()
     hand.deal(h, { "pi", "hongdan", "godori" })
