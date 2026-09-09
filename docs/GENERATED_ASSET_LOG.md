@@ -187,3 +187,7 @@
 | 2026-09-09T08:54:48+0900 | `assets/masters/gwang/wealthy-x2-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T08:54:48+0900 | `assets/runtime/gwang/wealthy-x2-v1.png` | 56×32 runtime 갑부 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T08:54:48+0900 | `assets/runtime/ui/gwang-wealthy-x2-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 갑부 gwang in all five slots; SHA-256 `8a33e8379245c514102cdc1e1345ace0f15929e4c95430d75d6afbead8bae518` |
+| 2026-09-09T09:02:40+0900 | `assets/masters/gwang/boss-x2-v1.svg` | Project-authored high-resolution 보스 배수 gwang vector source with an imposing bronze commander's medallion depicting twin charging horses with crimson royal tassels on deep obsidian lacquer |
+| 2026-09-09T09:02:40+0900 | `assets/masters/gwang/boss-x2-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T09:02:40+0900 | `assets/runtime/gwang/boss-x2-v1.png` | 56×32 runtime 보스 배수 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T09:02:40+0900 | `assets/runtime/ui/gwang-boss-x2-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 보스 배수 gwang in all five slots; SHA-256 `fc31d77c8f39fe95e00b4962f45cda5811b557d3742d5e5437618711f624e308` |
