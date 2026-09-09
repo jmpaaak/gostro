@@ -2550,8 +2550,40 @@
     {
       "id": "tag.investment",
       "category": "tag",
-      "status": "pending",
-      "name": "\ud22c\uc790"
+      "status": "runtime",
+      "name": "거상 패찰",
+      "master": {
+        "source": "assets/masters/tag/investment-v1.png",
+        "sourceSha256": "febab578b300df9677165d26e50b0b9e28a98a960f701cc4796ba3208f8f6727",
+        "path": "assets/masters/tag/investment-v1.png",
+        "width": 256,
+        "height": 384,
+        "sha256": "febab578b300df9677165d26e50b0b9e28a98a960f701cc4796ba3208f8f6727",
+        "provenance": "Project-authored high-resolution procedural wooden plaque with stacked merchant coins for extra-money skip reward; no photo, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tag/investment-v1.png",
+        "width": 32,
+        "height": 48,
+        "alphaBounds": [
+          3,
+          0,
+          28,
+          47
+        ],
+        "sha256": "c99ab966aef7a1d693532fe3e30afb971b17b7508f65f27fd4e44f5de86c68d8",
+        "filter": "nearest",
+        "report": "assets/runtime/tag/investment-v1.report.json",
+        "reportSha256": "5493a04b64921b285bb8ef5111ecea21a318f15bdcb3fd40d44b520e54278b6c"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 32,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original"
+      }
     },
     {
       "id": "tag.handy",

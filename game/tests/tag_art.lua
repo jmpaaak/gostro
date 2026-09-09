@@ -1,0 +1,44 @@
+local assets = require("game.asset_loader")
+local tag_art = require("game.ui.tag_art")
+
+local M = {}
+
+function M.run()
+    assets.clear_cache()
+
+    local coupon_id = tag_art.asset_id({ kind = "tag", identity = "coupon" })
+    assert(coupon_id == "tag.coupon", "단골 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "coupon" }) == "tag.coupon",
+        "skip offers keyed by id must resolve 단골 패찰")
+
+    local coupon = assets.entry(coupon_id)
+    assert(coupon and coupon.status == "runtime", "단골 패찰 artwork must be promoted")
+    assert(coupon.master.width == 256 and coupon.master.height == 384,
+        "단골 패찰 must preserve a 256x384 master")
+    assert(coupon.runtime.width == 32 and coupon.runtime.height == 48,
+        "단골 패찰 runtime must fit its skip-tag slot")
+    assert(coupon.runtime.filter == "nearest")
+    assert(assets.runtime_path(coupon_id) == "assets/runtime/tag/coupon-v1.png")
+
+    local investment_id = tag_art.asset_id({ kind = "tag", identity = "investment" })
+    assert(investment_id == "tag.investment", "거상 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "investment" }) == "tag.investment",
+        "skip offers keyed by id must resolve 거상 패찰")
+
+    local investment = assets.entry(investment_id)
+    assert(investment and investment.status == "runtime", "거상 패찰 artwork must be promoted")
+    assert(investment.master.width == 256 and investment.master.height == 384,
+        "거상 패찰 must preserve a 256x384 master")
+    assert(investment.runtime.width == 32 and investment.runtime.height == 48,
+        "거상 패찰 runtime must fit its skip-tag slot")
+    assert(investment.runtime.filter == "nearest")
+    assert(investment.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(investment_id) == "assets/runtime/tag/investment-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "investment" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
+    assets.clear_cache()
+    print("  tag_art: OK")
+end
+
+return M

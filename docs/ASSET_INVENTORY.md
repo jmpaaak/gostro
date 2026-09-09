@@ -77,7 +77,7 @@
 ## tag
 
 - [x] `tag.coupon` - 단골 패찰
-- [ ] `tag.investment` - 투자
+- [x] `tag.investment` - 거상 패찰
 - [ ] `tag.handy` - Handy
 - [ ] `tag.economy` - 이코노미
 - [ ] `tag.mega` - 메가

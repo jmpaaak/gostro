@@ -1767,3 +1767,14 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
 - Next slice: 다음 미완료 그래픽(`tag.coupon`) 고해상도 master를 생성하고 런타임에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 16:18)
+
+## 2026-09-09 — 단골 패찰 고해상도 픽셀 에셋 적용
+- `tag.coupon`에 256×384 단골 패찰 PNG master와 32×48 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 신규 `game/ui/tag_art.lua`에 `draw` 계약을 추가하고 tag 렌더링 배선을 준비했다.
+- QA 스크립트(`tools/tag_qa_main.lua`)와 LÖVE 320×180 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: 다음 미완료 그래픽(`tag.investment`) 고해상도 master를 생성하고 런타임에 적용한다.

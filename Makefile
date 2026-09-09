@@ -517,11 +517,14 @@ tag-qa:
 	@cp game/ui/tag_art.lua "$(BUILD_DIR)/tag-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua game/rng.lua "$(BUILD_DIR)/tag-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/tag-qa/assets/"
-	@cp assets/runtime/tag/coupon-v1.png "$(BUILD_DIR)/tag-qa/assets/runtime/tag/"
+	@cp assets/runtime/tag/coupon-v1.png assets/runtime/tag/investment-v1.png "$(BUILD_DIR)/tag-qa/assets/runtime/tag/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/tag-qa/assets/fonts/"
 	TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-coupon-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/tag-qa"
 	@echo "TAG_LOVE_QA_OK coupon 320x180 $(CURDIR)/assets/runtime/ui/tag-coupon-love-v1.png"
+	TAG_QA_IDENTITY=investment TAG_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/tag-investment-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/tag-qa"
+	@echo "TAG_LOVE_QA_OK investment 320x180 $(CURDIR)/assets/runtime/ui/tag-investment-love-v1.png"
 
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .

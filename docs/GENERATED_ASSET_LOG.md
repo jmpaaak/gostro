@@ -352,3 +352,7 @@
 | 2026-09-09T16:35:00+0900 | `assets/runtime/ui/shop-tarot-the-lovers-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 쌍둥이 부적; SHA-256 `dad3a387152aa712975b7285d07102810e7ecadd430597472a49268ce7b62818` |
 
 2026-09-09T16:16:35+0900 | assets/masters/tag/coupon-v1.png | 단골 패찰 (tag.coupon) high-res procedural wooden plaque master
+2026-09-09T16:32:00+0900 | assets/masters/tag/investment-v1.png | 거상 패찰 (tag.investment) high-res procedural wooden plaque with stacked merchant coins; no people or month imagery
+2026-09-09T16:32:00+0900 | assets/runtime/tag/investment-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T16:32:00+0900 | assets/runtime/tag/investment-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 7-color palette, alignment, and nearest-neighbor validation
+2026-09-09T16:32:00+0900 | assets/runtime/ui/tag-investment-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 거상 패찰; SHA-256 dece6dc9db5a3de8a37c501b5acef6d37421a5c5ae7e16845c9084a4dcfaabd3
