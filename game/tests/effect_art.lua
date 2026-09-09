@@ -1,4 +1,4 @@
--- Engine-hosted contract for the manifest-backed lock and win effects.
+-- Engine-hosted contract for the manifest-backed lock, win, and loss effects.
 
 local assets = require("game.asset_loader")
 local effect_art = require("game.ui.effect_art")
@@ -79,6 +79,49 @@ function M.run()
         return nil
     end)
     assert(win_missing == false, "missing win texture must report false")
+
+    assert(assets.runtime_path("ui.effect_loss") == "assets/runtime/ui/effect-loss-v1.png",
+        "loss effect must resolve through the runtime manifest")
+    local loss_entry = assets.entry("ui.effect_loss")
+    assert(loss_entry and loss_entry.status == "runtime", "loss effect artwork must be promoted")
+    assert(loss_entry.master.width == 960 and loss_entry.master.height == 540,
+        "loss effect must preserve a 960x540 master")
+    assert(loss_entry.runtime.width == 320 and loss_entry.runtime.height == 180,
+        "loss effect runtime must fill the 320x180 canvas")
+    assert(loss_entry.runtime.filter == "nearest")
+    assert(loss_entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+
+    local loss_texture = { getDimensions = function() return 320, 180 end }
+    local loss_calls = {}
+    local loss_requested
+    local loss_drawn = effect_art.draw_loss(0, 0, {
+        set_color = function(...) loss_calls.color = { ... } end,
+        draw = function(...) loss_calls.draw = { ... } end,
+        print = function() error("loss overlay must not fall back to text") end,
+    }, function(id)
+        loss_requested = id
+        return loss_texture
+    end)
+
+    assert(loss_drawn == true, "runtime loss effect must draw")
+    assert(loss_requested == "ui.effect_loss", "lost scene must request the loss effect")
+    assert(loss_calls.color[1] == 1 and loss_calls.color[4] == 1)
+    assert(loss_calls.draw[1] == loss_texture
+        and loss_calls.draw[2] == 0
+        and loss_calls.draw[3] == 0,
+        "loss effect must draw at the canvas origin")
+    assert((loss_calls.draw[5] == nil or loss_calls.draw[5] == 1)
+        and (loss_calls.draw[6] == nil or loss_calls.draw[6] == 1),
+        "loss effect must keep integer 1x nearest scale")
+
+    local loss_missing = effect_art.draw_loss(0, 0, {
+        set_color = function() end,
+        draw = function() error("missing loss texture must not draw") end,
+        print = function() end,
+    }, function()
+        return nil
+    end)
+    assert(loss_missing == false, "missing loss texture must report false")
 
     print("  effect_art: OK")
 end

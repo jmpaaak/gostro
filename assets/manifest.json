@@ -3507,8 +3507,47 @@
     {
       "id": "ui.effect_loss",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.effect_loss"
+      "status": "runtime",
+      "name": "ui.effect_loss",
+      "master": {
+        "path": "assets/masters/ui/effect-loss-v1.png",
+        "width": 960,
+        "height": 540,
+        "sha256": "5171deca1a0c018e82e017a060d378e348480348255b7fc3700e3898d376bf1d",
+        "provenance": "Project-authored 960x540 RGBA Korean hwatu defeat veil with indigo dusk, broken dancheong rays, extinguished center mark, brass corners, and five geometric type marks. No text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/effect-loss-v1.png",
+        "width": 320,
+        "height": 180,
+        "alphaBounds": [
+          0,
+          1,
+          319,
+          177
+        ],
+        "sha256": "ee4ce9eed4088e4b74e090bf3ebe5c6c5cd1f1c49daacdcf870b40ae816e8774",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 320,
+        "targetHeight": 180,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/effect-loss-v1.report.json",
+        "reportSha256": "5f9359349e4a41b31ddd7fc1bc8a60a3e3af456088437511f75037bbb3e795ab"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.deck_blue",

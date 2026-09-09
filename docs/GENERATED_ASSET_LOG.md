@@ -280,4 +280,8 @@
 | 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-v1.png` | 320×180 runtime overlay from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 15-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-love-v1.png` | Actual LÖVE 11.5 320×180 play-scene capture proving the manifest-backed win overlay; SHA-256 `9970febe421db9d3cf870980f582bc2a72a6b6c07237a661a7378713b6651568` |
+| 2026-09-09T16:05:00+0900 | `assets/masters/ui/effect-loss-v1.png` | Project-authored 960×540 Korean hwatu defeat veil with indigo dusk, broken dancheong rays, extinguished center mark, brass corners, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T16:05:00+0900 | `assets/runtime/ui/effect-loss-v1.png` | 320×180 runtime overlay from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T16:05:00+0900 | `assets/runtime/ui/effect-loss-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 16-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T16:05:00+0900 | `assets/runtime/ui/effect-loss-love-v1.png` | Actual LÖVE 11.5 320×180 play-scene capture proving the manifest-backed loss overlay; SHA-256 `d4d1422f57c78c1aa4d911ffd56b22f4af17be8d0930c6b2bb962e382d0024d6` |
 

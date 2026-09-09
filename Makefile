@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -352,6 +352,22 @@ win-effect-qa:
 	WIN_EFFECT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/effect-win-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/win-effect-qa"
 
+loss-effect-qa:
+	@rm -rf "$(BUILD_DIR)/loss-effect-qa"
+	@mkdir -p "$(BUILD_DIR)/loss-effect-qa/game/ui" \
+		"$(BUILD_DIR)/loss-effect-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/loss-effect-qa/assets/fonts"
+	@cp tools/loss_effect_qa_main.lua "$(BUILD_DIR)/loss-effect-qa/main.lua"
+	@cp game/ui/effect_art.lua game/ui/scene_bg.lua \
+		"$(BUILD_DIR)/loss-effect-qa/game/ui/"
+	@cp game/asset_loader.lua "$(BUILD_DIR)/loss-effect-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/loss-effect-qa/assets/"
+	@cp assets/runtime/ui/effect-loss-v1.png assets/runtime/ui/play-bg-v1.png \
+		"$(BUILD_DIR)/loss-effect-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/loss-effect-qa/assets/fonts/"
+	LOSS_EFFECT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/effect-loss-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/loss-effect-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -363,7 +379,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

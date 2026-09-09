@@ -256,11 +256,13 @@ function M:draw()
             love.graphics.setColor(1, 1, 1, 1)
         end
     elseif self.state == "lost" then
-        love.graphics.setColor(0.95, 0.35, 0.35, 1)
-        love.graphics.print("패배", 136, 74)
-        love.graphics.setColor(0.75, 0.82, 0.84, 1)
-        love.graphics.print("목표 점수에 도달하지 못했습니다", 72, 92)
-        love.graphics.setColor(1, 1, 1, 1)
+        if not effect_art.draw_loss(0, 0) then
+            love.graphics.setColor(0.95, 0.35, 0.35, 1)
+            love.graphics.print("패배", 136, 74)
+            love.graphics.setColor(0.75, 0.82, 0.84, 1)
+            love.graphics.print("목표 점수에 도달하지 못했습니다", 72, 92)
+            love.graphics.setColor(1, 1, 1, 1)
+        end
     end
 
     tarot_use.draw(self)
