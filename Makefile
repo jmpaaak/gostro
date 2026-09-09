@@ -99,7 +99,7 @@ shop-pack-qa:
 		assets/runtime/voucher/directors-cut-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
 	@cp assets/runtime/planet/hongdan-v1.png assets/runtime/planet/cheongdan-v1.png \
-		assets/runtime/planet/chodan-v1.png \
+		assets/runtime/planet/chodan-v1.png assets/runtime/planet/godori-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/planet/"
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui"
 	@cp assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui/"
@@ -162,6 +162,10 @@ shop-pack-qa:
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-chodan-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-chodan-love-v1.png"
+	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_godori \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-godori-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-godori-love-v1.png"
 
 pack-panel-qa:
 	@rm -rf "$(BUILD_DIR)/pack-panel-qa"
