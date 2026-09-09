@@ -396,3 +396,7 @@
 2026-09-09T18:05:00+0900 | assets/runtime/tag/d6-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T18:05:00+0900 | assets/runtime/tag/d6-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T18:05:00+0900 | assets/runtime/ui/tag-d6-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 주령구 패찰; SHA-256 380fa62b03a7964f979e37fe207fa18f258d76df2ab16e4374fd0f983f2e640e
+2026-09-09T18:20:00+0900 | assets/masters/effect/hologram-v1.png | 오색 효과 (effect.hologram) high-res hologram play-card overlay with five-color prism frame and geometric rainbow ticks; transparent interior; no people or month imagery
+2026-09-09T18:20:00+0900 | assets/runtime/effect/hologram-v1.png | 24×36 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T18:20:00+0900 | assets/runtime/effect/hologram-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 5-color palette, alignment, and nearest-neighbor validation
+2026-09-09T18:20:00+0900 | assets/runtime/ui/effect-hologram-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 오색 효과 overlay; SHA-256 0bd33ffc88e70b99783235fe233f034c356299c469441d05ea4c3cb686c9c7e8

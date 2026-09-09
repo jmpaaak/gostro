@@ -1,4 +1,4 @@
--- Manifest-backed overlay artwork for play-card editions (foil first).
+-- Manifest-backed overlay artwork for play-card editions.
 
 local assets = require("game.asset_loader")
 
@@ -6,12 +6,15 @@ local M = {}
 
 local IDS = {
     foil = "effect.foil",
+    hologram = "effect.hologram",
 }
 
 local function overlay_alpha(name, t)
     t = t or 0
     if name == "foil" then
         return 0.55 + 0.35 * math.abs(math.sin(t * 8))
+    elseif name == "hologram" then
+        return 0.45 + 0.35 * math.abs(math.sin(t * 6))
     end
     return 1
 end

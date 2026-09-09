@@ -14,7 +14,7 @@
 ## effect
 
 - [x] `effect.foil` - 은박 효과
-- [ ] `effect.hologram` - effect.hologram
+- [x] `effect.hologram` - 오색 효과
 - [ ] `effect.polychrome` - effect.polychrome
 
 ## gwang
