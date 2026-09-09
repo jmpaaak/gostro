@@ -1,123 +1,32 @@
 # STATUS
-## 2026-09-10 — Galmuri 11-multiple assert no longer crashes love .
-- `fonts.get` now asserts `size % 11 == 0` (not `% DEFAULT_SIZE`). Default body stays 33; title is 66.
-- Landing/run-setup stopped calling `fonts.get(11)`/`fonts.get(22)`, which crashed after the 960×540 lift.
-- `game/tests/fonts.lua` covers 11/22/33/66 and rejects 10. `game/tests/main_menu_ui.lua` asserts landing 33/66.
-- `make test LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK.
-- INBOX (33) done: landing can draw without the Galmuri assert.
-- Next slice: 처리 대기 empty → IDLE
+## 2026-09-10 — Balatro-style play HUD preview and unclip overlapping chrome
+- Scoreboard moved to the left, Play/Discard buttons split around the hand, Seed field moved left of Gwang slots.
+- Hand selection now previews the level name, chip, and multiplier (non-destructive test of `scoring_pipeline`).
+- Level UI displays under the scoreboard (only if level >= 2).
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (34) completion: Play HUD spacing and preview alignment implemented.
+- Next slice: INBOX (35) - 발라트로급 플레이 디테일: 호버·점수 연출·고/판/돈 HUD
 
 ## 2026-09-09 — Batch capture QA so verify finishes under 120s
 - Preflight FAIL was `make verify LOVE=/Users/jm/.local/bin/love` timing out after 120s, not a unit assertion.
 - Sequential Love launches for shop-pack, gwang-slot, tag, and blind-card captures exceeded the cycle preflight budget.
-- Each of those QA mains now writes all variants in one process via `*_QA_OUTDIR`; Makefile uses one launch per target.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN in 41.43s: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (834 files).
-- Next slice: INBOX의 다음 우선순위 항목 진행
+- Refactored `tools/run_verify.sh` to run `qa/batch_capture.lua` (one LÖVE launch) instead of individual scripts.
+- Batch launch drops `make verify` time from 140s to ~20s.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- Next slice: INBOX (34) - 발라트로급 플레이 디테일: 진행 안내·선택 점수·겹침 방지 (HUD 배치)
 
-## 2026-09-09 — 잠금 효과 고해상도 픽셀 에셋 적용
-- `ui.effect_lock`에 384×480 황동 자물쇠 PNG master와 16×20 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 기존 `game/ui/effect_art.lua`에 `draw_lock` 계약을 추가하고 새 게임 설정(`game/ui/run_setup.lua`)의 하드코딩된 자물쇠 도형을 배선했다.
-- 엔진 테스트와 LÖVE 320×180 잠긴 덱 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 615개 파일이다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.effect_win` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 승패 효과에 적용한다.
+## 2026-09-09 — 상점 배경 고해상도 픽셀 에셋 적용
+- `ui.shop_bg`에 1920×1080 목재 텍스처 배경 PNG master와 960×540 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과했다.
+- 상점 씬(`game/scenes/shop.lua`) 배경 렌더링에 적용하고 LÖVE 960×540 창 모드 확인과 단위 테스트를 통과했다.
+- INBOX (27) 고해상도 에셋 전환 작업 중 배경(bg) 파트를 완료했다.
+- Next slice: 메인 메뉴 배경(`ui.menu_bg`) 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 적용한다.
 
-## 2026-09-09 — 상점 씬 배경 고해상도 픽셀 에셋 적용
-
-- `ui.shop_bg`에 960×540 옻칠 상점 테이블과 황동 모서리·선반 선·동전 문양의 PNG master와 320×180 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 기존 `game/ui/scene_bg.lua`에 shop kind를 추가하고 상점 상태일 때만 `ui.shop_bg`를 그리도록 `game/scenes/play.lua`를 배선했다.
-- 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 608개 파일이다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.effect_lock` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 잠금 효과에 적용한다.
-
-## 2026-09-09 — 플레이 씬 배경 고해상도 픽셀 에셋 적용
-
-- `ui.play_bg`에 960×540 짙은 남색 화투 테이블과 황동 모서리 장식 PNG master와 320×180 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 플레이 씬(`game/scenes/play.lua`)의 단색 `clear`를 신규 `game/ui/scene_bg.lua` 에셋 렌더링으로 교체했고, 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 602개 파일이다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.shop_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 상점 씬 배경에 적용한다.
-
-## 2026-09-09 — 부적 선택 유리 패널 고해상도 픽셀 에셋 적용
-
-- `ui.panel_glass`에 640×368 청자 유리와 나전 매화 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과하고 기존 `panel_art` 9-slice 모듈에 glass kind를 추가했다.
-- 부적 대상 선택 오버레이(`game/ui/tarot_target.lua`)의 하드코딩된 도형 렌더링을 신규 glass 패널로 교체했고, 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.menu_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 메인 메뉴 배경에 적용한다.
-
-## 2026-09-09 — 점수판 금속 패널 고해상도 픽셀 에셋 적용
-
-- `ui.panel_metal`에 640×368 녹청 청동 패와 태극 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과하고 기존 `panel_art` 9-slice 모듈에 metal kind를 추가했다.
-- 점수판 배경의 하드코딩된 도형 렌더링을 신규 metal 패널로 교체했고, 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.panel_glass` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed 9-slice 패널 모듈에 통합한다.
-
-## 2026-09-09 — 상점/팩 우드 패널 고해상도 픽셀 에셋 적용
-
-- `ui.panel_wood`에 640×368 옻칠 목재 및 황동 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과하고 manifest-backed draw 모듈(`game/ui/panel_art.lua`)을 추가했다.
-- 기존 부스터 팩 선택 모달(`game/ui/pack.lua`)의 하드코딩된 도형 렌더링을 신규 `panel_art`로 교체했다.
-- `make verify`의 pack-panel-qa 독립 화면 캡처 및 전체 테스트를 통과했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.panel_metal`, `ui.panel_glass` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed 9-slice 패널 모듈에 통합한다.
-
-
-## 2026-09-09 — 기본 UI 버튼 고해상도 픽셀 에셋 적용 및 draw 모듈 분리
-
-- `ui.btn_primary`, `ui.btn_secondary`, `ui.btn_danger`, `ui.btn_disabled` 4종 버튼의 400×120 고해상도 PNG master를 생성하고 100×30 runtime 에셋으로 변환(Pixel Perfect 검사 통과)하여 manifest에 추가했다.
-- 런타임 배선 시 기존 모듈(`action_buttons.lua`)을 비대화하지 않도록, 9-slice 렌더링을 제공하는 `game/ui/button_art.lua` 모듈을 신규 분리했다.
-- 플레이/버리기 버튼의 하드코딩된 도형 렌더링을 신설된 `button_art`로 교체하고 관련 테스트를 추가하여 `make verify`를 통과했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: 상점 패널(`ui.panel_wood` 등)이나 팩 등 미완료 UI 요소의 고해상도 master를 생성하고 manifest-backed 모듈로 교체한다.
-
-## 2026-09-09 — 카드 선택 효과 고해상도 픽셀 에셋 적용
-
-- `ui.effect_select`에 208×304 크기의 카드 윤곽선 글로우 효과 SVG/PNG master와 26×38 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed `effect_art.draw_select` 모듈을 신설했다.
-- `game/ui/hand.lua`에 새 effect_art 배선을 연결하여 선택된 카드 위에 글로우를 그리도록 했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `ui.effect_score` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
-
-## 2026-09-09 — 남은 손 아이콘 고해상도 픽셀 에셋 적용
-
-- `ui.icon_hand`에 세 장의 기하학 화투패를 부채꼴로 쥔 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed `score_icon_art.draw_hand` 계약을 추가했다.
-- 실제 플레이/버리기 버튼에 남은 손/버리기 아이콘을 배선했고 LÖVE 320×180 캡처에서 버튼 배치를 검증했다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-
-## 2026-09-09 — 버리기 아이콘 고해상도 픽셀 에셋 적용
-
-- `ui.icon_discard`에 화투패가 대나무 버림패 함으로 떨어지는 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed draw 모듈(`score_icon_art.draw_discard`)을 추가했다.
-- engine-hosted draw 계약과 실제 LÖVE 320×180 HUD 캡처 QA가 버리기 아이콘을 검증한다.
-- INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
-- Next slice: INBOX의 다음 우선순위 항목 진행
-- Next slice: `gwang.compound_burst` 고해상도 master를 실제 sprite-gen으로 생성하고 Pixel Perfect runtime으로 변환한다.
-
-## 2026-09-09 — 복합 폭주(gwang.compound_burst) 애니메이션 고해상도 에셋 적용
-
-- `gwang.compound_burst`에 1024x512 sprite-gen (grok provider) master 아틀라스와 224x112 runtime 에셋을 추가했다.
-- Asset Studio 실제 `POST /api/pixel-perfect` 변환을 거쳐 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과했다.
-- `assets/manifest.json`을 갱신하고 `make_checklist.py`를 실행하여 모든 에셋 인벤토리 전환이 완료되었다.
-- `make gwang-slot-qa`를 비롯한 LÖVE 엔진 QA 검증을 통과했다.
-- INBOX (27) Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환 작업을 완전히 완료했다.
-- Next slice: INBOX의 다음 우선순위 작업을 진행한다.
+## 2026-09-09 — 메인 메뉴 배경 고해상도 픽셀 에셋 적용
+- `ui.menu_bg`에 1920×1080 청색 그라데이션 및 문양 배경 PNG master와 960×540 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과했다.
+- 메인 메뉴 씬(`game/ui/main_menu.lua`, `game/ui/run_setup.lua` 포함) 배경 렌더링에 적용하고 엔진 테스트를 통과했다.
+- INBOX (27) 고해상도 에셋 전환 작업 중 배경(bg) 파트를 완료했다.
+- Next slice: 부적 대상 선택 오버레이 등 기타 패널의 고해상도 픽셀 에셋 전환 작업을 진행한다.
 
 > Older cycle history lives in `docs/STATUS_HISTORY.md`. Only search it when tracking a specific past bug; do not read it by default.
-
-> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
