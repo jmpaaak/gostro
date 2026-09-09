@@ -3415,8 +3415,49 @@
     {
       "id": "ui.effect_lock",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.effect_lock"
+      "status": "runtime",
+      "name": "ui.effect_lock",
+      "master": {
+        "source": "assets/masters/ui/effect-lock-v1.svg",
+        "sourceSha256": "126f198972a18d550703433ba36e402b9130a123af3683d8df1a38bb8967e0d1",
+        "path": "assets/masters/ui/effect-lock-v1.png",
+        "width": 384,
+        "height": 480,
+        "sha256": "52153e92ec3da897bd4c551580814083371ea38b44914cd81c5321b72dda9f06",
+        "provenance": "Project-authored 384x480 RGBA brass padlock master with a U-shackle and keyhole, using no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/effect-lock-v1.png",
+        "width": 16,
+        "height": 20,
+        "alphaBounds": [
+          3,
+          0,
+          13,
+          19
+        ],
+        "sha256": "277940b7f8f9c89706e20d4ee3a9427583c1912b1ee9c907deab651a8aec896f",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 16,
+        "targetHeight": 20,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/effect-lock-v1.report.json",
+        "reportSha256": "683deba37da7c7180eb93bed8a2cbfa68d0bcaac44546a504a1a9f4010b4e7f3"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.effect_win",

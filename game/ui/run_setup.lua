@@ -1,6 +1,7 @@
 -- Standalone 320x180 New Run setup state, hit testing, and rendering.
 
 local seed_ui = require("game.ui.seed")
+local effect_art = require("game.ui.effect_art")
 
 local M = {}
 
@@ -196,11 +197,24 @@ local function draw_deck_art(graphics, deck)
 end
 
 local function draw_lock(graphics, x, y)
+    local api = {
+        set_color = function(...) graphics.setColor(...) end,
+        draw = function(...)
+            if graphics.draw then
+                return graphics.draw(...)
+            end
+        end,
+    }
+    if effect_art.draw_lock(x, y, 16, api) then
+        return
+    end
     graphics.setColor(0.92, 0.75, 0.28, 1)
-    graphics.setLineWidth(2)
-    graphics.arc("line", "open", x + 10, y + 9, 7, math.pi, math.pi * 2)
+    if graphics.setLineWidth then graphics.setLineWidth(2) end
+    if graphics.arc then
+        graphics.arc("line", "open", x + 10, y + 9, 7, math.pi, math.pi * 2)
+    end
     graphics.rectangle("fill", x + 3, y + 9, 14, 12, 2, 2)
-    graphics.setLineWidth(1)
+    if graphics.setLineWidth then graphics.setLineWidth(1) end
 end
 
 local function draw_deck_info(graphics, font, state)

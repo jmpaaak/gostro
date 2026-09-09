@@ -271,3 +271,8 @@
 | 2026-09-09T13:45:00+0900 | `assets/runtime/ui/shop-bg-v1.png` | 320×180 runtime tile from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T13:45:00+0900 | `assets/runtime/ui/shop-bg-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 7-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T13:45:00+0900 | `assets/runtime/ui/shop-bg-love-v1.png` | Actual LÖVE 11.5 320×180 shop-scene capture proving the manifest-backed shop background; SHA-256 `84c6857d7b1e77f24a1625b0e199a0237c3ee96cba0cba4aaad04d60b06ea3ad` |
+| 2026-09-09T14:20:00+0900 | `assets/masters/ui/effect-lock-v1.svg` | Project-authored high-resolution brass padlock vector with a U-shackle and keyhole |
+| 2026-09-09T14:20:00+0900 | `assets/masters/ui/effect-lock-v1.png` | Preserved 384×480 RGBA raster master with transparent background |
+| 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-v1.png` | 16×20 runtime lock glyph from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed lock glyph on a locked deck; SHA-256 `c3ecec86f42568c8b59a838304ad8e5f8ff0fc7ffb5c9bdce4a4070372ce1d01` |

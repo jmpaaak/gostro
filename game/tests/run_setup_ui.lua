@@ -101,6 +101,7 @@ function M.run()
         printf = function() calls.prints = calls.prints + 1 end,
         getFont = function() return font end,
         setFont = function() end,
+        draw = function() calls.draws = (calls.draws or 0) + 1 end,
     }
     local old_fonts = package.loaded["game.fonts"]
     package.loaded["game.fonts"] = { get = function() return font end }

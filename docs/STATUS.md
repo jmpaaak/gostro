@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-09 — 잠금 효과 고해상도 픽셀 에셋 적용
+
+- `ui.effect_lock`에 384×480 황동 자물쇠 PNG master와 16×20 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 기존 `game/ui/effect_art.lua`에 `draw_lock` 계약을 추가하고 새 게임 설정(`game/ui/run_setup.lua`)의 하드코딩된 자물쇠 도형을 배선했다.
+- 엔진 테스트와 LÖVE 320×180 잠긴 덱 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 615개 파일이다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.effect_win` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 승패 효과에 적용한다.
+
 ## 2026-09-09 — 상점 씬 배경 고해상도 픽셀 에셋 적용
 
 - `ui.shop_bg`에 960×540 옻칠 상점 테이블과 황동 모서리·선반 선·동전 문양의 PNG master와 320×180 runtime 에셋을 추가했다.

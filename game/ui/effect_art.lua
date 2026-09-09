@@ -45,4 +45,23 @@ function M.draw_score(cx, cy, scale, alpha, api, texture_provider)
     return true
 end
 
+-- Draw the lock glyph at a HUD/setup position. Size is the destination
+-- width; integer 1x nearest is used when it already matches the texture.
+function M.draw_lock(x, y, size, api, texture_provider)
+    api = api or {
+        set_color = love.graphics.setColor,
+        draw = love.graphics.draw,
+    }
+    texture_provider = texture_provider or assets.texture
+    local texture = texture_provider("ui.effect_lock")
+    if not texture then return false end
+
+    local width, height = texture:getDimensions()
+    size = size or width
+    local scale = size / width
+    api.set_color(1, 1, 1, 1)
+    api.draw(texture, x, y, 0, scale, scale)
+    return true
+end
+
 return M
