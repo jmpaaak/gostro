@@ -10,6 +10,11 @@
 
 ## 처리 완료
 
+(40) **발라트로급 상점 구매 카드가 광 슬롯으로 날아감** (msg `1547290362782031952`)
+  - 담당: `game/ui/shop_fly.lua`, `game/scenes/play.lua`.
+  - 광 구매 시 상점 슬롯에서 광 슬롯으로 카드가 날아감. 부적/팩은 소모품, 기원패는 점수판 쪽.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
+
 (39) **발라트로급 점수 싱크·돈 트윈·광 슬롯 카드 크기** (msg `1547290362782031952`)
   - 담당: `game/ui/scoreboard.lua`, `game/ui/shop.lua`, `game/ui/gwang_slots.lua`, `game/scenes/play.lua`.
   - 점수판 칩/배수가 카드→배수 연출 단계를 따라감. 상점 $가 사고 팔 때 카운트업. 광 슬롯을 패에 가까운 72×96.

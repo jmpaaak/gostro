@@ -12,6 +12,7 @@ local hand_ui       = require("game.ui.hand")
 local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
 local shop_ui       = require("game.ui.shop")
+local shop_fly      = require("game.ui.shop_fly")
 local pack_ui       = require("game.ui.pack")
 local round_hud     = require("game.ui.round_hud")
 local blind_sel_ui  = require("game.ui.blind_select")
@@ -246,10 +247,15 @@ end
 --- Buy a card from the shop.
 function M.buy_shop_card(scene, idx)
     if scene.state ~= "shop" then return false end
+    local views = shop_ui.slot_views(scene.shop)
+    local item = views[idx] and views[idx].item
+    local kind = item and item.kind
     local ok = shop_purchases.buy(scene.shop, idx)
     if ok then
         gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
         shop_ui.mark_bought(scene.shop, idx)
+        local dest = shop_fly.destination(kind, scene.run_state, scene.gwang_slots)
+        shop_fly.start(scene.shop, idx, dest)
     end
     sync_shop_ui(scene)
     return ok
@@ -268,6 +274,7 @@ function M:update(dt)
         M.sync_preview(self)
     elseif self.state == "shop" and self.shop then
         shop_ui.update(self.shop, dt)
+        shop_fly.update(self.shop, dt)
     end
 end
 
@@ -301,6 +308,7 @@ function M:draw()
     elseif self.state == "shop" then
         shop_ui.draw(self.shop)
         pack_ui.draw(self.run_state.pending_pack)
+        shop_fly.draw(self.shop)
 
     elseif self.state == "won" then
         if not effect_art.draw_win(0, 0) then
