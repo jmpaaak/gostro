@@ -2,12 +2,6 @@
 
 ## 처리 대기
 
-(29) **Gostro QA 앱이 Dock/앱 전환기에 계속 뜸** (msg `1547211151413088297`)
-  - 담당: `tools/ensure_love_qa_app.sh`, `tools/qa_conf.lua`, `loop/bin/love`, `tools/run_love_qa.sh`. **Gostro 루프만.**
-  - 2026-09-09: `tools/qa_conf.lua`가 `t.window.title = "Gostro QA"`로 1×1 창을 연다. 오프스크린이어도 macOS는 그 제목의 앱으로 표시한다.
-  - 요구: 루프 Love는 `LSUIElement=true` 백그라운드 앱으로만 실행하고 창 제목을 비운다. 사용자 `love .`와 MOK는 그대로.
-  - 완료 조건: Gostro 루프 실행 중 Dock/Cmd-Tab에 `Gostro QA`가 안 보임.
-
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 중
@@ -16,10 +10,10 @@
 
 ## 처리 완료
 
-(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, `1547202068216029215`)
+(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, `1547202068216029215`, `1547211151413088297`)
   - 1×1 오프스크린도 macOS Dock 아이콘이 깜빡임. 게임 `conf.lua`는 `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP`면 `t.window=false`.
-  - 재현: 루프가 `/Users/jm/.local/bin/love build/test`를 직접 실행하면 `conf.lua`가 없어 Love **기본 800×600**이 뜬다. `GOSTRO_LOOP=1`일 때만 `~/.local/bin/love`가 `loop/bin/love`로 위임하고, 대상 디렉터리에 `conf.lua`가 없으면 `tools/qa_conf.lua`(1×1 오프스크린)를 주입한다. 플래그 없는 MOK/직접 플레이는 Love.app 원본.
-  - 2차 수정(follow-up): 1x1 윈도우 생성 시에도 Dock이 깜빡이는 현상을 막기 위해, macOS에서는 `LSUIElement=true`가 설정된 `love-qa.app` 복사본을 생성해 백그라운드 에이전트로 실행하도록 `tools/run_love_qa.sh`와 `loop/bin/love`를 수정함. `make verify` GREEN. [DONE 2026-09-09]
+  - 재현: 루프가 `/Users/jm/.local/bin/love build/test`를 직접 실행하면 `conf.lua`가 없어 Love **기본 800×600**이 뜬다. `GOSTRO_LOOP=1`일 때만 `~/.local/bin/love`가 `loop/bin/love`로 위임하고, 대상 디렉터리에 `conf.lua`가 없으면 `tools/qa_conf.lua`를 주입한다.
+  - 3차: `qa_conf.lua`가 `t.window.title = "Gostro QA"`라서 Dock/Cmd-Tab에 **Gostro QA 앱**으로 보였다. 창 제목을 비우고 `tools/ensure_love_qa_app.sh`가 `LSUIElement=true`인 `love-qa.app` 복사본으로만 루프 Love를 실행한다. 확인: `W=1 H=1 title=`, `make font-test` GREEN, System Events에 Gostro 프로세스 없음. [DONE 2026-09-09]
 
 (27) **Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환** (msg `1546885987525988473`)
   - 담당: `docs/ASSET_PIPELINE.md`, `docs/GENERATED_ASSET_LOG.md`, `assets/manifest.json`, 신규 `assets/masters/**`·`assets/runtime/**`, 신규 `tools/asset_pipeline/**`; 런타임 배선은 기존 `game/ui/card.lua`, `game/ui/gwang_art.lua` 등을 직접 비대화하지 말고 asset loader/draw 모듈을 신규 분리한다.
