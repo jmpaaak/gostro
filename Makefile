@@ -103,7 +103,7 @@ shop-pack-qa:
 		assets/runtime/planet/chodan-v1.png assets/runtime/planet/godori-v1.png \
 		assets/runtime/planet/pi-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/planet/"
-	@cp assets/runtime/tarot/the-magician-v1.png assets/runtime/tarot/the-hanged-man-v1.png \
+	@cp assets/runtime/tarot/the-magician-v1.png assets/runtime/tarot/the-hanged-man-v1.png assets/runtime/tarot/the-chariot-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/tarot/"
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui"
 	@cp assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui/"
@@ -182,6 +182,10 @@ shop-pack-qa:
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-hanged-man-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-hanged-man-love-v1.png"
+	SHOP_QA_KIND=tarot SHOP_QA_TAROT=the_chariot \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-tarot-the-chariot-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK tarot 320x180 $(CURDIR)/assets/runtime/ui/shop-tarot-the-chariot-love-v1.png"
 
 pack-panel-qa:
 	@rm -rf "$(BUILD_DIR)/pack-panel-qa"

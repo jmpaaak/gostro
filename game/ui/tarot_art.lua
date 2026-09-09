@@ -6,6 +6,7 @@ local M = {}
 local IDS = {
     the_magician = "tarot.the_magician",
     the_hanged_man = "tarot.the_hanged_man",
+    the_chariot = "tarot.the_chariot",
 }
 
 function M.asset_id(item)

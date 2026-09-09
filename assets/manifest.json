@@ -1913,8 +1913,49 @@
     {
       "id": "tarot.the_chariot",
       "category": "tarot",
-      "status": "pending",
-      "name": "전차"
+      "status": "runtime",
+      "name": "강화 부적",
+      "master": {
+        "source": "assets/masters/tarot/the-chariot-v1.svg",
+        "sourceSha256": "783fcda6419f707dc4e2ad7a1c1472cff53066d4b0dec8a4133659e955975dcf",
+        "path": "assets/masters/tarot/the-chariot-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "84ed2b30b56111f4cc9ce9544b4321976d45ef31fee70aed47f3ab2fa75308a3",
+        "provenance": "Project-authored 400x560 lacquered amber hwatu talisman master with palanquin canopy, twin poles, foil diamond, gold notch, and seal; no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tarot/the-chariot-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          50
+        ],
+        "sha256": "f437272a963cfecfd137a4557e6dd175d40c1b4fa0b31e54fa6e5726c504a6c9",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/tarot/the-chariot-v1.report.json",
+        "reportSha256": "f931c90fb8add85d1bde1eb32182f97629fe722f423e1e78ca676d918293282e"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "tarot.the_lovers",

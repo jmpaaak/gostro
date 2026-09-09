@@ -35,6 +35,21 @@ function M.run()
     assert(hanged.runtime.filter == "nearest")
     assert(hanged.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
     assert(assets.runtime_path(hanged_id) == "assets/runtime/tarot/the-hanged-man-v1.png")
+
+    local chariot_id = tarot_art.asset_id({ kind = "tarot", identity = "the_chariot" })
+    assert(chariot_id == "tarot.the_chariot", "강화 부적 must resolve tracked artwork")
+    assert(tarot_art.asset_id({ kind = "tarot", id = "the_chariot" }) == "tarot.the_chariot",
+        "shop offers keyed by id must resolve 강화 부적")
+
+    local chariot = assets.entry(chariot_id)
+    assert(chariot and chariot.status == "runtime", "강화 부적 artwork must be promoted")
+    assert(chariot.master.width == 400 and chariot.master.height == 560,
+        "강화 부적 must preserve a 400x560 master")
+    assert(chariot.runtime.width == 36 and chariot.runtime.height == 52,
+        "강화 부적 runtime must fit its shop slot")
+    assert(chariot.runtime.filter == "nearest")
+    assert(chariot.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(chariot_id) == "assets/runtime/tarot/the-chariot-v1.png")
     assert(tarot_art.asset_id({ kind = "planet", identity = "the_magician" }) == nil,
         "non-tarot shop items must not resolve talisman artwork")
 

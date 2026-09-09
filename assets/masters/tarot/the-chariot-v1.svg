@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="560" viewBox="0 0 400 560">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4ecd4"/>
+      <stop offset="1" stop-color="#d4b070"/>
+    </linearGradient>
+    <linearGradient id="silk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c45c1c"/>
+      <stop offset="1" stop-color="#6e240c"/>
+    </linearGradient>
+  </defs>
+  <rect x="18" y="22" width="364" height="528" rx="28" fill="#180808" opacity=".42"/>
+  <rect x="12" y="14" width="376" height="528" rx="26" fill="#2c140c" stroke="#d6a848" stroke-width="10"/>
+  <rect x="28" y="30" width="344" height="496" rx="18" fill="url(#paper)" stroke="#c45c1c" stroke-width="8"/>
+  <path d="M130 14h140l-18 32H148z" fill="#d6a848" stroke="#2c140c" stroke-width="6"/>
+  <circle cx="200" cy="32" r="10" fill="#c45c1c"/>
+  <rect x="48" y="78" width="304" height="40" fill="url(#silk)"/>
+  <path d="M48 78l40-20 40 20 40-20 40 20 40-20 40 20 40-20 24 20" fill="#d6a848"/>
+  <!-- Enhance mark: lacquered hwatu palanquin, twin poles, foil diamond. No people or month art. -->
+  <path d="M72 248h256v16H72z" fill="#d6a848"/>
+  <path d="M88 232h40v48H88z" fill="#6e240c" stroke="#d6a848" stroke-width="6"/>
+  <path d="M272 232h40v48h-40z" fill="#6e240c" stroke="#d6a848" stroke-width="6"/>
+  <path d="M124 176h152l16 72H108z" fill="#c45c1c" stroke="#d6a848" stroke-width="8"/>
+  <path d="M140 196h120l10 40H130z" fill="#f4ecd4"/>
+  <path d="M168 176 200 132 232 176 200 196z" fill="#d6a848"/>
+  <path d="M188 148 200 116 212 148z" fill="#fff4d6"/>
+  <ellipse cx="200" cy="214" rx="22" ry="18" fill="#2c140c"/>
+  <ellipse cx="200" cy="214" rx="10" ry="8" fill="#fff4d6"/>
+  <path d="M108 264h184v96H108z" fill="#6e240c" stroke="#d6a848" stroke-width="8"/>
+  <path d="M128 284h144v56H128z" fill="#c45c1c"/>
+  <path d="M148 296 200 268 252 296 200 336z" fill="#fff4d6" stroke="#d6a848" stroke-width="6"/>
+  <path d="M72 360 200 332 328 360 200 402z" fill="#c45c1c" stroke="#d6a848" stroke-width="6"/>
+  <path d="M110 430 200 390 290 430 200 470z" fill="#6e240c" stroke="#d6a848" stroke-width="6"/>
+  <rect x="278" y="392" width="68" height="68" rx="6" fill="#a81c24" stroke="#d6a848" stroke-width="6"/>
+  <path d="M290 410h44M290 428h44M290 444h44" fill="none" stroke="#d6a848" stroke-width="6"/>
+  <circle cx="70" cy="504" r="16" fill="#c45c1c"/>
+  <circle cx="330" cy="504" r="16" fill="#18484e"/>
+</svg>

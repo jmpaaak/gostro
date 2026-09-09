@@ -340,4 +340,9 @@
 | 2026-09-09T16:05:00+0900 | `assets/runtime/tarot/the-hanged-man-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T16:05:00+0900 | `assets/runtime/tarot/the-hanged-man-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T16:05:00+0900 | `assets/runtime/ui/shop-tarot-the-hanged-man-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 소멸 부적; SHA-256 `0f5830cf143dc8991bec1c2408b798ea4898dfbda15fe8bce540c56c4cf79feb` |
+| 2026-09-09T16:20:00+0900 | `assets/masters/tarot/the-chariot-v1.svg` | Project-authored 400×560 amber hwatu talisman vector with palanquin canopy, twin poles, foil diamond, gold notch, and seal; no text, people, or month imagery |
+| 2026-09-09T16:20:00+0900 | `assets/masters/tarot/the-chariot-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T16:20:00+0900 | `assets/runtime/tarot/the-chariot-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T16:20:00+0900 | `assets/runtime/tarot/the-chariot-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T16:20:00+0900 | `assets/runtime/ui/shop-tarot-the-chariot-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 강화 부적; SHA-256 `75c5da4a55a47f86e7105425b434907543cb0e3756498c3461c6afcd285aae1d` |
 
