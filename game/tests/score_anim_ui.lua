@@ -10,6 +10,7 @@ function M.run()
     M.test_new()
     M.test_start_basic()
     M.test_phase_card_popups()
+    M.test_popup_tracks_anchor()
     M.test_phase_mult()
     M.test_phase_total()
     M.test_score_effect_uses_manifest_texture()
@@ -96,6 +97,24 @@ function M.test_phase_card_popups()
     score_anim.update(sa, per_card + 0.01) -- second card done
     -- After all cards, should move to mult phase
     assert(sa.phase == "mult", "should transition to mult phase after all cards, got: " .. sa.phase)
+end
+
+function M.test_popup_tracks_anchor()
+    local anchor = { x = 100, y = 400 }
+    local sa = score_anim.new()
+    score_anim.start(sa, {
+        cards = {{ kind = "pi", chips = 1, anchor = anchor }},
+        base_chips = 1, base_mult = 1,
+        bonus_chips = 0, bonus_mult = 0,
+        final_chips = 1, final_mult = 1, total = 1,
+        gwang_triggers = {},
+    })
+    local x1, y1 = score_anim.popup_position(sa.card_popups[1])
+    anchor.x, anchor.y = 460, 210
+    local x2, y2 = score_anim.popup_position(sa.card_popups[1])
+    assert(x1 ~= x2 and y1 ~= y2, "popup follows the moving card anchor")
+    assert(x2 == anchor.x + 36 and y2 == anchor.y - 30,
+        "popup stays centered above the anchored 72px card")
 end
 
 function M.test_phase_mult()

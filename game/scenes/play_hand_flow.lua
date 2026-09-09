@@ -56,6 +56,7 @@ function M.play_hand(scene, sync_preview)
         anim_cards[i] = {
             kind = cards[i].kind,
             chips = hwatu.chips_of(cards[i].kind) or 0,
+            anchor = widget,
             x = dest and dest.to_x or (widget and widget.x),
             y = dest and dest.to_y or (widget and widget.y),
         }

@@ -19,6 +19,8 @@ function M.run()
     end
     assert(play.play_hand(scene))
     assert(scene.hand.gather, "played cards gather first")
+    assert(scene.score_anim.card_popups[1].anchor == before[1],
+        "chip popup anchors to the live gathered card widget")
     assert(scene.pending_redeal)
     scene:update(hand_ui.GATHER_DURATION + 0.01)
     assert(scene.hand.gather == nil, "gather finishes")

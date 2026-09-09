@@ -59,6 +59,7 @@ function M.start(sa, data)
             chips = c.chips,
             x = c.x,
             y = c.y,
+            anchor = c.anchor,
             alpha = 0,
             shown = false,
         }
@@ -171,6 +172,20 @@ function M.is_playing(sa)
     return sa.phase ~= "idle" and sa.phase ~= "done"
 end
 
+function M.popup_position(popup, fallback)
+    local anchor = popup and popup.anchor
+    if anchor and anchor.x and anchor.y then
+        return anchor.x + card.WIDTH / 2, anchor.y - 30
+    end
+    if popup and popup.x then
+        return popup.x + card.WIDTH / 2, (popup.y or 420) - 30
+    end
+    if fallback then
+        return fallback.x + card.WIDTH / 2, (fallback.y or 420) - 30
+    end
+    return nil, nil
+end
+
 --- Draw the score animation (requires love.graphics).
 function M.draw(sa, hand_cards)
     if not love or not love.graphics then return end
@@ -183,22 +198,15 @@ function M.draw(sa, hand_cards)
     if sa.phase == "cards" or sa.phase == "mult" or sa.phase == "total" or sa.phase == "done" then
         for i, popup in ipairs(sa.card_popups) do
             if popup.shown then
-                local card_x, card_y
-                if popup.x then
-                    card_x = popup.x + card.WIDTH / 2
-                    card_y = (popup.y or 420) - 18
-                elseif hand_cards and hand_cards[i] then
-                    local widget = hand_cards[i]
-                    card_x = widget.x + card.WIDTH / 2
-                    card_y = (widget.y or 420) - 18
-                else
+                local card_x, text_y = M.popup_position(popup, hand_cards and hand_cards[i])
+                if not card_x then
                     card_x = 10 + (i - 1) * 34 + 14
-                    card_y = 105
+                    text_y = 93
                 end
                 local txt = "+" .. tostring(popup.chips)
-                -- Floating chip text
+                -- Floating chip text, anchored to the moving played card.
                 love.graphics.setColor(0.6, 0.85, 1, popup.alpha)
-                love.graphics.print(txt, card_x - font:getWidth(txt) / 2, card_y - 12)
+                love.graphics.print(txt, card_x - font:getWidth(txt) / 2, text_y)
             end
         end
     end

@@ -10,6 +10,11 @@
 
 ## 처리 완료
 
+(46) **칩 팝업이 중앙으로 모이는 패를 따라감** (msg `1547290362782031952`)
+  - 담당: `game/ui/score_anim.lua`, `game/scenes/play_hand_flow.lua`.
+  - 실제 패 위젯을 앵커로 삼아 이동 중에도 패 위에서 칩이 뜬다. `play.lua` 무변경.
+  - 앵커 이동 회귀 테스트 + `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
+
 (45) **광 슬롯 72×108 카드 비율 + HUD 세로 기준 중앙화** (msg `1547290362782031952`)
   - 담당: 새 `game/ui/play_layout.lua`; 기존 UI 모듈은 배치값 위임만.
   - 광 슬롯을 화투패와 같은 72×108로 맞추고 점수판·소모품·기원패·런 HUD를 슬롯 아래로 함께 내렸다.
