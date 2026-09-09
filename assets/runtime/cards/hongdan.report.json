@@ -1,7 +1,7 @@
 {
   "bounds": {
-    "maxX": 23,
-    "maxY": 35,
+    "maxX": 47,
+    "maxY": 71,
     "minX": 0,
     "minY": 0
   },
@@ -12,7 +12,7 @@
     "palette": true,
     "transparentAlpha": true
   },
-  "paletteSize": 278,
-  "transparentPixels": 5,
+  "paletteSize": 625,
+  "transparentPixels": 18,
   "valid": true
 }

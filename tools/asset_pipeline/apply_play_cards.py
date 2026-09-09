@@ -35,8 +35,8 @@ def main() -> None:
             "status": "runtime", "candidateSheet": SHEET_ID,
             "candidateCell": {
                 "index": index + 1, "masterRegion": [index * 192, 0, 192, 288],
-                "runtimeRegion": [index * 24, 0, 24, 36],
-                "alphaBounds": [0, 0, 23, 35],
+                "runtimeRegion": [index * 48, 0, 48, 72],
+                "alphaBounds": [0, 0, 47, 71],
             },
         })
 

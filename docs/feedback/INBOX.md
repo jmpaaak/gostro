@@ -2,17 +2,17 @@
 
 ## 처리 대기
 
-(31) **플레이 패가 고화질이 아님 — 24×36 런타임이 화면에서 뭉개짐** (msg `1547268256992198666`)
-  - 담당: `game/ui/card.lua`, `game/ui/hand.lua`, `game/ui/card_art.lua`, `assets/manifest.json`, `assets/runtime/cards/**`, `tools/asset_pipeline/**`.
-  - 사용자 캡처: 손패가 작은 저화질 도트 카드로 보인다. 마스터는 192×288인데 런타임 PNG와 드로우 크기가 24×36이라 고해상도 디테일이 화면에 안 나온다.
-  - 요구: 플레이 패 5종 런타임을 48×72(2×) 이상으로 올리고, 손패 레이아웃이 320×180 안에 들어가게 겹침을 조정한다. 192×288 마스터를 nearest로 스케일다운한 실제 Pixel Perfect 결과를 쓴다. 색 사각형/기호 폴백을 최종으로 두지 않는다.
-  - 완료 조건: 실제 손패 캡처에서 카드 종류가 고해상도 픽셀로 식별되고, 관련 테스트와 `make test LOVE=/Users/jm/.local/bin/love` GREEN.
-
 ## 처리 중
 
 (없음)
 
 ## 처리 완료
+
+(31) **플레이 패가 고화질이 아님 — 24×36 런타임이 화면에서 뭉개짐** (msg `1547268256992198666`)
+  - 손패 드로우가 24×36이라 192×288 마스터 디테일이 화면에 안 나왔다.
+  - 플레이 패 5종 런타임을 48×72로 올리고 손패 간격 28px로 320×180 안에 맞춤. contact sheet는 실제 `/api/pixel-perfect`로 240×72 재변환.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN, overlap QA 5종 상단 문양 unique. [DONE 2026-09-09]
+
 
 (30) **GostroLoop 앱이 반복해서 뜸** (msg `1547214891566370817`)
   - 루프 `make verify`가 캡처 QA마다 `love-qa.app`(CFBundleName=GostroLoop)을 띄웠다. 에셋 스튜디오와 무관.

@@ -70,7 +70,7 @@ def write_rgba(path, width, height, pixels):
 
 def get_session():
     import urllib.request
-    req = urllib.request.Request("http://127.0.0.1:4176/index.html")
+    req = urllib.request.Request("http://127.0.0.1:4176/")
     with urllib.request.urlopen(req) as resp:
         cookies = resp.headers.get_all('Set-Cookie')
         if not cookies:

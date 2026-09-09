@@ -104,8 +104,11 @@ function M.run()
     -- MAX_SELECT is 5
     assert(hand.MAX_SELECT == 5)
 
-    -- hand anchors to bottom of 320x180 viewport
-    assert(h.cards[1].y > 100, "cards near bottom of 180px viewport")
+    -- 8 cards of 48px with 28px step: fan = 7*28+48 = 244, fits in 320
+    local fan = (8 - 1) * 28 + card.WIDTH
+    assert(fan <= 320, "8-card fan must fit the 320px viewport")
+    assert(h.cards[1].y + card.HEIGHT <= 180, "cards stay inside 180px viewport")
+    assert(h.cards[1].y > 90, "cards near bottom of 180px viewport")
 
     print("  hand_ui OK")
 end

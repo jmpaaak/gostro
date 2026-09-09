@@ -13,7 +13,7 @@ local function assert_overlay(name, asset_id, path)
     assert(entry.master.width == 192 and entry.master.height == 288,
         name .. " overlay must preserve a 192x288 master matching play-card cells")
     assert(entry.runtime.width == 24 and entry.runtime.height == 36,
-        name .. " overlay runtime must cover a 24x36 play card at 1x")
+        name .. " overlay runtime must cover a play card at 1x")
     assert(entry.runtime.filter == "nearest")
     assert(entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
     assert(assets.runtime_path(asset_id) == path)

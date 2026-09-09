@@ -4,12 +4,12 @@ local M = {}
 local SPEC = {
     canvas_width = 320,
     canvas_height = 180,
-    card_width = 24,
-    card_height = 36,
-    step = 10,
-    top_visible_pixels = 10,
-    x = 128,
-    y = 72,
+    card_width = 48,
+    card_height = 72,
+    step = 20,
+    top_visible_pixels = 20,
+    x = 80,
+    y = 54,
     card_order = { "pi", "hongdan", "cheongdan", "chodan", "godori" },
 }
 
@@ -19,8 +19,8 @@ end
 
 function M.draw(graphics, sheet)
     local sheet_width, sheet_height = sheet:getDimensions()
-    assert(sheet_width == 120 and sheet_height == 36,
-        "card QA requires the 120x36 Pixel Perfect contact sheet")
+    assert(sheet_width == 240 and sheet_height == 72,
+        "card QA requires the 240x72 Pixel Perfect contact sheet")
     sheet:setFilter("nearest", "nearest")
     for index = 1, #SPEC.card_order do
         local quad = graphics.newQuad(
