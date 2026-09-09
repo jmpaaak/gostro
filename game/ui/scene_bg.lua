@@ -6,10 +6,12 @@ local M = {}
 
 local IDS = {
     play = "ui.play_bg",
+    shop = "ui.shop_bg",
 }
 
 local FALLBACK = {
     play = { 0.025, 0.035, 0.08, 1 },
+    shop = { 0.11, 0.05, 0.03, 1 },
 }
 
 local function graphics_api(api)

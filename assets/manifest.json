@@ -2817,8 +2817,54 @@
     {
       "id": "ui.shop_bg",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.shop_bg"
+      "status": "runtime",
+      "name": "ui.shop_bg",
+      "master": {
+        "source": "assets/masters/ui/shop-bg-v1.png",
+        "sourceSha256": "de3f8d47526644cc6e5ea77b7476e6c06006122c1955a2ef3a3d0353c26469c3",
+        "path": "assets/masters/ui/shop-bg-v1.png",
+        "width": 960,
+        "height": 540,
+        "sha256": "de3f8d47526644cc6e5ea77b7476e6c06006122c1955a2ef3a3d0353c26469c3",
+        "provenance": "Project-authored 960x540 lacquered shop table with brass corners, shelf lines, and a faint coin mark."
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 320,
+        "targetHeight": 180,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/shop-bg-v1.report.json",
+        "reportSha256": "34d44f67b56b87f5abb816f159d0076aa5f42fd90afe63331c9628155c3d1d34",
+        "validation": {
+          "alignment": true,
+          "dimensions": true,
+          "nearestNeighbor": true,
+          "palette": true,
+          "transparentAlpha": true
+        }
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/shop-bg-v1.png",
+        "width": 320,
+        "height": 180,
+        "sha256": "dc19356b491a0dac6e944fb0d668cb209f27219083115937d434d6a81c16566b",
+        "filter": "nearest",
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ],
+        "alphaBounds": {
+          "minX": 0,
+          "minY": 3,
+          "maxX": 319,
+          "maxY": 175
+        }
+      }
     },
     {
       "id": "ui.panel_wood",

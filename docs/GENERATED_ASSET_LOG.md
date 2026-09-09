@@ -267,3 +267,7 @@
 | 2026-09-09T13:05:00+0900 | `assets/runtime/ui/play-bg-v1.png` | 320×180 runtime tile from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T13:05:00+0900 | `assets/runtime/ui/play-bg-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 6-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T13:05:00+0900 | `assets/runtime/ui/play-bg-love-v1.png` | Actual LÖVE 11.5 320×180 play-scene capture proving the manifest-backed play background; SHA-256 `3acafb2e39d7069ebf7e7d61d65ebac01156e95b0ab092f65aab73335efb3a54` |
+| 2026-09-09T13:45:00+0900 | `assets/masters/ui/shop-bg-v1.png` | Project-authored 960×540 lacquered shop table with brass corners, shelf lines, and a faint coin mark |
+| 2026-09-09T13:45:00+0900 | `assets/runtime/ui/shop-bg-v1.png` | 320×180 runtime tile from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T13:45:00+0900 | `assets/runtime/ui/shop-bg-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 7-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T13:45:00+0900 | `assets/runtime/ui/shop-bg-love-v1.png` | Actual LÖVE 11.5 320×180 shop-scene capture proving the manifest-backed shop background; SHA-256 `84c6857d7b1e77f24a1625b0e199a0237c3ee96cba0cba4aaad04d60b06ea3ad` |

@@ -100,7 +100,7 @@
 
 - [x] `ui.menu_bg` - ui.menu_bg
 - [x] `ui.play_bg` - ui.play_bg
-- [ ] `ui.shop_bg` - ui.shop_bg
+- [x] `ui.shop_bg` - ui.shop_bg
 - [x] `ui.panel_wood` - ui.panel_wood
 - [x] `ui.panel_metal` - ui.panel_metal
 - [x] `ui.panel_glass` - ui.panel_glass

@@ -1,0 +1,18 @@
+{
+  "bounds": {
+    "maxX": 319,
+    "maxY": 175,
+    "minX": 0,
+    "minY": 3
+  },
+  "checks": {
+    "alignment": true,
+    "dimensions": true,
+    "nearestNeighbor": true,
+    "palette": true,
+    "transparentAlpha": true
+  },
+  "paletteSize": 7,
+  "transparentPixels": 2240,
+  "valid": true
+}

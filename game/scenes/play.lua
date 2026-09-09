@@ -225,7 +225,11 @@ end
 --- Draw current state's UI modules.
 function M:draw()
     if not love or not love.graphics then return end
-    scene_bg.draw("play")
+    if self.state == "shop" then
+        scene_bg.draw("shop")
+    else
+        scene_bg.draw("play")
+    end
 
     gwang_sl_ui.draw(self.gwang_slots)
     planets_ui.draw(self.run_state)
