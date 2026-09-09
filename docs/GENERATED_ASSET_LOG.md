@@ -263,3 +263,7 @@
 | 2026-09-09T12:40:34+0900 | `assets/masters/ui/menu-bg-v1.png` | Project-authored 960x540 dark teal menu background with red and yellow plum blossom motifs |
 | 2026-09-09T12:40:34+0900 | `assets/runtime/ui/menu-bg-v1.png` | 320x180 runtime pixel perfect tile |
 | 2026-09-09T12:40:34+0900 | `assets/runtime/ui/menu-bg-v1.report.json` | Asset Studio conversion report |
+| 2026-09-09T13:05:00+0900 | `assets/masters/ui/play-bg-v1.png` | Project-authored 960×540 dark indigo felt play table with brass corners and a faint inner mat |
+| 2026-09-09T13:05:00+0900 | `assets/runtime/ui/play-bg-v1.png` | 320×180 runtime tile from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T13:05:00+0900 | `assets/runtime/ui/play-bg-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 6-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T13:05:00+0900 | `assets/runtime/ui/play-bg-love-v1.png` | Actual LÖVE 11.5 320×180 play-scene capture proving the manifest-backed play background; SHA-256 `3acafb2e39d7069ebf7e7d61d65ebac01156e95b0ab092f65aab73335efb3a54` |

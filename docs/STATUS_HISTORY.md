@@ -1536,3 +1536,15 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 414개 파일이다.
 - INBOX (27)은 모든 그래픽 요소의 런타임 에셋 전환을 진행 중이며 처리 대기로 유지한다.
 - Next slice: `gwang.godori_chips` 고도리 칩 광 슬롯 아이템의 고해상도 픽셀 에셋을 생성하고 매니페스트 및 런타임 적용을 추가한다.
+
+## Archived from STATUS.md (2026-09-09 12:42)
+
+## 2026-09-09 — 메인 메뉴 배경 고해상도 픽셀 에셋 적용
+
+## Archived from STATUS.md (2026-09-09 12:50)
+
+- `ui.menu_bg`에 960×540 크기의 매화 장식이 있는 짙은 청록색 배경 PNG master와 320×180 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 메인 메뉴(`game/ui/main_menu.lua`)의 하드코딩된 도형 렌더링을 신규 `ui.menu_bg` 에셋 렌더링으로 교체했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.play_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 플레이 씬 배경에 적용한다.

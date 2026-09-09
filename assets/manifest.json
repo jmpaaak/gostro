@@ -2765,8 +2765,54 @@
     {
       "id": "ui.play_bg",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.play_bg"
+      "status": "runtime",
+      "name": "ui.play_bg",
+      "master": {
+        "source": "assets/masters/ui/play-bg-v1.png",
+        "sourceSha256": "55c58722cb5bebe4dcf53583a2352a4eed75ec3304acc88831afc98dd2d4da90",
+        "path": "assets/masters/ui/play-bg-v1.png",
+        "width": 960,
+        "height": 540,
+        "sha256": "55c58722cb5bebe4dcf53583a2352a4eed75ec3304acc88831afc98dd2d4da90",
+        "provenance": "Project-authored 960x540 dark indigo felt play table with brass corners and a faint inner mat."
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 320,
+        "targetHeight": 180,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/play-bg-v1.report.json",
+        "reportSha256": "ce7a1864ed8d6f639038e3cb18b2f8af6be31c1844f3e5a4b630c16377ed640e",
+        "validation": {
+          "alignment": true,
+          "dimensions": true,
+          "nearestNeighbor": true,
+          "palette": true,
+          "transparentAlpha": true
+        }
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/play-bg-v1.png",
+        "width": 320,
+        "height": 180,
+        "sha256": "32f45eb81a8cfbc6bd40aa9d0b4dd06bfb1d6f68d657143c5115407500bff45c",
+        "filter": "nearest",
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ],
+        "alphaBounds": {
+          "minX": 0,
+          "minY": 3,
+          "maxX": 319,
+          "maxY": 175
+        }
+      }
     },
     {
       "id": "ui.shop_bg",

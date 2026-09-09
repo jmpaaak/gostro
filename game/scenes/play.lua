@@ -19,6 +19,7 @@ local planets_ui    = require("game.ui.planets_ui")
 local seed_ui       = require("game.ui.seed")
 local consumables_ui = require("game.ui.consumables")
 local tarot_use      = require("game.tarot_use")
+local scene_bg       = require("game.ui.scene_bg")
 
 local M = {}
 M.__index = M
@@ -224,7 +225,7 @@ end
 --- Draw current state's UI modules.
 function M:draw()
     if not love or not love.graphics then return end
-    love.graphics.clear(0.025, 0.035, 0.08)
+    scene_bg.draw("play")
 
     gwang_sl_ui.draw(self.gwang_slots)
     planets_ui.draw(self.run_state)

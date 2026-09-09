@@ -1,11 +1,12 @@
 # STATUS
-## 2026-09-09 — 메인 메뉴 배경 고해상도 픽셀 에셋 적용
+## 2026-09-09 — 플레이 씬 배경 고해상도 픽셀 에셋 적용
 
-- `ui.menu_bg`에 960×540 크기의 매화 장식이 있는 짙은 청록색 배경 PNG master와 320×180 runtime 에셋을 추가했다.
+- `ui.play_bg`에 960×540 짙은 남색 화투 테이블과 황동 모서리 장식 PNG master와 320×180 runtime 에셋을 추가했다.
 - Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
-- 메인 메뉴(`game/ui/main_menu.lua`)의 하드코딩된 도형 렌더링을 신규 `ui.menu_bg` 에셋 렌더링으로 교체했다.
+- 플레이 씬(`game/scenes/play.lua`)의 단색 `clear`를 신규 `game/ui/scene_bg.lua` 에셋 렌더링으로 교체했고, 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 602개 파일이다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: `ui.play_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 플레이 씬 배경에 적용한다.
+- Next slice: `ui.shop_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 상점 씬 배경에 적용한다.
 
 ## 2026-09-09 — 부적 선택 유리 패널 고해상도 픽셀 에셋 적용
 
@@ -111,3 +112,5 @@
 - `gwang.compound_burst`의 `idle`/`burst` 각 4프레임 실제 sprite-gen 요청을 Asset Studio에 보냈으나 Grok provider가 402(생성 잔액 부족)를 반환해 master/atlas를 적용하지 않았다. 정적 프레임 반복으로 대체하지 않는다.
 - manifest에서 이미 `runtime`인 대장판 3종 및 광 5종이 inventory에서 미완료로 남은 불일치를 수정하고, `make verify`가 manifest의 전체 109개 ID와 체크 상태를 자동 대조하도록 했다.
 - Next slice: `gwang.compound_burst` 복합 폭주 광 슬롯 아이템의 provider-backed sprite states/frames를 생성하고 Pixel Perfect 후처리·atlas/manifest 및 런타임 적용을 추가한다.
+
+> 이전 cycle 이력은 `docs/STATUS_HISTORY.md`에 있다. 특정 과거 버그를 추적할 때만 그 파일을 검색하고, 평소에는 읽지 않는다.
