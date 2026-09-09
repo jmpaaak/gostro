@@ -203,3 +203,7 @@
 | 2026-09-09T09:31:11+0900 | `assets/masters/gwang/big-mult-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T09:31:11+0900 | `assets/runtime/gwang/big-mult-v1.png` | 56×32 runtime 큰판 배수 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T09:31:11+0900 | `assets/runtime/ui/gwang-big-mult-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 큰판 배수 gwang in all five slots; SHA-256 `addd9cd6913c60ae79b1b73bd79ada95b1427518614ae6ce0440d52623015be3` |
+| 2026-09-09T09:39:20+0900 | `assets/masters/gwang/once-x20-v1.svg` | Project-authored high-resolution 일회성 gwang vector source with one fuse-lit ceremonial rocket and a twenty-ray golden detonation |
+| 2026-09-09T09:39:20+0900 | `assets/masters/gwang/once-x20-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T09:39:20+0900 | `assets/runtime/gwang/once-x20-v1.png` | 56×32 runtime 일회성 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T09:39:20+0900 | `assets/runtime/ui/gwang-once-x20-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 일회성 gwang in all five slots; SHA-256 `0c7ec1521a53678ad014fd4b2f459c9cbad89daef384a3b8bcf8bfe094d230cf` |

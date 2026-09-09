@@ -1617,10 +1617,51 @@
     {
       "id": "gwang.once_x20",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "일회성",
         "en": "Once"
+      },
+      "master": {
+        "source": "assets/masters/gwang/once-x20-v1.svg",
+        "sourceSha256": "b6435b44950dc3f12219f019a2839fc978b97706cad8c5828953ba60a03b6bbe",
+        "path": "assets/masters/gwang/once-x20-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "78fdd2b20213552ed2c5ce97d2344a1650df08e155cdd7dd75294e70ff71a32a",
+        "provenance": "Project-authored master: a single fuse-lit ceremonial rocket breaking into a twenty-ray golden burst, signifying one immense expendable multiplier without text or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/once-x20-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "ae607e580483bec873f442abb7285b08317f716d68170210a5dd97f2ed8e152c",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/once-x20-v1.report.json",
+        "reportSha256": "a7802569ffdd9b59b73f545776a579135762c901af9f6b425979bb3040d1938d"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

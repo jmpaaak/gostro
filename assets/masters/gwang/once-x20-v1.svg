@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <!-- Project-authored master: a single fuse-lit ceremonial rocket breaking into a twenty-ray golden burst, signifying one immense expendable multiplier without text or month imagery. -->
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#34346a"/>
+      <stop offset="0.58" stop-color="#171a3b"/>
+      <stop offset="1" stop-color="#080916"/>
+    </radialGradient>
+    <radialGradient id="burst" cx="50%" cy="44%" r="58%">
+      <stop offset="0" stop-color="#fff8bf"/>
+      <stop offset="0.38" stop-color="#ffd451"/>
+      <stop offset="1" stop-color="#ed6d35"/>
+    </radialGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8b66"/>
+      <stop offset="0.5" stop-color="#d9394b"/>
+      <stop offset="1" stop-color="#781d3c"/>
+    </linearGradient>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a9f4cf"/>
+      <stop offset="0.55" stop-color="#36ae91"/>
+      <stop offset="1" stop-color="#12605a"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="448" height="256" rx="40" fill="#060712"/>
+  <rect x="8" y="8" width="432" height="240" rx="34" fill="url(#sky)" stroke="#e1ad49" stroke-width="6"/>
+
+  <!-- Twenty broad rays survive the 8:1 Asset Studio conversion as one exceptional detonation. -->
+  <g transform="translate(224 91)" stroke="#ffca43" stroke-width="10" stroke-linecap="round" filter="url(#glow)">
+    <path d="M0-18V-63 M0 18V63 M-18 0H-63 M18 0H63"/>
+    <path d="M-13-13L-47-47 M13 13L47 47 M13-13L47-47 M-13 13L-47 47"/>
+    <path d="M-7-17L-24-57 M7 17L24 57 M7-17L24-57 M-7 17L-24 57"/>
+    <path d="M-17-7L-57-24 M17 7L57 24 M17-7L57-24 M-17 7L-57 24"/>
+    <path d="M-17 7L-57 24 M17-7L57-24 M-7-17L-24-57 M7 17L24 57" opacity=".55"/>
+  </g>
+  <circle cx="224" cy="91" r="30" fill="url(#burst)" stroke="#fff5ad" stroke-width="6"/>
+  <circle cx="224" cy="91" r="10" fill="#fffceb"/>
+
+  <!-- One sealed rocket, an intact fuse, and a single flame make the expendable nature readable in a slot. -->
+  <g stroke="#511a2c" stroke-width="7" stroke-linejoin="round">
+    <path d="M188 137Q224 107 260 137L253 207Q224 231 195 207Z" fill="url(#paper)"/>
+    <path d="M190 143Q224 120 258 143" fill="none" stroke="#ffd563" stroke-width="8"/>
+    <path d="M195 202l-24 30 31-10zM253 202l24 30-31-10z" fill="url(#jade)"/>
+    <path d="M224 216c-20 15-20 27 0 34 20-7 20-19 0-34z" fill="#ff9b3d" stroke="#ffe46b" stroke-width="5"/>
+  </g>
+  <path d="M224 113c-3-15 11-21 7-35" fill="none" stroke="#f4d071" stroke-width="6" stroke-linecap="round" stroke-dasharray="8 7"/>
+  <path d="M223 168l10 13 16 1-10 12 4 16-19-9-18 9 4-16-11-12 16-1z" fill="#ffe17a" stroke="#fff7c2" stroke-width="4"/>
+</svg>

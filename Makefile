@@ -167,6 +167,7 @@ gwang-slot-qa:
 		assets/runtime/gwang/wealthy-x2-v1.png assets/runtime/gwang/boss-x2-v1.png \
 		assets/runtime/gwang/boss-chips-v1.png assets/runtime/gwang/small-chips-v1.png \
 		assets/runtime/gwang/big-mult-v1.png \
+		assets/runtime/gwang/once-x20-v1.png \
 		"$(BUILD_DIR)/gwang-slot-qa/assets/runtime/gwang/"
 	GWANG_QA_IDENTITY="chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
@@ -219,6 +220,8 @@ gwang-slot-qa:
 	GWANG_QA_IDENTITY="small_chips" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-small-chips-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 	GWANG_QA_IDENTITY="big_mult" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-big-mult-slots-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
+	GWANG_QA_IDENTITY="once_x20" GWANG_SLOT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/gwang-once-x20-slots-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/gwang-slot-qa"
 
 smoke:

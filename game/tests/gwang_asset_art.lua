@@ -281,6 +281,17 @@ function M.run()
     assert(assets.runtime_path("gwang.big_mult") ==
         "assets/runtime/gwang/big-mult-v1.png")
 
+    local once_x20 = assets.entry("gwang.once_x20")
+    assert(once_x20 and once_x20.status == "runtime",
+        "once_x20 gwang must have tracked runtime artwork")
+    assert(once_x20.master.width == 448 and once_x20.master.height == 256,
+        "once_x20 gwang must preserve its high-resolution slot master")
+    assert(once_x20.runtime.width == 56 and once_x20.runtime.height == 32,
+        "once_x20 gwang runtime must scale exactly into a 28x16 slot")
+    assert(once_x20.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.once_x20") ==
+        "assets/runtime/gwang/once-x20-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
