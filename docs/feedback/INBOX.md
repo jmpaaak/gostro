@@ -2,7 +2,11 @@
 
 ## 처리 대기
 
-(없음)
+(35) **발라트로급 플레이 디테일: 호버·점수 연출·고/판/돈 HUD** (msg `1547288119257075793`)
+  - 담당: `game/ui/hand.lua`, `game/ui/card.lua`, `game/ui/score_anim.lua`, `game/ui/round_hud.lua`, `game/scenes/play.lua`, `game/scene_stack.lua`, `main.lua`.
+  - 호버 시 패가 살짝 올라감. 놓기 후 칩→×배수→총점 연출을 실제 패 좌표에 연결. 플레이 중 1고/첫판/$/남은 패가 항상 보임. 광 글로우는 실제 슬롯 좌표.
+  - 완료: 호버·연출·라운드 HUD, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
 
 ## 처리 중
 
