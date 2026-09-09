@@ -1,12 +1,19 @@
 # STATUS
 
+## 2026-09-09 — 덱 아이콘 고해상도 픽셀 에셋 적용
+
+- `ui.icon_deck`에 기하학적 화투 뒷면 덱이 쌓여있는 형태의 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed draw 모듈(`score_icon_art.draw_deck`)을 추가했다.
+- `make verify`의 score-icon-qa 화면에 덱 아이콘을 함께 렌더링하도록 QA 스크립트를 갱신했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.icon_discard` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
+
 ## 2026-09-09 — 상점 재화 아이콘 고해상도 픽셀 에셋 적용
 
 - `ui.icon_money`에 비취 메달 위 세 개의 사각 구멍 황동 엽전을 표현한 384×384 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
 - Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed draw 경로로 상점 보유 재화 표시 옆에 적용했다.
 - engine-hosted draw 계약과 실제 LÖVE 320×180 HUD 캡처 QA가 재화 아이콘을 검증하도록 갱신했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
-- Next slice: `ui.icon_deck` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
 
 ## 2026-09-09 — 점수판 배수 아이콘 고해상도 픽셀 에셋 적용
 

@@ -228,3 +228,5 @@
 | 2026-09-09T11:08:01+0900 | `assets/runtime/ui/icon-money-v1.png` | 12×12 runtime money icon from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T11:08:01+0900 | `assets/runtime/ui/score-icon-love-v1.png` | Actual LÖVE 11.5 320×180 HUD capture proving the money icon at runtime; SHA-256 `059a19f08dcc3e6fcb60a792c2aaca19f548b756d4680868d23bb0913e980cc0` |
 | 2026-09-09T11:08:01+0900 | `assets/runtime/ui/shop-pack-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed money icon beside the balance; SHA-256 `2759052339f6b2c835c9d9282bf3b563e290d4ddc67293fa3053c8b1acd9ec1c` |
+2026-09-09T11:15:00+0900 | assets/masters/ui/icon-deck-v1.svg | High-resolution SVG master for deck icon.
+2026-09-09T11:15:00+0900 | assets/runtime/ui/icon-deck-v1.png | Pixel-perfect runtime 12x12 deck icon.

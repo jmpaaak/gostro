@@ -2904,8 +2904,49 @@
     {
       "id": "ui.icon_deck",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.icon_deck"
+      "status": "runtime",
+      "name": "ui.icon_deck",
+      "master": {
+        "source": "assets/masters/ui/icon-deck-v1.svg",
+        "sourceSha256": "14745889298cc1cef5772b9638ee0d082a15d512590dc745ff6d40f0fe6cf9fb",
+        "path": "assets/masters/ui/icon-deck-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "a9a78790aa077403c140d89e2d647b6b790d6859556416e041ada66a5562430c",
+        "provenance": "Project-authored high-resolution master: a stack of geometric hwatu cards."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/icon-deck-v1.png",
+        "width": 12,
+        "height": 12,
+        "alphaBounds": [
+          1,
+          1,
+          10,
+          11
+        ],
+        "sha256": "ac398eb24fffa82dab77f4af2e2136431001eb4654950cf7a1604c4316310fa2",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 12,
+        "targetHeight": 12,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/icon-deck-v1.report.json",
+        "reportSha256": "87934ab2aa6d21c6845687d2647ce785423f5e8a3b6a6e6f619aa09c959d934e"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.icon_discard",

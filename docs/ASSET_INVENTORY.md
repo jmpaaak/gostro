@@ -111,7 +111,7 @@
 - [x] `ui.icon_chip` - ui.icon_chip
 - [x] `ui.icon_mult` - ui.icon_mult
 - [x] `ui.icon_money` - ui.icon_money
-- [ ] `ui.icon_deck` - ui.icon_deck
+- [x] `ui.icon_deck` - ui.icon_deck
 - [ ] `ui.icon_discard` - ui.icon_discard
 - [ ] `ui.icon_hand` - ui.icon_hand
 - [ ] `ui.effect_select` - ui.effect_select
