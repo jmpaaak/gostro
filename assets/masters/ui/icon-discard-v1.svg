@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 384 384">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff6b52"/>
+      <stop offset="0.48" stop-color="#c91f2c"/>
+      <stop offset="1" stop-color="#68111d"/>
+    </linearGradient>
+    <linearGradient id="bamboo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe58a"/>
+      <stop offset="0.5" stop-color="#cf8b2f"/>
+      <stop offset="1" stop-color="#704018"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+  </defs>
+
+  <ellipse cx="196" cy="316" rx="151" ry="35" fill="#020b0a" opacity="0.72" filter="url(#shadow)"/>
+
+  <!-- A hwatu card dropping into the discard tray. -->
+  <g transform="rotate(-12 191 137)">
+    <rect x="126" y="25" width="130" height="198" rx="13" fill="#f9f1d5" stroke="#301018" stroke-width="10"/>
+    <rect x="139" y="38" width="104" height="172" rx="7" fill="url(#lacquer)" stroke="#fff0ba" stroke-width="7"/>
+    <circle cx="191" cy="93" r="31" fill="#fff2b0" stroke="#5d1420" stroke-width="8"/>
+    <path d="M191 61v64M159 93h64" stroke="#d4262f" stroke-width="10" stroke-linecap="round"/>
+    <path d="M155 178c23-34 49-38 74-12" fill="none" stroke="#2f8d59" stroke-width="13" stroke-linecap="round"/>
+    <path d="M174 181l-13-25M207 175l14-27" stroke="#f5d65f" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Downward motion chevrons remain legible after pixel conversion. -->
+  <path d="M284 73v102" fill="none" stroke="#ffe36f" stroke-width="18" stroke-linecap="round"/>
+  <path d="M253 148l31 34 31-34" fill="none" stroke="#ffe36f" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M286 72v98" fill="none" stroke="#9a541d" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Woven bamboo discard tray. -->
+  <path d="M54 220h276l-30 116H84z" fill="url(#bamboo)" stroke="#341b0d" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M45 215c0-13 10-23 23-23h248c13 0 23 10 23 23s-10 23-23 23H68c-13 0-23-10-23-23z" fill="#f4c85b" stroke="#341b0d" stroke-width="11"/>
+  <g fill="none" stroke="#714019" stroke-width="9" opacity="0.9">
+    <path d="M101 239l14 91M151 239l6 95M202 239v95M253 239l-7 91"/>
+    <path d="M75 266h237M81 299h223"/>
+  </g>
+  <path d="M79 205h226" stroke="#fff0a1" stroke-width="7" stroke-linecap="round"/>
+</svg>

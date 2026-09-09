@@ -230,3 +230,8 @@
 | 2026-09-09T11:08:01+0900 | `assets/runtime/ui/shop-pack-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed money icon beside the balance; SHA-256 `2759052339f6b2c835c9d9282bf3b563e290d4ddc67293fa3053c8b1acd9ec1c` |
 2026-09-09T11:15:00+0900 | assets/masters/ui/icon-deck-v1.svg | High-resolution SVG master for deck icon.
 2026-09-09T11:15:00+0900 | assets/runtime/ui/icon-deck-v1.png | Pixel-perfect runtime 12x12 deck icon.
+2026-09-09T11:25:02+0900 | assets/masters/ui/icon-discard-v1.svg | Project-authored high-resolution discard icon vector source with a hwatu card dropping into a woven bamboo tray.
+2026-09-09T11:25:02+0900 | assets/masters/ui/icon-discard-v1.png | Preserved 384x384 RGBA raster master rendered directly from the vector source.
+2026-09-09T11:25:02+0900 | assets/runtime/ui/icon-discard-v1.png | 12x12 runtime discard icon from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5.
+2026-09-09T11:25:02+0900 | assets/runtime/ui/icon-discard-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 36-color palette, alignment, and nearest-neighbor validation.
+2026-09-09T11:25:02+0900 | assets/runtime/ui/score-icon-love-v1.png | Actual LÖVE 11.5 320x180 HUD QA capture proving the manifest-backed discard icon; SHA-256 a5e6c39b695861f7961fe4e6eeea6fab62f2329a877c427099b742b7e78c1489.

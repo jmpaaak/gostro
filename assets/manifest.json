@@ -2951,8 +2951,49 @@
     {
       "id": "ui.icon_discard",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.icon_discard"
+      "status": "runtime",
+      "name": "ui.icon_discard",
+      "master": {
+        "source": "assets/masters/ui/icon-discard-v1.svg",
+        "sourceSha256": "cd56a8d216cf145b14e09502beab7765fff1994ba7b8bb53c12986d6489ce0cd",
+        "path": "assets/masters/ui/icon-discard-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "be66b3ee63a513975d9debe9aafe4dec32f65a4e2b758f24e3ca0a3d7208ca48",
+        "provenance": "Project-authored high-resolution master: a hwatu card dropping into a woven bamboo discard tray, using no text or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/icon-discard-v1.png",
+        "width": 12,
+        "height": 12,
+        "alphaBounds": [
+          1,
+          1,
+          10,
+          11
+        ],
+        "sha256": "a7cbaef6e0bb53c9d0f04160b1e3979783815afbfa379eef9b8b2eb7fba68419",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 12,
+        "targetHeight": 12,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/icon-discard-v1.report.json",
+        "reportSha256": "1633b33fb96847d28cb8b90065e0bfc8538e1dfc89a6ef5cfad6ac6cf9fe54e2"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.icon_hand",

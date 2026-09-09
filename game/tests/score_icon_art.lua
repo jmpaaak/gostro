@@ -56,6 +56,22 @@ function M.run()
     assert(call_money and call_money[1] == texture and call_money[2] == 33 and call_money[3] == 9,
         "money art must draw at the requested HUD position")
 
+    assert(assets.runtime_path("ui.icon_discard") == "assets/runtime/ui/icon-discard-v1.png",
+        "discard icon must resolve through the runtime manifest")
+
+    local call_discard
+    local drawn_discard = art.draw_discard(46, 9, 12, {
+        set_color = function() end,
+        draw = function(...) call_discard = { ... } end,
+    }, function(id)
+        assert(id == "ui.icon_discard", "discard HUD must request the discard icon")
+        return texture
+    end)
+
+    assert(drawn_discard, "runtime discard art must draw")
+    assert(call_discard and call_discard[1] == texture and call_discard[2] == 46 and call_discard[3] == 9,
+        "discard art must draw at the requested HUD position")
+
     print("  score_icon_art: OK")
 end
 
