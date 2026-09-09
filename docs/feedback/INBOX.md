@@ -2,7 +2,11 @@
 
 ## 처리 대기
 
-(없음)
+(39) **발라트로급 점수 싱크·돈 트윈·광 슬롯 카드 크기** (msg `1547290362782031952`)
+  - 담당: `game/ui/scoreboard.lua`, `game/ui/score_anim.lua`, `game/ui/shop.lua`, `game/ui/gwang_slots.lua`, `game/scenes/play.lua`.
+  - 점수판 칩/배수가 카드→배수 연출 단계를 따라감. 상점 $가 사고 팔 때 카운트업. 광 슬롯을 패에 가까운 72×96.
+  - 완료: 싱크·트윈·슬롯 크기, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
 
 ## 처리 중
 
