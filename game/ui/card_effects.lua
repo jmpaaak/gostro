@@ -122,6 +122,11 @@ end
 function M.draw_overlay(name, x, y, w, h, t)
     if not name then return end
     if not love or not love.graphics then return end
+    local edition_art = require("game.ui.edition_art")
+    if edition_art.draw(name, x, y, w, h, t) then
+        love.graphics.setColor(1, 1, 1, 1)
+        return
+    end
     local col = M.overlay_color(name, t)
     love.graphics.setColor(col[1], col[2], col[3], col[4])
     love.graphics.rectangle("fill", x, y, w, h, 2, 2)

@@ -4661,8 +4661,49 @@
     {
       "id": "effect.foil",
       "category": "effect",
-      "status": "pending",
-      "name": "effect.foil"
+      "status": "runtime",
+      "name": "은박 효과",
+      "master": {
+        "source": "assets/masters/effect/foil-v1.png",
+        "sourceSha256": "5f37b5f3ef3048535a9e0631779613e99c4780b4dca889b51e8bedfc7f1a7c3a",
+        "path": "assets/masters/effect/foil-v1.png",
+        "width": 192,
+        "height": 288,
+        "sha256": "5f37b5f3ef3048535a9e0631779613e99c4780b4dca889b51e8bedfc7f1a7c3a",
+        "provenance": "Project-authored high-resolution silver-foil play-card overlay with lacquered leaf sheen, brass corner clips, and geometric sparkle ticks; transparent interior so the 24x36 hwatu face stays identifiable; no photo, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/effect/foil-v1.png",
+        "width": 24,
+        "height": 36,
+        "alphaBounds": [
+          0,
+          0,
+          23,
+          35
+        ],
+        "sha256": "15ac6e636e15c6c8725afb0b78bc6c270edd9e0551ac63695c2cfb4996ea8a66",
+        "filter": "nearest",
+        "report": "assets/runtime/effect/foil-v1.report.json",
+        "reportSha256": "eb31211ea686d29def7adadf9e730855d37195e4e7d1954b65b18496eb7bd251"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 24,
+        "targetHeight": 36,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "effect.hologram",

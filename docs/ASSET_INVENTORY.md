@@ -13,7 +13,7 @@
 
 ## effect
 
-- [ ] `effect.foil` - effect.foil
+- [x] `effect.foil` - 은박 효과
 - [ ] `effect.hologram` - effect.hologram
 - [ ] `effect.polychrome` - effect.polychrome
 

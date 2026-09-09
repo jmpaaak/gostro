@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -556,6 +556,25 @@ tag-qa:
 		$(LOVE) "$(BUILD_DIR)/tag-qa"
 	@echo "TAG_LOVE_QA_OK d6 320x180 $(CURDIR)/assets/runtime/ui/tag-d6-love-v1.png"
 
+foil-effect-qa:
+	@rm -rf "$(BUILD_DIR)/foil-effect-qa"
+	@mkdir -p "$(BUILD_DIR)/foil-effect-qa/game/ui" \
+		"$(BUILD_DIR)/foil-effect-qa/assets/runtime/cards" \
+		"$(BUILD_DIR)/foil-effect-qa/assets/runtime/effect" \
+		"$(BUILD_DIR)/foil-effect-qa/assets/fonts"
+	@cp tools/foil_effect_qa_main.lua "$(BUILD_DIR)/foil-effect-qa/main.lua"
+	@cp game/ui/card.lua game/ui/card_art.lua game/ui/edition_art.lua \
+		"$(BUILD_DIR)/foil-effect-qa/game/ui/"
+	@cp game/asset_loader.lua "$(BUILD_DIR)/foil-effect-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/foil-effect-qa/assets/"
+	@cp assets/runtime/cards/play-card-contact-sheet-v1.png \
+		"$(BUILD_DIR)/foil-effect-qa/assets/runtime/cards/"
+	@cp assets/runtime/effect/foil-v1.png \
+		"$(BUILD_DIR)/foil-effect-qa/assets/runtime/effect/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/foil-effect-qa/assets/fonts/"
+	FOIL_EFFECT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/effect-foil-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/foil-effect-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -567,7 +586,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa pack-panel-qa glass-panel-qa play-bg-qa shop-bg-qa gwang-slot-qa score-icon-qa score-effect-qa lock-effect-qa win-effect-qa loss-effect-qa deck-blue-qa deck-red-qa deck-yellow-qa stake-white-qa stake-red-qa stake-green-qa tag-qa foil-effect-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 
