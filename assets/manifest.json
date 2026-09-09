@@ -1631,8 +1631,49 @@
     {
       "id": "planet.planet_cheongdan",
       "category": "planet",
-      "status": "pending",
-      "name": "Jupiter"
+      "status": "runtime",
+      "name": "청룡 기원패",
+      "master": {
+        "source": "assets/masters/planet/cheongdan-v1.svg",
+        "sourceSha256": "29bc062c040603ad36bb47bc23e84b4ad0928b3b5b6727b21aa1317fc58a7051",
+        "path": "assets/masters/planet/cheongdan-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "1c576bc9bd92a778192dfcae3eb29c73ed69d8fd7c5c539275ad0ad414069c34",
+        "provenance": "Project-authored 400x560 lacquered azure hwatu wish-card master with cobalt silk banner, geometric dragon-mark, gold notch, and seal; no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/planet/cheongdan-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          50
+        ],
+        "sha256": "3c6d76324ed2f0e4800ad5f657e925899c58596c0421f303e64ebe0c652602a0",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/planet/cheongdan-v1.report.json",
+        "reportSha256": "f931c90fb8add85d1bde1eb32182f97629fe722f423e1e78ca676d918293282e"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "planet.planet_chodan",

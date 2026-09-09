@@ -6,6 +6,8 @@ local M = {}
 local IDS = {
     planet_hongdan = "planet.planet_hongdan",
     hongdan = "planet.planet_hongdan",
+    planet_cheongdan = "planet.planet_cheongdan",
+    cheongdan = "planet.planet_cheongdan",
 }
 
 function M.asset_id(item)

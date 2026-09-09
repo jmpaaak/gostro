@@ -83,9 +83,10 @@ shop-pack-qa:
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/game/ui" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/pack" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher" \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/planet" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/fonts"
 	@cp tools/shop_pack_qa_main.lua "$(BUILD_DIR)/shop-pack-qa/main.lua"
-	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
+	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua game/ui/planet_art.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/shop-pack-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
 	@cp assets/runtime/pack/talisman-bundle-v1.png \
@@ -97,6 +98,8 @@ shop-pack-qa:
 		assets/runtime/voucher/crystal-ball-v1.png assets/runtime/voucher/hone-v1.png \
 		assets/runtime/voucher/directors-cut-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
+	@cp assets/runtime/planet/hongdan-v1.png assets/runtime/planet/cheongdan-v1.png \
+		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/planet/"
 	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui"
 	@cp assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
@@ -146,6 +149,14 @@ shop-pack-qa:
 		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-voucher-money-tree-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
 	@echo "SHOP_ART_LOVE_QA_OK voucher 320x180 $(CURDIR)/assets/runtime/ui/shop-voucher-money-tree-love-v1.png"
+	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_hongdan \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-hongdan-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-hongdan-love-v1.png"
+	SHOP_QA_KIND=planet SHOP_QA_PLANET=planet_cheongdan \
+		SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-planet-cheongdan-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
+	@echo "SHOP_ART_LOVE_QA_OK planet 320x180 $(CURDIR)/assets/runtime/ui/shop-planet-cheongdan-love-v1.png"
 
 pack-panel-qa:
 	@rm -rf "$(BUILD_DIR)/pack-panel-qa"

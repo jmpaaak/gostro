@@ -36,6 +36,8 @@ function love.load()
     local planet_names = {
         planet_hongdan = "주작 기원패",
         hongdan = "주작 기원패",
+        planet_cheongdan = "청룡 기원패",
+        cheongdan = "청룡 기원패",
     }
     local item
     if kind == "voucher" then

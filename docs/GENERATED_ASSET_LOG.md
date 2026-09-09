@@ -310,3 +310,9 @@
 | 2026-09-09T18:15:00+0900 | `assets/runtime/ui/stake-green-v1.png` | 16x16 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T18:15:00+0900 | `assets/runtime/ui/stake-green-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, alignment, and nearest-neighbor validation |
 | 2026-09-09T18:15:00+0900 | `assets/runtime/ui/stake-green-love-v1.png` | Actual LÖVE 11.5 320x180 New Run capture proving the manifest-backed green stake chip |
+| 2026-09-09T14:55:11+0900 | `assets/masters/planet/cheongdan-v1.svg` | Project-authored 400×560 azure hwatu wish-card vector with cobalt silk banner, geometric dragon-mark, gold notch, and seal; no text, people, or month imagery |
+| 2026-09-09T14:55:11+0900 | `assets/masters/planet/cheongdan-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T14:55:11+0900 | `assets/runtime/planet/cheongdan-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T14:55:11+0900 | `assets/runtime/planet/cheongdan-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T14:55:11+0900 | `assets/runtime/ui/shop-planet-cheongdan-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 청룡 기원패; SHA-256 `afc04bd8b17283cff4754a74273cfbb1ff21ffd6a6a3ab299b1d194af947d8f8` |
+

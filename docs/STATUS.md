@@ -1,7 +1,16 @@
 # STATUS
 
-## 2026-09-09 — 주작 기원패 고해상도 픽셀 에셋 적용
+## 2026-09-09 — 청룡 기원패 고해상도 픽셀 에셋 적용
 
+- `planet.planet_cheongdan`에 400×560 청룡 기원패 PNG master와 36×52 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 기존 `game/ui/planet_art.lua`에 청룡 기원패 id를 추가하고 상점 기원패 표시에 배선했다.
+- 엔진 테스트와 LÖVE 320×180 상점 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 683개 파일이다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: 다음 기원패(`planet_chodan`) 고해상도 master를 생성하고 런타임에 적용한다.
+
+## 2026-09-09 — 주작 기원패 고해상도 픽셀 에셋 적용
 - `planet.planet_hongdan`에 400×560 주작 기원패 PNG master와 36×52 runtime 에셋을 추가했다.
 - Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
 - 신규 `game/ui/planet_art.lua`에 `draw` 계약을 두고 상점 행성 카드 표시에 배선했다.
