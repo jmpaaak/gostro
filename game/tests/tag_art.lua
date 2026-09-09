@@ -173,6 +173,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "uncommon" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local juggle_id = tag_art.asset_id({ kind = "tag", identity = "juggle" })
+    assert(juggle_id == "tag.juggle", "곡예사 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "juggle" }) == "tag.juggle",
+        "skip offers keyed by id must resolve 곡예사 패찰")
+
+    local juggle = assets.entry(juggle_id)
+    assert(juggle and juggle.status == "runtime", "곡예사 패찰 artwork must be promoted")
+    assert(juggle.master.width == 256 and juggle.master.height == 384,
+        "곡예사 패찰 must preserve a 256x384 master")
+    assert(juggle.runtime.width == 32 and juggle.runtime.height == 48,
+        "곡예사 패찰 runtime must fit its skip-tag slot")
+    assert(juggle.runtime.filter == "nearest")
+    assert(juggle.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(juggle_id) == "assets/runtime/tag/juggle-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "juggle" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

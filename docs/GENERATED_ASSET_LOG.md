@@ -388,3 +388,7 @@
 2026-09-09T17:35:00+0900 | assets/runtime/tag/uncommon-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T17:35:00+0900 | assets/runtime/tag/uncommon-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T17:35:00+0900 | assets/runtime/ui/tag-uncommon-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 진품 패찰; SHA-256 4369ed9c2ca249019a461b8e76973286d1aee85aa2dea2b3dc4943a11e33ec8b
+2026-09-09T17:50:00+0900 | assets/masters/tag/juggle-v1.png | 곡예사 패찰 (tag.juggle) high-res procedural wooden plaque with three airborne hwatu cards; no people or month imagery
+2026-09-09T17:50:00+0900 | assets/runtime/tag/juggle-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T17:50:00+0900 | assets/runtime/tag/juggle-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T17:50:00+0900 | assets/runtime/ui/tag-juggle-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 곡예사 패찰; SHA-256 cbbbe92e9757b4bf2bcd4e4d770a8b0904c8158d9210137e77252541fa37e669

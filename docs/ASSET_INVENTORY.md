@@ -86,7 +86,7 @@
 - [x] `tag.polychrome` - 영롱 패찰
 - [x] `tag.charm` - 행운 패찰
 - [x] `tag.uncommon` - 진품 패찰
-- [ ] `tag.juggle` - 저글
+- [x] `tag.juggle` - 곡예사 패찰
 - [ ] `tag.d6` - D6
 
 ## tarot
