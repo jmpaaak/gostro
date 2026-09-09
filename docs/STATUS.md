@@ -1,10 +1,8 @@
 # STATUS
-
-## 2026-09-09 — Restore graphics for isolated QA packages
-
 - Previous cycle left uncommitted `conf.lua` + `tools/qa_conf.lua` that disabled window/graphics for all QA, breaking `make font-test` (`LÖVE graphics is required to load fonts`).
 - Root `conf.lua` still disables window/graphics for `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP` so unit/smoke stay windowless.
 - Isolated font/capture packages copy `tools/qa_conf.lua`, which now keeps a 1x1 offscreen window with graphics enabled (OpenGL context) instead of `t.window=false`.
+- To completely hide the Dock icon when launching the QA offscreen window on macOS, `tools/run_love_qa.sh` and `loop/bin/love` now clone `love.app` to `build/qa_app/love-qa.app` with `LSUIElement=true`.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_FONT_OK, GOSTRO_SMOKE_OK, LOVE_BUNDLE_OK (835 files).
 - Next slice: INBOX의 다음 우선순위 항목 진행
 
