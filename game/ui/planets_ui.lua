@@ -2,7 +2,7 @@ local M = {}
 
 local planets = require("game.planets")
 
-local BOX = { x = 12, y = 252, w = 300, h = 48 }
+local BOX = { x = 12, y = 288, w = 300, h = 48 }
 
 function M.layout()
     return { x = BOX.x, y = BOX.y, w = BOX.w, h = BOX.h }

@@ -67,6 +67,7 @@ local function sync_shop_ui(scene)
     scene.shop.cards = scene.shop.random_offers
     scene.shop.money = scene.run_state.money
     scene.money = scene.run_state.money
+    shop_ui.sync_money(scene.shop)
 end
 
 --- Create a new play scene. Optional seed string (display + input).
@@ -258,7 +259,10 @@ end
 function M:update(dt)
     if self.state == "playing" and self.scoreboard then
         scoreboard_ui.update(self.scoreboard, dt)
-        if self.score_anim then score_anim_ui.update(self.score_anim, dt) end
+        if self.score_anim then
+            score_anim_ui.update(self.score_anim, dt)
+            scoreboard_ui.sync_anim(self.scoreboard, self.score_anim)
+        end
         -- Update button enabled state based on selection
         buttons_ui.set_selection(self.buttons, #self.hand.selected_order)
         M.sync_preview(self)

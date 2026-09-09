@@ -25,7 +25,7 @@ function M.run()
 
     local box = round_hud.layout()
     assert(box.x >= 480, "round HUD sits on the right half")
-    assert(box.y >= 156, "round HUD sits below consumable slots")
+    assert(box.y >= 200, "round HUD sits below consumable slots")
     assert(box.y + box.h <= 360, "round HUD stays above play/discard")
     local scoreboard = require("game.ui.scoreboard").layout()
     assert(not overlaps(box, scoreboard), "round HUD must not cover the scoreboard")

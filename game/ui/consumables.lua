@@ -8,7 +8,7 @@ local M = {}
 
 local VIEWPORT_W = 960
 local RIGHT_PAD = 12
-local SLOT_Y = 72
+local SLOT_Y = 112
 local SLOT_W = 126
 local SLOT_H = 84
 local SLOT_GAP = 9

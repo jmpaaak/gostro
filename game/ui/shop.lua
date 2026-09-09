@@ -120,6 +120,8 @@ function M.new(money)
         reroll_cost = M.REROLL_COST,
         hover = nil,
         buy_flash = nil,
+        displayed_money = money or 0,
+        money_tween = nil,
     }
 end
 
@@ -135,6 +137,7 @@ function M.buy_card(s, idx)
         s.hover = nil
     end
     s.buy_flash = { index = idx, timer = 0.35 }
+    M.sync_money(s)
     return true, { kind = card.kind, identity = card.identity, yaku = card.yaku }
 end
 
@@ -165,8 +168,25 @@ end
 
 --- Money display text.
 function M.money_text(s)
-    local money = s.run_state and s.run_state.money or s.money
-    return "$" .. tostring(money or 0)
+    local shown = s.displayed_money
+    if shown == nil then
+        shown = s.run_state and s.run_state.money or s.money
+    end
+    return "$" .. tostring(math.floor(shown or 0))
+end
+
+function M.sync_money(s)
+    local actual = s.run_state and s.run_state.money or s.money or 0
+    local shown = s.displayed_money
+    if shown == nil then
+        s.displayed_money = actual
+        return
+    end
+    if shown == actual then
+        s.money_tween = nil
+        return
+    end
+    s.money_tween = { from = shown, to = actual, timer = 0, duration = 0.35 }
 end
 
 local function item_label(item)
@@ -281,10 +301,21 @@ function M.mark_bought(s, idx)
 end
 
 function M.update(s, dt)
-    if not s.buy_flash then return end
-    s.buy_flash.timer = s.buy_flash.timer - dt
-    if s.buy_flash.timer <= 0 then
-        s.buy_flash = nil
+    if s.buy_flash then
+        s.buy_flash.timer = s.buy_flash.timer - dt
+        if s.buy_flash.timer <= 0 then
+            s.buy_flash = nil
+        end
+    end
+    if s.money_tween then
+        s.money_tween.timer = s.money_tween.timer + dt
+        local ratio = math.min(1, s.money_tween.timer / s.money_tween.duration)
+        local eased = 1 - (1 - ratio) * (1 - ratio)
+        s.displayed_money = s.money_tween.from + (s.money_tween.to - s.money_tween.from) * eased
+        if ratio >= 1 then
+            s.displayed_money = s.money_tween.to
+            s.money_tween = nil
+        end
     end
 end
 

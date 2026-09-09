@@ -5,7 +5,7 @@ local score_icon_art = require("game.ui.score_icon_art")
 
 local M = {}
 
-local BOX = { x = 648, y = 168, w = 300, h = 72 }
+local BOX = { x = 648, y = 216, w = 300, h = 72 }
 
 function M.layout()
     return { x = BOX.x, y = BOX.y, w = BOX.w, h = BOX.h }

@@ -26,7 +26,7 @@ function M.run()
     local sb = scoreboard.layout()
     assert(sb.x < 480, "scoreboard sits on the left half")
     assert(sb.x + sb.w <= 480, "scoreboard does not cross center into consumables")
-    assert(sb.y >= 60, "scoreboard sits below the gwang row")
+    assert(sb.y >= 104, "scoreboard sits below the gwang row")
     assert(sb.x + sb.w <= 960 and sb.y + sb.h <= 540, "scoreboard stays on canvas")
 
     local play_btn = rect(action_buttons.PLAY_X, action_buttons.BUTTON_Y,

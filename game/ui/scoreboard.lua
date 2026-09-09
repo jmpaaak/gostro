@@ -9,7 +9,7 @@ local M = {}
 local VIEWPORT_W = 960
 local VIEWPORT_H = 540
 local POPUP_DURATION = 1.5  -- seconds
-local BOX = { x = 12, y = 72, w = 300, h = 168 }
+local BOX = { x = 12, y = 112, w = 300, h = 168 }
 
 --- Create a new scoreboard state.
 function M.new()
@@ -21,6 +21,8 @@ function M.new()
         preview = nil,  -- { chips, mult, score, yaku_label }
         popup = nil,  -- { value, timer, text }
         countup = nil, -- { from, to, timer, duration }
+        display_chips = 0,
+        display_mult = 1,
     }
 end
 
@@ -33,6 +35,8 @@ end
 function M.set_hand_result(sb, chips, mult)
     sb.chips = chips
     sb.mult = mult
+    sb.display_chips = 0
+    sb.display_mult = 1
     local hand_score = chips * mult
     local from = sb.displayed_score
     sb.countup = {
@@ -40,12 +44,33 @@ function M.set_hand_result(sb, chips, mult)
         to = from + hand_score,
         timer = 0,
         duration = 0.8,
+        waiting = true,
     }
-    sb.popup = {
-        value = hand_score,
-        timer = POPUP_DURATION,
-        text = M.format_score_text(chips, mult),
-    }
+    sb.popup = nil
+end
+
+function M.sync_anim(sb, anim)
+    if not anim then return end
+    if anim.phase == "cards" then
+        sb.display_chips = anim.chips_shown or 0
+        sb.display_mult = 1
+    elseif anim.phase == "mult" then
+        sb.display_chips = sb.chips
+        sb.display_mult = sb.mult
+    elseif anim.phase == "total" or anim.phase == "done" then
+        sb.display_chips = sb.chips
+        sb.display_mult = sb.mult
+        if sb.countup and sb.countup.waiting then
+            sb.countup.waiting = false
+        end
+        if anim.phase == "done" and not sb.popup then
+            sb.popup = {
+                value = sb.chips * sb.mult,
+                timer = POPUP_DURATION,
+                text = M.format_score_text(sb.chips, sb.mult),
+            }
+        end
+    end
 end
 
 --- Progress ratio (0..1, clamped).
@@ -65,6 +90,8 @@ function M.reset(sb)
     sb.preview = nil
     sb.popup = nil
     sb.countup = nil
+    sb.display_chips = 0
+    sb.display_mult = 1
 end
 
 function M.layout()
@@ -83,7 +110,7 @@ function M.update(sb, dt)
             sb.popup = nil
         end
     end
-    if sb.countup then
+    if sb.countup and not sb.countup.waiting then
         sb.countup.timer = sb.countup.timer + dt
         local ratio = math.min(1, sb.countup.timer / sb.countup.duration)
         local eased = 1 - (1 - ratio) * (1 - ratio)
@@ -126,13 +153,13 @@ function M.draw(sb)
         chips_x = chips_x + 14
     end
     love.graphics.setColor(0.6, 0.85, 1, 1)
-    local chips_txt = tostring(sb.chips)
+    local chips_txt = tostring(sb.display_chips or sb.chips)
     love.graphics.print(chips_txt, chips_x, box_y + 3)
     love.graphics.setColor(0.8, 0.8, 0.8, 1)
     local times_x = chips_x + font:getWidth(chips_txt)
     love.graphics.print(" × ", times_x, box_y + 3)
     love.graphics.setColor(1, 0.5, 0.3, 1)
-    local mult_txt = tostring(sb.mult)
+    local mult_txt = tostring(sb.display_mult or sb.mult)
     local mult_x = times_x + font:getWidth(" × ")
     love.graphics.print(mult_txt, mult_x, box_y + 3)
     

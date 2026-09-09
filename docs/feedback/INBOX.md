@@ -2,17 +2,18 @@
 
 ## 처리 대기
 
-(39) **발라트로급 점수 싱크·돈 트윈·광 슬롯 카드 크기** (msg `1547290362782031952`)
-  - 담당: `game/ui/scoreboard.lua`, `game/ui/score_anim.lua`, `game/ui/shop.lua`, `game/ui/gwang_slots.lua`, `game/scenes/play.lua`.
-  - 점수판 칩/배수가 카드→배수 연출 단계를 따라감. 상점 $가 사고 팔 때 카운트업. 광 슬롯을 패에 가까운 72×96.
-  - 완료: 싱크·트윈·슬롯 크기, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
-
+(없음)
 
 ## 처리 중
 
 (없음)
 
 ## 처리 완료
+
+(39) **발라트로급 점수 싱크·돈 트윈·광 슬롯 카드 크기** (msg `1547290362782031952`)
+  - 담당: `game/ui/scoreboard.lua`, `game/ui/shop.lua`, `game/ui/gwang_slots.lua`, `game/scenes/play.lua`.
+  - 점수판 칩/배수가 카드→배수 연출 단계를 따라감. 상점 $가 사고 팔 때 카운트업. 광 슬롯을 패에 가까운 72×96.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
 
 (38) **발라트로급 호버 확대·상점 구매 피드백·판 스킵 안내** (msg `1547290362782031952`)
   - 담당: `game/ui/card.lua`, `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/scenes/play.lua`.

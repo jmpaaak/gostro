@@ -30,6 +30,7 @@ function M.run()
     end
     -- y should be near top (within first 20 pixels)
     assert(pos[1].y <= 20, "slots near top of viewport")
+    assert(pos[1].w == 72 and pos[1].h == 96, "slots are play-card sized")
 
     -- equip gwang into slot
     gwang_slots.equip(gs, { kind = "gwang", identity = "chips" })
