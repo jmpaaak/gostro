@@ -3,15 +3,10 @@
 -- game/tarots.lua; this module owns only presentation and pointer hit-testing.
 
 local tarots = require("game.tarots")
+local play_layout = require("game.ui.play_layout")
 
 local M = {}
 
-local VIEWPORT_W = 960
-local RIGHT_PAD = 12
-local SLOT_Y = 112
-local SLOT_W = 126
-local SLOT_H = 84
-local SLOT_GAP = 9
 
 local EFFECT_LABELS = {
     convert = "패 변환",
@@ -39,8 +34,7 @@ function M.view(state, selected_slot)
     local cards = held_tarots(state)
     if not cards[selected_slot] then selected_slot = nil end
 
-    local total_w = capacity * SLOT_W + math.max(0, capacity - 1) * SLOT_GAP
-    local start_x = VIEWPORT_W - RIGHT_PAD - total_w
+    local bounds = play_layout.consumable_slots(capacity)
     local slots = {}
     for i = 1, capacity do
         local card = cards[i]
@@ -50,12 +44,7 @@ function M.view(state, selected_slot)
             name = card and card.name or "비어 있음",
             effect = card and (EFFECT_LABELS[card.effect] or card.effect) or nil,
             selected = selected_slot == i,
-            bounds = {
-                x = start_x + (i - 1) * (SLOT_W + SLOT_GAP),
-                y = SLOT_Y,
-                w = SLOT_W,
-                h = SLOT_H,
-            },
+            bounds = bounds[i],
         }
     end
 
@@ -108,7 +97,7 @@ function M.draw(state, selected_slot)
     local first = view.slots[1]
 
     love.graphics.setColor(0.72, 0.76, 0.86, 1)
-    love.graphics.print(view.label, first.bounds.x, SLOT_Y - 12)
+    love.graphics.print(view.label, first.bounds.x, first.bounds.y - 12)
 
     for _, slot in ipairs(view.slots) do
         local b = slot.bounds

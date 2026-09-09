@@ -2,10 +2,11 @@
 
 local terms = require("game.terms")
 local score_icon_art = require("game.ui.score_icon_art")
+local play_layout = require("game.ui.play_layout")
 
 local M = {}
 
-local BOX = { x = 648, y = 216, w = 300, h = 72 }
+local BOX = play_layout.round_hud()
 
 function M.layout()
     return { x = BOX.x, y = BOX.y, w = BOX.w, h = BOX.h }

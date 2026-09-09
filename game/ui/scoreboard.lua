@@ -3,13 +3,14 @@
 
 local panel_art = require("game.ui.panel_art")
 local score_icon_art = require("game.ui.score_icon_art")
+local play_layout = require("game.ui.play_layout")
 
 local M = {}
 
 local VIEWPORT_W = 960
 local VIEWPORT_H = 540
 local POPUP_DURATION = 1.5  -- seconds
-local BOX = { x = 12, y = 112, w = 300, h = 168 }
+local BOX = play_layout.scoreboard()
 
 --- Create a new scoreboard state.
 function M.new()

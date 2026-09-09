@@ -1,8 +1,9 @@
 local M = {}
 
 local planets = require("game.planets")
+local play_layout = require("game.ui.play_layout")
 
-local BOX = { x = 12, y = 288, w = 300, h = 48 }
+local BOX = play_layout.planets()
 
 function M.layout()
     return { x = BOX.x, y = BOX.y, w = BOX.w, h = BOX.h }

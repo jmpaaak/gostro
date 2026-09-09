@@ -1,4 +1,11 @@
 # STATUS
+## 2026-09-10 — Full card-ratio gwang row and shared play layout
+- Added pure `game/ui/play_layout.lua` as the geometry owner for gwang slots, scoreboard, consumables, origin cards, and run HUD; `play.lua` is unchanged.
+- Gwang slots now match play cards at 72×108, with all persistent HUD chrome shifted below the taller row.
+- Added engine-hosted cross-region geometry coverage; `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (45) moved to 처리 완료.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Scoreboard and center popup share one timeline
 - `scoreboard.sync_anim` derives both the running blind tally and center popup value from `score_anim.displayed_total`.
 - The popup remains live throughout the total phase and starts its fade timer only after the animation reaches done.

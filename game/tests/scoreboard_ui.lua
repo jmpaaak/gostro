@@ -78,7 +78,7 @@ function M.run()
     assert(sb.target == 0)
 
     local box = scoreboard.layout()
-    assert(box.x == 12 and box.y == 112, "scoreboard is left of the play field")
+    assert(box.x == 12 and box.y == 124, "scoreboard is below the full-height gwang row")
     assert(box.x + box.w <= 480, "scoreboard stays on the left half")
 
     -- update ticks popup timer down

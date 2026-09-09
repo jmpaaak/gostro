@@ -3,19 +3,15 @@
 -- Empty slots show dashed border; equipped show ★ + name + effect.
 
 local gwang_art = require("game.ui.gwang_art")
+local play_layout = require("game.ui.play_layout")
 
 local M = {}
 
 M.MAX_SLOTS = 5
 
--- Layout: 960×540 viewport, joker-sized slots near top
-local VIEWPORT_W = 960
-local SLOT_W     = 72
-local SLOT_H     = 96
-local SLOT_GAP   = 10
-local TOP_PAD    = 8
-M.SLOT_W = SLOT_W
-M.SLOT_H = SLOT_H
+local CARD_SLOT = play_layout.gwang_slots()[1]
+M.SLOT_W = CARD_SLOT.w
+M.SLOT_H = CARD_SLOT.h
 
 -- Gwang identity → display info
 local GWANG_INFO = {
@@ -35,18 +31,7 @@ end
 
 --- Return layout rectangles for all 5 slots (centred horizontally).
 function M.slot_positions()
-    local total_w = M.MAX_SLOTS * SLOT_W + (M.MAX_SLOTS - 1) * SLOT_GAP
-    local start_x = math.floor((VIEWPORT_W - total_w) / 2)
-    local positions = {}
-    for i = 1, M.MAX_SLOTS do
-        positions[i] = {
-            x = start_x + (i - 1) * (SLOT_W + SLOT_GAP),
-            y = TOP_PAD,
-            w = SLOT_W,
-            h = SLOT_H,
-        }
-    end
-    return positions
+    return play_layout.gwang_slots()
 end
 
 --- Equip a gwang into the first available slot.
