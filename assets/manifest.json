@@ -2740,8 +2740,40 @@
     {
       "id": "tag.hologram",
       "category": "tag",
-      "status": "pending",
-      "name": "\ud640\ub85c\uadf8\ub7a8"
+      "status": "runtime",
+      "name": "오색 패찰",
+      "master": {
+        "source": "assets/masters/tag/hologram-v1.png",
+        "sourceSha256": "7e17515be2fea6026ac160bc5b73406fa0cb3481be4557491fe6d3d0b424fb06",
+        "path": "assets/masters/tag/hologram-v1.png",
+        "width": 256,
+        "height": 384,
+        "sha256": "7e17515be2fea6026ac160bc5b73406fa0cb3481be4557491fe6d3d0b424fb06",
+        "provenance": "Project-authored high-resolution procedural wooden plaque with a five-color gwang prism for next-gwang hologram edition skip reward; no photo, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tag/hologram-v1.png",
+        "width": 32,
+        "height": 48,
+        "alphaBounds": [
+          3,
+          0,
+          28,
+          47
+        ],
+        "sha256": "7730317ca0bc5f2a77bda00c442a5f2595bf1bba64cfe9b4b28687f12b8936a9",
+        "filter": "nearest",
+        "report": "assets/runtime/tag/hologram-v1.report.json",
+        "reportSha256": "161ed230fd4de22ed06108a3e7dd6210d3983c4fa2b9f2702a984aafb4eb6b3c"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 32,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original"
+      }
     },
     {
       "id": "tag.polychrome",

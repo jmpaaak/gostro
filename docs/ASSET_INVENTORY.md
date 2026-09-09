@@ -82,7 +82,7 @@
 - [x] `tag.economy` - 알뜰 패찰
 - [x] `tag.mega` - 대풍년 패찰
 - [x] `tag.foil` - 은박 패찰
-- [ ] `tag.hologram` - 홀로그램
+- [x] `tag.hologram` - 오색 패찰
 - [ ] `tag.polychrome` - 폴리크롬
 - [ ] `tag.charm` - 참
 - [ ] `tag.uncommon` - 언커먼

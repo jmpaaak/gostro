@@ -105,6 +105,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "foil" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local hologram_id = tag_art.asset_id({ kind = "tag", identity = "hologram" })
+    assert(hologram_id == "tag.hologram", "오색 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "hologram" }) == "tag.hologram",
+        "skip offers keyed by id must resolve 오색 패찰")
+
+    local hologram = assets.entry(hologram_id)
+    assert(hologram and hologram.status == "runtime", "오색 패찰 artwork must be promoted")
+    assert(hologram.master.width == 256 and hologram.master.height == 384,
+        "오색 패찰 must preserve a 256x384 master")
+    assert(hologram.runtime.width == 32 and hologram.runtime.height == 48,
+        "오색 패찰 runtime must fit its skip-tag slot")
+    assert(hologram.runtime.filter == "nearest")
+    assert(hologram.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(hologram_id) == "assets/runtime/tag/hologram-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "hologram" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

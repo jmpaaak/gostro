@@ -372,3 +372,7 @@
 2026-09-09T16:57:55+0900 | assets/runtime/tag/foil-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T16:57:55+0900 | assets/runtime/tag/foil-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T16:57:55+0900 | assets/runtime/ui/tag-foil-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 은박 패찰; SHA-256 9e852fe509773ee5fee25a4c6f6246acacece7941953519585c27dfcace3362a
+2026-09-09T17:05:00+0900 | assets/masters/tag/hologram-v1.png | 오색 패찰 (tag.hologram) high-res procedural wooden plaque with a five-color gwang prism; no people or month imagery
+2026-09-09T17:05:00+0900 | assets/runtime/tag/hologram-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T17:05:00+0900 | assets/runtime/tag/hologram-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 9-color palette, alignment, and nearest-neighbor validation
+2026-09-09T17:05:00+0900 | assets/runtime/ui/tag-hologram-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 오색 패찰; SHA-256 cb358ce8fd40a665ab50edfda354bb40b5acfa63602f80d0f5a978f6a0a18738
