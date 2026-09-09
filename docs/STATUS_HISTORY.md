@@ -1935,3 +1935,18 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
 - Next slice: 다음 부적 카드(`tarot.the_hanged_man`) 고해상도 master를 생성하고 런타임에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 18:23)
+
+## 2026-09-09 — 오색 효과 고해상도 픽셀 에셋 적용
+- `effect.hologram`에 192×288 오색 플레이 카드 오버레이 PNG master와 24×36 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 기존 `game/ui/edition_art.lua`에 hologram overlay 계약을 추가하고 `game/ui/card_effects.lua` 배선을 재사용했다.
+- QA 스크립트(`tools/hologram_effect_qa_main.lua`)와 LÖVE 320×180 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: 다음 미완료 그래픽(`effect.polychrome`) 고해상도 master를 생성하고 런타임에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 18:28)
+
+## 2026-09-09 — 노란 덱 썸네일 고해상도 픽셀 에셋 적용

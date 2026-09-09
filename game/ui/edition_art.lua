@@ -7,6 +7,7 @@ local M = {}
 local IDS = {
     foil = "effect.foil",
     hologram = "effect.hologram",
+    polychrome = "effect.polychrome",
 }
 
 local function overlay_alpha(name, t)
@@ -15,6 +16,8 @@ local function overlay_alpha(name, t)
         return 0.55 + 0.35 * math.abs(math.sin(t * 8))
     elseif name == "hologram" then
         return 0.45 + 0.35 * math.abs(math.sin(t * 6))
+    elseif name == "polychrome" then
+        return 0.50 + 0.30 * math.abs(math.sin(t * 4))
     end
     return 1
 end

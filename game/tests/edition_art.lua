@@ -54,6 +54,7 @@ function M.run()
     assert(edition_art.asset_id(nil) == nil)
     assert_overlay("foil", "effect.foil", "assets/runtime/effect/foil-v1.png")
     assert_overlay("hologram", "effect.hologram", "assets/runtime/effect/hologram-v1.png")
+    assert_overlay("polychrome", "effect.polychrome", "assets/runtime/effect/polychrome-v1.png")
     print("  edition_art: OK")
 end
 

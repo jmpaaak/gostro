@@ -400,3 +400,7 @@
 2026-09-09T18:20:00+0900 | assets/runtime/effect/hologram-v1.png | 24×36 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T18:20:00+0900 | assets/runtime/effect/hologram-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 5-color palette, alignment, and nearest-neighbor validation
 2026-09-09T18:20:00+0900 | assets/runtime/ui/effect-hologram-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 오색 효과 overlay; SHA-256 0bd33ffc88e70b99783235fe233f034c356299c469441d05ea4c3cb686c9c7e8
+2026-09-09T18:29:01+0900 | assets/masters/effect/polychrome-v1.png | 영롱 효과 (effect.polychrome) high-res polychrome play-card overlay with iridescent nacre fan corners and geometric rainbow ticks; transparent interior; no people or month imagery
+2026-09-09T18:29:01+0900 | assets/runtime/effect/polychrome-v1.png | 24×36 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T18:29:01+0900 | assets/runtime/effect/polychrome-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 7-color palette, alignment, and nearest-neighbor validation
+2026-09-09T18:29:01+0900 | assets/runtime/ui/effect-polychrome-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 영롱 효과 overlay; SHA-256 51b603e6554c088dc218b6831d4b10d6e948ea3ad3a7a2d614ba8a5f9912e067
