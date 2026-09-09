@@ -19,10 +19,16 @@
     <string>1</string>
     <key>GAME_QA</key>
     <string>1</string>
+    <key>GAME_HEADLESS</key>
+    <string>1</string>
     <key>SDL_MAC_BACKGROUND_APP</key>
     <string>1</string>
     <key>SDL_HINT_VIDEO_MAC_BACKGROUND_APP</key>
     <string>1</string>
+    <key>SDL_VIDEODRIVER</key>
+    <string>dummy</string>
+    <key>SDL_AUDIODRIVER</key>
+    <string>dummy</string>
     <key>LOOP_ROOT</key>
     <string>/Users/jm/orca/workspaces/interactive-story-game-factory/gostro</string>
     <key>HOME</key><string>/Users/jm</string>

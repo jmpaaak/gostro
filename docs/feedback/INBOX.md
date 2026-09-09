@@ -2,12 +2,6 @@
 
 ## 처리 대기
 
-(30) **GostroLoop 앱이 반복해서 뜸** (msg `1547214891566370817`)
-  - 담당: `loop/preflight.py`, `loop/env.sh`, `Makefile`, `tools/ensure_love_qa_app.sh`, `loop/bin/love`. **Gostro 루프만.** 에셋 스튜디오 무시.
-  - 원인: `ensure_love_qa_app.sh`가 Love.app 복사본의 `CFBundleName`을 `GostroLoop`로 바꾸고, 루프 `make verify`가 캡처 QA마다 그 앱을 띄운다.
-  - 요구: 루프는 windowed 캡처 QA를 돌리지 않는다. `GostroLoop` 번들 이름을 제거하고 `build/qa_app/love-qa.app`을 삭제한다. 사용자 `love .`는 그대로.
-  - 완료 조건: 루프 사이클 중 Dock/Cmd-Tab에 GostroLoop가 안 보임.
-
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 중
@@ -15,6 +9,11 @@
 (없음)
 
 ## 처리 완료
+
+(30) **GostroLoop 앱이 반복해서 뜸** (msg `1547214891566370817`)
+  - 루프 `make verify`가 캡처 QA마다 `love-qa.app`(CFBundleName=GostroLoop)을 띄웠다. 에셋 스튜디오와 무관.
+  - 루프 preflight는 이제 `make test status-test asset-inventory-test smoke love`만 돌리고 windowed `*-qa`/`font-test`는 제외. `GAME_HEADLESS=1` + dummy SDL을 루프 자식에 상속.
+  - `ensure_love_qa_app.sh`에서 GostroLoop 표시 이름을 제거. 기존 `build/qa_app/love-qa.app` 삭제. `make test` GREEN. [DONE 2026-09-09]
 
 (29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, `1547202068216029215`, `1547211151413088297`)
   - 1×1 오프스크린도 macOS Dock 아이콘이 깜빡임. 게임 `conf.lua`는 `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP`면 `t.window=false`.

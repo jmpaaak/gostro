@@ -24,6 +24,11 @@ else
   if ! /usr/libexec/PlistBuddy -c "Print :LSUIElement" "$PLIST" >/dev/null 2>&1; then
     NEED_BUILD=1
   fi
+  NAME="$(/usr/libexec/PlistBuddy -c "Print :CFBundleName" "$PLIST" 2>/dev/null || true)"
+  DISPLAY="$(/usr/libexec/PlistBuddy -c "Print :CFBundleDisplayName" "$PLIST" 2>/dev/null || true)"
+  case "$NAME$DISPLAY" in
+    *GostroLoop*|*GostroQA*|*Gostro\ QA*) NEED_BUILD=1 ;;
+  esac
 fi
 if [ "$NEED_BUILD" = "1" ]; then
   mkdir -p "$HERE/../build/qa_app"
@@ -31,8 +36,9 @@ if [ "$NEED_BUILD" = "1" ]; then
   cp -R "$APP_DIR" "$QA_APP"
   /usr/libexec/PlistBuddy -c "Add :LSUIElement bool true" "$PLIST" 2>/dev/null \
     || /usr/libexec/PlistBuddy -c "Set :LSUIElement true" "$PLIST"
-  /usr/libexec/PlistBuddy -c "Set :CFBundleName GostroLoop" "$PLIST" 2>/dev/null || true
-  /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName GostroLoop" "$PLIST" 2>/dev/null || true
+  /usr/libexec/PlistBuddy -c "Set :CFBundleName love" "$PLIST" 2>/dev/null || true
+  /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName love" "$PLIST" 2>/dev/null || true
+  /usr/libexec/PlistBuddy -c "Delete :CFBundleDisplayName" "$PLIST" 2>/dev/null || true
   codesign --force --sign - "$QA_APP" >/dev/null 2>&1 || true
 fi
 printf '%s\n' "$QA_APP/Contents/MacOS/love"

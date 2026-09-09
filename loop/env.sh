@@ -16,5 +16,8 @@ MAX_LOOPS="${MAX_LOOPS:-0}"
 # Inherited by every loop child, including absolute-path `love` invocations.
 export GOSTRO_LOOP=1
 export GAME_QA=1
+export GAME_HEADLESS=1
 export SDL_MAC_BACKGROUND_APP=1
 export SDL_HINT_VIDEO_MAC_BACKGROUND_APP=1
+export SDL_VIDEODRIVER=dummy
+export SDL_AUDIODRIVER=dummy

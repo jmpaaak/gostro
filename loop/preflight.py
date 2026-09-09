@@ -191,11 +191,14 @@ def main() -> int:
     env = os.environ.copy()
     env.setdefault("GOSTRO_LOOP", "1")
     env.setdefault("GAME_QA", "1")
+    env.setdefault("GAME_HEADLESS", "1")
     env.setdefault("SDL_MAC_BACKGROUND_APP", "1")
     env.setdefault("SDL_HINT_VIDEO_MAC_BACKGROUND_APP", "1")
+    env.setdefault("SDL_VIDEODRIVER", "dummy")
+    env.setdefault("SDL_AUDIODRIVER", "dummy")
     love = "/Users/jm/.local/bin/love"
     checks = [
-        ("engine tests and package", ["make", "verify", f"LOVE={love}"], 120),
+        ("engine tests and package", ["make", "test", "status-test", "asset-inventory-test", "smoke", "love", f"LOVE={love}"], 120),
         ("git diff check", ["git", "diff", "--check"], 20),
     ]
     failures = []
