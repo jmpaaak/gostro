@@ -2,12 +2,6 @@
 
 ## 처리 대기
 
-(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`)
-  - 담당: `conf.lua`, `Makefile`, `tools/qa_conf.lua`, `tools/run_love_qa.sh`, `loop/env.sh`, `loop/loop.sh`, `loop/bin/love`, `loop/PROMPT.md`. **Gostro 루프만** Love2D 창을 전면에 올리지 않게 한다. MOK/spaceship 루프와 사용자 `love .` 플레이 창은 건드리지 않는다.
-  - 2026-09-09 확인: Makefile 래퍼만으로는 부족하다. 루프 에이전트가 `/Users/jm/.local/bin/love build/test --filter …`처럼 **절대경로 love를 직접** 실행해 `GAME_HEADLESS`/`GAME_QA`/`SDL_MAC_BACKGROUND_APP`가 없다.
-  - 요구: 루프 전 자식은 `GOSTRO_LOOP=1` + `GAME_QA=1` + `SDL_MAC_BACKGROUND_APP=1`을 상속하고, `conf.lua`는 이 플래그면 오프스크린 1×1 창만 연다. 루프 `PATH`의 `loop/bin/love` 심도 동일하게 감싼다. 글로벌 `~/.local/bin/love` 심볼릭은 교체하지 않는다.
-  - 완료 조건: Gostro 루프가 띄운 Love2D가 전면 창을 깜빡이지 않음. 사용자 `love .`와 MOK 레인은 그대로. `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
-
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 중
@@ -15,6 +9,10 @@
 (없음)
 
 ## 처리 완료
+
+(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, Discord `1547202111937323009`)
+  - 1×1 오프스크린도 macOS Dock 아이콘이 깜빡임. `GAME_HEADLESS`/`GAME_QA`/`GOSTRO_LOOP`면 `t.window=false` + window/graphics 모듈 비활성.
+  - `tools/qa_conf.lua`도 창 없음. `make test` GREEN, 테스트 후 love 프로세스 없음. 사용자 `love .`는 그대로. [DONE 2026-09-09]
 
 (27) **Gostro 전체 그래픽 고해상도 master 기반 픽셀 에셋 전환** (msg `1546885987525988473`)
   - 담당: `docs/ASSET_PIPELINE.md`, `docs/GENERATED_ASSET_LOG.md`, `assets/manifest.json`, 신규 `assets/masters/**`·`assets/runtime/**`, 신규 `tools/asset_pipeline/**`; 런타임 배선은 기존 `game/ui/card.lua`, `game/ui/gwang_art.lua` 등을 직접 비대화하지 말고 asset loader/draw 모듈을 신규 분리한다.

@@ -6,7 +6,10 @@ function love.conf(t)
 
     t.identity = "gostro"
     t.version = "11.5"
-    if headless then
+    if headless or qa then
+        -- Loop/QA must not create a macOS window at all. 1x1 offscreen still
+        -- flashes a Dock icon. Canvas captures that need graphics should run
+        -- as a user-invoked Makefile target, not from the autonomous loop.
         t.window = false
         t.modules.audio = false
         t.modules.window = false
