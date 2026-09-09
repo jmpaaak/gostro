@@ -20,6 +20,7 @@ local seed_ui       = require("game.ui.seed")
 local consumables_ui = require("game.ui.consumables")
 local tarot_use      = require("game.tarot_use")
 local scene_bg       = require("game.ui.scene_bg")
+local effect_art     = require("game.ui.effect_art")
 
 local M = {}
 M.__index = M
@@ -249,9 +250,11 @@ function M:draw()
         pack_ui.draw(self.run_state.pending_pack)
 
     elseif self.state == "won" then
-        love.graphics.setColor(1, 0.9, 0.3, 1)
-        love.graphics.print("승리!", 130, 80)
-        love.graphics.setColor(1, 1, 1, 1)
+        if not effect_art.draw_win(0, 0) then
+            love.graphics.setColor(1, 0.9, 0.3, 1)
+            love.graphics.print("승리!", 130, 80)
+            love.graphics.setColor(1, 1, 1, 1)
+        end
     elseif self.state == "lost" then
         love.graphics.setColor(0.95, 0.35, 0.35, 1)
         love.graphics.print("패배", 136, 74)

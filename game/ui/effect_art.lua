@@ -64,4 +64,19 @@ function M.draw_lock(x, y, size, api, texture_provider)
     return true
 end
 
+-- Draw the full-canvas win overlay at integer 1x nearest scale.
+function M.draw_win(x, y, api, texture_provider)
+    api = api or {
+        set_color = love.graphics.setColor,
+        draw = love.graphics.draw,
+    }
+    texture_provider = texture_provider or assets.texture
+    local texture = texture_provider("ui.effect_win")
+    if not texture then return false end
+
+    api.set_color(1, 1, 1, 1)
+    api.draw(texture, x or 0, y or 0, 0, 1, 1)
+    return true
+end
+
 return M

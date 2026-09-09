@@ -276,3 +276,8 @@
 | 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-v1.png` | 16×20 runtime lock glyph from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T14:20:00+0900 | `assets/runtime/ui/effect-lock-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed lock glyph on a locked deck; SHA-256 `c3ecec86f42568c8b59a838304ad8e5f8ff0fc7ffb5c9bdce4a4070372ce1d01` |
+| 2026-09-09T15:10:00+0900 | `assets/masters/ui/effect-win-v1.png` | Project-authored 960×540 Korean hwatu victory burst with gold sunburst, dancheong rays, brass corners, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-v1.png` | 320×180 runtime overlay from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 15-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T15:10:00+0900 | `assets/runtime/ui/effect-win-love-v1.png` | Actual LÖVE 11.5 320×180 play-scene capture proving the manifest-backed win overlay; SHA-256 `9970febe421db9d3cf870980f582bc2a72a6b6c07237a661a7378713b6651568` |
+
