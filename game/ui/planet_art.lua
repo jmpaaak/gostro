@@ -12,6 +12,8 @@ local IDS = {
     chodan = "planet.planet_chodan",
     planet_godori = "planet.planet_godori",
     godori = "planet.planet_godori",
+    planet_pi = "planet.planet_pi",
+    pi = "planet.planet_pi",
 }
 
 function M.asset_id(item)

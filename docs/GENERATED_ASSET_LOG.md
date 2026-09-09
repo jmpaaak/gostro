@@ -325,4 +325,9 @@
 | 2026-09-09T15:20:04+0900 | `assets/runtime/planet/godori-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T15:20:04+0900 | `assets/runtime/planet/godori-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 7-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T15:20:04+0900 | `assets/runtime/ui/shop-planet-godori-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 현무 기원패; SHA-256 `50fc453988f28e0d0f477d0c393d2b10ebd7d96f4fb315b5e65846f9cbe8f5ef` |
+| 2026-09-09T15:28:58+0900 | `assets/masters/planet/pi-v1.svg` | Project-authored 400×560 amber hwatu wish-card vector with gold silk banner, geometric yellow-dragon mark, gold notch, and seal; no text, people, or month imagery |
+| 2026-09-09T15:28:58+0900 | `assets/masters/planet/pi-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T15:28:58+0900 | `assets/runtime/planet/pi-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T15:28:58+0900 | `assets/runtime/planet/pi-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T15:28:58+0900 | `assets/runtime/ui/shop-planet-pi-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 황룡 기원패; SHA-256 `9675e1a968e04b7c348e23e600b4c047b5aad7064ff396cf6a3107f9d26c05b8` |
 

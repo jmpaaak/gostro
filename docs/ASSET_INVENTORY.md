@@ -60,7 +60,7 @@
 - [x] `planet.planet_cheongdan` - 청룡 기원패
 - [x] `planet.planet_chodan` - 백호 기원패
 - [x] `planet.planet_godori` - 현무 기원패
-- [ ] `planet.planet_pi` - Pluto
+- [x] `planet.planet_pi` - 황룡 기원패
 
 ## play-card
 

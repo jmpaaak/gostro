@@ -67,8 +67,21 @@ function M.run()
     assert(godori.runtime.filter == "nearest")
     assert(godori.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
     assert(assets.runtime_path(godori_id) == "assets/runtime/planet/godori-v1.png")
-    assert(planet_art.asset_id({ kind = "planet", identity = "planet_pi" }) == nil,
-        "other wish cards stay pending until their own slice")
+
+    local pi_id = planet_art.asset_id({ kind = "planet", identity = "planet_pi" })
+    assert(pi_id == "planet.planet_pi", "황룡 기원패 must resolve tracked artwork")
+    assert(planet_art.asset_id({ kind = "planet", identity = "pi" }) == "planet.planet_pi",
+        "shop offers keyed by yaku must resolve 황룡 기원패")
+
+    local pi = assets.entry(pi_id)
+    assert(pi and pi.status == "runtime", "황룡 기원패 artwork must be promoted")
+    assert(pi.master.width == 400 and pi.master.height == 560,
+        "황룡 기원패 must preserve a 400x560 master")
+    assert(pi.runtime.width == 36 and pi.runtime.height == 52,
+        "황룡 기원패 runtime must fit its shop slot")
+    assert(pi.runtime.filter == "nearest")
+    assert(pi.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(pi_id) == "assets/runtime/planet/pi-v1.png")
 
     assets.clear_cache()
     print("  planet_art: OK")
