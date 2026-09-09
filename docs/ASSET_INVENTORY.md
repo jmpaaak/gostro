@@ -46,7 +46,7 @@
 - [x] `gwang.small_chips` - 첫판 칩 / Opening Round Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.big_mult` - 큰판 배수 / Main Round Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.once_x20` - 일회성 / Once (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.once_chips` - {'ko': '일회성 칩', 'en': 'Once Chips'}
+- [x] `gwang.once_chips` - 일회성 칩 / Once Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.compound` - {'ko': '복합', 'en': 'Compound'}
 - [ ] `gwang.compound_burst` - {'ko': '복합 폭주', 'en': 'Compound Burst'}
 

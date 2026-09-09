@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <!-- Project-authored master: a fuse-lit silk purse bursts once into two tall stacks of blue mother-of-pearl game chips, signifying a large expendable chip award without text or month imagery. -->
+  <defs>
+    <radialGradient id="night" cx="50%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#234b72"/>
+      <stop offset="0.62" stop-color="#10243c"/>
+      <stop offset="1" stop-color="#07101e"/>
+    </radialGradient>
+    <linearGradient id="silk" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ef5372"/>
+      <stop offset="0.52" stop-color="#aa284b"/>
+      <stop offset="1" stop-color="#591a3c"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bff7ff"/>
+      <stop offset="0.38" stop-color="#51c9e8"/>
+      <stop offset="1" stop-color="#16709f"/>
+    </linearGradient>
+    <radialGradient id="pearl" cx="35%" cy="28%" r="72%">
+      <stop offset="0" stop-color="#fffbd8"/>
+      <stop offset="0.42" stop-color="#83ecf3"/>
+      <stop offset="1" stop-color="#2778b5"/>
+    </radialGradient>
+    <filter id="spark" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="448" height="256" rx="40" fill="#050b15"/>
+  <rect x="8" y="8" width="432" height="240" rx="34" fill="url(#night)" stroke="#d6a94c" stroke-width="6"/>
+
+  <!-- Two unmistakable tall piles make the large chip payout legible after the 8:1 conversion. -->
+  <g stroke="#0a456c" stroke-width="6">
+    <g transform="translate(92 82)">
+      <path d="M0 26v84c0 15 98 15 98 0V26Z" fill="#1883b5"/>
+      <ellipse cx="49" cy="110" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="84" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="58" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="30" rx="49" ry="21" fill="url(#pearl)"/>
+      <path d="M23 22l12 8-12 9M75 22l-12 8 12 9" fill="none" stroke="#fff4b0" stroke-width="7"/>
+    </g>
+    <g transform="translate(255 64)">
+      <path d="M0 26v102c0 15 98 15 98 0V26Z" fill="#146eac"/>
+      <ellipse cx="49" cy="128" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="102" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="76" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="50" rx="49" ry="19" fill="url(#chip)"/>
+      <ellipse cx="49" cy="26" rx="49" ry="21" fill="url(#pearl)"/>
+      <path d="M23 18l12 8-12 9M75 18l-12 8 12 9" fill="none" stroke="#fff4b0" stroke-width="7"/>
+    </g>
+  </g>
+
+  <!-- A torn one-use purse and burning fuse communicate that the payout is consumed. -->
+  <g stroke="#48152f" stroke-width="7" stroke-linejoin="round">
+    <path d="M169 48q55-30 110 0l-18 34q-37-17-74 0z" fill="url(#silk)"/>
+    <path d="M187 81l-24 64 30-13 25 23 22-25 35 13-14-62q-37-17-74 0z" fill="url(#silk)"/>
+    <path d="M190 52q34 20 68 0" fill="none" stroke="#ffd36a" stroke-width="9"/>
+  </g>
+  <path d="M265 49c24-13 12-30 34-35" fill="none" stroke="#e2bb63" stroke-width="6" stroke-linecap="round" stroke-dasharray="8 7"/>
+  <g transform="translate(303 13)" fill="#ffe067" stroke="#fff6b0" stroke-width="3" filter="url(#spark)">
+    <path d="M0-13L5-4 15-5 8 3 12 13 1 8-8 14-6 3-15-2-5-5Z"/>
+  </g>
+  <g fill="#fff4aa">
+    <circle cx="67" cy="54" r="5"/><circle cx="379" cy="62" r="5"/>
+    <path d="M62 211h12v20H62zM374 203h12v20h-12z"/>
+  </g>
+</svg>

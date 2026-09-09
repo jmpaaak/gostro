@@ -292,6 +292,17 @@ function M.run()
     assert(assets.runtime_path("gwang.once_x20") ==
         "assets/runtime/gwang/once-x20-v1.png")
 
+    local once_chips = assets.entry("gwang.once_chips")
+    assert(once_chips and once_chips.status == "runtime",
+        "once_chips gwang must have tracked runtime artwork")
+    assert(once_chips.master.width == 448 and once_chips.master.height == 256,
+        "once_chips gwang must preserve its high-resolution slot master")
+    assert(once_chips.runtime.width == 56 and once_chips.runtime.height == 32,
+        "once_chips gwang runtime must scale exactly into a 28x16 slot")
+    assert(once_chips.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.once_chips") ==
+        "assets/runtime/gwang/once-chips-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,
