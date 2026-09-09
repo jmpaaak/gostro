@@ -5,6 +5,7 @@ local assets = require("game.asset_loader")
 local M = {}
 local IDS = {
     the_magician = "tarot.the_magician",
+    the_hanged_man = "tarot.the_hanged_man",
 }
 
 function M.asset_id(item)

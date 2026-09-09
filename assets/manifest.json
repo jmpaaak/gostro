@@ -1866,8 +1866,49 @@
     {
       "id": "tarot.the_hanged_man",
       "category": "tarot",
-      "status": "pending",
-      "name": "매달린자"
+      "status": "runtime",
+      "name": "소멸 부적",
+      "master": {
+        "source": "assets/masters/tarot/the-hanged-man-v1.svg",
+        "sourceSha256": "8eebe8496cc6850b623a03b744962d2e1aa2df2c33a4a60c6cad18b7750ab4da",
+        "path": "assets/masters/tarot/the-hanged-man-v1.png",
+        "width": 400,
+        "height": 560,
+        "sha256": "b600d631d9065043ed80bfa293e081359df608e0f8870f21f18308997801d65b",
+        "provenance": "Project-authored 400x560 lacquered indigo hwatu talisman master with inverted lantern, vanishing flame, gold notch, and ash seal; no text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/tarot/the-hanged-man-v1.png",
+        "width": 36,
+        "height": 52,
+        "alphaBounds": [
+          0,
+          0,
+          35,
+          50
+        ],
+        "sha256": "1af73264136d9dac2d033b0cdf3fbd1a2045bd1ba38181beb5ad11e64b6c3cd7",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 36,
+        "targetHeight": 52,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/tarot/the-hanged-man-v1.report.json",
+        "reportSha256": "f931c90fb8add85d1bde1eb32182f97629fe722f423e1e78ca676d918293282e"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "tarot.the_chariot",

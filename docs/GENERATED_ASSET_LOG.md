@@ -335,4 +335,9 @@
 | 2026-09-09T15:40:00+0900 | `assets/runtime/tarot/the-magician-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T15:40:00+0900 | `assets/runtime/tarot/the-magician-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T15:40:00+0900 | `assets/runtime/ui/shop-tarot-the-magician-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 둔갑 부적; SHA-256 `3e14fe92a68e0cbba73b4e8239fc2eeda178fc680c08206f73ff5bb3d4999c81` |
+| 2026-09-09T16:05:00+0900 | `assets/masters/tarot/the-hanged-man-v1.svg` | Project-authored 400×560 indigo hwatu talisman vector with inverted lantern, vanishing flame, gold notch, and ash seal; no text, people, or month imagery |
+| 2026-09-09T16:05:00+0900 | `assets/masters/tarot/the-hanged-man-v1.png` | Preserved 400×560 RGBA raster master generated from the vector source |
+| 2026-09-09T16:05:00+0900 | `assets/runtime/tarot/the-hanged-man-v1.png` | 36×52 runtime PNG from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T16:05:00+0900 | `assets/runtime/tarot/the-hanged-man-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T16:05:00+0900 | `assets/runtime/ui/shop-tarot-the-hanged-man-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 소멸 부적; SHA-256 `0f5830cf143dc8991bec1c2408b798ea4898dfbda15fe8bce540c56c4cf79feb` |
 

@@ -92,7 +92,7 @@
 ## tarot
 
 - [x] `tarot.the_magician` - 둔갑 부적
-- [ ] `tarot.the_hanged_man` - 매달린자
+- [x] `tarot.the_hanged_man` - 소멸 부적
 - [ ] `tarot.the_chariot` - 전차
 - [ ] `tarot.the_lovers` - 연인
 

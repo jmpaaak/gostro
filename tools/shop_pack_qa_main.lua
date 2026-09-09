@@ -48,6 +48,7 @@ function love.load()
     local tarot_identity = os.getenv("SHOP_QA_TAROT") or "the_magician"
     local tarot_names = {
         the_magician = "둔갑 부적",
+        the_hanged_man = "소멸 부적",
     }
     local item
     if kind == "voucher" then
