@@ -351,3 +351,4 @@
 | 2026-09-09T16:35:00+0900 | `assets/runtime/tarot/the-lovers-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T16:35:00+0900 | `assets/runtime/ui/shop-tarot-the-lovers-love-v1.png` | Actual LÖVE 11.5 320×180 shop capture proving the manifest-backed 쌍둥이 부적; SHA-256 `dad3a387152aa712975b7285d07102810e7ecadd430597472a49268ce7b62818` |
 
+2026-09-09T16:16:35+0900 | assets/masters/tag/coupon-v1.png | 단골 패찰 (tag.coupon) high-res procedural wooden plaque master

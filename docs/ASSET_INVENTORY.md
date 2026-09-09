@@ -76,7 +76,7 @@
 
 ## tag
 
-- [ ] `tag.coupon` - 쿠폰
+- [x] `tag.coupon` - 단골 패찰
 - [ ] `tag.investment` - 투자
 - [ ] `tag.handy` - Handy
 - [ ] `tag.economy` - 이코노미
