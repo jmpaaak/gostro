@@ -1,4 +1,10 @@
 # STATUS
+## 2026-09-10 — Shop hover ignores sold slots
+- Unsold shop slots still lift 8px and gold-emphasize price on hover.
+- Buying a slot (or pointing at a sold one) now clears hover so the empty card does not keep floating.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Hover lift, chips-to-mult anim, and round HUD
 - Added hover states to hand cards (`M.HOVER_LIFT` in `card.lua`) via `mousemoved`.
 - Bound `scoring_pipeline` results to `score_anim.lua`, rendering chips, mult, and total floating over actual card coordinates.

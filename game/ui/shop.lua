@@ -130,6 +130,9 @@ function M.buy_card(s, idx)
     if s.money < card.price then return false, nil end
     s.money = s.money - card.price
     card.sold = true
+    if s.hover == idx then
+        s.hover = nil
+    end
     return true, { kind = card.kind, identity = card.identity, yaku = card.yaku }
 end
 
@@ -181,6 +184,8 @@ function M.slot_views(s)
     local positions = M.card_positions(s)
     local views = {}
     for i = 1, #items do
+        local sold = items[i] and items[i].sold == true
+        local hovered = s.hover == i and not sold
         views[i] = {
             index = i,
             item = items[i],
@@ -188,8 +193,9 @@ function M.slot_views(s)
             slot_type = items[i].slot_type or "random",
             label = item_label(items[i]),
             price_text = "$" .. tostring(items[i].price or 0),
-            hovered = s.hover == i,
-            price_emphasized = s.hover == i,
+            hovered = hovered,
+            price_emphasized = hovered,
+            sold = sold,
         }
     end
     return views
@@ -231,7 +237,8 @@ end
 function M.slot_draw_y(s, idx)
     local positions = M.card_positions(s)
     local y = positions[idx].y
-    if s.hover == idx then
+    local item = slot_item(s, idx)
+    if s.hover == idx and item and item.sold ~= true then
         return y - M.HOVER_LIFT
     end
     return y
