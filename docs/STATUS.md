@@ -1,4 +1,11 @@
 # STATUS
+## 2026-09-10 — Score sync, shop money tween, gwang slot size
+- Scoreboard chips/mult follow score_anim phases; popup and countup wait until total/done.
+- Shop $ readout tweens on buy via `sync_money`; gwang slots are 72×96 and HUD chrome shifted below.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (39) moved to 처리 완료.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Shop hover ignores sold slots
 - Unsold shop slots still lift 8px and gold-emphasize price on hover.
 - Buying a slot (or pointing at a sold one) now clears hover so the empty card does not keep floating.
