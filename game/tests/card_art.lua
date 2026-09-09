@@ -6,9 +6,10 @@ function M.run()
     require("game.tests.asset_loader").run()
     require("game.tests.card_candidate_manifest").run()
 
-    assert(card_art.path("pi") == "assets/runtime/cards/pi.png", "approved pi candidate must return its path")
-    assert(card_art.path("hongdan") == "assets/runtime/cards/hongdan.png", "approved card candidates must return their path")
-    assert(card_art.path("cheongdan") == "assets/runtime/cards/cheongdan.png", "approved card candidates must return their path")
+    local sheet_path = "assets/runtime/cards/play-card-contact-sheet-v1.png"
+    assert(card_art.path("pi") == sheet_path, "approved pi candidate must resolve its shared sheet")
+    assert(card_art.path("hongdan") == sheet_path, "approved card candidates must resolve their shared sheet")
+    assert(card_art.path("cheongdan") == sheet_path, "approved card candidates must resolve their shared sheet")
 
     print("  card_art: OK")
 end

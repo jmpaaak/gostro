@@ -1,5 +1,12 @@
 # STATUS
 
+## 2026-09-09 — 플레이 카드 공유 시트 전환 복구
+
+- 승인된 5종 플레이 카드 후보를 개별 중복 runtime 대신 `play-card.contact-sheet-v1` 단일 runtime atlas와 셀 영역으로 승격했다.
+- manifest-backed loader가 카드 ID에서 공유 시트 경로를 해석하도록 보완하고, 셀 순서·master/runtime 영역·alpha bounds 계약을 유지했다.
+- 적용 스크립트의 반복 실행이 같은 manifest를 생성함을 확인했으며 `make verify LOVE=/Users/jm/.local/bin/love` 전체 검증을 통과했다.
+- Next slice: `gwang.compound_burst` 복합 폭주 광 슬롯 아이템의 provider-backed sprite states/frames를 생성하고 Pixel Perfect 후처리·atlas/manifest 및 런타임 적용을 추가한다.
+
 ## 2026-09-09 — 복합 광 고해상도 픽셀 에셋 적용
 
 - `gwang.compound` 광 슬롯 아이템에 푸른 자개 점수 칩, 붉은 교차 비단 매듭, 네모 구멍 엽전을 하나의 순환 장치로 결합한 448×256 SVG/PNG master 및 56×32 runtime 에셋을 추가했다.

@@ -1,120 +1,11 @@
 {
   "version": 1,
-  "candidateSheets": [
-    {
-      "id": "play-card.contact-sheet-v1",
-      "status": "awaiting-art-approval",
-      "cardOrder": [
-        "pi",
-        "hongdan",
-        "cheongdan",
-        "chodan",
-        "godori"
-      ],
-      "master": {
-        "source": "assets/masters/cards/play-card-contact-sheet-v1.svg",
-        "sourceSha256": "f6e8553295882930ffb3e1e06ee651cecf591822fdc1a634a3e0d1f6ae0796a7",
-        "path": "assets/masters/cards/play-card-contact-sheet-v1.png",
-        "width": 960,
-        "height": 288,
-        "sha256": "5aede4e38365aeac409c7db46b6ace31b0d9ffe17ca82624f565c2d1b83c7f6f",
-        "provenance": "Project-authored five-card vector master; Korean hwatu-inspired shape language with no people, month numbers, month names, month illustrations, map pins, or English abbreviations."
-      },
-      "pixelPerfectCandidate": {
-        "path": "assets/runtime/cards/play-card-contact-sheet-v1.png",
-        "width": 120,
-        "height": 36,
-        "cardWidth": 24,
-        "cardHeight": 36,
-        "alphaBounds": [
-          0,
-          0,
-          119,
-          35
-        ],
-        "sha256": "b302d17fa40048e185ae3e0e164365941aa274d21a49f334f24ddb83257b9424",
-        "filter": "nearest"
-      },
-      "conversion": {
-        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 120,
-        "targetHeight": 36,
-        "pixelBlock": 1,
-        "backgroundTolerance": 0,
-        "paletteLimit": "original",
-        "report": "assets/runtime/cards/play-card-contact-sheet-v1.report.json",
-        "reportSha256": "a8d173387ecc5e0b27b0918eff45730f2765a3a36bd0a5815dfa99f491ccbdc7"
-      },
-      "overlapQa": {
-        "status": "automated-pass-human-pending",
-        "capture": "assets/runtime/cards/play-card-overlap-v1.png",
-        "captureSha256": "066bde247ad19c95e749a057121246185d04556a2f2ce070caf1c901f556ba48",
-        "report": "assets/runtime/cards/play-card-overlap-v1.qa.json",
-        "reportSha256": "6aaa3b4fcbbca0d56b6baffc4883da4278c85760b2c48624f1a18bd4fe49fbbc",
-        "topVisiblePixels": 10,
-        "topMarksUnique": true,
-        "loveCapture": {
-          "renderer": "LOVE 11.5",
-          "canvas": [
-            320,
-            180
-          ],
-          "capture": "assets/runtime/cards/play-card-overlap-love-v1.png",
-          "captureSha256": "25e0b8939c7748bcf1150be223e737273f803925a857b3da7b3bab59e6358876",
-          "report": "assets/runtime/cards/play-card-overlap-love-v1.qa.json",
-          "reportSha256": "f7ef3921cd3088e06b775f5b2c8202afced6a3f00b4efa06300c818577e3bdeb",
-          "filter": "nearest",
-          "repeatCaptureDeterministic": true,
-          "artApproval": "human-pending"
-        }
-      }
-    }
-  ],
+  "candidateSheets": [],
   "assets": [
     {
       "id": "play-card.pi",
       "category": "play-card",
       "status": "runtime",
-      "master": {
-        "source": "assets/masters/cards/pi.svg",
-        "sourceSha256": "aebb8e897d550e97f75df63980c858b43c4649e320fd0a61f84405c0d2a2552c",
-        "path": "assets/masters/cards/pi.png",
-        "width": 192,
-        "height": 288,
-        "sha256": "bbfd0b09efbd3f30cc9a243520af5f5f972489840cfeb89e3cce89e722290f8e",
-        "provenance": "Project-authored vector shape/type master; no photo, person, month number, month name, or month illustration."
-      },
-      "runtime": {
-        "path": "assets/runtime/cards/pi.png",
-        "width": 24,
-        "height": 36,
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ],
-        "sha256": "110091f5547b0f409dc7bb4a9c2118d2848e53b6b46bc83ec3c66e61ba38e8f2",
-        "filter": "nearest"
-      },
-      "conversion": {
-        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 24,
-        "targetHeight": 36,
-        "pixelBlock": 1,
-        "backgroundTolerance": 0,
-        "paletteLimit": "original",
-        "report": "assets/runtime/cards/pi.report.json"
-      },
-      "animation": {
-        "frames": 1,
-        "fps": 0,
-        "loop": false,
-        "origin": [
-          0,
-          0
-        ]
-      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 1,
@@ -142,47 +33,6 @@
       "id": "play-card.hongdan",
       "category": "play-card",
       "status": "runtime",
-      "name": "hongdan",
-      "master": {
-        "source": "assets/masters/cards/hongdan.svg",
-        "sourceSha256": "f60629f9007197d00b04e2101800e3a4740cabf1086c266a4bfbc4ae09c7304a",
-        "path": "assets/masters/cards/hongdan.png",
-        "width": 192,
-        "height": 288,
-        "sha256": "1c2ed545eddad76ffca9d135649f80dada5041d7872f31d612207195c3208449",
-        "provenance": "Project-authored vector shape master; no photo, person, month number, month name, or month illustration."
-      },
-      "runtime": {
-        "path": "assets/runtime/cards/hongdan.png",
-        "width": 24,
-        "height": 36,
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ],
-        "sha256": "04b600cbb20125d7a3612fd123a97b851d83b1fc0dda4e0dde2f137893319cae",
-        "filter": "nearest"
-      },
-      "conversion": {
-        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
-        "targetWidth": 24,
-        "targetHeight": 36,
-        "pixelBlock": 1,
-        "backgroundTolerance": 0,
-        "paletteLimit": "original",
-        "report": "assets/runtime/cards/hongdan.report.json"
-      },
-      "animation": {
-        "frames": 1,
-        "fps": 0,
-        "loop": false,
-        "origin": [
-          0,
-          0
-        ]
-      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 2,
@@ -210,20 +60,6 @@
       "id": "play-card.cheongdan",
       "category": "play-card",
       "status": "runtime",
-      "name": "cheongdan",
-      "runtime": {
-        "path": "assets/runtime/cards/cheongdan.png",
-        "width": 24,
-        "height": 36,
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ],
-        "sha256": "8e71d7b599edcaa3048264faa800f59999f6a1c3a9db1828e322cad6911383b6",
-        "filter": "nearest"
-      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 3,
@@ -251,20 +87,6 @@
       "id": "play-card.chodan",
       "category": "play-card",
       "status": "runtime",
-      "name": "chodan",
-      "runtime": {
-        "path": "assets/runtime/cards/chodan.png",
-        "width": 24,
-        "height": 36,
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ],
-        "sha256": "40cc71e9fc801e0086feb983cf4defb1ebac6c4592d68de10374c205842e6725",
-        "filter": "nearest"
-      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 4,
@@ -292,20 +114,6 @@
       "id": "play-card.godori",
       "category": "play-card",
       "status": "runtime",
-      "name": "godori",
-      "runtime": {
-        "path": "assets/runtime/cards/godori.png",
-        "width": 24,
-        "height": 36,
-        "alphaBounds": [
-          0,
-          0,
-          23,
-          35
-        ],
-        "sha256": "a90aaec74b9d4b19449c898f3b9874999111aa9a72de9a92602441261e4a1cc5",
-        "filter": "nearest"
-      },
       "candidateSheet": "play-card.contact-sheet-v1",
       "candidateCell": {
         "index": 5,
@@ -3218,6 +3026,68 @@
           "minY": 0,
           "maxX": 35,
           "maxY": 51
+        }
+      }
+    },
+    {
+      "id": "play-card.contact-sheet-v1",
+      "category": "play-card-sheet",
+      "status": "runtime",
+      "master": {
+        "source": "assets/masters/cards/play-card-contact-sheet-v1.svg",
+        "sourceSha256": "f6e8553295882930ffb3e1e06ee651cecf591822fdc1a634a3e0d1f6ae0796a7",
+        "path": "assets/masters/cards/play-card-contact-sheet-v1.png",
+        "width": 960,
+        "height": 288,
+        "sha256": "5aede4e38365aeac409c7db46b6ace31b0d9ffe17ca82624f565c2d1b83c7f6f",
+        "provenance": "Project-authored five-card vector master; Korean hwatu-inspired shape language with no people, month numbers, month names, month illustrations, map pins, or English abbreviations."
+      },
+      "runtime": {
+        "path": "assets/runtime/cards/play-card-contact-sheet-v1.png",
+        "width": 120,
+        "height": 36,
+        "cardWidth": 24,
+        "cardHeight": 36,
+        "alphaBounds": [
+          0,
+          0,
+          119,
+          35
+        ],
+        "sha256": "b302d17fa40048e185ae3e0e164365941aa274d21a49f334f24ddb83257b9424",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 120,
+        "targetHeight": 36,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/cards/play-card-contact-sheet-v1.report.json",
+        "reportSha256": "a8d173387ecc5e0b27b0918eff45730f2765a3a36bd0a5815dfa99f491ccbdc7"
+      },
+      "overlapQa": {
+        "status": "automated-pass",
+        "capture": "assets/runtime/cards/play-card-overlap-v1.png",
+        "captureSha256": "066bde247ad19c95e749a057121246185d04556a2f2ce070caf1c901f556ba48",
+        "report": "assets/runtime/cards/play-card-overlap-v1.qa.json",
+        "reportSha256": "6aaa3b4fcbbca0d56b6baffc4883da4278c85760b2c48624f1a18bd4fe49fbbc",
+        "topVisiblePixels": 10,
+        "topMarksUnique": true,
+        "loveCapture": {
+          "renderer": "LOVE 11.5",
+          "canvas": [
+            320,
+            180
+          ],
+          "capture": "assets/runtime/cards/play-card-overlap-love-v1.png",
+          "captureSha256": "25e0b8939c7748bcf1150be223e737273f803925a857b3da7b3bab59e6358876",
+          "report": "assets/runtime/cards/play-card-overlap-love-v1.qa.json",
+          "reportSha256": "f7ef3921cd3088e06b775f5b2c8202afced6a3f00b4efa06300c818577e3bdeb",
+          "filter": "nearest",
+          "repeatCaptureDeterministic": true,
+          "artApproval": "approved"
         }
       }
     }

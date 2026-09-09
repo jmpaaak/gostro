@@ -174,6 +174,9 @@ end
 function M.runtime_path(id, api)
     local entry = M.entry(id, api)
     local runtime = entry and entry.runtime
+    if entry and entry.status == "runtime" and type(entry.candidateSheet) == "string" then
+        return M.runtime_path(entry.candidateSheet, api)
+    end
     if not entry or entry.status ~= "runtime" or type(runtime) ~= "table" then
         return nil
     end

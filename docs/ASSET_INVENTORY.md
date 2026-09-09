@@ -63,6 +63,8 @@
 - [ ] `planet.planet_pi` - Pluto
 
 ## play-card
+- [x] `play-card.contact-sheet-v1` - play-card.contact-sheet-v1
+
 
 - [x] `play-card.pi` - play-card.pi
 - [x] `play-card.hongdan` - hongdan
