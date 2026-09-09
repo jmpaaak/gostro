@@ -2,6 +2,7 @@
 
 local seed_ui = require("game.ui.seed")
 local effect_art = require("game.ui.effect_art")
+local deck_art = require("game.ui.deck_art")
 
 local M = {}
 
@@ -182,6 +183,19 @@ end
 
 local function draw_deck_art(graphics, deck)
     local rect = LAYOUT.deck_art
+    if deck.id == "hwatu" then
+        local api = {
+            set_color = function(...) graphics.setColor(...) end,
+            draw = function(...)
+                if graphics.draw then
+                    return graphics.draw(...)
+                end
+            end,
+        }
+        if deck_art.draw_blue(rect.x, rect.y, rect.w, api) then
+            return
+        end
+    end
     draw_shadowed_box(graphics, rect, deck.colors[1], 5)
     graphics.setColor(0.96, 0.91, 0.73, 1)
     graphics.rectangle("line", rect.x + 3, rect.y + 3, rect.w - 6, rect.h - 6, 3, 3)

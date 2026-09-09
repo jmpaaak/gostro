@@ -119,7 +119,7 @@
 - [x] `ui.effect_lock` - ui.effect_lock
 - [x] `ui.effect_win` - ui.effect_win
 - [x] `ui.effect_loss` - ui.effect_loss
-- [ ] `ui.deck_blue` - ui.deck_blue
+- [x] `ui.deck_blue` - ui.deck_blue
 - [ ] `ui.deck_red` - ui.deck_red
 - [ ] `ui.deck_yellow` - ui.deck_yellow
 - [ ] `ui.stake_white` - ui.stake_white

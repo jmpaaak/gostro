@@ -3552,8 +3552,47 @@
     {
       "id": "ui.deck_blue",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.deck_blue"
+      "status": "runtime",
+      "name": "ui.deck_blue",
+      "master": {
+        "path": "assets/masters/ui/deck-blue-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "67b827f07e86837443274ceceb82338f992c84c04875ea39fd06fe7862ba7b68",
+        "provenance": "Project-authored 384x384 RGBA lacquered indigo hwatu deck back with brass corners, a mother-of-pearl center mark, and five geometric type marks. No text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/deck-blue-v1.png",
+        "width": 48,
+        "height": 48,
+        "alphaBounds": [
+          0,
+          0,
+          46,
+          47
+        ],
+        "sha256": "fb43f756ea7df379732e7366e961ab06ce5d80f86c59f45f4b7f58d625d17d43",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 48,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/deck-blue-v1.report.json",
+        "reportSha256": "5ea796330b3470454be5693794dec183a9f1f4da35f1452768d9f9948e105b60"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.deck_red",

@@ -1,4 +1,14 @@
 # STATUS
+## 2026-09-09 — 파란 덱 썸네일 고해상도 픽셀 에셋 적용
+
+- `ui.deck_blue`에 384×384 옻칠 남색 화투 뒷면 PNG master와 48×48 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과했다.
+- 신규 `game/ui/deck_art.lua`에 `draw_blue` 계약을 두고 새 게임 설정의 기본 화투패 하드코딩 도형을 배선했다.
+- 엔진 테스트와 LÖVE 320×180 캡처 QA를 통과했다.
+- `make verify LOVE=/Users/jm/.local/bin/love` GREEN: 전체 unit/font/capture/smoke/bundle 검증이 통과했고 bundle은 635개 파일이다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.deck_red` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 덱 선택 UI에 적용한다.
+
 ## 2026-09-09 — 패배 효과 고해상도 픽셀 에셋 적용
 
 - `ui.effect_loss`에 960×540 한국 화투 패배 베일 PNG master와 320×180 runtime 에셋을 추가했다.

@@ -284,4 +284,9 @@
 | 2026-09-09T16:05:00+0900 | `assets/runtime/ui/effect-loss-v1.png` | 320×180 runtime overlay from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T16:05:00+0900 | `assets/runtime/ui/effect-loss-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 16-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T16:05:00+0900 | `assets/runtime/ui/effect-loss-love-v1.png` | Actual LÖVE 11.5 320×180 play-scene capture proving the manifest-backed loss overlay; SHA-256 `d4d1422f57c78c1aa4d911ffd56b22f4af17be8d0930c6b2bb962e382d0024d6` |
+| 2026-09-09T13:34:05+0900 | `assets/masters/ui/deck-blue-v1.png` | Project-authored 384×384 lacquered indigo hwatu deck back with brass corners, a mother-of-pearl center mark, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T13:34:05+0900 | `assets/runtime/ui/deck-blue-v1.png` | 48×48 runtime thumbnail from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T13:34:05+0900 | `assets/runtime/ui/deck-blue-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 17-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T13:34:05+0900 | `assets/runtime/ui/deck-blue-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed blue deck thumbnail; SHA-256 `55076b1b802e0114dafeecb8725411b3ea2a2aef553b028b37ddacc891d0c6bd` |
+
 

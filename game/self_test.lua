@@ -7,6 +7,7 @@ function M.run()
     require("game.tests.main_menu_ui").run()
     require("game.tests.menu_scene").run()
     require("game.tests.run_setup_ui").run()
+    require("game.tests.deck_art").run()
 
     local actor = player.new()
     player.update(actor, 1, { right = true })
