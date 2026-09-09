@@ -2062,3 +2062,13 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - INBOX (27) 고해상도 master 기반 픽셀 에셋 전환 작업의 마지막 항목(화살표)을 성공적으로 반영하였으므로, 전체 INBOX (27) 작업을 완료 처리하였다.
 - Next slice: INBOX의 다음 우선순위 항목 진행
 - Next slice: `ui.effect_loss` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 패배 효과에 적용한다.
+
+## Archived from STATUS.md (2026-09-10 01:12)
+
+## 2026-09-10 — Default window 960×540 for Balatro-scale canvas
+- After the 960×540 canvas / 72×108 card lift, `conf.lua` still opened 320×180.
+- Default play window is now 960×540 (1×). `GAME_SCALE=2` is integer 2× 1920×1080.
+- `game/tests/window_conf.lua` covers play vs headless window sizes.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK.
+- INBOX (32) completion: canvas 960×540, cards 72×108, HUD 3×, Galmuri 33, backgrounds 960×540 Pixel Perfect valid, default window 960×540.
+- Next slice: 처리 대기 empty → IDLE

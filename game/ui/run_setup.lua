@@ -386,7 +386,7 @@ function M.draw(state, graphics, embedded)
 
     local fonts = require("game.fonts")
     local old_font = graphics.getFont()
-    local font = fonts.get(11, graphics)
+    local font = fonts.get(33, graphics)
     graphics.setFont(font)
 
     if not embedded then

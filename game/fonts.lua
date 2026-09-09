@@ -12,7 +12,7 @@ end
 
 function M.get(size, graphics)
     size = size or DEFAULT_SIZE
-    assert(type(size) == "number" and size > 0 and size % DEFAULT_SIZE == 0,
+    assert(type(size) == "number" and size > 0 and size % 11 == 0,
         "Galmuri11 font size must be a positive multiple of 11")
 
     if not cache[size] then

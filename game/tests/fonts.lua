@@ -36,8 +36,14 @@ function M.run()
     assert(default.path == "assets/fonts/Galmuri11.ttf")
     assert(default.size == 33)
     assert(fonts.get(33, graphics) == default, "font sizes must be cached")
+    assert(fonts.get(11, graphics).size == 11, "Galmuri still accepts the 11px cell size")
     assert(fonts.get(22, graphics).size == 22)
-    assert(#created == 2)
+    assert(fonts.get(66, graphics).size == 66, "title size is a 11-multiple of the 33px body")
+    assert(#created == 4)
+
+    local rejected, err = pcall(fonts.get, 10, graphics)
+    assert(rejected == false, "non-multiples of 11 must be rejected")
+    assert(tostring(err):find("multiple of 11", 1, true), "reject message names the 11px cell")
 
     for _, text in ipairs({ "상점", "다음 라운드", "광" }) do
         assert(default:getWidth(text) > 0)

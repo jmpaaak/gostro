@@ -85,6 +85,30 @@ function M.run()
     assert(menu.mode == "landing", "back returns to landing")
     assert(#main_menu.buttons(menu) == 1, "landing is restored after back")
 
+    local sizes = {}
+    local font = { getHeight = function() return 33 end }
+    local graphics = {
+        getFont = function() return font end,
+        setFont = function() end,
+        setColor = function() end,
+        printf = function() end,
+        rectangle = function() end,
+        circle = function() end,
+        clear = function() end,
+        draw = function() end,
+    }
+    local old_fonts = package.loaded["game.fonts"]
+    package.loaded["game.fonts"] = {
+        get = function(size)
+            sizes[#sizes + 1] = size
+            return font
+        end,
+    }
+    main_menu.draw(menu, graphics)
+    package.loaded["game.fonts"] = old_fonts
+    assert(sizes[1] == 33, "landing body copy uses the 33px Galmuri size")
+    assert(sizes[2] == 66, "landing title uses the 66px Galmuri size")
+
     print("  main_menu_ui: OK")
 end
 

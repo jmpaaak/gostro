@@ -1,10 +1,10 @@
 # STATUS
-## 2026-09-10 — Default window 960×540 for Balatro-scale canvas
-- After the 960×540 canvas / 72×108 card lift, `conf.lua` still opened 320×180.
-- Default play window is now 960×540 (1×). `GAME_SCALE=2` is integer 2× 1920×1080.
-- `game/tests/window_conf.lua` covers play vs headless window sizes.
+## 2026-09-10 — Galmuri 11-multiple assert no longer crashes love .
+- `fonts.get` now asserts `size % 11 == 0` (not `% DEFAULT_SIZE`). Default body stays 33; title is 66.
+- Landing/run-setup stopped calling `fonts.get(11)`/`fonts.get(22)`, which crashed after the 960×540 lift.
+- `game/tests/fonts.lua` covers 11/22/33/66 and rejects 10. `game/tests/main_menu_ui.lua` asserts landing 33/66.
 - `make test LOVE=/Users/jm/.local/bin/love` GREEN: GOSTRO_UNIT_OK, GOSTRO_SMOKE_OK.
-- INBOX (32) completion: canvas 960×540, cards 72×108, HUD 3×, Galmuri 33, backgrounds 960×540 Pixel Perfect valid, default window 960×540.
+- INBOX (33) done: landing can draw without the Galmuri assert.
 - Next slice: 처리 대기 empty → IDLE
 
 ## 2026-09-09 — Batch capture QA so verify finishes under 120s

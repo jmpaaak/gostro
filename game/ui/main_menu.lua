@@ -203,8 +203,8 @@ function M.draw(menu, graphics)
 
     local fonts = require("game.fonts")
     local old_font = graphics.getFont()
-    local body_font = fonts.get(11, graphics)
-    local title_font = fonts.get(22, graphics)
+    local body_font = fonts.get(33, graphics)
+    local title_font = fonts.get(66, graphics)
 
     draw_background(graphics)
     graphics.setFont(body_font)
