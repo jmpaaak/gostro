@@ -183,16 +183,20 @@ end
 
 local function draw_deck_art(graphics, deck)
     local rect = LAYOUT.deck_art
+    local api = {
+        set_color = function(...) graphics.setColor(...) end,
+        draw = function(...)
+            if graphics.draw then
+                return graphics.draw(...)
+            end
+        end,
+    }
     if deck.id == "hwatu" then
-        local api = {
-            set_color = function(...) graphics.setColor(...) end,
-            draw = function(...)
-                if graphics.draw then
-                    return graphics.draw(...)
-                end
-            end,
-        }
         if deck_art.draw_blue(rect.x, rect.y, rect.w, api) then
+            return
+        end
+    elseif deck.id == "thin" then
+        if deck_art.draw_red(rect.x, rect.y, rect.w, api) then
             return
         end
     end

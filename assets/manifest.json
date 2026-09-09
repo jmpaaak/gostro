@@ -3597,8 +3597,47 @@
     {
       "id": "ui.deck_red",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.deck_red"
+      "status": "runtime",
+      "name": "ui.deck_red",
+      "master": {
+        "path": "assets/masters/ui/deck-red-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": "8277fa6ecbd8fd67097f7c90b2d14f675bb419ce2a9c524671ce7cd71a76b79d",
+        "provenance": "Project-authored 384x384 RGBA lacquered crimson hwatu deck back with brass corners, a mother-of-pearl center mark, and five geometric type marks. No text, people, or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/deck-red-v1.png",
+        "width": 48,
+        "height": 48,
+        "alphaBounds": [
+          0,
+          0,
+          46,
+          47
+        ],
+        "sha256": "0589f5d84857b1a3378561cbb1dd15a8a218c1f5119b81dc19310e63b0754a62",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 48,
+        "targetHeight": 48,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/deck-red-v1.report.json",
+        "reportSha256": "5ea796330b3470454be5693794dec183a9f1f4da35f1452768d9f9948e105b60"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.deck_yellow",

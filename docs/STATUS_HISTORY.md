@@ -1548,3 +1548,7 @@ past ~16KB. See `docs/TOKEN_OPTIMIZATION.md` for the full pattern.
 - 메인 메뉴(`game/ui/main_menu.lua`)의 하드코딩된 도형 렌더링을 신규 `ui.menu_bg` 에셋 렌더링으로 교체했다.
 - INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
 - Next slice: `ui.play_bg` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 플레이 씬 배경에 적용한다.
+
+## Archived from STATUS.md (2026-09-09 13:45)
+
+## 2026-09-09 — 파란 덱 썸네일 고해상도 픽셀 에셋 적용

@@ -288,5 +288,9 @@
 | 2026-09-09T13:34:05+0900 | `assets/runtime/ui/deck-blue-v1.png` | 48×48 runtime thumbnail from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T13:34:05+0900 | `assets/runtime/ui/deck-blue-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 17-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T13:34:05+0900 | `assets/runtime/ui/deck-blue-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed blue deck thumbnail; SHA-256 `55076b1b802e0114dafeecb8725411b3ea2a2aef553b028b37ddacc891d0c6bd` |
+| 2026-09-09T13:42:04+0900 | `assets/masters/ui/deck-red-v1.png` | Project-authored 384×384 lacquered crimson hwatu deck back with brass corners, a mother-of-pearl center mark, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T13:42:04+0900 | `assets/runtime/ui/deck-red-v1.png` | 48×48 runtime thumbnail from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T13:42:04+0900 | `assets/runtime/ui/deck-red-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 17-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T13:42:04+0900 | `assets/runtime/ui/deck-red-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed red thin-deck thumbnail; SHA-256 `00fe3efb4b6099071676c8be865a0a1baff5b7deeac9d63c2ac42f5ee4eac6ec` |
 
 
