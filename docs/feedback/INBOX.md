@@ -2,17 +2,18 @@
 
 ## 처리 대기
 
-(35) **발라트로급 플레이 디테일: 호버·점수 연출·고/판/돈 HUD** (msg `1547288119257075793`)
-  - 담당: `game/ui/hand.lua`, `game/ui/card.lua`, `game/ui/score_anim.lua`, `game/ui/round_hud.lua`, `game/scenes/play.lua`, `game/scene_stack.lua`, `main.lua`.
-  - 호버 시 패가 살짝 올라감. 놓기 후 칩→×배수→총점 연출을 실제 패 좌표에 연결. 플레이 중 1고/첫판/$/남은 패가 항상 보임. 광 글로우는 실제 슬롯 좌표.
-  - 완료: 호버·연출·라운드 HUD, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
-
+(없음)
 
 ## 처리 중
 
 (없음)
 
 ## 처리 완료
+
+(35) **발라트로급 플레이 디테일: 호버·점수 연출·고/판/돈 HUD** (msg `1547288119257075793`)
+  - 담당: `game/ui/hand.lua`, `game/ui/card.lua`, `game/ui/score_anim.lua`, `game/ui/round_hud.lua`, `game/scenes/play.lua`, `game/scene_stack.lua`, `main.lua`.
+  - 호버 시 패가 8px 올라감(선택은 16px이 이김). 놓기 후 칩→×배수→총점 연출을 실제 패 좌표에 연결. 플레이 중 1고/첫판/$/남은 패와 `패를 고르고 놓기`가 우측에 보임. 광 글로우는 실제 슬롯 좌표.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
 
 (34) **플레이 HUD가 발라트로 대비 진행 안내·선택 점수·겹침이 없다** (msg `1547282298062372965`)
   - 담당: `game/ui/scoreboard.lua`, `game/ui/action_buttons.lua`, `game/ui/planets_ui.lua`, `game/ui/seed.lua`, `game/scenes/play.lua`, `game/scoring_pipeline.lua`.

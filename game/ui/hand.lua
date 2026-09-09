@@ -21,6 +21,7 @@ function M.new()
     return {
         cards          = {},
         selected_order = {},   -- list of card indices in selection order
+        hover          = nil,
     }
 end
 
@@ -35,6 +36,7 @@ function M.deal(h, cards)
 
     h.cards = {}
     h.selected_order = {}
+    h.hover = nil
     for i, source in ipairs(cards) do
         local domain = type(source) == "table" and source or { kind = source }
         local x = start_x + (i - 1) * OVERLAP
@@ -130,6 +132,21 @@ function M.hit_test(h, px, py)
         end
     end
     return nil
+end
+
+function M.hover_index(h)
+    return h.hover
+end
+
+function M.set_hover(h, idx)
+    h.hover = idx
+    for i, c in ipairs(h.cards) do
+        c.hovered = (i == idx)
+    end
+end
+
+function M.set_hover_at(h, px, py)
+    M.set_hover(h, M.hit_test(h, px, py))
 end
 
 return M

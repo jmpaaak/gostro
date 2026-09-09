@@ -55,3 +55,15 @@ function love.touchpressed(_, x, y)
     local width, height = love.graphics.getDimensions()
     sceneStack.screenpressed(scenes, x, y, width, height, 1, true, 1)
 end
+
+function love.mousemoved(x, y)
+    if not scenes then return end
+    local width, height = love.graphics.getDimensions()
+    sceneStack.screenmoved(scenes, x, y, width, height)
+end
+
+function love.touchmoved(_, x, y)
+    if not scenes then return end
+    local width, height = love.graphics.getDimensions()
+    sceneStack.screenmoved(scenes, x, y, width, height)
+end

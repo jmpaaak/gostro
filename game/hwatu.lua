@@ -30,6 +30,10 @@ local YAKU_LABELS = {
     pi = "피",
 }
 
+function M.chips_of(kind)
+    return CHIPS[kind]
+end
+
 function M.yaku_label(yaku)
     if type(yaku) ~= "table" or #yaku == 0 then
         return "바닥"

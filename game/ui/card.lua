@@ -10,6 +10,7 @@ local M = {}
 M.WIDTH  = 72
 M.HEIGHT = 108
 M.LIFT   = 16  -- pixels to raise when selected
+M.HOVER_LIFT = 8  -- smaller peek while the pointer is over a card
 
 local PLAY_KINDS = {
     hongdan   = true,
@@ -52,6 +53,7 @@ function M.new(kind, x, y)
         x        = x,
         y        = y,
         selected = false,
+        hovered  = false,
     }
 end
 
@@ -60,9 +62,15 @@ function M.toggle_select(c)
     c.selected = not c.selected
 end
 
---- Effective draw Y (lifted when selected).
+--- Effective draw Y (selected lift wins over hover peek).
 function M.draw_y(c)
-    return c.selected and (c.y - M.LIFT) or c.y
+    if c.selected then
+        return c.y - M.LIFT
+    end
+    if c.hovered then
+        return c.y - M.HOVER_LIFT
+    end
+    return c.y
 end
 
 --- Symbol character for a play-card kind.
@@ -95,9 +103,11 @@ function M.draw(c)
         love.graphics.rectangle("fill", c.x, dy, M.WIDTH, M.HEIGHT, 2, 2)
     end
 
-    -- border (highlight when selected)
+    -- border (highlight when selected or hovered)
     if c.selected then
         love.graphics.setColor(1, 1, 0.3, 1)
+    elseif c.hovered then
+        love.graphics.setColor(0.95, 0.88, 0.55, 1)
     else
         love.graphics.setColor(0.15, 0.15, 0.15, 1)
     end

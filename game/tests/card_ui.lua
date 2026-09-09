@@ -12,6 +12,7 @@ function M.run()
     assert(card.WIDTH == 72, "card width must be 72")
     assert(card.HEIGHT == 108, "card height must be 108")
     assert(card.LIFT == 16, "selected lift must be 16")
+    assert(card.HOVER_LIFT == 8, "hover lift must be 8")
 
     -- new() creates a card widget with position and kind
     local c = card.new("hongdan", 10, 50)

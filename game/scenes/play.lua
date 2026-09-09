@@ -13,6 +13,7 @@ local scoreboard_ui = require("game.ui.scoreboard")
 local buttons_ui    = require("game.ui.action_buttons")
 local shop_ui       = require("game.ui.shop")
 local pack_ui       = require("game.ui.pack")
+local round_hud     = require("game.ui.round_hud")
 local blind_sel_ui  = require("game.ui.blind_select")
 local gwang_sl_ui   = require("game.ui.gwang_slots")
 local planets_ui    = require("game.ui.planets_ui")
@@ -21,6 +22,8 @@ local consumables_ui = require("game.ui.consumables")
 local tarot_use      = require("game.tarot_use")
 local scene_bg       = require("game.ui.scene_bg")
 local effect_art     = require("game.ui.effect_art")
+local score_anim_ui  = require("game.ui.score_anim")
+local hwatu          = require("game.hwatu")
 
 local M = {}
 M.__index = M
@@ -127,6 +130,7 @@ function M.select_blind(scene, idx)
     scoreboard_ui.set_target(scene.scoreboard, target)
 
     scene.buttons = buttons_ui.new(scene.round.hands_left, scene.round.discards_left)
+    scene.score_anim = score_anim_ui.new()
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     M.sync_preview(scene)
 
@@ -159,10 +163,31 @@ function M.play_hand(scene)
 
     local result = scoring.score(cards, scene.run_state, { rng = scene.run_state.rng.cards })
     if not result then return false end
+    local anim_cards = {}
+    for i = 1, #cards do
+        anim_cards[i] = {
+            kind = cards[i].kind,
+            chips = hwatu.chips_of(cards[i].kind) or 0,
+            x = scene.hand.cards[indices[i]] and scene.hand.cards[indices[i]].x,
+            y = scene.hand.cards[indices[i]] and scene.hand.cards[indices[i]].y,
+        }
+    end
     local transition = round_engine.play(scene.round, indices, result)
 
     blind_flow.score(scene.run_state, result.score, scene.round.hands_left)
     scoreboard_ui.set_hand_result(scene.scoreboard, result.chips, result.mult)
+    if not scene.score_anim then scene.score_anim = score_anim_ui.new() end
+    score_anim_ui.start(scene.score_anim, {
+        cards = anim_cards,
+        base_chips = result.chips,
+        base_mult = result.mult,
+        bonus_chips = 0,
+        bonus_mult = 0,
+        final_chips = result.chips,
+        final_mult = result.mult,
+        total = result.score,
+        gwang_triggers = result.gwang_triggers or {},
+    })
     sync_round_ui(scene)
 
     if transition == "lose" then
@@ -232,6 +257,7 @@ end
 function M:update(dt)
     if self.state == "playing" and self.scoreboard then
         scoreboard_ui.update(self.scoreboard, dt)
+        if self.score_anim then score_anim_ui.update(self.score_anim, dt) end
         -- Update button enabled state based on selection
         buttons_ui.set_selection(self.buttons, #self.hand.selected_order)
         M.sync_preview(self)
@@ -259,6 +285,11 @@ function M:draw()
         hand_ui.draw(self.hand)
         scoreboard_ui.draw(self.scoreboard)
         buttons_ui.draw(self.buttons)
+        round_hud.draw(self.run_state, self.round)
+        if self.score_anim then
+            score_anim_ui.draw(self.score_anim, self.hand and self.hand.cards)
+            score_anim_ui.draw_gwang_glow(self.score_anim)
+        end
 
     elseif self.state == "shop" then
         shop_ui.draw(self.shop)
@@ -343,6 +374,15 @@ function M:mousepressed(px, py)
             M.buy_shop_card(self, hit)
         end
     end
+end
+
+function M:mousemoved(px, py)
+    if self.state ~= "playing" or not self.hand then return end
+    if px == nil or py == nil then
+        hand_ui.set_hover(self.hand, nil)
+        return
+    end
+    hand_ui.set_hover_at(self.hand, px, py)
 end
 
 --- Handle key press.

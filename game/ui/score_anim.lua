@@ -4,6 +4,9 @@
 
 local effect_art = require("game.ui.effect_art")
 
+local gwang_slots = require("game.ui.gwang_slots")
+local card = require("game.ui.card")
+
 local M = {}
 
 -- Timing constants (seconds)
@@ -54,6 +57,8 @@ function M.start(sa, data)
         sa.card_popups[i] = {
             kind = c.kind,
             chips = c.chips,
+            x = c.x,
+            y = c.y,
             alpha = 0,
             shown = false,
         }
@@ -178,9 +183,18 @@ function M.draw(sa, hand_cards)
     if sa.phase == "cards" or sa.phase == "mult" or sa.phase == "total" or sa.phase == "done" then
         for i, popup in ipairs(sa.card_popups) do
             if popup.shown then
-                -- Position above the card (estimate: cards are ~28px wide, spaced)
-                local card_x = 10 + (i - 1) * 34 + 14
-                local card_y = 105
+                local card_x, card_y
+                if popup.x then
+                    card_x = popup.x + card.WIDTH / 2
+                    card_y = (popup.y or 420) - 18
+                elseif hand_cards and hand_cards[i] then
+                    local widget = hand_cards[i]
+                    card_x = widget.x + card.WIDTH / 2
+                    card_y = (widget.y or 420) - 18
+                else
+                    card_x = 10 + (i - 1) * 34 + 14
+                    card_y = 105
+                end
                 local txt = "+" .. tostring(popup.chips)
                 -- Floating chip text
                 love.graphics.setColor(0.6, 0.85, 1, popup.alpha)
@@ -249,11 +263,12 @@ function M.draw_gwang_glow(sa)
             local alpha = math.min(1, g.timer / 0.5)  -- fade out in last 0.5s
             -- Pulse effect
             local pulse = 0.5 + 0.5 * math.sin(g.timer * 8)
-            -- Slot position: gwang slots are at top, ~40px apart starting at x=10
-            local slot_x = 10 + (g.slot - 1) * 40
-            local slot_y = 2
-            local slot_w = 36
-            local slot_h = 18
+            local positions = gwang_slots.slot_positions()
+            local slot = positions[g.slot] or positions[1]
+            local slot_x = slot.x
+            local slot_y = slot.y
+            local slot_w = slot.w
+            local slot_h = slot.h
 
             -- Glow color depends on identity
             if g.identity == "chips" then
