@@ -2744,8 +2744,49 @@
     {
       "id": "ui.panel_wood",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.panel_wood"
+      "status": "runtime",
+      "name": "ui.panel_wood",
+      "master": {
+        "source": "assets/masters/ui/panel-wood-v1.png",
+        "sourceSha256": "b58f56db3aa462b143b1eed0dac18f59f9ff4838698b899e21b1b13ea664d651",
+        "path": "assets/masters/ui/panel-wood-v1.png",
+        "width": 640,
+        "height": 368,
+        "sha256": "b58f56db3aa462b143b1eed0dac18f59f9ff4838698b899e21b1b13ea664d651",
+        "provenance": "Project-authored high-resolution lacquered wood panel with brass corner braces for 9-slice UI."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/panel-wood-v1.png",
+        "width": 80,
+        "height": 46,
+        "filter": "nearest",
+        "sha256": "e04981d51407e13f0bb3106839d6e6b3c5d78d9bcad2ba7d40c19ab0bb5f4e92",
+        "alphaBounds": [
+          0,
+          0,
+          79,
+          45
+        ]
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 80,
+        "targetHeight": 46,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/panel-wood-v1.report.json",
+        "reportSha256": "aee1ed73365e0482a02039395a1687111770681842bb5045a59f08c60be34997"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
+      }
     },
     {
       "id": "ui.panel_metal",

@@ -1,4 +1,13 @@
 # STATUS
+## 2026-09-09 — 상점/팩 우드 패널 고해상도 픽셀 에셋 적용
+
+- `ui.panel_wood`에 640×368 옻칠 목재 및 황동 모서리 장식의 9-slice 패널 SVG/PNG master와 80×46 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 통과하고 manifest-backed draw 모듈(`game/ui/panel_art.lua`)을 추가했다.
+- 기존 부스터 팩 선택 모달(`game/ui/pack.lua`)의 하드코딩된 도형 렌더링을 신규 `panel_art`로 교체했다.
+- `make verify`의 pack-panel-qa 독립 화면 캡처 및 전체 테스트를 통과했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.panel_metal`, `ui.panel_glass` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed 9-slice 패널 모듈에 통합한다.
+
 
 ## 2026-09-09 — 기본 UI 버튼 고해상도 픽셀 에셋 적용 및 draw 모듈 분리
 

@@ -248,3 +248,5 @@
 2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-secondary-v1.png | btn_secondary button graphic generated via PIL rounded rectangle
 2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-danger-v1.png | btn_danger button graphic generated via PIL rounded rectangle
 2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-disabled-v1.png | btn_disabled button graphic generated via PIL rounded rectangle
+2026-09-09T12:15:00+0900 | assets/masters/ui/panel-wood-v1.png | High-resolution lacquered wood panel with brass corner braces for 9-slice UI
+2026-09-09T12:15:00+0900 | assets/runtime/ui/panel-wood-v1.png | 80x46 runtime downscale for 9-slice UI panel

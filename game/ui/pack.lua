@@ -1,6 +1,8 @@
 -- game/ui/pack.lua
 -- Modal booster-pack choice overlay. Layout and hit-testing share a pure view.
 
+local panel_art = require("game.ui.panel_art")
+
 local M = {}
 
 local VIEWPORT_W = 320
@@ -72,10 +74,13 @@ function M.draw(pending)
     local view = M.view(pending)
     local panel = view.panel_bounds
 
-    love.graphics.setColor(0.015, 0.02, 0.05, 0.96)
-    love.graphics.rectangle("fill", panel.x, panel.y, panel.w, panel.h, 5, 5)
-    love.graphics.setColor(0.95, 0.65, 0.25, 1)
-    love.graphics.rectangle("line", panel.x, panel.y, panel.w, panel.h, 5, 5)
+    if not panel_art.draw("wood", panel) then
+        love.graphics.setColor(0.015, 0.02, 0.05, 0.96)
+        love.graphics.rectangle("fill", panel.x, panel.y, panel.w, panel.h, 5, 5)
+        love.graphics.setColor(0.95, 0.65, 0.25, 1)
+        love.graphics.rectangle("line", panel.x, panel.y, panel.w, panel.h, 5, 5)
+    end
+    love.graphics.setColor(1, 0.92, 0.72, 1)
     centered(view.title, panel, panel.y + 7)
     love.graphics.setColor(0.75, 0.82, 0.9, 1)
     centered(view.instruction, panel, panel.y + 22)

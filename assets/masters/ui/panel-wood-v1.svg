@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="368" viewBox="0 0 640 368">
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a4c24"/>
+      <stop offset="0.55" stop-color="#563016"/>
+      <stop offset="1" stop-color="#2e1408"/>
+    </linearGradient>
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe08c"/>
+      <stop offset="0.45" stop-color="#d6a44a"/>
+      <stop offset="1" stop-color="#7a4a14"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="10" width="640" height="358" rx="48" fill="#241008"/>
+  <rect x="0" y="0" width="640" height="358" rx="48" fill="url(#lacquer)"/>
+  <rect x="10" y="8" width="620" height="338" rx="36" fill="#562e14"/>
+  <g stroke="#3a1c0a" stroke-width="4" opacity="0.55" fill="none">
+    <path d="M28 40 C 180 34, 460 52, 612 38"/>
+    <path d="M28 84 C 200 92, 430 70, 612 88"/>
+    <path d="M28 128 C 170 118, 470 140, 612 126"/>
+    <path d="M28 172 C 210 186, 420 160, 612 176"/>
+    <path d="M28 216 C 190 208, 450 228, 612 214"/>
+    <path d="M28 260 C 220 274, 410 248, 612 266"/>
+    <path d="M28 304 C 180 292, 470 318, 612 300"/>
+  </g>
+  <rect x="22" y="18" width="596" height="318" rx="28" fill="none" stroke="url(#brass)" stroke-width="10"/>
+  <rect x="40" y="34" width="560" height="286" rx="18" fill="none" stroke="#30160a" stroke-width="6"/>
+  <g fill="none" stroke="url(#brass)" stroke-width="14" stroke-linecap="square">
+    <path d="M18 94 V16 H96"/>
+    <path d="M622 94 V16 H544"/>
+    <path d="M18 274 V340 H96"/>
+    <path d="M622 274 V340 H544"/>
+  </g>
+  <circle cx="18" cy="16" r="10" fill="#ffe08c"/>
+  <circle cx="622" cy="16" r="10" fill="#ffe08c"/>
+  <circle cx="18" cy="340" r="10" fill="#ffe08c"/>
+  <circle cx="622" cy="340" r="10" fill="#ffe08c"/>
+</svg>
