@@ -97,10 +97,15 @@ function M.draw(sb)
     local chips_txt = tostring(sb.chips)
     love.graphics.print(chips_txt, chips_x, box_y + 3)
     love.graphics.setColor(0.8, 0.8, 0.8, 1)
-    love.graphics.print(" × ", chips_x + font:getWidth(chips_txt), box_y + 3)
+    local times_x = chips_x + font:getWidth(chips_txt)
+    love.graphics.print(" × ", times_x, box_y + 3)
     love.graphics.setColor(1, 0.5, 0.3, 1)
-    love.graphics.print(tostring(sb.mult),
-        chips_x + font:getWidth(chips_txt .. " × "), box_y + 3)
+    local mult_txt = tostring(sb.mult)
+    local mult_x = times_x + font:getWidth(" × ")
+    love.graphics.print(mult_txt, mult_x, box_y + 3)
+    
+    local mult_icon_x = mult_x + font:getWidth(mult_txt) + 2
+    score_icon_art.draw_mult(mult_icon_x, box_y + 2, 12)
 
     -- Total score
     love.graphics.setColor(1, 1, 1, 1)

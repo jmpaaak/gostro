@@ -109,7 +109,7 @@
 - [ ] `ui.btn_danger` - ui.btn_danger
 - [ ] `ui.btn_disabled` - ui.btn_disabled
 - [x] `ui.icon_chip` - ui.icon_chip
-- [ ] `ui.icon_mult` - ui.icon_mult
+- [x] `ui.icon_mult` - ui.icon_mult
 - [ ] `ui.icon_money` - ui.icon_money
 - [ ] `ui.icon_deck` - ui.icon_deck
 - [ ] `ui.icon_discard` - ui.icon_discard

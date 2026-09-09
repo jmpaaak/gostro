@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="384" viewBox="0 0 384 384">
+  <defs>
+    <radialGradient id="fire" cx="50%" cy="50%" r="70%">
+      <stop offset="0" stop-color="#ff7f3f"/>
+      <stop offset="0.4" stop-color="#f53f1f"/>
+      <stop offset="0.75" stop-color="#a01100"/>
+      <stop offset="1" stop-color="#3d0000"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe699"/>
+      <stop offset="0.3" stop-color="#d4af37"/>
+      <stop offset="0.7" stop-color="#aa7c11"/>
+      <stop offset="1" stop-color="#f8d672"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+
+  <rect width="384" height="384" fill="none"/>
+  
+  <polygon points="192,20 360,105 360,279 192,364 24,279 24,105" fill="#110000" opacity="0.8" filter="url(#shadow)"/>
+  
+  <polygon points="192,28 350,110 350,274 192,356 34,274 34,110" fill="#2d0505" stroke="#3d0a0a" stroke-width="12"/>
+  
+  <polygon points="192,38 338,115 338,269 192,346 46,269 46,115" fill="url(#fire)" stroke="url(#gold)" stroke-width="14" stroke-linejoin="round"/>
+  
+  <circle cx="192" cy="192" r="115" fill="none" stroke="#ffbba0" stroke-width="6" stroke-dasharray="15 10"/>
+
+  <g transform="translate(192,192) rotate(45) translate(-192,-192)">
+    <!-- X cross base -->
+    <rect x="172" y="80" width="40" height="224" rx="10" fill="#000000" filter="url(#shadow)"/>
+    <rect x="80" y="172" width="224" height="40" rx="10" fill="#000000" filter="url(#shadow)"/>
+    
+    <!-- X cross gold -->
+    <rect x="176" y="86" width="32" height="212" rx="6" fill="url(#gold)"/>
+    <rect x="86" y="176" width="212" height="32" rx="6" fill="url(#gold)"/>
+
+    <!-- Inner red fill -->
+    <rect x="182" y="94" width="20" height="196" rx="4" fill="#ffffff" filter="url(#glow)"/>
+    <rect x="94" y="182" width="196" height="20" rx="4" fill="#ffffff" filter="url(#glow)"/>
+    
+    <rect x="182" y="94" width="20" height="196" rx="4" fill="#ff4020"/>
+    <rect x="94" y="182" width="196" height="20" rx="4" fill="#ff4020"/>
+  </g>
+
+  <!-- small corner accents -->
+  <circle cx="192" cy="65" r="10" fill="#ffffff" filter="url(#glow)"/>
+  <circle cx="192" cy="319" r="10" fill="#ffffff" filter="url(#glow)"/>
+  <circle cx="82" cy="128" r="8" fill="#ffccaa"/>
+  <circle cx="302" cy="128" r="8" fill="#ffccaa"/>
+  <circle cx="82" cy="256" r="8" fill="#ffccaa"/>
+  <circle cx="302" cy="256" r="8" fill="#ffccaa"/>
+
+</svg>

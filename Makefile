@@ -241,7 +241,7 @@ score-icon-qa:
 	@cp game/ui/scoreboard.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/score-icon-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/score-icon-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/score-icon-qa/assets/"
-	@cp assets/runtime/ui/icon-chip-v1.png "$(BUILD_DIR)/score-icon-qa/assets/runtime/ui/"
+	@cp assets/runtime/ui/icon-chip-v1.png assets/runtime/ui/icon-mult-v1.png "$(BUILD_DIR)/score-icon-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/score-icon-qa/assets/fonts/"
 	SCORE_ICON_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/score-icon-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/score-icon-qa"

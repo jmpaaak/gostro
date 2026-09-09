@@ -219,3 +219,7 @@
 | 2026-09-09T10:50:28+0900 | `assets/masters/ui/icon-chip-v1.png` | Preserved 384×384 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T10:50:28+0900 | `assets/runtime/ui/icon-chip-v1.png` | 12×12 runtime score-chip icon from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T10:50:28+0900 | `assets/runtime/ui/score-icon-love-v1.png` | Actual LÖVE 11.5 320×180 scoreboard QA capture proving the manifest-backed chip icon beside the chips×mult line; SHA-256 `f12f66a69c3316444c908f8084b9682599b7b1688db1e97c79e155c61ac1063d` |
+| 2026-09-09T10:57:51+0900 | `assets/masters/ui/icon-mult-v1.svg` | Project-authored high-resolution HUD mult vector source with a red-orange gradient flame motif, large glowing cross, and golden outlines |
+| 2026-09-09T10:57:51+0900 | `assets/masters/ui/icon-mult-v1.png` | Preserved 384×384 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T10:57:51+0900 | `assets/runtime/ui/icon-mult-v1.png` | 12×12 runtime mult icon from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T10:57:51+0900 | `assets/runtime/ui/score-icon-love-v1.png` | Actual LÖVE 11.5 320×180 scoreboard QA capture proving the manifest-backed mult icon beside the mult value; SHA-256 `ba8ae447a1c0ee1c0d1bb28590bb6d84af5e052126bfc7f02578ad4d3a4289ca` |

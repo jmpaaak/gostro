@@ -1,5 +1,12 @@
 # STATUS
 
+## 2026-09-09 — 점수판 배수 아이콘 고해상도 픽셀 에셋 적용
+
+- `ui.icon_mult`에 384×384 붉은 화염 형상의 중심에 황금 윤곽이 있는 십자 모양의 SVG/PNG master와 12×12 runtime 에셋을 추가했다.
+- Asset Studio 실제 `POST /api/pixel-perfect` 변환 보고서의 dimensions/alignment/palette/transparentAlpha/nearestNeighbor 검사를 모두 통과하고 manifest-backed 전용 draw 모듈로 점수판 배수 값 옆에 적용했다.
+- 독립 engine-hosted draw 계약 테스트와 실제 LÖVE 320×180 점수판 캡처 QA를 추가하고 `Makefile`을 갱신했다.
+- INBOX (27)은 나머지 그래픽 요소가 미완료이므로 처리 대기로 유지한다.
+- Next slice: `ui.icon_money` 고해상도 master를 실제 Pixel Perfect runtime으로 변환하고 manifest-backed로 적용한다.
 ## 2026-09-09 — 점수판 칩 아이콘 고해상도 픽셀 에셋 적용
 
 - `ui.icon_chip`에 384×384 청색 자개 칩·팔방 황동 상감·네모 구멍 엽전 중심의 SVG/PNG master와 12×12 runtime 에셋을 추가했다.

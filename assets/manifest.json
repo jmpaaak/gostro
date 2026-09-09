@@ -2801,7 +2801,12 @@
         "path": "assets/runtime/ui/icon-chip-v1.png",
         "width": 12,
         "height": 12,
-        "alphaBounds": [0, 0, 11, 11],
+        "alphaBounds": [
+          0,
+          0,
+          11,
+          11
+        ],
         "sha256": "6255c3592a26eb92752e5e1c33788de85ae96f39f2acbe9f1098bba2d5c1d435",
         "filter": "nearest"
       },
@@ -2819,14 +2824,35 @@
         "frames": 1,
         "fps": 0,
         "loop": false,
-        "origin": [0, 0]
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {
       "id": "ui.icon_mult",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.icon_mult"
+      "status": "runtime",
+      "runtime": {
+        "path": "assets/runtime/ui/icon-mult-v1.png",
+        "width": 12,
+        "height": 12,
+        "alphaBounds": [
+          0,
+          0,
+          11,
+          11
+        ],
+        "sha256": "",
+        "filter": "nearest"
+      },
+      "master": {
+        "path": "assets/masters/ui/icon-mult-v1.png",
+        "width": 384,
+        "height": 384,
+        "sha256": ""
+      }
     },
     {
       "id": "ui.icon_money",
