@@ -40,6 +40,22 @@ function M.run()
     assert(call_mult and call_mult[1] == texture and call_mult[2] == 20 and call_mult[3] == 9,
         "mult art must draw at the requested HUD position")
 
+    assert(assets.runtime_path("ui.icon_money") == "assets/runtime/ui/icon-money-v1.png",
+        "money icon must resolve through the runtime manifest")
+
+    local call_money
+    local drawn_money = art.draw_money(33, 9, 12, {
+        set_color = function() end,
+        draw = function(...) call_money = { ... } end,
+    }, function(id)
+        assert(id == "ui.icon_money", "shop HUD must request the money icon")
+        return texture
+    end)
+
+    assert(drawn_money, "runtime money art must draw")
+    assert(call_money and call_money[1] == texture and call_money[2] == 33 and call_money[3] == 9,
+        "money art must draw at the requested HUD position")
+
     print("  score_icon_art: OK")
 end
 

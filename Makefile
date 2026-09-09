@@ -85,7 +85,7 @@ shop-pack-qa:
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher" \
 		"$(BUILD_DIR)/shop-pack-qa/assets/fonts"
 	@cp tools/shop_pack_qa_main.lua "$(BUILD_DIR)/shop-pack-qa/main.lua"
-	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
+	@cp game/ui/shop.lua game/ui/pack_art.lua game/ui/voucher_art.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/shop-pack-qa/game/ui/"
 	@cp game/asset_loader.lua game/terms.lua "$(BUILD_DIR)/shop-pack-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/shop-pack-qa/assets/"
 	@cp assets/runtime/pack/talisman-bundle-v1.png \
@@ -97,6 +97,8 @@ shop-pack-qa:
 		assets/runtime/voucher/crystal-ball-v1.png assets/runtime/voucher/hone-v1.png \
 		assets/runtime/voucher/directors-cut-v1.png \
 		"$(BUILD_DIR)/shop-pack-qa/assets/runtime/voucher/"
+	@mkdir -p "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui"
+	@cp assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/shop-pack-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/shop-pack-qa/assets/fonts/"
 	SHOP_PACK_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/shop-pack-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/shop-pack-qa"
@@ -241,7 +243,8 @@ score-icon-qa:
 	@cp game/ui/scoreboard.lua game/ui/score_icon_art.lua "$(BUILD_DIR)/score-icon-qa/game/ui/"
 	@cp game/asset_loader.lua "$(BUILD_DIR)/score-icon-qa/game/"
 	@cp assets/manifest.json "$(BUILD_DIR)/score-icon-qa/assets/"
-	@cp assets/runtime/ui/icon-chip-v1.png assets/runtime/ui/icon-mult-v1.png "$(BUILD_DIR)/score-icon-qa/assets/runtime/ui/"
+	@cp assets/runtime/ui/icon-chip-v1.png assets/runtime/ui/icon-mult-v1.png \
+		assets/runtime/ui/icon-money-v1.png "$(BUILD_DIR)/score-icon-qa/assets/runtime/ui/"
 	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/score-icon-qa/assets/fonts/"
 	SCORE_ICON_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/score-icon-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/score-icon-qa"

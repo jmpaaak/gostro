@@ -1,4 +1,5 @@
 local scoreboard = require("game.ui.scoreboard")
+local score_icon_art = require("game.ui.score_icon_art")
 
 local function write_capture(canvas, path)
     local encoded = canvas:newImageData():encode("png")
@@ -20,6 +21,9 @@ function love.load()
     scoreboard.set_target(state, 300)
     scoreboard.set_hand_result(state, 42, 3)
     scoreboard.draw(state)
+    score_icon_art.draw_money(278, 84, 12)
+    love.graphics.setColor(0.3, 1, 0.4, 1)
+    love.graphics.print("$17", 292, 86)
     love.graphics.setCanvas()
 
     local output = assert(os.getenv("SCORE_ICON_QA_OUTPUT"), "SCORE_ICON_QA_OUTPUT is required")

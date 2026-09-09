@@ -4,6 +4,7 @@
 local terms = require("game.terms")
 local pack_art = require("game.ui.pack_art")
 local voucher_art = require("game.ui.voucher_art")
+local score_icon_art = require("game.ui.score_icon_art")
 
 local M = {}
 
@@ -226,7 +227,10 @@ function M.draw(s)
     -- Money display (top right area)
     love.graphics.setColor(0.3, 1, 0.4, 1)
     local mtxt = M.money_text(s)
-    love.graphics.print(mtxt, VIEWPORT_W - font:getWidth(mtxt) - 8, 6)
+    local money_x = VIEWPORT_W - font:getWidth(mtxt) - 8
+    score_icon_art.draw_money(money_x - 14, 4, 12)
+    love.graphics.setColor(0.3, 1, 0.4, 1)
+    love.graphics.print(mtxt, money_x, 6)
 
     -- Items
     for i = 1, #views do
