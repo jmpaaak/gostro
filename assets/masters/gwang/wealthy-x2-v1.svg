@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <!-- Project-authored master: twin tiled treasure houses and paired fortune seals signify a wealthy x2 trigger. -->
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#200b24"/><stop offset="0.5" stop-color="#66204b"/><stop offset="1" stop-color="#16091d"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff3a6"/><stop offset="0.48" stop-color="#e9ad35"/><stop offset="1" stop-color="#754018"/>
+    </linearGradient>
+    <linearGradient id="jade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c8f3c8"/><stop offset="0.55" stop-color="#4baa82"/><stop offset="1" stop-color="#18534d"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-35%" width="170%" height="185%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/><feOffset dy="8"/><feComponentTransfer><feFuncA type="linear" slope=".65"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="448" height="256" rx="40" fill="#08040b"/>
+  <rect x="8" y="8" width="432" height="240" rx="34" fill="url(#lacquer)" stroke="#e1b14c" stroke-width="8"/>
+  <path d="M28 52C116 18 332 18 420 52M28 207c89 32 303 32 392 0" fill="none" stroke="#b55278" stroke-width="5"/>
+  <path d="M42 39l16-13 16 13-16 14zm332 0l16-13 16 13-16 14z" fill="#ffe47b"/>
+
+  <!-- Two prosperous tiled storehouses, each visibly full of coin, form the doubled-wealth silhouette. -->
+  <g filter="url(#shadow)">
+    <g transform="translate(35 55)">
+      <path d="M3 48L72 4l69 44-15 18L72 32 18 66z" fill="#2b6a67" stroke="#102f38" stroke-width="7"/>
+      <path d="M12 52h120v111H12z" fill="#9d3b42" stroke="#3c1727" stroke-width="8"/>
+      <path d="M28 70h88v93H28z" fill="#411b2c" stroke="#e0a943" stroke-width="6"/>
+      <path d="M43 85h58v78H43z" fill="url(#gold)" stroke="#774219" stroke-width="5"/>
+      <path d="M18 109h108M72 35v30" stroke="#f2d36c" stroke-width="6"/>
+      <g fill="#ffe58a" stroke="#8a531d" stroke-width="3">
+        <ellipse cx="55" cy="106" rx="15" ry="7"/><ellipse cx="86" cy="101" rx="15" ry="7"/>
+        <ellipse cx="70" cy="124" rx="15" ry="7"/><ellipse cx="51" cy="143" rx="15" ry="7"/><ellipse cx="89" cy="143" rx="15" ry="7"/>
+      </g>
+    </g>
+    <g transform="translate(164 55)">
+      <path d="M3 48L72 4l69 44-15 18L72 32 18 66z" fill="#2b6a67" stroke="#102f38" stroke-width="7"/>
+      <path d="M12 52h120v111H12z" fill="#9d3b42" stroke="#3c1727" stroke-width="8"/>
+      <path d="M28 70h88v93H28z" fill="#411b2c" stroke="#e0a943" stroke-width="6"/>
+      <path d="M43 85h58v78H43z" fill="url(#gold)" stroke="#774219" stroke-width="5"/>
+      <path d="M18 109h108M72 35v30" stroke="#f2d36c" stroke-width="6"/>
+      <g fill="#ffe58a" stroke="#8a531d" stroke-width="3">
+        <ellipse cx="55" cy="106" rx="15" ry="7"/><ellipse cx="86" cy="101" rx="15" ry="7"/>
+        <ellipse cx="70" cy="124" rx="15" ry="7"/><ellipse cx="51" cy="143" rx="15" ry="7"/><ellipse cx="89" cy="143" rx="15" ry="7"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Paired jade fortune seals: icon-only multiplicative cue, with no Latin text. -->
+  <g transform="translate(310 60)" filter="url(#shadow)">
+    <path d="M-6 50c29 8 48 23 65 43M18 23c25 20 39 39 49 66" fill="none" stroke="#f5c95e" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="49" cy="55" r="38" fill="#102a30" stroke="#ffe179" stroke-width="7"/>
+    <circle cx="49" cy="55" r="27" fill="url(#jade)" stroke="#276f62" stroke-width="5"/>
+    <path d="M34 40l30 30m0-30L34 70" stroke="#f9f2b3" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="79" cy="123" r="50" fill="#10232e" stroke="#ffe179" stroke-width="8"/>
+    <circle cx="79" cy="123" r="37" fill="url(#jade)" stroke="#276f62" stroke-width="6"/>
+    <path d="M58 102l42 42m0-42l-42 42" stroke="#fff3b1" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="79" cy="123" r="8" fill="#f8ce59"/>
+  </g>
+</svg>

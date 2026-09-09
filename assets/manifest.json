@@ -1367,10 +1367,51 @@
     {
       "id": "gwang.wealthy_x2",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "갑부",
         "en": "Wealthy"
+      },
+      "master": {
+        "source": "assets/masters/gwang/wealthy-x2-v1.svg",
+        "sourceSha256": "8d00618e454568f0fa95eeacf2350de7e438fe99a7889991554e1db3db865610",
+        "path": "assets/masters/gwang/wealthy-x2-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "28201b443948036fed09f53d5b505c6da99dccaf55001c9baccee4ab520f3dae",
+        "provenance": "Project-authored high-resolution vector master showing twin tiled treasure houses, visible coin stores, and paired jade fortune seals on plum lacquer to communicate doubled wealth without text or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/wealthy-x2-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "e37ef3ae9448e2d5cee5d78f02a979a1044c3ed75c461d86cba90269c4d574fb",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/wealthy-x2-v1.report.json",
+        "reportSha256": "e0480b7358feedc8a1f730e80e42020dd812301f86d2190063534510c1e125f0"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

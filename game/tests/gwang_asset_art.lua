@@ -226,6 +226,17 @@ function M.run()
     assert(assets.runtime_path("gwang.loaded_chips") ==
         "assets/runtime/gwang/loaded-chips-v1.png")
 
+    local wealthy = assets.entry("gwang.wealthy_x2")
+    assert(wealthy and wealthy.status == "runtime",
+        "wealthy gwang must have tracked runtime artwork")
+    assert(wealthy.master.width == 448 and wealthy.master.height == 256,
+        "wealthy gwang must preserve its high-resolution slot master")
+    assert(wealthy.runtime.width == 56 and wealthy.runtime.height == 32,
+        "wealthy gwang runtime must scale exactly into a 28x16 slot")
+    assert(wealthy.runtime.filter == "nearest")
+    assert(assets.runtime_path("gwang.wealthy_x2") ==
+        "assets/runtime/gwang/wealthy-x2-v1.png")
+
     local calls = {}
     local texture = {
         getWidth = function() return 56 end,

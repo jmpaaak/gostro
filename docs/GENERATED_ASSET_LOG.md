@@ -183,3 +183,7 @@
 | 2026-09-09T08:45:34+0900 | `assets/masters/gwang/loaded-chips-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T08:45:34+0900 | `assets/runtime/gwang/loaded-chips-v1.png` | 56×32 runtime 두둑한 지갑 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T08:45:34+0900 | `assets/runtime/ui/gwang-loaded-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 두둑한 지갑 gwang in all five slots; SHA-256 `f1f9547416f0a5732816b6277041473c1fa00514c3f6974df1548421cf987df9` |
+| 2026-09-09T08:54:48+0900 | `assets/masters/gwang/wealthy-x2-v1.svg` | Project-authored high-resolution 갑부 gwang vector source with twin tiled treasure houses, visible coin stores, and paired jade fortune seals on plum lacquer |
+| 2026-09-09T08:54:48+0900 | `assets/masters/gwang/wealthy-x2-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T08:54:48+0900 | `assets/runtime/gwang/wealthy-x2-v1.png` | 56×32 runtime 갑부 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T08:54:48+0900 | `assets/runtime/ui/gwang-wealthy-x2-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 갑부 gwang in all five slots; SHA-256 `8a33e8379245c514102cdc1e1345ace0f15929e4c95430d75d6afbead8bae518` |
