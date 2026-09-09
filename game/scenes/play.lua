@@ -165,6 +165,7 @@ function M.play_hand(scene)
 
     local result = scoring.score(cards, scene.run_state, { rng = scene.run_state.rng.cards })
     if not result then return false end
+    hand_ui.start_gather(scene.hand)
     local anim_cards = {}
     for i = 1, #cards do
         anim_cards[i] = {
@@ -190,11 +191,18 @@ function M.play_hand(scene)
         total = result.score,
         gwang_triggers = result.gwang_triggers or {},
     })
-    sync_round_ui(scene)
+    scene.pending_redeal = true
+    scene.pending_lose = transition == "lose"
+    scene.buttons.hands_left = scene.round.hands_left
+    scene.buttons.discards_left = scene.round.discards_left
+    buttons_ui.set_selection(scene.buttons, 0)
+    M.sync_preview(scene)
 
-    if transition == "lose" then
+    if transition == "lose" and not scene.hand.gather then
         blind_flow.lose(scene.run_state, scene.round.hands_left)
         scene.state = "lost"
+        scene.pending_lose = nil
+        scene.pending_redeal = nil
     end
     return true, transition, result
 end
@@ -264,6 +272,18 @@ end
 --- Update (tick animations).
 function M:update(dt)
     if self.state == "playing" and self.scoreboard then
+        if self.hand then hand_ui.update(self.hand, dt) end
+        if self.pending_redeal and self.hand and not self.hand.gather then
+            sync_round_ui(self)
+            self.pending_redeal = nil
+            if self.pending_lose then
+                blind_flow.lose(self.run_state, self.round.hands_left)
+                self.state = "lost"
+                self.pending_lose = nil
+            else
+                M.check_clear(self)
+            end
+        end
         scoreboard_ui.update(self.scoreboard, dt)
         if self.score_anim then
             score_anim_ui.update(self.score_anim, dt)

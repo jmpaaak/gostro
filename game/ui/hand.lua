@@ -15,6 +15,10 @@ local VIEWPORT_H = 540
 local OVERLAP    = 42   -- horizontal gap between cards (< card.WIDTH=72 → overlap)
 local BOTTOM_PAD = 12   -- pixels from bottom edge of viewport
 local HAND_Y     = VIEWPORT_H - card.HEIGHT - BOTTOM_PAD  -- top edge of unselected cards
+local FAN_SPREAD = 0.07 -- radians per step from center
+M.FAN_SPREAD = FAN_SPREAD
+M.GATHER_DURATION = 0.22
+M.HAND_Y = HAND_Y
 
 --- Create a new empty hand state.
 function M.new()
@@ -22,6 +26,7 @@ function M.new()
         cards          = {},
         selected_order = {},   -- list of card indices in selection order
         hover          = nil,
+        gather         = nil,
     }
 end
 
@@ -37,12 +42,15 @@ function M.deal(h, cards)
     h.cards = {}
     h.selected_order = {}
     h.hover = nil
+    h.gather = nil
+    local mid = (n + 1) / 2
     for i, source in ipairs(cards) do
         local domain = type(source) == "table" and source or { kind = source }
         local x = start_x + (i - 1) * OVERLAP
         local widget = card.new(domain.kind, x, HAND_Y)
+        widget.angle = (i - mid) * FAN_SPREAD
         for key, value in pairs(domain) do
-            if key ~= "x" and key ~= "y" and key ~= "selected" then
+            if key ~= "x" and key ~= "y" and key ~= "selected" and key ~= "angle" then
                 widget[key] = value
             end
         end
@@ -147,6 +155,50 @@ end
 
 function M.set_hover_at(h, px, py)
     M.set_hover(h, M.hit_test(h, px, py))
+end
+
+function M.fan_angle(index, count)
+    local mid = (count + 1) / 2
+    return (index - mid) * FAN_SPREAD
+end
+
+function M.start_gather(h)
+    local selected = M.get_selected(h)
+    if #selected == 0 then return nil end
+    local dest_y = 210
+    local dest_gap = 48
+    local dest_width = (#selected - 1) * dest_gap + card.WIDTH
+    local dest_x = math.floor((VIEWPORT_W - dest_width) / 2)
+    local snapshots = {}
+    for i, c in ipairs(selected) do
+        snapshots[i] = {
+            card = c,
+            from_x = c.x,
+            from_y = c.y,
+            from_angle = c.angle or 0,
+            to_x = dest_x + (i - 1) * dest_gap,
+            to_y = dest_y,
+            to_angle = 0,
+        }
+    end
+    h.gather = { timer = 0, duration = M.GATHER_DURATION, cards = snapshots }
+    return h.gather
+end
+
+function M.update(h, dt)
+    local gather = h.gather
+    if not gather then return end
+    gather.timer = gather.timer + dt
+    local t = math.min(1, gather.timer / gather.duration)
+    local e = 1 - (1 - t) * (1 - t)
+    for _, snap in ipairs(gather.cards) do
+        snap.card.x = snap.from_x + (snap.to_x - snap.from_x) * e
+        snap.card.y = snap.from_y + (snap.to_y - snap.from_y) * e
+        snap.card.angle = snap.from_angle + (snap.to_angle - snap.from_angle) * e
+    end
+    if t >= 1 then
+        h.gather = nil
+    end
 end
 
 return M

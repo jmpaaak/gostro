@@ -55,6 +55,7 @@ function M.new(kind, x, y)
         y        = y,
         selected = false,
         hovered  = false,
+        angle    = 0,
     }
 end
 
@@ -105,12 +106,14 @@ function M.draw(c)
     local dy = M.draw_y(c)
     local bg = BG_COLORS[c.kind]
     local scale = M.draw_scale(c)
-    if scale ~= 1 then
-        -- Grow from the bottom-center so the fan stays planted.
+    local angle = c.angle or 0
+    if scale ~= 1 or angle ~= 0 then
+        -- Grow / rotate from the bottom-center so the fan stays planted.
         local cx = c.x + M.WIDTH / 2
         local cy = dy + M.HEIGHT
         love.graphics.push()
         love.graphics.translate(cx, cy)
+        love.graphics.rotate(angle)
         love.graphics.scale(scale, scale)
         love.graphics.translate(-cx, -cy)
     end
@@ -147,7 +150,7 @@ function M.draw(c)
         effects.draw_overlay(c.effect, c.x, dy, M.WIDTH, M.HEIGHT, c.effect_t or 0)
     end
 
-    if scale ~= 1 then
+    if scale ~= 1 or angle ~= 0 then
         love.graphics.pop()
     end
 end

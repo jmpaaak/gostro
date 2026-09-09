@@ -28,6 +28,7 @@ function M.run()
     local gap = h.cards[2].x - h.cards[1].x
     assert(gap > 0, "cards go left to right")
     assert(gap < card.WIDTH, "cards overlap (Balatro style)")
+    assert(h.cards[1].angle < 0 and h.cards[8].angle > 0, "fan tilts out from center")
 
     -- select first card
     local ok = hand.select(h, 1)
