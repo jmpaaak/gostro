@@ -1,4 +1,11 @@
 # STATUS
+## 2026-09-10 — Chip popups follow gathered cards
+- Score-animation popups retain the live played-card widget as their position anchor while the hand gathers.
+- Added engine-hosted unit and play-flow regression coverage; `play.lua` is unchanged.
+- `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+- INBOX (46) moved to 처리 완료.
+- Next slice: 처리 대기 empty -> IDLE
+
 ## 2026-09-10 — Full card-ratio gwang row and shared play layout
 - Added pure `game/ui/play_layout.lua` as the geometry owner for gwang slots, scoreboard, consumables, origin cards, and run HUD; `play.lua` is unchanged.
 - Gwang slots now match play cards at 72×108, with all persistent HUD chrome shifted below the taller row.
