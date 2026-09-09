@@ -11,6 +11,11 @@
   - 각 에셋은 master/runtime 크기, alpha bounds, 출력 hash, 변환 설정, frame 수/FPS/loop/origin을 기록하고, 투명도·셀 경계·팔레트/색 보존·nearest filtering을 자동 검사한다. 실제 320×180 LÖVE 캡처에서 카드 식별성, 겹친 카드 상단 표식, UI 비중첩을 확인한 뒤에만 적용 완료 처리한다.
   - **2026-09-08 `play-card.pi` 첫 pilot은 아트 QA 거부:** 192×288 master가 지도 핀으로 오인되고 24×36 runtime의 `PI` 글자가 읽히지 않아 피 카드로 식별되지 않는다. 이를 승인 스타일로 복제하지 말고, 지도 핀/영문 약어가 아닌 한국 화투 계열의 상단 식별 문양과 카드 본체 그림을 가진 고해상도 master로 재생성한다. 플레이 패 5종이 하나의 시각 문법으로 실제 겹침 QA를 통과하기 전에는 어떤 단일 카드도 runtime 완료로 세지 않는다.
 
+(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`)
+  - 담당: `conf.lua`, `Makefile`, `tools/qa_conf.lua`, `tools/run_love_qa.sh`. 루프/`make verify`/`font-test`/자산 캡처 QA가 Love2D 창을 전면에 올리지 않게 한다.
+  - 증상: 에이전트 검증이 Love2D 창을 연속 생성·종료해서 포커스를 빼앗고 다른 작업을 막는다. `GAME_HEADLESS=1` 단위 테스트는 창이 없지만, `font-test`와 수십 개의 `*-qa` 타깃은 기본 창을 띄운다.
+  - 요구: 자동 Love2D는 `SDL_MAC_BACKGROUND_APP=1`로 Dock/포커스를 훔치지 않고, QA `conf.lua`는 오프스크린 borderless 창을 쓴다. 사용자가 `love .`로 직접 플레이할 때는 기존처럼 창이 보여야 한다.
+  - 완료 조건: `make verify` 중 Love2D가 전면 창을 깜빡이지 않음, 기존 `make verify LOVE=/Users/jm/.local/bin/love` GREEN.
 
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
