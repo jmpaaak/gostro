@@ -190,6 +190,23 @@ function M.run()
     assert(tag_art.asset_id({ kind = "planet", identity = "juggle" }) == nil,
         "non-tag shop items must not resolve plaque artwork")
 
+    local d6_id = tag_art.asset_id({ kind = "tag", identity = "d6" })
+    assert(d6_id == "tag.d6", "주령구 패찰 must resolve tracked artwork")
+    assert(tag_art.asset_id({ kind = "tag", id = "d6" }) == "tag.d6",
+        "skip offers keyed by id must resolve 주령구 패찰")
+
+    local d6 = assets.entry(d6_id)
+    assert(d6 and d6.status == "runtime", "주령구 패찰 artwork must be promoted")
+    assert(d6.master.width == 256 and d6.master.height == 384,
+        "주령구 패찰 must preserve a 256x384 master")
+    assert(d6.runtime.width == 32 and d6.runtime.height == 48,
+        "주령구 패찰 runtime must fit its skip-tag slot")
+    assert(d6.runtime.filter == "nearest")
+    assert(d6.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert(assets.runtime_path(d6_id) == "assets/runtime/tag/d6-v1.png")
+    assert(tag_art.asset_id({ kind = "planet", identity = "d6" }) == nil,
+        "non-tag shop items must not resolve plaque artwork")
+
     assets.clear_cache()
     print("  tag_art: OK")
 end

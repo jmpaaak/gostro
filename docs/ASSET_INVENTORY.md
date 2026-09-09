@@ -87,7 +87,7 @@
 - [x] `tag.charm` - 행운 패찰
 - [x] `tag.uncommon` - 진품 패찰
 - [x] `tag.juggle` - 곡예사 패찰
-- [ ] `tag.d6` - D6
+- [x] `tag.d6` - 주령구 패찰
 
 ## tarot
 

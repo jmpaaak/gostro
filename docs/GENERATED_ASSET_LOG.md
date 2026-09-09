@@ -392,3 +392,7 @@
 2026-09-09T17:50:00+0900 | assets/runtime/tag/juggle-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T17:50:00+0900 | assets/runtime/tag/juggle-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T17:50:00+0900 | assets/runtime/ui/tag-juggle-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 곡예사 패찰; SHA-256 cbbbe92e9757b4bf2bcd4e4d770a8b0904c8158d9210137e77252541fa37e669
+2026-09-09T18:05:00+0900 | assets/masters/tag/d6-v1.png | 주령구 패찰 (tag.d6) high-res procedural wooden plaque with a Silla 주령구 polyhedron; no people or month imagery
+2026-09-09T18:05:00+0900 | assets/runtime/tag/d6-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T18:05:00+0900 | assets/runtime/tag/d6-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T18:05:00+0900 | assets/runtime/ui/tag-d6-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 주령구 패찰; SHA-256 380fa62b03a7964f979e37fe207fa18f258d76df2ab16e4374fd0f983f2e640e
