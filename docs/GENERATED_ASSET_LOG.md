@@ -296,5 +296,9 @@
 | 2026-09-09T13:55:00+0900 | `assets/runtime/ui/deck-yellow-v1.png` | 48×48 runtime thumbnail from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T13:55:00+0900 | `assets/runtime/ui/deck-yellow-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 14-color palette, alignment, and nearest-neighbor validation |
 | 2026-09-09T13:55:00+0900 | `assets/runtime/ui/deck-yellow-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed yellow gwang-jackpot thumbnail; SHA-256 `0753a6d63067baffacb4577902920d17e89f34a22238efd0a8c3231a0d50b65f` |
+| 2026-09-09T17:20:00+0900 | `assets/masters/ui/stake-white-v1.png` | Project-authored 384×384 lacquered ivory hwatu stake chip with brass rim, a mother-of-pearl center mark, and five geometric type marks; no text, people, or month imagery |
+| 2026-09-09T17:20:00+0900 | `assets/runtime/ui/stake-white-v1.png` | 16×16 runtime stake chip from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T17:20:00+0900 | `assets/runtime/ui/stake-white-v1.report.json` | Asset Studio conversion report recording dimensions, alpha bounds, 11-color palette, alignment, and nearest-neighbor validation |
+| 2026-09-09T17:20:00+0900 | `assets/runtime/ui/stake-white-love-v1.png` | Actual LÖVE 11.5 320×180 New Run capture proving the manifest-backed white stake chip; SHA-256 `97feacb89e5832d40d781b0d6fd3d7684bfa4cb6808b131b410d463bd174dcc8` |
 
 

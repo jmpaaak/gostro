@@ -3,6 +3,7 @@
 local seed_ui = require("game.ui.seed")
 local effect_art = require("game.ui.effect_art")
 local deck_art = require("game.ui.deck_art")
+local stake_art = require("game.ui.stake_art")
 
 local M = {}
 
@@ -283,6 +284,17 @@ local function draw_stake(graphics, state)
     local stake = M.selected_stake(state)
     local rect = LAYOUT.stake
     draw_shadowed_box(graphics, rect, { 0.78, 0.80, 0.77, 1 }, 3)
+    local api = {
+        set_color = function(...) graphics.setColor(...) end,
+        draw = function(...)
+            if graphics.draw then
+                return graphics.draw(...)
+            end
+        end,
+    }
+    if stake.id == "white" then
+        stake_art.draw_white(rect.x + 4, rect.y + 1, 16, api)
+    end
     graphics.setColor(0.13, 0.15, 0.16, 1)
     graphics.printf(stake.label .. " · " .. stake.name, rect.x, rect.y + 3, rect.w, "center")
     draw_arrow(graphics, LAYOUT.stake_left, false, true)
