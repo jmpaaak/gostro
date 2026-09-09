@@ -191,3 +191,7 @@
 | 2026-09-09T09:02:40+0900 | `assets/masters/gwang/boss-x2-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
 | 2026-09-09T09:02:40+0900 | `assets/runtime/gwang/boss-x2-v1.png` | 56×32 runtime 보스 배수 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
 | 2026-09-09T09:02:40+0900 | `assets/runtime/ui/gwang-boss-x2-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 보스 배수 gwang in all five slots; SHA-256 `fc31d77c8f39fe95e00b4962f45cda5811b557d3742d5e5437618711f624e308` |
+| 2026-09-09T09:12:42+0900 | `assets/masters/gwang/boss-chips-v1.svg` | Project-authored high-resolution 보스 칩 gwang vector source with a royal blue command chest, stacked jade scoring counters, and a bronze general's crest |
+| 2026-09-09T09:12:42+0900 | `assets/masters/gwang/boss-chips-v1.png` | Preserved 448×256 RGBA raster master rendered directly from the vector source |
+| 2026-09-09T09:12:42+0900 | `assets/runtime/gwang/boss-chips-v1.png` | 56×32 runtime 보스 칩 gwang from actual Asset Studio `POST /api/pixel-perfect`; original palette, hard alpha, nearest validation 5/5 |
+| 2026-09-09T09:12:42+0900 | `assets/runtime/ui/gwang-boss-chips-slots-love-v1.png` | Actual LÖVE 11.5 320×180 slot QA capture proving the manifest-backed 보스 칩 gwang in all five slots; SHA-256 `b56534a4eb61f80c0b0b832a9d68deb31bd4317ddc1f97a2ab00c25336a911d1` |

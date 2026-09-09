@@ -1467,10 +1467,51 @@
     {
       "id": "gwang.boss_chips",
       "category": "gwang",
-      "status": "pending",
+      "status": "runtime",
       "name": {
         "ko": "보스 칩",
         "en": "Final Round Chips"
+      },
+      "master": {
+        "source": "assets/masters/gwang/boss-chips-v1.svg",
+        "sourceSha256": "babecb03cbdae24db3f4d8a123af7def3f255d74a0eb4888b8b99075103f612a",
+        "path": "assets/masters/gwang/boss-chips-v1.png",
+        "width": 448,
+        "height": 256,
+        "sha256": "01a0a204fdc93a15e78cd96c228f5c5aca1e9ebc9579a69de3cf382227fe53b1",
+        "provenance": "Project-authored master: a royal blue lacquer command chest overflowing with stacked jade counters beneath a bronze general's crest, signifying final-round chips without text or month imagery."
+      },
+      "runtime": {
+        "path": "assets/runtime/gwang/boss-chips-v1.png",
+        "width": 56,
+        "height": 32,
+        "alphaBounds": [
+          0,
+          0,
+          55,
+          31
+        ],
+        "sha256": "f1d36cdd859ff2cb37284ad408801a74131eb01459d1ab8e1c1064b6cbea442f",
+        "filter": "nearest"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 56,
+        "targetHeight": 32,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/gwang/boss-chips-v1.report.json",
+        "reportSha256": "d32593a61da74f0c013c5aef8746fe7a444d10a1313b92ffb0d4debd75e55a13"
+      },
+      "animation": {
+        "frames": 1,
+        "fps": 0,
+        "loop": false,
+        "origin": [
+          0,
+          0
+        ]
       }
     },
     {

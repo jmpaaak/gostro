@@ -42,7 +42,7 @@
 - [x] `gwang.loaded_chips` - 두둑한 지갑 / Loaded (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.wealthy_x2` - 갑부 / Wealthy (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [x] `gwang.boss_x2` - 보스 배수 / Boss Mult (448×256 master → 56×32 runtime; LÖVE slot QA)
-- [ ] `gwang.boss_chips` - {'ko': '보스 칩', 'en': 'Boss Chips'}
+- [x] `gwang.boss_chips` - 보스 칩 / Final Round Chips (448×256 master → 56×32 runtime; LÖVE slot QA)
 - [ ] `gwang.small_chips` - {'ko': '첫판 칩', 'en': 'Opening Round Chips'}
 - [ ] `gwang.big_mult` - {'ko': '큰판 배수', 'en': 'Main Round Mult'}
 - [ ] `gwang.once_x20` - {'ko': '일회성', 'en': 'Once'}

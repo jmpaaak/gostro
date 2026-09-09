@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="448" height="256" viewBox="0 0 448 256">
+  <!-- Project-authored master: a royal blue lacquer command chest overflowing with stacked jade counters beneath a bronze general's crest, signifying final-round chips without text or month imagery. -->
+  <defs>
+    <linearGradient id="lacquer" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173c61"/>
+      <stop offset="0.48" stop-color="#071b31"/>
+      <stop offset="1" stop-color="#020811"/>
+    </linearGradient>
+    <linearGradient id="bronze" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff0ad"/>
+      <stop offset="0.3" stop-color="#d0a64e"/>
+      <stop offset="0.7" stop-color="#795026"/>
+      <stop offset="1" stop-color="#311d0b"/>
+    </linearGradient>
+    <linearGradient id="jade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bffff0"/>
+      <stop offset="0.35" stop-color="#38c9b3"/>
+      <stop offset="0.72" stop-color="#137b77"/>
+      <stop offset="1" stop-color="#073e49"/>
+    </linearGradient>
+    <linearGradient id="chest" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#315f8c"/>
+      <stop offset="0.5" stop-color="#102e50"/>
+      <stop offset="1" stop-color="#061426"/>
+    </linearGradient>
+    <filter id="shadow" x="-25%" y="-35%" width="150%" height="185%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7"/>
+      <feOffset dy="10"/>
+      <feComponentTransfer><feFuncA type="linear" slope=".75"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="448" height="256" rx="40" fill="#02060b"/>
+  <rect x="8" y="8" width="432" height="240" rx="34" fill="url(#lacquer)" stroke="#587895" stroke-width="6"/>
+  <path d="M26 54C120 17 328 17 422 54M28 211c103 28 289 28 392 0" fill="none" stroke="#244a6a" stroke-width="5" opacity=".7"/>
+  <path d="M48 38l14-12 14 12-14 13zm324 0l14-12 14 12-14 13z" fill="#b58a3e"/>
+
+  <!-- General's winged crest, readable even at slot scale. -->
+  <g filter="url(#shadow)">
+    <path d="M118 91L42 59l36 58 67 21zm212 0l76-32-36 58-67 21z" fill="url(#bronze)" stroke="#3c270f" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M92 81l36 17m228-17-36 17" fill="none" stroke="#ffe9a0" stroke-width="7" stroke-linecap="round"/>
+    <path d="M184 68l40-42 40 42-13 54h-54z" fill="url(#bronze)" stroke="#3c270f" stroke-width="7" stroke-linejoin="round"/>
+    <path d="M205 67l19-20 19 20-6 29h-26z" fill="#143c57" stroke="#fff0ad" stroke-width="4"/>
+  </g>
+
+  <!-- Open royal command chest. -->
+  <g filter="url(#shadow)">
+    <path d="M103 114Q224 72 345 114l-12 47H115z" fill="#081426" stroke="url(#bronze)" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M119 113q105-30 210 0l-6 25H125z" fill="url(#chest)" stroke="#ffe6a0" stroke-width="4"/>
+    <path d="M90 146h268l-18 78H108z" fill="url(#chest)" stroke="url(#bronze)" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M224 148v73M105 181h238" fill="none" stroke="#8b632d" stroke-width="7"/>
+    <path d="M206 172h36v34h-36z" fill="url(#bronze)" stroke="#3b250f" stroke-width="5"/>
+    <circle cx="224" cy="187" r="7" fill="#092337"/>
+  </g>
+
+  <!-- Tall, individually silhouetted stacks of jade scoring counters. -->
+  <g filter="url(#shadow)" stroke="#042f37" stroke-width="4">
+    <g>
+      <ellipse cx="143" cy="137" rx="34" ry="13" fill="#0a5b62"/>
+      <rect x="109" y="121" width="68" height="17" fill="url(#jade)"/>
+      <ellipse cx="143" cy="121" rx="34" ry="13" fill="url(#jade)"/>
+      <ellipse cx="143" cy="121" rx="14" ry="5" fill="#d7fff2" opacity=".8"/>
+    </g>
+    <g>
+      <ellipse cx="211" cy="134" rx="37" ry="14" fill="#0a5b62"/>
+      <rect x="174" y="102" width="74" height="33" fill="url(#jade)"/>
+      <ellipse cx="211" cy="102" rx="37" ry="14" fill="url(#jade)"/>
+      <ellipse cx="211" cy="102" rx="15" ry="5" fill="#d7fff2" opacity=".85"/>
+    </g>
+    <g>
+      <ellipse cx="285" cy="137" rx="34" ry="13" fill="#0a5b62"/>
+      <rect x="251" y="113" width="68" height="25" fill="url(#jade)"/>
+      <ellipse cx="285" cy="113" rx="34" ry="13" fill="url(#jade)"/>
+      <ellipse cx="285" cy="113" rx="14" ry="5" fill="#d7fff2" opacity=".8"/>
+    </g>
+  </g>
+
+  <!-- Blue pennants distinguish chips from the crimson multiplier companion. -->
+  <path d="M54 128v72m0-65l45 13-45 18m340-38v72m0-65l-45 13 45 18" fill="#278fd0" stroke="#a8eaff" stroke-width="5" stroke-linejoin="round"/>
+</svg>
