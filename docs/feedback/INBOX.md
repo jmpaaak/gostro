@@ -2,7 +2,12 @@
 
 ## 처리 대기
 
-(없음)
+(33) **love . 가 Galmuri 11 배수 assert로 즉시 크래시** (msg `1547279539426689024`)
+  - 담당: `game/fonts.lua`, `game/ui/main_menu.lua`, `game/ui/run_setup.lua`, `game/tests/fonts.lua`, `game/tests/main_menu_ui.lua`.
+  - 원인: 960×540 전환 때 DEFAULT_SIZE=33으로 바뀌며 `size % DEFAULT_SIZE == 0`이 되었다. 메뉴/런 설정이 아직 `fonts.get(11)`/`fonts.get(22)`를 호출한다. 11은 33의 배수가 아니라 랜딩에서 죽는다.
+  - 요구: 글리프 제약은 항상 11의 배수. 기본 본문은 33, 제목은 66. `love .` 랜딩이 떠야 한다.
+  - 완료: `love .`가 메뉴를 그리고, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
 
 ## 처리 중
 
