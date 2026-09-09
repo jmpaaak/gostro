@@ -78,6 +78,10 @@ function M.hit_test(state, x, y)
     return nil
 end
 
+function M.set_hover_at(state, x, y)
+    return M.hit_test(state, x, y)
+end
+
 --- Resolve a pointer press into a selected slot. Pressing it again deselects it.
 function M.select(state, selected_slot, x, y)
     local hit = M.hit_test(state, x, y)

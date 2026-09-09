@@ -60,6 +60,11 @@ function M.hit_test(pending, x, y)
     return nil
 end
 
+function M.set_hover_at(pending, x, y)
+    if not pending then return end
+    pending.hover = M.hit_test(pending, x, y)
+end
+
 local function centered(text, bounds, y, scale)
     local font = love.graphics.getFont()
     scale = scale or 1
@@ -87,6 +92,9 @@ function M.draw(pending)
 
     for _, choice in ipairs(view.choices) do
         local bounds = choice.bounds
+        if pending.hover == choice.index then
+            bounds = { x = bounds.x, y = bounds.y - 8, w = bounds.w, h = bounds.h }
+        end
         love.graphics.setColor(0.24, 0.17, 0.38, 1)
         love.graphics.rectangle("fill", bounds.x, bounds.y, bounds.w, bounds.h, 3, 3)
         love.graphics.setColor(0.82, 0.55, 1, 1)

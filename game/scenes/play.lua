@@ -378,19 +378,30 @@ end
 
 function M:mousemoved(px, py)
     if px == nil or py == nil then
-        if self.state == "playing" and self.hand then
-            hand_ui.set_hover(self.hand, nil)
-        elseif self.state == "shop" and self.shop then
-            shop_ui.set_hover(self.shop, nil)
-        elseif self.state == "blind_select" and self.blind_select then
-            self.blind_select.hover = nil
+        if self.hand then hand_ui.set_hover(self.hand, nil) end
+        if self.shop then shop_ui.set_hover(self.shop, nil) end
+        if self.blind_select then self.blind_select.hover = nil end
+        if self.gwang_slots then self.gwang_slots.hover = nil end
+        if self.buttons then self.buttons.hover = nil end
+        if self.run_state and self.run_state.pending_pack then
+            self.run_state.pending_pack.hover = nil
         end
+        self.consumable_hover = nil
         return
     end
-    if self.state == "playing" and self.hand then
-        hand_ui.set_hover_at(self.hand, px, py)
-    elseif self.state == "shop" and self.shop then
-        shop_ui.set_hover_at(self.shop, px, py)
+    if self.gwang_slots then
+        gwang_sl_ui.set_hover_at(self.gwang_slots, px, py)
+    end
+    self.consumable_hover = consumables_ui.set_hover_at(self.run_state, px, py)
+    if self.state == "playing" then
+        if self.hand then hand_ui.set_hover_at(self.hand, px, py) end
+        if self.buttons then buttons_ui.set_hover_at(self.buttons, px, py) end
+    elseif self.state == "shop" then
+        if self.run_state.pending_pack then
+            pack_ui.set_hover_at(self.run_state.pending_pack, px, py)
+        elseif self.shop then
+            shop_ui.set_hover_at(self.shop, px, py)
+        end
     elseif self.state == "blind_select" and self.blind_select then
         blind_sel_ui.set_hover_at(self.blind_select, px, py)
     end

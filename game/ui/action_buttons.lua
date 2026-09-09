@@ -31,6 +31,7 @@ function M.new(hands, discards)
         play_enabled   = false,
         discard_enabled = false,
         selection_count = 0,
+        hover = nil,
     }
 end
 
@@ -79,6 +80,10 @@ function M.hit_test(ab, px, py)
     return nil
 end
 
+function M.set_hover_at(ab, px, py)
+    ab.hover = M.hit_test(ab, px, py)
+end
+
 --- Display text for a button: "놓기 (N)" or "버리기 (N)".
 function M.display_text(ab, which)
     if which == "play" then
@@ -108,6 +113,10 @@ function M.draw(ab)
     -- Play button
     local play_kind = ab.play_enabled and "primary" or "disabled"
     button_art.draw(play_kind, {x = M.PLAY_X, y = M.BUTTON_Y, w = M.BUTTON_W, h = M.BUTTON_H})
+    if ab.hover == "play" and ab.play_enabled then
+        love.graphics.setColor(1, 0.95, 0.45, 1)
+        love.graphics.rectangle("line", M.PLAY_X - 2, M.BUTTON_Y - 2, M.BUTTON_W + 4, M.BUTTON_H + 4, 4, 4)
+    end
 
     -- Play text
     local play_txt = M.display_text(ab, "play")
@@ -120,6 +129,10 @@ function M.draw(ab)
     -- Discard button
     local dis_kind = ab.discard_enabled and "danger" or "disabled"
     button_art.draw(dis_kind, {x = M.DISCARD_X, y = M.BUTTON_Y, w = M.BUTTON_W, h = M.BUTTON_H})
+    if ab.hover == "discard" and ab.discard_enabled then
+        love.graphics.setColor(1, 0.55, 0.35, 1)
+        love.graphics.rectangle("line", M.DISCARD_X - 2, M.BUTTON_Y - 2, M.BUTTON_W + 4, M.BUTTON_H + 4, 4, 4)
+    end
 
     -- Discard text
     local dis_txt = M.display_text(ab, "discard")

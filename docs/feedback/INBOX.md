@@ -2,17 +2,18 @@
 
 ## 처리 대기
 
-(37) **발라트로급 팩·광 슬롯 툴팁·버튼 호버** (msg `1547290362782031952`)
-  - 담당: `game/ui/pack.lua`, `game/ui/gwang_slots.lua`, `game/ui/action_buttons.lua`, `game/ui/consumables.lua`, `game/scenes/play.lua`.
-  - 팩 선택 카드 호버 리프트. 광 슬롯 호버 시 이름+효과 툴팁. 놓기/버리기 호버 강조. 소모품 호버.
-  - 완료: 호버/툴팁, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
-
+(없음)
 
 ## 처리 중
 
 (없음)
 
 ## 처리 완료
+
+(37) **발라트로급 팩·광 슬롯 툴팁·버튼 호버** (msg `1547290362782031952`)
+  - 담당: `game/ui/pack.lua`, `game/ui/gwang_slots.lua`, `game/ui/action_buttons.lua`, `game/ui/consumables.lua`, `game/scenes/play.lua`.
+  - 팩 선택 카드 호버 리프트. 광 슬롯 호버 시 이름+효과 툴팁. 놓기/버리기 호버 강조. 소모품 호버.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
 
 (36) **발라트로급 상점·판 선택·점수 카운트업 디테일** (msg `1547290362782031952`)
   - 담당: `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/ui/scoreboard.lua`, `game/scenes/play.lua`.

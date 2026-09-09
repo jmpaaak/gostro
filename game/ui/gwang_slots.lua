@@ -28,7 +28,7 @@ function M.new()
     for i = 1, M.MAX_SLOTS do
         slots[i] = { gwang = nil }
     end
-    return { slots = slots }
+    return { slots = slots, hover = nil }
 end
 
 --- Return layout rectangles for all 5 slots (centred horizontally).
@@ -99,6 +99,9 @@ function M.draw(gs)
     for i = 1, M.MAX_SLOTS do
         local p = positions[i]
         local slot = gs.slots[i]
+        if gs.hover == i then
+            p = { x = p.x, y = p.y - 4, w = p.w, h = p.h }
+        end
 
         if slot.gwang then
             -- Filled slot: optional catalog art, with the star as fallback.
@@ -142,6 +145,37 @@ function M.draw(gs)
                 end
             end
         end
+    end
+
+    if gs.hover and gs.slots[gs.hover] and gs.slots[gs.hover].gwang then
+        local p = positions[gs.hover]
+        local tip = M.display_text(gs.slots[gs.hover].gwang)
+        local tw = font:getWidth(tip)
+        love.graphics.setColor(0.06, 0.07, 0.12, 0.92)
+        love.graphics.rectangle("fill", p.x, p.y + p.h + 4, tw + 12, font:getHeight() + 8, 3, 3)
+        love.graphics.setColor(1, 0.92, 0.55, 1)
+        love.graphics.print(tip, p.x + 6, p.y + p.h + 8)
+        love.graphics.setColor(1, 1, 1, 1)
+    end
+end
+
+function M.hit_test(gs, px, py)
+    local positions = M.slot_positions()
+    for i = 1, M.MAX_SLOTS do
+        local p = positions[i]
+        if px >= p.x and px < p.x + p.w and py >= p.y and py < p.y + p.h then
+            return i
+        end
+    end
+    return nil
+end
+
+function M.set_hover_at(gs, px, py)
+    local idx = M.hit_test(gs, px, py)
+    if idx and gs.slots[idx].gwang then
+        gs.hover = idx
+    else
+        gs.hover = nil
     end
 end
 
