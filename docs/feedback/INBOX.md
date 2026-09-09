@@ -2,6 +2,12 @@
 
 ## 처리 대기
 
+(29) **자동 테스트/캡처 Love2D 창이 켜졌다 꺼졌다를 반복해 다른 작업을 방해함** (msg `1547191717118218281`, follow-up `1547199236742058064`, `1547202068216029215`)
+  - 담당: `tools/love_dispatch.sh`, `loop/bin/love`, `tools/run_love_qa.sh`, `tools/qa_conf.lua`. **Gostro 루프만.**
+  - 2026-09-09 재현: 루프가 `/Users/jm/.local/bin/love build/test --filter …`를 직접 실행. `build/test`에 `conf.lua`가 없어 Love **기본 800×600** 창이 뜬다. `GOSTRO_LOOP=1` 환경만으로는 게임 `conf.lua`가 로드되지 않는다.
+  - 요구: `GOSTRO_LOOP=1`일 때만 `~/.local/bin/love`가 `loop/bin/love`로 위임하고, 대상 디렉터리에 `conf.lua`가 없으면 `tools/qa_conf.lua`(1×1 오프스크린)를 주입한다. 플래그 없는 MOK/직접 플레이는 Love.app 원본으로 간다.
+  - 완료 조건: Gostro 루프의 `love <dir>`가 800×600 기본 창을 만들지 않음. 사용자 `love .`와 MOK 레인은 그대로.
+
 프로세스 (사용자 2026-09-07): Discord 요청은 **코드보다 먼저** 이 섹션에 한 줄+커밋. 빈 처리 대기 = IDLE. 담당 모듈 경로를 적는다 (`docs/MODULE_STRUCTURE.md`).
 
 ## 처리 중
