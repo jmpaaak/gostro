@@ -384,3 +384,7 @@
 2026-09-09T17:25:00+0900 | assets/runtime/tag/charm-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
 2026-09-09T17:25:00+0900 | assets/runtime/tag/charm-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
 2026-09-09T17:25:00+0900 | assets/runtime/ui/tag-charm-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 행운 패찰; SHA-256 5dc5cbf3290eaf53bfe912934caeda6a538a61a1953112bb0093d7fe5300a141
+2026-09-09T17:35:00+0900 | assets/masters/tag/uncommon-v1.png | 진품 패찰 (tag.uncommon) high-res procedural wooden plaque with a jade gwang seal and authenticity stamp; no people or month imagery
+2026-09-09T17:35:00+0900 | assets/runtime/tag/uncommon-v1.png | 32×48 runtime PNG from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5
+2026-09-09T17:35:00+0900 | assets/runtime/tag/uncommon-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, 8-color palette, alignment, and nearest-neighbor validation
+2026-09-09T17:35:00+0900 | assets/runtime/ui/tag-uncommon-love-v1.png | Actual LÖVE 11.5 320×180 capture proving the manifest-backed 진품 패찰; SHA-256 4369ed9c2ca249019a461b8e76973286d1aee85aa2dea2b3dc4943a11e33ec8b
