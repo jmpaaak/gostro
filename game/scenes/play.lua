@@ -24,7 +24,7 @@ local tarot_use      = require("game.tarot_use")
 local scene_bg       = require("game.ui.scene_bg")
 local effect_art     = require("game.ui.effect_art")
 local score_anim_ui  = require("game.ui.score_anim")
-local hwatu          = require("game.hwatu")
+local play_hand_flow = require("game.scenes.play_hand_flow")
 
 local M = {}
 M.__index = M
@@ -133,6 +133,7 @@ function M.select_blind(scene, idx)
 
     scene.buttons = buttons_ui.new(scene.round.hands_left, scene.round.discards_left)
     scene.score_anim = score_anim_ui.new()
+    play_hand_flow.reset(scene)
     gwang_sl_ui.sync_from_run(scene.gwang_slots, scene.run_state.gwang)
     M.sync_preview(scene)
 
@@ -153,72 +154,12 @@ end
 
 --- Play the selected hand cards through the engine.
 function M.play_hand(scene)
-    if scene.state ~= "playing" then return false end
-    local indices = {}
-    local cards = {}
-    for i, idx in ipairs(scene.hand.selected_order) do
-        indices[i] = idx
-        cards[i] = scene.round.hand[idx]
-    end
-    local allowed = round_engine.can_play(scene.round, indices)
-    if not allowed then return false end
-
-    local result = scoring.score(cards, scene.run_state, { rng = scene.run_state.rng.cards })
-    if not result then return false end
-    hand_ui.start_gather(scene.hand)
-    local anim_cards = {}
-    for i = 1, #cards do
-        anim_cards[i] = {
-            kind = cards[i].kind,
-            chips = hwatu.chips_of(cards[i].kind) or 0,
-            x = scene.hand.cards[indices[i]] and scene.hand.cards[indices[i]].x,
-            y = scene.hand.cards[indices[i]] and scene.hand.cards[indices[i]].y,
-        }
-    end
-    local transition = round_engine.play(scene.round, indices, result)
-
-    blind_flow.score(scene.run_state, result.score, scene.round.hands_left)
-    scoreboard_ui.set_hand_result(scene.scoreboard, result.chips, result.mult)
-    if not scene.score_anim then scene.score_anim = score_anim_ui.new() end
-    score_anim_ui.start(scene.score_anim, {
-        cards = anim_cards,
-        base_chips = result.chips,
-        base_mult = result.mult,
-        bonus_chips = 0,
-        bonus_mult = 0,
-        final_chips = result.chips,
-        final_mult = result.mult,
-        total = result.score,
-        gwang_triggers = result.gwang_triggers or {},
-    })
-    scene.pending_redeal = true
-    scene.pending_lose = transition == "lose"
-    scene.buttons.hands_left = scene.round.hands_left
-    scene.buttons.discards_left = scene.round.discards_left
-    buttons_ui.set_selection(scene.buttons, 0)
-    M.sync_preview(scene)
-
-    if transition == "lose" and not scene.hand.gather then
-        blind_flow.lose(scene.run_state, scene.round.hands_left)
-        scene.state = "lost"
-        scene.pending_lose = nil
-        scene.pending_redeal = nil
-    end
-    return true, transition, result
+    return play_hand_flow.play_hand(scene, M.sync_preview)
 end
 
 --- Discard selected cards and redraw after they slide off to the right.
 function M.discard_hand(scene)
-    if scene.state ~= "playing" then return false end
-    local indices = {}
-    for i, idx in ipairs(scene.hand.selected_order) do indices[i] = idx end
-    if not round_engine.can_discard(scene.round, indices) then return false end
-    if not hand_ui.start_discard_slide(scene.hand) then return false end
-    scene.pending_discard = indices
-    scene.buttons.discards_left = math.max(0, (scene.round.discards_left or 1) - 1)
-    buttons_ui.set_selection(scene.buttons, 0)
-    M.sync_preview(scene)
-    return true
+    return play_hand_flow.discard_hand(scene, M.sync_preview)
 end
 
 --- Check if blind is cleared; if so, transition to shop.
@@ -275,31 +216,11 @@ end
 --- Update (tick animations).
 function M:update(dt)
     if self.state == "playing" and self.scoreboard then
-        if self.hand then hand_ui.update(self.hand, dt) end
-        if self.pending_discard and self.hand and not self.hand.slide then
-            round_engine.discard(self.round, self.pending_discard)
-            self.pending_discard = nil
-            sync_round_ui(self)
-        end
-        if self.pending_redeal and self.hand and not self.hand.gather then
-            sync_round_ui(self)
-            self.pending_redeal = nil
-            if self.pending_lose then
-                blind_flow.lose(self.run_state, self.round.hands_left)
-                self.state = "lost"
-                self.pending_lose = nil
-            else
-                M.check_clear(self)
-            end
-        end
-        scoreboard_ui.update(self.scoreboard, dt)
-        if self.score_anim then
-            score_anim_ui.update(self.score_anim, dt)
-            scoreboard_ui.sync_anim(self.scoreboard, self.score_anim)
-        end
-        -- Update button enabled state based on selection
-        buttons_ui.set_selection(self.buttons, #self.hand.selected_order)
-        M.sync_preview(self)
+        play_hand_flow.tick(self, dt, {
+            sync_round_ui = sync_round_ui,
+            check_clear = M.check_clear,
+            sync_preview = M.sync_preview,
+        })
     elseif self.state == "shop" and self.shop then
         shop_ui.update(self.shop, dt)
         shop_fly.update(self.shop, dt)

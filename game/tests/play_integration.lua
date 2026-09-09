@@ -140,6 +140,8 @@ function M.run()
         "playing a hand starts the chips-to-mult animation")
     assert(losing.hand.gather, "the last hand gathers before the loss screen")
     losing:update(1)
+    assert(losing.state ~= "lost", "loss waits until chips-to-mult finishes")
+    losing:update(4)
     assert(losing.state == "lost" and losing.run_state.phase == "lost",
         "hands exhausted below target transitions to a recorded loss")
 

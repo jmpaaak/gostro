@@ -10,6 +10,11 @@
 
 ## 처리 완료
 
+(44) **발라트로급 놓기 패가 점수 연출 끝까지 중앙에 남음** (msg `1547290362782031952`)
+  - 담당: `game/scenes/play_hand_flow.lua`.
+  - 모인 패가 칩→배수→합계가 끝날 때까지 유지. `play.lua`는 위임만.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
+
 (43) **발라트로급 칩 카운트업·중앙 팝업 한 타임라인** (msg `1547290362782031952`)
   - 담당: `game/ui/scoreboard.lua`, `game/ui/score_anim.lua`.
   - 점수판 합계와 중앙 팝업이 같은 `score_anim` 시계를 따른다. `play.lua`는 위임만.
