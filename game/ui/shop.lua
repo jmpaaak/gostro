@@ -35,6 +35,7 @@ local VOUCHER_NAMES = {
 }
 
 M.REROLL_COST = 5
+M.HOVER_LIFT = 8
 
 -- Card layout
 local CARD_W = 108
@@ -116,6 +117,8 @@ function M.new(money)
     return {
         money = money or 0,
         cards = generate_cards(),
+        reroll_cost = M.REROLL_COST,
+        hover = nil,
     }
 end
 
@@ -184,6 +187,9 @@ function M.slot_views(s)
             bounds = positions[i],
             slot_type = items[i].slot_type or "random",
             label = item_label(items[i]),
+            price_text = "$" .. tostring(items[i].price or 0),
+            hovered = s.hover == i,
+            price_emphasized = s.hover == i,
         }
     end
     return views
@@ -213,6 +219,54 @@ function M.hit_test(s, px, py)
     return nil
 end
 
+function M.hover_index(s)
+    return s.hover
+end
+
+local function slot_item(s, idx)
+    local items = shop_items(s)
+    return items[idx]
+end
+
+function M.slot_draw_y(s, idx)
+    local positions = M.card_positions(s)
+    local y = positions[idx].y
+    if s.hover == idx then
+        return y - M.HOVER_LIFT
+    end
+    return y
+end
+
+function M.price_color(emphasized)
+    if emphasized then
+        return { 1, 0.95, 0.35, 1 }
+    end
+    return { 0.2, 0.8, 0.3, 1 }
+end
+
+function M.set_hover(s, idx)
+    local item = idx and slot_item(s, idx)
+    if item and not item.sold then
+        s.hover = idx
+    else
+        s.hover = nil
+    end
+    if type(s.cards) == "table" then
+        for i, card in ipairs(s.cards) do
+            card.hovered = (i == s.hover)
+        end
+    end
+end
+
+function M.set_hover_at(s, px, py)
+    local hit = M.hit_test(s, px, py)
+    if type(hit) == "number" then
+        M.set_hover(s, hit)
+    else
+        M.set_hover(s, nil)
+    end
+end
+
 --- Draw shop UI (requires love.graphics).
 function M.draw(s)
     if not love or not love.graphics then return end
@@ -237,7 +291,12 @@ function M.draw(s)
     -- Items
     for i = 1, #views do
         local view = views[i]
-        local p = view.bounds
+        local p = {
+            x = view.bounds.x,
+            y = view.bounds.y - (view.hovered and M.HOVER_LIFT or 0),
+            w = view.bounds.w,
+            h = view.bounds.h,
+        }
         local card = view.item
 
         if card and not card.sold then
@@ -312,9 +371,13 @@ function M.draw(s)
             end
 
             -- Price tag at bottom
-            local ptxt = "$" .. tostring(card.price)
+            local ptxt = view.price_text
             local pw = font:getWidth(ptxt)
-            love.graphics.setColor(0.2, 0.8, 0.3, 1)
+            local color = M.price_color(view.price_emphasized)
+            love.graphics.setColor(color[1], color[2], color[3], color[4] or 1)
+            if view.hovered then
+                love.graphics.rectangle("line", p.x - 2, p.y - 2, p.w + 4, p.h + 4, 4, 4)
+            end
             love.graphics.print(ptxt,
                 p.x + math.floor((p.w - pw) / 2), p.y + p.h - fh - 4)
         else

@@ -73,6 +73,7 @@ function M.new(model)
         current  = model.current,
         blinds   = blinds,
         selected = nil,
+        hover = nil,
     }
 end
 
@@ -101,6 +102,25 @@ function M.hit_test(s, px, py)
     return nil
 end
 
+function M.card_copy(blind)
+    local status = "대기"
+    if blind.available then
+        status = "지금 도전"
+    elseif blind.status == "completed" then
+        status = "클리어"
+    end
+    return {
+        name = terms.blind_name(blind.kind),
+        target_label = "목표 " .. tostring(blind.target),
+        reward_label = "보상 " .. tostring(blind.reward),
+        status = status,
+    }
+end
+
+function M.set_hover_at(s, px, py)
+    s.hover = M.hit_test(s, px, py)
+end
+
 --- Draw the blind selection screen (requires love.graphics).
 function M.draw(s)
     if not love or not love.graphics then return end
@@ -117,9 +137,13 @@ function M.draw(s)
     -- Cards
     for i = 1, 3 do
         local p = positions[i]
+        if s.hover == i then
+            p = { x = p.x, y = p.y - 8, w = p.w, h = p.h }
+        end
         local b = s.blinds[i]
         local col = BLIND_COLOURS[b.kind] or { 0.4, 0.4, 0.4 }
         local is_sel = (s.selected == b.kind)
+        local copy = M.card_copy(b)
 
         -- Card background
         local available = b.available
@@ -143,28 +167,27 @@ function M.draw(s)
 
         -- Blind name
         love.graphics.setColor(1, 1, 1, 1)
-        local name = terms.blind_name(b.kind)
+        local name = copy.name
         local nw = font:getWidth(name)
         love.graphics.print(name,
             p.x + math.floor((p.w - nw) / 2), p.y + 6)
 
-        local status = available and "현재" or "순서 대기"
         love.graphics.setColor(1, 1, 1, available and 0.9 or 0.45)
-        local sw = font:getWidth(status)
-        love.graphics.print(status, p.x + math.floor((p.w - sw) / 2), p.y + 20)
+        local sw = font:getWidth(copy.status)
+        love.graphics.print(copy.status, p.x + math.floor((p.w - sw) / 2), p.y + 20)
 
         -- Target score
-        local target_txt = tostring(b.target)
+        local target_txt = copy.target_label
         local tw = font:getWidth(target_txt)
         love.graphics.setColor(1, 0.95, 0.6, 1)
         love.graphics.print(target_txt,
             p.x + math.floor((p.w - tw) / 2),
             p.y + math.floor(p.h / 2) - math.floor(fh / 2))
 
-        -- Reward/penalty at bottom
+        -- Reward at bottom
         love.graphics.setColor(0.3, 1, 0.4, 1)
-        local rw = font:getWidth(b.reward)
-        love.graphics.print(b.reward,
+        local rw = font:getWidth(copy.reward_label)
+        love.graphics.print(copy.reward_label,
             p.x + math.floor((p.w - rw) / 2), p.y + p.h - fh - 4)
     end
 

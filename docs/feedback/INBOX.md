@@ -2,17 +2,18 @@
 
 ## 처리 대기
 
-(36) **발라트로급 상점·판 선택·점수 카운트업 디테일** (msg `1547290362782031952`)
-  - 담당: `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/ui/scoreboard.lua`, `game/ui/score_anim.lua`, `game/scenes/play.lua`.
-  - 상점 슬롯 호버 리프트+가격 강조. 판 선택에 목표/보상/스킵 안내와 호버. 점수판 총점이 칩→배수 연출에 맞춰 카운트업.
-  - 완료: 상점 호버, 판 안내, 카운트업, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
-
+(없음)
 
 ## 처리 중
 
 (없음)
 
 ## 처리 완료
+
+(36) **발라트로급 상점·판 선택·점수 카운트업 디테일** (msg `1547290362782031952`)
+  - 담당: `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/ui/scoreboard.lua`, `game/scenes/play.lua`.
+  - 상점 슬롯 호버 리프트+가격 강조. 판 카드에 목표/보상/지금 도전 카피. 점수판 총점 ease-out 카운트업.
+  - `make test LOVE=/Users/jm/.local/bin/love` GREEN. [DONE 2026-09-10]
 
 (35) **발라트로급 플레이 디테일: 호버·점수 연출·고/판/돈 HUD** (msg `1547288119257075793`)
   - 담당: `game/ui/hand.lua`, `game/ui/card.lua`, `game/ui/score_anim.lua`, `game/ui/round_hud.lua`, `game/scenes/play.lua`, `game/scene_stack.lua`, `main.lua`.

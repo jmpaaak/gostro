@@ -377,12 +377,23 @@ function M:mousepressed(px, py)
 end
 
 function M:mousemoved(px, py)
-    if self.state ~= "playing" or not self.hand then return end
     if px == nil or py == nil then
-        hand_ui.set_hover(self.hand, nil)
+        if self.state == "playing" and self.hand then
+            hand_ui.set_hover(self.hand, nil)
+        elseif self.state == "shop" and self.shop then
+            shop_ui.set_hover(self.shop, nil)
+        elseif self.state == "blind_select" and self.blind_select then
+            self.blind_select.hover = nil
+        end
         return
     end
-    hand_ui.set_hover_at(self.hand, px, py)
+    if self.state == "playing" and self.hand then
+        hand_ui.set_hover_at(self.hand, px, py)
+    elseif self.state == "shop" and self.shop then
+        shop_ui.set_hover_at(self.shop, px, py)
+    elseif self.state == "blind_select" and self.blind_select then
+        blind_sel_ui.set_hover_at(self.blind_select, px, py)
+    end
 end
 
 --- Handle key press.

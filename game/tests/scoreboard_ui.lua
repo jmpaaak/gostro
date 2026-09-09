@@ -26,13 +26,18 @@ function M.run()
     scoreboard.set_hand_result(sb, 50, 2)
     assert(sb.chips == 50, "chips set")
     assert(sb.mult == 2, "mult set")
-    assert(sb.displayed_score == 100, "50×2 = 100")
+    assert(sb.countup ~= nil, "hand result starts a countup tween")
+    assert(sb.displayed_score == 0, "countup starts from the previous total")
     assert(sb.popup ~= nil, "popup created")
     assert(sb.popup.value == 100, "popup value matches score")
     assert(sb.popup.timer > 0, "popup timer starts positive")
+    scoreboard.update(sb, 10)
+    assert(sb.displayed_score == 100, "countup settles on the scored total")
+    assert(sb.countup == nil)
 
     -- accumulate: add more hand results
     scoreboard.set_hand_result(sb, 30, 3)
+    scoreboard.update(sb, 10)
     assert(sb.displayed_score == 190, "100 + 30×3 = 190")
 
     -- progress_ratio: score vs target
@@ -42,6 +47,7 @@ function M.run()
 
     -- progress clamped at 1.0 when score >= target
     scoreboard.set_hand_result(sb, 200, 1)
+    scoreboard.update(sb, 10)
     ratio = scoreboard.progress_ratio(sb)
     assert(ratio == 1.0, "clamped at 1.0 when over target")
     assert(sb.displayed_score == 390, "total 390")

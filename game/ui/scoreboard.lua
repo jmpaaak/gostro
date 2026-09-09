@@ -20,6 +20,7 @@ function M.new()
         target = 0,
         preview = nil,  -- { chips, mult, score, yaku_label }
         popup = nil,  -- { value, timer, text }
+        countup = nil, -- { from, to, timer, duration }
     }
 end
 
@@ -33,7 +34,13 @@ function M.set_hand_result(sb, chips, mult)
     sb.chips = chips
     sb.mult = mult
     local hand_score = chips * mult
-    sb.displayed_score = sb.displayed_score + hand_score
+    local from = sb.displayed_score
+    sb.countup = {
+        from = from,
+        to = from + hand_score,
+        timer = 0,
+        duration = 0.8,
+    }
     sb.popup = {
         value = hand_score,
         timer = POPUP_DURATION,
@@ -57,6 +64,7 @@ function M.reset(sb)
     sb.target = 0
     sb.preview = nil
     sb.popup = nil
+    sb.countup = nil
 end
 
 function M.layout()
@@ -73,6 +81,16 @@ function M.update(sb, dt)
         sb.popup.timer = sb.popup.timer - dt
         if sb.popup.timer <= 0 then
             sb.popup = nil
+        end
+    end
+    if sb.countup then
+        sb.countup.timer = sb.countup.timer + dt
+        local ratio = math.min(1, sb.countup.timer / sb.countup.duration)
+        local eased = 1 - (1 - ratio) * (1 - ratio)
+        sb.displayed_score = math.floor(sb.countup.from + (sb.countup.to - sb.countup.from) * eased)
+        if ratio >= 1 then
+            sb.displayed_score = sb.countup.to
+            sb.countup = nil
         end
     end
 end

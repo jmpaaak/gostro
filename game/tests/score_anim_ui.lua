@@ -123,7 +123,7 @@ function M.test_phase_total()
         base_chips = 1, base_mult = 1,
         bonus_chips = 0, bonus_mult = 0,
         final_chips = 1, final_mult = 1,
-        total = 1,
+        total = 155,
         gwang_triggers = {},
     })
     -- Skip cards and mult
@@ -131,8 +131,12 @@ function M.test_phase_total()
     score_anim.update(sa, score_anim.MULT_DURATION + 0.01)
     assert(sa.phase == "total")
     -- Tick through total countup
+    score_anim.update(sa, score_anim.TOTAL_DURATION * 0.5)
+    assert(sa.displayed_total > 0 and sa.displayed_total < sa.total,
+        "total phase counts up instead of jumping")
     score_anim.update(sa, score_anim.TOTAL_DURATION + 0.01)
     assert(sa.phase == "done", "should be done after total, got: " .. sa.phase)
+    assert(sa.displayed_total == sa.total)
 end
 
 function M.test_gwang_glow()
