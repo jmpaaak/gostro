@@ -2,7 +2,11 @@
 
 ## 처리 대기
 
-(없음)
+(38) **발라트로급 호버 확대·상점 구매 피드백·판 스킵 안내** (msg `1547290362782031952`)
+  - 담당: `game/ui/card.lua`, `game/ui/card_art.lua`, `game/ui/shop.lua`, `game/ui/blind_select.lua`, `game/scenes/play.lua`.
+  - 호버 시 패가 살짝 확대. 상점 구매 시 슬롯 판매 연출. 판 카드에 스킵 가능/불가 카피.
+  - 완료: 확대·구매 피드백·스킵 카피, `make test LOVE=/Users/jm/.local/bin/love` GREEN.
+
 
 ## 처리 중
 
