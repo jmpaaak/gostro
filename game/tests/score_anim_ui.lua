@@ -2,6 +2,7 @@
 -- Tests for score animation module (engine-only, no love.graphics).
 
 local score_anim = require("game.ui.score_anim")
+local effect_art = require("game.ui.effect_art")
 
 local M = {}
 
@@ -11,9 +12,32 @@ function M.run()
     M.test_phase_card_popups()
     M.test_phase_mult()
     M.test_phase_total()
+    M.test_score_effect_uses_manifest_texture()
     M.test_gwang_glow()
     M.test_idle_after_finish()
     print("  score_anim_ui: OK")
+end
+
+function M.test_score_effect_uses_manifest_texture()
+    local calls = {}
+    local texture = { getDimensions = function() return 80, 32 end }
+    local api = {
+        set_color = function(...) calls.color = {...} end,
+        draw = function(...) calls.draw = {...} end,
+    }
+    local requested
+    local drawn = effect_art.draw_score(160, 90, 1.25, 0.75, api, function(id)
+        requested = id
+        return texture
+    end)
+
+    assert(drawn == true)
+    assert(requested == "ui.effect_score")
+    assert(calls.color[1] == 1 and calls.color[4] == 0.75)
+    assert(calls.draw[1] == texture)
+    assert(calls.draw[2] == 110 and calls.draw[3] == 70,
+        "score effect must stay centered while scaled")
+    assert(calls.draw[5] == 1.25 and calls.draw[6] == 1.25)
 end
 
 function M.test_new()

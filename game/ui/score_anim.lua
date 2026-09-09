@@ -2,6 +2,8 @@
 -- Score animation module: Balatro-style per-card chip popup → mult apply → total countup.
 -- Gwang joker glow effect when triggered.
 
+local effect_art = require("game.ui.effect_art")
+
 local M = {}
 
 -- Timing constants (seconds)
@@ -219,6 +221,8 @@ function M.draw(sa, hand_cards)
             local ratio = math.min(1, sa.total_timer / M.TOTAL_DURATION)
             scale = 1.5 - 0.5 * ratio
         end
+
+        effect_art.draw_score(cx, cy + fh / 2, scale, 0.9)
 
         -- Shadow
         love.graphics.setColor(0, 0, 0, 0.6)

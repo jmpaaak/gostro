@@ -244,3 +244,7 @@
 2026-09-09T11:44:47+0900 | assets/masters/ui/effect-select-v1.png | Preserved 208x304 RGBA raster master rendered directly from the vector source.
 2026-09-09T11:44:47+0900 | assets/runtime/ui/effect-select-v1.png | 26x38 runtime effect-select icon from actual Asset Studio POST /api/pixel-perfect; original palette, hard alpha, nearest validation 5/5.
 2026-09-09T11:44:47+0900 | assets/runtime/ui/effect-select-v1.report.json | Asset Studio conversion report recording dimensions, alpha bounds, alignment, and nearest-neighbor validation.
+2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-primary-v1.png | btn_primary button graphic generated via PIL rounded rectangle
+2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-secondary-v1.png | btn_secondary button graphic generated via PIL rounded rectangle
+2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-danger-v1.png | btn_danger button graphic generated via PIL rounded rectangle
+2026-09-09T12:02:25+0900 | assets/runtime/ui/btn-disabled-v1.png | btn_disabled button graphic generated via PIL rounded rectangle

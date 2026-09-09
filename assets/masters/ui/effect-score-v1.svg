@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="256" viewBox="0 0 640 256">
+  <defs>
+    <radialGradient id="halo">
+      <stop offset="0" stop-color="#fffbd1" stop-opacity=".96"/>
+      <stop offset=".34" stop-color="#ffd84a" stop-opacity=".72"/>
+      <stop offset="1" stop-color="#f15a24" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#ff7a27" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#ffe878" stop-opacity=".88"/>
+      <stop offset="1" stop-color="#ff7a27" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="plate" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#69290f" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#160d18" stop-opacity=".94"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="320" cy="128" rx="290" ry="116" fill="url(#halo)"/>
+  <path d="M12 128 196 108 78 44 224 91 190 7 261 78 273 15 299 74 320 0 341 74 368 15 380 78 451 7 416 91 563 44 444 108 628 128 444 148 563 212 416 165 451 249 380 178 368 241 341 182 320 256 299 182 273 241 261 178 190 249 224 165 78 212 196 148Z" fill="url(#beam)"/>
+  <path d="M224 70 416 70 456 128 416 186 224 186 184 128Z" fill="#f49b24" opacity=".86"/>
+  <path d="M236 78 404 78 442 128 404 178 236 178 198 128Z" fill="url(#plate)" stroke="#fff1a2" stroke-width="8"/>
+  <path d="M255 91H385L416 128 385 165H255L224 128Z" fill="none" stroke="#f6b735" stroke-width="4" opacity=".82"/>
+  <g fill="#fffbd1" stroke="#f5a623" stroke-width="3">
+    <path d="m101 78 8 18 18 8-18 8-8 18-8-18-18-8 18-8Z"/>
+    <path d="m533 69 6 14 14 6-14 6-6 14-6-14-14-6 14-6Z"/>
+    <path d="m489 176 8 18 18 8-18 8-8 18-8-18-18-8 18-8Z"/>
+    <path d="m151 174 5 12 12 5-12 5-5 12-5-12-12-5 12-5Z"/>
+  </g>
+  <g fill="#ffd84a">
+    <circle cx="71" cy="151" r="7"/><circle cx="175" cy="45" r="6"/>
+    <circle cx="469" cy="47" r="7"/><circle cx="576" cy="148" r="6"/>
+  </g>
+</svg>

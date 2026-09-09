@@ -104,10 +104,10 @@
 - [ ] `ui.panel_wood` - ui.panel_wood
 - [ ] `ui.panel_metal` - ui.panel_metal
 - [ ] `ui.panel_glass` - ui.panel_glass
-- [ ] `ui.btn_primary` - ui.btn_primary
-- [ ] `ui.btn_secondary` - ui.btn_secondary
-- [ ] `ui.btn_danger` - ui.btn_danger
-- [ ] `ui.btn_disabled` - ui.btn_disabled
+- [x] `ui.btn_primary` - ui.btn_primary
+- [x] `ui.btn_secondary` - ui.btn_secondary
+- [x] `ui.btn_danger` - ui.btn_danger
+- [x] `ui.btn_disabled` - ui.btn_disabled
 - [x] `ui.icon_chip` - ui.icon_chip
 - [x] `ui.icon_mult` - ui.icon_mult
 - [x] `ui.icon_money` - ui.icon_money
@@ -115,7 +115,7 @@
 - [x] `ui.icon_discard` - ui.icon_discard
 - [x] `ui.icon_hand` - ui.icon_hand
 - [x] `ui.effect_select` - ui.effect_select
-- [ ] `ui.effect_score` - ui.effect_score
+- [x] `ui.effect_score` - ui.effect_score
 - [ ] `ui.effect_lock` - ui.effect_lock
 - [ ] `ui.effect_win` - ui.effect_win
 - [ ] `ui.effect_loss` - ui.effect_loss

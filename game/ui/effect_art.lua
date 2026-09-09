@@ -26,4 +26,23 @@ function M.draw_select(x, y, w, h, api, texture_provider)
     return true
 end
 
+-- Draw the score burst centered behind the animated total.
+function M.draw_score(cx, cy, scale, alpha, api, texture_provider)
+    api = api or {
+        set_color = love.graphics.setColor,
+        draw = love.graphics.draw,
+    }
+    texture_provider = texture_provider or assets.texture
+    local texture = texture_provider("ui.effect_score")
+    if not texture then return false end
+
+    local width, height = texture:getDimensions()
+    scale = scale or 1
+    alpha = alpha or 1
+    api.set_color(1, 1, 1, alpha)
+    api.draw(texture, cx - width * scale / 2, cy - height * scale / 2,
+        0, scale, scale)
+    return true
+end
+
 return M

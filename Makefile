@@ -3,7 +3,7 @@ ZIP ?= zip
 BUILD_DIR ?= build
 LOVE_PACKAGE ?= $(BUILD_DIR)/game.love
 
-.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa gwang-slot-qa score-icon-qa smoke love verify clean
+.PHONY: test status-test asset-inventory-test font-test card-overlap-qa blind-card-qa shop-pack-qa gwang-slot-qa score-icon-qa score-effect-qa smoke love verify clean
 
 test:
 	GAME_HEADLESS=1 GAME_UNIT=1 $(LOVE) .
@@ -252,6 +252,20 @@ score-icon-qa:
 	SCORE_ICON_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/score-icon-love-v1.png" \
 		$(LOVE) "$(BUILD_DIR)/score-icon-qa"
 
+score-effect-qa:
+	@rm -rf "$(BUILD_DIR)/score-effect-qa"
+	@mkdir -p "$(BUILD_DIR)/score-effect-qa/game/ui" \
+		"$(BUILD_DIR)/score-effect-qa/assets/runtime/ui" \
+		"$(BUILD_DIR)/score-effect-qa/assets/fonts"
+	@cp tools/score_effect_qa_main.lua "$(BUILD_DIR)/score-effect-qa/main.lua"
+	@cp game/ui/score_anim.lua game/ui/effect_art.lua "$(BUILD_DIR)/score-effect-qa/game/ui/"
+	@cp game/asset_loader.lua "$(BUILD_DIR)/score-effect-qa/game/"
+	@cp assets/manifest.json "$(BUILD_DIR)/score-effect-qa/assets/"
+	@cp assets/runtime/ui/effect-score-v1.png "$(BUILD_DIR)/score-effect-qa/assets/runtime/ui/"
+	@cp assets/fonts/Galmuri11.ttf "$(BUILD_DIR)/score-effect-qa/assets/fonts/"
+	SCORE_EFFECT_QA_OUTPUT="$(CURDIR)/assets/runtime/ui/effect-score-love-v1.png" \
+		$(LOVE) "$(BUILD_DIR)/score-effect-qa"
+
 smoke:
 	GAME_HEADLESS=1 $(LOVE) .
 
@@ -263,7 +277,7 @@ love:
 		-x 'tmp/*' -x 'logs/*' -x '.venv/*' -x '__pycache__/*' \
 		-x '.env' -x '.env.*' -x '.DS_Store' -x '*.swp'
 
-verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa gwang-slot-qa score-icon-qa smoke love
+verify: status-test asset-inventory-test test font-test card-overlap-qa blind-card-qa shop-pack-qa gwang-slot-qa score-icon-qa score-effect-qa smoke love
 	GAME_HEADLESS=1 $(LOVE) "$(LOVE_PACKAGE)"
 	python3 tools/verify_bundle.py "$(LOVE_PACKAGE)"
 

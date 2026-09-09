@@ -2762,26 +2762,130 @@
     {
       "id": "ui.btn_primary",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.btn_primary"
+      "status": "runtime",
+      "name": "ui.btn_primary",
+      "master": {
+        "source": "assets/masters/ui/btn-primary-v1.png",
+        "sourceSha256": "2acf3d2c8676e9837fe7f719c54d80189222f91abe22f6b60e249d325c2c182b",
+        "path": "assets/masters/ui/btn-primary-v1.png",
+        "width": 400,
+        "height": 120,
+        "sha256": "2acf3d2c8676e9837fe7f719c54d80189222f91abe22f6b60e249d325c2c182b",
+        "provenance": "Project-authored high-resolution generated button."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/btn-primary-v1.png",
+        "width": 100,
+        "height": 30,
+        "filter": "nearest",
+        "sha256": "b5ece25835be390e6272d8e950a1f1a0098a2d80a20372099cc690700eeb433e"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 100,
+        "targetHeight": 30,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/btn-primary-v1.report.json",
+        "reportSha256": "b6fe9dbdfbbb8933b42beada9c70adbe051171b0503a332e4622881ef8a01b43"
+      }
     },
     {
       "id": "ui.btn_secondary",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.btn_secondary"
+      "status": "runtime",
+      "name": "ui.btn_secondary",
+      "master": {
+        "source": "assets/masters/ui/btn-secondary-v1.png",
+        "sourceSha256": "66058eb043617a19633fb10de80b18babedd0c2840cd69bba919a71c4be05e0a",
+        "path": "assets/masters/ui/btn-secondary-v1.png",
+        "width": 400,
+        "height": 120,
+        "sha256": "66058eb043617a19633fb10de80b18babedd0c2840cd69bba919a71c4be05e0a",
+        "provenance": "Project-authored high-resolution generated button."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/btn-secondary-v1.png",
+        "width": 100,
+        "height": 30,
+        "filter": "nearest",
+        "sha256": "82023cec53cd289dd7dd6589951b7dd9f9a9d853738bbf2e828f38adf36806f1"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 100,
+        "targetHeight": 30,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/btn-secondary-v1.report.json",
+        "reportSha256": "b6fe9dbdfbbb8933b42beada9c70adbe051171b0503a332e4622881ef8a01b43"
+      }
     },
     {
       "id": "ui.btn_danger",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.btn_danger"
+      "status": "runtime",
+      "name": "ui.btn_danger",
+      "master": {
+        "source": "assets/masters/ui/btn-danger-v1.png",
+        "sourceSha256": "ceeaa28f7121c4b9cb55fb68594f284c166ccddfd908dd72c6916c2761cbc328",
+        "path": "assets/masters/ui/btn-danger-v1.png",
+        "width": 400,
+        "height": 120,
+        "sha256": "ceeaa28f7121c4b9cb55fb68594f284c166ccddfd908dd72c6916c2761cbc328",
+        "provenance": "Project-authored high-resolution generated button."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/btn-danger-v1.png",
+        "width": 100,
+        "height": 30,
+        "filter": "nearest",
+        "sha256": "762e4b59e571c05ed8e7681a1f2f169ae79ec779e755692234a232b0db819f66"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 100,
+        "targetHeight": 30,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/btn-danger-v1.report.json",
+        "reportSha256": "b6fe9dbdfbbb8933b42beada9c70adbe051171b0503a332e4622881ef8a01b43"
+      }
     },
     {
       "id": "ui.btn_disabled",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.btn_disabled"
+      "status": "runtime",
+      "name": "ui.btn_disabled",
+      "master": {
+        "source": "assets/masters/ui/btn-disabled-v1.png",
+        "sourceSha256": "aea7ae8c83bb21b5010e91db0a6c041232a83c68c92a0c051f5644bba8354120",
+        "path": "assets/masters/ui/btn-disabled-v1.png",
+        "width": 400,
+        "height": 120,
+        "sha256": "aea7ae8c83bb21b5010e91db0a6c041232a83c68c92a0c051f5644bba8354120",
+        "provenance": "Project-authored high-resolution generated button."
+      },
+      "runtime": {
+        "path": "assets/runtime/ui/btn-disabled-v1.png",
+        "width": 100,
+        "height": 30,
+        "filter": "nearest",
+        "sha256": "83d4351e079593db23fab8d6e29da8aca6aaa71c608915316987d083abe4c1a0"
+      },
+      "conversion": {
+        "endpoint": "http://127.0.0.1:4176/api/pixel-perfect",
+        "targetWidth": 100,
+        "targetHeight": 30,
+        "pixelBlock": 1,
+        "backgroundTolerance": 0,
+        "paletteLimit": "original",
+        "report": "assets/runtime/ui/btn-disabled-v1.report.json",
+        "reportSha256": "b6fe9dbdfbbb8933b42beada9c70adbe051171b0503a332e4622881ef8a01b43"
+      }
     },
     {
       "id": "ui.icon_chip",
@@ -3054,8 +3158,11 @@
     {
       "id": "ui.effect_score",
       "category": "ui",
-      "status": "pending",
-      "name": "ui.effect_score"
+      "status": "runtime",
+      "name": "ui.effect_score",
+      "master": "assets/masters/ui/effect-score-v1.png",
+      "runtime": "assets/runtime/ui/effect-score-v1.png",
+      "conversion": "assets/runtime/ui/effect-score-v1.report.json"
     },
     {
       "id": "ui.effect_lock",
