@@ -41,18 +41,22 @@ local function assert_draw(kind, id, path, x, y)
         kind .. " arrow must resolve through the runtime manifest")
 end
 
+local function assert_entry(kind, id, path, x, y)
+    local entry = assets.entry(id)
+    assert(entry and entry.status == "runtime", kind .. " arrow artwork must be promoted")
+    assert(entry.master.width == 624 and entry.master.height == 432,
+        kind .. " arrow must preserve a 624x432 master")
+    assert(entry.runtime.width == 26 and entry.runtime.height == 18,
+        kind .. " arrow runtime must fill the 26x18 New Run arrow slot")
+    assert(entry.runtime.filter == "nearest")
+    assert(entry.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
+    assert_draw(kind, id, path, x, y)
+end
+
 function M.run()
     assets.clear_cache()
-    local left = assets.entry("ui.arrow_left")
-    assert(left and left.status == "runtime", "left arrow artwork must be promoted")
-    assert(left.master.width == 624 and left.master.height == 432,
-        "left arrow must preserve a 624x432 master")
-    assert(left.runtime.width == 26 and left.runtime.height == 18,
-        "left arrow runtime must fill the 26x18 New Run arrow slot")
-    assert(left.runtime.filter == "nearest")
-    assert(left.conversion.endpoint == "http://127.0.0.1:4176/api/pixel-perfect")
-    assert_draw("left", "ui.arrow_left", "assets/runtime/ui/arrow-left-v1.png", 5, 67)
-
+    assert_entry("left", "ui.arrow_left", "assets/runtime/ui/arrow-left-v1.png", 5, 67)
+    assert_entry("right", "ui.arrow_right", "assets/runtime/ui/arrow-right-v1.png", 285, 67)
     print("  arrow_art: OK")
 end
 

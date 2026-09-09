@@ -4,6 +4,7 @@ local seed_ui = require("game.ui.seed")
 local effect_art = require("game.ui.effect_art")
 local deck_art = require("game.ui.deck_art")
 local stake_art = require("game.ui.stake_art")
+local arrow_art = require("game.ui.arrow_art")
 
 local M = {}
 
@@ -197,8 +198,6 @@ local function draw_shadowed_box(graphics, rect, color, radius)
     set_color(graphics, color)
     graphics.rectangle("fill", rect.x, rect.y, rect.w, rect.h, radius, radius)
 end
-
-local arrow_art = require("game.ui.arrow_art")
 
 local function draw_arrow(graphics, rect, points_right, enabled)
     local w, h = 26, 18
