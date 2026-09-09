@@ -245,10 +245,14 @@ function M.draw(sb)
     love.graphics.rectangle("fill", bar_x, bar_y,
         math.floor(bar_w * ratio), bar_h, 2, 2)
 
-    -- Popup: Balatro-style chips×mult floating text
+    -- Popup: Balatro-style chips×mult floating text (same clock as the tally)
     if sb.popup then
-        local alpha = math.min(1, sb.popup.timer / 0.3) -- fade out last 0.3s
-        local rise = (POPUP_DURATION - sb.popup.timer) * 20 -- float upward
+        local alpha = 1
+        local rise = 0
+        if not sb.popup.live then
+            alpha = math.min(1, sb.popup.timer / 0.3)
+            rise = (POPUP_DURATION - sb.popup.timer) * 20
+        end
         local px = VIEWPORT_W / 2
         local py = VIEWPORT_H / 2 - 10 - rise
 
